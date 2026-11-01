@@ -1,0 +1,13 @@
+node_modules
+dist
+.DS_Store
+.env
+
+# Renders are never committed (the old my-video repo grew to 26 GB of them and filled the
+# session disk): finished videos are sent to Scott instead. Only the text tickets in out/ are kept.
+out/*
+!out/*.txt
+!out/*.md
+
+# Agent worktrees (Claude Code)
+.claude/worktrees/

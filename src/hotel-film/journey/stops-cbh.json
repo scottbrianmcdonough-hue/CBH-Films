@@ -1,0 +1,107 @@
+[
+  {
+    "id": "ilsington",
+    "lat": 50.574,
+    "lon": -3.728
+  },
+  {
+    "id": "speech-house",
+    "lat": 51.799,
+    "lon": -2.548
+  },
+  {
+    "id": "oakley-hall",
+    "lat": 51.255,
+    "lon": -1.177
+  },
+  {
+    "id": "alfriston",
+    "lat": 50.806,
+    "lon": 0.158
+  },
+  {
+    "id": "hythe-imperial",
+    "lat": 51.069,
+    "lon": 1.087
+  },
+  {
+    "id": "langshott",
+    "lat": 51.176,
+    "lon": -0.155
+  },
+  {
+    "id": "kingfisher",
+    "lat": 52.136,
+    "lon": -0.466
+  },
+  {
+    "id": "whittlebury",
+    "lat": 52.088,
+    "lon": -1.006
+  },
+  {
+    "id": "haycock",
+    "lat": 52.578,
+    "lon": -0.415
+  },
+  {
+    "id": "rutland-hall",
+    "lat": 52.664,
+    "lon": -0.64
+  },
+  {
+    "id": "nailcote",
+    "lat": 52.4,
+    "lon": -1.613
+  },
+  {
+    "id": "fairlawns",
+    "lat": 52.611,
+    "lon": -1.928
+  },
+  {
+    "id": "prince-rupert",
+    "lat": 52.708,
+    "lon": -2.752
+  },
+  {
+    "id": "ruthin",
+    "lat": 53.112,
+    "lon": -3.311
+  },
+  {
+    "id": "whitley-hall",
+    "lat": 53.444,
+    "lon": -1.508
+  },
+  {
+    "id": "holdsworth",
+    "lat": 53.744,
+    "lon": -1.877
+  },
+  {
+    "id": "wild-boar",
+    "lat": 54.359,
+    "lon": -2.858
+  },
+  {
+    "id": "hardwick",
+    "lat": 54.644,
+    "lon": -1.461
+  },
+  {
+    "id": "gisborough",
+    "lat": 54.539,
+    "lon": -1.042
+  },
+  {
+    "id": "dalmahoy",
+    "lat": 55.903,
+    "lon": -3.395
+  },
+  {
+    "id": "atholl-palace",
+    "lat": 56.703,
+    "lon": -3.735
+  }
+]

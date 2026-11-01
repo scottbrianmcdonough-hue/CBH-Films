@@ -1,0 +1,182 @@
+[
+  {
+    "id": "avisford-park",
+    "lat": 50.832,
+    "lon": -0.616
+  },
+  {
+    "id": "barnett-hill",
+    "lat": 51.205,
+    "lon": -0.54
+  },
+  {
+    "id": "burleigh-court",
+    "lat": 51.718,
+    "lon": -2.192
+  },
+  {
+    "id": "hatherley-manor",
+    "lat": 51.906,
+    "lon": -2.212
+  },
+  {
+    "id": "langstone-cliff",
+    "lat": 50.602,
+    "lon": -3.444
+  },
+  {
+    "id": "the-beaches",
+    "lat": 53.344,
+    "lon": -3.4
+  },
+  {
+    "id": "the-imperial-llandudno",
+    "lat": 53.324,
+    "lon": -3.826
+  },
+  {
+    "id": "metropole-llandrindod",
+    "lat": 52.241,
+    "lon": -3.379
+  },
+  {
+    "id": "waterton-park",
+    "lat": 53.648,
+    "lon": -1.464
+  },
+  {
+    "id": "skipton-hotel",
+    "lat": 53.961,
+    "lon": -2.017
+  },
+  {
+    "id": "gomersal-park",
+    "lat": 53.727,
+    "lon": -1.688
+  },
+  {
+    "id": "donnington-manor",
+    "lat": 51.297,
+    "lon": 0.168
+  },
+  {
+    "id": "frensham-pond",
+    "lat": 51.157,
+    "lon": -0.773
+  },
+  {
+    "id": "county-hotel-chelmsford",
+    "lat": 51.738,
+    "lon": 0.466
+  },
+  {
+    "id": "wildes-inns",
+    "lat": 53.235,
+    "lon": -1.421
+  },
+  {
+    "id": "lancaster-house",
+    "lat": 54.034,
+    "lon": -2.785
+  },
+  {
+    "id": "wrightington",
+    "lat": 53.613,
+    "lon": -2.709
+  },
+  {
+    "id": "oaklands-hall",
+    "lat": 53.54,
+    "lon": -0.17
+  },
+  {
+    "id": "rowton-hall",
+    "lat": 53.177,
+    "lon": -2.833
+  },
+  {
+    "id": "hogarths-stone-manor",
+    "lat": 52.367,
+    "lon": -2.198
+  },
+  {
+    "id": "hogarths-solihull",
+    "lat": 52.369,
+    "lon": -1.759
+  },
+  {
+    "id": "stoke-by-nayland",
+    "lat": 51.989,
+    "lon": 0.858
+  },
+  {
+    "id": "the-mount-wolverhampton",
+    "lat": 52.59,
+    "lon": -2.181
+  },
+  {
+    "id": "low-wood-bay",
+    "lat": 54.405,
+    "lon": -2.95
+  },
+  {
+    "id": "forest-of-arden",
+    "lat": 52.442,
+    "lon": -1.64
+  },
+  {
+    "id": "morritt",
+    "lat": 54.513,
+    "lon": -1.861
+  },
+  {
+    "id": "hintlesham-hall",
+    "lat": 52.055,
+    "lon": 1.055
+  },
+  {
+    "id": "ramside-hall",
+    "lat": 54.786,
+    "lon": -1.524
+  },
+  {
+    "id": "imperial-tenby",
+    "lat": 51.672,
+    "lon": -4.701
+  },
+  {
+    "id": "feathers-ludlow",
+    "lat": 52.367,
+    "lon": -2.718
+  },
+  {
+    "id": "tiverton-hotel",
+    "lat": 50.91,
+    "lon": -3.494
+  },
+  {
+    "id": "park-house-shifnal",
+    "lat": 52.666,
+    "lon": -2.372
+  },
+  {
+    "id": "knowsley-inn",
+    "lat": 53.455,
+    "lon": -2.852
+  },
+  {
+    "id": "almondsbury-inn",
+    "lat": 51.552,
+    "lon": -2.554
+  },
+  {
+    "id": "arnos-manor",
+    "lat": 51.443,
+    "lon": -2.565
+  },
+  {
+    "id": "castle-inn-bassenthwaite",
+    "lat": 54.676,
+    "lon": -3.205
+  }
+]

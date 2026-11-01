@@ -1,0 +1,42 @@
+{
+  "name": "my-video",
+  "version": "1.0.0",
+  "description": "My Remotion video",
+  "repository": {},
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@react-three/fiber": "9.1.2",
+    "@remotion/cli": "4.0.532",
+    "@remotion/fonts": "4.0.532",
+    "@remotion/media": "4.0.532",
+    "@remotion/three": "4.0.532",
+    "@remotion/transitions": "4.0.532",
+    "@types/three": "0.170.0",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "remotion": "4.0.532",
+    "three": "0.170.0"
+  },
+  "devDependencies": {
+    "@remotion/eslint-config-flat": "4.0.532",
+    "@types/react": "19.2.7",
+    "@types/web": "0.0.166",
+    "d3-geo": "^3.1.1",
+    "eslint": "9.39.5",
+    "prettier": "3.8.1",
+    "topojson-client": "^3.1.0",
+    "typescript": "5.9.3",
+    "world-atlas": "^2.0.2"
+  },
+  "scripts": {
+    "dev": "remotion studio",
+    "build": "remotion bundle",
+    "upgrade": "remotion upgrade",
+    "lint": "eslint src && tsc",
+    "render": "remotion render MyComp out/slides.raw.mp4 && scripts/to-mp4.sh out/slides.raw.mp4 out/slides.mp4",
+    "render:film": "scripts/render-film.sh",
+    "render:hythe": "scripts/render-film.sh hythe-imperial",
+    "render:hythe-story": "scripts/render-film.sh hythe-imperial-story"
+  }
+}

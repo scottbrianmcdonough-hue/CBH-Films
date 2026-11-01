@@ -1,0 +1,22 @@
+[AUTUMN] Up next: Rowton Hall [STORY]
+
+Campaign: Autumn
+@Bianca Thomson
+
+Hook
+Like the Stories "Up next" screen: our hotels in gold circles under "Up next / Choose where to stay next". One opens into Rowton Hall Hotel & Spa, Chester: the house over its lawns, afternoon tea with friends, the indoor pool, the lounge by the stove, dinner, and the canopied bedroom. Rowton's circle shuts back into the cluster, ringed as seen, and the header turns to "Where to next?" over classicbritishhotels.com, so it ends where it began.
+
+Sticker
+Link sticker: "Up next: Rowton Hall" to Rowton Hall's page on the CBH site: https://www.classicbritishhotels.com/hotels/rowton-hall-hotel-spa/#offers (check the slug opens Rowton's page; the CBH site is blocked here).
+Place it in the space under the cluster, clear of the white CB.
+
+Time slot: Wed 21 Oct, 12:00 PM
+Platforms: Instagram Stories, Facebook Stories
+Video: up-next-story-sfx.mp4 (21.5s, 9:16)
+
+Music: the file carries only the UI's own sounds (the circles popping in, the press on Rowton); add "Good Day" (the 30s clip) in the Instagram app and keep the original audio on, under it. (Do not use the old up-next-story.mp4: its Fashion Deep House carries an AudioJungle voice watermark. up-next-story-silent.mp4 has no sounds at all.)
+
+Notes:
+- 𝗟𝗶𝗻𝗸: the Rowton Hall slug is a guess (the CBH site is blocked here); check it, or use the homepage to match the end card.
+- 𝗧𝗮𝗴: Rowton Hall's own account, if it has one.
+- 𝗥𝗲𝗲𝗹: the full Up next reel (Rowton Hall and Speech House) has its own ticket, out/up-next-ticket.txt.
