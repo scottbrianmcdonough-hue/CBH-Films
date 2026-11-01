@@ -1,0 +1,43 @@
+{
+  "out": "public/hotels/ruthin-castle/picture-cut.mp4",
+  "shots": [
+    {
+      "src": "public/hotels/ruthin-castle/clips/castle.mp4",
+      "from": 0,
+      "frames": 127
+    },
+    {
+      "src": "public/hotels/ruthin-castle/sumac-and-ruins.mp4",
+      "from": 10,
+      "frames": 40
+    },
+    {
+      "src": "public/hotels/ruthin-castle/clips/peacock.mp4",
+      "from": 0,
+      "frames": 126
+    },
+    {
+      "src": "public/hotels/ruthin-castle/pub-sign.mp4",
+      "from": 22,
+      "frames": 40
+    },
+    {
+      "src": "public/hotels/ruthin-castle/clips/fireside-plate.mp4",
+      "from": 0,
+      "frames": 126
+    },
+    {
+      "src": "public/hotels/ruthin-castle/hot-tub.mp4",
+      "from": 14,
+      "frames": 42,
+      "vf": "eq=contrast=1.12:saturation=1.2:gamma=0.96,colorbalance=rm=0.04:bm=-0.04"
+    },
+    {
+      "src": "public/hotels/ruthin-castle/clips/white-bed.mp4",
+      "from": 0,
+      "frames": 299
+    }
+  ],
+  "fade": 0,
+  "tail": 0
+}

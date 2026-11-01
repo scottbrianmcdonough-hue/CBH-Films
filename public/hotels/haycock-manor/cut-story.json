@@ -1,0 +1,42 @@
+{
+ "out": "public/hotels/haycock-manor/picture-story.mp4",
+ "shots": [
+  {
+   "src": "public/hotels/haycock-manor/clips/cocktail-smoke.mp4",
+   "from": 0,
+   "frames": 84
+  },
+  {
+   "src": "public/hotels/haycock-manor/clips/prevost-plate.mp4",
+   "from": 0,
+   "frames": 10
+  },
+  {
+   "src": "public/hotels/haycock-manor/clips/plates-marble.mp4",
+   "from": 0,
+   "frames": 11
+  },
+  {
+   "src": "public/hotels/haycock-manor/clips/afternoon-tea.mp4",
+   "from": 0,
+   "frames": 63
+  },
+  {
+   "src": "public/hotels/haycock-manor/clips/gold-bath.mp4",
+   "from": 0,
+   "frames": 62
+  },
+  {
+   "src": "public/hotels/haycock-manor/clips/basin-close.mp4",
+   "from": 0,
+   "frames": 42
+  },
+  {
+   "src": "public/hotels/haycock-manor/clips/beamed-bedroom.mp4",
+   "from": 0,
+   "frames": 106
+  }
+ ],
+ "fade": 22,
+ "tail": 108
+}

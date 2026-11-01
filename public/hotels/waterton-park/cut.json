@@ -1,0 +1,41 @@
+{
+  "out": "public/hotels/waterton-park/picture-cut.mp4",
+  "clips": [
+    "public/hotels/waterton-park/clips/aerial.mp4",
+    "public/hotels/waterton-park/clips/walton-hall.mp4",
+    "public/hotels/waterton-park/clips/afternoon-tea.mp4",
+    "public/hotels/waterton-park/clips/indoor-pool.mp4",
+    "public/hotels/waterton-park/clips/outdoor-hot-tub.mp4"
+  ],
+  "cuts": [
+    139,
+    279,
+    418,
+    557,
+    697
+  ],
+  "origins": [
+    [
+      300,
+      1700
+    ],
+    [
+      150,
+      1260
+    ],
+    [
+      540,
+      1450
+    ],
+    [
+      360,
+      1600
+    ],
+    [
+      480,
+      1600
+    ]
+  ],
+  "to_black": true,
+  "mode": "cut"
+}

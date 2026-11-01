@@ -1,0 +1,73 @@
+{
+ "out": "public/hotels/haycock-manor/picture-meetings.mp4",
+ "size": "1920x1080",
+ "shots": [
+  {
+   "src": "public/hotels/haycock-manor/clips-wide/fitzwilliam.mp4",
+   "from": 0,
+   "frames": 85
+  },
+  {
+   "src": "public/hotels/haycock-manor/clips-wide/m-boardroom-stone.mp4",
+   "from": 0,
+   "frames": 21
+  },
+  {
+   "src": "public/hotels/haycock-manor/clips-wide/m-boardroom-oval.mp4",
+   "from": 0,
+   "frames": 21
+  },
+  {
+   "src": "public/hotels/haycock-manor/clips-wide/m-boardroom-small.mp4",
+   "from": 0,
+   "frames": 21
+  },
+  {
+   "src": "public/hotels/haycock-manor/clips-wide/manor-suite.mp4",
+   "from": 0,
+   "frames": 125
+  },
+  {
+   "src": "public/hotels/haycock-manor/clips-wide/blue-lounge.mp4",
+   "from": 0,
+   "frames": 105
+  },
+  {
+   "src": "public/hotels/haycock-manor/clips-wide/afternoon-tea.mp4",
+   "from": 0,
+   "frames": 63
+  },
+  {
+   "src": "public/hotels/haycock-manor/clips-wide/prevost-plate.mp4",
+   "from": 0,
+   "frames": 10
+  },
+  {
+   "src": "public/hotels/haycock-manor/clips-wide/plates-marble.mp4",
+   "from": 0,
+   "frames": 11
+  },
+  {
+   "src": "public/hotels/haycock-manor/clips-wide/fish-and-chips.mp4",
+   "from": 0,
+   "frames": 63
+  },
+  {
+   "src": "public/hotels/haycock-manor/clips-wide/cocktail-smoke.mp4",
+   "from": 0,
+   "frames": 62
+  },
+  {
+   "src": "public/hotels/haycock-manor/clips-wide/cocktail-close.mp4",
+   "from": 0,
+   "frames": 42
+  },
+  {
+   "src": "public/hotels/haycock-manor/clips-wide/beamed-bedroom.mp4",
+   "from": 0,
+   "frames": 106
+  }
+ ],
+ "fade": 22,
+ "tail": 108
+}
