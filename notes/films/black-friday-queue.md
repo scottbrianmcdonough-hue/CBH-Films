@@ -1,0 +1,18 @@
+# Black Friday: the queue
+
+**Status:** First version sent (2 Nov).  
+**Compositions:** `black-friday-queue`, `black-friday-queue-story`  
+**Hotels:** Rowton Hall, Low Wood Bay, Gisborough, Haycock Manor, Waterton Park, Rutland Hall  
+**Music:** Party Dance by prettyjohn1 (Pixabay 526227)
+
+[All films](../README.md) · [Hotels](../hotels.md) · [Music](../music.md)
+
+## Notes
+
+The Black Friday 2026 campaign (Scott, 2 Nov: "these are the black friday assets we need some reels around that"): THE WAIT IS OVER / Black Friday Sale / SAVE UP TO 30%, in the campaign's own mauve (`#A15272`, sampled from the pill) over two photos, a woman stretching in bed in a white robe and a woman in a robe opening the curtains. The five assets are in `public/campaigns/black-friday-2026/campaign/`; `bed-clean.jpg` is the clean right side of the landscape one (the text sits on the left), 675 x 1200, so 1.6x on a 9:16 frame. No clean curtains photo yet (its text sits over the window): ask for the originals, and which hotel the curtains room is.
+
+Ideas offered first as mock-up strips (a 30% counter, lights on, a depth Story); Scott: "needs to be fresh ideas", so the counter (the AMC 25 again) and the depth Story were dropped.
+
+The idea (`src/hotel-film/blackfriday/QueueReel.tsx`): the online sale's waiting room in CBH black. BLACK FRIDAY SALE in mauve caps, "You're in the queue", a "While you wait" window cycling through the hotels two beats each, "Your place in line" counting down from 2,481, a mauve progress bar, "Estimated wait: about a year / a few months / a couple of weeks / a few days / any minute now". The track plays muffled like hold music through its build (`queue-music.mp3`: 7.129-18.045s of the original band-limited 350-2600 Hz, then the full band). In the track's one-beat stop (16.97-18.04s) "It's your turn" and a mauve Enter button, a tap, and on the drop the window bursts to full frame (Haycock's smoked cocktail) as the band comes in, "The wait / is over" rising. Then Gisborough's misty sunrise, Rutland's lake sunset, Rowton's canopied bed and Rowton's robe, two beats each, the robe a match cut into the campaign's robe photo: "Black Friday / Sale" and the SAVE UP TO 30% pill in mauve, white CB. 110 BPM, beats at 16.37 frames, the drop beat 20, the end card beat 32 (Story 24), 40 beats (Story 32). 21.8s, -15.0 LUFS; Story (no shots after the drop) 17.5s, -15.4 LUFS. The window shows the middle of each portrait clip (Rutland's candlelit bath read as a tap and leaves there: swapped for Rowton's welcome fizz).
+
+Next offered: "Shutters up" (a black roller shutter rising on each hotel like a shop on sale morning, the last on the campaign photo).

@@ -9,6 +9,7 @@ import { FestiveFilm } from "./hotel-film/festive/FestiveFilm";
 import { MixedFilm } from "./hotel-film/mixed/MixedFilm";
 import { RippleFilm } from "./hotel-film/ripple/RippleFilm";
 import { WhereNext, WHERE_NEXT_FRAMES } from "./hotel-film/stings/WhereNext";
+import { QueueReel, QUEUE_FRAMES, QUEUE_STORY_FRAMES } from "./hotel-film/blackfriday/QueueReel";
 import { WrittenCB, WRITTEN_CB_FRAMES } from "./hotel-film/stings/WrittenCB";
 import { WaxSeal, WAX_SEAL_FRAMES } from "./hotel-film/stings/WaxSeal";
 import { DepthDemo, DEPTH_DEMO_FRAMES } from "./hotel-film/stings/DepthDemo";
@@ -485,6 +486,17 @@ export const RemotionRoot: React.FC = () => {
         id="cbh-flipbook-winter"
         component={PadFlip}
         durationInFrames={PAD_FRAMES}
+        fps={FPS}
+        width={WIDTH}
+        height={HEIGHT}
+      />
+      {/* Black Friday 2026: the sale's waiting room, the window bursting out on the drop */}
+      <Composition id="black-friday-queue" component={QueueReel} durationInFrames={QUEUE_FRAMES} fps={FPS} width={WIDTH} height={HEIGHT} />
+      <Composition
+        id="black-friday-queue-story"
+        component={QueueReel}
+        defaultProps={{ story: true }}
+        durationInFrames={QUEUE_STORY_FRAMES}
         fps={FPS}
         width={WIDTH}
         height={HEIGHT}

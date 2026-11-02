@@ -16,7 +16,9 @@ python3 -m pip install --quiet --disable-pip-version-check numpy pillow librosa 
   | grep -v "Running pip as the 'root' user" || true
 
 # Remotion can't download its own Chrome here; use the preinstalled headless shell.
-shell=$(ls -d /opt/pw-browsers/chromium_headless_shell-*/chrome-linux/headless_shell 2>/dev/null | head -1 || true)
+# (the folder layout changed between Playwright builds: try both)
+shell=$(ls -d /opt/pw-browsers/chromium_headless_shell-*/chrome-linux/headless_shell \
+  /opt/pw-browsers/chromium_headless_shell-*/chrome-headless-shell-linux64/chrome-headless-shell 2>/dev/null | head -1 || true)
 if [ -n "$shell" ] && [ -n "${CLAUDE_ENV_FILE:-}" ]; then
   echo "export REMOTION_BROWSER_EXECUTABLE=\"$shell\"" >> "$CLAUDE_ENV_FILE"
 fi

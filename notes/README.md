@@ -14,6 +14,7 @@ Statuses as of 2 Nov 2026.
 
 ## Sent, waiting on Scott
 
+- [Black Friday: the queue](films/black-friday-queue.md): First version sent (2 Nov).
 - [Fairlawns: stay and dine](films/fairlawns-stay-dine.md): Sent for review.
 - [Cosy Escapes flipbook](films/cosy-escapes-flipbook.md): Sent for review.
 - [Hintlesham Hall search reel](films/hintlesham-hall-search.md): First preview sent.

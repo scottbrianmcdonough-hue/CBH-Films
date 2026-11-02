@@ -31,6 +31,7 @@ Tracks used and where, so a new film doesn't repeat one by accident. [All films]
 | Light it Up Boy (Mixkit 849) | [amc-2026-reel](films/amc-2026-reel.md) (alternative), [amc-2026-wide](films/amc-2026-wide.md) |
 | Luxury by Sub_Clair | [cbh-journey](films/cbh-journey.md), [cbh-showcase](films/cbh-showcase.md), [black-friday-gift-vouchers](films/black-friday-gift-vouchers.md) |
 | Neo Soul Night | [fairlawns-stay-dine](films/fairlawns-stay-dine.md) |
+| Party Dance by prettyjohn1 (Pixabay 526227) | [black-friday-queue](films/black-friday-queue.md) |
 | Rich Enough (Instrumental) by pietix (Pixabay 510327) | [cbh-screens](films/cbh-screens.md) |
 | Sentimental Autumn Music | [clocks-go-back](films/clocks-go-back.md) (newest cut) |
 | Smooth Soul | [plate-to-pillow](films/plate-to-pillow.md) (B), [hintlesham-hall-search](films/hintlesham-hall-search.md), [cbh-craft](films/cbh-craft.md) |
