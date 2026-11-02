@@ -1,9 +1,9 @@
 # Nailcote Hall: meetings and events
 
-**Status:** Gathering photos (2 Nov); goes out Fri 6 Nov (Bianca).  
-**Compositions:** `nailcote-hall-meetings` (16:9, LinkedIn and website), `nailcote-hall-meetings-reel` (9:16, Instagram), planned  
+**Status:** 16:9 sent (2 Nov), goes out Fri 6 Nov; 9:16 registered, not needed for now.  
+**Compositions:** `nailcote-hall-meetings` (16:9, LinkedIn and website), `nailcote-hall-meetings-reel` (9:16, parked)  
 **Hotels:** Nailcote Hall  
-**Music:** to pick (not Late Night Big Band Swing: that is Haycock's)
+**Music:** Tech House Vibes (Mixkit 130)
 
 [All films](../README.md) · [Hotels](../hotels.md) · [Music](../music.md)
 
@@ -46,3 +46,7 @@ Room lines (Scott: proper copy, witty and value led, the number worked in, not "
 9. Lant Suite: "Room for the big pitch / 150 in rows, 70 round tables" (its photo shows rounds, so both figures)
 10. The Marquee: "Dinner for 280 / Then the dancefloor lights up" (stage, private bar, LED dancefloor: CBH FAQ)
 Other lines: "6 miles from the NEC / 7 from M42 J6"; Charley's Bar "Minutes approved / Drinks at Charley's"; golf "Swap the slides / for the par 3"; end "The agenda's new / The house is from 1640".
+
+First version (depth reel, the ripple engine): every photo a depth move at both sizes (`make-clips.py`, clips in `clips/` and `clips-wide/`, pictures `picture-tall.mp4`, `picture-wide.mp4`), a line for each of the ten rooms with its capacity, Tech House Vibes. Scott: "kill the depth moves", the room copy "too much", "a split screen or collage to show like 4 at a time", then sent the Ramside Hall M&E reel as the model ("like the ramside reel", "for the rooms you can do the three panel"), landscape first, then "just the 16:9".
+
+Now (`src/hotel-film/me/MEReel.tsx`, a new engine on the Ramside template; spec `src/hotels/nailcote-hall-meetings.ts`): natural colour, plain stills on a slow push, crossfades, every scene on a downbeat (from beat 17 of the track, startAt 253). The house with MEETINGS & EVENTS / Nailcote Hall / Hotel, Golf & Country Club and "6 miles from the NEC, 7 from M42 J6, in Berkswell, Warwickshire"; the Kenilworth Suite full frame; on the groove two three panel splits sliding in a beat apart, each room named in caps (Lant Suite, Wellingtonia Suite, The Clubhouse Pavilion; Yew Suite, Boardroom, The Marquee); CORPORATE GOLF / A par 3 on the doorstep / The Cromwell course, home of the British Par 3 Championship (the green by the pond); DINING / Lunch in the Oak Room / Inside the house, built in 1640 (the table into the scallops); STAY OVER / Make a night of it (the pool, "A health club with an indoor pool", into the four poster, "49 bedrooms and suites"). Captions in the house style (Scott: "upgrade end card to house style", the Ramside reel was for the panels): gold caps eyebrow with its still underline, the headline in cream Cormorant, a small fact line. End card the house one: black, BERKSWELL, WARWICKSHIRE in gold caps underlined, Nailcote Hall / Hotel, Golf & Country Club in cream Cormorant, white CB. 27.5s, -16.0 LUFS. The ticket (`out/nailcote-hall-meetings-ticket.txt`) still describes the first version: rewrite it for this one.

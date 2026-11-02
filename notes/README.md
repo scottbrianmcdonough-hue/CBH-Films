@@ -14,6 +14,7 @@ Statuses as of 2 Nov 2026.
 
 ## Sent, waiting on Scott
 
+- [Nailcote Hall: meetings and events](films/nailcote-hall-meetings.md): 16:9 on the Ramside template sent (2 Nov); goes out Fri 6 Nov.
 - [Black Friday: the queue](films/black-friday-queue.md): Ends on the official artwork; tickets for the reel and a static post written (2 Nov). Needs the sale dates and link.
 - [Fairlawns: stay and dine](films/fairlawns-stay-dine.md): Sent for review.
 - [Cosy Escapes flipbook](films/cosy-escapes-flipbook.md): Sent for review.
@@ -37,7 +38,6 @@ Statuses as of 2 Nov 2026.
 
 ## Needs something (a track, a file, a fix)
 
-- [Nailcote Hall: meetings and events](films/nailcote-hall-meetings.md): Photos coming in; goes out Fri 6 Nov.
 - [Dalmahoy](films/dalmahoy.md): Waiting on the cocktail bar still.
 - [Written in](films/cbh-written.md): First version sent; needs a track.
 - [UI explainers](films/ui-explainers.md): Holdsworth weekend needs a track; GN demos sent.

@@ -1,78 +1,99 @@
-import type { RippleSpec } from "../hotel-film/ripple/types";
+import type { MESpec } from "../hotel-film/me/MEReel";
 
-// Nailcote Hall, Berkswell: the meetings and events film (Bianca, 2 Nov: "nailcote m&e reel out
-// on Fri"; Scott: "a nailcote reel like the haycock manor", both 9:16 for Instagram and 16:9 for
-// LinkedIn and the website). Haycock's meetings cut, on Nailcote's own photos (the CBH site and
-// nailcotehall.co.uk's conferencing pages, via Scott): every still a depth move on a hand-made
-// depth map (public/hotels/nailcote-hall/make-clips.py, which also writes both cut lists).
+// Nailcote Hall, Berkswell: the meetings and events reel (Bianca, 2 Nov: "nailcote m&e reel out on
+// Fri"), on the Ramside Hall M&E reel's template (Scott: "like the ramside reel", "for the rooms
+// you can do the three panel", landscape first). An earlier depth version with a line for every room
+// was dropped (Scott: "kill the depth moves", the room copy "too much").
 //
-// The house on the track's intro (label WARWICKSHIRE / Nailcote Hall), the pad and pencil, then
-// on the groove all ten event spaces, smallest to largest, a bar each, the camera pushing in at
-// one speed with every table in the same place: each room named in gold caps with its place in
-// the count ("Yew Suite · 3 of 10") over a line (Scott: copy that sells the room, the number
-// worked in, never "U-shape 32"; every figure the capacity chart's, for the layout pictured).
-// Then where it is (over the clubhouse), lunch in the Oak Room, the scallops and the terrine,
-// afternoon tea, Charley's Bar, the golf, the four poster fading to the end card.
+// Photos: the CBH site and nailcotehall.co.uk's conferencing pages (via Scott). Facts from the CBH
+// hotel page and Nailcote's CBH meeting rooms page (Scott): NEC 6.07 miles, M42 J6 6.7; the Cromwell
+// 9 hole par 3 course, home of the British Par 3 Championship, corporate golf days; the Oak Room;
+// built in 1640 (never "Tudor"); 49 bedrooms and suites; a health club with an indoor pool. No
+// rosettes (none listed). Room names as the chart spells them.
 //
-// Facts (Scott, from the CBH hotel page and Nailcote's CBH meeting rooms page): 10 event
-// spaces; Boardroom 10, Library 12, Yew 18 boardroom, Wellingtonia 20 boardroom, Dudley 28
-// cabaret, Kenilworth 32 U-shape, Terrace 42 cabaret (pictured: rounds; its doors folded back,
-// visible), the Clubhouse Pavilion 60 theatre (its balcony over the golf course: CBH page), Lant
-// 150 theatre and 70 cabaret (both its photos show rounds, so both figures), the Marquee 280 for
-// dinner (its LED dancefloor: CBH FAQ). NEC 6.07 miles, M42 J6 6.7 miles. Built in 1640 (never
-// "Tudor"). The Oak Room is named; rosettes never (none listed; the old plates in the hall are
-// kept out of the cut). Charley's Bar is spelt as its sign.
-//
-// Music: "Tech House Vibes" (Mixkit 130; in no other film), ~122 BPM, beat n at 0.088 +
-// 0.49181n s. From beat 21 (startAt 312): three bars of the intro under the house and the pad,
-// the full groove on beat 33 (frame 177) with the first room, a bar a room to beat 73, the end
-// card on beat 103 (frame 1210, after the four poster's fade), two bars of it to beat 111.
-const ROOM = (from: number, eyebrow: string, text: string) => ({
-  text,
-  eyebrow,
-  from: from + 2,
-  to: from + 59,
-  size: 0.76,
-});
+// Music: "Tech House Vibes" (Mixkit 130; in no other film), ~122 BPM, beat n at 0.088 + 0.49181n s,
+// from beat 17 (startAt 253): the house over the intro, the rooms' panels on the groove (beat 33),
+// every scene on a downbeat, the end card on beat 65, two bars of it.
+const B = (beat: number) => Math.round((beat - 17) * 0.49181 * 30);
+const P = "hotels/nailcote-hall/";
+const R = P + "rooms/";
 
-export const nailcoteHallMeetingsReel: RippleSpec = {
-  id: "nailcote-hall-meetings-reel",
-  picture: "hotels/nailcote-hall/picture-tall.mp4",
-  frames: 1328,
-  label: { eyebrow: "Warwickshire", name: "Nailcote Hall", from: 8, to: 112 },
-  lines: [
-    { text: "Ten event spaces\nTake your pick", from: 120, to: 177, size: 0.76 },
-    ROOM(177, "Boardroom · 1 of 10", "Ten seats\nZero distractions"),
-    ROOM(236, "Library · 2 of 10", "Twelve round the table\nBooks for company"),
-    ROOM(295, "Yew Suite · 3 of 10", "18 for the board\nA tapestry for the backdrop"),
-    ROOM(354, "Wellingtonia Suite · 4 of 10", "20 down one long table\nEvery eye on the screen"),
-    ROOM(413, "Dudley Suite · 5 of 10", "28 in cabaret\nNobody stuck at the back"),
-    ROOM(472, "Kenilworth Suite · 6 of 10", "A U for 32\nEveryone face to face"),
-    ROOM(531, "Terrace Suite · 7 of 10", "Fold back the doors\nMake room for 42"),
-    ROOM(590, "The Clubhouse Pavilion · 8 of 10", "60 facing the screen\nThe golf course at the break"),
-    ROOM(649, "Lant Suite · 9 of 10", "Room for the big pitch\n150 in rows, 70 round tables"),
-    ROOM(708, "The Marquee · 10 of 10", "Dinner for 280\nThen the dancefloor lights up"),
-    { text: "6 miles from the NEC\n7 from M42 J6", from: 769, to: 826, size: 0.76 },
-    { text: "Minutes approved\nDrinks at Charley’s", from: 1005, to: 1062, size: 0.76 },
-    { text: "Swap the slides\nfor the par 3", from: 1064, to: 1121, size: 0.76 },
+export const nailcoteHallMeetings: MESpec = {
+  id: "nailcote-hall-meetings",
+  frames: B(73),
+  scenes: [
+    {
+      at: 0,
+      shots: [{ src: P + "exterior.jpg", pos: "50% 50%" }],
+      text: {
+        eyebrow: "Meetings & Events",
+        title: "Nailcote Hall\nHotel, Golf & Country Club",
+        subs: ["6 miles from the NEC, 7 from M42 J6, in Berkswell, Warwickshire"],
+      },
+    },
+    { at: B(29), shots: [{ src: R + "kenilworth-suite-1.jpg", pos: "55% 50%" }] },
+    {
+      at: B(33),
+      panelBeat: 15,
+      panels: [
+        { src: R + "lant-suite-1.jpg", name: "Lant Suite", pos: "50% 55%" },
+        { src: R + "wellingtonia-suite-1.jpg", name: "Wellingtonia Suite", pos: "50% 60%" },
+        { src: R + "clubhouse-pavilion-theatre.jpg", name: "The Clubhouse Pavilion", pos: "50% 45%", widePos: "70% 50%" },
+      ],
+    },
+    {
+      at: B(37),
+      panelBeat: 15,
+      panels: [
+        { src: R + "yew-suite.jpg", name: "Yew Suite", pos: "50% 60%", widePos: "55% 50%" },
+        { src: R + "boardroom.jpg", name: "Boardroom", pos: "50% 70%", widePos: "45% 50%" },
+        { src: R + "marquee-day.jpg", name: "The Marquee", pos: "50% 55%" },
+      ],
+    },
+    {
+      at: B(41),
+      shots: [{ src: P + "golf-rhododendrons.jpg", wideSrc: P + "golf-green-pond.jpg", pos: "67% 50%" }],
+      text: {
+        eyebrow: "Corporate golf",
+        title: "A par 3 on the doorstep",
+        subs: ["The Cromwell course, home of the British Par 3 Championship"],
+      },
+    },
+    {
+      at: B(49),
+      shots: [
+        { src: P + "oak-room-table.jpg", pos: "66% 50%" },
+        { src: P + "scallops.jpg", pos: "45% 50%" },
+      ],
+      cuts: [B(53)],
+      text: { eyebrow: "Dining", title: "Lunch in the Oak Room", subs: ["Inside the house, built in 1640"] },
+    },
+    {
+      at: B(57),
+      shots: [
+        { src: P + "pool.jpg", pos: "45% 50%" },
+        { src: P + "bedroom-four-poster.jpg", pos: "28% 50%" },
+      ],
+      cuts: [B(61)],
+      text: {
+        eyebrow: "Stay over",
+        title: "Make a night of it",
+        subs: ["A health club with an indoor pool", "49 bedrooms and suites"],
+        subCuts: [B(61)],
+      },
+    },
   ],
-  endCard: { at: 1192, line: "The agenda’s new\nThe house is from 1640" },
-  music: {
-    src: "music/mixkit-tech-house-vibes-130.mp3",
-    startAt: 312,
-    gain: 0.5, // ~-15.6 LUFS
-    seconds: 101.9,
-    fadeOut: 50,
+  end: {
+    at: B(65),
+    name: "Nailcote Hall\nHotel, Golf & Country Club",
+    place: "Berkswell, Warwickshire",
   },
+  music: { src: "music/mixkit-tech-house-vibes-130.mp3", startAt: 253, gain: 0.5, fadeOut: 50 },
 };
 
-// The 16:9 cut for LinkedIn and the website: the same edit and timings, its own picture (each move
-// rendered at 1920 x 1080; the tea standing whole over its soft copy, the golf on the green by the
-// pond), the type at full size and placed for a landscape frame (`wide`).
-export const nailcoteHallMeetings: RippleSpec = {
-  ...nailcoteHallMeetingsReel,
-  id: "nailcote-hall-meetings",
-  wide: true,
-  picture: "hotels/nailcote-hall/picture-wide.mp4",
-  lines: nailcoteHallMeetingsReel.lines.map((l) => ({ ...l, size: 0.9 })),
+// The 9:16 cut for Instagram: the same film, the panels stacked as strips (Scott, 2 Nov: "just the
+// 16:9" for now; kept registered).
+export const nailcoteHallMeetingsReel: MESpec = {
+  ...nailcoteHallMeetings,
+  id: "nailcote-hall-meetings-reel",
 };

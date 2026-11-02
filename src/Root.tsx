@@ -10,6 +10,8 @@ import { MixedFilm } from "./hotel-film/mixed/MixedFilm";
 import { RippleFilm } from "./hotel-film/ripple/RippleFilm";
 import { WhereNext, WHERE_NEXT_FRAMES } from "./hotel-film/stings/WhereNext";
 import { QueueReel, QUEUE_FRAMES, QUEUE_STORY_FRAMES } from "./hotel-film/blackfriday/QueueReel";
+import { MEReel } from "./hotel-film/me/MEReel";
+import { nailcoteHallMeetings, nailcoteHallMeetingsReel } from "./hotels/nailcote-hall-meetings";
 import { WrittenCB, WRITTEN_CB_FRAMES } from "./hotel-film/stings/WrittenCB";
 import { WaxSeal, WAX_SEAL_FRAMES } from "./hotel-film/stings/WaxSeal";
 import { DepthDemo, DEPTH_DEMO_FRAMES } from "./hotel-film/stings/DepthDemo";
@@ -486,6 +488,25 @@ export const RemotionRoot: React.FC = () => {
         id="cbh-flipbook-winter"
         component={PadFlip}
         durationInFrames={PAD_FRAMES}
+        fps={FPS}
+        width={WIDTH}
+        height={HEIGHT}
+      />
+      {/* meetings and events reels on the Ramside template: 16:9 first, and 9:16 */}
+      <Composition
+        id={nailcoteHallMeetings.id}
+        component={MEReel}
+        defaultProps={{ film: nailcoteHallMeetings }}
+        durationInFrames={nailcoteHallMeetings.frames}
+        fps={FPS}
+        width={1920}
+        height={1080}
+      />
+      <Composition
+        id={nailcoteHallMeetingsReel.id}
+        component={MEReel}
+        defaultProps={{ film: nailcoteHallMeetingsReel }}
+        durationInFrames={nailcoteHallMeetingsReel.frames}
         fps={FPS}
         width={WIDTH}
         height={HEIGHT}
