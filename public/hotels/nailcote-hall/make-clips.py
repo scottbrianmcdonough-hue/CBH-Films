@@ -94,7 +94,7 @@ SHOTS = [
     ("dudley", "rooms/dudley-suite", ("room", 0.28, 0.5), 4, 1050, PUSH, None),
     ("kenilworth", "rooms/kenilworth-suite-2", ("room", 0.32, 0.55), 4, 1000, PUSH, None),
     ("terrace", "rooms/terrace-suite-1", ("room", 0.2, 0.5), 4, 1000, PUSH, None),
-    ("pavilion", "rooms/clubhouse-pavilion-theatre", ("room", 0.3, 0.5), 4, 1200, PUSH, None),
+    ("pavilion", "rooms/clubhouse-pavilion-theatre", ("room", 0.3, 0.5), 4, 1380, PUSH, None),
     ("lant", "rooms/lant-suite-1", ("room", 0.35, 0.5), 4, 1000, PUSH, None),
     ("marquee", "rooms/marquee-day", ("room", 0.35, 0.5), 4, 1000, PUSH, None),
     # where it is, lunch, the break, the drink, the golf, the night

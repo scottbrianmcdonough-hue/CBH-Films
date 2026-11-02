@@ -128,7 +128,7 @@ const Line: React.FC<{
               style={{
                 fontFamily: sans,
                 fontWeight: 600,
-                fontSize: 28 * Math.max(size, 0.9),
+                fontSize: 32 * Math.max(size, 0.9),
                 letterSpacing: "0.26em",
                 color: colors.gold,
                 textTransform: "uppercase",
@@ -152,6 +152,8 @@ const Line: React.FC<{
                   fontSize: (i ? 88 : 104) * size,
                   lineHeight: 1.04,
                   color: colors.cream,
+                  // lining figures: Cormorant's old-style ones read "60" as "6o" (Nailcote's capacities)
+                  fontVariantNumeric: "lining-nums",
                   whiteSpace: "nowrap",
                   textShadow: LIFT,
                   transform: `translateY(${(1 - p) * 140}%)`,
@@ -260,6 +262,7 @@ const EndCard: React.FC<{ line: string; wide?: boolean }> = ({
               fontSize: i ? 92 : 112,
               lineHeight: 1.08,
               color: colors.cream,
+              fontVariantNumeric: "lining-nums",
               whiteSpace: "nowrap",
             }}
           >

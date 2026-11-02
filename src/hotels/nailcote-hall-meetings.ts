@@ -32,7 +32,7 @@ const ROOM = (from: number, eyebrow: string, text: string) => ({
   eyebrow,
   from: from + 2,
   to: from + 59,
-  size: 0.82,
+  size: 0.76,
 });
 
 export const nailcoteHallMeetingsReel: RippleSpec = {
@@ -41,7 +41,7 @@ export const nailcoteHallMeetingsReel: RippleSpec = {
   frames: 1328,
   label: { eyebrow: "Warwickshire", name: "Nailcote Hall", from: 8, to: 112 },
   lines: [
-    { text: "Ten event spaces\nTake your pick", from: 120, to: 177, size: 0.82 },
+    { text: "Ten event spaces\nTake your pick", from: 120, to: 177, size: 0.76 },
     ROOM(177, "Boardroom · 1 of 10", "Ten seats\nZero distractions"),
     ROOM(236, "Library · 2 of 10", "Twelve round the table\nBooks for company"),
     ROOM(295, "Yew Suite · 3 of 10", "18 for the board\nA tapestry for the backdrop"),
@@ -52,9 +52,9 @@ export const nailcoteHallMeetingsReel: RippleSpec = {
     ROOM(590, "The Clubhouse Pavilion · 8 of 10", "60 facing the screen\nThe golf course at the break"),
     ROOM(649, "Lant Suite · 9 of 10", "Room for the big pitch\n150 in rows, 70 round tables"),
     ROOM(708, "The Marquee · 10 of 10", "Dinner for 280\nThen the dancefloor lights up"),
-    { text: "6 miles from the NEC\n7 from M42 J6", from: 769, to: 826, size: 0.82 },
-    { text: "Minutes approved\nDrinks at Charley’s", from: 1005, to: 1062, size: 0.82 },
-    { text: "Swap the slides\nfor the par 3", from: 1064, to: 1121, size: 0.82 },
+    { text: "6 miles from the NEC\n7 from M42 J6", from: 769, to: 826, size: 0.76 },
+    { text: "Minutes approved\nDrinks at Charley’s", from: 1005, to: 1062, size: 0.76 },
+    { text: "Swap the slides\nfor the par 3", from: 1064, to: 1121, size: 0.76 },
   ],
   endCard: { at: 1192, line: "The agenda’s new\nThe house is from 1640" },
   music: {

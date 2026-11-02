@@ -1,0 +1,108 @@
+{
+ "out": "public/hotels/nailcote-hall/picture-tall.mp4",
+ "size": "1080x1920",
+ "shots": [
+  {
+   "src": "public/hotels/nailcote-hall/clips/exterior.mp4",
+   "from": 0,
+   "frames": 118
+  },
+  {
+   "src": "public/hotels/nailcote-hall/clips/pad.mp4",
+   "from": 0,
+   "frames": 59
+  },
+  {
+   "src": "public/hotels/nailcote-hall/clips/boardroom.mp4",
+   "from": 0,
+   "frames": 59
+  },
+  {
+   "src": "public/hotels/nailcote-hall/clips/library.mp4",
+   "from": 0,
+   "frames": 59
+  },
+  {
+   "src": "public/hotels/nailcote-hall/clips/yew.mp4",
+   "from": 0,
+   "frames": 59
+  },
+  {
+   "src": "public/hotels/nailcote-hall/clips/wellingtonia.mp4",
+   "from": 0,
+   "frames": 59
+  },
+  {
+   "src": "public/hotels/nailcote-hall/clips/dudley.mp4",
+   "from": 0,
+   "frames": 59
+  },
+  {
+   "src": "public/hotels/nailcote-hall/clips/kenilworth.mp4",
+   "from": 0,
+   "frames": 59
+  },
+  {
+   "src": "public/hotels/nailcote-hall/clips/terrace.mp4",
+   "from": 0,
+   "frames": 59
+  },
+  {
+   "src": "public/hotels/nailcote-hall/clips/pavilion.mp4",
+   "from": 0,
+   "frames": 59
+  },
+  {
+   "src": "public/hotels/nailcote-hall/clips/lant.mp4",
+   "from": 0,
+   "frames": 59
+  },
+  {
+   "src": "public/hotels/nailcote-hall/clips/marquee.mp4",
+   "from": 0,
+   "frames": 59
+  },
+  {
+   "src": "public/hotels/nailcote-hall/clips/clubhouse.mp4",
+   "from": 0,
+   "frames": 59
+  },
+  {
+   "src": "public/hotels/nailcote-hall/clips/oak-room.mp4",
+   "from": 0,
+   "frames": 59
+  },
+  {
+   "src": "public/hotels/nailcote-hall/clips/scallops.mp4",
+   "from": 0,
+   "frames": 30
+  },
+  {
+   "src": "public/hotels/nailcote-hall/clips/terrine.mp4",
+   "from": 0,
+   "frames": 29
+  },
+  {
+   "src": "public/hotels/nailcote-hall/clips/tea.mp4",
+   "from": 0,
+   "frames": 59
+  },
+  {
+   "src": "public/hotels/nailcote-hall/clips/bar.mp4",
+   "from": 0,
+   "frames": 59
+  },
+  {
+   "src": "public/hotels/nailcote-hall/clips/golf.mp4",
+   "from": 0,
+   "frames": 59
+  },
+  {
+   "src": "public/hotels/nailcote-hall/clips/four-poster.mp4",
+   "from": 0,
+   "frames": 89
+  }
+ ],
+ "fade": 40,
+ "tail": 118
+}
