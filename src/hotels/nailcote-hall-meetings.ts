@@ -35,13 +35,13 @@ export const nailcoteHallMeetings: MESpec = {
     {
       at: B(29),
       shots: [{ src: R + "kenilworth-suite-1.jpg", pos: "55% 50%" }],
-      push: { to: 2.1, pos: "79% 27%" },
+      push: { to: 1.9, pos: "79% 27%" },
     },
-    // Scott: "the panels are too fast to read": two bars a split, the panels a second apart
+    // Scott: "the panels are too fast to read": two bars a split
     {
       at: B(33),
       cut: true,
-      panelBeat: 30,
+      panelBeat: 15, // a beat apart, then a 3s hold on the full split (Scott: "polish pass")
       panels: [
         { src: R + "lant-suite-1.jpg", name: "Lant Suite", pos: "50% 55%" },
         { src: R + "wellingtonia-suite-1.jpg", name: "Wellingtonia Suite", pos: "50% 60%" },
@@ -51,7 +51,7 @@ export const nailcoteHallMeetings: MESpec = {
     {
       at: B(41),
       cut: true,
-      panelBeat: 30,
+      panelBeat: 15, // a beat apart, then a 3s hold on the full split (Scott: "polish pass")
       panels: [
         { src: R + "yew-suite.jpg", name: "Yew Suite", pos: "50% 60%", widePos: "55% 50%" },
         { src: R + "boardroom.jpg", name: "Boardroom", pos: "50% 70%", widePos: "45% 50%" },

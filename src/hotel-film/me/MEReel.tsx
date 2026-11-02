@@ -240,7 +240,8 @@ const Scene: React.FC<{ scene: MEScene; len: number; wide: boolean }> = ({ scene
           <AbsoluteFill
             style={{
               background: wide
-                ? "linear-gradient(to top, rgba(9,9,10,0.62), rgba(9,9,10,0.18) 36%, rgba(9,9,10,0) 55%)"
+                ? // a deeper soft shade from the text's corner, so the gold caps read over busy photos
+                  "radial-gradient(ellipse 1250px 620px at 0px 1080px, rgba(9,9,10,0.82) 0%, rgba(9,9,10,0.5) 45%, rgba(9,9,10,0) 100%)"
                 : "linear-gradient(to top, rgba(9,9,10,0) 12%, rgba(9,9,10,0.55) 24%, rgba(9,9,10,0.15) 42%, rgba(9,9,10,0) 55%)",
             }}
           />
