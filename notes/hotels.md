@@ -29,6 +29,7 @@ Standing rules on shots:
 | Ilsington | [november-out-there](films/november-out-there.md), [departures-keswick](films/departures-keswick.md) (next episode) |
 | Langshott Manor | [autumn-leaves-story](films/autumn-leaves-story.md) (pumpkin clip kept for Halloween) |
 | Low Wood Bay | [low-wood-bay](films/low-wood-bay.md), [cbh-screen-time](films/cbh-screen-time.md), [cbh-flipbook-winter](films/cbh-flipbook-winter.md), [magnet-cb](films/magnet-cb.md), [black-friday-queue](films/black-friday-queue.md) |
+| Nailcote Hall | [nailcote-hall-meetings](films/nailcote-hall-meetings.md), [plate-to-pillow](films/plate-to-pillow.md), [festive-lights-on](films/festive-lights-on.md) (snow), [cbh-showcase](films/cbh-showcase.md) (magnolia) |
 | Oakley Hall | [oakley-hall-story](films/oakley-hall-story.md), [clocks-go-back](films/clocks-go-back.md), [cbh-rolodex](films/cbh-rolodex.md) (the dog clip is used three times: rest it) |
 | Ramside | [festive-lights-on](films/festive-lights-on.md), [november-best-loved](films/november-best-loved.md) |
 | Rowton Hall | [up-next](films/up-next.md), [stick-flip](films/stick-flip.md), [cbh-screen-time](films/cbh-screen-time.md), [november-best-loved](films/november-best-loved.md), [cbh-flipbook-winter](films/cbh-flipbook-winter.md), [black-friday-queue](films/black-friday-queue.md) |

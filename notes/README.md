@@ -37,6 +37,7 @@ Statuses as of 2 Nov 2026.
 
 ## Needs something (a track, a file, a fix)
 
+- [Nailcote Hall: meetings and events](films/nailcote-hall-meetings.md): Photos coming in; goes out Fri 6 Nov.
 - [Dalmahoy](films/dalmahoy.md): Waiting on the cocktail bar still.
 - [Written in](films/cbh-written.md): First version sent; needs a track.
 - [UI explainers](films/ui-explainers.md): Holdsworth weekend needs a track; GN demos sent.
