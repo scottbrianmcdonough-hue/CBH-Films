@@ -17,12 +17,15 @@ export type RippleSpec = {
   // cream Cormorant over a shot; top: set the line this many px from the top of the frame
   // instead of the bottom-left (Ruthin: the peacock's head sat under the line)
   // size: a scale on the type (Ruthin: the line was hard to notice at 1)
+  // eyebrow: gold caps with its still underline above the line, the label's order (Nailcote's
+  // meeting rooms: the room's name and where it sits in the count, "Yew Suite · 3 of 10")
   lines: {
     text: string;
     from: number;
     to: number;
     top?: number;
     size?: number;
+    eyebrow?: string;
   }[];
   // a counter over the shots (Haycock's meetings cut: MEETING SPACES ticking up as the rooms cut
   // on the beat): the caption in gold caps with its underline (the label's order), the number in

@@ -91,9 +91,11 @@ const Line: React.FC<{
   top?: number;
   size?: number;
   wide?: boolean;
-}> = ({ text, out, top, size = 1, wide }) => {
+  eyebrow?: string;
+}> = ({ text, out, top, size = 1, wide, eyebrow }) => {
   const frame = useCurrentFrame();
   const o = 1 - progress(frame, out - 12, 12, EASE_IN_OUT);
+  const e = progress(frame, 0, 14, EASE_OUT);
   return (
     <AbsoluteFill style={{ opacity: o }}>
       <AbsoluteFill
@@ -113,8 +115,34 @@ const Line: React.FC<{
           ...(top === undefined ? { bottom: wide ? 108 : 470 } : { top }),
         }}
       >
+        {eyebrow ? (
+          <div
+            style={{
+              display: "inline-block",
+              marginBottom: 14,
+              opacity: e,
+              transform: `translateY(${(1 - e) * 16}px)`,
+            }}
+          >
+            <div
+              style={{
+                fontFamily: sans,
+                fontWeight: 600,
+                fontSize: 28 * Math.max(size, 0.9),
+                letterSpacing: "0.26em",
+                color: colors.gold,
+                textTransform: "uppercase",
+                textShadow: LIFT,
+                whiteSpace: "nowrap",
+              }}
+            >
+              {eyebrow}
+            </div>
+            <div style={{ height: 2, background: colors.gold, marginTop: 8 }} />
+          </div>
+        ) : null}
         {text.split("\n").map((l, i) => {
-          const p = progress(frame, i * 5, 18);
+          const p = progress(frame, (eyebrow ? 3 : 0) + i * 5, 18);
           return (
             <div key={l} style={{ overflow: "hidden", paddingBottom: 12 }}>
               <div
@@ -348,6 +376,7 @@ export const RippleFilm: React.FC<{ film: RippleSpec }> = ({ film }) => {
             top={l.top}
             size={l.size}
             wide={film.wide}
+            eyebrow={l.eyebrow}
           />
         </Sequence>
       ))}
