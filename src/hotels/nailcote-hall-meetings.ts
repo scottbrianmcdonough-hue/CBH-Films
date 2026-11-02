@@ -21,7 +21,7 @@ const R = P + "rooms/";
 
 export const nailcoteHallMeetings: MESpec = {
   id: "nailcote-hall-meetings",
-  frames: B(93),
+  frames: B(97),
   scenes: [
     // Scott: "too much information on the first", then "it's called a long name": the eyebrow and the
     // full name, nothing else
@@ -84,23 +84,23 @@ export const nailcoteHallMeetings: MESpec = {
       text: { eyebrow: "After hours", title: "Drinks at Charley\u2019s Bar", subs: ["In the golf clubhouse"] },
     },
     {
-      at: B(69),
+      at: B(73), // Charley's Bar holds 8 beats like the rest (Scott: "too fast to read")
       cut: true,
       shots: [
         { src: P + "pool.jpg", pos: "45% 50%" },
         { src: P + "bedroom-four-poster.jpg", pos: "28% 50%" },
       ],
-      cuts: [B(77)],
+      cuts: [B(81)],
       text: {
         eyebrow: "Stay over",
         title: "Make a night of it",
         subs: ["A health club and indoor pool", "49 bedrooms and suites"],
-        subCuts: [B(77)],
+        subCuts: [B(81)],
       },
     },
   ],
   end: {
-    at: B(85), // a hard cut on the downbeat at 41.89s, a strong crash (the bar beat pushed it on)
+    at: B(89), // a hard cut on the crash at 43.86s
     cut: true,
     name: "Nailcote Hall Hotel,\nGolf & Country Club",
     place: "Berkswell, Warwickshire",
