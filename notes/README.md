@@ -8,7 +8,7 @@ Statuses as of 2 Nov 2026.
 
 - [Map journey](films/cbh-journey.md): Going out Mon 2 Nov (`cbh-journey-short` and `cbh-journey-story`).
 - [November everywhere else / at ours](films/november-out-there.md): Final; suggested Tue 3 Nov; Story ready.
-- [Haycock Manor: depth, meetings, collage](films/haycock-manor.md): Story Wed 4 Nov; meetings cut and collage built.
+- [Haycock Manor: depth, meetings, collage](films/haycock-manor.md): Story Wed 4 Nov; meetings cut rebuilt on the Nailcote template (2 Nov); collage built.
 - [Bonfire Night](films/bonfire-night.md): Reel and Story Thu 5 Nov.
 - [Stick figure flipbook](films/stick-flip.md): Rowton out Fri 11 Dec; the Christmas party draft needs a festive funk track.
 

@@ -12,6 +12,7 @@ import { WhereNext, WHERE_NEXT_FRAMES } from "./hotel-film/stings/WhereNext";
 import { QueueReel, QUEUE_FRAMES, QUEUE_STORY_FRAMES } from "./hotel-film/blackfriday/QueueReel";
 import { MEReel } from "./hotel-film/me/MEReel";
 import { nailcoteHallMeetings, nailcoteHallMeetingsReel } from "./hotels/nailcote-hall-meetings";
+import { haycockManorMeetingsME } from "./hotels/haycock-manor-me";
 import { WrittenCB, WRITTEN_CB_FRAMES } from "./hotel-film/stings/WrittenCB";
 import { WaxSeal, WAX_SEAL_FRAMES } from "./hotel-film/stings/WaxSeal";
 import { DepthDemo, DEPTH_DEMO_FRAMES } from "./hotel-film/stings/DepthDemo";
@@ -498,6 +499,15 @@ export const RemotionRoot: React.FC = () => {
         component={MEReel}
         defaultProps={{ film: nailcoteHallMeetings }}
         durationInFrames={nailcoteHallMeetings.frames}
+        fps={FPS}
+        width={1920}
+        height={1080}
+      />
+      <Composition
+        id={haycockManorMeetingsME.id}
+        component={MEReel}
+        defaultProps={{ film: haycockManorMeetingsME }}
+        durationInFrames={haycockManorMeetingsME.frames}
         fps={FPS}
         width={1920}
         height={1080}

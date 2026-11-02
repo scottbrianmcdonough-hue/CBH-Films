@@ -19,8 +19,18 @@ import { colors, EASE_IN_OUT, EASE_OUT, progress, sans, serif } from "../theme";
 // sections that each take a gold caps eyebrow, a short serif headline and a small fact line; the
 // end card on CBH charcoal with the events address. The 9:16 cut stacks the panels as strips.
 
-export type MEShot = { src: string; pos?: string; widePos?: string; wideSrc?: string };
-export type MEPanel = { src: string; name: string; pos?: string; widePos?: string };
+export type MEShot = {
+  src: string;
+  pos?: string;
+  widePos?: string;
+  wideSrc?: string;
+};
+export type MEPanel = {
+  src: string;
+  name: string;
+  pos?: string;
+  widePos?: string;
+};
 export type MEScene = {
   at: number; // film frame the scene's crossfade is centred on
   shots?: MEShot[]; // one after another, crossfading, each at its `cut` (film frames)
@@ -46,13 +56,13 @@ const X = 14; // crossfade frames
 const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
 const LIFT = "0 2px 18px rgba(9,9,10,0.6), 0 1px 3px rgba(9,9,10,0.5)";
 
-const Photo: React.FC<{ src: string; pos: string; z: number; dx?: number; dy?: number }> = ({
-  src,
-  pos,
-  z,
-  dx = 0,
-  dy = 0,
-}) => (
+const Photo: React.FC<{
+  src: string;
+  pos: string;
+  z: number;
+  dx?: number;
+  dy?: number;
+}> = ({ src, pos, z, dx = 0, dy = 0 }) => (
   <Img
     src={staticFile(src)}
     style={{
@@ -67,19 +77,26 @@ const Photo: React.FC<{ src: string; pos: string; z: number; dx?: number; dy?: n
   />
 );
 
-const Caption: React.FC<{ eyebrow: string; title: string; sub: string; t: number; subT: number; wide: boolean }> = ({
-  eyebrow,
-  title,
-  sub,
-  t,
-  subT,
-  wide,
-}) => {
+const Caption: React.FC<{
+  eyebrow: string;
+  title: string;
+  sub: string;
+  t: number;
+  subT: number;
+  wide: boolean;
+}> = ({ eyebrow, title, sub, t, subT, wide }) => {
   const a = progress(t, 6, 18, EASE_OUT);
   const b = progress(t, 12, 18, EASE_OUT);
   const c = progress(subT, 0, 14, EASE_OUT);
   return (
-    <div style={{ position: "absolute", left: wide ? 96 : 72, bottom: wide ? 92 : 470, right: wide ? 700 : 150 }}>
+    <div
+      style={{
+        position: "absolute",
+        left: wide ? 96 : 72,
+        bottom: wide ? 92 : 470,
+        right: wide ? 700 : 150,
+      }}
+    >
       <div
         style={{
           display: "inline-block",
@@ -118,8 +135,18 @@ const Caption: React.FC<{ eyebrow: string; title: string; sub: string; t: number
         {title.split("\n").map((l, i) => {
           const r = progress(t, 10 + i * 5, 18, EASE_OUT);
           return (
-            <div key={l} style={{ overflow: "hidden", paddingBottom: 6, marginBottom: -6 }}>
-              <div style={{ transform: `translateY(${(1 - r) * 105}%)`, opacity: Math.min(1, r * 3) }}>{l}</div>
+            <div
+              key={l}
+              style={{ overflow: "hidden", paddingBottom: 6, marginBottom: -6 }}
+            >
+              <div
+                style={{
+                  transform: `translateY(${(1 - r) * 105}%)`,
+                  opacity: Math.min(1, r * 3),
+                }}
+              >
+                {l}
+              </div>
             </div>
           );
         })}
@@ -142,7 +169,11 @@ const Caption: React.FC<{ eyebrow: string; title: string; sub: string; t: number
   );
 };
 
-const Scene: React.FC<{ scene: MEScene; len: number; wide: boolean }> = ({ scene, len, wide }) => {
+const Scene: React.FC<{ scene: MEScene; len: number; wide: boolean }> = ({
+  scene,
+  len,
+  wide,
+}) => {
   const frame = useCurrentFrame();
   const { width, height } = useVideoConfig();
   const push = scene.push;
@@ -163,7 +194,11 @@ const Scene: React.FC<{ scene: MEScene; len: number; wide: boolean }> = ({ scene
         <AbsoluteFill key={s.src} style={{ opacity: o }}>
           <Photo
             src={wide && s.wideSrc ? s.wideSrc : s.src}
-            pos={push && i === 0 ? push.pos : ((wide ? s.widePos : s.pos) ?? "50% 50%")}
+            pos={
+              push && i === 0
+                ? push.pos
+                : ((wide ? s.widePos : s.pos) ?? "50% 50%")
+            }
             z={i === 0 ? z : zz}
           />
         </AbsoluteFill>
@@ -179,7 +214,8 @@ const Scene: React.FC<{ scene: MEScene; len: number; wide: boolean }> = ({ scene
         {scene.panels.map((p, i) => {
           const at = off + i * (scene.panelBeat ?? 15);
           // each panel drifts its own way (Scott: "more engaging"): up, down, up across a split
-          const drift = interpolate(frame, [0, len], [1, -1], clamp) * (i % 2 ? -14 : 14);
+          const drift =
+            interpolate(frame, [0, len], [1, -1], clamp) * (i % 2 ? -14 : 14);
           const s = progress(frame, at, 16, EASE_OUT);
           const left = wide ? i * (pw + G) : 0;
           const top = wide ? 0 : i * (ph + G);
@@ -195,34 +231,45 @@ const Scene: React.FC<{ scene: MEScene; len: number; wide: boolean }> = ({ scene
                 height: ph,
                 overflow: "hidden",
                 opacity: s,
-                transform: wide ? `translateY(${(1 - s) * 60}px)` : `translateX(${(1 - s) * 80}px)`,
+                transform: wide
+                  ? `translateY(${(1 - s) * 60}px)`
+                  : `translateX(${(1 - s) * 80}px)`,
               }}
             >
-              <Photo src={p.src} pos={pos} z={1.04 + 0.02 * (frame / len)} dy={wide ? drift : 0} dx={wide ? 0 : drift} />
-              <div
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  background: "linear-gradient(to top, rgba(9,9,10,0.62), rgba(9,9,10,0) 34%)",
-                }}
+              <Photo
+                src={p.src}
+                pos={pos}
+                z={1.04 + 0.02 * (frame / len)}
+                dy={wide ? drift : 0}
+                dx={wide ? 0 : drift}
               />
               <div
                 style={{
                   position: "absolute",
-                  left: wide ? 28 : 48,
-                  bottom: wide ? 30 : 26,
-                  fontFamily: sans,
-                  fontWeight: 600,
-                  fontSize: wide ? 17 : 22,
-                  letterSpacing: "0.26em",
-                  textTransform: "uppercase",
-                  color: colors.cream,
-                  textShadow: LIFT,
-                  opacity: progress(frame, at + 8, 14),
+                  inset: 0,
+                  background:
+                    "linear-gradient(to top, rgba(9,9,10,0.62), rgba(9,9,10,0) 34%)",
                 }}
-              >
-                {p.name}
-              </div>
+              />
+              {p.name ? (
+                <div
+                  style={{
+                    position: "absolute",
+                    left: wide ? 28 : 48,
+                    bottom: wide ? 30 : 26,
+                    fontFamily: sans,
+                    fontWeight: 600,
+                    fontSize: wide ? 17 : 22,
+                    letterSpacing: "0.26em",
+                    textTransform: "uppercase",
+                    color: colors.cream,
+                    textShadow: LIFT,
+                    opacity: progress(frame, at + 8, 14),
+                  }}
+                >
+                  {p.name}
+                </div>
+              ) : null}
             </div>
           );
         })}
@@ -263,7 +310,11 @@ const Scene: React.FC<{ scene: MEScene; len: number; wide: boolean }> = ({ scene
 // for its panels): black, centred, the place in gold caps with its still underline, then the name
 // in cream Cormorant (the order for an end card that names a hotel and its place), the white CB in
 // its corner.
-const EndCard: React.FC<{ name: string; place: string; wide: boolean }> = ({ name, place, wide }) => {
+const EndCard: React.FC<{ name: string; place: string; wide: boolean }> = ({
+  name,
+  place,
+  wide,
+}) => {
   const frame = useCurrentFrame();
   const a = progress(frame, 10, 22, EASE_OUT);
   const b = progress(frame, 18, 24, EASE_OUT);
@@ -277,7 +328,13 @@ const EndCard: React.FC<{ name: string; place: string; wide: boolean }> = ({ nam
         paddingBottom: wide ? 0 : 120,
       }}
     >
-      <div style={{ display: "inline-block", opacity: a, transform: `translateY(${(1 - a) * 14}px)` }}>
+      <div
+        style={{
+          display: "inline-block",
+          opacity: a,
+          transform: `translateY(${(1 - a) * 14}px)`,
+        }}
+      >
         <div
           style={{
             fontFamily: sans,
@@ -332,9 +389,15 @@ export const MEReel: React.FC<{ film: MESpec }> = ({ film }) => {
       {film.scenes.map((s, i) => {
         const from = i === 0 || s.cut ? s.at : s.at - X / 2;
         const to = (i + 1 < starts.length ? starts[i + 1] : endAt) + X / 2;
-        const fadeIn = i === 0 || s.cut ? 1 : progress(frame, from, X, EASE_IN_OUT);
+        const fadeIn =
+          i === 0 || s.cut ? 1 : progress(frame, from, X, EASE_IN_OUT);
         return (
-          <Sequence key={s.at} from={from} durationInFrames={to - from} layout="none">
+          <Sequence
+            key={s.at}
+            from={from}
+            durationInFrames={to - from}
+            layout="none"
+          >
             <AbsoluteFill style={{ opacity: fadeIn }}>
               <Scene scene={{ ...s, at: from }} len={to - from} wide={wide} />
             </AbsoluteFill>
@@ -342,7 +405,13 @@ export const MEReel: React.FC<{ film: MESpec }> = ({ film }) => {
         );
       })}
       <Sequence from={film.end.cut ? endAt : endAt - X / 2} layout="none">
-        <AbsoluteFill style={{ opacity: film.end.cut ? 1 : progress(frame, endAt - X / 2, X, EASE_IN_OUT) }}>
+        <AbsoluteFill
+          style={{
+            opacity: film.end.cut
+              ? 1
+              : progress(frame, endAt - X / 2, X, EASE_IN_OUT),
+          }}
+        >
           <EndCard name={film.end.name} place={film.end.place} wide={wide} />
         </AbsoluteFill>
       </Sequence>
@@ -362,7 +431,12 @@ export const MEReel: React.FC<{ film: MESpec }> = ({ film }) => {
         trimBefore={film.music.startAt}
         volume={(f) =>
           film.music.gain *
-          interpolate(f, [0, 6, film.frames - film.music.fadeOut, film.frames], [0, 1, 1, 0], clamp)
+          interpolate(
+            f,
+            [0, 6, film.frames - film.music.fadeOut, film.frames],
+            [0, 1, 1, 0],
+            clamp,
+          )
         }
       />
       <FilmFinish />
