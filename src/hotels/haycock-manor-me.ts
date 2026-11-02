@@ -30,6 +30,7 @@ export const haycockManorMeetingsME: MESpec = {
       at: B(6),
       cut: true,
       panelBeat: 21,
+      layout: "feature", // the rooms whole, as Nailcote's (thirds kept a third of each photo)
       panels: [
         { src: P + "meeting-boardroom-stone.jpg", name: "", widePos: "55% 50%" },
         { src: P + "meeting-boardroom-oval.jpg", name: "", widePos: "50% 50%" },

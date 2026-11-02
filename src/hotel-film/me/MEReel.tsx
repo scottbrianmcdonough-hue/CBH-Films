@@ -241,7 +241,7 @@ const Scene: React.FC<{ scene: MEScene; len: number; wide: boolean }> = ({
                 width: rect.w,
                 height: rect.h,
                 overflow: "hidden",
-                opacity: s,
+                opacity: i === 0 && scene.cut ? 1 : s, // the first panel lands with the cut (no black frame)
                 transform: wide
                   ? `translateY(${(1 - s) * 60}px)`
                   : `translateX(${(1 - s) * 80}px)`,

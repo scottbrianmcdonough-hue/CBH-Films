@@ -62,3 +62,5 @@ Jazzed up with Haycock (Scott: "do a polish on both, jazz it up"): golf "Swap th
 Copy a notch back (Scott: "tone back the witty, more value", "not try hard, natural clever"): CORPORATE GOLF "Golf days on the par 3"; DINING "Lunch in the Oak Room / In a house built in 1640"; AFTER HOURS "Drinks at Charley's Bar / In the golf clubhouse". Room crops (Scott: "better crops of the rooms, not just chairs and a corner"): the splits are a `feature` layout (one large tile, two stacked; thirds kept only ~40% of each photo's width, this ~80%): Wellingtonia large with Lant and the Pavilion; Yew large with the Boardroom and the Marquee.
 
 Charley's Bar held 8 beats like the other sections (Scott: "too fast to read"): stay over 73-89, the end card on the crash at beat 89 (43.86s). 37.4s, -15.8 LUFS.
+
+Polish (Scott, 2 Nov): checked every half second; the first panel of a cut-in split lands with the cut (it faded up from black). Final: 37.4s, -15.8 LUFS. Ticket `out/nailcote-hall-meetings-ticket.txt`.
