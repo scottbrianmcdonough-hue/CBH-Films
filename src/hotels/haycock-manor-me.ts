@@ -36,43 +36,53 @@ export const haycockManorMeetingsME: MESpec = {
         { src: P + "meeting-boardroom-small.jpg", name: "", widePos: "60% 50%" },
       ],
     },
+    // lively copy over the flat lines (Scott: "dining is kind of plain, fix up the flat ones with some
+    // lively copy", "jazz it up"); only what the photos show or the CBH pages say
     {
       at: B(10),
       cut: true,
       shots: [{ src: P + "meeting-manor-suite.jpg", pos: "50% 50%" }],
-      text: { eyebrow: "Meeting spaces", title: "Seven rooms to choose from", subs: ["Just off the A1 and A47"] },
+      text: { eyebrow: "Meeting spaces", title: "Seven rooms, no two alike", subs: ["Just off the A1 and A47"] },
     },
     {
       at: B(14),
       cut: true,
       shots: [{ src: P + "blue-lounge.jpg", pos: "50% 50%" }],
-      text: { eyebrow: "Break out", title: "Room to break out", subs: [""] },
+      text: { eyebrow: "Between sessions", title: "Break out in blue", subs: [""] },
     },
-    // a fresh take on the template (Scott: "same treatment but a fresh take or just improve"): dinner as its
-    // own three panel split, the Prevost plate standing tall, under the restaurants' line
     {
       at: B(18),
       cut: true,
-      panelBeat: 21,
+      shots: [{ src: P + "afternoon-tea.jpg", pos: "50% 45%" }],
+      text: { eyebrow: "Afternoon tea", title: "Cake is on the agenda", subs: [""] },
+    },
+    // dinner on the band's three horn stabs after its stop (beats 21, 21.5, 22), a plate on each
+    {
+      at: B(21),
+      cut: true,
       panels: [
-        { src: P + "prevost-plate.jpg", name: "", widePos: "50% 50%" },
-        { src: P + "plates-marble.jpg", name: "", widePos: "50% 50%" },
-        { src: P + "fish-and-chips.jpg", name: "", widePos: "45% 50%" },
+        { src: P + "prevost-plate.jpg", name: "", widePos: "50% 50%", at: 0 },
+        { src: P + "plates-marble.jpg", name: "", widePos: "50% 50%", at: B(21.5) - B(21) },
+        { src: P + "fish-and-chips.jpg", name: "", widePos: "45% 50%", at: B(22) - B(21) },
       ],
-      text: { eyebrow: "Dining", title: "Two restaurants", subs: ["Five AA Rosettes between them"] },
+      text: {
+        eyebrow: "Dinner",
+        title: "Fine dining or fish and chips",
+        subs: ["Pr\u00e9vost and the Haycock Kitchen, both AA Rosette restaurants"],
+      },
     },
     {
-      at: B(24),
+      at: B(26),
       cut: true,
       shots: [{ src: P + "cocktail-smoke.jpg", pos: "50% 45%" }],
       push: { to: 1.22, pos: "50% 55%" },
-      text: { eyebrow: "After hours", title: "After the meeting, a drink", subs: [""] },
+      text: { eyebrow: "After hours", title: "Any other business?", subs: ["A smoked cocktail to close the day"] },
     },
     {
       at: B(29),
       cut: true,
       shots: [{ src: P + "beamed-bedroom.jpg", pos: "50% 50%" }],
-      text: { eyebrow: "Stay over", title: "Stay the night", subs: [""] },
+      text: { eyebrow: "Stay over", title: "Sleep on it", subs: ["Then the morning session"] },
     },
   ],
   end: { at: 713, cut: true, name: "Haycock Manor Hotel", place: "Peterborough" },

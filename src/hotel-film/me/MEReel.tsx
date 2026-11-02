@@ -30,6 +30,7 @@ export type MEPanel = {
   name: string;
   pos?: string;
   widePos?: string;
+  at?: number; // frames into the scene the panel lands (else a panelBeat apart), on the music's accents
 };
 export type MEScene = {
   at: number; // film frame the scene's crossfade is centred on
@@ -212,7 +213,7 @@ const Scene: React.FC<{ scene: MEScene; len: number; wide: boolean }> = ({
     body = (
       <AbsoluteFill style={{ backgroundColor: colors.black }}>
         {scene.panels.map((p, i) => {
-          const at = off + i * (scene.panelBeat ?? 15);
+          const at = p.at ?? off + i * (scene.panelBeat ?? 15);
           // each panel drifts its own way (Scott: "more engaging"): up, down, up across a split
           const drift =
             interpolate(frame, [0, len], [1, -1], clamp) * (i % 2 ? -14 : 14);

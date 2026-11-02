@@ -21,7 +21,7 @@ const R = P + "rooms/";
 
 export const nailcoteHallMeetings: MESpec = {
   id: "nailcote-hall-meetings",
-  frames: B(85),
+  frames: B(93),
   scenes: [
     // Scott: "too much information on the first", then "it's called a long name": the eyebrow and the
     // full name, nothing else
@@ -58,13 +58,14 @@ export const nailcoteHallMeetings: MESpec = {
         { src: R + "marquee-day.jpg", name: "The Marquee", pos: "50% 55%" },
       ],
     },
+    // livelier copy and an after hours beat (Scott: "do a polish on both, jazz it up")
     {
       at: B(49),
       cut: true,
       shots: [{ src: P + "golf-rhododendrons.jpg", wideSrc: P + "golf-green-pond.jpg", pos: "67% 50%" }],
       text: {
         eyebrow: "Corporate golf",
-        title: "A par 3 on the doorstep",
+        title: "Swap the slides for the par 3",
         subs: ["Home of the British Par 3 Championship"],
       },
     },
@@ -72,26 +73,32 @@ export const nailcoteHallMeetings: MESpec = {
       at: B(57),
       cut: true,
       shots: [{ src: P + "oak-room-table.jpg", pos: "66% 50%" }],
-      text: { eyebrow: "Dining", title: "Lunch in the Oak Room", subs: ["In a house built in 1640"] },
+      text: { eyebrow: "Dining", title: "Long lunch, older room", subs: ["The Oak Room, in a house built in 1640"] },
     },
     {
       at: B(65),
+      cut: true,
+      shots: [{ src: R + "charleys-bar.jpg", pos: "24% 50%" }],
+      text: { eyebrow: "After hours", title: "Minutes approved", subs: ["Drinks at Charley\u2019s Bar"] },
+    },
+    {
+      at: B(69),
       cut: true,
       shots: [
         { src: P + "pool.jpg", pos: "45% 50%" },
         { src: P + "bedroom-four-poster.jpg", pos: "28% 50%" },
       ],
-      cuts: [B(71)],
+      cuts: [B(77)],
       text: {
         eyebrow: "Stay over",
         title: "Make a night of it",
         subs: ["A health club and indoor pool", "49 bedrooms and suites"],
-        subCuts: [B(71)],
+        subCuts: [B(77)],
       },
     },
   ],
   end: {
-    at: B(77), // a hard cut on the crash at 37.96s, one of the track's strongest downbeats
+    at: B(85), // a hard cut on the downbeat at 41.89s, a strong crash (the bar beat pushed it on)
     cut: true,
     name: "Nailcote Hall Hotel,\nGolf & Country Club",
     place: "Berkswell, Warwickshire",
