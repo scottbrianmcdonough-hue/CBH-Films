@@ -373,6 +373,46 @@ const EndCard: React.FC<{ at: number; len: number }> = ({ at, len }) => {
   );
 };
 
+// The end card is the campaign's own artwork (Scott, 2 Nov: "use the official assets"): the
+// 4:5 bed asset as supplied, its type, pill and gold logo untouched, set in the 9:16 frame so
+// its pill and logo clear the bottom 460px (top 170: pill to 1460, its eyebrow at 250), over a
+// blurred, darkened copy of the clean photo. A barely-there push. `EndCard` above is the
+// rebuilt version (house Cormorant, sampled mauve), kept behind OFFICIAL_END.
+const OFFICIAL_END = true;
+const ART = { src: P + "campaign/bed-4x5.jpg", w: 1080, h: 1350, top: 170 };
+
+const OfficialEnd: React.FC<{ at: number; len: number }> = ({ at, len }) => {
+  const frame = useCurrentFrame();
+  const push = interpolate(frame, [at, len], [1.0, 1.02]);
+  return (
+    <AbsoluteFill style={{ backgroundColor: colors.black }}>
+      <Img
+        src={staticFile(P + "bed-clean.jpg")}
+        style={{
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          transform: "scale(1.1)",
+          filter: "blur(36px) brightness(0.45)",
+        }}
+      />
+      <Img
+        src={staticFile(ART.src)}
+        style={{
+          position: "absolute",
+          left: 0,
+          top: ART.top,
+          width: ART.w,
+          height: ART.h,
+          transform: `scale(${push})`,
+          transformOrigin: "50% 50%",
+          boxShadow: "0 0 60px rgba(0,0,0,0.5)",
+        }}
+      />
+    </AbsoluteFill>
+  );
+};
+
 export const QueueReel: React.FC<{ story?: boolean }> = ({ story = false }) => {
   const frame = useCurrentFrame();
   const cut = CUTS[story ? "story" : "reel"];
@@ -382,18 +422,23 @@ export const QueueReel: React.FC<{ story?: boolean }> = ({ story = false }) => {
     <AbsoluteFill style={{ backgroundColor: colors.black }}>
       <Queue cut={cut} />
       <Clips list={cut.after} until={end} />
-      {frame >= end ? <EndCard at={end} len={len} /> : null}
-      <Img
-        src={staticFile("brand/cb-watermark.png")}
-        style={{
-          position: "absolute",
-          left: 920,
-          top: 1452,
-          width: 100,
-          height: 108,
-          opacity: frame >= DROP ? progress(frame, DROP + 6, 12) : 0,
-        }}
-      />
+      {frame >= end && !OFFICIAL_END ? <EndCard at={end} len={len} /> : null}
+      {frame < end || !OFFICIAL_END ? (
+        <Img
+          src={staticFile("brand/cb-watermark.png")}
+          style={{
+            position: "absolute",
+            left: 920,
+            top: 1452,
+            width: 100,
+            height: 108,
+            opacity: frame >= DROP ? progress(frame, DROP + 6, 12) : 0,
+          }}
+        />
+      ) : null}
+      {frame < end || !OFFICIAL_END ? <FilmFinish /> : null}
+      {/* the official artwork has no grain or vignette over it */}
+      {frame >= end && OFFICIAL_END ? <OfficialEnd at={end} len={len} /> : null}
       <Audio
         src={staticFile(P + "queue-music.mp3")}
         volume={(f) =>
@@ -405,7 +450,6 @@ export const QueueReel: React.FC<{ story?: boolean }> = ({ story = false }) => {
           })
         }
       />
-      <FilmFinish />
     </AbsoluteFill>
   );
 };

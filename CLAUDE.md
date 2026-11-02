@@ -75,6 +75,8 @@ which hotel and `notes/music.md` which tracks are used (and banned); `notes/idea
 - This week (w/c 2 Nov, Scott): Mon the map reveal post and Story (cbh-journey), Tue the leaves reveal Story
   (autumn-leaves-cb), Wed Haycock Story if still on, Thu Bonfire Night post and Story with the firework CB:
   `out/stories-week-2-nov.txt`.
+  Bianca (2 Nov): nothing else scheduled; our Revanista post (`revanista-cb`) out Wed 4 Nov, the Nailcote M&E
+  reel out Fri 6 Nov.
 
 The film index (statuses), loaded with this file:
 
