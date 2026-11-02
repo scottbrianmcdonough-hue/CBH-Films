@@ -42,30 +42,32 @@ export const nailcoteHallMeetings: MESpec = {
       at: B(33),
       cut: true,
       panelBeat: 15, // a beat apart, then a 3s hold on the full split (Scott: "polish pass")
+      layout: "feature",
       panels: [
-        { src: R + "lant-suite-1.jpg", name: "Lant Suite", pos: "50% 55%" },
-        { src: R + "wellingtonia-suite-1.jpg", name: "Wellingtonia Suite", pos: "50% 60%" },
-        { src: R + "clubhouse-pavilion-theatre.jpg", name: "The Clubhouse Pavilion", pos: "50% 45%", widePos: "70% 50%" },
+        { src: R + "wellingtonia-suite-1.jpg", name: "Wellingtonia Suite", pos: "50% 60%", widePos: "50% 50%" },
+        { src: R + "lant-suite-1.jpg", name: "Lant Suite", pos: "50% 55%", widePos: "48% 50%" },
+        { src: R + "clubhouse-pavilion-theatre.jpg", name: "The Clubhouse Pavilion", pos: "50% 45%", widePos: "66% 50%" },
       ],
     },
     {
       at: B(41),
       cut: true,
       panelBeat: 15, // a beat apart, then a 3s hold on the full split (Scott: "polish pass")
+      layout: "feature",
       panels: [
-        { src: R + "yew-suite.jpg", name: "Yew Suite", pos: "50% 60%", widePos: "55% 50%" },
-        { src: R + "boardroom.jpg", name: "Boardroom", pos: "50% 70%", widePos: "45% 50%" },
-        { src: R + "marquee-day.jpg", name: "The Marquee", pos: "50% 55%" },
+        { src: R + "yew-suite.jpg", name: "Yew Suite", pos: "50% 60%", widePos: "38% 50%" },
+        { src: R + "boardroom.jpg", name: "Boardroom", pos: "50% 70%", widePos: "56% 50%" },
+        { src: R + "marquee-day.jpg", name: "The Marquee", pos: "50% 55%", widePos: "50% 50%" },
       ],
     },
-    // livelier copy and an after hours beat (Scott: "do a polish on both, jazz it up")
+    // an after hours beat and livelier copy (Scott: "jazz it up"), a notch back ("natural clever")
     {
       at: B(49),
       cut: true,
       shots: [{ src: P + "golf-rhododendrons.jpg", wideSrc: P + "golf-green-pond.jpg", pos: "67% 50%" }],
       text: {
         eyebrow: "Corporate golf",
-        title: "Swap the slides for the par 3",
+        title: "Golf days on the par 3",
         subs: ["Home of the British Par 3 Championship"],
       },
     },
@@ -73,13 +75,13 @@ export const nailcoteHallMeetings: MESpec = {
       at: B(57),
       cut: true,
       shots: [{ src: P + "oak-room-table.jpg", pos: "66% 50%" }],
-      text: { eyebrow: "Dining", title: "Long lunch, older room", subs: ["The Oak Room, in a house built in 1640"] },
+      text: { eyebrow: "Dining", title: "Lunch in the Oak Room", subs: ["In a house built in 1640"] },
     },
     {
       at: B(65),
       cut: true,
       shots: [{ src: R + "charleys-bar.jpg", pos: "24% 50%" }],
-      text: { eyebrow: "After hours", title: "Minutes approved", subs: ["Drinks at Charley\u2019s Bar"] },
+      text: { eyebrow: "After hours", title: "Drinks at Charley\u2019s Bar", subs: ["In the golf clubhouse"] },
     },
     {
       at: B(69),

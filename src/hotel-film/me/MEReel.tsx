@@ -38,6 +38,9 @@ export type MEScene = {
   cuts?: number[];
   panels?: MEPanel[]; // side by side (16:9), stacked (9:16), each sliding in a beat apart
   panelBeat?: number;
+  // "feature" (16:9): one large tile on the left and two stacked on the right, so each room keeps ~80% of
+  // its photo (Scott: "better crops of the rooms, not just chairs and a corner"; thirds kept ~40%)
+  layout?: "thirds" | "feature";
   text?: { eyebrow: string; title: string; subs: string[]; subCuts?: number[] };
   // a hard cut on the downbeat instead of the crossfade (Scott: "more engaging, just little touches")
   cut?: boolean;
@@ -218,8 +221,15 @@ const Scene: React.FC<{ scene: MEScene; len: number; wide: boolean }> = ({
           const drift =
             interpolate(frame, [0, len], [1, -1], clamp) * (i % 2 ? -14 : 14);
           const s = progress(frame, at, 16, EASE_OUT);
-          const left = wide ? i * (pw + G) : 0;
-          const top = wide ? 0 : i * (ph + G);
+          const feature = wide && scene.layout === "feature";
+          const fw = Math.round((width * 2) / 3 - G / 2);
+          const rect = feature
+            ? i === 0
+              ? { left: 0, top: 0, w: fw, h: height }
+              : { left: fw + G, top: i === 1 ? 0 : (height + G) / 2, w: width - fw - G, h: (height - G) / 2 }
+            : { left: wide ? i * (pw + G) : 0, top: wide ? 0 : i * (ph + G), w: pw, h: ph };
+          const left = rect.left;
+          const top = rect.top;
           const pos = (wide ? p.widePos : p.pos) ?? "50% 55%";
           return (
             <div
@@ -228,8 +238,8 @@ const Scene: React.FC<{ scene: MEScene; len: number; wide: boolean }> = ({
                 position: "absolute",
                 left,
                 top,
-                width: pw,
-                height: ph,
+                width: rect.w,
+                height: rect.h,
                 overflow: "hidden",
                 opacity: s,
                 transform: wide

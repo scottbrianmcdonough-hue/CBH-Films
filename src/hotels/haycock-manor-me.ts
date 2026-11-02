@@ -36,25 +36,25 @@ export const haycockManorMeetingsME: MESpec = {
         { src: P + "meeting-boardroom-small.jpg", name: "", widePos: "60% 50%" },
       ],
     },
-    // lively copy over the flat lines (Scott: "dining is kind of plain, fix up the flat ones with some
-    // lively copy", "jazz it up"); only what the photos show or the CBH pages say
+    // lively copy over the flat lines (Scott: "fix up the flat ones with some lively copy"), then a notch
+    // back ("more value", "not try hard, natural clever"); only what the photos or the CBH pages show
     {
       at: B(10),
       cut: true,
       shots: [{ src: P + "meeting-manor-suite.jpg", pos: "50% 50%" }],
-      text: { eyebrow: "Meeting spaces", title: "Seven rooms, no two alike", subs: ["Just off the A1 and A47"] },
+      text: { eyebrow: "Meeting spaces", title: "Seven rooms to meet in", subs: ["Just off the A1 and A47"] },
     },
     {
       at: B(14),
       cut: true,
       shots: [{ src: P + "blue-lounge.jpg", pos: "50% 50%" }],
-      text: { eyebrow: "Between sessions", title: "Break out in blue", subs: [""] },
+      text: { eyebrow: "Between sessions", title: "Somewhere to break out", subs: [""] },
     },
     {
       at: B(18),
       cut: true,
       shots: [{ src: P + "afternoon-tea.jpg", pos: "50% 45%" }],
-      text: { eyebrow: "Afternoon tea", title: "Cake is on the agenda", subs: [""] },
+      text: { eyebrow: "Afternoon tea", title: "The break everyone waits for", subs: [""] },
     },
     // dinner on the band's three horn stabs after its stop (beats 21, 21.5, 22), a plate on each
     {
@@ -76,13 +76,13 @@ export const haycockManorMeetingsME: MESpec = {
       cut: true,
       shots: [{ src: P + "cocktail-smoke.jpg", pos: "50% 45%" }],
       push: { to: 1.22, pos: "50% 55%" },
-      text: { eyebrow: "After hours", title: "Any other business?", subs: ["A smoked cocktail to close the day"] },
+      text: { eyebrow: "After hours", title: "A drink to close the day", subs: [""] },
     },
     {
       at: B(29),
       cut: true,
       shots: [{ src: P + "beamed-bedroom.jpg", pos: "50% 50%" }],
-      text: { eyebrow: "Stay over", title: "Sleep on it", subs: ["Then the morning session"] },
+      text: { eyebrow: "Stay over", title: "Stay the night", subs: ["Fresh for the morning session"] },
     },
   ],
   end: { at: 713, cut: true, name: "Haycock Manor Hotel", place: "Peterborough" },
