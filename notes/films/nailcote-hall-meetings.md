@@ -31,3 +31,5 @@ Capacities (Nailcote's CBH meeting rooms page); each caption takes the figure fo
 | The Marquee | | 200 | | 280 | | | |
 
 Plan: the Haycock meetings beats in both formats from one edit: the exterior (label WARWICKSHIRE / Nailcote Hall), a cut a beat through the rooms with each table in the same place and a counter to 10 event spaces, each room named with its layout's figure, the location line (6 miles from the NEC, 7 from M42 J6), golf, food, the pool, the Four Poster, an end line. Leave out the wedding shots.
+
+Batch D (Scott): the Marquee by night (dressed for Christmas: balloons, trees, crackers) and by day (round tables, glass walls onto the golf, blue chair sashes), Charley's Bar in the clubhouse (the sign reads "Charley's"), a pad and branded pencil on a meeting table (`pad-and-pencil.jpg`). The team building image is a KDM Events brochure page (collage, third party logos and award badges): not used, not saved.
