@@ -64,3 +64,5 @@ Copy a notch back (Scott: "tone back the witty, more value", "not try hard, natu
 Charley's Bar held 8 beats like the other sections (Scott: "too fast to read"): stay over 73-89, the end card on the crash at beat 89 (43.86s). 37.4s, -15.8 LUFS.
 
 Polish (Scott, 2 Nov): checked every half second; the first panel of a cut-in split lands with the cut (it faded up from black). Final: 37.4s, -15.8 LUFS. Ticket `out/nailcote-hall-meetings-ticket.txt`.
+
+Scott: "DINING as a label is flat": THE OAK ROOM / "Lunch with some history" / In a house built in 1640.

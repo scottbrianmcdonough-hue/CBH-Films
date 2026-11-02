@@ -75,7 +75,7 @@ export const nailcoteHallMeetings: MESpec = {
       at: B(57),
       cut: true,
       shots: [{ src: P + "oak-room-table.jpg", pos: "66% 50%" }],
-      text: { eyebrow: "Dining", title: "Lunch in the Oak Room", subs: ["In a house built in 1640"] },
+      text: { eyebrow: "The Oak Room", title: "Lunch with some history", subs: ["In a house built in 1640"] }, // "DINING as a label is flat"
     },
     {
       at: B(65),

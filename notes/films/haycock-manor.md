@@ -20,3 +20,5 @@ Jazzed up (Scott: "dining is kind of plain, fix up the flat ones with some livel
 Copy a notch back (Scott: "not try hard, natural clever"): "Seven rooms to meet in"; "Somewhere to break out"; "The break everyone waits for" (tea); "Fine dining or fish and chips" kept; "A drink to close the day"; "Stay the night / Fresh for the morning session".
 
 Polish (Scott, 2 Nov): the boardrooms in the feature layout (whole rooms, as Nailcote); the first panel lands with the cut. Final: 28.1s, -15.6 LUFS. Ticket `out/haycock-manor-meetings-ticket.txt`.
+
+Dinner too fast to read (Scott): it holds 6 beats (21-27), the pour 27-31, the bedroom 31-36, the end card on the band's last hits at beat 36 (was 34); eyebrow TWO RESTAURANTS (was DINNER), the line "Prévost and the Haycock Kitchen, both AA Rosette". 28.1s.
