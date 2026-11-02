@@ -12,9 +12,10 @@ import type { MESpec } from "../hotel-film/me/MEReel";
 // rosettes (none listed). Room names as the chart spells them.
 //
 // Music: "Tech House Vibes" (Mixkit 130; in no other film), ~122 BPM, beat n at 0.088 + 0.49181n s,
-// from beat 17 (startAt 253): the house over the intro, the rooms' panels on the groove (beat 33),
-// every scene on a downbeat, the end card on beat 65, two bars of it.
-const B = (beat: number) => Math.round((beat - 17) * 0.49181 * 30);
+// from beat 21 (startAt 312; Scott wanted it "more engaging", so the house holds two bars, not three):
+// the push into Kenilworth's screen, the panels on the groove (beat 33), hard cuts on the downbeats
+// from there, the end card on the crash at beat 77, two bars of it.
+const B = (beat: number) => Math.round((beat - 21) * 0.49181 * 30);
 const P = "hotels/nailcote-hall/";
 const R = P + "rooms/";
 
@@ -29,10 +30,17 @@ export const nailcoteHallMeetings: MESpec = {
       shots: [{ src: P + "exterior.jpg", pos: "50% 50%" }],
       text: { eyebrow: "Meetings & Events", title: "Nailcote Hall Hotel,\nGolf & Country Club", subs: [""] },
     },
-    { at: B(29), shots: [{ src: R + "kenilworth-suite-1.jpg", pos: "55% 50%" }] },
+    // the camera gathers speed into Kenilworth's screen (its Nailcote logo), cutting on the groove to
+    // the panels, Wellingtonia's screen in the middle one
+    {
+      at: B(29),
+      shots: [{ src: R + "kenilworth-suite-1.jpg", pos: "55% 50%" }],
+      push: { to: 2.1, pos: "79% 27%" },
+    },
     // Scott: "the panels are too fast to read": two bars a split, the panels a second apart
     {
       at: B(33),
+      cut: true,
       panelBeat: 30,
       panels: [
         { src: R + "lant-suite-1.jpg", name: "Lant Suite", pos: "50% 55%" },
@@ -42,6 +50,7 @@ export const nailcoteHallMeetings: MESpec = {
     },
     {
       at: B(41),
+      cut: true,
       panelBeat: 30,
       panels: [
         { src: R + "yew-suite.jpg", name: "Yew Suite", pos: "50% 60%", widePos: "55% 50%" },
@@ -51,6 +60,7 @@ export const nailcoteHallMeetings: MESpec = {
     },
     {
       at: B(49),
+      cut: true,
       shots: [{ src: P + "golf-rhododendrons.jpg", wideSrc: P + "golf-green-pond.jpg", pos: "67% 50%" }],
       text: {
         eyebrow: "Corporate golf",
@@ -60,11 +70,13 @@ export const nailcoteHallMeetings: MESpec = {
     },
     {
       at: B(57),
+      cut: true,
       shots: [{ src: P + "oak-room-table.jpg", pos: "66% 50%" }],
       text: { eyebrow: "Dining", title: "Lunch in the Oak Room", subs: ["In a house built in 1640"] },
     },
     {
       at: B(65),
+      cut: true,
       shots: [
         { src: P + "pool.jpg", pos: "45% 50%" },
         { src: P + "bedroom-four-poster.jpg", pos: "28% 50%" },
@@ -79,11 +91,12 @@ export const nailcoteHallMeetings: MESpec = {
     },
   ],
   end: {
-    at: B(77),
+    at: B(77), // a hard cut on the crash at 37.96s, one of the track's strongest downbeats
+    cut: true,
     name: "Nailcote Hall Hotel,\nGolf & Country Club",
     place: "Berkswell, Warwickshire",
   },
-  music: { src: "music/mixkit-tech-house-vibes-130.mp3", startAt: 253, gain: 0.5, fadeOut: 50 },
+  music: { src: "music/mixkit-tech-house-vibes-130.mp3", startAt: 312, gain: 0.5, fadeOut: 50 },
 };
 
 // The 9:16 cut for Instagram: the same film, the panels stacked as strips (Scott, 2 Nov: "just the

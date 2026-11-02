@@ -28,12 +28,17 @@ export type MEScene = {
   panels?: MEPanel[]; // side by side (16:9), stacked (9:16), each sliding in a beat apart
   panelBeat?: number;
   text?: { eyebrow: string; title: string; subs: string[]; subCuts?: number[] };
+  // a hard cut on the downbeat instead of the crossfade (Scott: "more engaging, just little touches")
+  cut?: boolean;
+  // the camera pushes into a point of the photo, gathering speed into the next cut (Kenilworth's
+  // screen, so the rooms' panels open out of it)
+  push?: { to: number; pos: string };
 };
 export type MESpec = {
   id: string;
   frames: number;
   scenes: MEScene[];
-  end: { at: number; name: string; place: string };
+  end: { at: number; name: string; place: string; cut?: boolean };
   music: { src: string; startAt: number; gain: number; fadeOut: number };
 };
 
@@ -41,7 +46,13 @@ const X = 14; // crossfade frames
 const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
 const LIFT = "0 2px 18px rgba(9,9,10,0.6), 0 1px 3px rgba(9,9,10,0.5)";
 
-const Photo: React.FC<{ src: string; pos: string; z: number }> = ({ src, pos, z }) => (
+const Photo: React.FC<{ src: string; pos: string; z: number; dx?: number; dy?: number }> = ({
+  src,
+  pos,
+  z,
+  dx = 0,
+  dy = 0,
+}) => (
   <Img
     src={staticFile(src)}
     style={{
@@ -50,7 +61,7 @@ const Photo: React.FC<{ src: string; pos: string; z: number }> = ({ src, pos, z 
       height: "100%",
       objectFit: "cover",
       objectPosition: pos,
-      transform: `scale(${z})`,
+      transform: `translate(${dx}px, ${dy}px) scale(${z})`,
       transformOrigin: pos,
     }}
   />
@@ -100,13 +111,18 @@ const Caption: React.FC<{ eyebrow: string; title: string; sub: string; t: number
           lineHeight: 1.02,
           color: colors.cream,
           textShadow: LIFT,
-          whiteSpace: "pre-line",
           fontVariantNumeric: "lining-nums",
-          opacity: b,
-          transform: `translateY(${(1 - b) * 18}px)`,
         }}
       >
-        {title}
+        {/* each line rises out of its own mask, a few frames apart (the house reveal) */}
+        {title.split("\n").map((l, i) => {
+          const r = progress(t, 10 + i * 5, 18, EASE_OUT);
+          return (
+            <div key={l} style={{ overflow: "hidden", paddingBottom: 6, marginBottom: -6 }}>
+              <div style={{ transform: `translateY(${(1 - r) * 105}%)`, opacity: Math.min(1, r * 3) }}>{l}</div>
+            </div>
+          );
+        })}
       </div>
       <div
         style={{
@@ -129,8 +145,13 @@ const Caption: React.FC<{ eyebrow: string; title: string; sub: string; t: number
 const Scene: React.FC<{ scene: MEScene; len: number; wide: boolean }> = ({ scene, len, wide }) => {
   const frame = useCurrentFrame();
   const { width, height } = useVideoConfig();
-  const z = interpolate(frame, [0, len], [1.0, 1.05], clamp);
+  const push = scene.push;
+  // a push gathers speed (ease in) toward the next cut; otherwise the slow, even drift
+  const z = push
+    ? 1 + (push.to - 1) * Math.pow(Math.min(1, frame / len), 2.2)
+    : interpolate(frame, [0, len], [1.0, 1.05], clamp);
   const cuts = scene.cuts ?? [];
+  const off = scene.cut ? 0 : X / 2; // a crossfading scene starts half a fade early
   let body: React.ReactNode = null;
   if (scene.shots) {
     body = scene.shots.map((s, i) => {
@@ -142,7 +163,7 @@ const Scene: React.FC<{ scene: MEScene; len: number; wide: boolean }> = ({ scene
         <AbsoluteFill key={s.src} style={{ opacity: o }}>
           <Photo
             src={wide && s.wideSrc ? s.wideSrc : s.src}
-            pos={(wide ? s.widePos : s.pos) ?? "50% 50%"}
+            pos={push && i === 0 ? push.pos : ((wide ? s.widePos : s.pos) ?? "50% 50%")}
             z={i === 0 ? z : zz}
           />
         </AbsoluteFill>
@@ -156,7 +177,9 @@ const Scene: React.FC<{ scene: MEScene; len: number; wide: boolean }> = ({ scene
     body = (
       <AbsoluteFill style={{ backgroundColor: colors.black }}>
         {scene.panels.map((p, i) => {
-          const at = X / 2 + i * (scene.panelBeat ?? 15);
+          const at = off + i * (scene.panelBeat ?? 15);
+          // each panel drifts its own way (Scott: "more engaging"): up, down, up across a split
+          const drift = interpolate(frame, [0, len], [1, -1], clamp) * (i % 2 ? -14 : 14);
           const s = progress(frame, at, 16, EASE_OUT);
           const left = wide ? i * (pw + G) : 0;
           const top = wide ? 0 : i * (ph + G);
@@ -175,7 +198,7 @@ const Scene: React.FC<{ scene: MEScene; len: number; wide: boolean }> = ({ scene
                 transform: wide ? `translateY(${(1 - s) * 60}px)` : `translateX(${(1 - s) * 80}px)`,
               }}
             >
-              <Photo src={p.src} pos={pos} z={z} />
+              <Photo src={p.src} pos={pos} z={1.04 + 0.02 * (frame / len)} dy={wide ? drift : 0} dx={wide ? 0 : drift} />
               <div
                 style={{
                   position: "absolute",
@@ -278,11 +301,19 @@ const EndCard: React.FC<{ name: string; place: string; wide: boolean }> = ({ nam
             lineHeight: 1.08,
             color: colors.cream,
             marginTop: i ? 0 : wide ? 22 : 28,
-            opacity: b,
-            transform: `translateY(${(1 - b) * 20}px)`,
+            overflow: "hidden",
+            paddingBottom: 8,
+            marginBottom: -8,
           }}
         >
-          {l}
+          <div
+            style={{
+              transform: `translateY(${(1 - progress(frame, 16 + i * 5, 20, EASE_OUT)) * 105}%)`,
+              opacity: Math.min(1, b * 3),
+            }}
+          >
+            {l}
+          </div>
         </div>
       ))}
     </AbsoluteFill>
@@ -298,9 +329,9 @@ export const MEReel: React.FC<{ film: MESpec }> = ({ film }) => {
   return (
     <AbsoluteFill style={{ backgroundColor: colors.black }}>
       {film.scenes.map((s, i) => {
-        const from = i === 0 ? 0 : s.at - X / 2;
+        const from = i === 0 || s.cut ? s.at : s.at - X / 2;
         const to = (i + 1 < starts.length ? starts[i + 1] : endAt) + X / 2;
-        const fadeIn = i === 0 ? 1 : progress(frame, from, X, EASE_IN_OUT);
+        const fadeIn = i === 0 || s.cut ? 1 : progress(frame, from, X, EASE_IN_OUT);
         return (
           <Sequence key={s.at} from={from} durationInFrames={to - from} layout="none">
             <AbsoluteFill style={{ opacity: fadeIn }}>
@@ -309,8 +340,8 @@ export const MEReel: React.FC<{ film: MESpec }> = ({ film }) => {
           </Sequence>
         );
       })}
-      <Sequence from={endAt - X / 2} layout="none">
-        <AbsoluteFill style={{ opacity: progress(frame, endAt - X / 2, X, EASE_IN_OUT) }}>
+      <Sequence from={film.end.cut ? endAt : endAt - X / 2} layout="none">
+        <AbsoluteFill style={{ opacity: film.end.cut ? 1 : progress(frame, endAt - X / 2, X, EASE_IN_OUT) }}>
           <EndCard name={film.end.name} place={film.end.place} wide={wide} />
         </AbsoluteFill>
       </Sequence>
