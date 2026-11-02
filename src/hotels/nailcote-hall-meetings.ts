@@ -22,11 +22,12 @@ export const nailcoteHallMeetings: MESpec = {
   id: "nailcote-hall-meetings",
   frames: B(85),
   scenes: [
-    // Scott: "too much information on the first": the eyebrow and the short name only
+    // Scott: "too much information on the first", then "it's called a long name": the eyebrow and the
+    // full name, nothing else
     {
       at: 0,
       shots: [{ src: P + "exterior.jpg", pos: "50% 50%" }],
-      text: { eyebrow: "Meetings & Events", title: "Nailcote Hall", subs: [""] },
+      text: { eyebrow: "Meetings & Events", title: "Nailcote Hall Hotel,\nGolf & Country Club", subs: [""] },
     },
     { at: B(29), shots: [{ src: R + "kenilworth-suite-1.jpg", pos: "55% 50%" }] },
     // Scott: "the panels are too fast to read": two bars a split, the panels a second apart
@@ -79,7 +80,7 @@ export const nailcoteHallMeetings: MESpec = {
   ],
   end: {
     at: B(77),
-    name: "Nailcote Hall\nHotel, Golf & Country Club",
+    name: "Nailcote Hall Hotel,\nGolf & Country Club",
     place: "Berkswell, Warwickshire",
   },
   music: { src: "music/mixkit-tech-house-vibes-130.mp3", startAt: 253, gain: 0.5, fadeOut: 50 },

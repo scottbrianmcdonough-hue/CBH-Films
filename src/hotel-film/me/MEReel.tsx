@@ -273,8 +273,8 @@ const EndCard: React.FC<{ name: string; place: string; wide: boolean }> = ({ nam
           key={l}
           style={{
             fontFamily: serif,
-            fontStyle: i ? "italic" : "normal",
-            fontSize: (i ? 0.72 : 1) * (wide ? 104 : 112),
+            // one name over two even lines (Scott: "it's called a long name")
+            fontSize: wide ? 92 : 96,
             lineHeight: 1.08,
             color: colors.cream,
             marginTop: i ? 0 : wide ? 22 : 28,
