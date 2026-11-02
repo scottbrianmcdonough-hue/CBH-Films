@@ -20,21 +20,19 @@ const R = P + "rooms/";
 
 export const nailcoteHallMeetings: MESpec = {
   id: "nailcote-hall-meetings",
-  frames: B(73),
+  frames: B(85),
   scenes: [
+    // Scott: "too much information on the first": the eyebrow and the short name only
     {
       at: 0,
       shots: [{ src: P + "exterior.jpg", pos: "50% 50%" }],
-      text: {
-        eyebrow: "Meetings & Events",
-        title: "Nailcote Hall\nHotel, Golf & Country Club",
-        subs: ["6 miles from the NEC, 7 from M42 J6, in Berkswell, Warwickshire"],
-      },
+      text: { eyebrow: "Meetings & Events", title: "Nailcote Hall", subs: [""] },
     },
     { at: B(29), shots: [{ src: R + "kenilworth-suite-1.jpg", pos: "55% 50%" }] },
+    // Scott: "the panels are too fast to read": two bars a split, the panels a second apart
     {
       at: B(33),
-      panelBeat: 15,
+      panelBeat: 30,
       panels: [
         { src: R + "lant-suite-1.jpg", name: "Lant Suite", pos: "50% 55%" },
         { src: R + "wellingtonia-suite-1.jpg", name: "Wellingtonia Suite", pos: "50% 60%" },
@@ -42,8 +40,8 @@ export const nailcoteHallMeetings: MESpec = {
       ],
     },
     {
-      at: B(37),
-      panelBeat: 15,
+      at: B(41),
+      panelBeat: 30,
       panels: [
         { src: R + "yew-suite.jpg", name: "Yew Suite", pos: "50% 60%", widePos: "55% 50%" },
         { src: R + "boardroom.jpg", name: "Boardroom", pos: "50% 70%", widePos: "45% 50%" },
@@ -51,40 +49,36 @@ export const nailcoteHallMeetings: MESpec = {
       ],
     },
     {
-      at: B(41),
+      at: B(49),
       shots: [{ src: P + "golf-rhododendrons.jpg", wideSrc: P + "golf-green-pond.jpg", pos: "67% 50%" }],
       text: {
         eyebrow: "Corporate golf",
         title: "A par 3 on the doorstep",
-        subs: ["The Cromwell course, home of the British Par 3 Championship"],
+        subs: ["Home of the British Par 3 Championship"],
       },
     },
     {
-      at: B(49),
-      shots: [
-        { src: P + "oak-room-table.jpg", pos: "66% 50%" },
-        { src: P + "scallops.jpg", pos: "45% 50%" },
-      ],
-      cuts: [B(53)],
-      text: { eyebrow: "Dining", title: "Lunch in the Oak Room", subs: ["Inside the house, built in 1640"] },
+      at: B(57),
+      shots: [{ src: P + "oak-room-table.jpg", pos: "66% 50%" }],
+      text: { eyebrow: "Dining", title: "Lunch in the Oak Room", subs: ["In a house built in 1640"] },
     },
     {
-      at: B(57),
+      at: B(65),
       shots: [
         { src: P + "pool.jpg", pos: "45% 50%" },
         { src: P + "bedroom-four-poster.jpg", pos: "28% 50%" },
       ],
-      cuts: [B(61)],
+      cuts: [B(71)],
       text: {
         eyebrow: "Stay over",
         title: "Make a night of it",
-        subs: ["A health club with an indoor pool", "49 bedrooms and suites"],
-        subCuts: [B(61)],
+        subs: ["A health club and indoor pool", "49 bedrooms and suites"],
+        subCuts: [B(71)],
       },
     },
   ],
   end: {
-    at: B(65),
+    at: B(77),
     name: "Nailcote Hall\nHotel, Golf & Country Club",
     place: "Berkswell, Warwickshire",
   },

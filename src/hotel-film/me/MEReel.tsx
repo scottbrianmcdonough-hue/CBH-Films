@@ -111,8 +111,9 @@ const Caption: React.FC<{ eyebrow: string; title: string; sub: string; t: number
       <div
         style={{
           fontFamily: sans,
-          fontSize: wide ? 22 : 30,
-          lineHeight: 1.35,
+          // Scott: "the subtitle text needs to be shorter and bigger"
+          fontSize: wide ? 32 : 38,
+          lineHeight: 1.3,
           color: "rgba(245,239,227,0.88)",
           textShadow: LIFT,
           marginTop: wide ? 12 : 16,
