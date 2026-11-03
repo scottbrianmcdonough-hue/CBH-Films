@@ -13,6 +13,7 @@ import { QueueReel, QUEUE_FRAMES, QUEUE_STORY_FRAMES } from "./hotel-film/blackf
 import { MEReel } from "./hotel-film/me/MEReel";
 import { nailcoteHallMeetings, nailcoteHallMeetingsReel } from "./hotels/nailcote-hall-meetings";
 import { haycockManorMeetingsME } from "./hotels/haycock-manor-me";
+import { BF_STORIES } from "./hotels/black-friday-stories";
 import { nailcoteHallSocial, nailcoteHallSocialStory } from "./hotels/nailcote-hall-social";
 import { WrittenCB, WRITTEN_CB_FRAMES } from "./hotel-film/stings/WrittenCB";
 import { WaxSeal, WAX_SEAL_FRAMES } from "./hotel-film/stings/WaxSeal";
@@ -531,6 +532,19 @@ export const RemotionRoot: React.FC = () => {
         width={WIDTH}
         height={HEIGHT}
       />
+      {/* Black Friday 2026: a Story for each participating hotel */}
+      {BF_STORIES.map((film) => (
+        <Composition
+          key={film.id}
+          id={film.id}
+          component={MEReel}
+          defaultProps={{ film }}
+          durationInFrames={film.frames}
+          fps={FPS}
+          width={WIDTH}
+          height={HEIGHT}
+        />
+      ))}
       <Composition
         id={nailcoteHallMeetingsReel.id}
         component={MEReel}

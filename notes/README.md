@@ -14,6 +14,7 @@ Statuses as of 2 Nov 2026.
 
 ## Sent, waiting on Scott
 
+- [Black Friday: hotel Stories](films/black-friday-stories.md): 14 Stories built on one template, Dalmahoy test rendered; hold until offers sync.
 - [Nailcote Hall: meetings and events](films/nailcote-hall-meetings.md): 16:9 on the Ramside template sent (2 Nov); goes out Fri 6 Nov.
 - [Black Friday: the queue](films/black-friday-queue.md): Ends on the official artwork; tickets for the reel and a static post written (2 Nov). Needs the sale dates and link.
 - [Fairlawns: stay and dine](films/fairlawns-stay-dine.md): Sent for review.

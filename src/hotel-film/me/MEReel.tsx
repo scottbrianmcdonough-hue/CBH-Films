@@ -4,6 +4,7 @@ import {
   AbsoluteFill,
   Img,
   interpolate,
+  OffthreadVideo,
   Sequence,
   staticFile,
   useCurrentFrame,
@@ -20,7 +21,8 @@ import { colors, EASE_IN_OUT, EASE_OUT, progress, sans, serif } from "../theme";
 // end card on CBH charcoal with the events address. The 9:16 cut stacks the panels as strips.
 
 export type MEShot = {
-  src: string;
+  src: string; // a photo, or an .mp4 (played muted from `from` seconds)
+  from?: number;
   pos?: string;
   widePos?: string;
   wideSrc?: string;
@@ -52,7 +54,15 @@ export type MESpec = {
   id: string;
   frames: number;
   scenes: MEScene[];
-  end: { at: number; name: string; place: string; cut?: boolean };
+  // offer: the Black Friday Stories' card in place of the name card: BLACK FRIDAY SALE in the
+  // campaign's mauve caps with its underline, the offer in cream Cormorant, small lines beneath
+  end: {
+    at: number;
+    name: string;
+    place: string;
+    cut?: boolean;
+    offer?: { title: string; lines: string[] };
+  };
   music: { src: string; startAt: number; gain: number; fadeOut: number };
 };
 
@@ -66,20 +76,29 @@ const Photo: React.FC<{
   z: number;
   dx?: number;
   dy?: number;
-}> = ({ src, pos, z, dx = 0, dy = 0 }) => (
-  <Img
-    src={staticFile(src)}
-    style={{
-      position: "absolute",
-      width: "100%",
-      height: "100%",
-      objectFit: "cover",
-      objectPosition: pos,
-      transform: `translate(${dx}px, ${dy}px) scale(${z})`,
-      transformOrigin: pos,
-    }}
-  />
-);
+  from?: number;
+}> = ({ src, pos, z, dx = 0, dy = 0, from = 0 }) => {
+  const style: React.CSSProperties = {
+    position: "absolute",
+    width: "100%",
+    height: "100%",
+    objectFit: "cover",
+    objectPosition: pos,
+    transform: `translate(${dx}px, ${dy}px) scale(${z})`,
+    transformOrigin: pos,
+  };
+  return src.endsWith(".mp4") ? (
+    <OffthreadVideo
+      src={staticFile(src)}
+      muted
+      trimBefore={Math.round(from * 30)}
+      style={style}
+    />
+  ) : (
+    <Img src={staticFile(src)} style={style} />
+  );
+};
+const MAUVE = "#A15272"; // the Black Friday campaign's own mauve (sampled from its pill)
 
 const Caption: React.FC<{
   eyebrow: string;
@@ -197,6 +216,7 @@ const Scene: React.FC<{ scene: MEScene; len: number; wide: boolean }> = ({
       return (
         <AbsoluteFill key={s.src} style={{ opacity: o }}>
           <Photo
+            from={s.from}
             src={wide && s.wideSrc ? s.wideSrc : s.src}
             pos={
               push && i === 0
@@ -332,14 +352,105 @@ const Scene: React.FC<{ scene: MEScene; len: number; wide: boolean }> = ({
 // for its panels): black, centred, the place in gold caps with its still underline, then the name
 // in cream Cormorant (the order for an end card that names a hotel and its place), the white CB in
 // its corner.
-const EndCard: React.FC<{ name: string; place: string; wide: boolean }> = ({
-  name,
-  place,
-  wide,
-}) => {
+const OfferCard: React.FC<{
+  offer: { title: string; lines: string[] };
+  wide: boolean;
+}> = ({ offer, wide }) => {
+  const frame = useCurrentFrame();
+  const a = progress(frame, 4, 18, EASE_OUT);
+  const c = progress(frame, 22, 18, EASE_OUT);
+  return (
+    <AbsoluteFill
+      style={{
+        backgroundColor: colors.black,
+        alignItems: "center",
+        justifyContent: "center",
+        textAlign: "center",
+        paddingBottom: wide ? 0 : 260,
+        padding: "0 80px",
+      }}
+    >
+      <div
+        style={{
+          display: "inline-block",
+          opacity: a,
+          transform: `translateY(${(1 - a) * 14}px)`,
+        }}
+      >
+        <div
+          style={{
+            fontFamily: sans,
+            fontWeight: 600,
+            fontSize: wide ? 24 : 32,
+            letterSpacing: "0.28em",
+            color: MAUVE,
+            textTransform: "uppercase",
+          }}
+        >
+          Black Friday Sale
+        </div>
+        <div style={{ height: 2, background: MAUVE, marginTop: 10 }} />
+      </div>
+      {offer.title.split("\n").map((l, i) => (
+        <div
+          key={l}
+          style={{
+            fontFamily: serif,
+            fontSize: wide ? 104 : 118,
+            lineHeight: 1.04,
+            color: colors.cream,
+            fontVariantNumeric: "lining-nums",
+            marginTop: i ? 0 : 26,
+            overflow: "hidden",
+            paddingBottom: 8,
+            marginBottom: -8,
+          }}
+        >
+          <div
+            style={{
+              transform: `translateY(${(1 - progress(frame, 10 + i * 5, 20, EASE_OUT)) * 105}%)`,
+            }}
+          >
+            {l}
+          </div>
+        </div>
+      ))}
+      <div
+        style={{
+          marginTop: 34,
+          opacity: c,
+          transform: `translateY(${(1 - c) * 12}px)`,
+        }}
+      >
+        {offer.lines.map((l) => (
+          <div
+            key={l}
+            style={{
+              fontFamily: sans,
+              fontSize: wide ? 28 : 36,
+              lineHeight: 1.45,
+              color: "rgba(245,239,227,0.86)",
+              fontVariantNumeric: "lining-nums",
+            }}
+          >
+            {l}
+          </div>
+        ))}
+      </div>
+    </AbsoluteFill>
+  );
+};
+
+const EndCard: React.FC<{
+  name: string;
+  place: string;
+  wide: boolean;
+  offer?: { title: string; lines: string[] };
+}> = ({ name, place, wide, offer }) => {
   const frame = useCurrentFrame();
   const a = progress(frame, 10, 22, EASE_OUT);
   const b = progress(frame, 18, 24, EASE_OUT);
+  if (offer) return <OfferCard offer={offer} wide={wide} />;
   return (
     <AbsoluteFill
       style={{
@@ -434,7 +545,12 @@ export const MEReel: React.FC<{ film: MESpec }> = ({ film }) => {
               : progress(frame, endAt - X / 2, X, EASE_IN_OUT),
           }}
         >
-          <EndCard name={film.end.name} place={film.end.place} wide={wide} />
+          <EndCard
+            name={film.end.name}
+            place={film.end.place}
+            wide={wide}
+            offer={film.end.offer}
+          />
         </AbsoluteFill>
       </Sequence>
       <Img
