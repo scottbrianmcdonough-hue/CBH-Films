@@ -68,7 +68,10 @@ const BEATS: { from: number; to: number; text: string }[] = [
 ];
 
 export const GNSearchDemo: React.FC = () => {
-  const frame = useCurrentFrame();
+  // frame one is the finished end card (LinkedIn previews the first frame, which was empty navy),
+  // then the film plays from the start
+  const now = useCurrentFrame();
+  const frame = now === 0 ? GN_SEARCH_FRAMES - 1 : now;
   const intro = ramp(frame, 4, 22);
   const typed = Math.max(
     0,
@@ -382,23 +385,23 @@ export const GNSearchDemo: React.FC = () => {
         </div>
         <div
           style={{
+            display: "inline-block",
             opacity: ramp(frame, BACK + 18, 22),
             transform: `translateY(${(1 - ramp(frame, BACK + 18, 22)) * 24}px)`,
           }}
         >
           AI recommends
+          {/* the lime rule the full width of the line (it stopped short at a fixed 470px) */}
+          <div
+            style={{
+              marginTop: 14,
+              height: 12,
+              width: `${100 * ramp(frame, BACK + 30, 22, io)}%`,
+              backgroundColor: c.lime,
+            }}
+          />
         </div>
       </div>
-      <div
-        style={{
-          position: "absolute",
-          left: MARGIN,
-          top: 1120,
-          height: 12,
-          width: 470 * ramp(frame, BACK + 30, 22, io),
-          backgroundColor: c.lime,
-        }}
-      />
     </AbsoluteFill>
   );
 };
