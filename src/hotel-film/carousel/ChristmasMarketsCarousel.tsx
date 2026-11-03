@@ -58,7 +58,7 @@ const MARKETS: Market[] = [
     hotels: ["The Morritt Hotel\n& Garage Spa"],
   },
   {
-    src: M + "worcester-lantern.jpg",
+    src: M + "worcester-stone-manor-door.jpg", // Stone Manor's own festive door (its reel), not the blog's lantern (Scott: "just a street lamp")
     market: "Worcester",
     kind: "Victorian Christmas Fayre",
     dates: "3 to 6 December",
