@@ -1,3 +1,5 @@
+[BLACK FRIDAY] Black Friday Sale launch: static post (official artwork)
+
 Hook
 The official Black Friday artwork: THE WAIT IS OVER, Black Friday Sale, SAVE UP TO 30%.
 
@@ -19,4 +21,7 @@ CTA
 
 Time slot: Mon 9 Nov (launch day). Instagram 12:00 PM; Facebook 8:00 PM
 Platforms: Instagram, Facebook
-Creative: official Black Friday artwork (4:5)
+Assets (the official campaign files):
+- Instagram and Facebook feed: curtains-4x5.jpg (1080 x 1350, the curtains artwork: the queue reel ends on the bed, so this one keeps them apart)
+- Backup: curtains-1x1.jpg (1080 x 1080) if a square is needed
+- Alternatives: bed-4x5.jpg (1080 x 1350), bed-1x1.jpg (1080 x 1080), bed-landscape.jpg (1600 x 1200, for Facebook link or web use)
