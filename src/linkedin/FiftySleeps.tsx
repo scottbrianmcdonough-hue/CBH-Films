@@ -18,24 +18,15 @@ import { colors, sans, serif } from "../hotel-film/theme";
 
 const F = "campaigns/festive/graded/";
 type Slide = { src: string; pos: string; place: string; name: string };
+// only hotels with Christmas rooms left (Scott checked each CBH page and the booking engine, 3 Nov): Rowton Hall
+// on the cover, Barnett Hill (tight) and Langshott Manor; Hogarths Stone Manor (no Christmas availability) and
+// Low Wood Bay (no Christmas package, 24 to 26 Dec closed) are out
 const HOTELS: Slide[] = [
-  {
-    src: F + "rowton-hall-mantel.jpg",
-    pos: "45% 50%",
-    place: "Chester",
-    name: "Rowton Hall\nHotel & Spa",
-  },
   {
     src: F + "barnett-hill-staircase.jpg",
     pos: "45% 50%",
     place: "Guildford, Surrey",
     name: "Barnett Hill",
-  },
-  {
-    src: F + "low-wood-bay-columns.jpg",
-    pos: "50% 50%",
-    place: "Windermere, Lake District",
-    name: "Low Wood Bay\nResort & Spa",
   },
   {
     src: F + "langshott-manor-nutcracker.jpg",
@@ -102,7 +93,7 @@ export const FiftySleeps: React.FC = () => {
   if (i === 0) {
     return (
       <AbsoluteFill style={{ backgroundColor: colors.black }}>
-        <Photo src="campaigns/fifty-sleeps/arrival-2.3.jpg" pos="50% 40%" />
+        <Photo src={F + "rowton-hall-mantel.jpg"} pos="45% 50%" />
         <Shade />
         <div
           style={{
@@ -125,6 +116,17 @@ export const FiftySleeps: React.FC = () => {
             Still room
             <br />
             <span style={{ fontStyle: "italic" }}>at the table</span>
+          </div>
+          <div
+            style={{
+              fontFamily: sans,
+              fontSize: 26,
+              letterSpacing: "0.04em",
+              color: "rgba(245,239,227,0.78)",
+              marginTop: 22,
+            }}
+          >
+            Rowton Hall Hotel &amp; Spa, Chester
           </div>
         </div>
         <Mark tall={tall} />
