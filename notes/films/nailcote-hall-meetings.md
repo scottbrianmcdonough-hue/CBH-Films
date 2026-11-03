@@ -70,3 +70,5 @@ Scott: "DINING as a label is flat": THE OAK ROOM / "Lunch with some history" / I
 Social cuts for Instagram (Scott, 3 Nov: "the reel and need the story too for social, less M&E"): `nailcote-hall-social` (9:16, ~29.5s: the house, afternoon tea, the par 3, dinner as three stacked plates, the pool, the four poster, end card BERKSWELL, WARWICKSHIRE / Nailcote Hall) and `nailcote-hall-social-story` (~12.8s: the house, the plates, the four poster), `src/hotels/nailcote-hall-social.ts`, the MEReel engine. Stills checked; not rendered yet (interrupted).
 
 Rendered: reel 29.5s, -15.9 LUFS; Story 12.8s, -16.3 LUFS. Tickets `out/nailcote-hall-social-ticket.txt`, `out/nailcote-hall-social-story-ticket.txt` (links need Nailcote's CBH page URL).
+
+Social Story rebuilt (Scott, 3 Nov: "the par 3 is too fast", "needs more depth or movement", "a better crop on the four poster"): every shot a depth move on the hand drawn maps (`public/hotels/nailcote-hall/clips-story/`, 125 frames each), every scene two bars, the par 3 move gentler, the four poster framed on the bed and gliding to the carved post. 22.6s, -15.8 LUFS. Out Wed 4 Nov 7pm.

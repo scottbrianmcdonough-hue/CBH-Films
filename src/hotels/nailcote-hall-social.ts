@@ -105,16 +105,19 @@ export const nailcoteHallSocial: MESpec = {
 // the Story (Scott, 3 Nov: "need more scenes in the Story cut, the second scene is too fast, do it like the Haycock
 // Manor personality"): six shots a bar or two each, the house with its label, then short cream lines over the shots
 // (no eyebrows, the second line italic, as Haycock's Story), ending on a question like Haycock's ("Cocktail first,
-// or the gold bath?"), then a line instead (Scott: "it doesn't have to be the or question all the time"); from beat 25, the groove on 33, every cut on a downbeat, 20.7s
+// or the gold bath?"), then a line instead (Scott: "it doesn't have to be the or question all the time"); from beat 25, the groove on 33, every cut on a downbeat, 22.6s
 const S = at(25);
 const line = (title: string) => ({ eyebrow: "", title, subs: [""] });
+// each shot a depth move (Scott: "needs more depth or movement"; clips-story/, 125 frames, on the hand drawn
+// depth maps), every scene two bars (Scott: "the par 3 is too fast")
+const D = P + "clips-story/";
 export const nailcoteHallSocialStory: MESpec = {
   id: "nailcote-hall-social-story",
-  frames: S(67),
+  frames: S(71),
   scenes: [
     {
       at: 0,
-      shots: [house],
+      shots: [{ src: D + "exterior.mp4" }],
       text: {
         eyebrow: "Warwickshire",
         title: "Nailcote Hall Hotel,\nGolf & Country Club",
@@ -124,28 +127,28 @@ export const nailcoteHallSocialStory: MESpec = {
     {
       at: S(33),
       cut: true,
-      shots: [tea],
+      shots: [{ src: D + "tea.mp4" }],
       text: line("Afternoon tea,\nall afternoon"),
     },
     {
       at: S(41),
       cut: true,
-      shots: [golf],
+      shots: [{ src: D + "golf.mp4" }],
       text: line("Then a round\non the par 3"),
     },
     {
-      at: S(45),
+      at: S(49),
       cut: true,
-      shots: [{ src: P + "oak-room-table.jpg", pos: "62% 55%" }],
+      shots: [{ src: D + "oak-room.mp4" }],
       text: line("Dinner in a house\nbuilt in 1640"),
     },
     {
-      at: S(53),
+      at: S(57),
       cut: true,
-      shots: [bed],
+      shots: [{ src: D + "four-poster.mp4" }],
       text: line("And the four poster\nto finish"),
     },
   ],
-  end: { ...end, at: S(61), question: "Tee off,\nthen turn in" },
+  end: { ...end, at: S(65), question: "Tee off,\nthen turn in" },
   music: { ...music, startAt: start(25) },
 };
