@@ -13,6 +13,7 @@ import { QueueReel, QUEUE_FRAMES, QUEUE_STORY_FRAMES } from "./hotel-film/blackf
 import { MEReel } from "./hotel-film/me/MEReel";
 import { nailcoteHallMeetings, nailcoteHallMeetingsReel } from "./hotels/nailcote-hall-meetings";
 import { haycockManorMeetingsME } from "./hotels/haycock-manor-me";
+import { nailcoteHallSocial, nailcoteHallSocialStory } from "./hotels/nailcote-hall-social";
 import { WrittenCB, WRITTEN_CB_FRAMES } from "./hotel-film/stings/WrittenCB";
 import { WaxSeal, WAX_SEAL_FRAMES } from "./hotel-film/stings/WaxSeal";
 import { DepthDemo, DEPTH_DEMO_FRAMES } from "./hotel-film/stings/DepthDemo";
@@ -511,6 +512,24 @@ export const RemotionRoot: React.FC = () => {
         fps={FPS}
         width={1920}
         height={1080}
+      />
+      <Composition
+        id={nailcoteHallSocial.id}
+        component={MEReel}
+        defaultProps={{ film: nailcoteHallSocial }}
+        durationInFrames={nailcoteHallSocial.frames}
+        fps={FPS}
+        width={WIDTH}
+        height={HEIGHT}
+      />
+      <Composition
+        id={nailcoteHallSocialStory.id}
+        component={MEReel}
+        defaultProps={{ film: nailcoteHallSocialStory }}
+        durationInFrames={nailcoteHallSocialStory.frames}
+        fps={FPS}
+        width={WIDTH}
+        height={HEIGHT}
       />
       <Composition
         id={nailcoteHallMeetingsReel.id}

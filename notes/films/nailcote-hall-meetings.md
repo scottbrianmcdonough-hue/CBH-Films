@@ -66,3 +66,5 @@ Charley's Bar held 8 beats like the other sections (Scott: "too fast to read"): 
 Polish (Scott, 2 Nov): checked every half second; the first panel of a cut-in split lands with the cut (it faded up from black). Final: 37.4s, -15.8 LUFS. Ticket `out/nailcote-hall-meetings-ticket.txt`.
 
 Scott: "DINING as a label is flat": THE OAK ROOM / "Lunch with some history" / In a house built in 1640.
+
+Social cuts for Instagram (Scott, 3 Nov: "the reel and need the story too for social, less M&E"): `nailcote-hall-social` (9:16, ~29.5s: the house, afternoon tea, the par 3, dinner as three stacked plates, the pool, the four poster, end card BERKSWELL, WARWICKSHIRE / Nailcote Hall) and `nailcote-hall-social-story` (~12.8s: the house, the plates, the four poster), `src/hotels/nailcote-hall-social.ts`, the MEReel engine. Stills checked; not rendered yet (interrupted).
