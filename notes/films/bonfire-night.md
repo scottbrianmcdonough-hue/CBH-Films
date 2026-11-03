@@ -9,3 +9,5 @@
 ## Notes
 
 `bonfire-night`: the Bonfire Night film (from `claude/sharp-darwin-suaml5`) with the firework CB (from `claude/loving-brown-0k56ps`) as its ending, on the Bonfire piano throughout (two hearth bars repeated on the beat to reach the end), the burst on a bar with the shell's thump and crackle; `out/bonfire-night.mp4`, 25.9s, -15.7 LUFS, built with ffmpeg; reel and Story Thu 5 Nov.
+
+Story (Scott, 3 Nov: "take the firework ending off, just the cosy up inside with the white logo"): his bonfire-night_2.mp4 cut at 14.4s where the fire fades, the picture faded over the last 0.6s and the music over 1.4s; white CB throughout, no gold logo. 14.4s, -15.1 LUFS. Built with ffmpeg from the upload (not committed).
