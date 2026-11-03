@@ -13,7 +13,7 @@ import { colors, sans, serif } from "../hotel-film/theme";
 // style and make it feel premium"; the first version was one still with a giant 50): a 4:5 carousel, a frame a
 // slide (--sequence): the cover full bleed on Hogarths Stone Manor's Christmas table (its festive reel), the
 // house label bottom left (50 SLEEPS UNTIL CHRISTMAS in gold caps with its still underline, the line in cream
-// Cormorant); four hotels dressed for Christmas, each with its label (the place in gold caps, the name in cream
+// Cormorant: "Reserve your seat at the table", Bianca: "still room" read as not popular); four hotels dressed for Christmas, each with its label (the place in gold caps, the name in cream
 // Cormorant); the close a clean black card, cream Cormorant centred, white CB. The Story (9:16) is the cover.
 
 const F = "campaigns/festive/graded/";
@@ -113,7 +113,7 @@ export const FiftySleeps: React.FC = () => {
               marginTop: 24,
             }}
           >
-            Still room
+            Reserve your seat
             <br />
             <span style={{ fontStyle: "italic" }}>at the table</span>
           </div>
