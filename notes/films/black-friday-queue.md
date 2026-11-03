@@ -1,6 +1,6 @@
 # Black Friday: the queue
 
-**Status:** Ending on the official artwork, sent with its ticket (2 Nov); confirm the sale dates and booking link.  
+**Status:** Full bleed ending in the artwork's layout, The Mount in for Low Wood Bay (3 Nov); confirm the sale dates and booking link.  
 **Compositions:** `black-friday-queue`, `black-friday-queue-story`  
 **Hotels:** Rowton Hall, The Mount, Gisborough, Haycock Manor, Waterton Park, Rutland Hall  
 **Music:** Party Dance by prettyjohn1 (Pixabay 526227)
@@ -24,3 +24,5 @@ Launch Mon 9 Nov (Scott, 3 Nov): the static post with the official file goes out
 Landing page (Scott, 3 Nov): https://classicbritishhotels.com/black-friday-countdown/ (both tickets).
 
 Low Wood Bay out (Scott, 3 Nov: it "doesn't need our marketing"): The Mount in its two window slots (beats 2 and 14), the four poster and the conservatory restaurant, slow pushes made from the stills (`public/hotels/the-mount/screen-time/`; The Mount has no footage). The reel is not regional, so the swap needn't be from the same area (Low Wood Bay is the Lakes, The Mount Wolverhampton).
+
+Full bleed ending (Scott, 3 Nov, on the boxed official artwork: "don't like that, it's not full bleed and just a box under"; "get rid of the watermark CB"): the rebuilt card in the artwork's layout over the clean photo full frame: THE WAIT IS OVER in mauve caps, Black Friday / Sale in cream Cormorant, the mauve SAVE UP TO 30% pill, the CBH lockup (`brand/cbh-logo-on-light.svg`) bottom right as on the artwork; no white CB anywhere in the reel. 21.8s; Story 17.5s.

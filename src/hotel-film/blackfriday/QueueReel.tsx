@@ -340,6 +340,9 @@ const EndCard: React.FC<{ at: number; len: number }> = ({ at, len }) => {
       />
       <AbsoluteFill style={{ background: "linear-gradient(to bottom, rgba(9,9,10,0.62), rgba(9,9,10,0.2) 34%, transparent 50%)" }} />
       <div style={{ position: "absolute", left: 90, top: 250 }}>
+        <Rise at={at + 2} style={{ ...caps(38, MAUVE, 0.08), marginBottom: 26 }}>
+          The wait is over
+        </Rise>
         {["Black Friday", "Sale"].map((l, i) => (
           <Rise
             key={l}
@@ -370,6 +373,11 @@ const EndCard: React.FC<{ at: number; len: number }> = ({ at, len }) => {
         <span style={caps(40, colors.cream, 0.06)}>Save up to</span>
         <span style={{ ...caps(62, colors.cream, 0.02), fontWeight: 700 }}>30%</span>
       </div>
+      {/* the campaign's lockup, as on the official artwork: the gold CB over Classic British Hotels & Resorts */}
+      <Img
+        src={staticFile("brand/cbh-logo-on-light.svg")}
+        style={{ position: "absolute", right: 90, top: 1238, width: 150, opacity: pill }}
+      />
     </AbsoluteFill>
   );
 };
@@ -379,7 +387,10 @@ const EndCard: React.FC<{ at: number; len: number }> = ({ at, len }) => {
 // its pill and logo clear the bottom 460px (top 170: pill to 1460, its eyebrow at 250), over a
 // blurred, darkened copy of the clean photo. A barely-there push. `EndCard` above is the
 // rebuilt version (house Cormorant, sampled mauve), kept behind OFFICIAL_END.
-const OFFICIAL_END = true;
+// full bleed again (Scott, 3 Nov, on the boxed artwork: "don't like that, it's not full bleed and just a box under"):
+// the rebuilt card in the artwork's own layout (mauve THE WAIT IS OVER, Black Friday / Sale, the mauve pill, the
+// lockup bottom right) over the clean photo, full frame
+const OFFICIAL_END = false;
 const ART = { src: P + "campaign/bed-4x5.jpg", w: 1080, h: 1350, top: 170 };
 
 const OfficialEnd: React.FC<{ at: number; len: number }> = ({ at, len }) => {
@@ -424,19 +435,7 @@ export const QueueReel: React.FC<{ story?: boolean }> = ({ story = false }) => {
       <Queue cut={cut} />
       <Clips list={cut.after} until={end} />
       {frame >= end && !OFFICIAL_END ? <EndCard at={end} len={len} /> : null}
-      {frame < end || !OFFICIAL_END ? (
-        <Img
-          src={staticFile("brand/cb-watermark.png")}
-          style={{
-            position: "absolute",
-            left: 920,
-            top: 1452,
-            width: 100,
-            height: 108,
-            opacity: frame >= DROP ? progress(frame, DROP + 6, 12) : 0,
-          }}
-        />
-      ) : null}
+      {/* no white CB (Scott, 3 Nov: "get rid of the watermark CB"): the end card has the lockup */}
       {frame < end || !OFFICIAL_END ? <FilmFinish /> : null}
       {/* the official artwork has no grain or vignette over it */}
       {frame >= end && OFFICIAL_END ? <OfficialEnd at={end} len={len} /> : null}
