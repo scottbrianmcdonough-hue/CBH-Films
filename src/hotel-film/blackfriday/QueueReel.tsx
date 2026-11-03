@@ -38,16 +38,17 @@ const GAIN = 0.56; // ~-15.2 LUFS over the reel
 
 type Clip = { src: string; at: number; from?: number };
 
-// the "While you wait" window: two beats a hotel, the last one bursting out on the drop
+// the "While you wait" window: two beats a hotel, the last one bursting out on the drop (Low Wood Bay out, Scott, 3 Nov:
+// it "doesn't need our marketing"; The Mount in, its four poster and conservatory as slow pushes from the stills)
 const WAIT: Clip[] = [
   { src: "hotels/rowton-hall/screen-time/log-burner.mp4", at: 0 },
-  { src: "hotels/low-wood-bay/screen-time/candles.mp4", at: 2 },
+  { src: "hotels/the-mount/screen-time/four-poster.mp4", at: 2 },
   { src: "hotels/gisborough-hall/screen-time/snowy-garden.mp4", at: 4 },
   { src: "hotels/haycock-manor/clips/birdcage-restaurant.mp4", at: 6, from: 0.5 },
   { src: "hotels/rowton-hall/screen-time/cake-by-the-fire.mp4", at: 8 },
   { src: "hotels/waterton-park/clips/afternoon-tea.mp4", at: 10, from: 2 },
   { src: "hotels/rowton-hall/screen-time/welcome-fizz.mp4", at: 12 },
-  { src: "hotels/low-wood-bay/screen-time/snowy-rooftops.mp4", at: 14 },
+  { src: "hotels/the-mount/screen-time/conservatory.mp4", at: 14 },
   { src: "hotels/haycock-manor/clips/cocktail-smoke.mp4", at: 16 },
 ];
 

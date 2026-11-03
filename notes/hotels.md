@@ -28,7 +28,7 @@ Standing rules on shots:
 | Holdsworth House | [holdsworth-sketch](films/holdsworth-sketch.md), [ui-explainers](films/ui-explainers.md) (weekend calendar), [october-best-loved](films/october-best-loved.md), [clocks-go-back](films/clocks-go-back.md), [cbh-screen-time](films/cbh-screen-time.md), [cbh-rolodex](films/cbh-rolodex.md) |
 | Ilsington | [november-out-there](films/november-out-there.md), [departures-keswick](films/departures-keswick.md) (next episode) |
 | Langshott Manor | [autumn-leaves-story](films/autumn-leaves-story.md) (pumpkin clip kept for Halloween) |
-| Low Wood Bay | [low-wood-bay](films/low-wood-bay.md), [cbh-screen-time](films/cbh-screen-time.md), [cbh-flipbook-winter](films/cbh-flipbook-winter.md), [magnet-cb](films/magnet-cb.md), [black-friday-queue](films/black-friday-queue.md) |
+| Low Wood Bay | [low-wood-bay](films/low-wood-bay.md), [cbh-screen-time](films/cbh-screen-time.md), [cbh-flipbook-winter](films/cbh-flipbook-winter.md), [magnet-cb](films/magnet-cb.md) |
 | Nailcote Hall | [nailcote-hall-meetings](films/nailcote-hall-meetings.md), [plate-to-pillow](films/plate-to-pillow.md), [festive-lights-on](films/festive-lights-on.md) (snow), [cbh-showcase](films/cbh-showcase.md) (magnolia) |
 | Oakley Hall | [oakley-hall-story](films/oakley-hall-story.md), [clocks-go-back](films/clocks-go-back.md), [cbh-rolodex](films/cbh-rolodex.md) (the dog clip is used three times: rest it) |
 | Ramside | [festive-lights-on](films/festive-lights-on.md), [november-best-loved](films/november-best-loved.md) |
@@ -37,7 +37,7 @@ Standing rules on shots:
 | Rutland | [cbh-screen-time](films/cbh-screen-time.md), [cbh-flipbook-winter](films/cbh-flipbook-winter.md), [black-friday-gift-vouchers](films/black-friday-gift-vouchers.md), [black-friday-queue](films/black-friday-queue.md) |
 | Speech House | [up-next](films/up-next.md) |
 | The Kingfisher | [october-best-loved](films/october-best-loved.md), [festive-lights-on](films/festive-lights-on.md), [clocks-go-back](films/clocks-go-back.md), [november-out-there](films/november-out-there.md), [cbh-screens](films/cbh-screens.md), [cbh-screen-time](films/cbh-screen-time.md), [cbh-journey](films/cbh-journey.md), [magnet-cb](films/magnet-cb.md) |
-| The Mount | [the-mount-collage](films/the-mount-collage.md), [departures-keswick](films/departures-keswick.md) (next episode), [brand-stings](films/brand-stings.md) (plates) |
+| The Mount | [the-mount-collage](films/the-mount-collage.md), [departures-keswick](films/departures-keswick.md) (next episode), [brand-stings](films/brand-stings.md) (plates), [black-friday-queue](films/black-friday-queue.md) |
 | Waterton Park | [waterton-park-island](films/waterton-park-island.md), [cbh-mosaic](films/cbh-mosaic.md), [foodie-breaks-match-cut](films/foodie-breaks-match-cut.md), [cbh-screen-time](films/cbh-screen-time.md), [cbh-flipbook-winter](films/cbh-flipbook-winter.md), [brand-stings](films/brand-stings.md) (plates), [black-friday-queue](films/black-friday-queue.md) |
 | Wild Boar | [november-out-there](films/november-out-there.md) (the spaniel: confirm), [autumn-leaves-story](films/autumn-leaves-story.md) |
 

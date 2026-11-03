@@ -2,7 +2,7 @@
 
 **Status:** Ending on the official artwork, sent with its ticket (2 Nov); confirm the sale dates and booking link.  
 **Compositions:** `black-friday-queue`, `black-friday-queue-story`  
-**Hotels:** Rowton Hall, Low Wood Bay, Gisborough, Haycock Manor, Waterton Park, Rutland Hall  
+**Hotels:** Rowton Hall, The Mount, Gisborough, Haycock Manor, Waterton Park, Rutland Hall  
 **Music:** Party Dance by prettyjohn1 (Pixabay 526227)
 
 [All films](../README.md) · [Hotels](../hotels.md) · [Music](../music.md)
@@ -22,3 +22,5 @@ The ending is now the official artwork (Scott, 2 Nov: "use the official assets")
 Launch Mon 9 Nov (Scott, 3 Nov): the static post with the official file goes out that day; ticket dated.
 
 Landing page (Scott, 3 Nov): https://classicbritishhotels.com/black-friday-countdown/ (both tickets).
+
+Low Wood Bay out (Scott, 3 Nov: it "doesn't need our marketing"): The Mount in its two window slots (beats 2 and 14), the four poster and the conservatory restaurant, slow pushes made from the stills (`public/hotels/the-mount/screen-time/`; The Mount has no footage). The reel is not regional, so the swap needn't be from the same area (Low Wood Bay is the Lakes, The Mount Wolverhampton).
