@@ -216,20 +216,24 @@ export const ChristmasMarketsCarousel: React.FC = () => {
       </AbsoluteFill>
     );
   }
+  // full bleed for social (Scott: "don't like the photo in the middle like that, crop it", "full bleed"):
+  // each blog photo cropped to 4:5 on its subject, upscaled with a light sharpen (<name>-4x5.jpg), the
+  // market, dates and hotel at the bottom over a soft shade
   const m = MARKETS[i - 1];
   const two = m.hotels.length > 1;
   return (
     <AbsoluteFill style={{ backgroundColor: colors.black }}>
-      <Backdrop src={m.src} />
-      <div
+      <Img
+        src={staticFile(m.src.replace(".jpg", "-4x5.jpg"))}
+        style={{ width: "100%", height: "100%" }}
+      />
+      <AbsoluteFill
         style={{
-          position: "absolute",
-          top: 150,
-          left: 0,
-          right: 0,
-          textAlign: "center",
+          background:
+            "linear-gradient(to bottom, rgba(9,9,10,0) 40%, rgba(9,9,10,0.72) 70%, rgba(9,9,10,0.92) 100%)",
         }}
-      >
+      />
+      <div style={{ position: "absolute", left: 76, right: 76, bottom: 150 }}>
         <Caps size={30}>{m.market}</Caps>
         <div
           style={{
@@ -237,52 +241,20 @@ export const ChristmasMarketsCarousel: React.FC = () => {
             fontStyle: "italic",
             fontSize: 42,
             color: "rgba(245,239,227,0.9)",
-            marginTop: 18,
+            marginTop: 16,
             fontVariantNumeric: "lining-nums",
           }}
         >
           {m.dates}
         </div>
-      </div>
-      <div
-        style={{
-          position: "absolute",
-          left: 72,
-          top: 360,
-          width: 936,
-          height: 527,
-          overflow: "hidden",
-          boxShadow: "0 30px 80px rgba(0,0,0,0.55)",
-          outline: "1px solid rgba(195,158,85,0.55)",
-          outlineOffset: 10,
-        }}
-      >
-        <Img
-          src={staticFile(m.src)}
-          style={{
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            objectPosition: m.pos ?? "50% 50%",
-          }}
-        />
-      </div>
-      <div
-        style={{
-          position: "absolute",
-          top: two ? 960 : 980,
-          left: 60,
-          right: 60,
-          textAlign: "center",
-        }}
-      >
         <div
           style={{
             fontFamily: sans,
-            fontSize: 24,
+            fontSize: 22,
             letterSpacing: "0.3em",
             textTransform: "uppercase",
             color: "rgba(245,239,227,0.7)",
+            marginTop: 34,
           }}
         >
           Stay at
@@ -292,10 +264,10 @@ export const ChristmasMarketsCarousel: React.FC = () => {
             key={h}
             style={{
               fontFamily: serif,
-              fontSize: two ? 60 : 70,
+              fontSize: two ? 58 : 68,
               lineHeight: 1.1,
               color: colors.cream,
-              marginTop: k ? 0 : 12,
+              marginTop: k ? 0 : 8,
             }}
           >
             {k ? (
