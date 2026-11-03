@@ -234,54 +234,15 @@ export const BlackFridayCarousel: React.FC<{ region: string }> = ({
 }) => {
   const r = BF_REGIONS.find((x) => x.id === region)!;
   const i = useCurrentFrame();
+  // the cover is the official campaign artwork as supplied (Scott: "use the official artwork assets
+  // where possible"), the bed at 4:5, untouched: the launch post has the curtains
   if (i === 0) {
     return (
       <AbsoluteFill style={{ backgroundColor: colors.black }}>
-        <Photo {...r.cover} />
-        <AbsoluteFill
-          style={{
-            background:
-              "linear-gradient(to bottom, rgba(9,9,10,0.12) 18%, rgba(9,9,10,0.86) 58%, rgba(9,9,10,0.94) 100%)",
-          }}
+        <Img
+          src={staticFile("campaigns/black-friday-2026/campaign/bed-4x5.jpg")}
+          style={{ width: "100%", height: "100%" }}
         />
-        <Mark />
-        <div
-          style={{
-            position: "absolute",
-            left: 0,
-            right: 0,
-            bottom: 200,
-            textAlign: "center",
-          }}
-        >
-          <Caps color={MAUVE} size={30}>
-            Black Friday Sale
-          </Caps>
-          <div
-            style={{
-              fontFamily: serif,
-              fontSize: 132,
-              lineHeight: 1.02,
-              color: colors.cream,
-              marginTop: 24,
-              whiteSpace: "pre-line",
-            }}
-          >
-            {r.title}
-          </div>
-          <div
-            style={{
-              fontFamily: serif,
-              fontStyle: "italic",
-              fontSize: 42,
-              color: colors.cream,
-              opacity: 0.88,
-              marginTop: 22,
-            }}
-          >
-            Swipe for this year&apos;s offers
-          </div>
-        </div>
       </AbsoluteFill>
     );
   }
@@ -308,9 +269,21 @@ export const BlackFridayCarousel: React.FC<{ region: string }> = ({
               marginTop: 28,
             }}
           >
-            The wait
-            <br />
-            is over
+            {r.title.split("\n").map((l) => (
+              <div key={l}>{l}</div>
+            ))}
+          </div>
+          <div
+            style={{
+              fontFamily: serif,
+              fontStyle: "italic",
+              fontSize: 46,
+              color: colors.cream,
+              opacity: 0.88,
+              marginTop: 18,
+            }}
+          >
+            The wait is over
           </div>
           <div
             style={{
