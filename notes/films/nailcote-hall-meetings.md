@@ -72,3 +72,5 @@ Social cuts for Instagram (Scott, 3 Nov: "the reel and need the story too for so
 Rendered: reel 29.5s, -15.9 LUFS; Story 12.8s, -16.3 LUFS. Tickets `out/nailcote-hall-social-ticket.txt`, `out/nailcote-hall-social-story-ticket.txt` (links need Nailcote's CBH page URL).
 
 Social Story rebuilt (Scott, 3 Nov: "the par 3 is too fast", "needs more depth or movement", "a better crop on the four poster"): every shot a depth move on the hand drawn maps (`public/hotels/nailcote-hall/clips-story/`, 125 frames each), every scene two bars, the par 3 move gentler, the four poster framed on the bed and gliding to the carved post. 22.6s, -15.8 LUFS. Out Wed 4 Nov 7pm.
+
+Story polish (Scott, 3 Nov: "the depth move on the house is too much, makes it lean", "polish the afternoon tea"): new hand drawn maps. The house, the sky and the trees one rigid plane so nothing leans, only the lawn and the bushes in front come forward, a gentle push (1.00 to 1.04, glide 50, parallax 10). The tea: the window far, the stand and teapot each rigid (no bending), the cup and flutes rigid at the depth of where they stand, the table rising to the camera, a slow push (1.00 to 1.06, parallax 14).

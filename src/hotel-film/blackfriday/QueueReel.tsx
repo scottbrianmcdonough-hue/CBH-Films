@@ -36,7 +36,9 @@ const B = (k: number) => Math.round(k * BEAT);
 const DROP = B(20);
 const GAIN = 0.56; // ~-15.2 LUFS over the reel
 
-type Clip = { src: string; at: number; from?: number };
+// `frame`: where the window looks in a clip, the source point at its top left and a scale (default: the clip's
+// middle at full size)
+type Clip = { src: string; at: number; from?: number; frame?: { x: number; y: number; s: number } };
 
 // the "While you wait" window: two beats a hotel, the last one bursting out on the drop (Low Wood Bay out, Scott, 3 Nov:
 // it "doesn't need our marketing"; The Mount in, its four poster and conservatory as slow pushes from the stills)
@@ -47,7 +49,9 @@ const WAIT: Clip[] = [
   { src: "hotels/haycock-manor/clips/birdcage-restaurant.mp4", at: 6, from: 0.5 },
   { src: "hotels/rowton-hall/screen-time/cake-by-the-fire.mp4", at: 8 },
   { src: "hotels/waterton-park/clips/afternoon-tea.mp4", at: 10, from: 2 },
-  { src: "hotels/rowton-hall/screen-time/welcome-fizz.mp4", at: 12 },
+  // framed wider on the toast (Scott, 3 Nov: "crop the shot where they toast the glasses better"): the two
+  // glasses, the bucket and the top of the plate
+  { src: "hotels/rowton-hall/screen-time/welcome-fizz.mp4", at: 12, frame: { x: 0, y: 270, s: 0.9 } },
   { src: "hotels/the-mount/screen-time/conservatory.mp4", at: 14 },
   { src: "hotels/haycock-manor/clips/cocktail-smoke.mp4", at: 16 },
 ];
@@ -91,7 +95,18 @@ const Video: React.FC<{ c: Clip; style?: React.CSSProperties }> = ({ c, style })
     src={staticFile(c.src)}
     muted
     trimBefore={Math.round((c.from ?? 0) * 30)}
-    style={{ width: "100%", height: "100%", objectFit: "cover", ...style }}
+    style={{
+      width: "100%",
+      height: "100%",
+      objectFit: "cover",
+      ...(c.frame
+        ? {
+            transformOrigin: "0 0",
+            transform: `translate(${220 - c.frame.s * c.frame.x}px, ${500 - c.frame.s * c.frame.y}px) scale(${c.frame.s})`,
+          }
+        : null),
+      ...style,
+    }}
   />
 );
 
