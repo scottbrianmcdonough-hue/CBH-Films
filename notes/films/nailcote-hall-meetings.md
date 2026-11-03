@@ -68,3 +68,5 @@ Polish (Scott, 2 Nov): checked every half second; the first panel of a cut-in sp
 Scott: "DINING as a label is flat": THE OAK ROOM / "Lunch with some history" / In a house built in 1640.
 
 Social cuts for Instagram (Scott, 3 Nov: "the reel and need the story too for social, less M&E"): `nailcote-hall-social` (9:16, ~29.5s: the house, afternoon tea, the par 3, dinner as three stacked plates, the pool, the four poster, end card BERKSWELL, WARWICKSHIRE / Nailcote Hall) and `nailcote-hall-social-story` (~12.8s: the house, the plates, the four poster), `src/hotels/nailcote-hall-social.ts`, the MEReel engine. Stills checked; not rendered yet (interrupted).
+
+Rendered: reel 29.5s, -15.9 LUFS; Story 12.8s, -16.3 LUFS. Tickets `out/nailcote-hall-social-ticket.txt`, `out/nailcote-hall-social-story-ticket.txt` (links need Nailcote's CBH page URL).
