@@ -226,6 +226,15 @@ const Photo: React.FC<{ src: string; pos: string }> = ({ src, pos }) => (
   />
 );
 
+// the two official 4:5 files alternate, in posting order (Scott: "can't be using the same cover for four
+// posts"): the launch post has the curtains, so the first carousel opens on the bed
+const OFFICIAL: Record<string, "bed" | "curtains"> = {
+  "yorkshire-scotland": "bed",
+  "midlands-east": "curtains",
+  south: "bed",
+  wales: "curtains",
+};
+
 export const bfSlides = (id: string) =>
   (BF_REGIONS.find((r) => r.id === id)?.hotels.length ?? 0) + 2;
 
@@ -240,7 +249,7 @@ export const BlackFridayCarousel: React.FC<{ region: string }> = ({
     return (
       <AbsoluteFill style={{ backgroundColor: colors.black }}>
         <Img
-          src={staticFile("campaigns/black-friday-2026/campaign/bed-4x5.jpg")}
+          src={staticFile(`campaigns/black-friday-2026/campaign/${OFFICIAL[region] ?? "bed"}-4x5.jpg`)}
           style={{ width: "100%", height: "100%" }}
         />
       </AbsoluteFill>
