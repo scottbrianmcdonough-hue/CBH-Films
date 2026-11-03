@@ -105,7 +105,7 @@ export const nailcoteHallSocial: MESpec = {
 // the Story (Scott, 3 Nov: "need more scenes in the Story cut, the second scene is too fast, do it like the Haycock
 // Manor personality"): six shots a bar or two each, the house with its label, then short cream lines over the shots
 // (no eyebrows, the second line italic, as Haycock's Story), ending on a question like Haycock's ("Cocktail first,
-// or the gold bath?"); from beat 25, the groove on 33, every cut on a downbeat, 20.7s
+// or the gold bath?"), then a line instead (Scott: "it doesn't have to be the or question all the time"); from beat 25, the groove on 33, every cut on a downbeat, 20.7s
 const S = at(25);
 const line = (title: string) => ({ eyebrow: "", title, subs: [""] });
 export const nailcoteHallSocialStory: MESpec = {
@@ -146,6 +146,6 @@ export const nailcoteHallSocialStory: MESpec = {
       text: line("And the four poster\nto finish"),
     },
   ],
-  end: { ...end, at: S(61), question: "Par 3 first,\nor the four poster?" },
+  end: { ...end, at: S(61), question: "Tee off,\nthen turn in" },
   music: { ...music, startAt: start(25) },
 };
