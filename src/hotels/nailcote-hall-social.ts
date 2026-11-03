@@ -25,8 +25,9 @@ const plates = [
 const end = { name: "Nailcote Hall", place: "Berkswell, Warwickshire", cut: true };
 const music = { src: "music/mixkit-tech-house-vibes-130.mp3", gain: 0.5, fadeOut: 40 };
 
-// the reel: from beat 21, the groove on 33, the end card on the crash at 73
-const R = at(21);
+// the reel: from beat 25 (the house 4s, Scott: "the first scene is too long"), the groove on 33, the end card on
+// the crash at 73
+const R = at(25);
 export const nailcoteHallSocial: MESpec = {
   id: "nailcote-hall-social",
   frames: R(81),
@@ -60,7 +61,7 @@ export const nailcoteHallSocial: MESpec = {
     { at: R(65), cut: true, shots: [bed], text: { eyebrow: "Stay over", title: "Then the four poster", subs: [""] } },
   ],
   end: { ...end, at: R(73) },
-  music: { ...music, startAt: start(21) },
+  music: { ...music, startAt: start(25) },
 };
 
 // the Story (~15s): the house from beat 25, dinner on the groove (33), the four poster, the end card on 45

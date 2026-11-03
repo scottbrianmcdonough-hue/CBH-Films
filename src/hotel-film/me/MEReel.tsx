@@ -226,8 +226,18 @@ const Scene: React.FC<{ scene: MEScene; len: number; wide: boolean }> = ({
           const rect = feature
             ? i === 0
               ? { left: 0, top: 0, w: fw, h: height }
-              : { left: fw + G, top: i === 1 ? 0 : (height + G) / 2, w: width - fw - G, h: (height - G) / 2 }
-            : { left: wide ? i * (pw + G) : 0, top: wide ? 0 : i * (ph + G), w: pw, h: ph };
+              : {
+                  left: fw + G,
+                  top: i === 1 ? 0 : (height + G) / 2,
+                  w: width - fw - G,
+                  h: (height - G) / 2,
+                }
+            : {
+                left: wide ? i * (pw + G) : 0,
+                top: wide ? 0 : i * (ph + G),
+                w: pw,
+                h: ph,
+              };
           const left = rect.left;
           const top = rect.top;
           const pos = (wide ? p.widePos : p.pos) ?? "50% 55%";
@@ -300,7 +310,8 @@ const Scene: React.FC<{ scene: MEScene; len: number; wide: boolean }> = ({
               background: wide
                 ? // a deeper soft shade from the text's corner, so the gold caps read over busy photos
                   "radial-gradient(ellipse 1250px 620px at 0px 1080px, rgba(9,9,10,0.82) 0%, rgba(9,9,10,0.5) 45%, rgba(9,9,10,0) 100%)"
-                : "linear-gradient(to top, rgba(9,9,10,0) 12%, rgba(9,9,10,0.55) 24%, rgba(9,9,10,0.15) 42%, rgba(9,9,10,0) 55%)",
+                : // deeper behind the captions so they read over bright photos (Scott: "kinda hard to read")
+                  "linear-gradient(to top, rgba(9,9,10,0.25) 0%, rgba(9,9,10,0.74) 20%, rgba(9,9,10,0.66) 33%, rgba(9,9,10,0) 52%)",
             }}
           />
           <Caption
