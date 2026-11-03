@@ -48,15 +48,17 @@ export const haycockManorDepth: RippleSpec = {
 // The Story (Wed 4 Nov): the reel's beats 17-34: the pour (with the label), the three stabs as the
 // Prevost plate, the marble plates and the tea, the gold bath, the basin, the bedroom fading into
 // the same end card, cut on the band's beats (cut-story.json -> picture-story.mp4), the music
-// started so the end card lands on the same 87.70s hit as the reel. 16.2s.
+// started so the end card lands on the same 87.70s hit as the reel. Then (Scott, 3 Nov: "a little more
+// length, one more shot", "the drink maybe") the punch in on the pour after the wide, as the reel has it,
+// the music two beats earlier so the rest keeps its beats. 17.6s.
 export const haycockManorDepthStory: RippleSpec = {
   ...haycockManorDepth,
   id: "haycock-manor-depth-story",
   picture: "hotels/haycock-manor/picture-story.mp4",
-  frames: 486,
+  frames: 528,
   label: { ...haycockManorDepth.label, to: 78 },
-  endCard: { ...haycockManorDepth.endCard, at: 356 },
-  music: { ...haycockManorDepth.music, startAt: 2275 },
+  endCard: { ...haycockManorDepth.endCard, at: 398 },
+  music: { ...haycockManorDepth.music, startAt: 2233 },
 };
 
 // The meetings and events cut (Scott, 31 Oct: "a landscape version for meetings and events", "same
