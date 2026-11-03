@@ -20,3 +20,5 @@ Next offered: "Shutters up" (a black roller shutter rising on each hotel like a 
 The ending is now the official artwork (Scott, 2 Nov: "use the official assets"): the 4:5 bed asset as supplied (its type, pill and gold logo), set at top 170 so the pill and logo clear the bottom 460px, over a blurred, darkened copy of the clean photo, a 1.00 to 1.02 push, no grain, vignette or white CB over it (`OFFICIAL_END`; the rebuilt Cormorant card is kept behind it). Two posts (Scott): this reel (`out/black-friday-queue-ticket.txt`) and a static post with the official file as the creative, text only (`out/black-friday-sale-static-ticket.txt`; suggested the curtains artwork, as the reel ends on the bed). Both link to https://classicbritishhotels.com/ until the sale page is known.
 
 Launch Mon 9 Nov (Scott, 3 Nov): the static post with the official file goes out that day; ticket dated.
+
+Landing page (Scott, 3 Nov): https://classicbritishhotels.com/black-friday-countdown/ (both tickets).
