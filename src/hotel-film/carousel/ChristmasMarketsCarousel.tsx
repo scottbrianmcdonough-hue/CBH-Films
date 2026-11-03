@@ -2,70 +2,79 @@ import React from "react";
 import { AbsoluteFill, Img, staticFile, useCurrentFrame } from "remotion";
 import { colors, sans, serif } from "../theme";
 
-// The Christmas markets blog as an Instagram carousel (Bianca, 3 Nov: "get the xmas market stuff out again";
-// Scott: "more premium, it's going on Insta and it's going to be a carousel, so need photos"). 4:5, a frame a
-// slide (render with --sequence). The blog itself is blocked from here, so no market is named: the cover,
-// then one hotel at Christmas a slide, minimal and full bleed (the place in gold caps with its still
-// underline, the name in cream Cormorant, a short italic line about the photo), then a close that points to
-// the guide. The festive graded photos from the festive reel; no hotel counts.
+// The Christmas markets blog as an Instagram carousel (Bianca, 3 Nov; Scott: "more premium, it's going
+// on Insta"). Rebuilt from the blog itself (classicbritishhotels.com/christmas-markets/, its text and its
+// 12 photos via Scott, public/campaigns/christmas-markets/blog-brief.txt): the markets and the hotels the
+// blog pairs them with, dates only where the blog gives them. 4:5, a frame a slide (--sequence).
+//
+// The blog's photos are 1024 x 576, so the market slides frame them as a 16:9 window on black (sharp at
+// 936px), a soft dark copy of the photo filling the card behind: the market in gold caps with its still
+// underline and the dates above, "Stay at" and the paired hotel in cream Cormorant beneath. The cover is
+// the out of focus tree full bleed (it is meant to be soft), the close the champagne toast.
 
-const F = "campaigns/festive/graded/";
-type Slide = {
+const M = "campaigns/christmas-markets/";
+type Market = {
   src: string;
-  pos: string;
-  place: string;
-  name: string;
-  line: string;
+  pos?: string;
+  market: string;
+  dates: string;
+  hotels: string[];
 };
-const SLIDES: Slide[] = [
+const MARKETS: Market[] = [
   {
-    src: F + "rowton-hall-mantel.jpg",
-    pos: "45% 50%",
-    place: "Chester",
-    name: "Rowton Hall Hotel & Spa",
-    line: "Garland on the mantel",
+    src: M + "birmingham.jpg",
+    market: "Birmingham",
+    dates: "5 November to 24 December",
+    hotels: ["Hogarths Solihull"],
   },
   {
-    src: F + "low-wood-bay-columns.jpg",
-    pos: "50% 50%",
-    place: "Windermere, Lake District",
-    name: "Low Wood Bay Resort",
-    line: "Lights all the way down the hall",
+    src: M + "leeds.jpg",
+    market: "Leeds",
+    dates: "19 November to 23 December",
+    hotels: ["Gomersal Park Hotel", "Waterton Park Hotel & Spa"],
   },
   {
-    src: F + "langshott-manor-nutcracker.jpg",
-    pos: "30% 50%",
-    place: "Horley, Surrey",
-    name: "Langshott Manor",
-    line: "A nutcracker on guard",
+    src: M + "chester.jpg",
+    market: "Chester",
+    dates: "18 November to 22 December",
+    hotels: ["Rowton Hall Hotel & Spa"],
   },
   {
-    src: F + "barnett-hill-staircase.jpg",
-    pos: "45% 50%",
-    place: "Guildford, Surrey",
-    name: "Barnett Hill",
-    line: "The tree on the stair",
+    src: M + "winchester.jpg",
+    market: "Winchester",
+    dates: "20 November to 22 December",
+    hotels: ["Oakley Hall Hotel"],
   },
   {
-    src: F + "nailcote-hall-snow.jpg",
-    pos: "35% 50%",
-    place: "Berkswell, Warwickshire",
-    name: "Nailcote Hall",
-    line: "Snow on the gables",
+    src: M + "durham-snow.jpg",
+    market: "Durham",
+    dates: "4 to 6 December",
+    hotels: ["The Morritt Hotel & Garage Spa"],
   },
   {
-    src: F + "oakley-hall-exterior.jpg",
-    pos: "50% 50%",
-    place: "Oakley, Hampshire",
-    name: "Oakley Hall Hotel",
-    line: "Lit up for the season",
+    src: M + "worcester-lantern.jpg",
+    market: "Worcester",
+    dates: "3 to 6 December",
+    hotels: ["Hogarths Stone Manor"],
+  },
+  {
+    src: M + "donnington-manor-snow.jpg",
+    market: "Canterbury",
+    dates: "Kent's biggest market",
+    hotels: ["Donnington Manor Hotel", "Hythe Imperial Hotel"],
+  },
+  {
+    src: M + "cotswolds-bridge.jpg",
+    market: "Gloucester Quays",
+    dates: "The weekends before Christmas",
+    hotels: ["Hatherley Manor Hotel & Spa"],
   },
 ];
-export const MARKETS_SLIDES = SLIDES.length + 2;
+export const MARKETS_SLIDES = MARKETS.length + 2;
 
 const Caps: React.FC<{ children: React.ReactNode; size?: number }> = ({
   children,
-  size = 26,
+  size = 28,
 }) => (
   <div style={{ display: "inline-block" }}>
     <div
@@ -73,14 +82,14 @@ const Caps: React.FC<{ children: React.ReactNode; size?: number }> = ({
         fontFamily: sans,
         fontWeight: 600,
         fontSize: size,
-        letterSpacing: "0.3em",
+        letterSpacing: "0.32em",
         color: colors.gold,
         textTransform: "uppercase",
       }}
     >
       {children}
     </div>
-    <div style={{ height: 2, background: colors.gold, marginTop: 10 }} />
+    <div style={{ height: 2, background: colors.gold, marginTop: 12 }} />
   </div>
 );
 const Mark: React.FC = () => (
@@ -88,22 +97,28 @@ const Mark: React.FC = () => (
     src={staticFile("brand/cb-watermark.png")}
     style={{
       position: "absolute",
-      right: 72,
-      bottom: 92,
+      left: 540 - 29,
+      bottom: 70,
       width: 58,
       height: 63,
       opacity: 0.9,
     }}
   />
 );
-const Photo: React.FC<{ src: string; pos: string }> = ({ src, pos }) => (
+const Backdrop: React.FC<{ src: string; dim?: number; blur?: number }> = ({
+  src,
+  dim = 0.32,
+  blur = 40,
+}) => (
   <Img
     src={staticFile(src)}
     style={{
-      width: "100%",
-      height: "100%",
+      position: "absolute",
+      inset: -80,
+      width: 1240,
+      height: 1510,
       objectFit: "cover",
-      objectPosition: pos,
+      filter: `blur(${blur}px) brightness(${dim})`,
     }}
   />
 );
@@ -113,11 +128,19 @@ export const ChristmasMarketsCarousel: React.FC = () => {
   if (i === 0) {
     return (
       <AbsoluteFill style={{ backgroundColor: colors.black }}>
-        <Photo src={F + "hintlesham-hall-exterior.jpg"} pos="58% 50%" />
+        <Img
+          src={staticFile(M + "tree-bokeh.jpg")}
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            objectPosition: "48% 50%",
+          }}
+        />
         <AbsoluteFill
           style={{
             background:
-              "linear-gradient(to bottom, rgba(9,9,10,0) 34%, rgba(9,9,10,0.8) 70%, rgba(9,9,10,0.94) 100%)",
+              "linear-gradient(to bottom, rgba(9,9,10,0.25) 0%, rgba(9,9,10,0.15) 35%, rgba(9,9,10,0.82) 72%, rgba(9,9,10,0.94) 100%)",
           }}
         />
         <div
@@ -125,34 +148,33 @@ export const ChristmasMarketsCarousel: React.FC = () => {
             position: "absolute",
             left: 0,
             right: 0,
-            bottom: 170,
+            bottom: 190,
             textAlign: "center",
           }}
         >
-          <Caps size={28}>Christmas markets</Caps>
+          <Caps>Christmas markets</Caps>
           <div
             style={{
               fontFamily: serif,
-              fontSize: 104,
-              lineHeight: 1.03,
+              fontSize: 112,
+              lineHeight: 1.02,
               color: colors.cream,
-              marginTop: 30,
+              marginTop: 32,
             }}
           >
-            Browse the stalls,
+            The markets,
             <br />
-            <span style={{ fontStyle: "italic" }}>then somewhere warm</span>
+            <span style={{ fontStyle: "italic" }}>and where to stay</span>
           </div>
         </div>
         <Mark />
       </AbsoluteFill>
     );
   }
-  if (i === SLIDES.length + 1) {
+  if (i === MARKETS.length + 1) {
     return (
       <AbsoluteFill style={{ backgroundColor: colors.black }}>
-        <Photo src={F + "fairlawns-afternoon-tea.jpg"} pos="50% 50%" />
-        <AbsoluteFill style={{ backgroundColor: "rgba(9,9,10,0.72)" }} />
+        <Backdrop src={M + "chichester-toast.jpg"} dim={0.42} blur={6} />
         <AbsoluteFill
           style={{
             alignItems: "center",
@@ -161,14 +183,14 @@ export const ChristmasMarketsCarousel: React.FC = () => {
           }}
         >
           <div style={{ marginTop: -40 }}>
-            <Caps size={28}>The guide</Caps>
+            <Caps>The full guide</Caps>
             <div
               style={{
                 fontFamily: serif,
-                fontSize: 100,
+                fontSize: 104,
                 lineHeight: 1.06,
                 color: colors.cream,
-                marginTop: 30,
+                marginTop: 32,
               }}
             >
               Plan your
@@ -178,14 +200,15 @@ export const ChristmasMarketsCarousel: React.FC = () => {
             <div
               style={{
                 fontFamily: sans,
-                fontSize: 26,
-                letterSpacing: "0.22em",
-                color: "rgba(245,239,227,0.82)",
-                textTransform: "uppercase",
-                marginTop: 44,
+                fontSize: 30,
+                color: "rgba(245,239,227,0.86)",
+                marginTop: 40,
+                lineHeight: 1.5,
               }}
             >
-              classicbritishhotels.com
+              Christmas, Twixmas and New Year breaks
+              <br />
+              are bookable now
             </div>
           </div>
         </AbsoluteFill>
@@ -193,40 +216,102 @@ export const ChristmasMarketsCarousel: React.FC = () => {
       </AbsoluteFill>
     );
   }
-  const s = SLIDES[i - 1];
+  const m = MARKETS[i - 1];
+  const two = m.hotels.length > 1;
   return (
     <AbsoluteFill style={{ backgroundColor: colors.black }}>
-      <Photo src={s.src} pos={s.pos} />
-      <AbsoluteFill
+      <Backdrop src={m.src} />
+      <div
         style={{
-          background:
-            "linear-gradient(to bottom, rgba(9,9,10,0) 52%, rgba(9,9,10,0.62) 78%, rgba(9,9,10,0.86) 100%)",
+          position: "absolute",
+          top: 150,
+          left: 0,
+          right: 0,
+          textAlign: "center",
         }}
-      />
-      <div style={{ position: "absolute", left: 76, right: 160, bottom: 96 }}>
-        <Caps>{s.place}</Caps>
-        <div
-          style={{
-            fontFamily: serif,
-            fontSize: 76,
-            lineHeight: 1.04,
-            color: colors.cream,
-            marginTop: 18,
-          }}
-        >
-          {s.name}
-        </div>
+      >
+        <Caps size={30}>{m.market}</Caps>
         <div
           style={{
             fontFamily: serif,
             fontStyle: "italic",
-            fontSize: 40,
-            color: "rgba(245,239,227,0.88)",
-            marginTop: 10,
+            fontSize: 42,
+            color: "rgba(245,239,227,0.9)",
+            marginTop: 18,
+            fontVariantNumeric: "lining-nums",
           }}
         >
-          {s.line}
+          {m.dates}
         </div>
+      </div>
+      <div
+        style={{
+          position: "absolute",
+          left: 72,
+          top: 360,
+          width: 936,
+          height: 527,
+          overflow: "hidden",
+          boxShadow: "0 30px 80px rgba(0,0,0,0.55)",
+          outline: "1px solid rgba(195,158,85,0.55)",
+          outlineOffset: 10,
+        }}
+      >
+        <Img
+          src={staticFile(m.src)}
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            objectPosition: m.pos ?? "50% 50%",
+          }}
+        />
+      </div>
+      <div
+        style={{
+          position: "absolute",
+          top: two ? 960 : 980,
+          left: 60,
+          right: 60,
+          textAlign: "center",
+        }}
+      >
+        <div
+          style={{
+            fontFamily: sans,
+            fontSize: 24,
+            letterSpacing: "0.3em",
+            textTransform: "uppercase",
+            color: "rgba(245,239,227,0.7)",
+          }}
+        >
+          Stay at
+        </div>
+        {m.hotels.map((h, k) => (
+          <div
+            key={h}
+            style={{
+              fontFamily: serif,
+              fontSize: two ? 60 : 70,
+              lineHeight: 1.1,
+              color: colors.cream,
+              marginTop: k ? 0 : 12,
+            }}
+          >
+            {k ? (
+              <span
+                style={{
+                  fontStyle: "italic",
+                  fontSize: 40,
+                  color: "rgba(245,239,227,0.75)",
+                }}
+              >
+                or{" "}
+              </span>
+            ) : null}
+            {h}
+          </div>
+        ))}
       </div>
       <Mark />
     </AbsoluteFill>
