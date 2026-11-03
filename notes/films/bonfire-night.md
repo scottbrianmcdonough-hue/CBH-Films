@@ -12,3 +12,5 @@
 
 Story (Scott, 3 Nov: "take the firework ending off, just the cosy up inside with the white logo"): his bonfire-night_2.mp4 cut at 14.4s where the fire fades, the picture faded over the last 0.6s and the music over 1.4s; white CB throughout, no gold logo. 14.4s, -15.1 LUFS. Built with ffmpeg from the upload (not committed).
 Then (Scott: "end with how are you spending bonfire night, black end card"): after the fire fades, 3s of black with "How are you spending / Bonfire Night?" in cream Cormorant (96 / 80 italic) centred, fading in, the white CB in its corner; the original music runs on to 17.4s and fades. 17.4s, -14.8 LUFS. Sticker: none needed (the question is the card), or a question sticker under it.
+
+Firework CB brand moment Story (Scott sent firework-cb-1.mp4, 12.1s, 9:16, sound baked in): Thu 5 Nov 7pm, no sticker (or a 🎆 emoji slider), ticket `out/firework-cb-story-ticket.txt`.
