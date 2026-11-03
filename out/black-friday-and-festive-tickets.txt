@@ -175,7 +175,7 @@ Video: dad-birthday-chat_2_1.mp4 (37.0s, 9:16)
 [FESTIVE] Christmas markets carousel (blog)
 
 Hook
-Eight of the Christmas markets from our blog, full bleed, each labelled with the hotel the guide pairs it with: Birmingham, Leeds, Chester, Winchester, Durham, Worcester, Canterbury and Gloucester Quays, ending on "Plan your market weekend".
+Seven of the Christmas markets from our blog, full bleed, each labelled with the hotel the guide pairs it with: Birmingham, Leeds, Chester, Winchester, Durham, Canterbury and Gloucester Quays, ending on "Plan your market weekend".
 
 Post
 𝗠𝘂𝗹𝗹𝗲𝗱 𝘄𝗶𝗻𝗲 𝗶𝗻 𝘁𝗵𝗲 𝗰𝗿𝗶𝘀𝗽 𝗮𝗶𝗿, 𝘁𝗵𝗲𝗻 𝗮 𝗳𝗶𝗿𝗲 𝘁𝗼 𝗰𝗼𝗺𝗲 𝗯𝗮𝗰𝗸 𝘁𝗼 🎄
@@ -187,7 +187,6 @@ The Christmas markets are back, and a night away turns a day at the stalls into 
 𝗖𝗵𝗲𝘀𝘁𝗲𝗿, chalets by the medieval Rows, 18 Nov to 22 Dec: Rowton Hall
 𝗪𝗶𝗻𝗰𝗵𝗲𝘀𝘁𝗲𝗿, in the cathedral grounds, 20 Nov to 22 Dec: Oakley Hall
 𝗗𝘂𝗿𝗵𝗮𝗺, the Christmas Festival, 4 to 6 Dec: The Morritt
-𝗪𝗼𝗿𝗰𝗲𝘀𝘁𝗲𝗿, the Victorian Fayre, 3 to 6 Dec: Hogarths Stone Manor
 𝗖𝗮𝗻𝘁𝗲𝗿𝗯𝘂𝗿𝘆, Kent's biggest market: Donnington Manor or Hythe Imperial
 𝗚𝗹𝗼𝘂𝗰𝗲𝘀𝘁𝗲𝗿 𝗤𝘂𝗮𝘆𝘀, the weekends before Christmas: Hatherley Manor
 
@@ -202,7 +201,7 @@ CTA
 
 Time slot: Sat 14 Nov (suggested). Instagram 12:00 PM; Facebook 8:00 PM
 Platforms: Instagram, Facebook
-Creative: christmas-markets-1 to 10.jpg (carousel, 4:5, in order)
+Creative: christmas-markets-1 to 9.jpg (carousel, 4:5, in order)
 Before posting: re date the blog to today in WordPress so it sits at the top.
 
 

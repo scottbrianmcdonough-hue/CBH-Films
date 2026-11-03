@@ -21,6 +21,7 @@ type Market = {
   dates: string;
   hotels: string[];
 };
+// Worcester (Hogarths Stone Manor) dropped: no December availability (Scott, 3 Nov)
 const MARKETS: Market[] = [
   {
     src: M + "birmingham.jpg",
@@ -56,13 +57,6 @@ const MARKETS: Market[] = [
     kind: "Christmas Festival",
     dates: "4 to 6 December",
     hotels: ["The Morritt Hotel\n& Garage Spa"],
-  },
-  {
-    src: M + "worcester-stone-manor-door.jpg", // Stone Manor's own festive door (its reel), not the blog's lantern (Scott: "just a street lamp")
-    market: "Worcester",
-    kind: "Victorian Christmas Fayre",
-    dates: "3 to 6 December",
-    hotels: ["Hogarths Stone Manor"],
   },
   {
     src: M + "donnington-manor-snow.jpg",
