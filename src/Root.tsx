@@ -16,6 +16,7 @@ import { haycockManorMeetingsME } from "./hotels/haycock-manor-me";
 import { BF_STORIES } from "./hotels/black-friday-stories";
 import { CorporateGifting } from "./linkedin/CorporateGifting";
 import { ChristmasMarkets } from "./linkedin/ChristmasMarkets";
+import { ChristmasMarketsCarousel, MARKETS_SLIDES } from "./hotel-film/carousel/ChristmasMarketsCarousel";
 import { BF_REGIONS, BlackFridayCarousel, bfSlides } from "./hotel-film/carousel/BlackFridayCarousel";
 import { nailcoteHallSocial, nailcoteHallSocialStory } from "./hotels/nailcote-hall-social";
 import { WrittenCB, WRITTEN_CB_FRAMES } from "./hotel-film/stings/WrittenCB";
@@ -535,6 +536,7 @@ export const RemotionRoot: React.FC = () => {
         width={WIDTH}
         height={HEIGHT}
       />
+      <Composition id="christmas-markets-carousel" component={ChristmasMarketsCarousel} durationInFrames={MARKETS_SLIDES} fps={FPS} width={1080} height={1350} />
       <Composition id="christmas-markets" component={ChristmasMarkets} durationInFrames={1} fps={FPS} width={1080} height={1350} />
       {/* corporate gifting, a 4:5 LinkedIn still */}
       <Composition id="corporate-gifting" component={CorporateGifting} durationInFrames={1} fps={FPS} width={1080} height={1350} />
