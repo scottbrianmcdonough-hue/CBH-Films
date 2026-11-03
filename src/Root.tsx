@@ -14,6 +14,7 @@ import { MEReel } from "./hotel-film/me/MEReel";
 import { nailcoteHallMeetings, nailcoteHallMeetingsReel } from "./hotels/nailcote-hall-meetings";
 import { haycockManorMeetingsME } from "./hotels/haycock-manor-me";
 import { BF_STORIES } from "./hotels/black-friday-stories";
+import { BF_REGIONS, BlackFridayCarousel, bfSlides } from "./hotel-film/carousel/BlackFridayCarousel";
 import { nailcoteHallSocial, nailcoteHallSocialStory } from "./hotels/nailcote-hall-social";
 import { WrittenCB, WRITTEN_CB_FRAMES } from "./hotel-film/stings/WrittenCB";
 import { WaxSeal, WAX_SEAL_FRAMES } from "./hotel-film/stings/WaxSeal";
@@ -532,6 +533,19 @@ export const RemotionRoot: React.FC = () => {
         width={WIDTH}
         height={HEIGHT}
       />
+      {/* Black Friday 2026: regional carousels, 4:5, a frame per slide (render with --sequence) */}
+      {BF_REGIONS.map((r) => (
+        <Composition
+          key={r.id}
+          id={`black-friday-carousel-${r.id}`}
+          component={BlackFridayCarousel}
+          defaultProps={{ region: r.id }}
+          durationInFrames={bfSlides(r.id)}
+          fps={FPS}
+          width={1080}
+          height={1350}
+        />
+      ))}
       {/* Black Friday 2026: a Story for each participating hotel */}
       {BF_STORIES.map((film) => (
         <Composition
