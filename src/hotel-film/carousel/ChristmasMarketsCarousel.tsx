@@ -37,7 +37,7 @@ const MARKETS: Market[] = [
     src: M + "chester.jpg",
     market: "Chester",
     dates: "18 November to 22 December",
-    hotels: ["Rowton Hall Hotel & Spa"],
+    hotels: ["Rowton Hall\nHotel & Spa"],
   },
   {
     src: M + "winchester.jpg",
@@ -49,7 +49,7 @@ const MARKETS: Market[] = [
     src: M + "durham-snow.jpg",
     market: "Durham",
     dates: "4 to 6 December",
-    hotels: ["The Morritt Hotel & Garage Spa"],
+    hotels: ["The Morritt Hotel\n& Garage Spa"],
   },
   {
     src: M + "worcester-lantern.jpg",
@@ -67,7 +67,7 @@ const MARKETS: Market[] = [
     src: M + "cotswolds-bridge.jpg",
     market: "Gloucester Quays",
     dates: "The weekends before Christmas",
-    hotels: ["Hatherley Manor Hotel & Spa"],
+    hotels: ["Hatherley Manor\nHotel & Spa"],
   },
 ];
 export const MARKETS_SLIDES = MARKETS.length + 2;
@@ -97,8 +97,8 @@ const Mark: React.FC = () => (
     src={staticFile("brand/cb-watermark.png")}
     style={{
       position: "absolute",
-      left: 540 - 29,
-      bottom: 70,
+      right: 72,
+      bottom: 72,
       width: 58,
       height: 63,
       opacity: 0.9,
@@ -220,7 +220,6 @@ export const ChristmasMarketsCarousel: React.FC = () => {
   // each blog photo cropped to 4:5 on its subject, upscaled with a light sharpen (<name>-4x5.jpg), the
   // market, dates and hotel at the bottom over a soft shade
   const m = MARKETS[i - 1];
-  const two = m.hotels.length > 1;
   return (
     <AbsoluteFill style={{ backgroundColor: colors.black }}>
       <Img
@@ -233,57 +232,22 @@ export const ChristmasMarketsCarousel: React.FC = () => {
             "linear-gradient(to bottom, rgba(9,9,10,0) 40%, rgba(9,9,10,0.72) 70%, rgba(9,9,10,0.92) 100%)",
         }}
       />
-      <div style={{ position: "absolute", left: 76, right: 76, bottom: 150 }}>
+      {/* the house label only (Scott: "too much information in the lower third, trim it nice and clean, leave the
+          details for the posts"): the market in gold caps with its underline, the paired hotel in cream Cormorant */}
+      <div style={{ position: "absolute", left: 76, right: 170, bottom: 110 }}>
         <Caps size={30}>{m.market}</Caps>
         <div
           style={{
             fontFamily: serif,
-            fontStyle: "italic",
-            fontSize: 42,
-            color: "rgba(245,239,227,0.9)",
-            marginTop: 16,
-            fontVariantNumeric: "lining-nums",
+            fontSize: 76,
+            lineHeight: 1.06,
+            color: colors.cream,
+            marginTop: 20,
+            whiteSpace: "pre-line",
           }}
         >
-          {m.dates}
+          {m.hotels[0]}
         </div>
-        <div
-          style={{
-            fontFamily: sans,
-            fontSize: 22,
-            letterSpacing: "0.3em",
-            textTransform: "uppercase",
-            color: "rgba(245,239,227,0.7)",
-            marginTop: 34,
-          }}
-        >
-          Stay at
-        </div>
-        {m.hotels.map((h, k) => (
-          <div
-            key={h}
-            style={{
-              fontFamily: serif,
-              fontSize: two ? 58 : 68,
-              lineHeight: 1.1,
-              color: colors.cream,
-              marginTop: k ? 0 : 8,
-            }}
-          >
-            {k ? (
-              <span
-                style={{
-                  fontStyle: "italic",
-                  fontSize: 40,
-                  color: "rgba(245,239,227,0.75)",
-                }}
-              >
-                or{" "}
-              </span>
-            ) : null}
-            {h}
-          </div>
-        ))}
       </div>
       <Mark />
     </AbsoluteFill>
