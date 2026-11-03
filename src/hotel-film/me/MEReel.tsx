@@ -62,6 +62,8 @@ export type MESpec = {
     place: string;
     cut?: boolean;
     offer?: { title: string; lines: string[] };
+    // a question in place of the name card (the depth Stories' end, Haycock's "Cocktail first, or the gold bath?")
+    question?: string;
   };
   music: { src: string; startAt: number; gain: number; fadeOut: number };
 };
@@ -122,7 +124,7 @@ const Caption: React.FC<{
     >
       <div
         style={{
-          display: "inline-block",
+          display: eyebrow ? "inline-block" : "none",
           opacity: a,
           transform: `translateY(${(1 - a) * 12}px)`,
           marginBottom: wide ? 14 : 18,
@@ -166,6 +168,8 @@ const Caption: React.FC<{
                 style={{
                   transform: `translateY(${(1 - r) * 105}%)`,
                   opacity: Math.min(1, r * 3),
+                  // a line with no eyebrow (a Story's line over a shot) takes the house italic second line
+                  fontStyle: !eyebrow && i ? "italic" : "normal",
                 }}
               >
                 {l}
@@ -446,11 +450,44 @@ const EndCard: React.FC<{
   place: string;
   wide: boolean;
   offer?: { title: string; lines: string[] };
-}> = ({ name, place, wide, offer }) => {
+  question?: string;
+}> = ({ name, place, wide, offer, question }) => {
   const frame = useCurrentFrame();
   const a = progress(frame, 10, 22, EASE_OUT);
   const b = progress(frame, 18, 24, EASE_OUT);
   if (offer) return <OfferCard offer={offer} wide={wide} />;
+  if (question) {
+    const q = progress(frame, 12, 24, EASE_OUT);
+    return (
+      <AbsoluteFill
+        style={{
+          backgroundColor: colors.black,
+          alignItems: "center",
+          justifyContent: "center",
+          textAlign: "center",
+          paddingBottom: wide ? 0 : 120,
+        }}
+      >
+        <div style={{ opacity: q, transform: `translateY(${(1 - q) * 30}px)` }}>
+          {question.split("\n").map((l, i) => (
+            <div
+              key={l}
+              style={{
+                fontFamily: serif,
+                fontStyle: i ? "italic" : "normal",
+                fontSize: i ? 92 : 112,
+                lineHeight: 1.08,
+                color: colors.cream,
+                fontVariantNumeric: "lining-nums",
+              }}
+            >
+              {l}
+            </div>
+          ))}
+        </div>
+      </AbsoluteFill>
+    );
+  }
   return (
     <AbsoluteFill
       style={{
@@ -550,6 +587,7 @@ export const MEReel: React.FC<{ film: MESpec }> = ({ film }) => {
             place={film.end.place}
             wide={wide}
             offer={film.end.offer}
+            question={film.end.question}
           />
         </AbsoluteFill>
       </Sequence>
