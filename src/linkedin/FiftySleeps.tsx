@@ -1,71 +1,196 @@
 import React from "react";
-import { AbsoluteFill, Img, staticFile, useVideoConfig } from "remotion";
+import {
+  AbsoluteFill,
+  Img,
+  staticFile,
+  useCurrentFrame,
+  useVideoConfig,
+} from "remotion";
 import { colors, sans, serif } from "../hotel-film/theme";
 
-// "50 sleeps until Christmas" (Bianca, 3 Nov: "still have plenty of availabilities left for Xmas so we need to
-// do a push this week before the BF launch ... social post with a '50 Sleeps until Xmas' style headline, and get
-// it out on Thurs 5th Nov"; 5 Nov to 25 Dec is 50 days). A still in two sizes: 4:5 for the feed, 9:16 for the
-// Story. Hogarths Stone Manor's table at Christmas (a frame of its festive reel: the lit tree, a candle, the
-// champagne on ice), the 50 in cream Cormorant over SLEEPS UNTIL CHRISTMAS in gold caps with its underline,
-// one line beneath. The white CB top right (Instagram's controls sit bottom right on a Story).
+// "50 sleeps until Christmas" (Bianca, 3 Nov: a push for the Christmas availability, "a '50 Sleeps until Xmas'
+// style headline", out Thu 5 Nov; 5 Nov to 25 Dec is 50 days). In the house style (Scott: "update to house
+// style and make it feel premium"; the first version was one still with a giant 50): a 4:5 carousel, a frame a
+// slide (--sequence): the cover full bleed on Hogarths Stone Manor's Christmas table (its festive reel), the
+// house label bottom left (50 SLEEPS UNTIL CHRISTMAS in gold caps with its still underline, the line in cream
+// Cormorant); four hotels dressed for Christmas, each with its label (the place in gold caps, the name in cream
+// Cormorant); the close a clean black card, cream Cormorant centred, white CB. The Story (9:16) is the cover.
+
+const F = "campaigns/festive/graded/";
+type Slide = { src: string; pos: string; place: string; name: string };
+const HOTELS: Slide[] = [
+  {
+    src: F + "rowton-hall-mantel.jpg",
+    pos: "45% 50%",
+    place: "Chester",
+    name: "Rowton Hall\nHotel & Spa",
+  },
+  {
+    src: F + "barnett-hill-staircase.jpg",
+    pos: "45% 50%",
+    place: "Guildford, Surrey",
+    name: "Barnett Hill",
+  },
+  {
+    src: F + "low-wood-bay-columns.jpg",
+    pos: "50% 50%",
+    place: "Windermere, Lake District",
+    name: "Low Wood Bay\nResort & Spa",
+  },
+  {
+    src: F + "langshott-manor-nutcracker.jpg",
+    pos: "30% 60%",
+    place: "Horley, Surrey",
+    name: "Langshott Manor",
+  },
+];
+export const FIFTY_SLIDES = HOTELS.length + 2;
+
+const Caps: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+  <div style={{ display: "inline-block" }}>
+    <div
+      style={{
+        fontFamily: sans,
+        fontWeight: 600,
+        fontSize: 28,
+        letterSpacing: "0.3em",
+        color: colors.gold,
+        textTransform: "uppercase",
+      }}
+    >
+      {children}
+    </div>
+    <div style={{ height: 2, background: colors.gold, marginTop: 12 }} />
+  </div>
+);
+const Shade: React.FC = () => (
+  <AbsoluteFill
+    style={{
+      background:
+        "linear-gradient(to bottom, rgba(9,9,10,0) 45%, rgba(9,9,10,0.7) 74%, rgba(9,9,10,0.9) 100%)",
+    }}
+  />
+);
+const Photo: React.FC<{ src: string; pos: string }> = ({ src, pos }) => (
+  <Img
+    src={staticFile(src)}
+    style={{
+      width: "100%",
+      height: "100%",
+      objectFit: "cover",
+      objectPosition: pos,
+    }}
+  />
+);
+const Mark: React.FC<{ tall: boolean }> = ({ tall }) => (
+  <Img
+    src={staticFile("brand/cb-watermark.png")}
+    style={{
+      position: "absolute",
+      right: 72,
+      bottom: tall ? 480 : 72,
+      width: 58,
+      height: 63,
+      opacity: 0.9,
+    }}
+  />
+);
+
 export const FiftySleeps: React.FC = () => {
-  const { height } = useVideoConfig();
-  const tall = height > 1500;
-  return (
-    <AbsoluteFill style={{ backgroundColor: colors.black }}>
-      <Img
-        src={staticFile("campaigns/fifty-sleeps/arrival-2.3.jpg")}
-        style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "50% 38%" }}
-      />
-      <AbsoluteFill
-        style={{
-          background:
-            "linear-gradient(to bottom, rgba(9,9,10,0.25) 0%, rgba(9,9,10,0) 22%, rgba(9,9,10,0.35) 40%, rgba(9,9,10,0.9) 62%, rgba(9,9,10,0.96) 100%)",
-        }}
-      />
-      <div style={{ position: "absolute", left: 0, right: 0, bottom: tall ? 400 : 110, textAlign: "center" }}>
+  const i = useCurrentFrame();
+  const tall = useVideoConfig().height > 1500;
+  if (i === 0) {
+    return (
+      <AbsoluteFill style={{ backgroundColor: colors.black }}>
+        <Photo src="campaigns/fifty-sleeps/arrival-2.3.jpg" pos="50% 40%" />
+        <Shade />
         <div
           style={{
-            fontFamily: serif,
-            fontSize: 300,
-            lineHeight: 0.9,
-            color: colors.cream,
-            fontVariantNumeric: "lining-nums",
+            position: "absolute",
+            left: 76,
+            right: 170,
+            bottom: tall ? 470 : 110,
           }}
         >
-          50
-        </div>
-        <div style={{ display: "inline-block", marginTop: 22 }}>
+          <Caps>50 sleeps until Christmas</Caps>
           <div
             style={{
-              fontFamily: sans,
-              fontWeight: 600,
-              fontSize: 32,
-              letterSpacing: "0.3em",
-              color: colors.gold,
-              textTransform: "uppercase",
+              fontFamily: serif,
+              fontSize: 96,
+              lineHeight: 1.04,
+              color: colors.cream,
+              marginTop: 24,
             }}
           >
-            Sleeps until Christmas
+            Still room
+            <br />
+            <span style={{ fontStyle: "italic" }}>at the table</span>
           </div>
-          <div style={{ height: 2, background: colors.gold, marginTop: 12 }} />
         </div>
+        <Mark tall={tall} />
+      </AbsoluteFill>
+    );
+  }
+  if (i === HOTELS.length + 1) {
+    return (
+      <AbsoluteFill
+        style={{
+          backgroundColor: colors.black,
+          alignItems: "center",
+          justifyContent: "center",
+          textAlign: "center",
+        }}
+      >
         <div
           style={{
             fontFamily: serif,
-            fontStyle: "italic",
-            fontSize: 46,
-            color: "rgba(245,239,227,0.9)",
-            marginTop: 26,
+            fontSize: 92,
+            lineHeight: 1.1,
+            color: colors.cream,
+            marginTop: -40,
           }}
         >
-          and there&apos;s still room at the table
+          Christmas, Twixmas
+          <br />
+          <span style={{ fontStyle: "italic" }}>and New Year</span>
+        </div>
+        <div
+          style={{
+            fontFamily: sans,
+            fontSize: 26,
+            letterSpacing: "0.24em",
+            textTransform: "uppercase",
+            color: "rgba(245,239,227,0.8)",
+            marginTop: 40,
+          }}
+        >
+          Breaks bookable now
+        </div>
+        <Mark tall={tall} />
+      </AbsoluteFill>
+    );
+  }
+  const h = HOTELS[i - 1];
+  return (
+    <AbsoluteFill style={{ backgroundColor: colors.black }}>
+      <Photo src={h.src} pos={h.pos} />
+      <Shade />
+      <div style={{ position: "absolute", left: 76, right: 170, bottom: 110 }}>
+        <Caps>{h.place}</Caps>
+        <div
+          style={{
+            fontFamily: serif,
+            fontSize: 80,
+            lineHeight: 1.05,
+            color: colors.cream,
+            marginTop: 20,
+            whiteSpace: "pre-line",
+          }}
+        >
+          {h.name}
         </div>
       </div>
-      <Img
-        src={staticFile("brand/cb-watermark.png")}
-        style={{ position: "absolute", right: 64, top: tall ? 250 : 64, width: 58, height: 63, opacity: 0.9 }}
-      />
+      <Mark tall={tall} />
     </AbsoluteFill>
   );
 };
