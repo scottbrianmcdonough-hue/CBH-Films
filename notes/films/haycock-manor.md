@@ -24,3 +24,5 @@ Polish (Scott, 2 Nov): the boardrooms in the feature layout (whole rooms, as Nai
 Dinner too fast to read (Scott): it holds 6 beats (21-27), the pour 27-31, the bedroom 31-36, the end card on the band's last hits at beat 36 (was 34); eyebrow TWO RESTAURANTS (was DINNER), the line "Prévost and the Haycock Kitchen, both AA Rosette". 28.1s.
 
 Story a shot longer (Scott, 3 Nov: "one more shot", "the drink maybe"): the punch in on the pour (cocktail-close, 42 frames) after the wide, music two beats earlier (startAt 2233), end card at 398 on the same hit. 17.6s, -15.4 LUFS.
+
+Two lines over shots in cream Cormorant (Scott, 3 Nov): "Afternoon tea, / stacked high" over the tea, "Run the bath, / take your time" over the gold bath and basin. Sticker: the link "Stay at Haycock Manor" only (Scott: the poll takes too much space).

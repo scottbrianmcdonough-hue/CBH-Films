@@ -57,6 +57,11 @@ export const haycockManorDepthStory: RippleSpec = {
   picture: "hotels/haycock-manor/picture-story.mp4",
   frames: 528,
   label: { ...haycockManorDepth.label, to: 78 },
+  // two lines over shots in cream Cormorant (Scott, 3 Nov: "one or two overlays ... for the story")
+  lines: [
+    { text: "Afternoon tea,\nstacked high", from: 151, to: 208 },
+    { text: "Run the bath,\ntake your time", from: 214, to: 312 },
+  ],
   endCard: { ...haycockManorDepth.endCard, at: 398 },
   music: { ...haycockManorDepth.music, startAt: 2233 },
 };
