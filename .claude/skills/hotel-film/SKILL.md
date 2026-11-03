@@ -301,6 +301,10 @@ Notes:
 - <short bold-led bullets: sources for every fact, anything to check before posting>
 ```
 
+Emoji (Scott, 3 Nov): few and chosen, three or four a post, each placed where it does a job: standing in for a
+word ("phone on 🔕") or carrying the idea (🔓 "The wait is over", 🗝️ "Book now"), not tacked on the end of every
+line. No lists of three, and a sale post closes on booking, not on a question nobody will answer.
+
 Rules: one post, not one per platform; only the CTA varies by platform. Platforms are
 Instagram, Facebook and TikTok. Links are full plain URLs (Jira turns them into smart
 chips that copy as the page title: tell Scott to switch chips to URL display). A

@@ -40,6 +40,10 @@ with no history and no renders:
 
 - Tickets and post copy: no hyphens in the wording (Scott, 30 Oct: "avoid too many hyphens ... in general"):
   "screen time report", "sleeping in", "canopied bed", not "screen-time", "lie-in", "four-poster".
+- Emoji in post copy (Scott, 3 Nov, Black Friday static post): few, and each one earning its place: an emoji that
+  stands in for a word ("phone on 🔕"), carries the idea (🔓 for "the wait is over", 🗝️ beside "Book now", 🖤 for Black
+  Friday), never decoration at the end of every line or a row of them; about three or four a post. No lists of three
+  (Scott: "avoid triad"), and don't ask for comments where people won't answer (a sale post closes on booking).
 
 - Rules Scott and Bianca gave on single films that hold for every film (the film notes have the context):
   - Never name a dish the photo may not show (The Mount: the "fondant").
