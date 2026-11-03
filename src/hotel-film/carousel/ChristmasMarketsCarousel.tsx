@@ -17,6 +17,7 @@ type Market = {
   src: string;
   pos?: string;
   market: string;
+  kind: string; // what the market is, from the blog, in gold caps over the city
   dates: string;
   hotels: string[];
 };
@@ -24,48 +25,56 @@ const MARKETS: Market[] = [
   {
     src: M + "birmingham.jpg",
     market: "Birmingham",
+    kind: "Frankfurt Christmas Market",
     dates: "5 November to 24 December",
     hotels: ["Hogarths Solihull"],
   },
   {
     src: M + "leeds.jpg",
     market: "Leeds",
+    kind: "Christmas market, City Square",
     dates: "19 November to 23 December",
     hotels: ["Gomersal Park Hotel", "Waterton Park Hotel & Spa"],
   },
   {
     src: M + "chester.jpg",
     market: "Chester",
+    kind: "Christmas market",
     dates: "18 November to 22 December",
     hotels: ["Rowton Hall\nHotel & Spa"],
   },
   {
     src: M + "winchester.jpg",
     market: "Winchester",
+    kind: "Cathedral Christmas Market",
     dates: "20 November to 22 December",
     hotels: ["Oakley Hall Hotel"],
   },
   {
     src: M + "durham-snow.jpg",
     market: "Durham",
+    kind: "Christmas Festival",
     dates: "4 to 6 December",
     hotels: ["The Morritt Hotel\n& Garage Spa"],
   },
   {
     src: M + "worcester-lantern.jpg",
     market: "Worcester",
+    kind: "Victorian Christmas Fayre",
     dates: "3 to 6 December",
     hotels: ["Hogarths Stone Manor"],
   },
   {
     src: M + "donnington-manor-snow.jpg",
     market: "Canterbury",
+    kind: "Christmas market",
     dates: "Kent's biggest market",
     hotels: ["Donnington Manor Hotel", "Hythe Imperial Hotel"],
   },
   {
     src: M + "cotswolds-bridge.jpg",
     market: "Gloucester Quays",
+    kind: "Christmas markets at the docks",
     dates: "The weekends before Christmas",
     hotels: ["Hatherley Manor\nHotel & Spa"],
   },
@@ -234,19 +243,32 @@ export const ChristmasMarketsCarousel: React.FC = () => {
       />
       {/* the house label only (Scott: "too much information in the lower third, trim it nice and clean, leave the
           details for the posts"): the market in gold caps with its underline, the paired hotel in cream Cormorant */}
-      <div style={{ position: "absolute", left: 76, right: 170, bottom: 110 }}>
-        <Caps size={30}>{m.market}</Caps>
+      {/* the market is the hero (Scott: "more about the markets ... we lost the market context"), still clean:
+          what the market is in gold caps with its underline, the city in cream Cormorant, the hotel one small
+          italic line; dates stay in the post */}
+      <div style={{ position: "absolute", left: 76, right: 170, bottom: 108 }}>
+        <Caps size={26}>{m.kind}</Caps>
         <div
           style={{
             fontFamily: serif,
-            fontSize: 76,
-            lineHeight: 1.06,
+            fontSize: 112,
+            lineHeight: 1.0,
             color: colors.cream,
-            marginTop: 20,
-            whiteSpace: "pre-line",
+            marginTop: 22,
           }}
         >
-          {m.hotels[0]}
+          {m.market}
+        </div>
+        <div
+          style={{
+            fontFamily: serif,
+            fontStyle: "italic",
+            fontSize: 42,
+            color: "rgba(245,239,227,0.88)",
+            marginTop: 14,
+          }}
+        >
+          Stay at {m.hotels[0].replace("\n", " ")}
         </div>
       </div>
       <Mark />
