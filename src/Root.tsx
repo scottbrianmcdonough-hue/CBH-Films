@@ -10,6 +10,9 @@ import { MixedFilm } from "./hotel-film/mixed/MixedFilm";
 import { RippleFilm } from "./hotel-film/ripple/RippleFilm";
 import { WhereNext, WHERE_NEXT_FRAMES } from "./hotel-film/stings/WhereNext";
 import { QueueReel, QUEUE_FRAMES, QUEUE_STORY_FRAMES } from "./hotel-film/blackfriday/QueueReel";
+import { OutOfOffice, OOO_FRAMES } from "./hotel-film/december/OutOfOffice";
+import { Door24, DOOR_FRAMES } from "./hotel-film/december/Door24";
+import { DriveHome, DRIVE_FRAMES } from "./hotel-film/december/DriveHome";
 import { MEReel } from "./hotel-film/me/MEReel";
 import { nailcoteHallMeetings, nailcoteHallMeetingsReel } from "./hotels/nailcote-hall-meetings";
 import { haycockManorMeetingsME } from "./hotels/haycock-manor-me";
@@ -579,6 +582,10 @@ export const RemotionRoot: React.FC = () => {
         height={HEIGHT}
       />
       {/* Black Friday 2026: the sale's waiting room, the window bursting out on the drop */}
+      {/* December drafts, almost Christmas: three ideas to compare (Scott, 4 Nov: "try them all") */}
+      <Composition id="december-out-of-office" component={OutOfOffice} durationInFrames={OOO_FRAMES} fps={FPS} width={WIDTH} height={HEIGHT} />
+      <Composition id="december-door-24" component={Door24} durationInFrames={DOOR_FRAMES} fps={FPS} width={WIDTH} height={HEIGHT} />
+      <Composition id="december-drive-home" component={DriveHome} durationInFrames={DRIVE_FRAMES} fps={FPS} width={WIDTH} height={HEIGHT} />
       <Composition id="black-friday-queue" component={QueueReel} durationInFrames={QUEUE_FRAMES} fps={FPS} width={WIDTH} height={HEIGHT} />
       <Composition
         id="black-friday-queue-story"

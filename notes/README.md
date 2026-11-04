@@ -14,6 +14,7 @@ Statuses as of 2 Nov 2026.
 
 ## Sent, waiting on Scott
 
+- [December: almost Christmas](films/december-almost-christmas.md): Three drafts sent 4 Nov (out of office, door 24, drive home); Scott picks one, then it gets its own festive track.
 - [Black Friday: hotel Stories](films/black-friday-stories.md): 14 Stories built on one template, Dalmahoy test rendered; hold until offers sync.
 - [Nailcote Hall: meetings and events](films/nailcote-hall-meetings.md): 16:9 on the Ramside template sent (2 Nov); goes out Fri 6 Nov.
 - [Black Friday: the queue](films/black-friday-queue.md): Full bleed ending, no white CB, The Mount in for Low Wood Bay (3 Nov); tickets for the reel and a static post written.
