@@ -4,7 +4,7 @@ import { FilmFinish } from "../components/FilmFinish";
 import { colors, EASE_IN_OUT, EASE_OUT, progress, serif } from "../theme";
 import { B, caps, clamp, EndCard, FEST, G, Mark, Music, ShotView } from "./common";
 
-// "Door 24" (draft): an advent calendar in the CBH black and gold, its doors opening on the beat, each onto a
+// "Door 24" (draft): an advent calendar in the CBH black and gold, its doors ripping off on the beat, each onto a
 // hotel at Christmas. One a beat to the band's stop, held through it, then the rest tumbling open on the return,
 // faster and faster; door 24, the big double door, opens last, the camera pushes in and cuts on the beat to its
 // shot full frame (Ramside Hall's tree, the tilt up to its top), then the end card.
@@ -55,34 +55,38 @@ const opensAt = (n: number) => {
   const k = n - 9; // 0..14 across beats 12 to 18
   return B(12) + Math.round(B(6.2) * (1 - Math.pow(1 - k / 14, 1.35)));
 };
-const SWING = 9; // frames for a door to swing open
 
+// a door rips off (Scott: the open doors have to disappear, "slot in or ripped off"): it pops open on its hinge,
+// tears free on the far side and tumbles away towards you and out of frame, leaving the photo in its window
+const POP = 5; // frames on the hinge before it tears
+const FALL = 18; // frames to tumble out
 const Leaf: React.FC<{ w: number; h: number; t: number; side: "left" | "right"; n?: number }> = ({ w, h, t, side, n }) => {
-  const p = progress(t, 0, SWING, EASE_OUT);
-  const angle = (side === "left" ? -1 : 1) * 112 * p;
+  if (t > POP + FALL) return null;
+  const s = side === "left" ? -1 : 1;
+  const pop = progress(t, 0, POP, EASE_OUT);
+  const f = Math.min(1, Math.max(0, (t - POP) / FALL)); // the fall, accelerating
+  const angle = s * (38 * pop + 70 * f);
+  const style: React.CSSProperties = {
+    position: "absolute",
+    top: 0,
+    left: side === "left" ? 0 : w,
+    width: w,
+    height: h,
+    transformOrigin: side === "left" ? "0 50%" : "100% 50%",
+    // off the hinge: towards the camera, out to the side, and down under gravity, turning as it goes
+    transform: `translate3d(${-s * 140 * f}px, ${1500 * f * f}px, ${380 * f}px) rotateZ(${-s * 55 * f}deg) rotateY(${angle}deg)`,
+    background: "linear-gradient(135deg, #1E1E21, #121214)",
+    border: "2px solid rgba(195,158,85,0.75)",
+    borderRadius: 6,
+    boxShadow: `inset 0 0 0 6px rgba(9,9,10,0.6), inset 0 0 0 7px rgba(195,158,85,0.25), 0 ${20 + 60 * f}px ${30 + 50 * f}px rgba(0,0,0,${0.35 + 0.3 * pop})`,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    filter: `brightness(${1 - 0.3 * pop})`,
+  };
   return (
-    <div
-      style={{
-        position: "absolute",
-        top: 0,
-        left: side === "left" ? 0 : w,
-        width: w,
-        height: h,
-        transformOrigin: side === "left" ? "0 50%" : "100% 50%",
-        transform: `rotateY(${angle}deg)`,
-        background: `linear-gradient(135deg, #1E1E21, #121214)`,
-        border: `2px solid rgba(195,158,85,${0.75 - 0.4 * p})`,
-        borderRadius: 6,
-        boxShadow: "inset 0 0 0 6px rgba(9,9,10,0.6), inset 0 0 0 7px rgba(195,158,85,0.25)",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        filter: `brightness(${1 - 0.45 * p})`,
-        backfaceVisibility: "visible",
-      }}
-    >
-      {/* the number on the front only: past side on, the door shows its plain back */}
-      {n && Math.abs(angle) < 90 ? <div style={{ fontFamily: serif, fontSize: 84, color: colors.gold, lineHeight: 1 }}>{n}</div> : null}
+    <div style={style}>
+      {n ? <div style={{ fontFamily: serif, fontSize: 84, color: colors.gold, lineHeight: 1 }}>{n}</div> : null}
     </div>
   );
 };
@@ -93,7 +97,7 @@ const DoorView: React.FC<{ d: Door; frame: number }> = ({ d, frame }) => {
   const t = frame - opensAt(d.n);
   const glow = progress(t, 0, 14, EASE_OUT);
   return (
-    <div style={{ position: "absolute", left: X0 + d.c * (CW + GAP), top: Y0 + d.r * (CH + GAP), width: w, height: h, perspective: 900 }}>
+    <div style={{ position: "absolute", left: X0 + d.c * (CW + GAP), top: Y0 + d.r * (CH + GAP), width: w, height: h, perspective: 900, zIndex: t > 0 && t <= POP + FALL ? 5 : 1 }}>
       <div style={{ position: "absolute", inset: 0, overflow: "hidden", borderRadius: 6, background: colors.black }}>
         {t > 0 ? (
           d.src.endsWith(".mp4") ? (

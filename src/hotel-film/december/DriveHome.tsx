@@ -4,18 +4,18 @@ import { FilmFinish } from "../components/FilmFinish";
 import { colors, EASE_OUT, progress, sans, serif } from "../theme";
 import { B, caps, clamp, Cuts, EndCard, FEST, G, KF, Mark, Music } from "./common";
 
-// "Driving home for Christmas" (draft): a sat nav in night mode, in the CBH black and gold, the road running
-// towards you with the route in gold, the miles to go dropping fast. Its directions turn festive as it gets
-// closer, a hotel cutting in on each: "Leave the work emails behind", "Follow the fairy lights" (Hogarths' lit
-// entrance), "Recalculating" through the band's stop, "Turn left at the very big tree" (Ramside's tree) on the
+// "Driving home for Christmas" (draft): a sat nav in night mode, in the CBH black and gold, over the hotels at
+// Christmas (the 3D road is out, Scott: "kill that"), the miles to go dropping fast. Its directions turn
+// festive as it gets closer, a hotel cutting in on each: "Leave the work emails behind", "Follow the fairy lights" (Hogarths' lit
+// entrance), "Recalculating" through the band's stop (the shot held and dimmed), "Turn left at the very big tree" (Ramside's tree) on the
 // return, then "You have arrived" over Hintlesham Hall lit up. The banner and the arrival card stay on top of
 // the shots throughout, like a phone on the dashboard.
 export const DRIVE_FRAMES = B(31);
 
-type Step = { at: number; text: string; sub: string; arrow: "up" | "left" | "right" | "spin" | "pin"; shot?: { src: string; pos?: string } };
+type Step = { at: number; text: string; sub: string; arrow: "up" | "left" | "right" | "spin" | "pin"; shot?: { src: string; pos?: string; from?: number } };
 const STEPS: Step[] = [
-  { at: 0, text: "Continue on the M1", sub: "for 180 miles", arrow: "up" },
-  { at: 3, text: "Leave the work emails behind", sub: "at the next exit", arrow: "left" },
+  { at: 0, text: "Continue on the M1", sub: "for 180 miles", arrow: "up", shot: { src: G + "rowton-hall-mantel.jpg", pos: "35% 50%" } },
+  { at: 3, text: "Leave the work emails behind", sub: "at the next exit", arrow: "left", shot: { src: KF + "garland.mp4", from: 2.2 } },
   { at: 6, text: "Take the scenic route", sub: "through the snow", arrow: "right", shot: { src: G + "nailcote-hall-snow.jpg", pos: "40% 50%" } },
   { at: 8, text: "Follow the fairy lights", sub: "for 2 miles", arrow: "up", shot: { src: G + "hogarths-entrance.jpg", pos: "50% 45%" } },
   { at: 10, text: "Recalculating…", sub: "", arrow: "spin" },
@@ -70,72 +70,21 @@ const Arrow: React.FC<{ kind: Step["arrow"]; frame: number }> = ({ kind, frame }
   );
 };
 
-// the road in night mode: a plane running away from you, the route a gold band, lane marks moving with the speed
-const Road: React.FC<{ frame: number; speed: number; bend: number }> = ({ frame, speed, bend }) => (
-  <AbsoluteFill style={{ background: "linear-gradient(to bottom, #0B0B0D 0%, #141418 38%, #101012 100%)" }}>
-    {/* a faint glow on the horizon, the town lights ahead */}
-    <AbsoluteFill style={{ background: "radial-gradient(ellipse 70% 18% at 50% 36%, rgba(195,158,85,0.22), rgba(195,158,85,0) 70%)" }} />
-    <div style={{ position: "absolute", left: 0, right: 0, top: 690, bottom: 0, perspective: 700, perspectiveOrigin: "50% 0%", overflow: "hidden" }}>
-      <div
-        style={{
-          position: "absolute",
-          left: -660,
-          width: 2400,
-          top: 0,
-          height: 3600,
-          transformOrigin: "50% 0%",
-          transform: `rotateX(72deg) translateX(${bend}px)`,
-          background: "#16161A",
-        }}
-      >
-        {/* the road */}
-        <div style={{ position: "absolute", left: 800, width: 800, top: 0, bottom: 0, background: "#232328" }} />
-        {/* the route */}
-        <div style={{ position: "absolute", left: 1155, width: 90, top: 0, bottom: 0, background: "linear-gradient(to right, rgba(195,158,85,0.4), #C39E55 35%, #DAC396 50%, #C39E55 65%, rgba(195,158,85,0.4))", boxShadow: "0 0 30px rgba(195,158,85,0.35)" }} />
-        {/* the road's edges */}
-        {[800, 1584].map((x) => (
-          <div key={x} style={{ position: "absolute", left: x, width: 16, top: 0, bottom: 0, background: "rgba(245,239,227,0.28)" }} />
-        ))}
-        {/* lane marks */}
-        {[1000, 1384].map((x) => (
-          <div
-            key={x}
-            style={{
-              position: "absolute",
-              left: x,
-              width: 16,
-              top: 0,
-              bottom: 0,
-              backgroundImage: "repeating-linear-gradient(to bottom, rgba(245,239,227,0.5) 0 120px, transparent 120px 300px)",
-              backgroundPositionY: `${(frame * speed) % 300}px`,
-            }}
-          />
-        ))}
-      </div>
-    </div>
-  </AbsoluteFill>
-);
-
 export const DriveHome: React.FC = () => {
   const frame = useCurrentFrame();
   const step = [...STEPS].reverse().find((s) => frame >= B(s.at))!;
   const intro = progress(frame, 0, 14, EASE_OUT);
   const swap = progress(frame, B(step.at), 8, EASE_OUT);
   const miles = milesAt(frame);
-  const stopped = frame >= B(10) && frame < B(12);
-  const speed = stopped ? 0 : interpolate(frame, [0, B(8), B(16), B(18)], [70, 55, 30, 0], clamp);
-  const bend = interpolate(frame, [B(3), B(4.5), B(6)], [0, -260, 0], clamp);
+  // "Recalculating" through the band's stop (the shot held and dimmed): the shot holds and dims under the spinner
+  const dim = progress(frame, B(10), 6, EASE_OUT) * (1 - progress(frame, B(12) - 3, 3, EASE_OUT));
   const arrived = frame >= B(18);
   const shots = STEPS.filter((s) => s.shot).map((s) => ({ ...s.shot!, at: s.at }));
-  // the road shows wherever no shot is on (from the start, and through "Recalculating")
-  const roadOn = frame < B(6) || stopped;
   return (
     <AbsoluteFill style={{ backgroundColor: colors.black }}>
-      {roadOn ? <Road frame={frame} speed={speed} bend={bend} /> : null}
-      {!roadOn ? (
-        <Cuts list={shots} until={END} />
-      ) : null}
-      {!roadOn ? <AbsoluteFill style={{ background: "linear-gradient(to bottom, rgba(9,9,10,0.55) 0%, rgba(9,9,10,0) 28%, rgba(9,9,10,0) 60%, rgba(9,9,10,0.6) 80%)" }} /> : null}
+      <Cuts list={shots} until={END} />
+      <AbsoluteFill style={{ background: "linear-gradient(to bottom, rgba(9,9,10,0.55) 0%, rgba(9,9,10,0) 28%, rgba(9,9,10,0) 60%, rgba(9,9,10,0.6) 80%)" }} />
+      <AbsoluteFill style={{ backgroundColor: `rgba(9,9,10,${0.55 * dim})` }} />
 
       {/* the direction banner */}
       <div
@@ -193,7 +142,7 @@ export const DriveHome: React.FC = () => {
           </div>
         </div>
       </div>
-      <Mark opacity={arrived || !roadOn ? 0.9 : 0.6} />
+      <Mark />
       <FilmFinish />
       <EndCard at={B(END)} line1="Driving home" line2="for Christmas" sub="Christmas and New Year breaks" />
       <Music len={DRIVE_FRAMES} />
