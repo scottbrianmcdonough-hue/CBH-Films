@@ -28,3 +28,5 @@ Low Wood Bay out (Scott, 3 Nov: it "doesn't need our marketing"): The Mount in i
 Full bleed ending (Scott, 3 Nov, on the boxed official artwork: "don't like that, it's not full bleed and just a box under"; "get rid of the watermark CB"): the rebuilt card in the artwork's layout over the clean photo full frame: THE WAIT IS OVER in mauve caps, Black Friday / Sale in cream Cormorant, the mauve SAVE UP TO 30% pill, the CBH lockup (`brand/cbh-logo-on-light.svg`) bottom right as on the artwork; no white CB anywhere in the reel. 21.8s; Story 17.5s.
 
 The toast (Rowton's welcome fizz, beat 12) framed on the glasses (Scott, 3 Nov: "crop the shot where they toast the glasses better"): a per clip `frame` in the window (the clip at 0.9 from source 0, 270), the clink filling it with the bucket behind.
+
+Ticket refreshed (4 Nov, for the launch Mon 9 Nov): the hook ends on the full bleed card, the post closes on booking (🗝️ Book now) instead of asking for comments (a sale post), the emoji 🔓 on "the wait is over", the hotels listed in the notes, the Story (17.5s) with a "Book now" link sticker suggested for 9am beside the static post.

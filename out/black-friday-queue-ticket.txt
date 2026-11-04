@@ -1,14 +1,14 @@
 Hook
-A Black Friday sale queue page in our black and gold: "You're in the queue", your place counting down from 2,481, the estimated wait shrinking from "about a year" to "any minute now", our hotels playing in a "While you wait" window to muffled hold music. "It's your turn", a tap on Enter, and on the drop the window bursts to full screen: "The wait is over". Fireside, frost, lake sunsets and a canopied bed on the beat, ending on the Black Friday artwork: SAVE UP TO 30%.
+A Black Friday sale queue page in our black and gold: "You're in the queue", your place counting down from 2,481, the estimated wait shrinking from "about a year" to "any minute now", our hotels playing in a "While you wait" window to muffled hold music. "It's your turn", a tap on Enter, and on the drop the window bursts to full screen: "The wait is over". Fireside, frost, a lake at sunset and a canopied bed on the beat, ending full frame on the Black Friday bed: THE WAIT IS OVER, Black Friday Sale, SAVE UP TO 30% and our logo.
 
 Post
 𝗡𝗼 𝗾𝘂𝗲𝘂𝗲 𝘁𝗵𝗶𝘀 𝘁𝗶𝗺𝗲 ⏳
 
-𝗧𝗵𝗲 𝘄𝗮𝗶𝘁 𝗶𝘀 𝗼𝘃𝗲𝗿: our 𝗕𝗹𝗮𝗰𝗸 𝗙𝗿𝗶𝗱𝗮𝘆 𝗦𝗮𝗹𝗲 is here, and you can 𝘀𝗮𝘃𝗲 𝘂𝗽 𝘁𝗼 𝟯𝟬% on a stay with us 🛏️
+𝗧𝗵𝗲 𝘄𝗮𝗶𝘁 𝗶𝘀 𝗼𝘃𝗲𝗿 🔓 Our 𝗕𝗹𝗮𝗰𝗸 𝗙𝗿𝗶𝗱𝗮𝘆 𝗦𝗮𝗹𝗲 is here, and you can 𝘀𝗮𝘃𝗲 𝘂𝗽 𝘁𝗼 𝟯𝟬% on a stay with us.
 
-Frosty morning walks, lake views at sunset, a smoky cocktail and a canopied bed at the end of it. Your turn starts now ✨
+Frosty morning walks and a lake at sunset, then a smoky cocktail and a canopied bed at the end of it. Your turn starts now.
 
-𝗪𝗵𝗲𝗿𝗲 𝗮𝗿𝗲 𝘆𝗼𝘂 𝗴𝗼𝗶𝗻𝗴 𝗳𝗶𝗿𝘀𝘁? Tell us below 👇
+🗝️ 𝗕𝗼𝗼𝗸 𝗻𝗼𝘄 before your favourite dates go.
 
 Hashtags
 #ClassicBritishHotels #BlackFridaySale #BlackFriday2026
@@ -16,9 +16,15 @@ Hashtags
 CTA
 - Facebook: 👉 Book here: https://classicbritishhotels.com/black-friday-countdown/
 - Instagram: 𝗧𝗮𝗽 𝘁𝗵𝗲 𝗹𝗶𝗻𝗸 𝗶𝗻 𝗼𝘂𝗿 𝗯𝗶𝗼 𝘁𝗼 𝗯𝗼𝗼𝗸. (bio link set to https://classicbritishhotels.com/black-friday-countdown/)
-- TikTok: Where are you going first? Tell us in the comments 👇
+- TikTok: The wait is over. Book through the link in our bio.
+- Instagram Story: black-friday-queue-story.mp4 with a link sticker "Book now" to https://classicbritishhotels.com/black-friday-countdown/, placed low and centred, clear of the pill and logo
 
-Time slot: Instagram 12:00 PM; Facebook and TikTok 8:00 PM
+Time slot: Monday 9 November (launch day): Instagram 12:00 PM; Facebook and TikTok 8:00 PM; the Story at 9:00 AM
 Platforms: Instagram, Facebook, TikTok
-Video: black-friday-queue.mp4 (21.8s, 9:16)
+Video: black-friday-queue.mp4 (21.8s, 9:16); Story: black-friday-queue-story.mp4 (17.5s, 9:16)
 Music: Party Dance by prettyjohn1 (Pixabay) is baked in; post as is, no sound in app.
+
+Notes:
+- 𝗛𝗼𝘁𝗲𝗹𝘀: Rowton Hall, The Mount, Gisborough Hall, Haycock Manor, Waterton Park and Rutland Hall. Low Wood Bay is out (it doesn't need our marketing). No offer is tied to any one hotel on screen, so the 30% is the campaign's "up to".
+- 𝗘𝗻𝗱𝗶𝗻𝗴: the official artwork's layout rebuilt full frame on its clean photo (the supplied 4:5 file can't fill a 9:16 frame without cropping its type). The static post on the same day uses the official file as supplied.
+- 𝗟𝗶𝗻𝗸𝘀: Jira shows the URLs as smart chips that copy as the page title. Switch them to URL display before copying.
