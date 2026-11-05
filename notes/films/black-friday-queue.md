@@ -83,3 +83,5 @@ The shades behind the labels held steady (Scott: the shadow "disappears and reap
 The page uses the space (Scott: "a lot of black space ... do like the UI"): the window 920 x 900 across the width (was 640 x 660), the headings moved up, the offer, count and Book now below it; window clips remade for the new window (`window-push.py` WIN). The recap calm and steady (Scott: "not so manic", "a calmer steady shutter"): five beats, every shot the same length (~6 frames), a light 1.03 kick; the end card holds eight beats. Reel 24.5s, Story 20.2s.
 
 Polish pass (5 Nov): the offer under the window fades in as it starts counting (it sat at "Up to 0% off" for the first four beats).
+
+No fireplaces (Scott, 5 Nov: "enough fireplaces, get the cosy interiors, beds, food"): Holdsworth pancakes, Gomersal the bedroom, Waterton the chicken plate, Oaklands the bedroom in the window; Burleigh Court the salmon plate and The Alfriston afternoon tea full frame; the recap the same.
