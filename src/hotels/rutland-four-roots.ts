@@ -25,6 +25,9 @@ export const rutlandFourRoots: RippleSpec = {
     { eyebrow: "Root two", text: "A treatment\nof your choice", from: 208, to: 287, top: 300 }, // above the desk's sign
     { eyebrow: "Root three", text: "Meditation", from: 296, to: 346 },
     { eyebrow: "Root four", text: "Lakeside dining", from: 355, to: 404 },
+    // the stay (Scott, 5 Nov: the last scene was "just the bedroom"): the room, then a closer push on the lake in its
+    // window, the two breaks named
+    { eyebrow: "Four Roots Luxury Breaks", text: "One night,\nor two", from: 414, to: 548 },
   ],
   endCard: { at: 557, line: "Take root\nby the lake" },
   music: { src: "campaigns/rutland-four-roots/music-reel.m4a", startAt: 0, gain: 1, seconds: 23.0, fadeOut: 30 }, // one continuous stretch, no splice
@@ -42,6 +45,7 @@ export const rutlandFourRootsStory: RippleSpec = {
     { eyebrow: "Root two", text: "A treatment\nof your choice", from: 135, to: 199, top: 300 },
     { eyebrow: "Root three", text: "Meditation", from: 208, to: 258 },
     { eyebrow: "Root four", text: "Lakeside dining", from: 267, to: 316 },
+    { eyebrow: "Four Roots Luxury Breaks", text: "One night,\nor two", from: 326, to: 374 },
   ],
   endCard: { at: 381, line: "Take root\nby the lake" },
   music: { ...rutlandFourRoots.music, src: "campaigns/rutland-four-roots/music-story.m4a", seconds: 20.9 },
