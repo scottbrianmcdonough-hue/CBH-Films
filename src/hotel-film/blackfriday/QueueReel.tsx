@@ -421,12 +421,13 @@ const EndCard: React.FC<{ at: number; len: number }> = ({ at, len }) => {
   return (
     <AbsoluteFill>
       <Img
-        src={staticFile(P + "bed-clean.jpg")}
-        style={{ width: "100%", height: "100%", objectFit: "cover", transform: `scale(${push})`, transformOrigin: "60% 45%" }}
+        // the wider crop from the landscape artwork, her elbows and the headboard whole (Scott, 5 Nov: "crop it
+        // better"; `scripts/bf-end-9x16.py`), the type over its dark top as on the 4:5 artwork
+        src={staticFile(P + "bed-9x16.jpg")}
+        style={{ width: "100%", height: "100%", transform: `scale(${push})`, transformOrigin: "50% 55%" }}
       />
-      <AbsoluteFill style={{ background: "linear-gradient(to bottom, rgba(9,9,10,0.62), rgba(9,9,10,0.2) 34%, transparent 50%)" }} />
       <div style={{ position: "absolute", left: 90, top: 250 }}>
-        <Rise at={at + 2} style={{ ...caps(38, MAUVE, 0.08), marginBottom: 26 }}>
+        <Rise at={at + 2} style={{ ...caps(40, MAUVE, 0.02), marginBottom: 26 }}>
           The wait is over
         </Rise>
         {["Black Friday", "Sale"].map((l, i) => (
@@ -443,7 +444,7 @@ const EndCard: React.FC<{ at: number; len: number }> = ({ at, len }) => {
         style={{
           position: "absolute",
           left: 90,
-          top: 1310,
+          top: 1370,
           height: 104,
           padding: "0 46px",
           borderRadius: 52,
@@ -456,13 +457,13 @@ const EndCard: React.FC<{ at: number; len: number }> = ({ at, len }) => {
           boxShadow: "0 12px 40px rgba(0,0,0,0.25)",
         }}
       >
-        <span style={caps(40, colors.cream, 0.06)}>Save up to</span>
+        <span style={caps(40, colors.cream, 0.02)}>Save up to</span>
         <span style={{ ...caps(62, colors.cream, 0.02), fontWeight: 700 }}>30%</span>
       </div>
       {/* the campaign's lockup, as on the official artwork: the gold CB over Classic British Hotels & Resorts */}
       <Img
         src={staticFile("brand/cbh-logo-on-light.svg")}
-        style={{ position: "absolute", right: 90, top: 1238, width: 150, opacity: pill }}
+        style={{ position: "absolute", right: 90, top: 1298, width: 150, opacity: pill }}
       />
     </AbsoluteFill>
   );

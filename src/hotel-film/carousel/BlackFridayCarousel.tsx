@@ -209,14 +209,16 @@ const Caps: React.FC<{
         fontFamily: sans,
         fontWeight: 600,
         fontSize: size,
-        letterSpacing: "0.28em",
+        // the official artwork's eyebrow (Scott, 5 Nov: "match like his with the purple pink font and he doesn't use
+        // the letter spacing"): mauve caps, tight, no underline
+        letterSpacing: "0.02em",
         color,
         textTransform: "uppercase",
+        textShadow: "0 2px 14px rgba(9,9,10,0.55)",
       }}
     >
       {children}
     </div>
-    <div style={{ height: 2, background: color, marginTop: 10 }} />
   </div>
 );
 const Photo: React.FC<{ src: string; pos: string }> = ({ src, pos }) => (
@@ -322,7 +324,7 @@ export const BlackFridayCarousel: React.FC<{ region: string }> = ({
       <Shade />
       <Mark />
       <div style={{ position: "absolute", left: 72, right: 160, bottom: 96 }}>
-        <Caps color={colors.gold}>{h.place}</Caps>
+        <Caps color={MAUVE} size={32}>{h.place}</Caps>
         <div
           style={{
             fontFamily: serif,
@@ -349,7 +351,7 @@ export const BlackFridayCarousel: React.FC<{ region: string }> = ({
               fontFamily: sans,
               fontWeight: 700,
               fontSize: 34,
-              letterSpacing: "0.06em",
+              letterSpacing: "0.02em",
               textTransform: "uppercase",
               color: colors.cream,
               background: MAUVE,
