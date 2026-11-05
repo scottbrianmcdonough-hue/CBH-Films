@@ -209,19 +209,15 @@ const FullLabel: React.FC<{ list: Clip[]; until: number }> = ({ list, until }) =
 
 const Queue: React.FC<{ cut: Cut }> = ({ cut }) => {
   const frame = useCurrentFrame();
-  const turn = B(18); // the track's stop
   const enter = B(18.5);
   const tap = B(19.5);
-  // the countdown (Bianca, 5 Nov: people don't queue for CBH's Black Friday, it's a countdown): three days down to
-  // zero by the stop, speeding up as it goes, days : hours : minutes : seconds
-  // only the last ten seconds, in real time (Scott, 5 Nov: the sale is already open when the reel goes up, "less
-  // countdown"): the reel is the moment it opens, not a wait still to come
-  const left = Math.max(0, Math.ceil(B(17.5) / 30 - frame / 30));
-  const two = (n: number) => String(n).padStart(2, "0");
-  const clock = [0, 0, left].map(two).join(":");
-  const bar = interpolate(frame, [0, turn], [0.02, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  const queueOut = 1 - progress(frame, turn - 4, 8);
-  const turnIn = progress(frame, turn + 2, 12, EASE_OUT);
+  // already open (Scott, 5 Nov: the reel goes up a day after the sale opens: "the wait is over already and still 5 4 3
+  // 2 1"): the page says Now open, and a five beat countdown runs into the tap and the burst
+  const COUNT = 13;
+  const count = frame >= B(COUNT) && frame < B(COUNT + 5) ? 5 - Math.floor((frame - B(COUNT)) / BEAT) : 0;
+  const countT = count ? ((frame - B(COUNT)) % BEAT) / BEAT : 1;
+  const punch = 1 + 0.28 * Math.pow(1 - Math.min(1, countT * 2.2), 2);
+  const offerOut = 1 - progress(frame, B(COUNT) - 6, 6);
   const button = progress(frame, enter, 10, EASE_OUT);
   const press = interpolate(frame, [tap, tap + 3, tap + 9], [1, 0.93, 1], {
     extrapolateLeft: "clamp",
@@ -265,58 +261,23 @@ const Queue: React.FC<{ cut: Cut }> = ({ cut }) => {
             color: colors.cream,
           }}
         >
-          The wait is almost over
+          Now open
         </div>
         <div style={{ position: "absolute", top: 450, width: "100%", textAlign: "center", ...caps(22, "rgba(245,239,227,0.55)", 0.24) }}>
-          While you wait
+          14 hotels in the sale
         </div>
-        {/* the countdown, then the sale is open */}
-        <div style={{ position: "absolute", top: 1196, width: "100%", textAlign: "center", opacity: queueOut }}>
-          <div style={caps(22, "rgba(245,239,227,0.55)", 0.24)}>Sale opens in</div>
-          <div
-            style={{
-              fontFamily: serif,
-              fontWeight: 500,
-              fontSize: 104,
-              lineHeight: 1.05,
-              color: colors.cream,
-              fontVariantNumeric: "lining-nums tabular-nums",
-            }}
-          >
-            {clock}
+        {/* up to 30% off under the window, then 5 4 3 2 1 on the beat into the tap */}
+        <div style={{ position: "absolute", top: 1214, width: "100%", textAlign: "center", opacity: offerOut,
+          fontFamily: serif, fontSize: 84, color: colors.cream, fontVariantNumeric: "lining-nums" }}>
+          Up to 30% off
+        </div>
+        {count ? (
+          <div style={{ position: "absolute", top: 1170, width: "100%", textAlign: "center", fontFamily: serif,
+            fontWeight: 500, fontSize: 190, lineHeight: 1, color: colors.cream, transform: `scale(${punch})`,
+            opacity: Math.min(1, countT * 6), fontVariantNumeric: "lining-nums" }}>
+            {count}
           </div>
-        </div>
-        <div
-          style={{
-            position: "absolute",
-            top: 1222,
-            width: "100%",
-            textAlign: "center",
-            fontFamily: serif,
-            fontWeight: 400,
-            fontSize: 104,
-            color: colors.cream,
-            opacity: turnIn,
-            transform: `translateY(${(1 - turnIn) * 30}px)`,
-          }}
-        >
-          The sale is open
-        </div>
-        {/* the progress bar, filling to the stop */}
-        <div
-          style={{
-            position: "absolute",
-            left: win.x,
-            top: 1372,
-            width: win.w,
-            height: 6,
-            borderRadius: 3,
-            backgroundColor: "rgba(245,239,227,0.14)",
-            opacity: queueOut,
-          }}
-        >
-          <div style={{ width: `${bar * 100}%`, height: "100%", borderRadius: 3, backgroundColor: MAUVE }} />
-        </div>
+        ) : null}
         {/* Enter, and the tap */}
         <div
           style={{

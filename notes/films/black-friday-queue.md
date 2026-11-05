@@ -60,3 +60,5 @@ darkest behind the words, fading out by two thirds across.
 A countdown, not a queue (Bianca, 5 Nov: "people dont queue here for BF"): "The countdown is on", SALE OPENS IN over a clock running three days down to 00:00:00:00 by the stop, "The sale is open" and a Book now button, then the burst and The wait is over as before; the post opens "The countdown is over"; every link now https://classicbritishhotels.com/black-friday/ (Bianca: live next Mon with the offers). Files `black-friday-countdown.mp4` and `-story`.
 
 Less countdown (Scott, 5 Nov: the sale is already open when the reel goes up): only the last ten seconds, in real time (00:00:10 to 00:00:00 by the stop), under "The wait is almost over", so the reel is the moment it opens; the payoff "The wait is over" on the drop.
+
+Already open (Scott, 5 Nov: the reel goes up a day after the sale opens, "the wait is over already and still 5 4 3 2 1"): the page says BLACK FRIDAY SALE / Now open over the window (14 HOTELS IN THE SALE), Up to 30% off beneath it, then a 5 4 3 2 1 on the beats (13 to 17) punching in, the Book now tap and the burst into The wait is over. No clock or progress bar.
