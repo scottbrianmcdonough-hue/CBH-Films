@@ -25,8 +25,7 @@ export const rutlandFourRoots: RippleSpec = {
     { eyebrow: "Root two", text: "A treatment\nof your choice", from: 208, to: 287, top: 300 }, // above the desk's sign
     { eyebrow: "Root three", text: "Meditation", from: 296, to: 346 },
     { eyebrow: "Root four", text: "Lakeside dining", from: 355, to: 404 },
-    // the stay (Scott, 5 Nov: the last scene was "just the bedroom"): the room, then a closer push on the lake in its
-    // window, the two breaks named
+    // the stay (Scott, 5 Nov: the last scene was "just the bedroom"): the two breaks named over the one bedroom shot
     { eyebrow: "Four Roots Luxury Breaks", text: "One night,\nor two", from: 414, to: 548 },
   ],
   endCard: { at: 557, line: "Take root\nby the lake" },

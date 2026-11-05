@@ -34,13 +34,7 @@
   {
    "src": "public/campaigns/rutland-four-roots/clips/bedroom-reel.mp4",
    "from": 0,
-   "frames": 73,
-   "vf": "eq=saturation=0.86:contrast=1.03"
-  },
-  {
-   "src": "public/campaigns/rutland-four-roots/clips/window-reel.mp4",
-   "from": 0,
-   "frames": 74,
+   "frames": 147,
    "vf": "eq=saturation=0.86:contrast=1.03"
   }
  ],
