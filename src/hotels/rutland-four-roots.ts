@@ -21,22 +21,59 @@ export const rutlandFourRoots: RippleSpec = {
   id: "rutland-four-roots",
   picture: "campaigns/rutland-four-roots/picture.mp4",
   frames: 773,
-  label: { eyebrow: "Rutland Water", name: "Rutland Hall\nHotel & Spa", from: 10, to: 110 },
+  label: {
+    eyebrow: "Rutland Water",
+    name: "Rutland Hall\nHotel & Spa",
+    from: 10,
+    to: 110,
+  },
   // the roots counted, not one repeated eyebrow (Scott, 5 Nov: "all the labels say Four Roots Journey, switch those up");
   // the second and third held six beats (Scott: "too fast to read")
   lines: [
-    { eyebrow: "Root one · Bathing ritual", text: "Let the water\ntake the weight", from: 120, to: 228 },
-    { eyebrow: "Root two · Treatment", text: "Choose it,\nthen switch off", from: 237, to: 331, top: 300 }, // above the desk's sign
-    { eyebrow: "Root three · Meditation", text: "Lie back under\na sky of stars", from: 340, to: 433 },
-    { eyebrow: "Root four · Lakeside dining", text: "Supper as the\nlake turns gold", from: 442, to: 536 },
+    {
+      eyebrow: "Root one · Bathing ritual",
+      text: "Let the water\ntake the weight",
+      from: 120,
+      to: 228,
+    },
+    {
+      eyebrow: "Root two · Treatment",
+      text: "Choose it,\nthen switch off",
+      from: 237,
+      to: 331,
+      top: 300,
+    }, // above the desk's sign
+    {
+      eyebrow: "Root three · Meditation",
+      text: "Lie back under\na sky of stars",
+      from: 340,
+      to: 433,
+    },
+    {
+      eyebrow: "Root four · Lakeside dining",
+      text: "Supper as the\nlake turns gold",
+      from: 442,
+      to: 536,
+    },
     // the stay (Scott, 5 Nov: the last scene was "just the bedroom"): the two breaks named over the one bedroom shot
-    { eyebrow: "Four Roots Luxury Breaks", text: "One night,\nor two", from: 545, to: 665 },
+    {
+      eyebrow: "Four Roots Luxury Breaks",
+      text: "One night,\nor two",
+      from: 545,
+      to: 665,
+    },
   ],
   // the copy lifted (Scott, 5 Nov: "elevate the copy ... you have four opportunities for good copy"): each root named in
   // the eyebrow, a line of its own beneath; and a deeper shade so it reads over the bright pool and desk
   deepScrim: true,
   endCard: { at: 674, line: "Take root\nby the lake" },
-  music: { src: "campaigns/rutland-four-roots/music-reel.m4a", startAt: 0, gain: 1, seconds: 25.8, fadeOut: 30 }, // one continuous stretch, no splice
+  music: {
+    src: "campaigns/rutland-four-roots/music-reel.m4a",
+    startAt: 0,
+    gain: 0.47, // the raw track is ~-9 LUFS
+    seconds: 25.8,
+    fadeOut: 30,
+  }, // one continuous stretch, no splice
 };
 
 // The Story: the label for a bar, the four roots, the candlelit bath, the end card (the stay shots out), 16.0s.
@@ -47,12 +84,42 @@ export const rutlandFourRootsStory: RippleSpec = {
   frames: 597,
   label: { ...rutlandFourRoots.label, from: 4, to: 54 },
   lines: [
-    { eyebrow: "Root one · Bathing ritual", text: "Let the water\ntake the weight", from: 62, to: 140 },
-    { eyebrow: "Root two · Treatment", text: "Choose it,\nthen switch off", from: 149, to: 228, top: 300 },
-    { eyebrow: "Root three · Meditation", text: "Lie back under\na sky of stars", from: 237, to: 316 },
-    { eyebrow: "Root four · Lakeside dining", text: "Supper as the\nlake turns gold", from: 325, to: 404 },
-    { eyebrow: "Four Roots Luxury Breaks", text: "One night,\nor two", from: 413, to: 491 },
+    {
+      eyebrow: "Root one · Bathing ritual",
+      text: "Let the water\ntake the weight",
+      from: 62,
+      to: 140,
+    },
+    {
+      eyebrow: "Root two · Treatment",
+      text: "Choose it,\nthen switch off",
+      from: 149,
+      to: 228,
+      top: 300,
+    },
+    {
+      eyebrow: "Root three · Meditation",
+      text: "Lie back under\na sky of stars",
+      from: 237,
+      to: 316,
+    },
+    {
+      eyebrow: "Root four · Lakeside dining",
+      text: "Supper as the\nlake turns gold",
+      from: 325,
+      to: 404,
+    },
+    {
+      eyebrow: "Four Roots Luxury Breaks",
+      text: "One night,\nor two",
+      from: 413,
+      to: 491,
+    },
   ],
   endCard: { at: 498, line: "Take root\nby the lake" },
-  music: { ...rutlandFourRoots.music, src: "campaigns/rutland-four-roots/music-story.m4a", seconds: 19.9 },
+  music: {
+    ...rutlandFourRoots.music,
+    src: "campaigns/rutland-four-roots/music-story.m4a",
+    seconds: 19.9,
+  },
 };
