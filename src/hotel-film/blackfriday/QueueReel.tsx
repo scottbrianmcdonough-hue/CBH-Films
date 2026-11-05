@@ -539,6 +539,10 @@ export const QueueReel: React.FC<{ story?: boolean }> = ({ story = false }) => {
       {frame >= recap && frame < end ? <Recap at={recap} /> : null}
       {/* a soft camera shutter on each photo of the recap (Scott, 5 Nov: "maybe even add a sound"; synthesised, peaks
           -18 dBFS, under the music; recap-shutter.wav is timed to RECAP_BEATS over the 14 photos) */}
+      {/* a soft press on Book now, in the track's one beat stop (peaks -16 dBFS) */}
+      <Sequence from={B(19.5)} durationInFrames={10}>
+        <Audio src={staticFile(P + "tap.wav")} volume={0.9} />
+      </Sequence>
       <Sequence from={recap} durationInFrames={end - recap + 20}>
         <Audio src={staticFile(P + "recap-shutter.wav")} volume={0.8} />
       </Sequence>
