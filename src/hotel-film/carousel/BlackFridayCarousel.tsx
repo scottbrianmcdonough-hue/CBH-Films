@@ -278,6 +278,27 @@ export const BlackFridayCarousel: React.FC<{ region: string }> = ({
     );
   }
   if (close) {
+    // a collage of the region's hotels behind the title (Scott, 5 Nov: "not sure about the black title card ... maybe do a
+    // collage of the ones featured"): the first (most northerly) a wide tile across the top, the rest two by two, thin
+    // black gutters, dimmed in the middle so the words sit on it
+    const G = 6;
+    const rest = r.hotels.slice(1);
+    const rows = Math.ceil(rest.length / 2);
+    const topH = rows ? Math.round(1350 * (rows === 1 ? 0.5 : 0.42)) : 1350;
+    const rowH = rows ? (1350 - topH - G * rows) / rows : 0;
+    const tiles = [
+      { h: r.hotels[0], x: 0, y: 0, w: 1080, hh: topH },
+      ...rest.map((h, k) => {
+        const lastAlone = rest.length % 2 === 1 && k === rest.length - 1;
+        return {
+          h,
+          x: lastAlone ? 0 : (k % 2) * (540 + G / 2),
+          y: topH + G + Math.floor(k / 2) * (rowH + G),
+          w: lastAlone ? 1080 : 540 - G / 2,
+          hh: rowH,
+        };
+      }),
+    ];
     return (
       <AbsoluteFill
         style={{
@@ -287,7 +308,14 @@ export const BlackFridayCarousel: React.FC<{ region: string }> = ({
           textAlign: "center",
         }}
       >
-        <div style={{ marginTop: -60 }}>
+        {tiles.map((t) => (
+          <div key={t.h.name} style={{ position: "absolute", left: t.x, top: t.y, width: t.w, height: t.hh, overflow: "hidden" }}>
+            <Photo src={t.h.src} pos={t.h.pos} />
+          </div>
+        ))}
+        <AbsoluteFill style={{ background:
+          "radial-gradient(ellipse 760px 520px at 50% 47%, rgba(9,9,10,0.82) 0%, rgba(9,9,10,0.62) 45%, rgba(9,9,10,0.28) 80%, rgba(9,9,10,0.18) 100%)" }} />
+        <div style={{ marginTop: -60, position: "relative", textShadow: "0 2px 24px rgba(9,9,10,0.7)" }}>
           <Caps color={MAUVE} size={30}>
             Black Friday Sale
           </Caps>
