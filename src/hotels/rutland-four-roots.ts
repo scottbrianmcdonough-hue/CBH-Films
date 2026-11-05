@@ -20,7 +20,7 @@ export const rutlandFourRoots: RippleSpec = {
   label: { eyebrow: "Rutland Water", name: "Rutland Hall\nHotel & Spa", from: 10, to: 110 },
   lines: [
     { eyebrow: "The Four Roots Journey", text: "A bathing ritual", from: 120, to: 172 },
-    { eyebrow: "The Four Roots Journey", text: "A treatment\nof your choice", from: 179, to: 231 },
+    { eyebrow: "The Four Roots Journey", text: "A treatment\nof your choice", from: 179, to: 231, top: 300 }, // above the desk's sign
     { eyebrow: "The Four Roots Journey", text: "Meditation", from: 237, to: 290 },
     { eyebrow: "The Four Roots Journey", text: "Lakeside dining", from: 296, to: 348 },
   ],

@@ -19,3 +19,10 @@ water"). Each root's line has THE FOUR ROOTS JOURNEY in gold caps above it (hous
 Deep House Sunset's unused opening: the label over the pads, the kick on the first root (15.94s), a 320 beat jump to
 the last phrase so the end card lands on its final kick (186.81s) and the pads ring out. 21.9s, -15.7 LUFS; Story
 (the stay shots out) 16.0s.
+
+Rebuilt on the hotel's photos (Scott, 5 Nov: the footage "weird and bubbles", his CBH site photos in
+`public/hotels/rutland-hall/photos/`): the house over Rutland Water (label), the pool (bathing ritual), a pan along the
+Four Roots Wellbeing desk's sign (a treatment of your choice, the line set above the sign; `scripts/still-pan.py`, the
+sign is wider than a 9:16 crop), the starlit relaxation room (meditation), the lake at sunset from the garden (lakeside
+dining), the bedroom with the lake in its window. Slow pushes (`still-push.py`). The dog, the family by the lake and the
+spring lake view are spare (summer looking).

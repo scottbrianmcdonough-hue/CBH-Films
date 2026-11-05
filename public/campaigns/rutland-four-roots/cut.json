@@ -2,44 +2,34 @@
  "out": "public/campaigns/rutland-four-roots/picture.mp4",
  "shots": [
   {
-   "src": "public/hotels/rutland-hall/lake-view.mp4",
+   "src": "public/campaigns/rutland-four-roots/clips/exterior-reel.mp4",
    "from": 0,
    "frames": 117
   },
   {
-   "src": "public/hotels/rutland-hall/spa-baths.mp4",
+   "src": "public/campaigns/rutland-four-roots/clips/pool-reel.mp4",
    "from": 0,
    "frames": 59
   },
   {
-   "src": "public/hotels/rutland-hall/screen-time/treatment-bed.mp4",
+   "src": "public/campaigns/rutland-four-roots/clips/desk-reel.mp4",
    "from": 0,
    "frames": 58
   },
   {
-   "src": "public/hotels/rutland-hall/screen-time/loungers-4s.mp4",
+   "src": "public/campaigns/rutland-four-roots/clips/relax-reel.mp4",
    "from": 0,
    "frames": 59
   },
   {
-   "src": "public/hotels/rutland-hall/screen-time/lake-sunset.mp4",
+   "src": "public/campaigns/rutland-four-roots/clips/sunset-reel.mp4",
    "from": 0,
    "frames": 59
   },
   {
-   "src": "public/hotels/rutland-hall/screen-time/candlelit-bath.mp4",
+   "src": "public/campaigns/rutland-four-roots/clips/bedroom-reel.mp4",
    "from": 0,
-   "frames": 58
-  },
-  {
-   "src": "public/hotels/rutland-hall/screen-time/suite-4s.mp4",
-   "from": 0,
-   "frames": 88
-  },
-  {
-   "src": "public/hotels/rutland-hall/screen-time/suite-beds.mp4",
-   "from": 0,
-   "frames": 59
+   "frames": 205
   }
  ],
  "fade": 22,
