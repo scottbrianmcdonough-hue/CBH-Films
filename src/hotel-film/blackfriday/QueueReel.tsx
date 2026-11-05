@@ -209,10 +209,6 @@ const FullLabel: React.FC<{ list: Clip[]; until: number }> = ({ list, until }) =
   );
 };
 
-// a screensaver's drift (Scott, 5 Nov: "slower on the bouncing, think like Windows screensaver"): straight lines at a
-// steady speed, turning back at the edges of a small box between the headings
-const tri = (f: number, period: number, amp: number) => amp * (4 * Math.abs(((f / period + 0.25) % 1) - 0.5) - 1);
-
 const Queue: React.FC<{ cut: Cut }> = ({ cut }) => {
   const frame = useCurrentFrame();
   const enter = B(18.5);
@@ -225,6 +221,8 @@ const Queue: React.FC<{ cut: Cut }> = ({ cut }) => {
   const spring = 1 - Math.exp(-cf / 3.2) * Math.cos(cf * 0.6); // overshoots a touch, then settles
   const countOn = Math.min(1, cf / 4) * (1 - progress(cf, BEAT - 3, 3));
   const offerOut = 1 - progress(frame, B(COUNT) - 6, 6);
+  // the offer counts up to its 30 (Scott, 5 Nov: "a counter up to 30, then 5 4 3 2 1"), easing in to land a beat early
+  const pct = Math.round(30 * progress(frame, B(1), B(11) - B(1), EASE_OUT));
   const button = progress(frame, enter, 10, EASE_OUT);
   const press = interpolate(frame, [tap, tap + 3, tap + 9], [1, 0.93, 1], {
     extrapolateLeft: "clamp",
@@ -276,7 +274,7 @@ const Queue: React.FC<{ cut: Cut }> = ({ cut }) => {
         {/* up to 30% off under the window, then 5 4 3 2 1 on the beat into the tap */}
         <div style={{ position: "absolute", top: 1214, width: "100%", textAlign: "center", opacity: offerOut,
           fontFamily: serif, fontSize: 84, color: colors.cream, fontVariantNumeric: "lining-nums" }}>
-          Up to 30% off
+          Up to {pct}% off
         </div>
         {count ? (
           <div style={{ position: "absolute", top: 1215, width: "100%", textAlign: "center", fontFamily: serif,
@@ -330,9 +328,6 @@ const Queue: React.FC<{ cut: Cut }> = ({ cut }) => {
           borderRadius: box.radius,
           overflow: "hidden",
           opacity: intro,
-          // a slow drift while it waits (Scott, 5 Nov: "make the square preview drift a bit in the beginning to keep
-          // the eyes moving"): a gentle float and a breathing push, gone by the burst
-          transform: `translate(${tri(frame, 176, 70) * (1 - burst)}px, ${tri(frame + 40, 150, 14) * (1 - burst)}px)`,
           boxShadow: burst < 1 ? "0 30px 80px rgba(0,0,0,0.6)" : undefined,
           outline: burst < 1 ? `1px solid rgba(245,239,227,${0.16 * (1 - burst)})` : undefined,
         }}
