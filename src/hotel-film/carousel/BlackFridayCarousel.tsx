@@ -11,7 +11,6 @@ import { colors, sans, serif } from "../theme";
 
 const MAUVE = "#A15272";
 const H = "hotels/";
-const C = "campaigns/";
 
 type Hotel = {
   src: string;
@@ -37,32 +36,34 @@ const REGIONS: Region[] = [
     cover: { src: H + "skipton/canal-reflection.jpg", pos: "35% 50%" },
     hotels: [
       {
-        src: H + "skipton/canal-boats.jpg",
-        pos: "70% 50%",
+        // cosy spa and autumn interiors (Scott, 5 Nov: "more cosy spa type stuff and interiors, autumny November")
+        src: H + "skipton/afternoon-tea.jpg",
+        pos: "35% 50%",
         place: "Skipton, North Yorkshire",
         name: "Skipton Hotel",
         offer: "25% off your stay",
         terms: FD,
       },
       {
-        // the four poster, not the summer aerial (Scott, 5 Nov: November, so cosy interiors where we have them)
-        src: H + "waterton-park/bedroom.jpg",
-        pos: "50% 50%",
+        // scroll stoppers (Scott, 5 Nov: "photos need to be scroll stoppers and inspiring"): the footbridge to the
+        // island in autumn colour
+        src: H + "waterton-park/footbridge-autumn.jpg",
+        pos: "47% 50%",
         place: "Wakefield, West Yorkshire",
         name: "Waterton Park\nHotel & Spa",
         offer: "15% off your stay",
         terms: FD,
       },
       {
-        src: H + "gomersal-park/afternoon-tea.jpg",
-        pos: "38% 50%",
+        src: H + "gomersal-park/spa-pool.jpg", // the spa pool's steps and water wall
+        pos: "50% 50%",
         place: "Gomersal, West Yorkshire",
         name: "Gomersal Park\nHotel & Spa", // as on its CBH page, like Waterton Park Hotel & Spa
         offer: "20% off your stay",
         terms: FD20,
       },
       {
-        src: H + "holdsworth-house/pancakes.jpg", // no fireplaces (Scott, 5 Nov)
+        src: H + "holdsworth-house/robes-fizz.jpg", // robes and fizz; no fireplaces (Scott, 5 Nov)
         pos: "50% 50%",
         place: "Halifax, West Yorkshire",
         name: "Holdsworth House Hotel",
@@ -70,9 +71,9 @@ const REGIONS: Region[] = [
         terms: "Stays to 31 March",
       },
       {
-        // the house over the course, not the fireside lounge (it read like Holdsworth's fireplace beside it)
-        src: H + "dalmahoy/exterior.jpg",
-        pos: "40% 50%",
+        // a warm lamplit bedroom (the house front was flat; not the fireside lounge, it read like Holdsworth's)
+        src: H + "dalmahoy/bedroom.jpg",
+        pos: "45% 50%",
         place: "Edinburgh",
         name: "Dalmahoy Hotel\n& Country Club",
         offer: "30% off B&B",
@@ -86,7 +87,7 @@ const REGIONS: Region[] = [
     cover: { src: H + "the-imperial/bay-from-great-orme.jpg", pos: "62% 50%" },
     hotels: [
       {
-        src: H + "ruthin-castle/castle.jpg",
+        src: H + "ruthin-castle/white-bed.jpg", // the carved white bed under the red curtains
         pos: "50% 50%",
         place: "Ruthin, North Wales",
         name: "Ruthin Castle\nHotel & Spa",
@@ -119,7 +120,7 @@ const REGIONS: Region[] = [
         terms: "Non refundable, stays to 9 April",
       },
       {
-        src: H + "whittlebury-park/murrays-dish-2x.jpg",
+        src: H + "whittlebury-park/spa-pool.jpg", // the spa pool lit up (a plate is on Oaklands' slide)
         pos: "50% 50%",
         place: "Whittlebury, Northamptonshire",
         name: "Whittlebury Park",
@@ -127,15 +128,15 @@ const REGIONS: Region[] = [
         terms: "B&B or dinner, B&B, stays to 31 March, selected dates",
       },
       {
-        src: H + "jockey-club-rooms/hyperion-statue.jpg",
-        pos: "62% 50%",
+        src: H + "jockey-club-rooms/bedroom.jpg",
+        pos: "40% 50%",
         place: "Newmarket, Suffolk",
         name: "Jockey Club Rooms",
         offer: "15% off B&B",
         terms: "Stays to 31 March, selected dates",
       },
       {
-        src: H + "oaklands-hall/bedroom.jpg",
+        src: H + "oaklands-hall/plate.jpg",
         pos: "50% 50%",
         place: "Laceby, Lincolnshire",
         name: "Oaklands Hall Hotel",
@@ -158,16 +159,16 @@ const REGIONS: Region[] = [
         terms: "Stays to 31 March, selected dates",
       },
       {
-        src: C + "journey-new/oakley-hall-exterior-frost.jpg",
-        pos: "50% 50%",
+        src: H + "oakley-hall/bedroom.jpg", // the gold bed
+        pos: "60% 50%",
         place: "Oakley, Hampshire",
         name: "Oakley Hall Hotel",
         offer: "30% off your stay",
         terms: "Room only or B&B, stays to April",
       },
       {
-        src: H + "the-alfriston/bedroom.jpg",
-        pos: "45% 50%",
+        src: H + "the-alfriston/afternoon-tea.jpg",
+        pos: "50% 60%",
         place: "Alfriston, East Sussex",
         name: "The Alfriston",
         offer: "30% off B&B",

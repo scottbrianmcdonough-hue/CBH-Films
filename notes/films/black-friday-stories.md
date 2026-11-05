@@ -66,3 +66,4 @@ Covers in the official card's own order (Scott: "the covers can match Lee's card
 The covers' Black Friday Sale in Cormorant 600, tightened a touch (Scott: "bold the font so it looks premium like Lee's").
 
 No fireplaces (Scott, 5 Nov): Holdsworth pancakes, Oaklands Hall the bedroom, Burleigh Court the salmon plate, The Alfriston the bedroom.
+- Photos made scroll stoppers (Scott, 5 Nov: "scroll stoppers and inspiring", "more cosy spa type stuff and interiors, autumny November", an exterior only if it's inspiring): Skipton afternoon tea, Waterton's footbridge in autumn, Gomersal's spa pool, Holdsworth robes and fizz, Dalmahoy's lamplit bedroom; Ruthin's carved white bed; Forest of Arden's autumn aerial, Whittlebury's spa pool, Jockey Club Rooms bedroom, Oaklands' plate; Burleigh's plate, Oakley's gold bed, The Alfriston's afternoon tea.
