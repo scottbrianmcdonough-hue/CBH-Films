@@ -44,6 +44,10 @@ with no history and no renders:
   stands in for a word ("phone on 🔕"), carries the idea (🔓 for "the wait is over", 🗝️ beside "Book now", 🖤 for Black
   Friday), never decoration at the end of every line or a row of them; about three or four a post. No lists of three
   (Scott: "avoid triad"), and don't ask for comments where people won't answer (a sale post closes on booking).
+- Consistency (Scott, 5 Nov): keep films and posts looking consistent with each other; a campaign's pieces shouldn't
+  look too different from the house style. When matching a supplied artwork (Black Friday: Lee's tight mauve caps),
+  change as little as needed and keep the rest of the house look, then go back to the house style after the campaign
+  (gold caps place, spaced, underlined; cream Cormorant name).
 - End lines: an "X first, or Y?" question is good but not every time (Scott, 3 Nov: "getting to be a pattern");
   mix in a statement ("Tee off, / then turn in").
 
