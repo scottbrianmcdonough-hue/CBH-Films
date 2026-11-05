@@ -6,7 +6,7 @@ never seen). usage: window-push.py IN OUT --cx 0.5 --cy 0.5 --frames N [--drift 
 shaped crop to use (smaller pushes in)."""
 import argparse, subprocess
 from PIL import Image, ImageFilter
-WIN = (220, 500, 640, 660)
+WIN = (80, 430, 920, 900)  # the queue window (Scott, 5 Nov: "use the space more", it was 640 x 660 at 220, 500)
 ap = argparse.ArgumentParser()
 ap.add_argument("inp"); ap.add_argument("out")
 ap.add_argument("--cx", type=float, default=0.5); ap.add_argument("--cy", type=float, default=0.5)

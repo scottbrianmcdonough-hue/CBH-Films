@@ -80,8 +80,8 @@ const AFTER: Clip[] = [
 
 type Cut = { after: Clip[]; end: number; len: number };
 const CUTS: Record<"reel" | "story", Cut> = {
-  reel: { after: AFTER, end: 32, len: 40 },
-  story: { after: [], end: 24, len: 32 },
+  reel: { after: AFTER, end: 32, len: 45 },
+  story: { after: [], end: 24, len: 37 },
 };
 export const QUEUE_FRAMES = B(CUTS.reel.len);
 export const QUEUE_STORY_FRAMES = B(CUTS.story.len);
@@ -165,7 +165,7 @@ const labelFor = (list: Clip[], frame: number, until: number, minAt: number, max
 };
 
 const HouseLabel: React.FC<{ c: Clip; on: number; small?: boolean }> = ({ c, on, small }) => {
-  const k = small ? 0.72 : 1;
+  const k = small ? 0.84 : 1;
   return (
     <div style={{ opacity: on, transform: `translateY(${(1 - on) * 10 * k}px)`, whiteSpace: "nowrap" }}>
       {/* the place as on Lee's artwork and the carousels (Scott, 5 Nov): tight mauve caps, no underline */}
@@ -242,7 +242,7 @@ const Queue: React.FC<{ cut: Cut }> = ({ cut }) => {
   // the drop: the window bursts to full frame, the page falls away
   const burst = progress(frame, DROP, 10, EASE_OUT);
   const page = 1 - progress(frame, DROP, 6);
-  const win = { x: 220, y: 500, w: 640, h: 660, r: 28 };
+  const win = { x: 80, y: 430, w: 920, h: 900, r: 32 };
   const box = {
     left: win.x * (1 - burst),
     top: win.y * (1 - burst),
@@ -261,13 +261,13 @@ const Queue: React.FC<{ cut: Cut }> = ({ cut }) => {
         }}
       />
       <AbsoluteFill style={{ opacity: page * intro }}>
-        <div style={{ position: "absolute", top: 250, width: "100%", textAlign: "center", ...caps(32, MAUVE, 0.02) }}>
+        <div style={{ position: "absolute", top: 180, width: "100%", textAlign: "center", ...caps(32, MAUVE, 0.02) }}>
           Black Friday Sale
         </div>
         <div
           style={{
             position: "absolute",
-            top: 296,
+            top: 222,
             width: "100%",
             textAlign: "center",
             fontFamily: serif,
@@ -278,17 +278,17 @@ const Queue: React.FC<{ cut: Cut }> = ({ cut }) => {
         >
           Now open
         </div>
-        <div style={{ position: "absolute", top: 450, width: "100%", textAlign: "center", ...caps(22, "rgba(245,239,227,0.55)", 0.24) }}>
+        <div style={{ position: "absolute", top: 372, width: "100%", textAlign: "center", ...caps(22, "rgba(245,239,227,0.55)", 0.24) }}>
           Across the collection
         </div>
         {/* up to 30% off under the window, then 5 4 3 2 1 on the beat into the tap */}
-        <div style={{ position: "absolute", top: 1214, width: "100%", textAlign: "center", opacity: offerOut,
+        <div style={{ position: "absolute", top: 1362, width: "100%", textAlign: "center", opacity: offerOut,
           fontFamily: serif, fontSize: 84, color: colors.cream, fontVariantNumeric: "lining-nums" }}>
           Up to {pct}% off
         </div>
         {count ? (
-          <div style={{ position: "absolute", top: 1215, width: "100%", textAlign: "center", fontFamily: serif,
-            fontWeight: 400, fontSize: 180, lineHeight: 1, color: colors.cream,
+          <div style={{ position: "absolute", top: 1350, width: "100%", textAlign: "center", fontFamily: serif,
+            fontWeight: 400, fontSize: 160, lineHeight: 1, color: colors.cream,
             transform: `translateY(${(1 - spring) * 46}px) scale(${0.78 + 0.22 * spring})`,
             opacity: countOn, fontVariantNumeric: "lining-nums", textShadow: "0 0 40px rgba(245,239,227,0.18)" }}>
             {count}
@@ -299,7 +299,7 @@ const Queue: React.FC<{ cut: Cut }> = ({ cut }) => {
           style={{
             position: "absolute",
             left: 540 - 170,
-            top: 1366,
+            top: 1380,
             width: 340,
             height: 88,
             borderRadius: 44,
@@ -319,7 +319,7 @@ const Queue: React.FC<{ cut: Cut }> = ({ cut }) => {
             style={{
               position: "absolute",
               left: 600 - 40 - ring * 40,
-              top: 1410 - 40 - ring * 40,
+              top: 1424 - 40 - ring * 40,
               width: 80 + ring * 80,
               height: 80 + ring * 80,
               borderRadius: "50%",
@@ -492,17 +492,17 @@ const RECAP: { src: string; pos: string }[] = [
   { src: "campaigns/journey-new/oakley-hall-exterior-frost.jpg", pos: "70% 50%" },
   { src: H + "the-alfriston/fireside-table.jpg", pos: "60% 50%" },
 ];
-const RECAP_BEATS = 3;
+const RECAP_BEATS = 5; // calm and steady (Scott: "not so manic", "a calmer steady shutter"): ~6 frames each
 const Recap: React.FC<{ at: number }> = ({ at }) => {
   const frame = useCurrentFrame();
   const total = B(RECAP_BEATS);
-  const w = RECAP.map((_, k) => 5 - (3 * k) / (RECAP.length - 1)); // 5 frames down to 2
+  const w = RECAP.map(() => 1); // an even beat, every shot the same length
   const scale = total / w.reduce((a, b) => a + b, 0);
   let t = at;
   for (let k = 0; k < RECAP.length; k++) {
     const d = w[k] * scale;
     if (frame < t + d || k === RECAP.length - 1) {
-      const kick = 1.06 - 0.06 * Math.min(1, (frame - t) / Math.max(1, d));
+      const kick = 1.03 - 0.03 * Math.min(1, (frame - t) / Math.max(1, d));
       return (
         <AbsoluteFill style={{ backgroundColor: colors.black }}>
           <Img src={staticFile(RECAP[k].src)} style={{ width: "100%", height: "100%", objectFit: "cover",
