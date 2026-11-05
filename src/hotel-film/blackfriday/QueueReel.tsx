@@ -81,8 +81,9 @@ const AFTER: Clip[] = [
 
 type Cut = { after: Clip[]; end: number; len: number };
 const CUTS: Record<"reel" | "story", Cut> = {
-  reel: { after: AFTER, end: 32, len: 45 },
-  story: { after: [], end: 24, len: 37 },
+  // three beats longer for the slower recap, so the end card keeps its eight beats (the music file runs on to 28s)
+  reel: { after: AFTER, end: 32, len: 48 },
+  story: { after: [], end: 24, len: 40 },
 };
 export const QUEUE_FRAMES = B(CUTS.reel.len);
 export const QUEUE_STORY_FRAMES = B(CUTS.story.len);
@@ -500,7 +501,7 @@ const RECAP: { src: string; pos: string }[] = [
   { src: "campaigns/journey-new/oakley-hall-exterior-frost.jpg", pos: "70% 50%" },
   { src: H + "the-alfriston/afternoon-tea.jpg", pos: "50% 50%" },
 ];
-const RECAP_BEATS = 5; // calm and steady (Scott: "not so manic", "a calmer steady shutter"): ~6 frames each
+const RECAP_BEATS = 8; // calm and steady (Scott: "not so manic", "a calmer steady shutter", "a little slower"): ~9 frames each
 const Recap: React.FC<{ at: number }> = ({ at }) => {
   const frame = useCurrentFrame();
   const total = B(RECAP_BEATS);
@@ -536,6 +537,11 @@ export const QueueReel: React.FC<{ story?: boolean }> = ({ story = false }) => {
       {/* the full frame labels: Ruthin (still in the window's list) and the shots after it */}
       <FullLabel list={[...WAIT, ...cut.after]} until={recap} />
       {frame >= recap && frame < end ? <Recap at={recap} /> : null}
+      {/* a soft camera shutter on each photo of the recap (Scott, 5 Nov: "maybe even add a sound"; synthesised, peaks
+          -18 dBFS, under the music; recap-shutter.wav is timed to RECAP_BEATS over the 14 photos) */}
+      <Sequence from={recap} durationInFrames={end - recap + 20}>
+        <Audio src={staticFile(P + "recap-shutter.wav")} volume={0.8} />
+      </Sequence>
       {frame >= end && !OFFICIAL_END ? <EndCard at={end} len={len} /> : null}
       {/* no white CB (Scott, 3 Nov: "get rid of the watermark CB"): the end card has the lockup */}
       {frame < end || !OFFICIAL_END ? <FilmFinish /> : null}

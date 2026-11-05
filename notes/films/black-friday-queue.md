@@ -88,3 +88,4 @@ No fireplaces (Scott, 5 Nov: "enough fireplaces, get the cosy interiors, beds, f
 
 The counter up top (Scott, 5 Nov: "this counter should be up top"): in the official card's pink pill, SAVE UP TO counting to 30%, under Now open; Across the collection below the window, giving way to the 5 4 3 2 1.
 - The count to 30 starts a beat in (Scott, 5 Nov: "takes too long for the count to start"; it began on beat 4), the pill fading in with it, still landing on 30 before the 5 4 3 2 1.
+- The recap slower (Scott, 5 Nov: "a little slower in the shutter section"): 8 beats for the 14 photos, ~9 frames each (was 5 beats, ~6); the reel and Story three beats longer (48 and 40) so the end card keeps its eight beats, queue-music.mp3 run on to 28s from the original (sample aligned, 10ms join at 22s). A soft synthesised camera shutter on each photo (`recap-shutter.wav`, peaks -18 dBFS; Scott: "maybe even add a sound"); a till ka-ching was offered by Scott and left out as cheesy.
