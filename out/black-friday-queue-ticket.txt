@@ -1,16 +1,20 @@
-[IG/FB/TT] Black Friday Sale reel: The wait is over
+[BLACK FRIDAY] Black Friday Sale launch: reel and Story (the queue)
 
 Hook
-A Black Friday queue page in our black and gold, the 14 hotels in the sale playing while you wait. On the drop it opens up full screen: the wait is over, and we land on Save up to 30%.
+A Black Friday queue page in our black and gold, the 14 hotels in the sale playing while you wait. On the drop it opens up full screen: the wait is over, and we land on SAVE UP TO 30%.
 
 Post
 𝗡𝗼 𝗾𝘂𝗲𝘂𝗲 𝘁𝗵𝗶𝘀 𝘁𝗶𝗺𝗲 ⏳
 
-𝗧𝗵𝗲 𝘄𝗮𝗶𝘁 𝗶𝘀 𝗼𝘃𝗲𝗿 🔓 Our 𝗕𝗹𝗮𝗰𝗸 𝗙𝗿𝗶𝗱𝗮𝘆 𝗦𝗮𝗹𝗲 is here, and you can 𝘀𝗮𝘃𝗲 𝘂𝗽 𝘁𝗼 𝟯𝟬% on a stay with us.
+𝗕𝗹𝗮𝗰𝗸 𝗙𝗿𝗶𝗱𝗮𝘆 𝗦𝗮𝗹𝗲 🖤
 
-Tea by the fire and breakfast in bed, at 14 of our hotels. Your turn starts now.
+𝗨𝗽 𝘁𝗼 𝟯𝟬% 𝗼𝗳𝗳 at 14 of our hotels, from Edinburgh to East Sussex
 
-🗝️ 𝗕𝗼𝗼𝗸 𝗻𝗼𝘄 before your favourite dates go.
+Tea by the fire, then breakfast in bed
+
+Your turn starts now
+
+🗝️ 𝗕𝗼𝗼𝗸 𝗻𝗼𝘄 before your favourite dates go
 
 Hashtags
 #ClassicBritishHotels #BlackFridaySale #BlackFriday2026
@@ -19,15 +23,13 @@ CTA
 - Facebook: 👉 Book here: https://classicbritishhotels.com/black-friday-countdown/
 - Instagram: 𝗧𝗮𝗽 𝘁𝗵𝗲 𝗹𝗶𝗻𝗸 𝗶𝗻 𝗼𝘂𝗿 𝗯𝗶𝗼 𝘁𝗼 𝗯𝗼𝗼𝗸. (bio link set to https://classicbritishhotels.com/black-friday-countdown/)
 - TikTok: The wait is over. Book through the link in our bio.
-- Instagram Story: black-friday-queue-story.mp4 with a link sticker "Book now" to https://classicbritishhotels.com/black-friday-countdown/, placed low and centred, clear of the pill and logo
-
-Time slot: Monday 9 November (launch day): Instagram 12:00 PM; Facebook and TikTok 8:00 PM; the Story at 9:00 AM
+- Instagram Story: link sticker "Book now" to https://classicbritishhotels.com/black-friday-countdown/, placed low and centred, clear of the pill and logo
+Time slot: Mon 9 Nov (launch day). Story 9:00 AM; Instagram 12 PM; Facebook and TikTok 8 PM
 Platforms: Instagram, Facebook, TikTok
 Video: black-friday-queue.mp4 (21.8s, 9:16); Story: black-friday-queue-story.mp4 (17.5s, 9:16)
-Music: Party Dance by prettyjohn1 (Pixabay) is baked in; post as is, no sound in app.
+Music: Party Dance by prettyjohn1 (Pixabay) is baked in; post as is, no sound in app
 
-Notes:
-- 𝗛𝗼𝘁𝗲𝗹𝘀: only the 14 in the sale (Bianca, 5 Nov), each once: Burleigh Court, Jockey Club Rooms, Oaklands Hall, The Alfriston, Skipton, Gomersal Park, Forest of Arden, Whittlebury Park (the queue window), Dalmahoy, Ruthin Castle, Holdsworth House, Waterton Park, Oakley Hall, The Imperial (full screen). The Story shows the first ten (to Ruthin). Tag them in the post. No offer is tied to any one hotel on screen, so the 30% is the campaign's "up to".
-- 𝗛𝗼𝗹𝗱: nothing posts until all 14 offers show on the site.
-- 𝗘𝗻𝗱𝗶𝗻𝗴: the official artwork's layout rebuilt full frame on its clean photo (the supplied 4:5 file can't fill a 9:16 frame without cropping its type). The static post on the same day uses the official file as supplied.
-- 𝗟𝗶𝗻𝗸𝘀: Jira shows the URLs as smart chips that copy as the page title. Switch them to URL display before copying.
+Notes
+- Hotels: only the 14 in the sale, each named on screen: Burleigh Court, Jockey Club Rooms, Oaklands Hall, The Alfriston, Skipton, Gomersal Park, Forest of Arden, Whittlebury Park, Dalmahoy, Ruthin Castle, Holdsworth House, Waterton Park, Oakley Hall, The Imperial. Tag them in the post. The Story shows the first ten (to Ruthin).
+- Hold: nothing posts until all 14 offers show on the site.
+- Links: Jira shows the URLs as smart chips that copy as the page title. Switch them to URL display before copying.
