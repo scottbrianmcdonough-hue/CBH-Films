@@ -58,3 +58,5 @@ changed.
 Bianca's notes on the carousels (5 Nov): north to south, the regions posted Scotland & Yorkshire (Wed 11), Wales (Fri 13), the Midlands & East (Tue 17), the South (Fri 27) and the hotels in each from the most northerly down (`NORTH_TO_SOUTH`); each opens on its region graphic (the grid would show the launch photo again), the official artwork last; the link classicbritishhotels.com/black-friday on the slide and in the tickets.
 
 Collage cover (Scott, 5 Nov: "not sure about the black title card ... do a collage of the ones featured, see how that looks for Yorkshire and Scotland"): the region slide is now the hotels featured as tiles, the most northerly wide across the top, the rest two by two, thin black gutters, the title over a soft dark centre. Built for all four regions; tried on Scotland & Yorkshire first.
+
+Covers made premium (Scott: "elevate the composition, make it premium"): an editorial layout, a row of the hotels above and below a black band holding the words (no type over a photo), even 8px gutters, the region on one line, the URL small and tracked.

@@ -278,27 +278,19 @@ export const BlackFridayCarousel: React.FC<{ region: string }> = ({
     );
   }
   if (close) {
-    // a collage of the region's hotels behind the title (Scott, 5 Nov: "not sure about the black title card ... maybe do a
-    // collage of the ones featured"): the first (most northerly) a wide tile across the top, the rest two by two, thin
-    // black gutters, dimmed in the middle so the words sit on it
-    const G = 6;
-    const rest = r.hotels.slice(1);
-    const rows = Math.ceil(rest.length / 2);
-    const topH = rows ? Math.round(1350 * (rows === 1 ? 0.5 : 0.42)) : 1350;
-    const rowH = rows ? (1350 - topH - G * rows) / rows : 0;
-    const tiles = [
-      { h: r.hotels[0], x: 0, y: 0, w: 1080, hh: topH },
-      ...rest.map((h, k) => {
-        const lastAlone = rest.length % 2 === 1 && k === rest.length - 1;
-        return {
-          h,
-          x: lastAlone ? 0 : (k % 2) * (540 + G / 2),
-          y: topH + G + Math.floor(k / 2) * (rowH + G),
-          w: lastAlone ? 1080 : 540 - G / 2,
-          hh: rowH,
-        };
-      }),
-    ];
+    // a collage of the region's hotels (Scott, 5 Nov: "a collage of the ones featured", then "elevate the composition,
+    // make it premium"): an editorial cover, a row of photos above and below a black band that holds the words, so no
+    // type sits over a photo; thin even gutters, the hotels north to south, top row then bottom
+    const G = 8;
+    const BAND = 430;
+    const nTop = Math.max(1, Math.floor(r.hotels.length / 2));
+    const rowH = (1350 - BAND - 2 * G) / 2;
+    const row = (list: Hotel[], y: number) =>
+      list.map((h, k) => {
+        const w = (1080 - G * (list.length - 1)) / list.length;
+        return { h, x: k * (w + G), y, w, hh: rowH };
+      });
+    const tiles = [...row(r.hotels.slice(0, nTop), 0), ...row(r.hotels.slice(nTop), rowH + G + BAND + G)];
     return (
       <AbsoluteFill
         style={{
@@ -313,33 +305,30 @@ export const BlackFridayCarousel: React.FC<{ region: string }> = ({
             <Photo src={t.h.src} pos={t.h.pos} />
           </div>
         ))}
-        <AbsoluteFill style={{ background:
-          "radial-gradient(ellipse 760px 520px at 50% 47%, rgba(9,9,10,0.82) 0%, rgba(9,9,10,0.62) 45%, rgba(9,9,10,0.28) 80%, rgba(9,9,10,0.18) 100%)" }} />
-        <div style={{ marginTop: -60, position: "relative", textShadow: "0 2px 24px rgba(9,9,10,0.7)" }}>
+        <div style={{ position: "relative" }}>
           <Caps color={MAUVE} size={30}>
             Black Friday Sale
           </Caps>
           <div
             style={{
               fontFamily: serif,
-              fontSize: 116,
-              lineHeight: 1.08,
+              fontSize: r.title.includes("\n") ? 92 : 104,
+              lineHeight: 1.02,
               color: colors.cream,
-              marginTop: 28,
+              marginTop: 22,
+              whiteSpace: "nowrap",
             }}
           >
-            {r.title.split("\n").map((l) => (
-              <div key={l}>{l}</div>
-            ))}
+            {r.title.replace("\n", " ")}
           </div>
           <div
             style={{
               fontFamily: serif,
               fontStyle: "italic",
-              fontSize: 46,
+              fontSize: 42,
               color: colors.cream,
               opacity: 0.88,
-              marginTop: 18,
+              marginTop: 14,
             }}
           >
             The wait is over
@@ -347,10 +336,10 @@ export const BlackFridayCarousel: React.FC<{ region: string }> = ({
           <div
             style={{
               fontFamily: sans,
-              fontSize: 30,
-              letterSpacing: "0.04em",
-              color: "rgba(245,239,227,0.8)",
-              marginTop: 40,
+              fontSize: 24,
+              letterSpacing: "0.08em",
+              color: "rgba(245,239,227,0.62)",
+              marginTop: 30,
             }}
           >
             classicbritishhotels.com/black-friday

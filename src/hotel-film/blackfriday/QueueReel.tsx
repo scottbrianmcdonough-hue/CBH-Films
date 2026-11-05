@@ -222,7 +222,9 @@ const Queue: React.FC<{ cut: Cut }> = ({ cut }) => {
   const countOn = Math.min(1, cf / 4) * (1 - progress(cf, BEAT - 3, 3));
   const offerOut = 1 - progress(frame, B(COUNT) - 6, 6);
   // the offer counts up to its 30 (Scott, 5 Nov: "a counter up to 30, then 5 4 3 2 1"), easing in to land a beat early
-  const pct = Math.round(30 * progress(frame, B(1), B(11) - B(1), EASE_OUT));
+  // slow enough to watch (Scott: "I don't see the counting to 30 by the time I'm done reading"): it starts once the
+  // page has been read (beat 4) and climbs evenly, landing on 30 just before the 5 4 3 2 1
+  const pct = Math.round(30 * progress(frame, B(4), B(12.5) - B(4), EASE_IN_OUT));
   const button = progress(frame, enter, 10, EASE_OUT);
   const press = interpolate(frame, [tap, tap + 3, tap + 9], [1, 0.93, 1], {
     extrapolateLeft: "clamp",
