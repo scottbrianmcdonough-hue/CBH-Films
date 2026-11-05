@@ -36,3 +36,5 @@ The stay (Scott, 5 Nov: the last scene was "just the bedroom"): the room, then a
 The opening moves more (Scott: "pan or stronger push in first two shots"): the house a pan from the lake across to its front, the pool a stronger push in.
 
 The stay back to one shot (Scott: "just do the one night or two over the same shot, not 2 shots of the same bedroom"): the bedroom held 20 to 30 under the line.
+
+Polish pass (5 Nov): the light wall above the Four Roots sign darkened towards the top (a `geq` ramp in cut.json), so ROOT TWO and its line read.

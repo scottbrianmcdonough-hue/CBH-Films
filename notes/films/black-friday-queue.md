@@ -81,3 +81,5 @@ A recap before the end card (Scott: "cycle through them all again rapidly before
 The shades behind the labels held steady (Scott: the shadow "disappears and reappears before it changes in the box"): the window caption's shade stays from the start to the burst and the full frame vignette from the first full frame label to the recap; only the words change.
 
 The page uses the space (Scott: "a lot of black space ... do like the UI"): the window 920 x 900 across the width (was 640 x 660), the headings moved up, the offer, count and Book now below it; window clips remade for the new window (`window-push.py` WIN). The recap calm and steady (Scott: "not so manic", "a calmer steady shutter"): five beats, every shot the same length (~6 frames), a light 1.03 kick; the end card holds eight beats. Reel 24.5s, Story 20.2s.
+
+Polish pass (5 Nov): the offer under the window fades in as it starts counting (it sat at "Up to 0% off" for the first four beats).
