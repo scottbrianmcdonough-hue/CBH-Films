@@ -4,32 +4,38 @@
   {
    "src": "public/campaigns/rutland-four-roots/clips/exterior-reel.mp4",
    "from": 0,
-   "frames": 117
+   "frames": 117,
+   "vf": "eq=saturation=0.88:contrast=1.02"
   },
   {
    "src": "public/campaigns/rutland-four-roots/clips/pool-reel.mp4",
    "from": 0,
-   "frames": 59
+   "frames": 59,
+   "vf": "eq=saturation=0.68:brightness=-0.02"
   },
   {
    "src": "public/campaigns/rutland-four-roots/clips/desk-reel.mp4",
    "from": 0,
-   "frames": 58
+   "frames": 58,
+   "vf": "eq=saturation=0.9"
   },
   {
    "src": "public/campaigns/rutland-four-roots/clips/relax-reel.mp4",
    "from": 0,
-   "frames": 59
+   "frames": 59,
+   "vf": "eq=saturation=0.5:brightness=-0.01:contrast=1.04"
   },
   {
    "src": "public/campaigns/rutland-four-roots/clips/sunset-reel.mp4",
    "from": 0,
-   "frames": 59
+   "frames": 59,
+   "vf": "eq=saturation=0.82"
   },
   {
    "src": "public/campaigns/rutland-four-roots/clips/bedroom-reel.mp4",
    "from": 0,
-   "frames": 205
+   "frames": 205,
+   "vf": "eq=saturation=0.86:contrast=1.03"
   }
  ],
  "fade": 22,

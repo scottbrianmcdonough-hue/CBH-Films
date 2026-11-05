@@ -26,3 +26,5 @@ Four Roots Wellbeing desk's sign (a treatment of your choice, the line set above
 sign is wider than a 9:16 crop), the starlit relaxation room (meditation), the lake at sunset from the garden (lakeside
 dining), the bedroom with the lake in its window. Slow pushes (`still-push.py`). The dog, the family by the lake and the
 spring lake view are spare (summer looking).
+
+Light grade (Scott, 5 Nov: "put a light grade so it looks cohesive"): an even base under the film's autumn grade, per shot in cut.json (`vf`): the pool's teal and the starlit room's purple brought well down, the rest a touch less saturated.
