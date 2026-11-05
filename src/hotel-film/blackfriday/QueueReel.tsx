@@ -282,7 +282,9 @@ const Queue: React.FC<{ cut: Cut }> = ({ cut }) => {
           Across the collection
         </div>
         {/* up to 30% off under the window, then 5 4 3 2 1 on the beat into the tap */}
-        <div style={{ position: "absolute", top: 1362, width: "100%", textAlign: "center", opacity: offerOut,
+        {/* the offer comes in as it starts counting, so "Up to 0% off" never sits on screen (polish pass) */}
+        <div style={{ position: "absolute", top: 1362, width: "100%", textAlign: "center",
+          opacity: offerOut * progress(frame, B(4), 10),
           fontFamily: serif, fontSize: 84, color: colors.cream, fontVariantNumeric: "lining-nums" }}>
           Up to {pct}% off
         </div>
