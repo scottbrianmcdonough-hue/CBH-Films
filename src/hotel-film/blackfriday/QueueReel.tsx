@@ -358,25 +358,17 @@ const FullLabel: React.FC<{ list: Clip[]; until: number }> = ({
 
 const Queue: React.FC<{ cut: Cut }> = ({ cut }) => {
   const frame = useCurrentFrame();
-  const enter = B(18); // straight after the 1
+  const enter = B(18); // the capsule turns into Book now as 30% has landed
   const tap = B(19.5);
-  // already open (Scott, 5 Nov: the reel goes up a day after the sale opens: "the wait is over already and still 5 4 3
-  // 2 1"): the page says Now open, and a five beat countdown runs into the tap and the burst
-  const COUNT = 13;
-  const count =
-    frame >= B(COUNT) && frame < B(COUNT + 5)
-      ? 5 - Math.floor((frame - B(COUNT)) / BEAT)
-      : 0;
-  const cf = count ? (frame - B(COUNT)) % BEAT : BEAT; // frames into this number's beat
-  const spring = 1 - Math.exp(-cf / 3.2) * Math.cos(cf * 0.6); // overshoots a touch, then settles
-  const countOn = Math.min(1, cf / 4) * (1 - progress(cf, BEAT - 3, 3));
-  const offerOut = 1 - progress(frame, B(COUNT) - 6, 6);
-  // the offer counts up to its 30 (Scott, 5 Nov: "a counter up to 30, then 5 4 3 2 1"), easing in to land a beat early
-  // slow enough to watch (Scott: "I don't see the counting to 30 by the time I'm done reading"), starting a beat in
-  // (Scott: it "takes too long for the count to start" at beat 4), climbing evenly to land just before the 5 4 3 2 1
+  // already open (Scott, 5 Nov: the reel goes up a day after the sale opens): the page says Now open. No 5 4 3 2 1
+  // (Scott: "do we need the 5 4 3 2 1", rerendered without: a countdown to a sale that's already open): the one capsule
+  // counts up to 30% (Scott: "a counter up to 30"; "I don't see the counting to 30 by the time I'm done reading"),
+  // starting a beat in ("takes too long for the count to start") and climbing evenly to land half a beat before it
+  // turns into Book now
+  const offerOut = 1 - progress(frame, enter - 6, 6);
   const COUNT_UP = 1;
   const pct = Math.round(
-    30 * progress(frame, B(COUNT_UP), B(12.5) - B(COUNT_UP), EASE_IN_OUT),
+    30 * progress(frame, B(COUNT_UP), B(17.5) - B(COUNT_UP), EASE_IN_OUT),
   );
   const button = progress(frame, enter, 8, EASE_OUT);
   const press = interpolate(frame, [tap, tap + 3, tap + 9], [1, 0.93, 1], {
@@ -459,7 +451,7 @@ const Queue: React.FC<{ cut: Cut }> = ({ cut }) => {
                 fontWeight: 600,
                 color: colors.cream,
                 textTransform: "uppercase",
-                transform: `scale(${press * (count ? 1 + 0.035 * (1 - spring) : 1)})`,
+                transform: `scale(${press})`,
                 boxShadow: "0 12px 40px rgba(0,0,0,0.3)",
               }}
             >
@@ -488,22 +480,6 @@ const Queue: React.FC<{ cut: Cut }> = ({ cut }) => {
                   {pct}%
                 </span>
               </AbsoluteFill>
-              {count ? (
-                <AbsoluteFill
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    opacity: countOn,
-                    transform: `translateY(${(1 - spring) * 14}px)`,
-                    fontSize: 58,
-                    fontWeight: 700,
-                    fontVariantNumeric: "lining-nums",
-                  }}
-                >
-                  {count}
-                </AbsoluteFill>
-              ) : null}
               <AbsoluteFill
                 style={{
                   display: "flex",
