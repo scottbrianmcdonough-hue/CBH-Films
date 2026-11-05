@@ -214,12 +214,11 @@ const Queue: React.FC<{ cut: Cut }> = ({ cut }) => {
   const tap = B(19.5);
   // the countdown (Bianca, 5 Nov: people don't queue for CBH's Black Friday, it's a countdown): three days down to
   // zero by the stop, speeding up as it goes, days : hours : minutes : seconds
-  const q = Math.min(1, frame / B(17.5));
-  const left = Math.max(0, Math.round(3 * 86400 * Math.pow(1 - q, 1.7)));
+  // only the last ten seconds, in real time (Scott, 5 Nov: the sale is already open when the reel goes up, "less
+  // countdown"): the reel is the moment it opens, not a wait still to come
+  const left = Math.max(0, Math.ceil(B(17.5) / 30 - frame / 30));
   const two = (n: number) => String(n).padStart(2, "0");
-  const clock = [Math.floor(left / 86400), Math.floor(left / 3600) % 24, Math.floor(left / 60) % 60, left % 60]
-    .map(two)
-    .join(":");
+  const clock = [0, 0, left].map(two).join(":");
   const bar = interpolate(frame, [0, turn], [0.02, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   const queueOut = 1 - progress(frame, turn - 4, 8);
   const turnIn = progress(frame, turn + 2, 12, EASE_OUT);
@@ -266,7 +265,7 @@ const Queue: React.FC<{ cut: Cut }> = ({ cut }) => {
             color: colors.cream,
           }}
         >
-          The countdown is on
+          The wait is almost over
         </div>
         <div style={{ position: "absolute", top: 450, width: "100%", textAlign: "center", ...caps(22, "rgba(245,239,227,0.55)", 0.24) }}>
           While you wait
