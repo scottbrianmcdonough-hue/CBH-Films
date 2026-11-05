@@ -62,7 +62,7 @@ const REGIONS: Region[] = [
         terms: FD20,
       },
       {
-        src: H + "holdsworth-house/tea-by-the-fire.jpg",
+        src: H + "holdsworth-house/pancakes.jpg", // no fireplaces (Scott, 5 Nov)
         pos: "50% 50%",
         place: "Halifax, West Yorkshire",
         name: "Holdsworth House Hotel",
@@ -135,8 +135,8 @@ const REGIONS: Region[] = [
         terms: "Stays to 31 March, selected dates",
       },
       {
-        src: H + "oaklands-hall/sausages-fireside.jpg",
-        pos: "42% 50%",
+        src: H + "oaklands-hall/bedroom.jpg",
+        pos: "50% 50%",
         place: "Laceby, Lincolnshire",
         name: "Oaklands Hall Hotel",
         offer: "18% off your stay",
@@ -150,8 +150,8 @@ const REGIONS: Region[] = [
     cover: { src: H + "the-alfriston/bedroom.jpg", pos: "40% 50%" },
     hotels: [
       {
-        src: H + "burleigh-court/fireside-table.jpg",
-        pos: "55% 50%",
+        src: H + "burleigh-court/plate.jpg",
+        pos: "52% 50%",
         place: "Minchinhampton, Gloucestershire",
         name: "Burleigh Court",
         offer: "25% off B&B",
@@ -166,8 +166,8 @@ const REGIONS: Region[] = [
         terms: "Room only or B&B, stays to April",
       },
       {
-        src: H + "the-alfriston/fireside-table.jpg",
-        pos: "60% 50%",
+        src: H + "the-alfriston/bedroom.jpg",
+        pos: "45% 50%",
         place: "Alfriston, East Sussex",
         name: "The Alfriston",
         offer: "30% off B&B",

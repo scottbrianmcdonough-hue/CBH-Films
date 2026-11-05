@@ -60,22 +60,23 @@ const F = "campaigns/black-friday-2026/fourteen/";
 const WAIT: Clip[] = [
   { src: F + "dalmahoy-w.mp4", at: 0, place: "Edinburgh", name: "Dalmahoy" },
   { src: F + "skipton.mp4", at: 2, place: "North Yorkshire", name: "Skipton Hotel" },
-  { src: F + "holdsworth-w.mp4", at: 4, place: "Halifax", name: "Holdsworth House" },
-  { src: F + "gomersal-park.mp4", at: 6, place: "West Yorkshire", name: "Gomersal Park" },
-  { src: F + "waterton-w.mp4", at: 8, place: "Wakefield", name: "Waterton Park" },
+  { src: F + "holdsworth-pancakes-w.mp4", at: 4, place: "Halifax", name: "Holdsworth House" },
+  { src: F + "gomersal-bedroom-w.mp4", at: 6, place: "West Yorkshire", name: "Gomersal Park" },
+  { src: F + "waterton-plate-w.mp4", at: 8, place: "Wakefield", name: "Waterton Park" },
   { src: F + "imperial-w.mp4", at: 10, place: "Llandudno", name: "The Imperial" },
   { src: F + "ruthin-w.mp4", at: 12, place: "North Wales", name: "Ruthin Castle" },
-  { src: F + "oaklands-hall.mp4", at: 14, place: "Lincolnshire", name: "Oaklands Hall" },
+  { src: F + "oaklands-bedroom-w.mp4", at: 14, place: "Lincolnshire", name: "Oaklands Hall" },
   { src: F + "forest-of-arden-full.mp4", at: 16, place: "Warwickshire", name: "Forest of Arden" },
   { src: F + "jockey-full.mp4", at: 22, place: "Newmarket", name: "Jockey Club Rooms" },
 ];
 
-// full frame after the drop: two beats each, The Alfriston's fireside last, into the campaign's bed photo
+// full frame after the drop: two beats each, The Alfriston's afternoon tea last; no fireplaces (Scott, 5 Nov: "enough
+// fireplaces, get the cosy interiors, beds, food")
 const AFTER: Clip[] = [
   { src: F + "whittlebury-full.mp4", at: 24, place: "Northamptonshire", name: "Whittlebury Park" },
-  { src: F + "burleigh-full.mp4", at: 26, place: "The Cotswolds", name: "Burleigh Court" },
+  { src: F + "burleigh-plate-full.mp4", at: 26, place: "The Cotswolds", name: "Burleigh Court" },
   { src: F + "oakley-hall.mp4", at: 28, place: "Hampshire", name: "Oakley Hall" },
-  { src: F + "alfriston-full.mp4", at: 30, place: "East Sussex", name: "The Alfriston" },
+  { src: F + "alfriston-tea-full.mp4", at: 30, place: "East Sussex", name: "The Alfriston" },
 ];
 
 type Cut = { after: Clip[]; end: number; len: number };
@@ -481,18 +482,18 @@ const H = "hotels/";
 const RECAP: { src: string; pos: string }[] = [
   { src: H + "dalmahoy/exterior.jpg", pos: "40% 50%" },
   { src: H + "skipton/afternoon-tea.jpg", pos: "35% 50%" },
-  { src: H + "holdsworth-house/tea-by-the-fire.jpg", pos: "50% 50%" },
-  { src: H + "gomersal-park/afternoon-tea.jpg", pos: "40% 50%" },
-  { src: H + "waterton-park/afternoon-tea.jpg", pos: "50% 50%" },
+  { src: H + "holdsworth-house/pancakes.jpg", pos: "50% 50%" },
+  { src: H + "gomersal-park/bedroom.jpg", pos: "45% 50%" },
+  { src: H + "waterton-park/chicken-plate.jpg", pos: "50% 50%" },
   { src: H + "the-imperial/breakfast-in-bed.jpg", pos: "50% 50%" },
   { src: H + "ruthin-castle/castle.jpg", pos: "50% 50%" },
-  { src: H + "oaklands-hall/fireplace.jpg", pos: "50% 50%" },
+  { src: H + "oaklands-hall/bedroom.jpg", pos: "50% 50%" },
   { src: H + "forest-of-arden/aerial-autumn.jpg", pos: "72% 50%" },
   { src: H + "jockey-club-rooms/hyperion-statue.jpg", pos: "62% 50%" },
   { src: H + "whittlebury-park/bedroom.jpg", pos: "50% 50%" },
-  { src: H + "burleigh-court/fireside-table.jpg", pos: "55% 50%" },
+  { src: H + "burleigh-court/plate.jpg", pos: "52% 50%" },
   { src: "campaigns/journey-new/oakley-hall-exterior-frost.jpg", pos: "70% 50%" },
-  { src: H + "the-alfriston/fireside-table.jpg", pos: "60% 50%" },
+  { src: H + "the-alfriston/afternoon-tea.jpg", pos: "50% 50%" },
 ];
 const RECAP_BEATS = 5; // calm and steady (Scott: "not so manic", "a calmer steady shutter"): ~6 frames each
 const Recap: React.FC<{ at: number }> = ({ at }) => {
