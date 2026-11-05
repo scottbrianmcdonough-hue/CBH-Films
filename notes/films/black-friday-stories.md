@@ -48,3 +48,9 @@ blackouts; the tickets note Jockey Club's blackout over Black Friday weekend (23
 to 30%". The hold stands: nothing posts until all 14 offers show on the site.
 
 Sheet updated again (Catherine, 5 Nov): Gomersal and Ruthin are 20% from BAR plus 20% off food and drink (was 25%); Skipton and Waterton stay at 25%. Carousel slides, Stories and tickets changed (`FD20`).
+
+Type matched to Lee's official artwork (Scott, 5 Nov: "match like his with the purple pink font and he doesn't use the
+letter spacing"): on the Black Friday pieces only (the queue reel and Story, the regional carousels, the hotel
+Stories), the place in tight mauve caps with no underline, the pill's caps tightened. After Black Friday everything
+goes back to the house style (gold caps place over its underline, cream Cormorant name); nothing outside these files
+changed.
