@@ -209,6 +209,10 @@ const FullLabel: React.FC<{ list: Clip[]; until: number }> = ({ list, until }) =
   );
 };
 
+// a screensaver's drift (Scott, 5 Nov: "slower on the bouncing, think like Windows screensaver"): straight lines at a
+// steady speed, turning back at the edges of a small box between the headings
+const tri = (f: number, period: number, amp: number) => amp * (4 * Math.abs(((f / period + 0.25) % 1) - 0.5) - 1);
+
 const Queue: React.FC<{ cut: Cut }> = ({ cut }) => {
   const frame = useCurrentFrame();
   const enter = B(18.5);
@@ -267,7 +271,7 @@ const Queue: React.FC<{ cut: Cut }> = ({ cut }) => {
           Now open
         </div>
         <div style={{ position: "absolute", top: 450, width: "100%", textAlign: "center", ...caps(22, "rgba(245,239,227,0.55)", 0.24) }}>
-          14 hotels in the sale
+          Across the collection
         </div>
         {/* up to 30% off under the window, then 5 4 3 2 1 on the beat into the tap */}
         <div style={{ position: "absolute", top: 1214, width: "100%", textAlign: "center", opacity: offerOut,
@@ -328,7 +332,7 @@ const Queue: React.FC<{ cut: Cut }> = ({ cut }) => {
           opacity: intro,
           // a slow drift while it waits (Scott, 5 Nov: "make the square preview drift a bit in the beginning to keep
           // the eyes moving"): a gentle float and a breathing push, gone by the burst
-          transform: `translateY(${-Math.pow(Math.abs(Math.sin((Math.PI * frame) / BEAT)), 1.6) * 16 * (1 - burst)}px) rotate(${Math.sin((Math.PI * frame) / (2 * BEAT)) * 0.8 * (1 - burst)}deg) scale(${1 + 0.02 * Math.min(1, frame / DROP) * (1 - burst)})`,
+          transform: `translate(${tri(frame, 176, 70) * (1 - burst)}px, ${tri(frame + 40, 150, 14) * (1 - burst)}px)`,
           boxShadow: burst < 1 ? "0 30px 80px rgba(0,0,0,0.6)" : undefined,
           outline: burst < 1 ? `1px solid rgba(245,239,227,${0.16 * (1 - burst)})` : undefined,
         }}

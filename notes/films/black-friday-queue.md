@@ -69,3 +69,5 @@ damped overshoot) and fading before the next; every hotel label now arrives on i
 the next; the shades behind the labels lighter, the text shadows doing more of the work.
 
 North to south (Bianca, 5 Nov), as the carousels: the window Dalmahoy, Skipton, Holdsworth, Gomersal, Waterton, The Imperial, Ruthin, Oaklands Hall; Forest of Arden's autumn aerial bursts out on the drop; Jockey Club's Hyperion statue under The wait is over; then Whittlebury's bedroom, Burleigh Court's and The Alfriston's firesides with Oakley Hall between (new window and full frame pushes in `fourteen/`). The wait is over over a deeper top shade with a shadow on the words (it was hard to read over Ruthin). The window bounces on the beat between the headings with a slight rock (Scott).
+
+The window drifts like a screensaver (Scott: "slower on the bouncing, think like Windows screensaver"): straight lines at a steady speed, turning back at the edges of a small box between the headings. The heading over it "Across the collection" (Scott: no hotel count on top).
