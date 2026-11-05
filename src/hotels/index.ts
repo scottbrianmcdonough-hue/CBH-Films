@@ -17,6 +17,7 @@ import {
   haycockManorDepth,
   haycockManorDepthStory,
 } from "./haycock-manor-depth";
+import { rutlandFourRoots, rutlandFourRootsStory } from "./rutland-four-roots";
 import { novemberOutThere, novemberOutThereStory } from "./november-out-there";
 import {
   validateDepartures,
@@ -160,6 +161,8 @@ export const RIPPLE_FILMS: RippleSpec[] = [
   ruthinCastleDepth,
   haycockManorDepth,
   haycockManorDepthStory,
+  rutlandFourRoots,
+  rutlandFourRootsStory,
 ];
 RIPPLE_FILMS.forEach(validateRipple);
 export const DEPARTURES_FILMS: DeparturesSpec[] = [departuresKeswick];
