@@ -30,3 +30,11 @@ poster bedroom, not the summer aerial (November: cosy interiors where we have th
 sat under the label, the breakfast photo is 1024px). Still summery, new photos wanted: Skipton (canal), Forest of
 Arden (the exterior). The South carries The Alfriston's offer, bookable 27 to 30 November only: post it from the
 27th, or say so in the copy. Wales has only two hotels (four slides).
+
+CBH site photos for the seven hotels with footage (Scott, 5 Nov, one hotel a message), saved where new: Whittlebury
+(`bedroom.jpg`), Holdsworth (`exterior-gateposts`, `canopied-bedroom`, `pancakes`, `robes-fizz`), Waterton (`island-house`,
+`footbridge-autumn` (a 1920 x 773 panorama, soft at 4:5), `twin-bedroom`, `chicken-plate`, `leisure-pool`), Ruthin
+(`afternoon-tea`, `hot-tub-fizz`), Oakley Hall (`exterior`, `bedroom`, `dessert`, `afternoon-tea`, `picnic` (summer)),
+Forest of Arden (new folder: `aerial-autumn`, `aerial-lake`, `bedroom`, `chef-afternoon-tea`, `pool`), Dalmahoy
+(`exterior`, `bedroom`, `salmon-plate`, `pool`, `golf-burn`); the rest matched photos already in the repo. Forest of
+Arden's regional slide is now the autumn aerial (centred on the hotel); carousels re-rendered and sent.
