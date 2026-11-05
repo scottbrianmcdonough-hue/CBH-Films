@@ -175,7 +175,7 @@ const REGIONS: Region[] = [
       {
         src: H + "oakley-hall/bedroom.jpg", // the gold bed
         pos: "60% 50%",
-        tile: { src: H + "oakley-hall/afternoon-tea.jpg", pos: "40% 50%" },
+        tile: { src: H + "oakley-hall/dessert.jpg", pos: "50% 50%" }, // not a second afternoon tea beside The Alfriston's
         place: "Oakley, Hampshire",
         name: "Oakley Hall Hotel",
         offer: "30% off your stay",
