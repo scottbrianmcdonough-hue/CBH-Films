@@ -43,3 +43,11 @@ to the window itself (`scripts/window-push.py`, near their own resolution; clips
 `public/campaigns/black-friday-2026/fourteen/`); Holdsworth, Oakley and The Imperial full frame are `still-push.py`
 pushes. The Story shows the first ten. Ticket updated (hook, post line, hotels, the hold). 21.8s, -15.0 LUFS; Story
 17.5s, -15.4 LUFS.
+
+Labels (Scott, 5 Nov: "should we add the location and the hotel name", then "suggest and apply"): the house order on
+every hotel. In the window, a small caption at its foot over a soft shade (gold caps place, underline, the name in
+cream Cormorant), fading in after each cut and out before the next, Dalmahoy's leaving as the window bursts; full
+frame, from Ruthin on, the house label low on the left (bottom 520). The burst itself stays clean under "The wait is
+over". Places kept short so they read in two beats: The Cotswolds, Newmarket, Lincolnshire, East Sussex, North
+Yorkshire, West Yorkshire, Warwickshire, Northamptonshire, Edinburgh, North Wales, Halifax, West Yorkshire, Wakefield,
+Hampshire, Llandudno.

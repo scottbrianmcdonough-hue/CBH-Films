@@ -38,7 +38,14 @@ const GAIN = 0.56; // ~-15.2 LUFS over the reel
 
 // `frame`: where the window looks in a clip, the source point at its top left and a scale (default: the clip's
 // middle at full size)
-type Clip = { src: string; at: number; from?: number; frame?: { x: number; y: number; s: number } };
+type Clip = {
+  src: string;
+  at: number;
+  from?: number;
+  frame?: { x: number; y: number; s: number };
+  place?: string; // the house label: the place in gold caps, the name in cream Cormorant
+  name?: string;
+};
 
 // Only the 14 hotels in the sale (Bianca, 5 Nov: "we're only spotlighting the 14 for the rest of Nov"), each once.
 // The window shows only the middle of a clip, so the stills are slow pushes fitted to the window itself
@@ -47,24 +54,24 @@ const F = "campaigns/black-friday-2026/fourteen/";
 // the "While you wait" window: two beats a hotel, the last one bursting out on the drop, then a cut on beat 22 under
 // "The wait is over" (still in the window's list, so the line stays on top)
 const WAIT: Clip[] = [
-  { src: F + "burleigh-court.mp4", at: 0 },
-  { src: F + "jockey-club-rooms.mp4", at: 2 },
-  { src: F + "oaklands-hall.mp4", at: 4 },
-  { src: F + "the-alfriston.mp4", at: 6 },
-  { src: F + "skipton.mp4", at: 8 },
-  { src: F + "gomersal-park.mp4", at: 10 },
-  { src: F + "forest-of-arden.mp4", at: 12 },
-  { src: F + "whittlebury-park.mp4", at: 14 },
-  { src: "hotels/dalmahoy/syrup-pour.mp4", at: 16, from: 4 },
-  { src: "hotels/ruthin-castle/clips/castle.mp4", at: 22 },
+  { src: F + "burleigh-court.mp4", at: 0, place: "The Cotswolds", name: "Burleigh Court" },
+  { src: F + "jockey-club-rooms.mp4", at: 2, place: "Newmarket", name: "Jockey Club Rooms" },
+  { src: F + "oaklands-hall.mp4", at: 4, place: "Lincolnshire", name: "Oaklands Hall" },
+  { src: F + "the-alfriston.mp4", at: 6, place: "East Sussex", name: "The Alfriston" },
+  { src: F + "skipton.mp4", at: 8, place: "North Yorkshire", name: "Skipton Hotel" },
+  { src: F + "gomersal-park.mp4", at: 10, place: "West Yorkshire", name: "Gomersal Park" },
+  { src: F + "forest-of-arden.mp4", at: 12, place: "Warwickshire", name: "Forest of Arden" },
+  { src: F + "whittlebury-park.mp4", at: 14, place: "Northamptonshire", name: "Whittlebury Park" },
+  { src: "hotels/dalmahoy/syrup-pour.mp4", at: 16, from: 4, place: "Edinburgh", name: "Dalmahoy" },
+  { src: "hotels/ruthin-castle/clips/castle.mp4", at: 22, place: "North Wales", name: "Ruthin Castle" },
 ];
 
 // full frame after the drop: two beats each, breakfast in bed last, into the campaign's bed photo
 const AFTER: Clip[] = [
-  { src: F + "holdsworth-house.mp4", at: 24 },
-  { src: "hotels/waterton-park/clips/afternoon-tea.mp4", at: 26, from: 2 },
-  { src: F + "oakley-hall.mp4", at: 28 }, // the winter sun exterior (the dog clip read as summer)
-  { src: F + "the-imperial.mp4", at: 30 },
+  { src: F + "holdsworth-house.mp4", at: 24, place: "Halifax, West Yorkshire", name: "Holdsworth House" },
+  { src: "hotels/waterton-park/clips/afternoon-tea.mp4", at: 26, from: 2, place: "Wakefield", name: "Waterton Park" },
+  { src: F + "oakley-hall.mp4", at: 28, place: "Hampshire", name: "Oakley Hall" }, // the winter sun exterior (the dog clip read as summer)
+  { src: F + "the-imperial.mp4", at: 30, place: "Llandudno", name: "The Imperial" },
 ];
 
 type Cut = { after: Clip[]; end: number; len: number };
@@ -143,6 +150,66 @@ const Rise: React.FC<{ at: number; children: React.ReactNode; style?: React.CSSP
     <div style={{ overflow: "hidden", ...style }}>
       <div style={{ transform: `translateY(${(1 - p) * 105 * dist}%)`, opacity: p }}>{children}</div>
     </div>
+  );
+};
+
+// the hotel's name over its shot, in the house order (Scott, 5 Nov: "should we add the location and the hotel name"):
+// in the window a small caption at its foot, as part of the queue page; full frame (from Ruthin on, the drop itself
+// left clean) the house label low on the left. Each fades in just after its cut and out just before the next.
+const labelFor = (list: Clip[], frame: number, until: number, minAt: number, maxAt: number) => {
+  for (let i = list.length - 1; i >= 0; i--) {
+    const c = list[i];
+    if (frame < B(c.at)) continue;
+    if (c.at < minAt || c.at >= maxAt || !c.name) return null;
+    const next = i + 1 < list.length ? B(list[i + 1].at) : until;
+    const on = progress(frame, B(c.at) + 3, 6) * (1 - progress(frame, next - 5, 5));
+    return on > 0 ? { c, on } : null;
+  }
+  return null;
+};
+
+const HouseLabel: React.FC<{ c: Clip; on: number; small?: boolean }> = ({ c, on, small }) => {
+  const k = small ? 0.72 : 1;
+  return (
+    <div style={{ opacity: on, transform: `translateY(${(1 - on) * 10 * k}px)`, whiteSpace: "nowrap" }}>
+      <div style={{ display: "inline-block" }}>
+        <div style={{ ...caps(28 * k, colors.gold, 0.24), textShadow: "0 2px 16px rgba(9,9,10,0.7)" }}>{c.place}</div>
+        <div style={{ height: small ? 1.5 : 2, marginTop: 12 * k, background: colors.gold }} />
+      </div>
+      <div style={{ fontFamily: serif, fontSize: 66 * k, lineHeight: 1.1, marginTop: 12 * k, color: colors.cream,
+        textShadow: "0 2px 22px rgba(9,9,10,0.6)" }}>{c.name}</div>
+    </div>
+  );
+};
+
+const WindowCaption: React.FC<{ burst: number }> = ({ burst }) => {
+  const frame = useCurrentFrame();
+  const l = labelFor(WAIT, frame, B(22), 0, 20);
+  if (!l) return null;
+  const on = l.on * (1 - progress(frame, DROP - 2, 5));
+  return (
+    <>
+      <div style={{ position: "absolute", left: 0, right: 0, bottom: 0, height: 230, opacity: on * (1 - burst),
+        background: "linear-gradient(to bottom, rgba(9,9,10,0), rgba(9,9,10,0.72))" }} />
+      <div style={{ position: "absolute", left: 32, bottom: 28 }}>
+        <HouseLabel c={l.c} on={on} small />
+      </div>
+    </>
+  );
+};
+
+const FullLabel: React.FC<{ list: Clip[]; until: number }> = ({ list, until }) => {
+  const frame = useCurrentFrame();
+  const l = labelFor(list, frame, until, 22, 1000);
+  if (!l) return null;
+  return (
+    <>
+      <AbsoluteFill style={{ opacity: l.on, background:
+        "linear-gradient(to bottom, rgba(9,9,10,0) 55%, rgba(9,9,10,0.55) 70%, rgba(9,9,10,0.6) 78%, rgba(9,9,10,0) 88%)" }} />
+      <div style={{ position: "absolute", left: 72, bottom: 520 }}>
+        <HouseLabel c={l.c} on={l.on} />
+      </div>
+    </>
   );
 };
 
@@ -319,6 +386,7 @@ const Queue: React.FC<{ cut: Cut }> = ({ cut }) => {
         <div style={{ position: "absolute", left: -box.left, top: -box.top, width: 1080, height: 1920 }}>
           <Clips list={WAIT} until={B(cut.after.length ? cut.after[0].at : cut.end)} />
         </div>
+        <WindowCaption burst={burst} />
       </div>
       {/* The wait / is over, on the drop */}
       {frame >= DROP ? (
@@ -452,6 +520,8 @@ export const QueueReel: React.FC<{ story?: boolean }> = ({ story = false }) => {
     <AbsoluteFill style={{ backgroundColor: colors.black }}>
       <Queue cut={cut} />
       <Clips list={cut.after} until={end} />
+      {/* the full frame labels: Ruthin (still in the window's list) and the shots after it */}
+      <FullLabel list={[...WAIT, ...cut.after]} until={end} />
       {frame >= end && !OFFICIAL_END ? <EndCard at={end} len={len} /> : null}
       {/* no white CB (Scott, 3 Nov: "get rid of the watermark CB"): the end card has the lockup */}
       {frame < end || !OFFICIAL_END ? <FilmFinish /> : null}
