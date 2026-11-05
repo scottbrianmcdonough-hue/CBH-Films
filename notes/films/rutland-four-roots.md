@@ -39,3 +39,5 @@ The stay back to one shot (Scott: "just do the one night or two over the same sh
 
 Polish pass (5 Nov): the light wall above the Four Roots sign darkened towards the top (a `geq` ramp in cut.json), so ROOT TWO and its line read.
 - Booking link (Scott, 5 Nov): https://classicbritishhotels.com/hotels/rutland-hall-hotel-spa/#offers, on the post, bio and the Story sticker.
+
+Copy lifted (Scott, 5 Nov: "elevate the copy", "kinda flat", "four opportunities for good copy"), each root named in the eyebrow with a line from its photo: ROOT ONE · BATHING RITUAL / Let the water take the weight; ROOT TWO · TREATMENT / Choose it, then switch off; ROOT THREE · MEDITATION / Lie back under a sky of stars; ROOT FOUR · LAKESIDE DINING / Supper as the lake turns gold; and a deeper shade behind the lines (RippleSpec `deepScrim`, Scott: "hard to read").
