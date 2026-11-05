@@ -75,3 +75,5 @@ The window drifts like a screensaver (Scott: "slower on the bouncing, think like
 No drift (Scott: "lose the drifting, doesnt add anything"); the offer under the window counts up, Up to 0% off to Up to 30% off over the first eleven beats, then the 5 4 3 2 1 (Scott: "a counter up to 30 then 5 4 3 2 1").
 
 The 30% counts up slower (Scott: "I don't see the counting 30 by the time I'm done reading"): from beat 4, evenly, landing just before the 5 4 3 2 1.
+
+A recap before the end card (Scott: "cycle through them all again rapidly before the Black Friday Sale, like a recap shutter"): the 14, north to south, a hard cut each, quickening from five frames to two over three beats, each kicking in at 1.06x; the end card three beats later (reel 35, Story 27). Black Friday Sale in Cormorant 600 on the end card, as on the carousel covers (Scott: "bold the font so it looks premium like Lee's").

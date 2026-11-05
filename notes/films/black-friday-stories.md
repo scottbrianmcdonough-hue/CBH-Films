@@ -62,3 +62,5 @@ Collage cover (Scott, 5 Nov: "not sure about the black title card ... do a colla
 Covers made premium (Scott: "elevate the composition, make it premium"): an editorial layout, a row of the hotels above and below a black band holding the words (no type over a photo), even 8px gutters, the region on one line, the URL small and tracked.
 
 Covers in the official card's own order (Scott: "the covers can match Lee's cards better"): the region in tight pink caps where his card has THE WAIT IS OVER, Black Friday Sale in cream, his pink Save up to pill with the region's best offer from the sheet (30%, 30%, 18%, 30%; `BEST`).
+
+The covers' Black Friday Sale in Cormorant 600, tightened a touch (Scott: "bold the font so it looks premium like Lee's").

@@ -316,8 +316,8 @@ export const BlackFridayCarousel: React.FC<{ region: string }> = ({
             textTransform: "uppercase" }}>
             {r.title.replace("\n", " ")}
           </div>
-          <div style={{ fontFamily: serif, fontSize: 118, lineHeight: 1, color: colors.cream, marginTop: 14,
-            whiteSpace: "nowrap" }}>
+          <div style={{ fontFamily: serif, fontWeight: 600, fontSize: 118, lineHeight: 1, color: colors.cream, marginTop: 14,
+            whiteSpace: "nowrap", letterSpacing: "-0.01em" }}>
             Black Friday Sale
           </div>
           <div style={{ display: "inline-flex", alignItems: "center", gap: 18, height: 78, padding: "0 36px",

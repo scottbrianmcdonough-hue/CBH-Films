@@ -386,7 +386,7 @@ const EndCard: React.FC<{ at: number; len: number }> = ({ at, len }) => {
           <Rise
             key={l}
             at={at + 4 + i * 5}
-            style={{ fontFamily: serif, fontWeight: 400, fontSize: 170, lineHeight: 1.0, color: colors.cream }}
+            style={{ fontFamily: serif, fontWeight: 600, fontSize: 170, lineHeight: 1.0, color: colors.cream, letterSpacing: "-0.01em" }}
           >
             {l}
           </Rise>
@@ -464,17 +464,62 @@ const OfficialEnd: React.FC<{ at: number; len: number }> = ({ at, len }) => {
   );
 };
 
+// a recap before the end card (Scott, 5 Nov: "cycle through them all again rapidly before the Black Friday Sale,
+// like a recap shutter"): the 14, north to south, a hard cut each, quickening from five frames to two, each kicking in
+// at a touch over full size like a shutter; then the end card
+const H = "hotels/";
+const RECAP: { src: string; pos: string }[] = [
+  { src: H + "dalmahoy/exterior.jpg", pos: "40% 50%" },
+  { src: H + "skipton/afternoon-tea.jpg", pos: "35% 50%" },
+  { src: H + "holdsworth-house/tea-by-the-fire.jpg", pos: "50% 50%" },
+  { src: H + "gomersal-park/afternoon-tea.jpg", pos: "40% 50%" },
+  { src: H + "waterton-park/afternoon-tea.jpg", pos: "50% 50%" },
+  { src: H + "the-imperial/breakfast-in-bed.jpg", pos: "50% 50%" },
+  { src: H + "ruthin-castle/castle.jpg", pos: "50% 50%" },
+  { src: H + "oaklands-hall/fireplace.jpg", pos: "50% 50%" },
+  { src: H + "forest-of-arden/aerial-autumn.jpg", pos: "72% 50%" },
+  { src: H + "jockey-club-rooms/hyperion-statue.jpg", pos: "62% 50%" },
+  { src: H + "whittlebury-park/bedroom.jpg", pos: "50% 50%" },
+  { src: H + "burleigh-court/fireside-table.jpg", pos: "55% 50%" },
+  { src: "campaigns/journey-new/oakley-hall-exterior-frost.jpg", pos: "70% 50%" },
+  { src: H + "the-alfriston/fireside-table.jpg", pos: "60% 50%" },
+];
+const RECAP_BEATS = 3;
+const Recap: React.FC<{ at: number }> = ({ at }) => {
+  const frame = useCurrentFrame();
+  const total = B(RECAP_BEATS);
+  const w = RECAP.map((_, k) => 5 - (3 * k) / (RECAP.length - 1)); // 5 frames down to 2
+  const scale = total / w.reduce((a, b) => a + b, 0);
+  let t = at;
+  for (let k = 0; k < RECAP.length; k++) {
+    const d = w[k] * scale;
+    if (frame < t + d || k === RECAP.length - 1) {
+      const kick = 1.06 - 0.06 * Math.min(1, (frame - t) / Math.max(1, d));
+      return (
+        <AbsoluteFill style={{ backgroundColor: colors.black }}>
+          <Img src={staticFile(RECAP[k].src)} style={{ width: "100%", height: "100%", objectFit: "cover",
+            objectPosition: RECAP[k].pos, transform: `scale(${kick})` }} />
+        </AbsoluteFill>
+      );
+    }
+    t += d;
+  }
+  return null;
+};
+
 export const QueueReel: React.FC<{ story?: boolean }> = ({ story = false }) => {
   const frame = useCurrentFrame();
   const cut = CUTS[story ? "story" : "reel"];
-  const end = B(cut.end);
+  const recap = B(cut.end);
+  const end = B(cut.end + RECAP_BEATS);
   const len = B(cut.len);
   return (
     <AbsoluteFill style={{ backgroundColor: colors.black }}>
       <Queue cut={cut} />
-      <Clips list={cut.after} until={end} />
+      <Clips list={cut.after} until={recap} />
       {/* the full frame labels: Ruthin (still in the window's list) and the shots after it */}
-      <FullLabel list={[...WAIT, ...cut.after]} until={end} />
+      <FullLabel list={[...WAIT, ...cut.after]} until={recap} />
+      {frame >= recap && frame < end ? <Recap at={recap} /> : null}
       {frame >= end && !OFFICIAL_END ? <EndCard at={end} len={len} /> : null}
       {/* no white CB (Scott, 3 Nov: "get rid of the watermark CB"): the end card has the lockup */}
       {frame < end || !OFFICIAL_END ? <FilmFinish /> : null}
