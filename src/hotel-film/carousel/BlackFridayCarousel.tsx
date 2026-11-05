@@ -30,10 +30,10 @@ type Region = {
 
 const FD = "Plus 25% off food and drink, stays to 31 March";
 const FD20 = "Plus 20% off food and drink, stays to 31 March"; // Gomersal and Ruthin (the sheet, 5 Nov update)
-export const BF_REGIONS: Region[] = [
+const REGIONS: Region[] = [
   {
     id: "yorkshire-scotland",
-    title: "Yorkshire\n& Scotland",
+    title: "Scotland\n& Yorkshire",
     cover: { src: H + "skipton/canal-reflection.jpg", pos: "35% 50%" },
     hotels: [
       {
@@ -177,6 +177,20 @@ export const BF_REGIONS: Region[] = [
   },
 ];
 
+// North to south (Bianca, 5 Nov: "makes more sense to do it from North to South order, so start with Scotland"):
+// the regions in posting order, and the hotels in each from the most northerly down
+const NORTH_TO_SOUTH: Record<string, string[]> = {
+  "yorkshire-scotland": ["Edinburgh", "Skipton", "Halifax", "Gomersal", "Wakefield"],
+  wales: ["Llandudno", "Ruthin"],
+  "midlands-east": ["Laceby", "Meriden", "Newmarket", "Whittlebury"],
+  south: ["Minchinhampton", "Oakley", "Alfriston"],
+};
+const rank = (id: string, h: Hotel) => NORTH_TO_SOUTH[id].findIndex((p) => h.place.startsWith(p));
+export const BF_REGIONS: Region[] = ["yorkshire-scotland", "wales", "midlands-east", "south"].map((id) => {
+  const r = REGIONS.find((x) => x.id === id)!;
+  return { ...r, hotels: [...r.hotels].sort((a, b) => rank(id, a) - rank(id, b)) };
+});
+
 const Shade: React.FC = () => (
   <AbsoluteFill
     style={{
@@ -237,9 +251,9 @@ const Photo: React.FC<{ src: string; pos: string }> = ({ src, pos }) => (
 // posts"): the launch post has the curtains, so the first carousel opens on the bed
 const OFFICIAL: Record<string, "bed" | "curtains"> = {
   "yorkshire-scotland": "bed",
-  "midlands-east": "curtains",
-  south: "bed",
   wales: "curtains",
+  "midlands-east": "bed",
+  south: "curtains",
 };
 
 export const bfSlides = (id: string) =>
@@ -250,9 +264,10 @@ export const BlackFridayCarousel: React.FC<{ region: string }> = ({
 }) => {
   const r = BF_REGIONS.find((x) => x.id === region)!;
   const i = useCurrentFrame();
-  // the cover is the official campaign artwork as supplied (Scott: "use the official artwork assets
-  // where possible"), the bed at 4:5, untouched: the launch post has the curtains
-  if (i === 0) {
+  // the region graphic leads (Bianca, 5 Nov: "on the grid people will see the same pic again as the launch, so why
+  // don't you lead with the last graphic instead"); the official artwork as supplied closes the set
+  const close = i === 0;
+  if (i === r.hotels.length + 1) {
     return (
       <AbsoluteFill style={{ backgroundColor: colors.black }}>
         <Img
@@ -262,7 +277,7 @@ export const BlackFridayCarousel: React.FC<{ region: string }> = ({
       </AbsoluteFill>
     );
   }
-  if (i === r.hotels.length + 1) {
+  if (close) {
     return (
       <AbsoluteFill
         style={{
@@ -310,7 +325,7 @@ export const BlackFridayCarousel: React.FC<{ region: string }> = ({
               marginTop: 40,
             }}
           >
-            classicbritishhotels.com/black-friday-countdown
+            classicbritishhotels.com/black-friday
           </div>
         </div>
         <Mark />

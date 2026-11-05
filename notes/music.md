@@ -20,7 +20,7 @@ Tracks used and where, so a new film doesn't repeat one by accident. [All films]
 | Cooking Groove | [foodie-breaks-match-cut](films/foodie-breaks-match-cut.md) (went out on the Foodie Breaks Story); tried on [the-mount-collage](films/the-mount-collage.md) |
 | Cozy Soulful | [cosy-escapes-flipbook](films/cosy-escapes-flipbook.md) |
 | Deep Classy House | [november-out-there](films/november-out-there.md) (from 142.6s), [cbh-screen-time](films/cbh-screen-time.md) (its opening) |
-| Deep House Sunset (Sunset House Grooves, Pixabay 538759) | [brand-stings](films/brand-stings.md) (`cbh-circle-c`), [depth-demo](films/depth-demo.md); ruled out for `cbh-screens` |
+| Deep House Sunset (Sunset House Grooves, Pixabay 538759) | [brand-stings](films/brand-stings.md) (`cbh-circle-c`), [depth-demo](films/depth-demo.md), [rutland-four-roots](films/rutland-four-roots.md) (its opening and last phrase); ruled out for `cbh-screens` |
 | Funk Jazz Shuffle Groove by Catch22Music (Pixabay 358859) | [the-mount-collage](films/the-mount-collage.md) (the one to post) |
 | Funk Music by SigmaMusicArt | [october-best-loved](films/october-best-loved.md) |
 | Funkee Monkeee (Mixkit 1140) | [stick-flip](films/stick-flip.md) |

@@ -17,7 +17,9 @@ import { colors, EASE_IN_OUT, EASE_OUT, progress, sans, serif } from "../theme";
 // SAVE UP TO 30%, in its own mauve (#A15272, sampled from the pill) over two photos. The
 // idea is the online sale's waiting room, in the CBH black: "You're in the queue", the place
 // in line counting down from 2,481, the estimated wait shrinking from "about a year" to "any
-// minute now", and a "While you wait" window cycling through the hotels. The music is muffled
+// minute now", and a "While you wait" window cycling through the hotels. Now a countdown (Bianca, 5 Nov:
+// people don't queue for CBH's Black Friday): "The countdown is on", the sale opening in three days down to zero,
+// "The sale is open" and a Book now button in the stop. The music is muffled
 // like hold music through the track's build (the trimmed file is band-limited up to the drop,
 // queue-music.mp3); in the track's one-beat stop "It's your turn" and an Enter button, the
 // tap, and on the drop the window bursts to full frame as the band comes in: "The wait / is
@@ -82,14 +84,6 @@ const CUTS: Record<"reel" | "story", Cut> = {
 export const QUEUE_FRAMES = B(CUTS.reel.len);
 export const QUEUE_STORY_FRAMES = B(CUTS.story.len);
 
-// the estimated wait, shortening as the queue moves
-const WAITS: [number, string][] = [
-  [0, "about a year"],
-  [5, "a few months"],
-  [9, "a couple of weeks"],
-  [12, "a few days"],
-  [15, "any minute now"],
-];
 
 const caps = (size: number, color: string, track = 0.18): React.CSSProperties => ({
   fontFamily: sans,
@@ -218,11 +212,14 @@ const Queue: React.FC<{ cut: Cut }> = ({ cut }) => {
   const turn = B(18); // the track's stop
   const enter = B(18.5);
   const tap = B(19.5);
-  // the place in line: 2,481 down to 1 by the stop, the queue speeding up as it goes
+  // the countdown (Bianca, 5 Nov: people don't queue for CBH's Black Friday, it's a countdown): three days down to
+  // zero by the stop, speeding up as it goes, days : hours : minutes : seconds
   const q = Math.min(1, frame / B(17.5));
-  const place = Math.max(1, Math.round(1 + 2480 * Math.pow(1 - q, 1.7)));
-  const waitIdx = WAITS.filter(([k]) => frame >= B(k)).length - 1;
-  const waitIn = progress(frame, B(WAITS[waitIdx][0]), 8);
+  const left = Math.max(0, Math.round(3 * 86400 * Math.pow(1 - q, 1.7)));
+  const two = (n: number) => String(n).padStart(2, "0");
+  const clock = [Math.floor(left / 86400), Math.floor(left / 3600) % 24, Math.floor(left / 60) % 60, left % 60]
+    .map(two)
+    .join(":");
   const bar = interpolate(frame, [0, turn], [0.02, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   const queueOut = 1 - progress(frame, turn - 4, 8);
   const turnIn = progress(frame, turn + 2, 12, EASE_OUT);
@@ -269,25 +266,25 @@ const Queue: React.FC<{ cut: Cut }> = ({ cut }) => {
             color: colors.cream,
           }}
         >
-          You&apos;re in the queue
+          The countdown is on
         </div>
         <div style={{ position: "absolute", top: 450, width: "100%", textAlign: "center", ...caps(22, "rgba(245,239,227,0.55)", 0.24) }}>
           While you wait
         </div>
-        {/* the place in line, then your turn */}
+        {/* the countdown, then the sale is open */}
         <div style={{ position: "absolute", top: 1196, width: "100%", textAlign: "center", opacity: queueOut }}>
-          <div style={caps(22, "rgba(245,239,227,0.55)", 0.24)}>Your place in line</div>
+          <div style={caps(22, "rgba(245,239,227,0.55)", 0.24)}>Sale opens in</div>
           <div
             style={{
               fontFamily: serif,
               fontWeight: 500,
-              fontSize: 112,
+              fontSize: 104,
               lineHeight: 1.05,
               color: colors.cream,
               fontVariantNumeric: "lining-nums tabular-nums",
             }}
           >
-            {place.toLocaleString("en-GB")}
+            {clock}
           </div>
         </div>
         <div
@@ -304,7 +301,7 @@ const Queue: React.FC<{ cut: Cut }> = ({ cut }) => {
             transform: `translateY(${(1 - turnIn) * 30}px)`,
           }}
         >
-          It&apos;s your turn
+          The sale is open
         </div>
         {/* the progress bar, filling to the stop */}
         <div
@@ -321,27 +318,13 @@ const Queue: React.FC<{ cut: Cut }> = ({ cut }) => {
         >
           <div style={{ width: `${bar * 100}%`, height: "100%", borderRadius: 3, backgroundColor: MAUVE }} />
         </div>
-        <div
-          style={{
-            position: "absolute",
-            top: 1400,
-            width: "100%",
-            textAlign: "center",
-            fontFamily: sans,
-            fontSize: 30,
-            color: "rgba(245,239,227,0.8)",
-            opacity: queueOut * waitIn,
-          }}
-        >
-          Estimated wait: {WAITS[waitIdx][1]}
-        </div>
         {/* Enter, and the tap */}
         <div
           style={{
             position: "absolute",
-            left: 540 - 150,
+            left: 540 - 170,
             top: 1366,
-            width: 300,
+            width: 340,
             height: 88,
             borderRadius: 44,
             backgroundColor: MAUVE,
@@ -350,10 +333,10 @@ const Queue: React.FC<{ cut: Cut }> = ({ cut }) => {
             justifyContent: "center",
             opacity: button,
             transform: `translateY(${(1 - button) * 24}px) scale(${press})`,
-            ...caps(32, colors.cream, 0.2),
+            ...caps(32, colors.cream, 0.04),
           }}
         >
-          Enter
+          Book now
         </div>
         {frame >= tap ? (
           <div

@@ -24,8 +24,8 @@ export const rutlandFourRoots: RippleSpec = {
     { eyebrow: "The Four Roots Journey", text: "Meditation", from: 237, to: 290 },
     { eyebrow: "The Four Roots Journey", text: "Lakeside dining", from: 296, to: 348 },
   ],
-  endCard: { at: 557, line: "Slow down\nby the water" },
-  music: { src: "campaigns/rutland-four-roots/music-reel.m4a", startAt: 0, gain: 1, seconds: 23.0, fadeOut: 30 },
+  endCard: { at: 557, line: "Take root\nby the lake" },
+  music: { src: "campaigns/rutland-four-roots/music-reel.m4a", startAt: 0, gain: 0.84, seconds: 23.0, fadeOut: 30 },
 };
 
 // The Story: the label for a bar, the four roots, the candlelit bath, the end card (the stay shots out), 16.0s.
@@ -36,6 +36,6 @@ export const rutlandFourRootsStory: RippleSpec = {
   frames: 480,
   label: { ...rutlandFourRoots.label, from: 4, to: 54 },
   lines: rutlandFourRoots.lines.map((l) => ({ ...l, from: l.from - 58, to: l.to - 58 })),
-  endCard: { at: 381, line: "Slow down\nby the water" },
+  endCard: { at: 381, line: "Take root\nby the lake" },
   music: { ...rutlandFourRoots.music, src: "campaigns/rutland-four-roots/music-story.m4a", seconds: 17.1 },
 };

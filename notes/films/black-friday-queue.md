@@ -56,3 +56,5 @@ Labels in Lee's tight mauve caps, no underline (5 Nov, to match the official art
 window captions over a darker shade, caps 25px bold, so the mauve reads over bright shots. The full frame labels sit on
 a soft corner vignette, not a band across the frame (Scott: "does the black bar have to be across the whole width"):
 darkest behind the words, fading out by two thirds across.
+
+A countdown, not a queue (Bianca, 5 Nov: "people dont queue here for BF"): "The countdown is on", SALE OPENS IN over a clock running three days down to 00:00:00:00 by the stop, "The sale is open" and a Book now button, then the burst and The wait is over as before; the post opens "The countdown is over"; every link now https://classicbritishhotels.com/black-friday/ (Bianca: live next Mon with the offers). Files `black-friday-countdown.mp4` and `-story`.

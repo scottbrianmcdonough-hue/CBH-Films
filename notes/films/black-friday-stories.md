@@ -54,3 +54,5 @@ letter spacing"): on the Black Friday pieces only (the queue reel and Story, the
 Stories), the place in tight mauve caps with no underline, the pill's caps tightened. After Black Friday everything
 goes back to the house style (gold caps place over its underline, cream Cormorant name); nothing outside these files
 changed.
+
+Bianca's notes on the carousels (5 Nov): north to south, the regions posted Scotland & Yorkshire (Wed 11), Wales (Fri 13), the Midlands & East (Tue 17), the South (Fri 27) and the hotels in each from the most northerly down (`NORTH_TO_SOUTH`); each opens on its region graphic (the grid would show the launch photo again), the official artwork last; the link classicbritishhotels.com/black-friday on the slide and in the tickets.
