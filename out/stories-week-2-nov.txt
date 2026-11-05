@@ -18,7 +18,7 @@ Story: bonfire-night-story.mp4 (17.4s), 9:00 AM, ending on "How are you spending
 Story: firework-cb-1.mp4 (12.1s), 7:00 PM, brand moment, no sticker. Ticket: firework-cb-story-ticket.txt
 
 Fri 6 Nov: Nailcote Hall M&E video on LinkedIn, 9:00 AM. Ticket: nailcote-hall-meetings-ticket.txt
-Story: rutland-four-roots-story.mp4 (16.0s), 10:00 AM. Sticker: link "Book the Four Roots" to Rutland Hall's offer page. Ticket: rutland-four-roots-ticket.txt
+Story: rutland-four-roots-story.mp4 (16.0s), 10:00 AM. Sticker: link "Book the Four Roots" to https://classicbritishhotels.com/hotels/rutland-hall-hotel-spa/#offers. Ticket: rutland-four-roots-ticket.txt
 Post: rutland-four-roots reel, Instagram 12:00 PM; Facebook 7:00 PM. Ticket: rutland-four-roots-ticket.txt
 Story: none at 7 PM (Scott, 5 Nov: a simple cut, not a brand moment; the Rutland Story is the day's Story). cbh-clear-skies-art held for another day.
 
