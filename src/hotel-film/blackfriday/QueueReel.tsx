@@ -172,10 +172,8 @@ const HouseLabel: React.FC<{ c: Clip; on: number; small?: boolean }> = ({ c, on,
   const k = small ? 0.72 : 1;
   return (
     <div style={{ opacity: on, transform: `translateY(${(1 - on) * 10 * k}px)`, whiteSpace: "nowrap" }}>
-      <div style={{ display: "inline-block" }}>
-        <div style={{ ...caps(28 * k, colors.gold, 0.24), textShadow: "0 2px 16px rgba(9,9,10,0.7)" }}>{c.place}</div>
-        <div style={{ height: small ? 1.5 : 2, marginTop: 12 * k, background: colors.gold }} />
-      </div>
+      {/* the place as on Lee's artwork and the carousels (Scott, 5 Nov): tight mauve caps, no underline */}
+      <div style={{ ...caps(small ? 25 : 32, MAUVE, 0.02), fontWeight: 700, textShadow: "0 1px 10px rgba(9,9,10,0.9)" }}>{c.place}</div>
       <div style={{ fontFamily: serif, fontSize: 66 * k, lineHeight: 1.1, marginTop: 12 * k, color: colors.cream,
         textShadow: "0 2px 22px rgba(9,9,10,0.6)" }}>{c.name}</div>
     </div>
@@ -189,8 +187,8 @@ const WindowCaption: React.FC<{ burst: number }> = ({ burst }) => {
   const on = l.on * (1 - progress(frame, DROP - 2, 5));
   return (
     <>
-      <div style={{ position: "absolute", left: 0, right: 0, bottom: 0, height: 230, opacity: on * (1 - burst),
-        background: "linear-gradient(to bottom, rgba(9,9,10,0), rgba(9,9,10,0.72))" }} />
+      <div style={{ position: "absolute", left: 0, right: 0, bottom: 0, height: 250, opacity: on * (1 - burst),
+        background: "linear-gradient(to bottom, rgba(9,9,10,0), rgba(9,9,10,0.82) 45%, rgba(9,9,10,0.92))" }} />
       <div style={{ position: "absolute", left: 32, bottom: 28 }}>
         <HouseLabel c={l.c} on={on} small />
       </div>
@@ -254,7 +252,7 @@ const Queue: React.FC<{ cut: Cut }> = ({ cut }) => {
         }}
       />
       <AbsoluteFill style={{ opacity: page * intro }}>
-        <div style={{ position: "absolute", top: 250, width: "100%", textAlign: "center", ...caps(30, MAUVE, 0.22) }}>
+        <div style={{ position: "absolute", top: 250, width: "100%", textAlign: "center", ...caps(32, MAUVE, 0.02) }}>
           Black Friday Sale
         </div>
         <div
