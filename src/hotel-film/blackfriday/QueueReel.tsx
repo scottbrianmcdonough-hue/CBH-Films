@@ -175,7 +175,7 @@ const HouseLabel: React.FC<{ c: Clip; on: number; small?: boolean }> = ({ c, on,
       {/* the place as on Lee's artwork and the carousels (Scott, 5 Nov): tight mauve caps, no underline */}
       <div style={{ ...caps(small ? 25 : 32, MAUVE, 0.02), fontWeight: 700, textShadow: "0 1px 10px rgba(9,9,10,0.9)" }}>{c.place}</div>
       <div style={{ fontFamily: serif, fontSize: 66 * k, lineHeight: 1.1, marginTop: 12 * k, color: colors.cream,
-        textShadow: "0 2px 22px rgba(9,9,10,0.6)" }}>{c.name}</div>
+        textShadow: "0 2px 22px rgba(9,9,10,0.85)" }}>{c.name}</div>
     </div>
   );
 };
@@ -202,8 +202,10 @@ const FullLabel: React.FC<{ list: Clip[]; until: number }> = ({ list, until }) =
   if (!l) return null;
   return (
     <>
+      {/* a soft corner vignette behind the label, not a band across the frame (Scott, 5 Nov: "does the black bar
+          have to be across the whole width"): darkest behind the words, gone by two thirds across, no edge */}
       <AbsoluteFill style={{ opacity: l.on, background:
-        "linear-gradient(to bottom, rgba(9,9,10,0) 55%, rgba(9,9,10,0.55) 70%, rgba(9,9,10,0.6) 78%, rgba(9,9,10,0) 88%)" }} />
+        "radial-gradient(ellipse 900px 440px at 300px 1345px, rgba(9,9,10,0.9) 0%, rgba(9,9,10,0.78) 40%, rgba(9,9,10,0.38) 70%, rgba(9,9,10,0) 100%)" }} />
       <div style={{ position: "absolute", left: 72, bottom: 520 }}>
         <HouseLabel c={l.c} on={l.on} />
       </div>

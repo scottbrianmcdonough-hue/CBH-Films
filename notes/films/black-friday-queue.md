@@ -51,3 +51,8 @@ frame, from Ruthin on, the house label low on the left (bottom 520). The burst i
 over". Places kept short so they read in two beats: The Cotswolds, Newmarket, Lincolnshire, East Sussex, North
 Yorkshire, West Yorkshire, Warwickshire, Northamptonshire, Edinburgh, North Wales, Halifax, West Yorkshire, Wakefield,
 Hampshire, Llandudno.
+
+Labels in Lee's tight mauve caps, no underline (5 Nov, to match the official artwork and the carousels); the small
+window captions over a darker shade, caps 25px bold, so the mauve reads over bright shots. The full frame labels sit on
+a soft corner vignette, not a band across the frame (Scott: "does the black bar have to be across the whole width"):
+darkest behind the words, fading out by two thirds across.
