@@ -14,7 +14,7 @@ Statuses as of 2 Nov 2026.
 
 ## Sent, waiting on Scott
 
-- [Rutland Hall: Four Roots Luxury Breaks](films/rutland-four-roots.md): Reel and Story for Fri 6 Nov; prices and nights to confirm.
+- [Rutland Hall: Four Roots Luxury Breaks](films/rutland-four-roots.md): Story signed off for Fri 6 Nov 10 AM; reel IG 12 PM, FB 7 PM; prices and nights to confirm.
 
 - [December: almost Christmas](films/december-almost-christmas.md): Three drafts sent 4 Nov (out of office, door 24, drive home); Scott picks one, then it gets its own festive track.
 - [Black Friday: hotel Stories](films/black-friday-stories.md): 14 Stories built on one template, Dalmahoy test rendered; hold until offers sync.
