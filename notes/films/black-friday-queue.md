@@ -77,3 +77,5 @@ No drift (Scott: "lose the drifting, doesnt add anything"); the offer under the 
 The 30% counts up slower (Scott: "I don't see the counting 30 by the time I'm done reading"): from beat 4, evenly, landing just before the 5 4 3 2 1.
 
 A recap before the end card (Scott: "cycle through them all again rapidly before the Black Friday Sale, like a recap shutter"): the 14, north to south, a hard cut each, quickening from five frames to two over three beats, each kicking in at 1.06x; the end card three beats later (reel 35, Story 27). Black Friday Sale in Cormorant 600 on the end card, as on the carousel covers (Scott: "bold the font so it looks premium like Lee's").
+
+The shades behind the labels held steady (Scott: the shadow "disappears and reappears before it changes in the box"): the window caption's shade stays from the start to the burst and the full frame vignette from the first full frame label to the recap; only the words change.

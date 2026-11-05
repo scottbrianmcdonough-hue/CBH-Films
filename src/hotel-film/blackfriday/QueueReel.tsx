@@ -179,15 +179,19 @@ const HouseLabel: React.FC<{ c: Clip; on: number; small?: boolean }> = ({ c, on,
 const WindowCaption: React.FC<{ burst: number }> = ({ burst }) => {
   const frame = useCurrentFrame();
   const l = labelFor(WAIT, frame, B(22), 0, 20);
-  if (!l) return null;
-  const on = l.on * (1 - progress(frame, DROP - 2, 5));
+  const out = 1 - progress(frame, DROP - 2, 5);
+  // the shade stays put under every caption (Scott, 5 Nov: it "disappears and reappears before it changes in the
+  // box"); only the words change, and it goes with the burst
+  const shade = Math.min(1, frame / 6) * out * (1 - burst);
   return (
     <>
-      <div style={{ position: "absolute", left: 0, right: 0, bottom: 0, height: 250, opacity: on * (1 - burst),
+      <div style={{ position: "absolute", left: 0, right: 0, bottom: 0, height: 250, opacity: shade,
         background: "linear-gradient(to bottom, rgba(9,9,10,0), rgba(9,9,10,0.6) 50%, rgba(9,9,10,0.78))" }} />
-      <div style={{ position: "absolute", left: 32, bottom: 28 }}>
-        <HouseLabel c={l.c} on={on} small />
-      </div>
+      {l ? (
+        <div style={{ position: "absolute", left: 32, bottom: 28 }}>
+          <HouseLabel c={l.c} on={l.on * out} small />
+        </div>
+      ) : null}
     </>
   );
 };
@@ -195,16 +199,20 @@ const WindowCaption: React.FC<{ burst: number }> = ({ burst }) => {
 const FullLabel: React.FC<{ list: Clip[]; until: number }> = ({ list, until }) => {
   const frame = useCurrentFrame();
   const l = labelFor(list, frame, until, 22, 1000);
-  if (!l) return null;
+  // the vignette held steady from the first full frame label to the recap, so it doesn't blink between shots
+  const shade = progress(frame, B(22), 4) * (1 - progress(frame, until - 4, 4));
+  if (!l && shade <= 0) return null;
   return (
     <>
       {/* a soft corner vignette behind the label, not a band across the frame (Scott, 5 Nov: "does the black bar
           have to be across the whole width"): darkest behind the words, gone by two thirds across, no edge */}
-      <AbsoluteFill style={{ opacity: l.on, background:
+      <AbsoluteFill style={{ opacity: shade, background:
         "radial-gradient(ellipse 820px 380px at 290px 1345px, rgba(9,9,10,0.66) 0%, rgba(9,9,10,0.5) 40%, rgba(9,9,10,0.2) 72%, rgba(9,9,10,0) 100%)" }} />
-      <div style={{ position: "absolute", left: 72, bottom: 520 }}>
-        <HouseLabel c={l.c} on={l.on} />
-      </div>
+      {l ? (
+        <div style={{ position: "absolute", left: 72, bottom: 520 }}>
+          <HouseLabel c={l.c} on={l.on} />
+        </div>
+      ) : null}
     </>
   );
 };
