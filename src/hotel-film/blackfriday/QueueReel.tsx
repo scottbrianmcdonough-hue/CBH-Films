@@ -55,25 +55,27 @@ type Clip = {
 const F = "campaigns/black-friday-2026/fourteen/";
 // the "While you wait" window: two beats a hotel, the last one bursting out on the drop, then a cut on beat 22 under
 // "The wait is over" (still in the window's list, so the line stays on top)
+// north to south (Bianca, 5 Nov: "start north to south"), as the carousels run: the window's eight, then Forest of
+// Arden bursts out on the drop, and the rest full frame
 const WAIT: Clip[] = [
-  { src: F + "burleigh-court.mp4", at: 0, place: "The Cotswolds", name: "Burleigh Court" },
-  { src: F + "jockey-club-rooms.mp4", at: 2, place: "Newmarket", name: "Jockey Club Rooms" },
-  { src: F + "oaklands-hall.mp4", at: 4, place: "Lincolnshire", name: "Oaklands Hall" },
-  { src: F + "the-alfriston.mp4", at: 6, place: "East Sussex", name: "The Alfriston" },
-  { src: F + "skipton.mp4", at: 8, place: "North Yorkshire", name: "Skipton Hotel" },
-  { src: F + "gomersal-park.mp4", at: 10, place: "West Yorkshire", name: "Gomersal Park" },
-  { src: F + "forest-of-arden.mp4", at: 12, place: "Warwickshire", name: "Forest of Arden" },
-  { src: F + "whittlebury-park.mp4", at: 14, place: "Northamptonshire", name: "Whittlebury Park" },
-  { src: "hotels/dalmahoy/syrup-pour.mp4", at: 16, from: 4, place: "Edinburgh", name: "Dalmahoy" },
-  { src: "hotels/ruthin-castle/clips/castle.mp4", at: 22, place: "North Wales", name: "Ruthin Castle" },
+  { src: F + "dalmahoy-w.mp4", at: 0, place: "Edinburgh", name: "Dalmahoy" },
+  { src: F + "skipton.mp4", at: 2, place: "North Yorkshire", name: "Skipton Hotel" },
+  { src: F + "holdsworth-w.mp4", at: 4, place: "Halifax", name: "Holdsworth House" },
+  { src: F + "gomersal-park.mp4", at: 6, place: "West Yorkshire", name: "Gomersal Park" },
+  { src: F + "waterton-w.mp4", at: 8, place: "Wakefield", name: "Waterton Park" },
+  { src: F + "imperial-w.mp4", at: 10, place: "Llandudno", name: "The Imperial" },
+  { src: F + "ruthin-w.mp4", at: 12, place: "North Wales", name: "Ruthin Castle" },
+  { src: F + "oaklands-hall.mp4", at: 14, place: "Lincolnshire", name: "Oaklands Hall" },
+  { src: F + "forest-of-arden-full.mp4", at: 16, place: "Warwickshire", name: "Forest of Arden" },
+  { src: F + "jockey-full.mp4", at: 22, place: "Newmarket", name: "Jockey Club Rooms" },
 ];
 
-// full frame after the drop: two beats each, breakfast in bed last, into the campaign's bed photo
+// full frame after the drop: two beats each, The Alfriston's fireside last, into the campaign's bed photo
 const AFTER: Clip[] = [
-  { src: F + "holdsworth-house.mp4", at: 24, place: "Halifax, West Yorkshire", name: "Holdsworth House" },
-  { src: "hotels/waterton-park/clips/afternoon-tea.mp4", at: 26, from: 2, place: "Wakefield", name: "Waterton Park" },
-  { src: F + "oakley-hall.mp4", at: 28, place: "Hampshire", name: "Oakley Hall" }, // the winter sun exterior (the dog clip read as summer)
-  { src: F + "the-imperial.mp4", at: 30, place: "Llandudno", name: "The Imperial" },
+  { src: F + "whittlebury-full.mp4", at: 24, place: "Northamptonshire", name: "Whittlebury Park" },
+  { src: F + "burleigh-full.mp4", at: 26, place: "The Cotswolds", name: "Burleigh Court" },
+  { src: F + "oakley-hall.mp4", at: 28, place: "Hampshire", name: "Oakley Hall" },
+  { src: F + "alfriston-full.mp4", at: 30, place: "East Sussex", name: "The Alfriston" },
 ];
 
 type Cut = { after: Clip[]; end: number; len: number };
@@ -324,6 +326,9 @@ const Queue: React.FC<{ cut: Cut }> = ({ cut }) => {
           borderRadius: box.radius,
           overflow: "hidden",
           opacity: intro,
+          // a slow drift while it waits (Scott, 5 Nov: "make the square preview drift a bit in the beginning to keep
+          // the eyes moving"): a gentle float and a breathing push, gone by the burst
+          transform: `translateY(${-Math.pow(Math.abs(Math.sin((Math.PI * frame) / BEAT)), 1.6) * 16 * (1 - burst)}px) rotate(${Math.sin((Math.PI * frame) / (2 * BEAT)) * 0.8 * (1 - burst)}deg) scale(${1 + 0.02 * Math.min(1, frame / DROP) * (1 - burst)})`,
           boxShadow: burst < 1 ? "0 30px 80px rgba(0,0,0,0.6)" : undefined,
           outline: burst < 1 ? `1px solid rgba(245,239,227,${0.16 * (1 - burst)})` : undefined,
         }}
@@ -338,7 +343,7 @@ const Queue: React.FC<{ cut: Cut }> = ({ cut }) => {
         <>
           <AbsoluteFill
             style={{
-              background: "linear-gradient(to bottom, rgba(0,0,0,0.55), transparent 42%)",
+              background: "linear-gradient(to bottom, rgba(9,9,10,0.78), rgba(9,9,10,0.5) 30%, transparent 52%)",
               opacity: progress(frame, DROP + 4, 10),
             }}
           />
@@ -347,7 +352,8 @@ const Queue: React.FC<{ cut: Cut }> = ({ cut }) => {
               <Rise
                 key={l}
                 at={DROP + 6 + i * 5}
-                style={{ fontFamily: serif, fontWeight: 400, fontSize: 132, lineHeight: 1.08, color: colors.cream }}
+                style={{ fontFamily: serif, fontWeight: 400, fontSize: 132, lineHeight: 1.08, color: colors.cream,
+                  textShadow: "0 2px 6px rgba(9,9,10,0.6), 0 4px 40px rgba(9,9,10,0.7)" }}
               >
                 {l}
               </Rise>

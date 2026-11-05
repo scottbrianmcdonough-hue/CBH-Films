@@ -67,3 +67,5 @@ Polish (Scott, 5 Nov: the count "soft and bounce a bit so eyes follow", "not so 
 at same time as image"): the 5 4 3 2 1 in a regular weight with a faint glow, each number springing up into place (a
 damped overshoot) and fading before the next; every hotel label now arrives on its shot's cut (3 frames) and leaves on
 the next; the shades behind the labels lighter, the text shadows doing more of the work.
+
+North to south (Bianca, 5 Nov), as the carousels: the window Dalmahoy, Skipton, Holdsworth, Gomersal, Waterton, The Imperial, Ruthin, Oaklands Hall; Forest of Arden's autumn aerial bursts out on the drop; Jockey Club's Hyperion statue under The wait is over; then Whittlebury's bedroom, Burleigh Court's and The Alfriston's firesides with Oakley Hall between (new window and full frame pushes in `fourteen/`). The wait is over over a deeper top shade with a shadow on the words (it was hard to read over Ruthin). The window bounces on the beat between the headings with a slight rock (Scott).
