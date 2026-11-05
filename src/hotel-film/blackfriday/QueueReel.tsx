@@ -262,13 +262,13 @@ const Queue: React.FC<{ cut: Cut }> = ({ cut }) => {
         }}
       />
       <AbsoluteFill style={{ opacity: page * intro }}>
-        <div style={{ position: "absolute", top: 180, width: "100%", textAlign: "center", ...caps(32, MAUVE, 0.02) }}>
+        <div style={{ position: "absolute", top: 150, width: "100%", textAlign: "center", ...caps(32, MAUVE, 0.02) }}>
           Black Friday Sale
         </div>
         <div
           style={{
             position: "absolute",
-            top: 222,
+            top: 188,
             width: "100%",
             textAlign: "center",
             fontFamily: serif,
@@ -279,15 +279,19 @@ const Queue: React.FC<{ cut: Cut }> = ({ cut }) => {
         >
           Now open
         </div>
-        <div style={{ position: "absolute", top: 372, width: "100%", textAlign: "center", ...caps(22, "rgba(245,239,227,0.55)", 0.24) }}>
+        <div style={{ position: "absolute", top: 1376, width: "100%", textAlign: "center", opacity: offerOut, ...caps(22, "rgba(245,239,227,0.55)", 0.24) }}>
           Across the collection
         </div>
         {/* up to 30% off under the window, then 5 4 3 2 1 on the beat into the tap */}
-        {/* the offer comes in as it starts counting, so "Up to 0% off" never sits on screen (polish pass) */}
-        <div style={{ position: "absolute", top: 1362, width: "100%", textAlign: "center",
-          opacity: offerOut * progress(frame, B(4), 10),
-          fontFamily: serif, fontSize: 84, color: colors.cream, fontVariantNumeric: "lining-nums" }}>
-          Up to {pct}% off
+        {/* the counter up top in the official card's pink pill (Scott, 5 Nov: "this counter should be up top"), coming in
+            as it starts counting so "0%" never sits on screen */}
+        <div style={{ position: "absolute", top: 312, width: "100%", display: "flex", justifyContent: "center",
+          opacity: progress(frame, B(4), 10) }}>
+          <div style={{ display: "inline-flex", alignItems: "center", gap: 16, height: 76, padding: "0 34px", borderRadius: 38,
+            backgroundColor: MAUVE, fontFamily: sans, fontWeight: 600, color: colors.cream, textTransform: "uppercase" }}>
+            <span style={{ fontSize: 28, letterSpacing: "0.02em" }}>Save up to</span>
+            <span style={{ fontSize: 44, fontWeight: 700, fontVariantNumeric: "lining-nums tabular-nums", minWidth: 86, textAlign: "right" }}>{pct}%</span>
+          </div>
         </div>
         {count ? (
           <div style={{ position: "absolute", top: 1350, width: "100%", textAlign: "center", fontFamily: serif,

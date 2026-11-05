@@ -20,6 +20,9 @@ const LIFT = "0 3px 28px rgba(9,9,10,0.55), 0 1px 3px rgba(9,9,10,0.45)";
 const GRADE =
   "sepia(0.34) hue-rotate(-14deg) saturate(1.05) contrast(0.97) brightness(0.97)";
 const GLOW = "rgba(255,150,64,0.16)";
+// the shade behind lines over bright photos (RippleSpec deepScrim)
+const DEEP_SCRIM =
+  "radial-gradient(ellipse 1250px 720px at 0px 1330px, rgba(9,9,10,0.86) 0%, rgba(9,9,10,0.62) 45%, rgba(9,9,10,0) 100%)";
 // the label's scrim for a landscape frame: the same soft dark from the bottom-left corner
 const COUNTER_SCRIM_WIDE =
   "radial-gradient(ellipse 1100px 640px at 0px 1080px, rgba(9,9,10,0.84) 0%, rgba(9,9,10,0.58) 45%, rgba(9,9,10,0) 100%)";
@@ -92,7 +95,8 @@ const Line: React.FC<{
   size?: number;
   wide?: boolean;
   eyebrow?: string;
-}> = ({ text, out, top, size = 1, wide, eyebrow }) => {
+  deep?: boolean;
+}> = ({ text, out, top, size = 1, wide, eyebrow, deep }) => {
   const frame = useCurrentFrame();
   const o = 1 - progress(frame, out - 12, 12, EASE_IN_OUT);
   const e = progress(frame, 0, 14, EASE_OUT);
@@ -104,8 +108,10 @@ const Line: React.FC<{
             top === undefined
               ? wide
                 ? SCRIM_WIDE
-                : SCRIM
-              : `radial-gradient(ellipse 1150px 520px at 0px ${top + 110}px, rgba(9,9,10,0.56) 0%, rgba(9,9,10,0.34) 45%, rgba(9,9,10,0) 100%)`,
+                : deep
+                  ? DEEP_SCRIM
+                  : SCRIM
+              : `radial-gradient(ellipse 1150px 520px at 0px ${top + 110}px, rgba(9,9,10,${deep ? 0.78 : 0.56}) 0%, rgba(9,9,10,${deep ? 0.52 : 0.34}) 45%, rgba(9,9,10,0) 100%)`,
         }}
       />
       <div
@@ -380,6 +386,7 @@ export const RippleFilm: React.FC<{ film: RippleSpec }> = ({ film }) => {
             size={l.size}
             wide={film.wide}
             eyebrow={l.eyebrow}
+            deep={film.deepScrim}
           />
         </Sequence>
       ))}

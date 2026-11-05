@@ -21,13 +21,16 @@ export const rutlandFourRoots: RippleSpec = {
   // the roots counted, not one repeated eyebrow (Scott, 5 Nov: "all the labels say Four Roots Journey, switch those up");
   // the second and third held six beats (Scott: "too fast to read")
   lines: [
-    { eyebrow: "The Four Roots Journey", text: "A bathing ritual", from: 120, to: 199 },
-    { eyebrow: "Root two", text: "A treatment\nof your choice", from: 208, to: 287, top: 300 }, // above the desk's sign
-    { eyebrow: "Root three", text: "Meditation", from: 296, to: 346 },
-    { eyebrow: "Root four", text: "Lakeside dining", from: 355, to: 404 },
+    { eyebrow: "Root one · Bathing ritual", text: "Let the water\ntake the weight", from: 120, to: 199 },
+    { eyebrow: "Root two · Treatment", text: "Choose it,\nthen switch off", from: 208, to: 287, top: 300 }, // above the desk's sign
+    { eyebrow: "Root three · Meditation", text: "Lie back under\na sky of stars", from: 296, to: 346 },
+    { eyebrow: "Root four · Lakeside dining", text: "Supper as the\nlake turns gold", from: 355, to: 404 },
     // the stay (Scott, 5 Nov: the last scene was "just the bedroom"): the two breaks named over the one bedroom shot
     { eyebrow: "Four Roots Luxury Breaks", text: "One night,\nor two", from: 414, to: 548 },
   ],
+  // the copy lifted (Scott, 5 Nov: "elevate the copy ... you have four opportunities for good copy"): each root named in
+  // the eyebrow, a line of its own beneath; and a deeper shade so it reads over the bright pool and desk
+  deepScrim: true,
   endCard: { at: 557, line: "Take root\nby the lake" },
   music: { src: "campaigns/rutland-four-roots/music-reel.m4a", startAt: 0, gain: 1, seconds: 23.0, fadeOut: 30 }, // one continuous stretch, no splice
 };
@@ -40,10 +43,10 @@ export const rutlandFourRootsStory: RippleSpec = {
   frames: 480,
   label: { ...rutlandFourRoots.label, from: 4, to: 54 },
   lines: [
-    { eyebrow: "The Four Roots Journey", text: "A bathing ritual", from: 62, to: 126 },
-    { eyebrow: "Root two", text: "A treatment\nof your choice", from: 135, to: 199, top: 300 },
-    { eyebrow: "Root three", text: "Meditation", from: 208, to: 258 },
-    { eyebrow: "Root four", text: "Lakeside dining", from: 267, to: 316 },
+    { eyebrow: "Root one · Bathing ritual", text: "Let the water\ntake the weight", from: 62, to: 126 },
+    { eyebrow: "Root two · Treatment", text: "Choose it,\nthen switch off", from: 135, to: 199, top: 300 },
+    { eyebrow: "Root three · Meditation", text: "Lie back under\na sky of stars", from: 208, to: 258 },
+    { eyebrow: "Root four · Lakeside dining", text: "Supper as the\nlake turns gold", from: 267, to: 316 },
     { eyebrow: "Four Roots Luxury Breaks", text: "One night,\nor two", from: 326, to: 374 },
   ],
   endCard: { at: 381, line: "Take root\nby the lake" },

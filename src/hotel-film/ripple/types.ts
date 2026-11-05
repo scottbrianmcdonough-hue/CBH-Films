@@ -31,6 +31,8 @@ export type RippleSpec = {
   // on the beat): the caption in gold caps with its underline (the label's order), the number in
   // cream Cormorant beneath, one more at each tick (film frames), punching in as it changes
   counter?: { caption: string; from: number; to: number; ticks: number[] };
+  // a stronger shade behind the lines and label, for photos too bright for the default (Rutland's pool and desk)
+  deepScrim?: boolean;
   // the question, rising on black; or, with scene, inside the last shot (Scott: "in the middle
   // layer in the bedroom"): the picture plays on, the words rise from behind its near layer
   // (fg: that shot's near things with alpha, starting at film frame from) and settle at top
