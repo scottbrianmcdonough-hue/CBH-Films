@@ -1,8 +1,8 @@
 # Black Friday: the queue
 
-**Status:** Full bleed ending in the artwork's layout, The Mount in for Low Wood Bay (3 Nov); confirm the sale dates and booking link.  
+**Status:** Recast with only the 14 hotels in the sale (5 Nov); hold until all 14 offers show on the site.  
 **Compositions:** `black-friday-queue`, `black-friday-queue-story`  
-**Hotels:** Rowton Hall, The Mount, Gisborough, Haycock Manor, Waterton Park, Rutland Hall  
+**Hotels:** the 14 in the sale: Burleigh Court, Jockey Club Rooms, Oaklands Hall, The Alfriston, Skipton, Gomersal Park, Forest of Arden, Whittlebury Park, Dalmahoy, Ruthin Castle, Holdsworth House, Waterton Park, Oakley Hall, The Imperial  
 **Music:** Party Dance by prettyjohn1 (Pixabay 526227)
 
 [All films](../README.md) · [Hotels](../hotels.md) · [Music](../music.md)
@@ -30,3 +30,16 @@ Full bleed ending (Scott, 3 Nov, on the boxed official artwork: "don't like that
 The toast (Rowton's welcome fizz, beat 12) framed on the glasses (Scott, 3 Nov: "crop the shot where they toast the glasses better"): a per clip `frame` in the window (the clip at 0.9 from source 0, 270), the clink filling it with the bucket behind.
 
 Ticket refreshed (4 Nov, for the launch Mon 9 Nov): the hook ends on the full bleed card, the post closes on booking (🗝️ Book now) instead of asking for comments (a sale post), the emoji 🔓 on "the wait is over", the hotels listed in the notes, the Story (17.5s) with a "Book now" link sticker suggested for 9am beside the static post.
+
+Only the 14 (Bianca, 5 Nov, on Teams: "from next week it's all about BF ... we're only spotlighting the 14 for the rest of
+Nov"): every shot now from a hotel in the sale, each hotel once, same timeline and track. The window (two beats each):
+Burleigh Court's fireside table, Jockey Club Rooms' dining room, Oaklands Hall's fireplace, The Alfriston's fireside
+table, Skipton's afternoon tea, Gomersal Park's afternoon tea, Forest of Arden from the air, Whittlebury Park's spa
+pool; then Dalmahoy's syrup pour bursts out on the drop, a cut on beat 22 to Ruthin's clock tower under "The wait is
+over" (in the window's list, so the line stays on top), then full frame Holdsworth's tea by the fire, Waterton's
+afternoon tea, Oakley Hall's winter sun exterior (the dog clip read as summer) and The Imperial's breakfast in bed,
+which cuts to the campaign's bed. The window shows only the middle of a clip, so the stills are slow pushes fitted
+to the window itself (`scripts/window-push.py`, near their own resolution; clips in
+`public/campaigns/black-friday-2026/fourteen/`); Holdsworth, Oakley and The Imperial full frame are `still-push.py`
+pushes. The Story shows the first ten. Ticket updated (hook, post line, hotels, the hold). 21.8s, -15.0 LUFS; Story
+17.5s, -15.4 LUFS.

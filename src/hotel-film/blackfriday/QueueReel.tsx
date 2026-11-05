@@ -40,28 +40,31 @@ const GAIN = 0.56; // ~-15.2 LUFS over the reel
 // middle at full size)
 type Clip = { src: string; at: number; from?: number; frame?: { x: number; y: number; s: number } };
 
-// the "While you wait" window: two beats a hotel, the last one bursting out on the drop (Low Wood Bay out, Scott, 3 Nov:
-// it "doesn't need our marketing"; The Mount in, its four poster and conservatory as slow pushes from the stills)
+// Only the 14 hotels in the sale (Bianca, 5 Nov: "we're only spotlighting the 14 for the rest of Nov"), each once.
+// The window shows only the middle of a clip, so the stills are slow pushes fitted to the window itself
+// (`scripts/window-push.py`, near their own resolution); the full frame shots are footage where there is some.
+const F = "campaigns/black-friday-2026/fourteen/";
+// the "While you wait" window: two beats a hotel, the last one bursting out on the drop, then a cut on beat 22 under
+// "The wait is over" (still in the window's list, so the line stays on top)
 const WAIT: Clip[] = [
-  { src: "hotels/rowton-hall/screen-time/log-burner.mp4", at: 0 },
-  { src: "hotels/the-mount/screen-time/four-poster.mp4", at: 2 },
-  { src: "hotels/gisborough-hall/screen-time/snowy-garden.mp4", at: 4 },
-  { src: "hotels/haycock-manor/clips/birdcage-restaurant.mp4", at: 6, from: 0.5 },
-  { src: "hotels/rowton-hall/screen-time/cake-by-the-fire.mp4", at: 8 },
-  { src: "hotels/waterton-park/clips/afternoon-tea.mp4", at: 10, from: 2 },
-  // framed wider on the toast (Scott, 3 Nov: "crop the shot where they toast the glasses better"): the two
-  // glasses, the bucket and the top of the plate
-  { src: "hotels/rowton-hall/screen-time/welcome-fizz.mp4", at: 12, frame: { x: 0, y: 270, s: 0.9 } },
-  { src: "hotels/the-mount/screen-time/conservatory.mp4", at: 14 },
-  { src: "hotels/haycock-manor/clips/cocktail-smoke.mp4", at: 16 },
+  { src: F + "burleigh-court.mp4", at: 0 },
+  { src: F + "jockey-club-rooms.mp4", at: 2 },
+  { src: F + "oaklands-hall.mp4", at: 4 },
+  { src: F + "the-alfriston.mp4", at: 6 },
+  { src: F + "skipton.mp4", at: 8 },
+  { src: F + "gomersal-park.mp4", at: 10 },
+  { src: F + "forest-of-arden.mp4", at: 12 },
+  { src: F + "whittlebury-park.mp4", at: 14 },
+  { src: "hotels/dalmahoy/syrup-pour.mp4", at: 16, from: 4 },
+  { src: "hotels/ruthin-castle/clips/castle.mp4", at: 22 },
 ];
 
-// full frame after the drop: two beats each, the robe last, into the campaign's robe
+// full frame after the drop: two beats each, breakfast in bed last, into the campaign's bed photo
 const AFTER: Clip[] = [
-  { src: "hotels/gisborough-hall/screen-time/misty-sunrise.mp4", at: 24 },
-  { src: "hotels/rutland-hall/screen-time/lake-sunset.mp4", at: 26 },
-  { src: "hotels/rowton-hall/screen-time/four-poster.mp4", at: 28 },
-  { src: "hotels/rowton-hall/screen-time/robe.mp4", at: 30 },
+  { src: F + "holdsworth-house.mp4", at: 24 },
+  { src: "hotels/waterton-park/clips/afternoon-tea.mp4", at: 26, from: 2 },
+  { src: F + "oakley-hall.mp4", at: 28 }, // the winter sun exterior (the dog clip read as summer)
+  { src: F + "the-imperial.mp4", at: 30 },
 ];
 
 type Cut = { after: Clip[]; end: number; len: number };

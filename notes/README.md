@@ -17,7 +17,7 @@ Statuses as of 2 Nov 2026.
 - [December: almost Christmas](films/december-almost-christmas.md): Three drafts sent 4 Nov (out of office, door 24, drive home); Scott picks one, then it gets its own festive track.
 - [Black Friday: hotel Stories](films/black-friday-stories.md): 14 Stories built on one template, Dalmahoy test rendered; hold until offers sync.
 - [Nailcote Hall: meetings and events](films/nailcote-hall-meetings.md): 16:9 on the Ramside template sent (2 Nov); goes out Fri 6 Nov.
-- [Black Friday: the queue](films/black-friday-queue.md): Full bleed ending, no white CB, The Mount in for Low Wood Bay (3 Nov); tickets for the reel and a static post written.
+- [Black Friday: the queue](films/black-friday-queue.md): Recast with only the 14 hotels in the sale (5 Nov); hold until all 14 offers show on the site.
 - [Fairlawns: stay and dine](films/fairlawns-stay-dine.md): Sent for review.
 - [Cosy Escapes flipbook](films/cosy-escapes-flipbook.md): Sent for review.
 - [Hintlesham Hall search reel](films/hintlesham-hall-search.md): First preview sent.
