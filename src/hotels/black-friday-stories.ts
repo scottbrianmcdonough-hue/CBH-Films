@@ -54,7 +54,7 @@ const STORIES: Story[] = [
   {
     slug: "gomersal-park",
     place: "Gomersal, West Yorkshire",
-    name: "Gomersal Park Hotel",
+    name: "Gomersal Park\nHotel & Spa",
     shots: [
       { src: H + "gomersal-park/spa-pool.jpg", pos: "50% 50%" },
       { src: H + "gomersal-park/afternoon-tea.jpg", pos: "40% 50%" },
@@ -148,7 +148,7 @@ const STORIES: Story[] = [
       { src: C + "november-best-loved/forest-of-arden-exterior.jpg", pos: "50% 50%" },
     ],
     cuts: [25],
-    offer: { title: "A Black Friday\nB&B rate", lines: ["Advance purchase", "Stays to 9 April"] },
+    offer: { title: "Advance purchase\nB&B rate", lines: ["Non refundable", "Stays to 9 April"] },
   },
   {
     slug: "holdsworth-house",
@@ -170,7 +170,7 @@ const STORIES: Story[] = [
       { src: H + "the-alfriston/bedroom.jpg", pos: "32% 50%" },
       { src: H + "the-alfriston/afternoon-tea.jpg", pos: "50% 50%" },
     ],
-    offer: { title: "30% off B&B", lines: ["Book 27 to 30 November", "Stays to 31 March, selected dates"] },
+    offer: { title: "30% off B&B", lines: ["Book 27 to 30 November only", "Stays to 31 March, selected dates"] },
   },
   {
     slug: "the-imperial",

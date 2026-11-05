@@ -56,7 +56,7 @@ export const BF_REGIONS: Region[] = [
         src: H + "gomersal-park/afternoon-tea.jpg",
         pos: "38% 50%",
         place: "Gomersal, West Yorkshire",
-        name: "Gomersal Park Hotel",
+        name: "Gomersal Park\nHotel & Spa", // as on its CBH page, like Waterton Park Hotel & Spa
         offer: "20% off your stay",
         terms: FD,
       },
@@ -69,7 +69,8 @@ export const BF_REGIONS: Region[] = [
         terms: "Stays to 31 March",
       },
       {
-        src: C + "cosy-escapes/page4-dalmahoy-log-fire-bar.jpg",
+        // the house over the course, not the fireside lounge (it read like Holdsworth's fireplace beside it)
+        src: H + "dalmahoy/exterior.jpg",
         pos: "40% 50%",
         place: "Edinburgh",
         name: "Dalmahoy Hotel\n& Country Club",
@@ -112,8 +113,9 @@ export const BF_REGIONS: Region[] = [
         pos: "72% 50%",
         place: "Meriden, Warwickshire",
         name: "Forest of Arden Hotel",
-        offer: "A Black Friday B&B rate",
-        terms: "Advance purchase, stays to 9 April",
+        // no percentage on the sheet: lead on the rate itself
+        offer: "Advance purchase B&B rate",
+        terms: "Non refundable, stays to 9 April",
       },
       {
         src: H + "whittlebury-park/murrays-dish-2x.jpg",
@@ -121,7 +123,7 @@ export const BF_REGIONS: Region[] = [
         place: "Whittlebury, Northamptonshire",
         name: "Whittlebury Park",
         offer: "10% off your stay",
-        terms: "B&B or dinner, B&B, stays to 31 March",
+        terms: "B&B or dinner, B&B, stays to 31 March, selected dates",
       },
       {
         src: H + "jockey-club-rooms/hyperion-statue.jpg",
@@ -137,7 +139,7 @@ export const BF_REGIONS: Region[] = [
         place: "Laceby, Lincolnshire",
         name: "Oaklands Hall Hotel",
         offer: "18% off your stay",
-        terms: "Selected dates to 31 March",
+        terms: "Room only, B&B or dinner, B&B, selected dates to 31 March",
       },
     ],
   },
@@ -168,7 +170,7 @@ export const BF_REGIONS: Region[] = [
         place: "Alfriston, East Sussex",
         name: "The Alfriston",
         offer: "30% off B&B",
-        terms: "Book 27 to 30 November, selected dates",
+        terms: "Book 27 to 30 November only, stays to 31 March",
       },
     ],
   },

@@ -38,3 +38,11 @@ CBH site photos for the seven hotels with footage (Scott, 5 Nov, one hotel a mes
 Forest of Arden (new folder: `aerial-autumn`, `aerial-lake`, `bedroom`, `chef-afternoon-tea`, `pool`), Dalmahoy
 (`exterior`, `bedroom`, `salmon-plate`, `pool`, `golf-burn`); the rest matched photos already in the repo. Forest of
 Arden's regional slide is now the autumn aerial (centred on the hotel); carousels re-rendered and sent.
+
+Checked against the 2026 promo sheet (Catherine's updated version, Scott typed it out, 5 Nov): every offer matched.
+Fixes (Scott): Gomersal is "Gomersal Park Hotel & Spa" (its CBH page; carousel and Story); Dalmahoy's carousel slide is
+its exterior over the course, not the fireside lounge (it read like Holdsworth's fireplace beside it); Forest of Arden
+leads on "Advance purchase B&B rate", non refundable, no percentage (carousel and Story); The Alfriston's terms say
+"Book 27 to 30 November only"; Whittlebury and Oaklands Hall terms carry their boards and "selected dates" for the
+blackouts; the tickets note Jockey Club's blackout over Black Friday weekend (23 Nov to 5 Dec). The Imperial stays "up
+to 30%". The hold stands: nothing posts until all 14 offers show on the site.
