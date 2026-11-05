@@ -156,7 +156,7 @@ const labelFor = (list: Clip[], frame: number, until: number, minAt: number, max
     if (frame < B(c.at)) continue;
     if (c.at < minAt || c.at >= maxAt || !c.name) return null;
     const next = i + 1 < list.length ? B(list[i + 1].at) : until;
-    const on = progress(frame, B(c.at) + 3, 6) * (1 - progress(frame, next - 5, 5));
+    const on = progress(frame, B(c.at), 3) * (1 - progress(frame, next - 4, 4)); // with the shot, not after it
     return on > 0 ? { c, on } : null;
   }
   return null;
@@ -167,9 +167,9 @@ const HouseLabel: React.FC<{ c: Clip; on: number; small?: boolean }> = ({ c, on,
   return (
     <div style={{ opacity: on, transform: `translateY(${(1 - on) * 10 * k}px)`, whiteSpace: "nowrap" }}>
       {/* the place as on Lee's artwork and the carousels (Scott, 5 Nov): tight mauve caps, no underline */}
-      <div style={{ ...caps(small ? 25 : 32, MAUVE, 0.02), fontWeight: 700, textShadow: "0 1px 10px rgba(9,9,10,0.9)" }}>{c.place}</div>
+      <div style={{ ...caps(small ? 25 : 32, MAUVE, 0.02), fontWeight: 700, textShadow: "0 1px 3px rgba(9,9,10,0.85), 0 2px 14px rgba(9,9,10,0.75)" }}>{c.place}</div>
       <div style={{ fontFamily: serif, fontSize: 66 * k, lineHeight: 1.1, marginTop: 12 * k, color: colors.cream,
-        textShadow: "0 2px 22px rgba(9,9,10,0.85)" }}>{c.name}</div>
+        textShadow: "0 1px 4px rgba(9,9,10,0.7), 0 2px 24px rgba(9,9,10,0.85)" }}>{c.name}</div>
     </div>
   );
 };
@@ -182,7 +182,7 @@ const WindowCaption: React.FC<{ burst: number }> = ({ burst }) => {
   return (
     <>
       <div style={{ position: "absolute", left: 0, right: 0, bottom: 0, height: 250, opacity: on * (1 - burst),
-        background: "linear-gradient(to bottom, rgba(9,9,10,0), rgba(9,9,10,0.82) 45%, rgba(9,9,10,0.92))" }} />
+        background: "linear-gradient(to bottom, rgba(9,9,10,0), rgba(9,9,10,0.6) 50%, rgba(9,9,10,0.78))" }} />
       <div style={{ position: "absolute", left: 32, bottom: 28 }}>
         <HouseLabel c={l.c} on={on} small />
       </div>
@@ -199,7 +199,7 @@ const FullLabel: React.FC<{ list: Clip[]; until: number }> = ({ list, until }) =
       {/* a soft corner vignette behind the label, not a band across the frame (Scott, 5 Nov: "does the black bar
           have to be across the whole width"): darkest behind the words, gone by two thirds across, no edge */}
       <AbsoluteFill style={{ opacity: l.on, background:
-        "radial-gradient(ellipse 900px 440px at 300px 1345px, rgba(9,9,10,0.9) 0%, rgba(9,9,10,0.78) 40%, rgba(9,9,10,0.38) 70%, rgba(9,9,10,0) 100%)" }} />
+        "radial-gradient(ellipse 820px 380px at 290px 1345px, rgba(9,9,10,0.66) 0%, rgba(9,9,10,0.5) 40%, rgba(9,9,10,0.2) 72%, rgba(9,9,10,0) 100%)" }} />
       <div style={{ position: "absolute", left: 72, bottom: 520 }}>
         <HouseLabel c={l.c} on={l.on} />
       </div>
@@ -215,8 +215,9 @@ const Queue: React.FC<{ cut: Cut }> = ({ cut }) => {
   // 2 1"): the page says Now open, and a five beat countdown runs into the tap and the burst
   const COUNT = 13;
   const count = frame >= B(COUNT) && frame < B(COUNT + 5) ? 5 - Math.floor((frame - B(COUNT)) / BEAT) : 0;
-  const countT = count ? ((frame - B(COUNT)) % BEAT) / BEAT : 1;
-  const punch = 1 + 0.28 * Math.pow(1 - Math.min(1, countT * 2.2), 2);
+  const cf = count ? (frame - B(COUNT)) % BEAT : BEAT; // frames into this number's beat
+  const spring = 1 - Math.exp(-cf / 3.2) * Math.cos(cf * 0.6); // overshoots a touch, then settles
+  const countOn = Math.min(1, cf / 4) * (1 - progress(cf, BEAT - 3, 3));
   const offerOut = 1 - progress(frame, B(COUNT) - 6, 6);
   const button = progress(frame, enter, 10, EASE_OUT);
   const press = interpolate(frame, [tap, tap + 3, tap + 9], [1, 0.93, 1], {
@@ -272,9 +273,10 @@ const Queue: React.FC<{ cut: Cut }> = ({ cut }) => {
           Up to 30% off
         </div>
         {count ? (
-          <div style={{ position: "absolute", top: 1170, width: "100%", textAlign: "center", fontFamily: serif,
-            fontWeight: 500, fontSize: 190, lineHeight: 1, color: colors.cream, transform: `scale(${punch})`,
-            opacity: Math.min(1, countT * 6), fontVariantNumeric: "lining-nums" }}>
+          <div style={{ position: "absolute", top: 1215, width: "100%", textAlign: "center", fontFamily: serif,
+            fontWeight: 400, fontSize: 180, lineHeight: 1, color: colors.cream,
+            transform: `translateY(${(1 - spring) * 46}px) scale(${0.78 + 0.22 * spring})`,
+            opacity: countOn, fontVariantNumeric: "lining-nums", textShadow: "0 0 40px rgba(245,239,227,0.18)" }}>
             {count}
           </div>
         ) : null}

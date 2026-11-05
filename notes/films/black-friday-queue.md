@@ -62,3 +62,8 @@ A countdown, not a queue (Bianca, 5 Nov: "people dont queue here for BF"): "The 
 Less countdown (Scott, 5 Nov: the sale is already open when the reel goes up): only the last ten seconds, in real time (00:00:10 to 00:00:00 by the stop), under "The wait is almost over", so the reel is the moment it opens; the payoff "The wait is over" on the drop.
 
 Already open (Scott, 5 Nov: the reel goes up a day after the sale opens, "the wait is over already and still 5 4 3 2 1"): the page says BLACK FRIDAY SALE / Now open over the window (14 HOTELS IN THE SALE), Up to 30% off beneath it, then a 5 4 3 2 1 on the beats (13 to 17) punching in, the Book now tap and the burst into The wait is over. No clock or progress bar.
+
+Polish (Scott, 5 Nov: the count "soft and bounce a bit so eyes follow", "not so much smudge", "the label needs to come
+at same time as image"): the 5 4 3 2 1 in a regular weight with a faint glow, each number springing up into place (a
+damped overshoot) and fading before the next; every hotel label now arrives on its shot's cut (3 frames) and leaves on
+the next; the shades behind the labels lighter, the text shadows doing more of the work.
