@@ -256,6 +256,9 @@ const OFFICIAL: Record<string, "bed" | "curtains"> = {
   south: "curtains",
 };
 
+// each region's best offer on the 2026 sheet, for the cover's pill
+const BEST: Record<string, number> = { "yorkshire-scotland": 30, wales: 30, "midlands-east": 18, south: 30 };
+
 export const bfSlides = (id: string) =>
   (BF_REGIONS.find((r) => r.id === id)?.hotels.length ?? 0) + 2;
 
@@ -305,44 +308,23 @@ export const BlackFridayCarousel: React.FC<{ region: string }> = ({
             <Photo src={t.h.src} pos={t.h.pos} />
           </div>
         ))}
+        {/* the band in the official card's own order (Scott, 5 Nov: "the covers can match Lee's cards better"): the
+            region where his card has THE WAIT IS OVER, in its tight mauve caps, then Black Friday Sale in cream, then his
+            mauve pill with the region's best offer */}
         <div style={{ position: "relative" }}>
-          <Caps color={MAUVE} size={30}>
-            Black Friday Sale
-          </Caps>
-          <div
-            style={{
-              fontFamily: serif,
-              fontSize: r.title.includes("\n") ? 92 : 104,
-              lineHeight: 1.02,
-              color: colors.cream,
-              marginTop: 22,
-              whiteSpace: "nowrap",
-            }}
-          >
+          <div style={{ fontFamily: sans, fontWeight: 600, fontSize: 32, letterSpacing: "0.02em", color: MAUVE,
+            textTransform: "uppercase" }}>
             {r.title.replace("\n", " ")}
           </div>
-          <div
-            style={{
-              fontFamily: serif,
-              fontStyle: "italic",
-              fontSize: 42,
-              color: colors.cream,
-              opacity: 0.88,
-              marginTop: 14,
-            }}
-          >
-            The wait is over
+          <div style={{ fontFamily: serif, fontSize: 118, lineHeight: 1, color: colors.cream, marginTop: 14,
+            whiteSpace: "nowrap" }}>
+            Black Friday Sale
           </div>
-          <div
-            style={{
-              fontFamily: sans,
-              fontSize: 24,
-              letterSpacing: "0.08em",
-              color: "rgba(245,239,227,0.62)",
-              marginTop: 30,
-            }}
-          >
-            classicbritishhotels.com/black-friday
+          <div style={{ display: "inline-flex", alignItems: "center", gap: 18, height: 78, padding: "0 36px",
+            borderRadius: 39, backgroundColor: MAUVE, marginTop: 30, fontFamily: sans, fontWeight: 600,
+            color: colors.cream, textTransform: "uppercase" }}>
+            <span style={{ fontSize: 30, letterSpacing: "0.02em" }}>Save up to</span>
+            <span style={{ fontSize: 46, fontWeight: 700, fontVariantNumeric: "lining-nums" }}>{BEST[r.id]}%</span>
           </div>
         </div>
         <Mark />

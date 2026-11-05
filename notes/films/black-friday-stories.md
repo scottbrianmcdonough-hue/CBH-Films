@@ -60,3 +60,5 @@ Bianca's notes on the carousels (5 Nov): north to south, the regions posted Scot
 Collage cover (Scott, 5 Nov: "not sure about the black title card ... do a collage of the ones featured, see how that looks for Yorkshire and Scotland"): the region slide is now the hotels featured as tiles, the most northerly wide across the top, the rest two by two, thin black gutters, the title over a soft dark centre. Built for all four regions; tried on Scotland & Yorkshire first.
 
 Covers made premium (Scott: "elevate the composition, make it premium"): an editorial layout, a row of the hotels above and below a black band holding the words (no type over a photo), even 8px gutters, the region on one line, the URL small and tracked.
+
+Covers in the official card's own order (Scott: "the covers can match Lee's cards better"): the region in tight pink caps where his card has THE WAIT IS OVER, Black Friday Sale in cream, his pink Save up to pill with the region's best offer from the sheet (30%, 30%, 18%, 30%; `BEST`).
