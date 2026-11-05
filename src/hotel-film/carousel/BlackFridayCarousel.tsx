@@ -107,8 +107,9 @@ export const BF_REGIONS: Region[] = [
     cover: { src: H + "jockey-club-rooms/dining-room.jpg", pos: "50% 50%" },
     hotels: [
       {
-        src: C + "november-best-loved/forest-of-arden-exterior.jpg",
-        pos: "55% 50%",
+        // the course and hotel from the air in autumn colour (Scott's CBH site photos, 5 Nov)
+        src: H + "forest-of-arden/aerial-autumn.jpg",
+        pos: "72% 50%",
         place: "Meriden, Warwickshire",
         name: "Forest of Arden Hotel",
         offer: "A Black Friday B&B rate",
