@@ -46,3 +46,5 @@ leads on "Advance purchase B&B rate", non refundable, no percentage (carousel an
 "Book 27 to 30 November only"; Whittlebury and Oaklands Hall terms carry their boards and "selected dates" for the
 blackouts; the tickets note Jockey Club's blackout over Black Friday weekend (23 Nov to 5 Dec). The Imperial stays "up
 to 30%". The hold stands: nothing posts until all 14 offers show on the site.
+
+Sheet updated again (Catherine, 5 Nov): Gomersal and Ruthin are 20% from BAR plus 20% off food and drink (was 25%); Skipton and Waterton stay at 25%. Carousel slides, Stories and tickets changed (`FD20`).

@@ -27,6 +27,7 @@ type Story = {
   offer: { title: string; lines: string[] };
 };
 const FD = ["Plus 25% off food and drink", "Stays to 31 March"];
+const FD20 = ["Plus 20% off food and drink", "Stays to 31 March"]; // Gomersal and Ruthin (the sheet, 5 Nov update)
 
 const STORIES: Story[] = [
   {
@@ -60,7 +61,7 @@ const STORIES: Story[] = [
       { src: H + "gomersal-park/afternoon-tea.jpg", pos: "40% 50%" },
       { src: H + "gomersal-park/bedroom.jpg", pos: "45% 50%" },
     ],
-    offer: { title: "20% off\nyour stay", lines: FD },
+    offer: { title: "20% off\nyour stay", lines: FD20 },
   },
   {
     slug: "ruthin-castle",
@@ -71,7 +72,7 @@ const STORIES: Story[] = [
       { src: H + "ruthin-castle/clips/fireside-plate.mp4" },
       { src: H + "ruthin-castle/clips/white-bed.mp4" },
     ],
-    offer: { title: "20% off\nyour stay", lines: FD },
+    offer: { title: "20% off\nyour stay", lines: FD20 },
   },
   {
     slug: "jockey-club-rooms",

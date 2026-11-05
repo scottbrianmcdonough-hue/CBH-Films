@@ -29,6 +29,7 @@ type Region = {
 };
 
 const FD = "Plus 25% off food and drink, stays to 31 March";
+const FD20 = "Plus 20% off food and drink, stays to 31 March"; // Gomersal and Ruthin (the sheet, 5 Nov update)
 export const BF_REGIONS: Region[] = [
   {
     id: "yorkshire-scotland",
@@ -58,7 +59,7 @@ export const BF_REGIONS: Region[] = [
         place: "Gomersal, West Yorkshire",
         name: "Gomersal Park\nHotel & Spa", // as on its CBH page, like Waterton Park Hotel & Spa
         offer: "20% off your stay",
-        terms: FD,
+        terms: FD20,
       },
       {
         src: H + "holdsworth-house/tea-by-the-fire.jpg",
@@ -90,7 +91,7 @@ export const BF_REGIONS: Region[] = [
         place: "Ruthin, North Wales",
         name: "Ruthin Castle\nHotel & Spa",
         offer: "20% off your stay",
-        terms: FD,
+        terms: FD20,
       },
       {
         src: H + "the-imperial/breakfast-in-bed.jpg",
