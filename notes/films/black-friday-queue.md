@@ -87,3 +87,4 @@ Polish pass (5 Nov): the offer under the window fades in as it starts counting (
 No fireplaces (Scott, 5 Nov: "enough fireplaces, get the cosy interiors, beds, food"): Holdsworth pancakes, Gomersal the bedroom, Waterton the chicken plate, Oaklands the bedroom in the window; Burleigh Court the salmon plate and The Alfriston afternoon tea full frame; the recap the same.
 
 The counter up top (Scott, 5 Nov: "this counter should be up top"): in the official card's pink pill, SAVE UP TO counting to 30%, under Now open; Across the collection below the window, giving way to the 5 4 3 2 1.
+- The count to 30 starts a beat in (Scott, 5 Nov: "takes too long for the count to start"; it began on beat 4), the pill fading in with it, still landing on 30 before the 5 4 3 2 1.
