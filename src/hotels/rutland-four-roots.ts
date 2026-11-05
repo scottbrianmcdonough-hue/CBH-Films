@@ -22,7 +22,8 @@ export const rutlandFourRoots: RippleSpec = {
   picture: "campaigns/rutland-four-roots/picture.mp4",
   frames: 773,
   label: {
-    eyebrow: "Rutland Water",
+    // the gold caps once, at the start (Scott, 5 Nov: "get rid of the gold lines above and just put it at the beginning")
+    eyebrow: "Four Roots Luxury Breaks",
     name: "Rutland Hall\nHotel & Spa",
     from: 10,
     to: 110,
@@ -31,33 +32,28 @@ export const rutlandFourRoots: RippleSpec = {
   // the second and third held six beats (Scott: "too fast to read")
   lines: [
     {
-      eyebrow: "Root one · Bathing ritual",
       text: "Let the water\ntake the weight",
       from: 120,
       to: 228,
     },
     {
-      eyebrow: "Root two · Treatment",
       text: "Choose it,\nthen switch off",
       from: 237,
       to: 331,
       top: 300,
     }, // above the desk's sign
     {
-      eyebrow: "Root three · Meditation",
       text: "Lie back under\na sky of stars",
       from: 340,
       to: 433,
     },
     {
-      eyebrow: "Root four · Lakeside dining",
       text: "Supper as the\nlake turns gold",
       from: 442,
       to: 536,
     },
     // the stay (Scott, 5 Nov: the last scene was "just the bedroom"): the two breaks named over the one bedroom shot
     {
-      eyebrow: "Four Roots Luxury Breaks",
       text: "One night,\nor two",
       from: 545,
       to: 665,
@@ -85,32 +81,27 @@ export const rutlandFourRootsStory: RippleSpec = {
   label: { ...rutlandFourRoots.label, from: 4, to: 54 },
   lines: [
     {
-      eyebrow: "Root one · Bathing ritual",
       text: "Let the water\ntake the weight",
       from: 62,
       to: 140,
     },
     {
-      eyebrow: "Root two · Treatment",
       text: "Choose it,\nthen switch off",
       from: 149,
       to: 228,
       top: 300,
     },
     {
-      eyebrow: "Root three · Meditation",
       text: "Lie back under\na sky of stars",
       from: 237,
       to: 316,
     },
     {
-      eyebrow: "Root four · Lakeside dining",
       text: "Supper as the\nlake turns gold",
       from: 325,
       to: 404,
     },
     {
-      eyebrow: "Four Roots Luxury Breaks",
       text: "One night,\nor two",
       from: 413,
       to: 491,
