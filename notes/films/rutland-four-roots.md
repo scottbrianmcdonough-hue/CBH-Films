@@ -32,3 +32,5 @@ Light grade (Scott, 5 Nov: "put a light grade so it looks cohesive"): an even ba
 Music one continuous stretch (Scott, 5 Nov: the splice "skips a beat at 13 to 14 seconds", "stop splicing the music, just find a good place"): Deep House Sunset from 168.26s, its last phrase, the bass coming back on the first root and the final kick on the end card. The bathing ritual and the treatment held six beats each (Scott: "too fast to read"), meditation and lakeside dining four, the bedroom ten. Eyebrows THE FOUR ROOTS JOURNEY, ROOT TWO, ROOT THREE, ROOT FOUR (Scott: they all said the same). House gold, not the Black Friday mauve: Rutland is not one of the 14 and posts before the sale. 21.9s, -15.4 LUFS; Story 16.0s.
 
 The stay (Scott, 5 Nov: the last scene was "just the bedroom"): the room, then a closer push on the lake in its window, under FOUR ROOTS LUXURY BREAKS / One night, or two (both breaks named, no prices or nights claimed).
+
+The opening moves more (Scott: "pan or stronger push in first two shots"): the house a pan from the lake across to its front, the pool a stronger push in.
