@@ -386,7 +386,8 @@ const Queue: React.FC<{ cut: Cut }> = ({ cut }) => {
 const EndCard: React.FC<{ at: number; len: number }> = ({ at, len }) => {
   const frame = useCurrentFrame();
   const push = interpolate(frame, [at, len], [1.0, 1.05]);
-  const pill = progress(frame, at + 22, 14, EASE_OUT);
+  // all at once, not staggered (Scott, 5 Nov: "last card just reveal all at once")
+  const pill = progress(frame, at + 2, 14, EASE_OUT);
   return (
     <AbsoluteFill>
       <Img
@@ -399,10 +400,10 @@ const EndCard: React.FC<{ at: number; len: number }> = ({ at, len }) => {
         <Rise at={at + 2} style={{ ...caps(40, MAUVE, 0.02), marginBottom: 26 }}>
           The wait is over
         </Rise>
-        {["Black Friday", "Sale"].map((l, i) => (
+        {["Black Friday", "Sale"].map((l) => (
           <Rise
             key={l}
-            at={at + 4 + i * 5}
+            at={at + 2}
             style={{ fontFamily: serif, fontWeight: 600, fontSize: 170, lineHeight: 1.0, color: colors.cream, letterSpacing: "-0.01em" }}
           >
             {l}
