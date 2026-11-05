@@ -782,7 +782,21 @@ export const QueueReel: React.FC<{ story?: boolean }> = ({ story = false }) => {
         <Audio src={staticFile(P + "recap-shutter.wav")} volume={0.8} />
       </Sequence>
       {frame >= end && !OFFICIAL_END ? <EndCard at={end} len={len} /> : null}
-      {/* no white CB (Scott, 3 Nov: "get rid of the watermark CB"): the end card has the lockup */}
+      {/* the white CB in its corner (Scott, 5 Nov: "also needs the white CB"; it was taken off on 3 Nov), where every
+          film has it, until the end card, which carries the gold lockup in that corner */}
+      {frame < end ? (
+        <Img
+          src={staticFile("brand/cb-watermark.png")}
+          style={{
+            position: "absolute",
+            left: 920,
+            top: 1452,
+            width: 100,
+            height: 108,
+            opacity: 1 - progress(frame, end - 6, 6),
+          }}
+        />
+      ) : null}
       {frame < end || !OFFICIAL_END ? <FilmFinish /> : null}
       {/* the official artwork has no grain or vignette over it */}
       {frame >= end && OFFICIAL_END ? <OfficialEnd at={end} len={len} /> : null}
