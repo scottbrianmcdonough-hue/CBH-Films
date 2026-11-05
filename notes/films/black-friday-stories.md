@@ -23,3 +23,10 @@ Then full bleed (Scott: "don't like the photo in the middle like that", "full bl
 Then the house label only (Scott: "too much information in the lower third, trim it nice and clean, leave the details for the posts"): the market in gold caps with its underline, the hotel in cream Cormorant (long names on two lines), the CB bottom right; dates and second hotels moved to the post.
 Then the market as hero (Scott: "more about the markets ... we lost the market context"): what the market is in gold caps with its underline (Frankfurt Christmas Market, Cathedral Christmas Market, Victorian Christmas Fayre, Christmas Festival, at the docks), the city in cream Cormorant 112px, "Stay at <hotel>" one small italic line; dates still in the post.
 Worcester (Scott: "just a street lamp, got a better crop or pic?"): the blog's lantern swapped for Hogarths Stone Manor's own festive door (a frame of its festive arrival clip, `worcester-stone-manor-door-4x5.jpg`, full res 9:16 so sharp).
+
+Regional carousels checked and sent (Scott, 5 Nov: "need the regional focused carousels"; Bianca, 5 Nov: "do it as
+regional clusters", only the 14): the four sets as built, all 14 hotels once each. Waterton's slide is now its four
+poster bedroom, not the summer aerial (November: cosy interiors where we have them); Ruthin keeps the castle (its plate
+sat under the label, the breakfast photo is 1024px). Still summery, new photos wanted: Skipton (canal), Forest of
+Arden (the exterior). The South carries The Alfriston's offer, bookable 27 to 30 November only: post it from the
+27th, or say so in the copy. Wales has only two hotels (four slides).

@@ -44,7 +44,8 @@ export const BF_REGIONS: Region[] = [
         terms: FD,
       },
       {
-        src: H + "waterton-park/aerial.jpg",
+        // the four poster, not the summer aerial (Scott, 5 Nov: November, so cosy interiors where we have them)
+        src: H + "waterton-park/bedroom.jpg",
         pos: "50% 50%",
         place: "Wakefield, West Yorkshire",
         name: "Waterton Park\nHotel & Spa",
