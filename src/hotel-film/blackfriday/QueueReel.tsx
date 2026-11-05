@@ -59,24 +59,89 @@ const F = "campaigns/black-friday-2026/fourteen/";
 // Arden bursts out on the drop, and the rest full frame
 const WAIT: Clip[] = [
   { src: F + "dalmahoy-w.mp4", at: 0, place: "Edinburgh", name: "Dalmahoy" },
-  { src: F + "skipton.mp4", at: 2, place: "North Yorkshire", name: "Skipton Hotel" },
-  { src: F + "holdsworth-pancakes-w.mp4", at: 4, place: "Halifax", name: "Holdsworth House" },
-  { src: F + "gomersal-bedroom-w.mp4", at: 6, place: "West Yorkshire", name: "Gomersal Park" },
-  { src: F + "waterton-plate-w.mp4", at: 8, place: "Wakefield", name: "Waterton Park" },
-  { src: F + "imperial-w.mp4", at: 10, place: "Llandudno", name: "The Imperial" },
-  { src: F + "ruthin-w.mp4", at: 12, place: "North Wales", name: "Ruthin Castle" },
-  { src: F + "oaklands-bedroom-w.mp4", at: 14, place: "Lincolnshire", name: "Oaklands Hall" },
-  { src: F + "forest-of-arden-full.mp4", at: 16, place: "Warwickshire", name: "Forest of Arden" },
-  { src: F + "jockey-full.mp4", at: 22, place: "Newmarket", name: "Jockey Club Rooms" },
+  {
+    src: F + "skipton.mp4",
+    at: 2,
+    place: "North Yorkshire",
+    name: "Skipton Hotel",
+  },
+  {
+    src: F + "holdsworth-pancakes-w.mp4",
+    at: 4,
+    place: "Halifax",
+    name: "Holdsworth House",
+  },
+  {
+    src: F + "gomersal-bedroom-w.mp4",
+    at: 6,
+    place: "West Yorkshire",
+    name: "Gomersal Park",
+  },
+  {
+    src: F + "waterton-plate-w.mp4",
+    at: 8,
+    place: "Wakefield",
+    name: "Waterton Park",
+  },
+  {
+    src: F + "imperial-w.mp4",
+    at: 10,
+    place: "Llandudno",
+    name: "The Imperial",
+  },
+  {
+    src: F + "ruthin-w.mp4",
+    at: 12,
+    place: "North Wales",
+    name: "Ruthin Castle",
+  },
+  {
+    src: F + "oaklands-bedroom-w.mp4",
+    at: 14,
+    place: "Lincolnshire",
+    name: "Oaklands Hall",
+  },
+  {
+    src: F + "forest-of-arden-full.mp4",
+    at: 16,
+    place: "Warwickshire",
+    name: "Forest of Arden",
+  },
+  {
+    src: F + "jockey-full.mp4",
+    at: 22,
+    place: "Newmarket",
+    name: "Jockey Club Rooms",
+  },
 ];
 
 // full frame after the drop: two beats each, The Alfriston's afternoon tea last; no fireplaces (Scott, 5 Nov: "enough
 // fireplaces, get the cosy interiors, beds, food")
 const AFTER: Clip[] = [
-  { src: F + "whittlebury-full.mp4", at: 24, place: "Northamptonshire", name: "Whittlebury Park" },
-  { src: F + "burleigh-plate-full.mp4", at: 26, place: "The Cotswolds", name: "Burleigh Court" },
-  { src: F + "oakley-hall.mp4", at: 28, place: "Hampshire", name: "Oakley Hall" },
-  { src: F + "alfriston-tea-full.mp4", at: 30, place: "East Sussex", name: "The Alfriston" },
+  {
+    src: F + "whittlebury-full.mp4",
+    at: 24,
+    place: "Northamptonshire",
+    name: "Whittlebury Park",
+  },
+  {
+    src: F + "burleigh-plate-full.mp4",
+    at: 26,
+    place: "The Cotswolds",
+    name: "Burleigh Court",
+  },
+  {
+    src: F + "oakley-hall.mp4",
+    at: 28,
+    place: "Hampshire",
+    name: "Oakley Hall",
+  },
+  {
+    src: F + "alfriston-tea-full.mp4",
+    at: 30,
+    place: "East Sussex",
+    name: "The Alfriston",
+  },
 ];
 
 type Cut = { after: Clip[]; end: number; len: number };
@@ -88,8 +153,11 @@ const CUTS: Record<"reel" | "story", Cut> = {
 export const QUEUE_FRAMES = B(CUTS.reel.len);
 export const QUEUE_STORY_FRAMES = B(CUTS.story.len);
 
-
-const caps = (size: number, color: string, track = 0.18): React.CSSProperties => ({
+const caps = (
+  size: number,
+  color: string,
+  track = 0.18,
+): React.CSSProperties => ({
   fontFamily: sans,
   fontWeight: 600,
   fontSize: size,
@@ -98,7 +166,10 @@ const caps = (size: number, color: string, track = 0.18): React.CSSProperties =>
   color,
 });
 
-const Video: React.FC<{ c: Clip; style?: React.CSSProperties }> = ({ c, style }) => (
+const Video: React.FC<{ c: Clip; style?: React.CSSProperties }> = ({
+  c,
+  style,
+}) => (
   <OffthreadVideo
     src={staticFile(c.src)}
     muted
@@ -125,7 +196,12 @@ const Clips: React.FC<{ list: Clip[]; until: number }> = ({ list, until }) => (
       const from = B(c.at);
       const to = i + 1 < list.length ? B(list[i + 1].at) : until;
       return (
-        <Sequence key={c.src} from={from} durationInFrames={to - from} layout="none">
+        <Sequence
+          key={c.src}
+          from={from}
+          durationInFrames={to - from}
+          layout="none"
+        >
           <AbsoluteFill>
             <Video c={c} />
           </AbsoluteFill>
@@ -136,17 +212,24 @@ const Clips: React.FC<{ list: Clip[]; until: number }> = ({ list, until }) => (
 );
 
 // a line that rises out of its own mask
-const Rise: React.FC<{ at: number; children: React.ReactNode; style?: React.CSSProperties; dist?: number }> = ({
-  at,
-  children,
-  style,
-  dist = 1,
-}) => {
+const Rise: React.FC<{
+  at: number;
+  children: React.ReactNode;
+  style?: React.CSSProperties;
+  dist?: number;
+}> = ({ at, children, style, dist = 1 }) => {
   const frame = useCurrentFrame();
   const p = progress(frame, at, 16, EASE_OUT);
   return (
     <div style={{ overflow: "hidden", ...style }}>
-      <div style={{ transform: `translateY(${(1 - p) * 105 * dist}%)`, opacity: p }}>{children}</div>
+      <div
+        style={{
+          transform: `translateY(${(1 - p) * 105 * dist}%)`,
+          opacity: p,
+        }}
+      >
+        {children}
+      </div>
     </div>
   );
 };
@@ -154,7 +237,13 @@ const Rise: React.FC<{ at: number; children: React.ReactNode; style?: React.CSSP
 // the hotel's name over its shot, in the house order (Scott, 5 Nov: "should we add the location and the hotel name"):
 // in the window a small caption at its foot, as part of the queue page; full frame (from Ruthin on, the drop itself
 // left clean) the house label low on the left. Each fades in just after its cut and out just before the next.
-const labelFor = (list: Clip[], frame: number, until: number, minAt: number, maxAt: number) => {
+const labelFor = (
+  list: Clip[],
+  frame: number,
+  until: number,
+  minAt: number,
+  maxAt: number,
+) => {
   for (let i = list.length - 1; i >= 0; i--) {
     const c = list[i];
     if (frame < B(c.at)) continue;
@@ -166,14 +255,44 @@ const labelFor = (list: Clip[], frame: number, until: number, minAt: number, max
   return null;
 };
 
-const HouseLabel: React.FC<{ c: Clip; on: number; small?: boolean }> = ({ c, on, small }) => {
+const HouseLabel: React.FC<{ c: Clip; on: number; small?: boolean }> = ({
+  c,
+  on,
+  small,
+}) => {
   const k = small ? 0.84 : 1;
   return (
-    <div style={{ opacity: on, transform: `translateY(${(1 - on) * 10 * k}px)`, whiteSpace: "nowrap" }}>
+    <div
+      style={{
+        opacity: on,
+        transform: `translateY(${(1 - on) * 10 * k}px)`,
+        whiteSpace: "nowrap",
+      }}
+    >
       {/* the place as on Lee's artwork and the carousels (Scott, 5 Nov): tight mauve caps, no underline */}
-      <div style={{ ...caps(small ? 25 : 32, MAUVE, 0.02), fontWeight: 700, textShadow: "0 1px 3px rgba(9,9,10,0.85), 0 2px 14px rgba(9,9,10,0.75)" }}>{c.place}</div>
-      <div style={{ fontFamily: serif, fontSize: 66 * k, lineHeight: 1.1, marginTop: 12 * k, color: colors.cream,
-        textShadow: "0 1px 4px rgba(9,9,10,0.7), 0 2px 24px rgba(9,9,10,0.85)" }}>{c.name}</div>
+      <div
+        style={{
+          ...caps(small ? 25 : 32, MAUVE, 0.02),
+          fontWeight: 700,
+          textShadow:
+            "0 1px 3px rgba(9,9,10,0.85), 0 2px 14px rgba(9,9,10,0.75)",
+        }}
+      >
+        {c.place}
+      </div>
+      <div
+        style={{
+          fontFamily: serif,
+          fontSize: 66 * k,
+          lineHeight: 1.1,
+          marginTop: 12 * k,
+          color: colors.cream,
+          textShadow:
+            "0 1px 4px rgba(9,9,10,0.7), 0 2px 24px rgba(9,9,10,0.85)",
+        }}
+      >
+        {c.name}
+      </div>
     </div>
   );
 };
@@ -187,8 +306,18 @@ const WindowCaption: React.FC<{ burst: number }> = ({ burst }) => {
   const shade = Math.min(1, frame / 6) * out * (1 - burst);
   return (
     <>
-      <div style={{ position: "absolute", left: 0, right: 0, bottom: 0, height: 250, opacity: shade,
-        background: "linear-gradient(to bottom, rgba(9,9,10,0), rgba(9,9,10,0.6) 50%, rgba(9,9,10,0.78))" }} />
+      <div
+        style={{
+          position: "absolute",
+          left: 0,
+          right: 0,
+          bottom: 0,
+          height: 250,
+          opacity: shade,
+          background:
+            "linear-gradient(to bottom, rgba(9,9,10,0), rgba(9,9,10,0.6) 50%, rgba(9,9,10,0.78))",
+        }}
+      />
       {l ? (
         <div style={{ position: "absolute", left: 32, bottom: 28 }}>
           <HouseLabel c={l.c} on={l.on * out} small />
@@ -198,7 +327,10 @@ const WindowCaption: React.FC<{ burst: number }> = ({ burst }) => {
   );
 };
 
-const FullLabel: React.FC<{ list: Clip[]; until: number }> = ({ list, until }) => {
+const FullLabel: React.FC<{ list: Clip[]; until: number }> = ({
+  list,
+  until,
+}) => {
   const frame = useCurrentFrame();
   const l = labelFor(list, frame, until, 22, 1000);
   // the vignette held steady from the first full frame label to the recap, so it doesn't blink between shots
@@ -208,8 +340,13 @@ const FullLabel: React.FC<{ list: Clip[]; until: number }> = ({ list, until }) =
     <>
       {/* a soft corner vignette behind the label, not a band across the frame (Scott, 5 Nov: "does the black bar
           have to be across the whole width"): darkest behind the words, gone by two thirds across, no edge */}
-      <AbsoluteFill style={{ opacity: shade, background:
-        "radial-gradient(ellipse 820px 380px at 290px 1345px, rgba(9,9,10,0.66) 0%, rgba(9,9,10,0.5) 40%, rgba(9,9,10,0.2) 72%, rgba(9,9,10,0) 100%)" }} />
+      <AbsoluteFill
+        style={{
+          opacity: shade,
+          background:
+            "radial-gradient(ellipse 820px 380px at 290px 1345px, rgba(9,9,10,0.66) 0%, rgba(9,9,10,0.5) 40%, rgba(9,9,10,0.2) 72%, rgba(9,9,10,0) 100%)",
+        }}
+      />
       {l ? (
         <div style={{ position: "absolute", left: 72, bottom: 520 }}>
           <HouseLabel c={l.c} on={l.on} />
@@ -221,12 +358,15 @@ const FullLabel: React.FC<{ list: Clip[]; until: number }> = ({ list, until }) =
 
 const Queue: React.FC<{ cut: Cut }> = ({ cut }) => {
   const frame = useCurrentFrame();
-  const enter = B(18.5);
+  const enter = B(18); // straight after the 1
   const tap = B(19.5);
   // already open (Scott, 5 Nov: the reel goes up a day after the sale opens: "the wait is over already and still 5 4 3
   // 2 1"): the page says Now open, and a five beat countdown runs into the tap and the burst
   const COUNT = 13;
-  const count = frame >= B(COUNT) && frame < B(COUNT + 5) ? 5 - Math.floor((frame - B(COUNT)) / BEAT) : 0;
+  const count =
+    frame >= B(COUNT) && frame < B(COUNT + 5)
+      ? 5 - Math.floor((frame - B(COUNT)) / BEAT)
+      : 0;
   const cf = count ? (frame - B(COUNT)) % BEAT : BEAT; // frames into this number's beat
   const spring = 1 - Math.exp(-cf / 3.2) * Math.cos(cf * 0.6); // overshoots a touch, then settles
   const countOn = Math.min(1, cf / 4) * (1 - progress(cf, BEAT - 3, 3));
@@ -235,8 +375,10 @@ const Queue: React.FC<{ cut: Cut }> = ({ cut }) => {
   // slow enough to watch (Scott: "I don't see the counting to 30 by the time I'm done reading"), starting a beat in
   // (Scott: it "takes too long for the count to start" at beat 4), climbing evenly to land just before the 5 4 3 2 1
   const COUNT_UP = 1;
-  const pct = Math.round(30 * progress(frame, B(COUNT_UP), B(12.5) - B(COUNT_UP), EASE_IN_OUT));
-  const button = progress(frame, enter, 10, EASE_OUT);
+  const pct = Math.round(
+    30 * progress(frame, B(COUNT_UP), B(12.5) - B(COUNT_UP), EASE_IN_OUT),
+  );
+  const button = progress(frame, enter, 8, EASE_OUT);
   const press = interpolate(frame, [tap, tap + 3, tap + 9], [1, 0.93, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
@@ -256,122 +398,205 @@ const Queue: React.FC<{ cut: Cut }> = ({ cut }) => {
   const intro = progress(frame, 0, 10);
   return (
     <AbsoluteFill style={{ backgroundColor: colors.black }}>
-      {/* the page: a soft light behind the window */}
-      <AbsoluteFill
-        style={{
-          opacity: page * intro,
-          background: "radial-gradient(ellipse 70% 40% at 50% 42%, rgba(161,82,114,0.16), transparent 70%)",
-        }}
-      />
-      <AbsoluteFill style={{ opacity: page * intro }}>
-        <div style={{ position: "absolute", top: 150, width: "100%", textAlign: "center", ...caps(32, MAUVE, 0.02) }}>
-          Black Friday Sale
-        </div>
-        <div
+      {/* the page sits 150px lower, centred now nothing is under the window (the 5 4 3 2 1 moved into the capsule),
+          sliding back up as the window bursts to full frame */}
+      <AbsoluteFill style={{ transform: `translateY(${150 * (1 - burst)}px)` }}>
+        {/* the page: a soft light behind the window */}
+        <AbsoluteFill
           style={{
-            position: "absolute",
-            top: 188,
-            width: "100%",
-            textAlign: "center",
-            fontFamily: serif,
-            fontWeight: 400,
-            fontSize: 96,
-            color: colors.cream,
+            opacity: page * intro,
+            background:
+              "radial-gradient(ellipse 70% 40% at 50% 42%, rgba(161,82,114,0.16), transparent 70%)",
           }}
-        >
-          Now open
-        </div>
-        <div style={{ position: "absolute", top: 1376, width: "100%", textAlign: "center", opacity: offerOut, ...caps(22, "rgba(245,239,227,0.55)", 0.24) }}>
-          Across the collection
-        </div>
-        {/* up to 30% off under the window, then 5 4 3 2 1 on the beat into the tap */}
-        {/* the counter up top in the official card's pink pill (Scott, 5 Nov: "this counter should be up top"), coming in
-            as it starts counting so "0%" never sits on screen */}
-        <div style={{ position: "absolute", top: 312, width: "100%", display: "flex", justifyContent: "center",
-          opacity: progress(frame, B(COUNT_UP), 8) }}>
-          <div style={{ display: "inline-flex", alignItems: "center", gap: 16, height: 76, padding: "0 34px", borderRadius: 38,
-            backgroundColor: MAUVE, fontFamily: sans, fontWeight: 600, color: colors.cream, textTransform: "uppercase" }}>
-            <span style={{ fontSize: 28, letterSpacing: "0.02em" }}>Save up to</span>
-            <span style={{ fontSize: 44, fontWeight: 700, fontVariantNumeric: "lining-nums tabular-nums", minWidth: 86, textAlign: "right" }}>{pct}%</span>
-          </div>
-        </div>
-        {count ? (
-          <div style={{ position: "absolute", top: 1350, width: "100%", textAlign: "center", fontFamily: serif,
-            fontWeight: 400, fontSize: 160, lineHeight: 1, color: colors.cream,
-            transform: `translateY(${(1 - spring) * 46}px) scale(${0.78 + 0.22 * spring})`,
-            opacity: countOn, fontVariantNumeric: "lining-nums", textShadow: "0 0 40px rgba(245,239,227,0.18)" }}>
-            {count}
-          </div>
-        ) : null}
-        {/* Enter, and the tap */}
-        <div
-          style={{
-            position: "absolute",
-            left: 540 - 170,
-            top: 1380,
-            width: 340,
-            height: 88,
-            borderRadius: 44,
-            backgroundColor: MAUVE,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            opacity: button,
-            transform: `translateY(${(1 - button) * 24}px) scale(${press})`,
-            ...caps(32, colors.cream, 0.04),
-          }}
-        >
-          Book now
-        </div>
-        {frame >= tap ? (
+        />
+        <AbsoluteFill style={{ opacity: page * intro }}>
           <div
             style={{
               position: "absolute",
-              left: 600 - 40 - ring * 40,
-              top: 1424 - 40 - ring * 40,
-              width: 80 + ring * 80,
-              height: 80 + ring * 80,
-              borderRadius: "50%",
-              border: "3px solid rgba(245,239,227,0.8)",
-              backgroundColor: `rgba(245,239,227,${0.35 * (1 - ring)})`,
-              opacity: 1 - ring,
+              top: 150,
+              width: "100%",
+              textAlign: "center",
+              ...caps(32, MAUVE, 0.02),
             }}
-          />
-        ) : null}
-      </AbsoluteFill>
-      {/* the window */}
-      <div
-        style={{
-          position: "absolute",
-          ...box,
-          borderRadius: box.radius,
-          overflow: "hidden",
-          opacity: intro,
-          boxShadow: burst < 1 ? "0 30px 80px rgba(0,0,0,0.6)" : undefined,
-          outline: burst < 1 ? `1px solid rgba(245,239,227,${0.16 * (1 - burst)})` : undefined,
-        }}
-      >
-        <div style={{ position: "absolute", left: -box.left, top: -box.top, width: 1080, height: 1920 }}>
-          <Clips list={WAIT} until={B(cut.after.length ? cut.after[0].at : cut.end)} />
+          >
+            Black Friday Sale
+          </div>
+          <div
+            style={{
+              position: "absolute",
+              top: 188,
+              width: "100%",
+              textAlign: "center",
+              fontFamily: serif,
+              fontWeight: 400,
+              fontSize: 96,
+              color: colors.cream,
+            }}
+          >
+            Now open
+          </div>
+          {/* one capsule up top that changes (Scott, 5 Nov: "get rid of the 5 4 3 2 1 [below], just the single capsule
+            changes, too many places to look"): Save up to 30% counting up, then 5 4 3 2 1 in it on the beat, then it
+            turns into Book now and takes the tap; it comes in as it starts counting so "0%" never sits on screen */}
+          <div
+            style={{
+              position: "absolute",
+              top: 304,
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+              opacity: progress(frame, B(COUNT_UP), 8),
+            }}
+          >
+            <div
+              style={{
+                position: "relative",
+                width: 420,
+                height: 92,
+                borderRadius: 46,
+                backgroundColor: MAUVE,
+                fontFamily: sans,
+                fontWeight: 600,
+                color: colors.cream,
+                textTransform: "uppercase",
+                transform: `scale(${press * (count ? 1 + 0.035 * (1 - spring) : 1)})`,
+                boxShadow: "0 12px 40px rgba(0,0,0,0.3)",
+              }}
+            >
+              <AbsoluteFill
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: 16,
+                  opacity: offerOut,
+                }}
+              >
+                <span style={{ fontSize: 30, letterSpacing: "0.02em" }}>
+                  Save up to
+                </span>
+                <span
+                  style={{
+                    fontSize: 48,
+                    fontWeight: 700,
+                    fontVariantNumeric: "lining-nums tabular-nums",
+                    minWidth: 92,
+                    textAlign: "right",
+                  }}
+                >
+                  {pct}%
+                </span>
+              </AbsoluteFill>
+              {count ? (
+                <AbsoluteFill
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    opacity: countOn,
+                    transform: `translateY(${(1 - spring) * 14}px)`,
+                    fontSize: 58,
+                    fontWeight: 700,
+                    fontVariantNumeric: "lining-nums",
+                  }}
+                >
+                  {count}
+                </AbsoluteFill>
+              ) : null}
+              <AbsoluteFill
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  opacity: button,
+                  transform: `translateY(${(1 - button) * 14}px)`,
+                  ...caps(36, colors.cream, 0.04),
+                }}
+              >
+                Book now
+              </AbsoluteFill>
+            </div>
+          </div>
+          {frame >= tap ? (
+            <div
+              style={{
+                position: "absolute",
+                left: 560 - 40 - ring * 40,
+                top: 350 - 40 - ring * 40,
+                width: 80 + ring * 80,
+                height: 80 + ring * 80,
+                borderRadius: "50%",
+                border: "3px solid rgba(245,239,227,0.8)",
+                backgroundColor: `rgba(245,239,227,${0.35 * (1 - ring)})`,
+                opacity: 1 - ring,
+              }}
+            />
+          ) : null}
+        </AbsoluteFill>
+        {/* the window */}
+        <div
+          style={{
+            position: "absolute",
+            ...box,
+            borderRadius: box.radius,
+            overflow: "hidden",
+            opacity: intro,
+            boxShadow: burst < 1 ? "0 30px 80px rgba(0,0,0,0.6)" : undefined,
+            outline:
+              burst < 1
+                ? `1px solid rgba(245,239,227,${0.16 * (1 - burst)})`
+                : undefined,
+          }}
+        >
+          <div
+            style={{
+              position: "absolute",
+              left: -box.left,
+              top: -box.top,
+              width: 1080,
+              height: 1920,
+            }}
+          >
+            <Clips
+              list={WAIT}
+              until={B(cut.after.length ? cut.after[0].at : cut.end)}
+            />
+          </div>
+          <WindowCaption burst={burst} />
         </div>
-        <WindowCaption burst={burst} />
-      </div>
+      </AbsoluteFill>
       {/* The wait / is over, on the drop */}
       {frame >= DROP ? (
         <>
           <AbsoluteFill
             style={{
-              background: "linear-gradient(to bottom, rgba(9,9,10,0.78), rgba(9,9,10,0.5) 30%, transparent 52%)",
+              background:
+                "linear-gradient(to bottom, rgba(9,9,10,0.78), rgba(9,9,10,0.5) 30%, transparent 52%)",
               opacity: progress(frame, DROP + 4, 10),
             }}
           />
-          <div style={{ position: "absolute", top: 270, width: "100%", textAlign: "center" }}>
+          <div
+            style={{
+              position: "absolute",
+              top: 270,
+              width: "100%",
+              textAlign: "center",
+            }}
+          >
             {["The wait", "is over"].map((l, i) => (
               <Rise
                 key={l}
                 at={DROP + 6 + i * 5}
-                style={{ fontFamily: serif, fontWeight: 400, fontSize: 132, lineHeight: 1.08, color: colors.cream,
-                  textShadow: "0 2px 6px rgba(9,9,10,0.6), 0 4px 40px rgba(9,9,10,0.7)" }}
+                style={{
+                  fontFamily: serif,
+                  fontWeight: 400,
+                  fontSize: 132,
+                  lineHeight: 1.08,
+                  color: colors.cream,
+                  textShadow:
+                    "0 2px 6px rgba(9,9,10,0.6), 0 4px 40px rgba(9,9,10,0.7)",
+                }}
               >
                 {l}
               </Rise>
@@ -394,17 +619,32 @@ const EndCard: React.FC<{ at: number; len: number }> = ({ at, len }) => {
         // the wider crop from the landscape artwork, her elbows and the headboard whole (Scott, 5 Nov: "crop it
         // better"; `scripts/bf-end-9x16.py`), the type over its dark top as on the 4:5 artwork
         src={staticFile(P + "bed-9x16.jpg")}
-        style={{ width: "100%", height: "100%", transform: `scale(${push})`, transformOrigin: "50% 55%" }}
+        style={{
+          width: "100%",
+          height: "100%",
+          transform: `scale(${push})`,
+          transformOrigin: "50% 55%",
+        }}
       />
       <div style={{ position: "absolute", left: 90, top: 250 }}>
-        <Rise at={at + 2} style={{ ...caps(40, MAUVE, 0.02), marginBottom: 26 }}>
+        <Rise
+          at={at + 2}
+          style={{ ...caps(40, MAUVE, 0.02), marginBottom: 26 }}
+        >
           The wait is over
         </Rise>
         {["Black Friday", "Sale"].map((l) => (
           <Rise
             key={l}
             at={at + 2}
-            style={{ fontFamily: serif, fontWeight: 600, fontSize: 170, lineHeight: 1.0, color: colors.cream, letterSpacing: "-0.01em" }}
+            style={{
+              fontFamily: serif,
+              fontWeight: 600,
+              fontSize: 170,
+              lineHeight: 1.0,
+              color: colors.cream,
+              letterSpacing: "-0.01em",
+            }}
           >
             {l}
           </Rise>
@@ -428,12 +668,20 @@ const EndCard: React.FC<{ at: number; len: number }> = ({ at, len }) => {
         }}
       >
         <span style={caps(40, colors.cream, 0.02)}>Save up to</span>
-        <span style={{ ...caps(62, colors.cream, 0.02), fontWeight: 700 }}>30%</span>
+        <span style={{ ...caps(62, colors.cream, 0.02), fontWeight: 700 }}>
+          30%
+        </span>
       </div>
       {/* the campaign's lockup, as on the official artwork: the gold CB over Classic British Hotels & Resorts */}
       <Img
         src={staticFile("brand/cbh-logo-on-light.svg")}
-        style={{ position: "absolute", right: 90, top: 1298, width: 150, opacity: pill }}
+        style={{
+          position: "absolute",
+          right: 90,
+          top: 1298,
+          width: 150,
+          opacity: pill,
+        }}
       />
     </AbsoluteFill>
   );
@@ -499,7 +747,10 @@ const RECAP: { src: string; pos: string }[] = [
   { src: H + "jockey-club-rooms/hyperion-statue.jpg", pos: "62% 50%" },
   { src: H + "whittlebury-park/bedroom.jpg", pos: "50% 50%" },
   { src: H + "burleigh-court/plate.jpg", pos: "52% 50%" },
-  { src: "campaigns/journey-new/oakley-hall-exterior-frost.jpg", pos: "70% 50%" },
+  {
+    src: "campaigns/journey-new/oakley-hall-exterior-frost.jpg",
+    pos: "70% 50%",
+  },
   { src: H + "the-alfriston/afternoon-tea.jpg", pos: "50% 50%" },
 ];
 const RECAP_BEATS = 8; // calm and steady (Scott: "not so manic", "a calmer steady shutter", "a little slower"): ~9 frames each
@@ -515,8 +766,16 @@ const Recap: React.FC<{ at: number }> = ({ at }) => {
       const kick = 1.03 - 0.03 * Math.min(1, (frame - t) / Math.max(1, d));
       return (
         <AbsoluteFill style={{ backgroundColor: colors.black }}>
-          <Img src={staticFile(RECAP[k].src)} style={{ width: "100%", height: "100%", objectFit: "cover",
-            objectPosition: RECAP[k].pos, transform: `scale(${kick})` }} />
+          <Img
+            src={staticFile(RECAP[k].src)}
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              objectPosition: RECAP[k].pos,
+              transform: `scale(${kick})`,
+            }}
+          />
         </AbsoluteFill>
       );
     }
