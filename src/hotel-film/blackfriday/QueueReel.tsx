@@ -711,23 +711,22 @@ const OfficialEnd: React.FC<{ at: number; len: number }> = ({ at, len }) => {
 // at a touch over full size like a shutter; then the end card
 const H = "hotels/";
 const RECAP: { src: string; pos: string }[] = [
-  { src: H + "dalmahoy/exterior.jpg", pos: "40% 50%" },
-  { src: H + "skipton/afternoon-tea.jpg", pos: "35% 50%" },
-  { src: H + "holdsworth-house/pancakes.jpg", pos: "50% 50%" },
-  { src: H + "gomersal-park/bedroom.jpg", pos: "45% 50%" },
-  { src: H + "waterton-park/chicken-plate.jpg", pos: "50% 50%" },
-  { src: H + "the-imperial/breakfast-in-bed.jpg", pos: "50% 50%" },
-  { src: H + "ruthin-castle/castle.jpg", pos: "50% 50%" },
-  { src: H + "oaklands-hall/bedroom.jpg", pos: "50% 50%" },
-  { src: H + "forest-of-arden/aerial-autumn.jpg", pos: "72% 50%" },
-  { src: H + "jockey-club-rooms/hyperion-statue.jpg", pos: "62% 50%" },
-  { src: H + "whittlebury-park/bedroom.jpg", pos: "50% 50%" },
-  { src: H + "burleigh-court/plate.jpg", pos: "52% 50%" },
-  {
-    src: "campaigns/journey-new/oakley-hall-exterior-frost.jpg",
-    pos: "70% 50%",
-  },
-  { src: H + "the-alfriston/afternoon-tea.jpg", pos: "50% 50%" },
+  // a second photo each, none the window or full frame shots already showed (Scott, 5 Nov: "are those duplicate photos,
+  // maybe get a second photo each so we're not duplicating"), north to south, cosy picks
+  { src: H + "dalmahoy/bedroom.jpg", pos: "45% 50%" },
+  { src: H + "skipton/pool.jpg", pos: "50% 50%" },
+  { src: H + "holdsworth-house/breakfast-in-bed.jpg", pos: "50% 50%" },
+  { src: H + "gomersal-park/spa-pool.jpg", pos: "50% 50%" },
+  { src: H + "waterton-park/footbridge-autumn.jpg", pos: "47% 50%" },
+  { src: H + "the-imperial/afternoon-tea.jpg", pos: "45% 50%" },
+  { src: H + "ruthin-castle/white-bed.jpg", pos: "50% 50%" },
+  { src: H + "oaklands-hall/plate.jpg", pos: "50% 50%" },
+  { src: H + "forest-of-arden/pool.jpg", pos: "50% 50%" },
+  { src: H + "jockey-club-rooms/bedroom.jpg", pos: "40% 50%" },
+  { src: H + "whittlebury-park/spa-pool.jpg", pos: "50% 50%" },
+  { src: H + "burleigh-court/bedroom.jpg", pos: "45% 50%" },
+  { src: H + "oakley-hall/bedroom.jpg", pos: "60% 50%" },
+  { src: H + "the-alfriston/bedroom.jpg", pos: "40% 50%" },
 ];
 const RECAP_BEATS = 8; // calm and steady (Scott: "not so manic", "a calmer steady shutter", "a little slower"): ~9 frames each
 const Recap: React.FC<{ at: number }> = ({ at }) => {

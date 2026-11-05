@@ -19,6 +19,8 @@ type Hotel = {
   name: string;
   offer: string;
   terms: string;
+  // a second photo for the cover collage, so the cover never repeats a slide (Scott, 5 Nov)
+  tile: { src: string; pos: string };
 };
 type Region = {
   id: string;
@@ -39,6 +41,7 @@ const REGIONS: Region[] = [
         // cosy spa and autumn interiors (Scott, 5 Nov: "more cosy spa type stuff and interiors, autumny November")
         src: H + "skipton/afternoon-tea.jpg",
         pos: "35% 50%",
+        tile: { src: H + "skipton/pool.jpg", pos: "50% 50%" },
         place: "Skipton, North Yorkshire",
         name: "Skipton Hotel",
         offer: "25% off your stay",
@@ -49,6 +52,7 @@ const REGIONS: Region[] = [
         // island in autumn colour
         src: H + "waterton-park/footbridge-autumn.jpg",
         pos: "47% 50%",
+        tile: { src: H + "waterton-park/indoor-pool.jpg", pos: "50% 50%" },
         place: "Wakefield, West Yorkshire",
         name: "Waterton Park\nHotel & Spa",
         offer: "15% off your stay",
@@ -57,6 +61,7 @@ const REGIONS: Region[] = [
       {
         src: H + "gomersal-park/spa-pool.jpg", // the spa pool's steps and water wall
         pos: "50% 50%",
+        tile: { src: H + "gomersal-park/bedroom.jpg", pos: "50% 50%" },
         place: "Gomersal, West Yorkshire",
         name: "Gomersal Park\nHotel & Spa", // as on its CBH page, like Waterton Park Hotel & Spa
         offer: "20% off your stay",
@@ -65,6 +70,7 @@ const REGIONS: Region[] = [
       {
         src: H + "holdsworth-house/robes-fizz.jpg", // robes and fizz; no fireplaces (Scott, 5 Nov)
         pos: "50% 50%",
+        tile: { src: H + "holdsworth-house/breakfast-in-bed.jpg", pos: "50% 50%" },
         place: "Halifax, West Yorkshire",
         name: "Holdsworth House Hotel",
         offer: "10% off B&B",
@@ -74,6 +80,7 @@ const REGIONS: Region[] = [
         // a warm lamplit bedroom (the house front was flat; not the fireside lounge, it read like Holdsworth's)
         src: H + "dalmahoy/bedroom.jpg",
         pos: "45% 50%",
+        tile: { src: H + "dalmahoy/pool.jpg", pos: "50% 50%" },
         place: "Edinburgh",
         name: "Dalmahoy Hotel\n& Country Club",
         offer: "30% off B&B",
@@ -89,6 +96,7 @@ const REGIONS: Region[] = [
       {
         src: H + "ruthin-castle/white-bed.jpg", // the carved white bed under the red curtains
         pos: "50% 50%",
+        tile: { src: H + "ruthin-castle/hot-tub-fizz.jpg", pos: "50% 50%" },
         place: "Ruthin, North Wales",
         name: "Ruthin Castle\nHotel & Spa",
         offer: "20% off your stay",
@@ -97,6 +105,7 @@ const REGIONS: Region[] = [
       {
         src: H + "the-imperial/breakfast-in-bed.jpg",
         pos: "50% 50%",
+        tile: { src: H + "the-imperial/afternoon-tea.jpg", pos: "45% 50%" },
         place: "Llandudno, North Wales",
         name: "The Imperial Hotel",
         offer: "Up to 30% off B&B",
@@ -113,6 +122,7 @@ const REGIONS: Region[] = [
         // the course and hotel from the air in autumn colour (Scott's CBH site photos, 5 Nov)
         src: H + "forest-of-arden/aerial-autumn.jpg",
         pos: "72% 50%",
+        tile: { src: H + "forest-of-arden/pool.jpg", pos: "50% 50%" },
         place: "Meriden, Warwickshire",
         name: "Forest of Arden Hotel",
         // no percentage on the sheet: lead on the rate itself
@@ -122,6 +132,7 @@ const REGIONS: Region[] = [
       {
         src: H + "whittlebury-park/spa-pool.jpg", // the spa pool lit up (a plate is on Oaklands' slide)
         pos: "50% 50%",
+        tile: { src: H + "whittlebury-park/salt-sauna.jpg", pos: "50% 50%" },
         place: "Whittlebury, Northamptonshire",
         name: "Whittlebury Park",
         offer: "10% off your stay",
@@ -130,6 +141,7 @@ const REGIONS: Region[] = [
       {
         src: H + "jockey-club-rooms/bedroom.jpg",
         pos: "40% 50%",
+        tile: { src: H + "jockey-club-rooms/dining-room.jpg", pos: "50% 50%" },
         place: "Newmarket, Suffolk",
         name: "Jockey Club Rooms",
         offer: "15% off B&B",
@@ -138,6 +150,7 @@ const REGIONS: Region[] = [
       {
         src: H + "oaklands-hall/plate.jpg",
         pos: "50% 50%",
+        tile: { src: H + "oaklands-hall/bedroom.jpg", pos: "50% 50%" },
         place: "Laceby, Lincolnshire",
         name: "Oaklands Hall Hotel",
         offer: "18% off your stay",
@@ -153,6 +166,7 @@ const REGIONS: Region[] = [
       {
         src: H + "burleigh-court/plate.jpg",
         pos: "52% 50%",
+        tile: { src: H + "burleigh-court/bedroom.jpg", pos: "45% 50%" },
         place: "Minchinhampton, Gloucestershire",
         name: "Burleigh Court",
         offer: "25% off B&B",
@@ -161,6 +175,7 @@ const REGIONS: Region[] = [
       {
         src: H + "oakley-hall/bedroom.jpg", // the gold bed
         pos: "60% 50%",
+        tile: { src: H + "oakley-hall/afternoon-tea.jpg", pos: "40% 50%" },
         place: "Oakley, Hampshire",
         name: "Oakley Hall Hotel",
         offer: "30% off your stay",
@@ -169,6 +184,7 @@ const REGIONS: Region[] = [
       {
         src: H + "the-alfriston/afternoon-tea.jpg",
         pos: "50% 60%",
+        tile: { src: H + "the-alfriston/bedroom.jpg", pos: "40% 50%" },
         place: "Alfriston, East Sussex",
         name: "The Alfriston",
         offer: "30% off B&B",
@@ -306,7 +322,7 @@ export const BlackFridayCarousel: React.FC<{ region: string }> = ({
       >
         {tiles.map((t) => (
           <div key={t.h.name} style={{ position: "absolute", left: t.x, top: t.y, width: t.w, height: t.hh, overflow: "hidden" }}>
-            <Photo src={t.h.src} pos={t.h.pos} />
+            <Photo src={t.h.tile.src} pos={t.h.tile.pos} />
           </div>
         ))}
         {/* the band in the official card's own order (Scott, 5 Nov: "the covers can match Lee's cards better"): the
