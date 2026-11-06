@@ -37,7 +37,7 @@ export const rutlandFourRoots: RippleSpec = {
       to: 228,
     },
     {
-      text: "Choose it,\nthen switch off",
+      text: "Your treatment,\nthen switch off",
       from: 237,
       to: 331,
       top: 300,
@@ -86,7 +86,7 @@ export const rutlandFourRootsStory: RippleSpec = {
       to: 140,
     },
     {
-      text: "Choose it,\nthen switch off",
+      text: "Your treatment,\nthen switch off",
       from: 149,
       to: 228,
       top: 300,
