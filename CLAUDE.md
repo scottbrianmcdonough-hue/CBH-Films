@@ -48,6 +48,7 @@ with no history and no renders:
   look too different from the house style. When matching a supplied artwork (Black Friday: Lee's tight mauve caps),
   change as little as needed and keep the rest of the house look, then go back to the house style after the campaign
   (gold caps place, spaced, underlined; cream Cormorant name).
+- No hashtags in post copy for now (Scott, 6 Nov: "if they don't add, they just clutter, going to try cleaner posts for a while without hashtags"): tickets leave out the Hashtags section; tag the hotels instead.
 - End lines: an "X first, or Y?" question is good but not every time (Scott, 3 Nov: "getting to be a pattern");
   mix in a statement ("Tee off, / then turn in").
 
