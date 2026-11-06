@@ -452,7 +452,7 @@ const Queue: React.FC<{ cut: Cut }> = ({ cut }) => {
           <div
             style={{
               position: "absolute",
-              top: 304,
+              top: 292, // even gaps above and below the capsule (polish, 5 Nov)
               width: "100%",
               display: "flex",
               justifyContent: "center",
@@ -518,7 +518,7 @@ const Queue: React.FC<{ cut: Cut }> = ({ cut }) => {
               style={{
                 position: "absolute",
                 left: 560 - 40 - ring * 40,
-                top: 350 - 40 - ring * 40,
+                top: 338 - 40 - ring * 40,
                 width: 80 + ring * 80,
                 height: 80 + ring * 80,
                 borderRadius: "50%",
@@ -607,9 +607,12 @@ const EndCard: React.FC<{ at: number; len: number }> = ({ at, len }) => {
   const frame = useCurrentFrame();
   const push = interpolate(frame, [at, len], [1.0, 1.05]);
   // all at once, not staggered (Scott, 5 Nov: "last card just reveal all at once")
-  const pill = progress(frame, at + 2, 14, EASE_OUT);
+  const pill = progress(frame, at + 10, 14, EASE_OUT);
+  // a dissolve from the recap's last photo, not a hard cut (Scott, 5 Nov: "the end card is just abrupt cut, feels
+  // weird"); the type comes up together as the picture settles
+  const dissolve = progress(frame, at, 12, EASE_IN_OUT);
   return (
-    <AbsoluteFill>
+    <AbsoluteFill style={{ opacity: dissolve }}>
       <Img
         // the wider crop from the landscape artwork, her elbows and the headboard whole (Scott, 5 Nov: "crop it
         // better"; `scripts/bf-end-9x16.py`), the type over its dark top as on the 4:5 artwork
@@ -623,7 +626,7 @@ const EndCard: React.FC<{ at: number; len: number }> = ({ at, len }) => {
       />
       <div style={{ position: "absolute", left: 90, top: 250 }}>
         <Rise
-          at={at + 2}
+          at={at + 10}
           style={{ ...caps(40, MAUVE, 0.02), marginBottom: 26 }}
         >
           The wait is over
@@ -631,7 +634,7 @@ const EndCard: React.FC<{ at: number; len: number }> = ({ at, len }) => {
         {["Black Friday", "Sale"].map((l) => (
           <Rise
             key={l}
-            at={at + 2}
+            at={at + 10}
             style={{
               fontFamily: serif,
               fontWeight: 600,
@@ -790,7 +793,7 @@ export const QueueReel: React.FC<{ story?: boolean }> = ({ story = false }) => {
       <Clips list={cut.after} until={recap} />
       {/* the full frame labels: Ruthin (still in the window's list) and the shots after it */}
       <FullLabel list={[...WAIT, ...cut.after]} until={recap} />
-      {frame >= recap && frame < end ? <Recap at={recap} /> : null}
+      {frame >= recap && frame < end + 12 ? <Recap at={recap} /> : null}
       {/* a soft camera shutter on each photo of the recap (Scott, 5 Nov: "maybe even add a sound"; synthesised, peaks
           -18 dBFS, under the music; recap-shutter.wav is timed to RECAP_BEATS over the 14 photos) */}
       {/* a soft press on Book now, in the track's one beat stop (peaks -16 dBFS) */}
