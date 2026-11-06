@@ -382,7 +382,7 @@ const Queue: React.FC<{ cut: Cut }> = ({ cut }) => {
   const frame = useCurrentFrame();
   const enter = B(18); // the capsule turns into Book now as 30% has landed
   const tap = B(19.5);
-  // already open (Scott, 5 Nov: the reel goes up a day after the sale opens): the page says Now open. No 5 4 3 2 1
+  // already open (Scott, 5 Nov: the reel goes up a day after the sale opens): the page just says Black Friday Sale (Now open cut, Scott). No 5 4 3 2 1
   // (Scott: "do we need the 5 4 3 2 1", rerendered without: a countdown to a sale that's already open): the one capsule
   // counts up to 30% (Scott: "a counter up to 30"; "I don't see the counting to 30 by the time I'm done reading"),
   // starting a beat in ("takes too long for the count to start") and climbing evenly to land half a beat before it
@@ -427,30 +427,23 @@ const Queue: React.FC<{ cut: Cut }> = ({ cut }) => {
           }}
         />
         <AbsoluteFill style={{ opacity: page * intro }}>
+          {/* one headline, no Now open (Scott, 5 Nov: "cut the Now open line, that will give less to look at, just Black
+              Friday Sale and the capsule counting and then Book now"): Black Friday Sale in cream Cormorant as on Lee's
+              card, the gaps to the capsule and on to the window matched */}
           <div
             style={{
               position: "absolute",
-              top: 108, // 40px up: room between Now open and the capsule (Scott, 5 Nov)
-              width: "100%",
-              textAlign: "center",
-              ...caps(32, MAUVE, 0.02),
-            }}
-          >
-            Black Friday Sale
-          </div>
-          <div
-            style={{
-              position: "absolute",
-              top: 146,
+              top: 140,
               width: "100%",
               textAlign: "center",
               fontFamily: serif,
-              fontWeight: 400,
+              fontWeight: 600,
               fontSize: 96,
+              letterSpacing: "-0.01em",
               color: colors.cream,
             }}
           >
-            Now open
+            Black Friday Sale
           </div>
           {/* one capsule up top that changes (Scott, 5 Nov: "get rid of the 5 4 3 2 1 [below], just the single capsule
             changes, too many places to look"): Save up to 30% counting up, then 5 4 3 2 1 in it on the beat, then it
