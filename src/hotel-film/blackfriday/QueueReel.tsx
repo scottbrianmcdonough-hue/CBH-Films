@@ -744,7 +744,7 @@ const RECAP: { src: string; pos: string }[] = [
   { src: H + "ruthin-castle/white-bed.jpg", pos: "50% 50%" },
   { src: H + "oaklands-hall/plate.jpg", pos: "50% 50%" },
   { src: H + "forest-of-arden/pool.jpg", pos: "50% 50%" },
-  { src: H + "jockey-club-rooms/bedroom.jpg", pos: "40% 50%" },
+  { src: H + "jockey-club-rooms/bedroom-blue.jpg", pos: "45% 50%" }, // the full frame shot is the green bedroom
   { src: H + "whittlebury-park/spa-pool.jpg", pos: "50% 50%" },
   { src: H + "burleigh-court/bedroom.jpg", pos: "45% 50%" },
   { src: H + "oakley-hall/bedroom.jpg", pos: "60% 50%" },
