@@ -45,3 +45,4 @@ Copy lifted (Scott, 5 Nov: "elevate the copy", "kinda flat", "four opportunities
 - Scott on the Story (5 Nov): "looks good, almost borderline too much text but good enough". Signed off for Fri 6 Nov 10 AM. If it's ever trimmed: drop the eyebrows (Root one · Bathing ritual...) and keep only the lines.
 - No gold line over each root (Scott, 5 Nov: "get rid of the gold lines above and just put it at the beginning", after "almost borderline too much text"): the opening label's gold caps read FOUR ROOTS LUXURY BREAKS over Rutland Hall / Hotel & Spa, and the five lines stand alone in cream.
 - Root two now "Your treatment, / then switch off" (Scott, 5 Nov: "Choose it, then switch off needs tweaking, choose it what is it").
+- Root four now "Dinner as the / lake turns gold" (Scott: "supper?").

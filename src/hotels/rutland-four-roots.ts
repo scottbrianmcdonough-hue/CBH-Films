@@ -48,7 +48,7 @@ export const rutlandFourRoots: RippleSpec = {
       to: 433,
     },
     {
-      text: "Supper as the\nlake turns gold",
+      text: "Dinner as the\nlake turns gold",
       from: 442,
       to: 536,
     },
@@ -97,7 +97,7 @@ export const rutlandFourRootsStory: RippleSpec = {
       to: 316,
     },
     {
-      text: "Supper as the\nlake turns gold",
+      text: "Dinner as the\nlake turns gold",
       from: 325,
       to: 404,
     },
