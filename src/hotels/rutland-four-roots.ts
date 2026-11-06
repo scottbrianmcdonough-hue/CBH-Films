@@ -64,7 +64,7 @@ export const rutlandFourRoots: RippleSpec = {
   // the copy lifted (Scott, 5 Nov: "elevate the copy ... you have four opportunities for good copy"): each root named in
   // the eyebrow, a line of its own beneath; and a deeper shade so it reads over the bright pool and desk
   deepScrim: true,
-  endCard: { at: 674, line: "Take root\nby the lake", quick: true },
+  endCard: { at: 674, line: "Take root\nby Rutland Water", quick: true },
   music: {
     src: "campaigns/rutland-four-roots/music-reel.m4a",
     startAt: 0,
@@ -109,7 +109,7 @@ export const rutlandFourRootsStory: RippleSpec = {
       to: 491,
     },
   ],
-  endCard: { at: 498, line: "Take root\nby the lake", quick: true },
+  endCard: { at: 498, line: "Take root\nby Rutland Water", quick: true },
   music: {
     ...rutlandFourRoots.music,
     src: "campaigns/rutland-four-roots/music-story.m4a",
