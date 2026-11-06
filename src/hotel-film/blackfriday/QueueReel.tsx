@@ -405,7 +405,7 @@ const Queue: React.FC<{ cut: Cut }> = ({ cut }) => {
           <div
             style={{
               position: "absolute",
-              top: 150,
+              top: 108, // 40px up: room between Now open and the capsule (Scott, 5 Nov)
               width: "100%",
               textAlign: "center",
               ...caps(32, MAUVE, 0.02),
@@ -416,7 +416,7 @@ const Queue: React.FC<{ cut: Cut }> = ({ cut }) => {
           <div
             style={{
               position: "absolute",
-              top: 188,
+              top: 146,
               width: "100%",
               textAlign: "center",
               fontFamily: serif,

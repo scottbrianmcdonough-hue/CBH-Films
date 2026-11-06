@@ -46,3 +46,4 @@ Copy lifted (Scott, 5 Nov: "elevate the copy", "kinda flat", "four opportunities
 - No gold line over each root (Scott, 5 Nov: "get rid of the gold lines above and just put it at the beginning", after "almost borderline too much text"): the opening label's gold caps read FOUR ROOTS LUXURY BREAKS over Rutland Hall / Hotel & Spa, and the five lines stand alone in cream.
 - Root two now "Your treatment, / then switch off" (Scott, 5 Nov: "Choose it, then switch off needs tweaking, choose it what is it").
 - Root four now "Dinner as the / lake turns gold" (Scott: "supper?").
+- One steady shade (Scott, 5 Nov: the picture "changes colour when the text fades for a second, smooth that out"): with deepScrim, RippleFilm's SteadyShade comes up with the first line and stays on to the end card; the lines no longer carry their own scrim, and the desk's top shade swaps in only on that shot's cuts.

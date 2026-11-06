@@ -95,3 +95,4 @@ The counter up top (Scott, 5 Nov: "this counter should be up top"): in the offic
 - No 5 4 3 2 1 (Scott, 5 Nov: "or do we need the 5 4 3 2 1"; the sale is already open when it posts): the capsule climbs to 30% from beat 1 to 17.5 (~9s), turns into Book now on 18, the tap on 19.5, the burst on the drop.
 - Recap shutter on second photos (Scott, 5 Nov: "are those duplicate photos, maybe get a second photo each so we're not duplicating"): none of the window or full frame shots repeat.
 - The white CB back in its corner (Scott, 5 Nov: "also needs the white CB"), 920/1452 as on every film, fading out as the end card (with its gold lockup) comes in.
+- Black Friday Sale and Now open 40px higher (Scott: "give some space between the Now open and the capsule").

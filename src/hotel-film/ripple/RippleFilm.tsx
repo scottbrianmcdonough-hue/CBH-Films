@@ -88,6 +88,29 @@ const Label: React.FC<{
 
 // A line over a shot: cream Cormorant, each line rising out of its own mask a few frames
 // apart, lifting away before the next ripple.
+// One steady shade under all the lines (Scott, 5 Nov: the picture "changes colour when the text fades for a second"):
+// with deepScrim the shade no longer fades out and back in with each line; it comes up with the first line, stays on
+// to the end card, and swaps between the bottom shade and a top line's shade only on that shot's cuts
+const SteadyShade: React.FC<{ film: RippleSpec }> = ({ film }) => {
+  const frame = useCurrentFrame();
+  const first = film.lines[0]?.from ?? 0;
+  const on =
+    progress(frame, first, 12, EASE_IN_OUT) *
+    (1 - progress(frame, film.endCard.at + 42, 1));
+  const top = film.lines.find(
+    (l) => l.top !== undefined && frame >= l.from - 3 && frame < l.to + 6,
+  );
+  return (
+    <AbsoluteFill
+      style={{
+        opacity: on,
+        background: top
+          ? `radial-gradient(ellipse 1150px 520px at 0px ${top.top! + 110}px, rgba(9,9,10,0.78) 0%, rgba(9,9,10,0.52) 45%, rgba(9,9,10,0) 100%)`
+          : DEEP_SCRIM,
+      }}
+    />
+  );
+};
 const Line: React.FC<{
   text: string;
   out: number;
@@ -96,7 +119,8 @@ const Line: React.FC<{
   wide?: boolean;
   eyebrow?: string;
   deep?: boolean;
-}> = ({ text, out, top, size = 1, wide, eyebrow, deep }) => {
+  noScrim?: boolean;
+}> = ({ text, out, top, size = 1, wide, eyebrow, deep, noScrim }) => {
   const frame = useCurrentFrame();
   const o = 1 - progress(frame, out - 12, 12, EASE_IN_OUT);
   const e = progress(frame, 0, 14, EASE_OUT);
@@ -104,6 +128,7 @@ const Line: React.FC<{
     <AbsoluteFill style={{ opacity: o }}>
       <AbsoluteFill
         style={{
+          display: noScrim ? "none" : undefined,
           background:
             top === undefined
               ? wide
@@ -377,6 +402,7 @@ export const RippleFilm: React.FC<{ film: RippleSpec }> = ({ film }) => {
           />
         </Sequence>
       ) : null}
+      {film.deepScrim ? <SteadyShade film={film} /> : null}
       {film.lines.map((l) => (
         <Sequence key={l.text} from={l.from} durationInFrames={l.to - l.from}>
           <Line
@@ -387,6 +413,7 @@ export const RippleFilm: React.FC<{ film: RippleSpec }> = ({ film }) => {
             wide={film.wide}
             eyebrow={l.eyebrow}
             deep={film.deepScrim}
+            noScrim={film.deepScrim}
           />
         </Sequence>
       ))}
