@@ -36,18 +36,28 @@ const Label: React.FC<{
   name: string;
   out: number;
   wide?: boolean;
-}> = ({ eyebrow, name, out, wide }) => {
+  top?: number;
+}> = ({ eyebrow, name, out, wide, top }) => {
   const frame = useCurrentFrame();
   const a = progress(frame, 0, 20, EASE_OUT);
   const o = 1 - progress(frame, out - 12, 12, EASE_IN_OUT);
   return (
     <AbsoluteFill style={{ opacity: o }}>
-      <AbsoluteFill style={{ background: wide ? SCRIM_WIDE : SCRIM }} />
+      <AbsoluteFill
+        style={{
+          background:
+            top === undefined
+              ? wide
+                ? SCRIM_WIDE
+                : SCRIM
+              : `radial-gradient(ellipse 1200px 600px at 0px ${top + 110}px, rgba(9,9,10,0.82) 0%, rgba(9,9,10,0.56) 45%, rgba(9,9,10,0) 100%)`,
+        }}
+      />
       <div
         style={{
           position: "absolute",
           left: wide ? 110 : 72,
-          bottom: wide ? 120 : 470,
+          ...(top === undefined ? { bottom: wide ? 120 : 470 } : { top }),
           opacity: a,
           transform: `translateY(${(1 - a) * 30}px)`,
         }}
@@ -61,6 +71,7 @@ const Label: React.FC<{
               letterSpacing: "0.28em",
               color: colors.gold,
               textTransform: "uppercase",
+              textShadow: top === undefined ? undefined : LIFT,
             }}
           >
             {eyebrow}
@@ -390,6 +401,7 @@ export const RippleFilm: React.FC<{ film: RippleSpec }> = ({ film }) => {
           name={film.label.name}
           out={film.label.to - film.label.from}
           wide={film.wide}
+          top={film.label.top}
         />
       </Sequence>
       {film.counter ? (

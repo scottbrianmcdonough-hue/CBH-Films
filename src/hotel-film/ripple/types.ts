@@ -13,7 +13,14 @@ export type RippleSpec = {
   // events team): the label and lines sit lower (no app UI to clear), the CB in its corner
   wide?: boolean;
   // the opening label: the place in gold caps with its still underline, the name beneath
-  label: { eyebrow: string; name: string; from: number; to: number };
+  // top: set the label in the sky instead of bottom left (Rutland, Scott: not "slapped over the top of the housing")
+  label: {
+    eyebrow: string;
+    name: string;
+    from: number;
+    to: number;
+    top?: number;
+  };
   // cream Cormorant over a shot; top: set the line this many px from the top of the frame
   // instead of the bottom-left (Ruthin: the peacock's head sat under the line)
   // size: a scale on the type (Ruthin: the line was hard to notice at 1)
