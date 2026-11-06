@@ -41,7 +41,7 @@ const REGIONS: Region[] = [
         // cosy spa and autumn interiors (Scott, 5 Nov: "more cosy spa type stuff and interiors, autumny November")
         src: H + "skipton/afternoon-tea.jpg",
         pos: "35% 50%",
-        tile: { src: H + "skipton/pool.jpg", pos: "50% 50%" },
+        tile: { src: H + "skipton/canal-reflection.jpg", pos: "35% 50%" },
         place: "Skipton, North Yorkshire",
         name: "Skipton Hotel",
         offer: "25% off your stay",
@@ -52,7 +52,7 @@ const REGIONS: Region[] = [
         // island in autumn colour
         src: H + "waterton-park/footbridge-autumn.jpg",
         pos: "47% 50%",
-        tile: { src: H + "waterton-park/indoor-pool.jpg", pos: "50% 50%" },
+        tile: { src: H + "waterton-park/afternoon-tea.jpg", pos: "50% 50%" }, // one pool on the cover, not three
         place: "Wakefield, West Yorkshire",
         name: "Waterton Park\nHotel & Spa",
         offer: "15% off your stay",

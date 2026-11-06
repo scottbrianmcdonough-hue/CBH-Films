@@ -790,7 +790,7 @@ export const QueueReel: React.FC<{ story?: boolean }> = ({ story = false }) => {
           style={{
             position: "absolute",
             left: 920,
-            top: 1452,
+            top: 1452 + 150 * (1 - progress(frame, DROP, 10, EASE_OUT)), // below the window on the page, in its corner once full frame
             width: 100,
             height: 108,
             opacity: 1 - progress(frame, end - 6, 6),
