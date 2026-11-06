@@ -26,6 +26,8 @@ type Region = {
   id: string;
   title: string;
   cover: { src: string; pos: string };
+  // the cover's tiles when the hotels' own second photos are too few (Wales has two hotels: four tiles, not two strips)
+  coverTiles?: { src: string; pos: string }[];
   hotels: Hotel[];
 };
 
@@ -92,6 +94,14 @@ const REGIONS: Region[] = [
     id: "wales",
     title: "Wales",
     cover: { src: H + "the-imperial/bay-from-great-orme.jpg", pos: "62% 50%" },
+    // four tiles like the other covers, warm and wintry like Lee's cards (Scott, 5 Nov: "improve that Wales cover,
+    // match Lee's"), none of them a slide's photo
+    coverTiles: [
+      { src: H + "the-imperial/bay-from-great-orme.jpg", pos: "62% 50%" },
+      { src: H + "ruthin-castle/breakfast-window.jpg", pos: "50% 50%" },
+      { src: H + "the-imperial/afternoon-tea.jpg", pos: "45% 50%" },
+      { src: H + "ruthin-castle/castle.jpg", pos: "50% 50%" },
+    ],
     hotels: [
       {
         src: H + "ruthin-castle/white-bed.jpg", // the carved white bed under the red curtains
@@ -303,14 +313,15 @@ export const BlackFridayCarousel: React.FC<{ region: string }> = ({
     // type sits over a photo; thin even gutters, the hotels north to south, top row then bottom
     const G = 8;
     const BAND = 430;
-    const nTop = Math.max(1, Math.floor(r.hotels.length / 2));
+    const pics = r.coverTiles ?? r.hotels.map((h) => h.tile);
+    const nTop = Math.max(1, Math.floor(pics.length / 2));
     const rowH = (1350 - BAND - 2 * G) / 2;
-    const row = (list: Hotel[], y: number) =>
+    const row = (list: { src: string; pos: string }[], y: number) =>
       list.map((h, k) => {
         const w = (1080 - G * (list.length - 1)) / list.length;
         return { h, x: k * (w + G), y, w, hh: rowH };
       });
-    const tiles = [...row(r.hotels.slice(0, nTop), 0), ...row(r.hotels.slice(nTop), rowH + G + BAND + G)];
+    const tiles = [...row(pics.slice(0, nTop), 0), ...row(pics.slice(nTop), rowH + G + BAND + G)];
     return (
       <AbsoluteFill
         style={{
@@ -321,8 +332,8 @@ export const BlackFridayCarousel: React.FC<{ region: string }> = ({
         }}
       >
         {tiles.map((t) => (
-          <div key={t.h.name} style={{ position: "absolute", left: t.x, top: t.y, width: t.w, height: t.hh, overflow: "hidden" }}>
-            <Photo src={t.h.tile.src} pos={t.h.tile.pos} />
+          <div key={t.h.src} style={{ position: "absolute", left: t.x, top: t.y, width: t.w, height: t.hh, overflow: "hidden" }}>
+            <Photo src={t.h.src} pos={t.h.pos} />
           </div>
         ))}
         {/* the band in the official card's own order (Scott, 5 Nov: "the covers can match Lee's cards better"): the
