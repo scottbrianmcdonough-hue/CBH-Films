@@ -27,7 +27,7 @@ export const rutlandFourRoots: RippleSpec = {
     name: "Rutland Hall\nHotel & Spa",
     from: 10,
     to: 110,
-    top: 300, // in the sky, clear of the house; where root one's line sits over the desk next
+    top: 540, // in the blue sky under the cloud, above the chimneys (Scott: not over the house; no shade, "storm cloud")
   },
   // the roots counted, not one repeated eyebrow (Scott, 5 Nov: "all the labels say Four Roots Journey, switch those up");
   // the second and third held six beats (Scott: "too fast to read")

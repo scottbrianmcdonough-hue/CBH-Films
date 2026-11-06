@@ -14,6 +14,8 @@ import { colors, EASE_IN_OUT, EASE_OUT, progress, sans, serif } from "../theme";
 import type { RippleSpec } from "./types";
 
 const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
+// over a bright sky, close and soft so the letters read without darkening the sky round them
+const SKY_LIFT = "0 1px 2px rgba(9,9,10,0.7), 0 2px 10px rgba(9,9,10,0.45), 0 0 26px rgba(9,9,10,0.3)";
 const LIFT = "0 3px 28px rgba(9,9,10,0.55), 0 1px 3px rgba(9,9,10,0.45)";
 // Cosy autumn, as Departures (Scott: "grade it cosy autumn"): the summer photos warmed and
 // softened toward gold under an amber glow.
@@ -45,12 +47,7 @@ const Label: React.FC<{
     <AbsoluteFill style={{ opacity: o }}>
       <AbsoluteFill
         style={{
-          background:
-            top === undefined
-              ? wide
-                ? SCRIM_WIDE
-                : SCRIM
-              : `radial-gradient(ellipse 1200px 600px at 0px ${top + 110}px, rgba(9,9,10,0.82) 0%, rgba(9,9,10,0.56) 45%, rgba(9,9,10,0) 100%)`,
+          background: top === undefined ? (wide ? SCRIM_WIDE : SCRIM) : "none", // no shade in the sky (Scott: "looks like a storm cloud"): a tight shadow on the letters,
         }}
       />
       <div
@@ -71,7 +68,7 @@ const Label: React.FC<{
               letterSpacing: "0.28em",
               color: colors.gold,
               textTransform: "uppercase",
-              textShadow: top === undefined ? undefined : LIFT,
+              textShadow: top === undefined ? undefined : SKY_LIFT,
             }}
           >
             {eyebrow}
@@ -86,7 +83,7 @@ const Label: React.FC<{
               fontSize: 92,
               lineHeight: 1.04,
               color: colors.cream,
-              textShadow: LIFT,
+              textShadow: top === undefined ? LIFT : SKY_LIFT,
             }}
           >
             {l}
