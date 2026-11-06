@@ -55,7 +55,7 @@ export const rutlandFourRoots: RippleSpec = {
       to: 331,
     },
     {
-      text: "Lie back under\na sky of stars",
+      text: "Drift off\nbeneath the stars",
       from: 340,
       to: 433,
     },
@@ -112,7 +112,7 @@ export const rutlandFourRootsStory: RippleSpec = {
       to: 286,
     },
     {
-      text: "Lie back under\na sky of stars",
+      text: "Drift off\nbeneath the stars",
       from: 295,
       to: 374,
     },
