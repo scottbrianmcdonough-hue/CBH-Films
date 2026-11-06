@@ -318,15 +318,27 @@ const WindowCaption: React.FC<{ burst: number }> = ({ burst }) => {
           position: "absolute",
           left: 0,
           right: 0,
-          bottom: 0,
+          top: 0,
           height: 250,
           opacity: shade,
           background:
-            "linear-gradient(to bottom, rgba(9,9,10,0), rgba(9,9,10,0.6) 50%, rgba(9,9,10,0.78))",
+            "linear-gradient(to top, rgba(9,9,10,0), rgba(9,9,10,0.6) 50%, rgba(9,9,10,0.78))",
         }}
       />
       {l ? (
-        <div style={{ position: "absolute", left: 32, bottom: 28 }}>
+        // at the top of the window, centred under the capsule (Scott, 5 Nov: "put the location and hotel name higher
+        // up so it's not so much eye travel up and down")
+        <div
+          style={{
+            position: "absolute",
+            left: 0,
+            right: 0,
+            top: 30,
+            display: "flex",
+            justifyContent: "center",
+            textAlign: "center",
+          }}
+        >
           <HouseLabel c={l.c} on={l.on * out} small />
         </div>
       ) : null}
