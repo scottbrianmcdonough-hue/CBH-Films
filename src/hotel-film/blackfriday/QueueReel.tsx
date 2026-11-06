@@ -52,7 +52,7 @@ type Clip = {
   name?: string;
 };
 
-// Only the 14 hotels in the sale (Bianca, 5 Nov: "we're only spotlighting the 14 for the rest of Nov"), each once.
+// Only the hotels in the sale (16 since 6 Nov: Donnington Valley and Frensham Pond joined late) (Bianca, 5 Nov: "we're only spotlighting the 14 for the rest of Nov"), each once.
 // The window shows only the middle of a clip, so the stills are slow pushes fitted to the window itself
 // (`scripts/window-push.py`, near their own resolution); the full frame shots are footage where there is some.
 const F = "campaigns/black-friday-2026/fourteen/";
@@ -128,6 +128,7 @@ const WAIT: Clip[] = [
 // full frame after the drop: two beats each, The Alfriston's afternoon tea last; no fireplaces (Scott, 5 Nov: "enough
 // fireplaces, get the cosy interiors, beds, food")
 const AFTER: Clip[] = [
+  // Donnington Valley and Frensham Pond joined the sale late (Scott, 6 Nov), in their north to south places
   {
     src: F + "whittlebury-full.mp4",
     at: 24,
@@ -141,14 +142,26 @@ const AFTER: Clip[] = [
     name: "Burleigh Court",
   },
   {
-    src: F + "oakley-hall.mp4",
+    src: F + "donnington-valley-full.mp4",
     at: 28,
+    place: "Berkshire",
+    name: "Donnington Valley",
+  },
+  {
+    src: F + "oakley-hall.mp4",
+    at: 30,
     place: "Hampshire",
     name: "Oakley Hall",
   },
   {
+    src: F + "frensham-dusk-full.mp4",
+    at: 32,
+    place: "Surrey",
+    name: "Frensham Pond",
+  },
+  {
     src: F + "alfriston-tea-full.mp4",
-    at: 30,
+    at: 34,
     place: "East Sussex",
     name: "The Alfriston",
   },
@@ -157,8 +170,8 @@ const AFTER: Clip[] = [
 type Cut = { after: Clip[]; end: number; len: number };
 const CUTS: Record<"reel" | "story", Cut> = {
   // three beats longer for the slower recap, so the end card keeps its eight beats (the music file runs on to 28s)
-  reel: { after: AFTER, end: 32, len: 48 },
-  story: { after: [], end: 24, len: 40 },
+  reel: { after: AFTER, end: 36, len: 53 },
+  story: { after: [], end: 24, len: 41 },
 };
 export const QUEUE_FRAMES = B(CUTS.reel.len);
 export const QUEUE_STORY_FRAMES = B(CUTS.story.len);
@@ -749,10 +762,12 @@ const RECAP: { src: string; pos: string }[] = [
   { src: H + "jockey-club-rooms/bedroom-blue.jpg", pos: "45% 50%" }, // the full frame shot is the green bedroom
   { src: H + "whittlebury-park/salt-sauna.jpg", pos: "50% 50%" },
   { src: H + "burleigh-court/bedroom.jpg", pos: "45% 50%" },
+  { src: H + "donnington-valley/splendid-suite.jpg", pos: "35% 50%" },
   { src: H + "oakley-hall/bedroom.jpg", pos: "60% 50%" },
+  { src: H + "frensham-pond/restaurant.jpg", pos: "40% 50%" },
   { src: H + "the-alfriston/bedroom.jpg", pos: "40% 50%" },
 ];
-const RECAP_BEATS = 8; // calm and steady (Scott: "not so manic", "a calmer steady shutter", "a little slower"): ~9 frames each
+const RECAP_BEATS = 9; // 16 photos now (was 8 beats for 14), the same pace; // calm and steady (Scott: "not so manic", "a calmer steady shutter", "a little slower"): ~9 frames each
 const Recap: React.FC<{ at: number }> = ({ at }) => {
   const frame = useCurrentFrame();
   const total = B(RECAP_BEATS);

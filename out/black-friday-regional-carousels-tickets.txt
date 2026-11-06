@@ -22,7 +22,7 @@ Creative: bf-yorkshire-scotland-01 to 07.jpg (7 slides, 4:5, in order)
 Notes
 - Slides, north to south: Dalmahoy, 30% off B&B (stays to 30 April); Skipton Hotel, 25% off your stay plus 25% off food and drink; Holdsworth House, 10% off B&B; Gomersal Park Hotel & Spa, 20% off your stay plus 20% off food and drink; Waterton Park, 15% off your stay plus 25% off food and drink. Tag all five.
 - Offers checked against the 2026 promo sheet (Catherine's latest version, 5 Nov).
-- Hold: nothing posts until all 14 offers show on the site (the page goes live Mon 9 Nov).
+- Hold: nothing posts until all the offers show on the site.(the page goes live Mon 9 Nov).
 - Links: Jira shows the URLs as smart chips that copy as the page title. Switch them to URL display before copying.
 
 
@@ -50,7 +50,7 @@ Creative: bf-wales-01 to 04.jpg (4 slides, 4:5, in order)
 Notes
 - Slides, north to south: The Imperial, Llandudno, up to 30% off B&B (always "up to"); Ruthin Castle, 20% off your stay plus 20% off food and drink. Tag both.
 - Offers checked against the 2026 promo sheet (Catherine's latest version, 5 Nov).
-- Hold: nothing posts until all 14 offers show on the site.
+- Hold: nothing posts until all the offers show on the site.
 - Links: Jira shows the URLs as smart chips that copy as the page title. Switch them to URL display before copying.
 
 
@@ -80,7 +80,7 @@ Notes
 - Jockey Club Rooms: the offer's blackout runs 23 Nov to 5 Dec, over Black Friday weekend itself (also 11, 12, 18, 19 Dec and 4, 5, 12, 13 Feb). Whittlebury: not 24, 25, 26 or 31 Dec. Oaklands Hall: not December weekends, 31 Dec or 26 to 29 March. The slides say "selected dates".
 - No "up to" figure in this post: the region's best is 18%, under the campaign's 30%.
 - Offers checked against the 2026 promo sheet (Catherine's latest version, 5 Nov).
-- Hold: nothing posts until all 14 offers show on the site.
+- Hold: nothing posts until all the offers show on the site.
 - Links: Jira shows the URLs as smart chips that copy as the page title. Switch them to URL display before copying.
 
 
@@ -109,5 +109,5 @@ Notes
 - Slides, north to south: Burleigh Court, 25% off B&B; Oakley Hall, 30% off your stay, room only or B&B; The Alfriston, 30% off B&B, bookable 27 to 30 Nov only, stays to 31 March. Tag all three.
 - On Black Friday itself: The Alfriston's offer can only be booked 27 to 30 November, so the post goes out when it opens.
 - Offers checked against the 2026 promo sheet (Catherine's latest version, 5 Nov).
-- Hold: nothing posts until all 14 offers show on the site.
+- Hold: nothing posts until all the offers show on the site.
 - Links: Jira shows the URLs as smart chips that copy as the page title. Switch them to URL display before copying.

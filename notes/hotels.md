@@ -44,3 +44,4 @@ Standing rules on shots:
 Collection-wide films (many hotels): [cbh-journey](films/cbh-journey.md), [cbh-showcase](films/cbh-showcase.md),
 [cbh-mosaic](films/cbh-mosaic.md), [cbh-comic-flip](films/cbh-comic-flip.md), [cbh-rolodex](films/cbh-rolodex.md),
 [cbh-screens](films/cbh-screens.md), [brand-stings](films/brand-stings.md).
+| Donnington Valley | [black-friday-queue](films/black-friday-queue.md) |
