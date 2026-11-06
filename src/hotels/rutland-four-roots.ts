@@ -44,7 +44,7 @@ export const rutlandFourRoots: RippleSpec = {
     // the treatment first, under the Four Roots sign straight after the label, then the water on the bass (Scott, 5 Nov:
     // "your treatment then switch off, then the water, then the stars, then supper, then the bed")
     {
-      text: "Your treatment,\nthen switch off",
+      text: "A treatment\nof your choosing",
       from: 120,
       to: 228,
       top: 300,
@@ -101,7 +101,7 @@ export const rutlandFourRootsStory: RippleSpec = {
       sky: true,
     },
     {
-      text: "Your treatment,\nthen switch off",
+      text: "A treatment\nof your choosing",
       from: 120,
       to: 198,
       top: 300,
