@@ -1,6 +1,7 @@
 import { Audio } from "@remotion/media";
 import React from "react";
 import {
+  Easing,
   AbsoluteFill,
   Img,
   interpolate,
@@ -36,6 +37,8 @@ const MAUVE = "#A15272";
 const BEAT = 0.54575 * 30; // frames
 const B = (k: number) => Math.round(k * BEAT);
 const DROP = B(20);
+// the count to 30: moving from its first frame, an even climb, slowing gently into the 30
+const COUNT_EASE = Easing.bezier(0.3, 0.3, 0.45, 1);
 const GAIN = 0.56; // ~-15.2 LUFS over the reel
 
 // `frame`: where the window looks in a clip, the source point at its top left and a scale (default: the clip's
@@ -384,12 +387,15 @@ const Queue: React.FC<{ cut: Cut }> = ({ cut }) => {
   // counts up to 30% (Scott: "a counter up to 30"; "I don't see the counting to 30 by the time I'm done reading"),
   // starting a beat in ("takes too long for the count to start") and climbing evenly to land half a beat before it
   // turns into Book now
-  const offerOut = 1 - progress(frame, enter - 6, 6);
+  // the offer and Book now cross in the capsule, so it is never an empty pill (polish, 5 Nov)
+  const offerOut = 1 - progress(frame, enter - 5, 6, EASE_IN_OUT);
   const COUNT_UP = 1;
   const pct = Math.round(
-    30 * progress(frame, B(COUNT_UP), B(17.5) - B(COUNT_UP), EASE_IN_OUT),
+    // climbing from the first frame it shows, not resting on 0% while an ease gets going (polish, 5 Nov); easing only
+    // into the 30
+    30 * progress(frame, B(COUNT_UP), B(17.5) - B(COUNT_UP), COUNT_EASE),
   );
-  const button = progress(frame, enter, 8, EASE_OUT);
+  const button = progress(frame, enter - 1, 8, EASE_OUT);
   const press = interpolate(frame, [tap, tap + 3, tap + 9], [1, 0.93, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
@@ -465,6 +471,7 @@ const Queue: React.FC<{ cut: Cut }> = ({ cut }) => {
                 width: 420,
                 height: 92,
                 borderRadius: 46,
+                overflow: "hidden",
                 backgroundColor: MAUVE,
                 fontFamily: sans,
                 fontWeight: 600,
@@ -482,6 +489,8 @@ const Queue: React.FC<{ cut: Cut }> = ({ cut }) => {
                   justifyContent: "center",
                   gap: 16,
                   opacity: offerOut,
+                  // a roll: the offer lifts out as Book now rises in
+                  transform: `translateY(${-(1 - offerOut) * 22}px)`,
                 }}
               >
                 <span style={{ fontSize: 30, letterSpacing: "0.02em" }}>
@@ -505,7 +514,7 @@ const Queue: React.FC<{ cut: Cut }> = ({ cut }) => {
                   alignItems: "center",
                   justifyContent: "center",
                   opacity: button,
-                  transform: `translateY(${(1 - button) * 14}px)`,
+                  transform: `translateY(${(1 - button) * 22}px)`,
                   ...caps(36, colors.cream, 0.04),
                 }}
               >
@@ -736,16 +745,16 @@ const RECAP: { src: string; pos: string }[] = [
   // a second photo each, none the window or full frame shots already showed (Scott, 5 Nov: "are those duplicate photos,
   // maybe get a second photo each so we're not duplicating"), north to south, cosy picks
   { src: H + "dalmahoy/bedroom.jpg", pos: "45% 50%" },
-  { src: H + "skipton/pool.jpg", pos: "50% 50%" },
+  { src: H + "skipton/canal-reflection.jpg", pos: "35% 50%" }, // fewer pools in the recap (polish, 5 Nov)
   { src: H + "holdsworth-house/breakfast-in-bed.jpg", pos: "50% 50%" },
   { src: H + "gomersal-park/spa-pool.jpg", pos: "50% 50%" },
   { src: H + "waterton-park/footbridge-autumn.jpg", pos: "47% 50%" },
-  { src: H + "the-imperial/afternoon-tea.jpg", pos: "45% 50%" },
+  { src: H + "the-imperial/seafront.jpg", pos: "50% 50%" }, // not a third afternoon tea
   { src: H + "ruthin-castle/white-bed.jpg", pos: "50% 50%" },
   { src: H + "oaklands-hall/plate.jpg", pos: "50% 50%" },
   { src: H + "forest-of-arden/pool.jpg", pos: "50% 50%" },
   { src: H + "jockey-club-rooms/bedroom-blue.jpg", pos: "45% 50%" }, // the full frame shot is the green bedroom
-  { src: H + "whittlebury-park/spa-pool.jpg", pos: "50% 50%" },
+  { src: H + "whittlebury-park/salt-sauna.jpg", pos: "50% 50%" },
   { src: H + "burleigh-court/bedroom.jpg", pos: "45% 50%" },
   { src: H + "oakley-hall/bedroom.jpg", pos: "60% 50%" },
   { src: H + "the-alfriston/bedroom.jpg", pos: "40% 50%" },
