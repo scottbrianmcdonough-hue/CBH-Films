@@ -30,6 +30,6 @@ Video: black-friday-countdown.mp4 (26.2s, 9:16); Story: black-friday-countdown-s
 Music: Party Dance by prettyjohn1 (Pixabay) is baked in; post as is, no sound in app
 
 Notes
-- Hotels: only the 14 in the sale, each named on screen, north to south (Bianca): Dalmahoy, Skipton, Holdsworth House, Gomersal Park, Waterton Park, The Imperial, Ruthin Castle, Oaklands Hall, Forest of Arden, Jockey Club Rooms, Whittlebury Park, Burleigh Court, Oakley Hall, The Alfriston. Tag them in the post. The Story shows the first ten (to Jockey Club Rooms).
+- Hotels: only the 14 in the sale, each named on screen, north to south (Bianca), except Dalmahoy, which bursts full screen as the capsule lands on 30% (its offer is 30% off B&B): Skipton, Holdsworth House, Gomersal Park, Waterton Park, The Imperial, Ruthin Castle, Oaklands Hall, Forest of Arden, Dalmahoy, Jockey Club Rooms, Whittlebury Park, Burleigh Court, Oakley Hall, The Alfriston. Tag them in the post. The Story shows the first ten (to Jockey Club Rooms).
 - Hold: nothing posts until all 14 offers show on the site.
 - Links: Jira shows the URLs as smart chips that copy as the page title. Switch them to URL display before copying.

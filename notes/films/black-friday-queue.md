@@ -96,3 +96,4 @@ The counter up top (Scott, 5 Nov: "this counter should be up top"): in the offic
 - Recap shutter on second photos (Scott, 5 Nov: "are those duplicate photos, maybe get a second photo each so we're not duplicating"): none of the window or full frame shots repeat.
 - The white CB back in its corner (Scott, 5 Nov: "also needs the white CB"), 920/1452 as on every film, fading out as the end card (with its gold lockup) comes in.
 - Black Friday Sale and Now open 40px higher (Scott: "give some space between the Now open and the capsule").
+- The window ends on Dalmahoy (Scott, 5 Nov: "end on Dalmahoy if they are doing 30, unless Forest of Arden is doing 30"): Dalmahoy's 30% off B&B bursts full frame as the capsule lands on 30% (`dalmahoy-full.mp4`, the house under open sky for The wait is over); the rest north to south from Skipton, Forest of Arden in the window before it.

@@ -58,54 +58,61 @@ const F = "campaigns/black-friday-2026/fourteen/";
 // north to south (Bianca, 5 Nov: "start north to south"), as the carousels run: the window's eight, then Forest of
 // Arden bursts out on the drop, and the rest full frame
 const WAIT: Clip[] = [
-  { src: F + "dalmahoy-w.mp4", at: 0, place: "Edinburgh", name: "Dalmahoy" },
+  // north to south, but ending on Dalmahoy, whose 30% off B&B bursts full frame as the capsule lands on 30% (Scott, 5
+  // Nov: "end on Dalmahoy if they are doing 30"; Forest of Arden's offer is an advance purchase rate, no percentage)
   {
     src: F + "skipton.mp4",
-    at: 2,
+    at: 0,
     place: "North Yorkshire",
     name: "Skipton Hotel",
   },
   {
     src: F + "holdsworth-pancakes-w.mp4",
-    at: 4,
+    at: 2,
     place: "Halifax",
     name: "Holdsworth House",
   },
   {
     src: F + "gomersal-bedroom-w.mp4",
-    at: 6,
+    at: 4,
     place: "West Yorkshire",
     name: "Gomersal Park",
   },
   {
     src: F + "waterton-plate-w.mp4",
-    at: 8,
+    at: 6,
     place: "Wakefield",
     name: "Waterton Park",
   },
   {
     src: F + "imperial-w.mp4",
-    at: 10,
+    at: 8,
     place: "Llandudno",
     name: "The Imperial",
   },
   {
     src: F + "ruthin-w.mp4",
-    at: 12,
+    at: 10,
     place: "North Wales",
     name: "Ruthin Castle",
   },
   {
     src: F + "oaklands-bedroom-w.mp4",
-    at: 14,
+    at: 12,
     place: "Lincolnshire",
     name: "Oaklands Hall",
   },
   {
     src: F + "forest-of-arden-full.mp4",
-    at: 16,
+    at: 14,
     place: "Warwickshire",
     name: "Forest of Arden",
+  },
+  {
+    src: F + "dalmahoy-full.mp4",
+    at: 16,
+    place: "Edinburgh",
+    name: "Dalmahoy",
   },
   {
     src: F + "jockey-full.mp4",
