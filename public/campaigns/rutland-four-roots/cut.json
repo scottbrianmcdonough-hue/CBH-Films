@@ -5,7 +5,7 @@
    "src": "public/campaigns/rutland-four-roots/clips/exterior-reel.mp4",
    "from": 0,
    "frames": 117,
-   "vf": "eq=saturation=1.0:contrast=1.02"
+   "vf": "eq=saturation=1.08:contrast=1.03,colorbalance=gs=0.05:gm=0.05:bs=0.03"
   },
   {
    "src": "public/campaigns/rutland-four-roots/clips/desk-reel.mp4",

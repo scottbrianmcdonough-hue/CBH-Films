@@ -22,16 +22,25 @@ export const rutlandFourRoots: RippleSpec = {
   picture: "campaigns/rutland-four-roots/picture.mp4",
   frames: 773,
   label: {
-    // the gold caps once, at the start (Scott, 5 Nov: "get rid of the gold lines above and just put it at the beginning")
-    eyebrow: "Four Roots Luxury Breaks",
+    // no gold caps: the name alone in cream Cormorant, then the breaks on the same exterior (Scott, 5 Nov: "get rid of
+    // the gold caps and put the name of the hotel in cream Cormorant and then Four Roots Luxury Breaks after, same
+    // exterior, then go")
+    eyebrow: "",
     name: "Rutland Hall\nHotel & Spa",
-    from: 10,
-    to: 110,
+    from: 8,
+    to: 62,
     top: 540, // in the blue sky under the cloud, above the chimneys (Scott: not over the house; no shade, "storm cloud")
   },
   // the roots counted, not one repeated eyebrow (Scott, 5 Nov: "all the labels say Four Roots Journey, switch those up");
   // the second and third held six beats (Scott: "too fast to read")
   lines: [
+    {
+      text: "Four Roots\nLuxury Breaks",
+      from: 64,
+      to: 116,
+      top: 540,
+      sky: true,
+    },
     // the treatment first, under the Four Roots sign straight after the label, then the water on the bass (Scott, 5 Nov:
     // "your treatment then switch off, then the water, then the stars, then supper, then the bed")
     {
@@ -80,40 +89,48 @@ export const rutlandFourRootsStory: RippleSpec = {
   ...rutlandFourRoots,
   id: "rutland-four-roots-story",
   picture: "campaigns/rutland-four-roots/picture-story.mp4",
-  frames: 597,
-  label: { ...rutlandFourRoots.label, from: 4, to: 54 },
+  frames: 655,
+  // the opening a bar longer, as the reel's, so the name and the breaks both get read (music from 165.34s)
+  label: rutlandFourRoots.label,
   lines: [
     {
+      text: "Four Roots\nLuxury Breaks",
+      from: 64,
+      to: 116,
+      top: 540,
+      sky: true,
+    },
+    {
       text: "Your treatment,\nthen switch off",
-      from: 62,
-      to: 140,
+      from: 120,
+      to: 198,
       top: 300,
     },
     {
       text: "Let the water\ntake the weight",
-      from: 149,
-      to: 228,
+      from: 207,
+      to: 286,
     },
     {
       text: "Lie back under\na sky of stars",
-      from: 237,
-      to: 316,
+      from: 295,
+      to: 374,
     },
     {
       text: "Dinner as the\nlake turns gold",
-      from: 325,
-      to: 404,
+      from: 383,
+      to: 462,
     },
     {
       text: "One night,\nor two",
-      from: 413,
-      to: 491,
+      from: 471,
+      to: 549,
     },
   ],
-  endCard: { at: 498, line: "Take root\nby Rutland Water", quick: true },
+  endCard: { at: 556, line: "Take root\nby Rutland Water", quick: true },
   music: {
     ...rutlandFourRoots.music,
     src: "campaigns/rutland-four-roots/music-story.m4a",
-    seconds: 19.9,
+    seconds: 21.9,
   },
 };

@@ -33,6 +33,8 @@ export type RippleSpec = {
     top?: number;
     size?: number;
     eyebrow?: string;
+    // over a bright sky: no shade, a tight shadow on the letters (Rutland's opening)
+    sky?: boolean;
   }[];
   // a counter over the shots (Haycock's meetings cut: MEETING SPACES ticking up as the rooms cut
   // on the beat): the caption in gold caps with its underline (the label's order), the number in

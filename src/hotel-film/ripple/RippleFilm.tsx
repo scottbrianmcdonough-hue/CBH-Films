@@ -15,7 +15,8 @@ import type { RippleSpec } from "./types";
 
 const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
 // over a bright sky, close and soft so the letters read without darkening the sky round them
-const SKY_LIFT = "0 1px 2px rgba(9,9,10,0.7), 0 2px 10px rgba(9,9,10,0.45), 0 0 26px rgba(9,9,10,0.3)";
+const SKY_LIFT =
+  "0 1px 2px rgba(9,9,10,0.7), 0 2px 10px rgba(9,9,10,0.45), 0 0 26px rgba(9,9,10,0.3)";
 const LIFT = "0 3px 28px rgba(9,9,10,0.55), 0 1px 3px rgba(9,9,10,0.45)";
 // Cosy autumn, as Departures (Scott: "grade it cosy autumn"): the summer photos warmed and
 // softened toward gold under an amber glow.
@@ -59,28 +60,31 @@ const Label: React.FC<{
           transform: `translateY(${(1 - a) * 30}px)`,
         }}
       >
-        <div style={{ display: "inline-block", marginBottom: 18 }}>
-          <div
-            style={{
-              fontFamily: sans,
-              fontWeight: 600,
-              fontSize: 30,
-              letterSpacing: "0.28em",
-              color: colors.gold,
-              textTransform: "uppercase",
-              textShadow: top === undefined ? undefined : SKY_LIFT,
-            }}
-          >
-            {eyebrow}
+        {eyebrow ? (
+          <div style={{ display: "inline-block", marginBottom: 18 }}>
+            <div
+              style={{
+                fontFamily: sans,
+                fontWeight: 600,
+                fontSize: 30,
+                letterSpacing: "0.28em",
+                color: colors.gold,
+                textTransform: "uppercase",
+                textShadow: top === undefined ? undefined : SKY_LIFT,
+              }}
+            >
+              {eyebrow}
+            </div>
+            <div style={{ height: 2, background: colors.gold, marginTop: 8 }} />
           </div>
-          <div style={{ height: 2, background: colors.gold, marginTop: 8 }} />
-        </div>
+        ) : null}
         {name.split("\n").map((l) => (
           <div
             key={l}
             style={{
               fontFamily: serif,
               fontSize: 92,
+              fontWeight: top === undefined ? undefined : 500, // a touch heavier over a bright sky
               lineHeight: 1.04,
               color: colors.cream,
               textShadow: top === undefined ? LIFT : SKY_LIFT,
@@ -101,11 +105,12 @@ const Label: React.FC<{
 // to the end card, and swaps between the bottom shade and a top line's shade only on that shot's cuts
 const SteadyShade: React.FC<{ film: RippleSpec }> = ({ film }) => {
   const frame = useCurrentFrame();
-  const first = film.lines[0]?.from ?? 0;
+  const shaded = film.lines.filter((l) => !l.sky); // a line over the sky has no shade
+  const first = shaded[0]?.from ?? 0;
   const on =
     progress(frame, first, 12, EASE_IN_OUT) *
     (1 - progress(frame, film.endCard.at + 42, 1));
-  const top = film.lines.find(
+  const top = shaded.find(
     (l) => l.top !== undefined && frame >= l.from - 3 && frame < l.to + 6,
   );
   return (
@@ -128,7 +133,8 @@ const Line: React.FC<{
   eyebrow?: string;
   deep?: boolean;
   noScrim?: boolean;
-}> = ({ text, out, top, size = 1, wide, eyebrow, deep, noScrim }) => {
+  sky?: boolean;
+}> = ({ text, out, top, size = 1, wide, eyebrow, deep, noScrim, sky }) => {
   const frame = useCurrentFrame();
   const o = 1 - progress(frame, out - 12, 12, EASE_IN_OUT);
   const e = progress(frame, 0, 14, EASE_OUT);
@@ -136,7 +142,7 @@ const Line: React.FC<{
     <AbsoluteFill style={{ opacity: o }}>
       <AbsoluteFill
         style={{
-          display: noScrim ? "none" : undefined,
+          display: noScrim || sky ? "none" : undefined,
           background:
             top === undefined
               ? wide
@@ -194,7 +200,8 @@ const Line: React.FC<{
                   // lining figures: Cormorant's old-style ones read "60" as "6o" (Nailcote's capacities)
                   fontVariantNumeric: "lining-nums",
                   whiteSpace: "nowrap",
-                  textShadow: LIFT,
+                  textShadow: sky ? SKY_LIFT : LIFT,
+                  fontWeight: sky ? 500 : undefined,
                   transform: `translateY(${(1 - p) * 140}%)`,
                   opacity: Math.min(1, p * 3),
                 }}
@@ -426,6 +433,7 @@ export const RippleFilm: React.FC<{ film: RippleSpec }> = ({ film }) => {
             eyebrow={l.eyebrow}
             deep={film.deepScrim}
             noScrim={film.deepScrim}
+            sky={l.sky}
           />
         </Sequence>
       ))}
