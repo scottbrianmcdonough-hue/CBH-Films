@@ -31,17 +31,19 @@ export const rutlandFourRoots: RippleSpec = {
   // the roots counted, not one repeated eyebrow (Scott, 5 Nov: "all the labels say Four Roots Journey, switch those up");
   // the second and third held six beats (Scott: "too fast to read")
   lines: [
-    {
-      text: "Let the water\ntake the weight",
-      from: 120,
-      to: 228,
-    },
+    // the treatment first, under the Four Roots sign straight after the label, then the water on the bass (Scott, 5 Nov:
+    // "your treatment then switch off, then the water, then the stars, then supper, then the bed")
     {
       text: "Your treatment,\nthen switch off",
-      from: 237,
-      to: 331,
+      from: 120,
+      to: 228,
       top: 300,
     }, // above the desk's sign
+    {
+      text: "Let the water\ntake the weight",
+      from: 237,
+      to: 331,
+    },
     {
       text: "Lie back under\na sky of stars",
       from: 340,
@@ -62,7 +64,7 @@ export const rutlandFourRoots: RippleSpec = {
   // the copy lifted (Scott, 5 Nov: "elevate the copy ... you have four opportunities for good copy"): each root named in
   // the eyebrow, a line of its own beneath; and a deeper shade so it reads over the bright pool and desk
   deepScrim: true,
-  endCard: { at: 674, line: "Take root\nby the lake" },
+  endCard: { at: 674, line: "Take root\nby the lake", quick: true },
   music: {
     src: "campaigns/rutland-four-roots/music-reel.m4a",
     startAt: 0,
@@ -81,15 +83,15 @@ export const rutlandFourRootsStory: RippleSpec = {
   label: { ...rutlandFourRoots.label, from: 4, to: 54 },
   lines: [
     {
-      text: "Let the water\ntake the weight",
+      text: "Your treatment,\nthen switch off",
       from: 62,
       to: 140,
+      top: 300,
     },
     {
-      text: "Your treatment,\nthen switch off",
+      text: "Let the water\ntake the weight",
       from: 149,
       to: 228,
-      top: 300,
     },
     {
       text: "Lie back under\na sky of stars",
@@ -107,7 +109,7 @@ export const rutlandFourRootsStory: RippleSpec = {
       to: 491,
     },
   ],
-  endCard: { at: 498, line: "Take root\nby the lake" },
+  endCard: { at: 498, line: "Take root\nby the lake", quick: true },
   music: {
     ...rutlandFourRoots.music,
     src: "campaigns/rutland-four-roots/music-story.m4a",

@@ -40,6 +40,8 @@ export type RippleSpec = {
     at: number;
     line: string;
     scene?: { fg: string; from: number; top: number; rise: number };
+    // the line rises straight in, not after the picture's fade (Scott, 5 Nov, Rutland: "delayed a full second ... snappy")
+    quick?: boolean;
   };
   // fadeOut: frames the music fades over at the end (default 12; a Story stops mid-track)
   music: {

@@ -263,12 +263,15 @@ const Counter: React.FC<{
 
 // The end card: the picture has rippled into black; the question rises as one calm block,
 // centred, the white CB staying on in its corner.
-const EndCard: React.FC<{ line: string; wide?: boolean }> = ({
+const EndCard: React.FC<{ line: string; wide?: boolean; quick?: boolean }> = ({
   line,
   wide,
+  quick,
 }) => {
   const frame = useCurrentFrame();
-  const a = progress(frame, 18, 24, EASE_OUT);
+  const a = quick
+    ? progress(frame, 4, 14, EASE_OUT)
+    : progress(frame, 18, 24, EASE_OUT);
   return (
     <AbsoluteFill
       style={{
@@ -440,7 +443,11 @@ export const RippleFilm: React.FC<{ film: RippleSpec }> = ({ film }) => {
         </>
       ) : (
         <Sequence from={film.endCard.at}>
-          <EndCard line={film.endCard.line} wide={film.wide} />
+          <EndCard
+            line={film.endCard.line}
+            wide={film.wide}
+            quick={film.endCard.quick}
+          />
         </Sequence>
       )}
       {/* with the end card in the scene, the glow goes over the near layer too (last) */}
