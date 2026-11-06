@@ -128,7 +128,7 @@ const WAIT: Clip[] = [
 // full frame after the drop: two beats each, The Alfriston's afternoon tea last; no fireplaces (Scott, 5 Nov: "enough
 // fireplaces, get the cosy interiors, beds, food")
 const AFTER: Clip[] = [
-  // Donnington Valley and Frensham Pond joined the sale late (Scott, 6 Nov), in their north to south places
+  // Donnington Hotel, Spa & Golf and Frensham Pond joined the sale late (Scott, 6 Nov), in their north to south places
   {
     src: F + "whittlebury-full.mp4",
     at: 24,
@@ -145,7 +145,7 @@ const AFTER: Clip[] = [
     src: F + "donnington-valley-full.mp4",
     at: 28,
     place: "Berkshire",
-    name: "Donnington Valley",
+    name: "Donnington Hotel, Spa & Golf", // its name (Scott, 6 Nov)
   },
   {
     src: F + "oakley-hall.mp4",
