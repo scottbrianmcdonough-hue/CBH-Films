@@ -10,6 +10,7 @@ import { MixedFilm } from "./hotel-film/mixed/MixedFilm";
 import { RippleFilm } from "./hotel-film/ripple/RippleFilm";
 import { WhereNext, WHERE_NEXT_FRAMES } from "./hotel-film/stings/WhereNext";
 import { QueueReel, QUEUE_FRAMES, QUEUE_STORY_FRAMES } from "./hotel-film/blackfriday/QueueReel";
+import { STEAM_FPS, STEAM_FRAMES, VoucherSteam } from "./hotel-film/foil/VoucherSteam";
 import { OutOfOffice, OOO_FRAMES } from "./hotel-film/december/OutOfOffice";
 import { Door24, DOOR_FRAMES } from "./hotel-film/december/Door24";
 import { DriveHome, DRIVE_FRAMES } from "./hotel-film/december/DriveHome";
@@ -587,6 +588,8 @@ export const RemotionRoot: React.FC = () => {
       <Composition id="december-door-24" component={Door24} durationInFrames={DOOR_FRAMES} fps={FPS} width={WIDTH} height={HEIGHT} />
       <Composition id="december-drive-home" component={DriveHome} durationInFrames={DRIVE_FRAMES} fps={FPS} width={WIDTH} height={HEIGHT} />
       <Composition id="black-friday-queue" component={QueueReel} durationInFrames={QUEUE_FRAMES} fps={FPS} width={WIDTH} height={HEIGHT} />
+      {/* Black Friday follow up: the steam gift tag, Rowton, the Kingfisher and Barnett Hill, the official asset (from my-video) */}
+      <Composition id="black-friday-steam" component={VoucherSteam} durationInFrames={STEAM_FRAMES} fps={STEAM_FPS} width={1080} height={1920} />
       <Composition
         id="black-friday-queue-story"
         component={QueueReel}
