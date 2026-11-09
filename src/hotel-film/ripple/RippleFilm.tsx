@@ -29,6 +29,11 @@ const DEEP_SCRIM =
 // the label's scrim for a landscape frame: the same soft dark from the bottom-left corner
 const COUNTER_SCRIM_WIDE =
   "radial-gradient(ellipse 1100px 640px at 0px 1080px, rgba(9,9,10,0.84) 0%, rgba(9,9,10,0.58) 45%, rgba(9,9,10,0) 100%)";
+// 4:5 (feed): the deep shade from the bottom-left corner of a 1350 frame
+const FEED_SCRIM =
+  "radial-gradient(ellipse 1150px 640px at 0px 1290px, rgba(9,9,10,0.84) 0%, rgba(9,9,10,0.58) 45%, rgba(9,9,10,0) 100%)";
+const MAUVE = "#A15272"; // Lee's Black Friday caps
+const FEED_BOTTOM = 190;
 const SCRIM_WIDE =
   "radial-gradient(ellipse 1300px 560px at 0px 1080px, rgba(9,9,10,0.7) 0%, rgba(9,9,10,0.46) 45%, rgba(9,9,10,0) 100%)";
 
@@ -39,8 +44,9 @@ const Label: React.FC<{
   name: string;
   out: number;
   wide?: boolean;
+  feed?: boolean;
   top?: number;
-}> = ({ eyebrow, name, out, wide, top }) => {
+}> = ({ eyebrow, name, out, wide, feed, top }) => {
   const frame = useCurrentFrame();
   const a = progress(frame, 0, 20, EASE_OUT);
   const o = 1 - progress(frame, out - 12, 12, EASE_IN_OUT);
@@ -48,14 +54,14 @@ const Label: React.FC<{
     <AbsoluteFill style={{ opacity: o }}>
       <AbsoluteFill
         style={{
-          background: top === undefined ? (wide ? SCRIM_WIDE : SCRIM) : "none", // no shade in the sky (Scott: "looks like a storm cloud"): a tight shadow on the letters,
+          background: top === undefined ? (wide ? SCRIM_WIDE : feed ? FEED_SCRIM : SCRIM) : "none", // no shade in the sky (Scott: "looks like a storm cloud"): a tight shadow on the letters,
         }}
       />
       <div
         style={{
           position: "absolute",
           left: wide ? 110 : 72,
-          ...(top === undefined ? { bottom: wide ? 120 : 470 } : { top }),
+          ...(top === undefined ? { bottom: wide ? 120 : feed ? FEED_BOTTOM : 470 } : { top }),
           opacity: a,
           transform: `translateY(${(1 - a) * 30}px)`,
         }}
@@ -119,7 +125,9 @@ const SteadyShade: React.FC<{ film: RippleSpec }> = ({ film }) => {
         opacity: on,
         background: top
           ? `radial-gradient(ellipse 1150px 520px at 0px ${top.top! + 110}px, rgba(9,9,10,0.78) 0%, rgba(9,9,10,0.52) 45%, rgba(9,9,10,0) 100%)`
-          : DEEP_SCRIM,
+          : film.feed
+            ? FEED_SCRIM
+            : DEEP_SCRIM,
       }}
     />
   );
@@ -130,11 +138,12 @@ const Line: React.FC<{
   top?: number;
   size?: number;
   wide?: boolean;
+  feed?: boolean;
   eyebrow?: string;
   deep?: boolean;
   noScrim?: boolean;
   sky?: boolean;
-}> = ({ text, out, top, size = 1, wide, eyebrow, deep, noScrim, sky }) => {
+}> = ({ text, out, top, size = 1, wide, feed, eyebrow, deep, noScrim, sky }) => {
   const frame = useCurrentFrame();
   const o = 1 - progress(frame, out - 12, 12, EASE_IN_OUT);
   const e = progress(frame, 0, 14, EASE_OUT);
@@ -147,7 +156,9 @@ const Line: React.FC<{
             top === undefined
               ? wide
                 ? SCRIM_WIDE
-                : deep
+                : feed
+                  ? FEED_SCRIM
+                  : deep
                   ? DEEP_SCRIM
                   : SCRIM
               : `radial-gradient(ellipse 1150px 520px at 0px ${top + 110}px, rgba(9,9,10,${deep ? 0.78 : 0.56}) 0%, rgba(9,9,10,${deep ? 0.52 : 0.34}) 45%, rgba(9,9,10,0) 100%)`,
@@ -157,7 +168,7 @@ const Line: React.FC<{
         style={{
           position: "absolute",
           left: wide ? 110 : 72,
-          ...(top === undefined ? { bottom: wide ? 108 : 470 } : { top }),
+          ...(top === undefined ? { bottom: wide ? 108 : feed ? FEED_BOTTOM : 470 } : { top }),
         }}
       >
         {eyebrow ? (
@@ -278,11 +289,14 @@ const Counter: React.FC<{
 
 // The end card: the picture has rippled into black; the question rises as one calm block,
 // centred, the white CB staying on in its corner.
-const EndCard: React.FC<{ line: string; wide?: boolean; quick?: boolean }> = ({
-  line,
-  wide,
-  quick,
-}) => {
+const EndCard: React.FC<{
+  line: string;
+  wide?: boolean;
+  feed?: boolean;
+  quick?: boolean;
+  eyebrow?: string;
+  sub?: string;
+}> = ({ line, wide, feed, quick, eyebrow, sub }) => {
   const frame = useCurrentFrame();
   const a = quick
     ? progress(frame, 4, 14, EASE_OUT)
@@ -292,7 +306,7 @@ const EndCard: React.FC<{ line: string; wide?: boolean; quick?: boolean }> = ({
       style={{
         alignItems: "center",
         justifyContent: "center",
-        paddingBottom: wide ? 0 : 120,
+        paddingBottom: wide || feed ? 0 : 120,
       }}
     >
       <div
@@ -302,6 +316,21 @@ const EndCard: React.FC<{ line: string; wide?: boolean; quick?: boolean }> = ({
           textAlign: "center",
         }}
       >
+        {eyebrow ? (
+          <div
+            style={{
+              fontFamily: sans,
+              fontWeight: 600,
+              fontSize: 44,
+              letterSpacing: "0.04em",
+              color: MAUVE,
+              textTransform: "uppercase",
+              marginBottom: 26,
+            }}
+          >
+            {eyebrow}
+          </div>
+        ) : null}
         {line.split("\n").map((l, i) => (
           <div
             key={l}
@@ -318,6 +347,22 @@ const EndCard: React.FC<{ line: string; wide?: boolean; quick?: boolean }> = ({
             {l}
           </div>
         ))}
+        {sub ? (
+          <div
+            style={{
+              fontFamily: sans,
+              fontWeight: 500,
+              fontSize: 34,
+              letterSpacing: "0.02em",
+              color: colors.cream,
+              opacity: 0.88,
+              marginTop: 40,
+              whiteSpace: "nowrap",
+            }}
+          >
+            {sub}
+          </div>
+        ) : null}
       </div>
     </AbsoluteFill>
   );
@@ -405,6 +450,7 @@ export const RippleFilm: React.FC<{ film: RippleSpec }> = ({ film }) => {
           name={film.label.name}
           out={film.label.to - film.label.from}
           wide={film.wide}
+          feed={film.feed}
           top={film.label.top}
         />
       </Sequence>
@@ -430,6 +476,7 @@ export const RippleFilm: React.FC<{ film: RippleSpec }> = ({ film }) => {
             top={l.top}
             size={l.size}
             wide={film.wide}
+            feed={film.feed}
             eyebrow={l.eyebrow}
             deep={film.deepScrim}
             noScrim={film.deepScrim}
@@ -463,7 +510,10 @@ export const RippleFilm: React.FC<{ film: RippleSpec }> = ({ film }) => {
           <EndCard
             line={film.endCard.line}
             wide={film.wide}
+            feed={film.feed}
             quick={film.endCard.quick}
+            eyebrow={film.endCard.eyebrow}
+            sub={film.endCard.sub}
           />
         </Sequence>
       )}
@@ -478,7 +528,7 @@ export const RippleFilm: React.FC<{ film: RippleSpec }> = ({ film }) => {
         style={{
           position: "absolute",
           left: film.wide ? 1740 : 920,
-          top: film.wide ? 912 : 1452,
+          top: film.wide ? 912 : film.feed ? 1176 : 1452,
           width: 100,
           height: 108,
         }}

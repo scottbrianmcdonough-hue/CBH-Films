@@ -12,6 +12,9 @@ export type RippleSpec = {
   // 16:9 landscape (1920 x 1080; Haycock Manor's meetings and events cut, for screens and the
   // events team): the label and lines sit lower (no app UI to clear), the CB in its corner
   wide?: boolean;
+  // 4:5 for the feeds (1080 x 1350; the Black Friday spotlights): the label, lines and shade sit
+  // lower than the 9:16's (no Story UI to clear), the CB in the 4:5 corner
+  feed?: boolean;
   // the opening label: the place in gold caps with its still underline, the name beneath
   // top: set the label in the sky instead of bottom left (Rutland, Scott: not "slapped over the top of the housing")
   label: {
@@ -51,6 +54,10 @@ export type RippleSpec = {
     scene?: { fg: string; from: number; top: number; rise: number };
     // the line rises straight in, not after the picture's fade (Scott, 5 Nov, Rutland: "delayed a full second ... snappy")
     quick?: boolean;
+    // a small caps line above it (the Black Friday spotlights: "Black Friday Sale" in Lee's mauve)
+    eyebrow?: string;
+    // a small one line under it (the spotlights: the live page's offer)
+    sub?: string;
   };
   // fadeOut: frames the music fades over at the end (default 12; a Story stops mid-track)
   music: {

@@ -20,6 +20,7 @@ Standing rules on shots:
 | Forest of Arden | [november-best-loved](films/november-best-loved.md), [amc-2026-wide](films/amc-2026-wide.md) (the venue) |
 | Frensham Pond | [november-best-loved](films/november-best-loved.md) |
 | Gisborough | [cbh-screen-time](films/cbh-screen-time.md), [cbh-flipbook-winter](films/cbh-flipbook-winter.md), [cbh-postit-weekend](films/cbh-postit-weekend.md), [autumn-leaves-story](films/autumn-leaves-story.md), [black-friday-queue](films/black-friday-queue.md) |
+| Gomersal Park | [gomersal-park-spotlight](films/gomersal-park-spotlight.md) (spa pool, afternoon tea, burger, bedroom; the exterior left out) |
 | Hardwick Hall | [hardwick-hall-search](films/hardwick-hall-search.md) |
 | Hatherley Manor | [november-best-loved](films/november-best-loved.md) |
 | Haycock Manor | [haycock-manor](films/haycock-manor.md), [october-best-loved](films/october-best-loved.md), [magnet-cb](films/magnet-cb.md), [black-friday-queue](films/black-friday-queue.md) |

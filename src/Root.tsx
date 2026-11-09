@@ -878,7 +878,7 @@ export const RemotionRoot: React.FC = () => {
           durationInFrames={film.frames}
           fps={FPS}
           width={film.wide ? 1920 : WIDTH}
-          height={film.wide ? 1080 : HEIGHT}
+          height={film.wide ? 1080 : film.feed ? 1350 : HEIGHT}
         />
       ))}
       {MIXED_FILMS.map((film) => (
