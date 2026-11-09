@@ -36,7 +36,7 @@ type Region = {
 // from cheapest first"; Scott: "page is live, not Catherine's sheet"): the offers and from prices as on the live page
 // classicbritishhotels.com/offer-category/black-friday-offers/ (9 Nov), each hotel at its lowest from price, lowest
 // first. The Alfriston isn't on the page yet (its offer books 27 to 30 Nov only); Donnington is Donnington Manor,
-// Sevenoaks. The cover's pill is the region's lowest from price.
+// Sevenoaks. No prices on the slides (Scott, 9 Nov): each pill is the page's offer; the cover keeps Lee's Save up to 30%.
 const REGIONS: Region[] = [
   {
     id: "north",
@@ -50,8 +50,8 @@ const REGIONS: Region[] = [
         tile: { src: H + "gomersal-park/bedroom.jpg", pos: "50% 50%" },
         place: "Gomersal, West Yorkshire",
         name: "Gomersal Park\nHotel & Spa",
-        offer: "From £85",
-        terms: "B&B plus a food and drink discount",
+        offer: "B&B plus food and drink discount",
+        terms: "",
       },
       {
         src: H + "skipton/afternoon-tea.jpg",
@@ -59,8 +59,8 @@ const REGIONS: Region[] = [
         tile: { src: H + "skipton/canal-reflection.jpg", pos: "35% 50%" },
         place: "Skipton, North Yorkshire",
         name: "Skipton Hotel",
-        offer: "From £85",
-        terms: "One night plus 25% off food and drink",
+        offer: "25% off food and drink",
+        terms: "",
       },
       {
         src: H + "waterton-park/footbridge-autumn.jpg",
@@ -68,8 +68,8 @@ const REGIONS: Region[] = [
         tile: { src: H + "waterton-park/afternoon-tea.jpg", pos: "50% 50%" },
         place: "Wakefield, West Yorkshire",
         name: "Waterton Park\nHotel & Spa",
-        offer: "From £95",
-        terms: "B&B plus a food and drink discount",
+        offer: "B&B plus food and drink discount",
+        terms: "",
       },
       {
         src: H + "holdsworth-house/robes-fizz.jpg",
@@ -80,8 +80,8 @@ const REGIONS: Region[] = [
         },
         place: "Halifax, West Yorkshire",
         name: "Holdsworth House Hotel",
-        offer: "From £129",
-        terms: "Save 10% on B&B",
+        offer: "Save 10% on B&B",
+        terms: "",
       },
     ],
   },
@@ -97,8 +97,8 @@ const REGIONS: Region[] = [
         tile: { src: H + "ruthin-castle/hot-tub-fizz.jpg", pos: "50% 50%" },
         place: "Ruthin, North Wales",
         name: "Ruthin Castle\nHotel & Spa",
-        offer: "From £85",
-        terms: "B&B plus a food and drink discount",
+        offer: "B&B plus food and drink discount",
+        terms: "",
       },
       {
         src: H + "the-imperial/breakfast-in-bed.jpg",
@@ -109,8 +109,8 @@ const REGIONS: Region[] = [
         },
         place: "Llandudno, North Wales",
         name: "The Imperial Hotel",
-        offer: "From £95",
-        terms: "Save up to 30%",
+        offer: "Save up to 30%",
+        terms: "",
       },
       {
         src: H + "dalmahoy/bedroom.jpg",
@@ -118,8 +118,8 @@ const REGIONS: Region[] = [
         tile: { src: H + "dalmahoy/pool.jpg", pos: "50% 50%" },
         place: "Edinburgh",
         name: "Dalmahoy Hotel\n& Country Club",
-        offer: "From £108.20",
-        terms: "30% off B&B",
+        offer: "30% off B&B",
+        terms: "",
       },
     ],
   },
@@ -135,8 +135,8 @@ const REGIONS: Region[] = [
         tile: { src: H + "oaklands-hall/bedroom.jpg", pos: "50% 50%" },
         place: "Laceby, Lincolnshire",
         name: "Oaklands Hall Hotel",
-        offer: "From £77.90",
-        terms: "Room only, B&B or dinner, B&B",
+        offer: "Room only, B&B or dinner, B&B",
+        terms: "",
       },
       {
         src: H + "whittlebury-park/spa-pool.jpg",
@@ -144,8 +144,8 @@ const REGIONS: Region[] = [
         tile: { src: H + "whittlebury-park/salt-sauna.jpg", pos: "50% 50%" },
         place: "Whittlebury, Northamptonshire",
         name: "Whittlebury Park",
-        offer: "From £80.10",
-        terms: "B&B, or dinner, B&B",
+        offer: "B&B or dinner, B&B",
+        terms: "",
       },
       {
         src: H + "forest-of-arden/aerial-autumn.jpg",
@@ -153,8 +153,8 @@ const REGIONS: Region[] = [
         tile: { src: H + "forest-of-arden/pool.jpg", pos: "50% 50%" },
         place: "Meriden, Warwickshire",
         name: "Forest of Arden Hotel",
-        offer: "From £91.30",
-        terms: "B&B included",
+        offer: "B&B included",
+        terms: "",
       },
       {
         src: H + "jockey-club-rooms/bedroom.jpg",
@@ -162,8 +162,8 @@ const REGIONS: Region[] = [
         tile: { src: H + "jockey-club-rooms/dining-room.jpg", pos: "50% 50%" },
         place: "Newmarket, Suffolk",
         name: "Jockey Club Rooms",
-        offer: "From £127.50",
-        terms: "B&B included",
+        offer: "B&B included",
+        terms: "",
       },
     ],
   },
@@ -179,17 +179,20 @@ const REGIONS: Region[] = [
         tile: { src: H + "frensham-pond/restaurant.jpg", pos: "40% 50%" },
         place: "Farnham, Surrey",
         name: "Frensham Pond\nHotel & Spa",
-        offer: "From £77.60",
-        terms: "Save 20% on B&B",
+        offer: "Save 20% on B&B",
+        terms: "",
       },
       {
         src: H + "donnington-manor/breakfast.jpg",
         pos: "50% 50%",
-        tile: { src: H + "donnington-manor/donnington-and-co-plate.jpg", pos: "50% 50%" },
+        tile: {
+          src: H + "donnington-manor/donnington-and-co-plate.jpg",
+          pos: "50% 50%",
+        },
         place: "Sevenoaks, Kent",
         name: "Donnington Manor\nHotel",
-        offer: "From £86",
-        terms: "Save 20% on B&B",
+        offer: "Save 20% on B&B",
+        terms: "",
       },
       {
         src: H + "oakley-hall/bedroom.jpg",
@@ -197,8 +200,8 @@ const REGIONS: Region[] = [
         tile: { src: H + "oakley-hall/dessert.jpg", pos: "50% 50%" },
         place: "Oakley, Hampshire",
         name: "Oakley Hall Hotel",
-        offer: "From £88",
-        terms: "Room only or B&B",
+        offer: "Room only or B&B",
+        terms: "",
       },
       {
         src: H + "burleigh-court/plate.jpg",
@@ -206,8 +209,8 @@ const REGIONS: Region[] = [
         tile: { src: H + "burleigh-court/bedroom.jpg", pos: "45% 50%" },
         place: "Minchinhampton, Gloucestershire",
         name: "Burleigh Court",
-        offer: "From £134.25",
-        terms: "25% off, B&B included",
+        offer: "25% off, B&B included",
+        terms: "",
       },
     ],
   },
@@ -396,7 +399,7 @@ export const BlackFridayCarousel: React.FC<{ region: string }> = ({
           >
             {/* the region's lowest from price (Bianca: cheapest first) */}
             <span style={{ fontSize: 30, letterSpacing: "0.02em" }}>
-              Stays from
+              Save up to
             </span>
             <span
               style={{
@@ -405,7 +408,7 @@ export const BlackFridayCarousel: React.FC<{ region: string }> = ({
                 fontVariantNumeric: "lining-nums",
               }}
             >
-              £{r.from}
+              30%
             </span>
           </div>
         </div>
