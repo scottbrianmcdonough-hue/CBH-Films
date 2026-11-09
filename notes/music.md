@@ -19,7 +19,8 @@ Tracks used and where, so a new film doesn't repeat one by accident. [All films]
 | Christmas Jazz by Tunetank | [festive-lights-on](films/festive-lights-on.md), [cbh-baubles-cb](films/cbh-baubles-cb.md); the [december-almost-christmas](films/december-almost-christmas.md) drafts (to be replaced) |
 | Cooking Groove | [foodie-breaks-match-cut](films/foodie-breaks-match-cut.md) (went out on the Foodie Breaks Story); tried on [the-mount-collage](films/the-mount-collage.md) |
 | Cozy Soulful | [cosy-escapes-flipbook](films/cosy-escapes-flipbook.md) |
-| Dirty Thinkin' (Mixkit 989) | [gomersal-park-spotlight](films/gomersal-park-spotlight.md) (66.02s to the end); earlier an AMC option and a black-friday-steam preview, neither posted |
+| Dirty Thinkin' (Mixkit 989) | tried on [gomersal-park-spotlight](films/gomersal-park-spotlight.md) (replaced), an AMC option and a black-friday-steam preview; none posted |
+| Driving Ambition (Mixkit 32) | [gomersal-park-spotlight](films/gomersal-park-spotlight.md) (21.80s to just past the first impact); tried on the AMC reel and `cbh-clear-skies-3d` (a test) |
 | Deep Classy House | [november-out-there](films/november-out-there.md) (from 142.6s), [cbh-screen-time](films/cbh-screen-time.md) (its opening) |
 | Deep House Sunset (Sunset House Grooves, Pixabay 538759) | [brand-stings](films/brand-stings.md) (`cbh-circle-c`), [depth-demo](films/depth-demo.md), [rutland-four-roots](films/rutland-four-roots.md) (its opening and last phrase); ruled out for `cbh-screens` |
 | Funk Jazz Shuffle Groove by Catch22Music (Pixabay 358859) | [the-mount-collage](films/the-mount-collage.md) (the one to post) |
