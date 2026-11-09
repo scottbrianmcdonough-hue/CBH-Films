@@ -9,21 +9,43 @@ import { FestiveFilm } from "./hotel-film/festive/FestiveFilm";
 import { MixedFilm } from "./hotel-film/mixed/MixedFilm";
 import { RippleFilm } from "./hotel-film/ripple/RippleFilm";
 import { WhereNext, WHERE_NEXT_FRAMES } from "./hotel-film/stings/WhereNext";
-import { QueueReel, QUEUE_FRAMES, QUEUE_STORY_FRAMES } from "./hotel-film/blackfriday/QueueReel";
-import { STEAM_FPS, STEAM_FRAMES, VoucherSteam } from "./hotel-film/foil/VoucherSteam";
+import {
+  QueueReel,
+  QUEUE_FRAMES,
+  QUEUE_STORY_FRAMES,
+} from "./hotel-film/blackfriday/QueueReel";
+import {
+  STEAM_FPS,
+  STEAM_FRAMES,
+  VoucherSteam,
+} from "./hotel-film/foil/VoucherSteam";
 import { OutOfOffice, OOO_FRAMES } from "./hotel-film/december/OutOfOffice";
 import { Door24, DOOR_FRAMES } from "./hotel-film/december/Door24";
 import { DriveHome, DRIVE_FRAMES } from "./hotel-film/december/DriveHome";
 import { MEReel } from "./hotel-film/me/MEReel";
-import { nailcoteHallMeetings, nailcoteHallMeetingsReel } from "./hotels/nailcote-hall-meetings";
+import {
+  nailcoteHallMeetings,
+  nailcoteHallMeetingsReel,
+} from "./hotels/nailcote-hall-meetings";
 import { haycockManorMeetingsME } from "./hotels/haycock-manor-me";
 import { BF_STORIES } from "./hotels/black-friday-stories";
+import { BF_SPOTLIGHTS } from "./hotels/black-friday-spotlights";
 import { CorporateGifting } from "./linkedin/CorporateGifting";
 import { FIFTY_SLIDES, FiftySleeps } from "./linkedin/FiftySleeps";
 import { ChristmasMarkets } from "./linkedin/ChristmasMarkets";
-import { ChristmasMarketsCarousel, MARKETS_SLIDES } from "./hotel-film/carousel/ChristmasMarketsCarousel";
-import { BF_REGIONS, BlackFridayCarousel, bfSlides } from "./hotel-film/carousel/BlackFridayCarousel";
-import { nailcoteHallSocial, nailcoteHallSocialStory } from "./hotels/nailcote-hall-social";
+import {
+  ChristmasMarketsCarousel,
+  MARKETS_SLIDES,
+} from "./hotel-film/carousel/ChristmasMarketsCarousel";
+import {
+  BF_REGIONS,
+  BlackFridayCarousel,
+  bfSlides,
+} from "./hotel-film/carousel/BlackFridayCarousel";
+import {
+  nailcoteHallSocial,
+  nailcoteHallSocialStory,
+} from "./hotels/nailcote-hall-social";
 import { WrittenCB, WRITTEN_CB_FRAMES } from "./hotel-film/stings/WrittenCB";
 import { WaxSeal, WAX_SEAL_FRAMES } from "./hotel-film/stings/WaxSeal";
 import { DepthDemo, DEPTH_DEMO_FRAMES } from "./hotel-film/stings/DepthDemo";
@@ -541,12 +563,47 @@ export const RemotionRoot: React.FC = () => {
         width={WIDTH}
         height={HEIGHT}
       />
-      <Composition id="christmas-markets-carousel" component={ChristmasMarketsCarousel} durationInFrames={MARKETS_SLIDES} fps={FPS} width={1080} height={1350} />
-      <Composition id="christmas-markets" component={ChristmasMarkets} durationInFrames={1} fps={FPS} width={1080} height={1350} />
-      <Composition id="fifty-sleeps" component={FiftySleeps} durationInFrames={FIFTY_SLIDES} fps={FPS} width={1080} height={1350} />
-      <Composition id="fifty-sleeps-story" component={FiftySleeps} durationInFrames={1} fps={FPS} width={1080} height={1920} />
+      <Composition
+        id="christmas-markets-carousel"
+        component={ChristmasMarketsCarousel}
+        durationInFrames={MARKETS_SLIDES}
+        fps={FPS}
+        width={1080}
+        height={1350}
+      />
+      <Composition
+        id="christmas-markets"
+        component={ChristmasMarkets}
+        durationInFrames={1}
+        fps={FPS}
+        width={1080}
+        height={1350}
+      />
+      <Composition
+        id="fifty-sleeps"
+        component={FiftySleeps}
+        durationInFrames={FIFTY_SLIDES}
+        fps={FPS}
+        width={1080}
+        height={1350}
+      />
+      <Composition
+        id="fifty-sleeps-story"
+        component={FiftySleeps}
+        durationInFrames={1}
+        fps={FPS}
+        width={1080}
+        height={1920}
+      />
       {/* corporate gifting, a 4:5 LinkedIn still */}
-      <Composition id="corporate-gifting" component={CorporateGifting} durationInFrames={1} fps={FPS} width={1080} height={1350} />
+      <Composition
+        id="corporate-gifting"
+        component={CorporateGifting}
+        durationInFrames={1}
+        fps={FPS}
+        width={1080}
+        height={1350}
+      />
       {/* Black Friday 2026: regional carousels, 4:5, a frame per slide (render with --sequence) */}
       {BF_REGIONS.map((r) => (
         <Composition
@@ -558,6 +615,19 @@ export const RemotionRoot: React.FC = () => {
           fps={FPS}
           width={1080}
           height={1350}
+        />
+      ))}
+      {/* Black Friday 2026: hotel spotlight reels */}
+      {BF_SPOTLIGHTS.map((film) => (
+        <Composition
+          key={film.id}
+          id={film.id}
+          component={MEReel}
+          defaultProps={{ film }}
+          durationInFrames={film.frames}
+          fps={FPS}
+          width={WIDTH}
+          height={HEIGHT}
         />
       ))}
       {/* Black Friday 2026: a Story for each participating hotel */}
@@ -584,12 +654,47 @@ export const RemotionRoot: React.FC = () => {
       />
       {/* Black Friday 2026: the sale's waiting room, the window bursting out on the drop */}
       {/* December drafts, almost Christmas: three ideas to compare (Scott, 4 Nov: "try them all") */}
-      <Composition id="december-out-of-office" component={OutOfOffice} durationInFrames={OOO_FRAMES} fps={FPS} width={WIDTH} height={HEIGHT} />
-      <Composition id="december-door-24" component={Door24} durationInFrames={DOOR_FRAMES} fps={FPS} width={WIDTH} height={HEIGHT} />
-      <Composition id="december-drive-home" component={DriveHome} durationInFrames={DRIVE_FRAMES} fps={FPS} width={WIDTH} height={HEIGHT} />
-      <Composition id="black-friday-queue" component={QueueReel} durationInFrames={QUEUE_FRAMES} fps={FPS} width={WIDTH} height={HEIGHT} />
+      <Composition
+        id="december-out-of-office"
+        component={OutOfOffice}
+        durationInFrames={OOO_FRAMES}
+        fps={FPS}
+        width={WIDTH}
+        height={HEIGHT}
+      />
+      <Composition
+        id="december-door-24"
+        component={Door24}
+        durationInFrames={DOOR_FRAMES}
+        fps={FPS}
+        width={WIDTH}
+        height={HEIGHT}
+      />
+      <Composition
+        id="december-drive-home"
+        component={DriveHome}
+        durationInFrames={DRIVE_FRAMES}
+        fps={FPS}
+        width={WIDTH}
+        height={HEIGHT}
+      />
+      <Composition
+        id="black-friday-queue"
+        component={QueueReel}
+        durationInFrames={QUEUE_FRAMES}
+        fps={FPS}
+        width={WIDTH}
+        height={HEIGHT}
+      />
       {/* Black Friday follow up: the steam gift tag, Rowton, the Kingfisher and Barnett Hill, the official asset (from my-video) */}
-      <Composition id="black-friday-steam" component={VoucherSteam} durationInFrames={STEAM_FRAMES} fps={STEAM_FPS} width={1080} height={1920} />
+      <Composition
+        id="black-friday-steam"
+        component={VoucherSteam}
+        durationInFrames={STEAM_FRAMES}
+        fps={STEAM_FPS}
+        width={1080}
+        height={1920}
+      />
       <Composition
         id="black-friday-queue-story"
         component={QueueReel}
