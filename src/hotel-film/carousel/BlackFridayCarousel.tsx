@@ -25,128 +25,136 @@ type Hotel = {
 type Region = {
   id: string;
   title: string;
+  from: string; // the region's lowest from price, for the cover pill
   cover: { src: string; pos: string };
   // the cover's tiles when the hotels' own second photos are too few (Wales has two hotels: four tiles, not two strips)
   coverTiles?: { src: string; pos: string }[];
   hotels: Hotel[];
 };
 
-const FD = "Plus 25% off food and drink, stays to 31 March";
-const FD20 = "Plus 20% off food and drink, stays to 31 March"; // Gomersal and Ruthin (the sheet, 5 Nov update)
+// Regrouped and reordered (Bianca, 9 Nov: "North | East & Midlands | South | Scotland & Wales", "listing the hotels
+// from cheapest first"; Scott: "page is live, not Catherine's sheet"): the offers and from prices as on the live page
+// classicbritishhotels.com/offer-category/black-friday-offers/ (9 Nov), each hotel at its lowest from price, lowest
+// first. The Alfriston isn't on the page yet (its offer books 27 to 30 Nov only); Donnington is Donnington Manor,
+// Sevenoaks. The cover's pill is the region's lowest from price.
 const REGIONS: Region[] = [
   {
-    id: "yorkshire-scotland",
-    title: "Scotland\n& Yorkshire",
-    cover: { src: H + "skipton/canal-reflection.jpg", pos: "35% 50%" },
+    id: "north",
+    title: "The North",
+    from: "85",
+    cover: { src: H + "gomersal-park/bedroom.jpg", pos: "50% 50%" },
     hotels: [
       {
-        // cosy spa and autumn interiors (Scott, 5 Nov: "more cosy spa type stuff and interiors, autumny November")
+        src: H + "gomersal-park/spa-pool.jpg",
+        pos: "50% 50%",
+        tile: { src: H + "gomersal-park/bedroom.jpg", pos: "50% 50%" },
+        place: "Gomersal, West Yorkshire",
+        name: "Gomersal Park\nHotel & Spa",
+        offer: "From £85",
+        terms: "B&B plus a food and drink discount",
+      },
+      {
         src: H + "skipton/afternoon-tea.jpg",
         pos: "35% 50%",
         tile: { src: H + "skipton/canal-reflection.jpg", pos: "35% 50%" },
         place: "Skipton, North Yorkshire",
         name: "Skipton Hotel",
-        offer: "25% off your stay",
-        terms: FD,
+        offer: "From £85",
+        terms: "One night plus 25% off food and drink",
       },
       {
-        // scroll stoppers (Scott, 5 Nov: "photos need to be scroll stoppers and inspiring"): the footbridge to the
-        // island in autumn colour
         src: H + "waterton-park/footbridge-autumn.jpg",
         pos: "47% 50%",
-        tile: { src: H + "waterton-park/afternoon-tea.jpg", pos: "50% 50%" }, // one pool on the cover, not three
+        tile: { src: H + "waterton-park/afternoon-tea.jpg", pos: "50% 50%" },
         place: "Wakefield, West Yorkshire",
         name: "Waterton Park\nHotel & Spa",
-        offer: "15% off your stay",
-        terms: FD,
+        offer: "From £95",
+        terms: "B&B plus a food and drink discount",
       },
       {
-        src: H + "gomersal-park/spa-pool.jpg", // the spa pool's steps and water wall
+        src: H + "holdsworth-house/robes-fizz.jpg",
         pos: "50% 50%",
-        tile: { src: H + "gomersal-park/bedroom.jpg", pos: "50% 50%" },
-        place: "Gomersal, West Yorkshire",
-        name: "Gomersal Park\nHotel & Spa", // as on its CBH page, like Waterton Park Hotel & Spa
-        offer: "20% off your stay",
-        terms: FD20,
-      },
-      {
-        src: H + "holdsworth-house/robes-fizz.jpg", // robes and fizz; no fireplaces (Scott, 5 Nov)
-        pos: "50% 50%",
-        tile: { src: H + "holdsworth-house/breakfast-in-bed.jpg", pos: "50% 50%" },
+        tile: {
+          src: H + "holdsworth-house/breakfast-in-bed.jpg",
+          pos: "50% 50%",
+        },
         place: "Halifax, West Yorkshire",
         name: "Holdsworth House Hotel",
-        offer: "10% off B&B",
-        terms: "Stays to 31 March",
+        offer: "From £129",
+        terms: "Save 10% on B&B",
+      },
+    ],
+  },
+  {
+    id: "scotland-wales",
+    title: "Scotland & Wales",
+    from: "85",
+    cover: { src: H + "ruthin-castle/hot-tub-fizz.jpg", pos: "50% 50%" },
+    hotels: [
+      {
+        src: H + "ruthin-castle/white-bed.jpg",
+        pos: "50% 50%",
+        tile: { src: H + "ruthin-castle/hot-tub-fizz.jpg", pos: "50% 50%" },
+        place: "Ruthin, North Wales",
+        name: "Ruthin Castle\nHotel & Spa",
+        offer: "From £85",
+        terms: "B&B plus a food and drink discount",
       },
       {
-        // a warm lamplit bedroom (the house front was flat; not the fireside lounge, it read like Holdsworth's)
+        src: H + "the-imperial/breakfast-in-bed.jpg",
+        pos: "50% 50%",
+        tile: {
+          src: H + "the-imperial/bay-from-great-orme.jpg",
+          pos: "62% 50%",
+        },
+        place: "Llandudno, North Wales",
+        name: "The Imperial Hotel",
+        offer: "From £95",
+        terms: "Save up to 30%",
+      },
+      {
         src: H + "dalmahoy/bedroom.jpg",
         pos: "45% 50%",
         tile: { src: H + "dalmahoy/pool.jpg", pos: "50% 50%" },
         place: "Edinburgh",
         name: "Dalmahoy Hotel\n& Country Club",
-        offer: "30% off B&B",
-        terms: "Stays to 30 April",
+        offer: "From £108.20",
+        terms: "30% off B&B",
       },
     ],
   },
   {
-    id: "wales",
-    title: "Wales",
-    cover: { src: H + "the-imperial/bay-from-great-orme.jpg", pos: "62% 50%" },
-    // four tiles like the other covers, warm and wintry like Lee's cards (Scott, 5 Nov: "improve that Wales cover,
-    // match Lee's"), none of them a slide's photo
-    coverTiles: [
-      { src: H + "the-imperial/bay-from-great-orme.jpg", pos: "62% 50%" },
-      { src: H + "ruthin-castle/breakfast-window.jpg", pos: "50% 50%" },
-      { src: H + "the-imperial/afternoon-tea.jpg", pos: "45% 50%" },
-      { src: H + "ruthin-castle/castle.jpg", pos: "50% 50%" },
-    ],
+    id: "east-midlands",
+    title: "East & Midlands",
+    from: "77.90",
+    cover: { src: H + "oaklands-hall/bedroom.jpg", pos: "50% 50%" },
     hotels: [
       {
-        src: H + "ruthin-castle/white-bed.jpg", // the carved white bed under the red curtains
+        src: H + "oaklands-hall/plate.jpg",
         pos: "50% 50%",
-        tile: { src: H + "ruthin-castle/hot-tub-fizz.jpg", pos: "50% 50%" },
-        place: "Ruthin, North Wales",
-        name: "Ruthin Castle\nHotel & Spa",
-        offer: "20% off your stay",
-        terms: FD20,
+        tile: { src: H + "oaklands-hall/bedroom.jpg", pos: "50% 50%" },
+        place: "Laceby, Lincolnshire",
+        name: "Oaklands Hall Hotel",
+        offer: "From £77.90",
+        terms: "Room only, B&B or dinner, B&B",
       },
       {
-        src: H + "the-imperial/breakfast-in-bed.jpg",
+        src: H + "whittlebury-park/spa-pool.jpg",
         pos: "50% 50%",
-        tile: { src: H + "the-imperial/afternoon-tea.jpg", pos: "45% 50%" },
-        place: "Llandudno, North Wales",
-        name: "The Imperial Hotel",
-        offer: "Up to 30% off B&B",
-        terms: "Stays to 31 March",
+        tile: { src: H + "whittlebury-park/salt-sauna.jpg", pos: "50% 50%" },
+        place: "Whittlebury, Northamptonshire",
+        name: "Whittlebury Park",
+        offer: "From £80.10",
+        terms: "B&B, or dinner, B&B",
       },
-    ],
-  },
-  {
-    id: "midlands-east",
-    title: "The Midlands\n& East",
-    cover: { src: H + "jockey-club-rooms/dining-room.jpg", pos: "50% 50%" },
-    hotels: [
       {
-        // the course and hotel from the air in autumn colour (Scott's CBH site photos, 5 Nov)
         src: H + "forest-of-arden/aerial-autumn.jpg",
         pos: "72% 50%",
         tile: { src: H + "forest-of-arden/pool.jpg", pos: "50% 50%" },
         place: "Meriden, Warwickshire",
         name: "Forest of Arden Hotel",
-        // no percentage on the sheet: lead on the rate itself
-        offer: "Advance purchase B&B rate",
-        terms: "Non refundable, stays to 9 April",
-      },
-      {
-        src: H + "whittlebury-park/spa-pool.jpg", // the spa pool lit up (a plate is on Oaklands' slide)
-        pos: "50% 50%",
-        tile: { src: H + "whittlebury-park/salt-sauna.jpg", pos: "50% 50%" },
-        place: "Whittlebury, Northamptonshire",
-        name: "Whittlebury Park",
-        offer: "10% off your stay",
-        terms: "B&B or dinner, B&B, stays to 31 March, selected dates",
+        offer: "From £91.30",
+        terms: "B&B included",
       },
       {
         src: H + "jockey-club-rooms/bedroom.jpg",
@@ -154,69 +162,59 @@ const REGIONS: Region[] = [
         tile: { src: H + "jockey-club-rooms/dining-room.jpg", pos: "50% 50%" },
         place: "Newmarket, Suffolk",
         name: "Jockey Club Rooms",
-        offer: "15% off B&B",
-        terms: "Stays to 31 March, selected dates",
-      },
-      {
-        src: H + "oaklands-hall/plate.jpg",
-        pos: "50% 50%",
-        tile: { src: H + "oaklands-hall/bedroom.jpg", pos: "50% 50%" },
-        place: "Laceby, Lincolnshire",
-        name: "Oaklands Hall Hotel",
-        offer: "18% off your stay",
-        terms: "Room only, B&B or dinner, B&B, selected dates to 31 March",
+        offer: "From £127.50",
+        terms: "B&B included",
       },
     ],
   },
   {
     id: "south",
     title: "The South",
-    cover: { src: H + "the-alfriston/bedroom.jpg", pos: "40% 50%" },
+    from: "77.60",
+    cover: { src: H + "frensham-pond/restaurant.jpg", pos: "40% 50%" },
     hotels: [
+      {
+        src: H + "frensham-pond/exterior-dusk.jpg",
+        pos: "55% 50%",
+        tile: { src: H + "frensham-pond/restaurant.jpg", pos: "40% 50%" },
+        place: "Farnham, Surrey",
+        name: "Frensham Pond\nHotel & Spa",
+        offer: "From £77.60",
+        terms: "Save 20% on B&B",
+      },
+      {
+        src: H + "donnington-manor/breakfast.jpg",
+        pos: "50% 50%",
+        tile: { src: H + "donnington-manor/donnington-and-co-plate.jpg", pos: "50% 50%" },
+        place: "Sevenoaks, Kent",
+        name: "Donnington Manor\nHotel",
+        offer: "From £86",
+        terms: "Save 20% on B&B",
+      },
+      {
+        src: H + "oakley-hall/bedroom.jpg",
+        pos: "60% 50%",
+        tile: { src: H + "oakley-hall/dessert.jpg", pos: "50% 50%" },
+        place: "Oakley, Hampshire",
+        name: "Oakley Hall Hotel",
+        offer: "From £88",
+        terms: "Room only or B&B",
+      },
       {
         src: H + "burleigh-court/plate.jpg",
         pos: "52% 50%",
         tile: { src: H + "burleigh-court/bedroom.jpg", pos: "45% 50%" },
         place: "Minchinhampton, Gloucestershire",
         name: "Burleigh Court",
-        offer: "25% off B&B",
-        terms: "Stays to 31 March, selected dates",
-      },
-      {
-        src: H + "oakley-hall/bedroom.jpg", // the gold bed
-        pos: "60% 50%",
-        tile: { src: H + "oakley-hall/dessert.jpg", pos: "50% 50%" }, // not a second afternoon tea beside The Alfriston's
-        place: "Oakley, Hampshire",
-        name: "Oakley Hall Hotel",
-        offer: "30% off your stay",
-        terms: "Room only or B&B, stays to April",
-      },
-      {
-        src: H + "the-alfriston/afternoon-tea.jpg",
-        pos: "50% 60%",
-        tile: { src: H + "the-alfriston/bedroom.jpg", pos: "40% 50%" },
-        place: "Alfriston, East Sussex",
-        name: "The Alfriston",
-        offer: "30% off B&B",
-        terms: "Book 27 to 30 November only, stays to 31 March",
+        offer: "From £134.25",
+        terms: "25% off, B&B included",
       },
     ],
   },
 ];
 
-// North to south (Bianca, 5 Nov: "makes more sense to do it from North to South order, so start with Scotland"):
-// the regions in posting order, and the hotels in each from the most northerly down
-const NORTH_TO_SOUTH: Record<string, string[]> = {
-  "yorkshire-scotland": ["Edinburgh", "Skipton", "Halifax", "Gomersal", "Wakefield"],
-  wales: ["Llandudno", "Ruthin"],
-  "midlands-east": ["Laceby", "Meriden", "Newmarket", "Whittlebury"],
-  south: ["Minchinhampton", "Oakley", "Alfriston"],
-};
-const rank = (id: string, h: Hotel) => NORTH_TO_SOUTH[id].findIndex((p) => h.place.startsWith(p));
-export const BF_REGIONS: Region[] = ["yorkshire-scotland", "wales", "midlands-east", "south"].map((id) => {
-  const r = REGIONS.find((x) => x.id === id)!;
-  return { ...r, hotels: [...r.hotels].sort((a, b) => rank(id, a) - rank(id, b)) };
-});
+// in posting order: the North (Wed 11), Scotland & Wales (Fri 13), East & Midlands (Tue 17), the South (Fri 27)
+export const BF_REGIONS: Region[] = REGIONS;
 
 const Shade: React.FC = () => (
   <AbsoluteFill
@@ -277,14 +275,13 @@ const Photo: React.FC<{ src: string; pos: string }> = ({ src, pos }) => (
 // the two official 4:5 files alternate, in posting order (Scott: "can't be using the same cover for four
 // posts"): the launch post has the curtains, so the first carousel opens on the bed
 const OFFICIAL: Record<string, "bed" | "curtains"> = {
-  "yorkshire-scotland": "bed",
-  wales: "curtains",
-  "midlands-east": "bed",
+  north: "bed",
+  "scotland-wales": "curtains",
+  "east-midlands": "bed",
   south: "curtains",
 };
 
 // each region's best offer on the 2026 sheet, for the cover's pill
-const BEST: Record<string, number> = { "yorkshire-scotland": 30, wales: 30, "midlands-east": 18, south: 30 };
 
 export const bfSlides = (id: string) =>
   (BF_REGIONS.find((r) => r.id === id)?.hotels.length ?? 0) + 2;
@@ -301,7 +298,9 @@ export const BlackFridayCarousel: React.FC<{ region: string }> = ({
     return (
       <AbsoluteFill style={{ backgroundColor: colors.black }}>
         <Img
-          src={staticFile(`campaigns/black-friday-2026/campaign/${OFFICIAL[region] ?? "bed"}-4x5.jpg`)}
+          src={staticFile(
+            `campaigns/black-friday-2026/campaign/${OFFICIAL[region] ?? "bed"}-4x5.jpg`,
+          )}
           style={{ width: "100%", height: "100%" }}
         />
       </AbsoluteFill>
@@ -321,7 +320,10 @@ export const BlackFridayCarousel: React.FC<{ region: string }> = ({
         const w = (1080 - G * (list.length - 1)) / list.length;
         return { h, x: k * (w + G), y, w, hh: rowH };
       });
-    const tiles = [...row(pics.slice(0, nTop), 0), ...row(pics.slice(nTop), rowH + G + BAND + G)];
+    const tiles = [
+      ...row(pics.slice(0, nTop), 0),
+      ...row(pics.slice(nTop), rowH + G + BAND + G),
+    ];
     return (
       <AbsoluteFill
         style={{
@@ -332,7 +334,17 @@ export const BlackFridayCarousel: React.FC<{ region: string }> = ({
         }}
       >
         {tiles.map((t) => (
-          <div key={t.h.src} style={{ position: "absolute", left: t.x, top: t.y, width: t.w, height: t.hh, overflow: "hidden" }}>
+          <div
+            key={t.h.src}
+            style={{
+              position: "absolute",
+              left: t.x,
+              top: t.y,
+              width: t.w,
+              height: t.hh,
+              overflow: "hidden",
+            }}
+          >
             <Photo src={t.h.src} pos={t.h.pos} />
           </div>
         ))}
@@ -340,19 +352,61 @@ export const BlackFridayCarousel: React.FC<{ region: string }> = ({
             region where his card has THE WAIT IS OVER, in its tight mauve caps, then Black Friday Sale in cream, then his
             mauve pill with the region's best offer */}
         <div style={{ position: "relative" }}>
-          <div style={{ fontFamily: sans, fontWeight: 600, fontSize: 32, letterSpacing: "0.02em", color: MAUVE,
-            textTransform: "uppercase" }}>
+          <div
+            style={{
+              fontFamily: sans,
+              fontWeight: 600,
+              fontSize: 32,
+              letterSpacing: "0.02em",
+              color: MAUVE,
+              textTransform: "uppercase",
+            }}
+          >
             {r.title.replace("\n", " ")}
           </div>
-          <div style={{ fontFamily: serif, fontWeight: 600, fontSize: 118, lineHeight: 1, color: colors.cream, marginTop: 14,
-            whiteSpace: "nowrap", letterSpacing: "-0.01em" }}>
+          <div
+            style={{
+              fontFamily: serif,
+              fontWeight: 600,
+              fontSize: 118,
+              lineHeight: 1,
+              color: colors.cream,
+              marginTop: 14,
+              whiteSpace: "nowrap",
+              letterSpacing: "-0.01em",
+            }}
+          >
             Black Friday Sale
           </div>
-          <div style={{ display: "inline-flex", alignItems: "center", gap: 18, height: 78, padding: "0 36px",
-            borderRadius: 39, backgroundColor: MAUVE, marginTop: 30, fontFamily: sans, fontWeight: 600,
-            color: colors.cream, textTransform: "uppercase" }}>
-            <span style={{ fontSize: 30, letterSpacing: "0.02em" }}>Save up to</span>
-            <span style={{ fontSize: 46, fontWeight: 700, fontVariantNumeric: "lining-nums" }}>{BEST[r.id]}%</span>
+          <div
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 18,
+              height: 78,
+              padding: "0 36px",
+              borderRadius: 39,
+              backgroundColor: MAUVE,
+              marginTop: 30,
+              fontFamily: sans,
+              fontWeight: 600,
+              color: colors.cream,
+              textTransform: "uppercase",
+            }}
+          >
+            {/* the region's lowest from price (Bianca: cheapest first) */}
+            <span style={{ fontSize: 30, letterSpacing: "0.02em" }}>
+              Stays from
+            </span>
+            <span
+              style={{
+                fontSize: 46,
+                fontWeight: 700,
+                fontVariantNumeric: "lining-nums",
+              }}
+            >
+              £{r.from}
+            </span>
           </div>
         </div>
         <Mark />
@@ -366,7 +420,9 @@ export const BlackFridayCarousel: React.FC<{ region: string }> = ({
       <Shade />
       <Mark />
       <div style={{ position: "absolute", left: 72, right: 160, bottom: 96 }}>
-        <Caps color={MAUVE} size={32}>{h.place}</Caps>
+        <Caps color={MAUVE} size={32}>
+          {h.place}
+        </Caps>
         <div
           style={{
             fontFamily: serif,
