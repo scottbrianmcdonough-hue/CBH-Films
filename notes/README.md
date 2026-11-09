@@ -14,6 +14,8 @@ Statuses as of 2 Nov 2026.
 
 ## Sent, waiting on Scott
 
+- [Oaklands Hall: Black Friday reel](films/oaklands-hall-black-friday.md): HTML preview sent 9 Nov; render after sign off.
+
 - [Rutland Hall: Four Roots Luxury Breaks](films/rutland-four-roots.md): Story signed off for Fri 6 Nov 10 AM; reel IG 12 PM, FB 7 PM; prices and nights to confirm.
 
 - [December: almost Christmas](films/december-almost-christmas.md): Three drafts sent 4 Nov (out of office, door 24, drive home); Scott picks one, then it gets its own festive track.
