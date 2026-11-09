@@ -762,7 +762,7 @@ const RECAP: { src: string; pos: string }[] = [
   { src: H + "jockey-club-rooms/bedroom-blue.jpg", pos: "45% 50%" }, // the full frame shot is the green bedroom
   { src: H + "whittlebury-park/salt-sauna.jpg", pos: "50% 50%" },
   { src: H + "burleigh-court/bedroom.jpg", pos: "45% 50%" },
-  { src: H + "donnington-valley/splendid-suite.jpg", pos: "35% 50%" },
+  { src: H + "donnington-valley/splendid-suite.jpg", pos: "55% 50%" }, // clear of the door frame on the left (Scott)
   { src: H + "oakley-hall/bedroom.jpg", pos: "60% 50%" },
   { src: H + "frensham-pond/restaurant.jpg", pos: "40% 50%" },
   { src: H + "the-alfriston/bedroom.jpg", pos: "40% 50%" },
