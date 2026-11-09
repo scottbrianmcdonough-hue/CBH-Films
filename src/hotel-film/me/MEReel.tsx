@@ -43,7 +43,14 @@ export type MEScene = {
   // "feature" (16:9): one large tile on the left and two stacked on the right, so each room keeps ~80% of
   // its photo (Scott: "better crops of the rooms, not just chairs and a corner"; thirds kept ~40%)
   layout?: "thirds" | "feature";
-  text?: { eyebrow: string; title: string; subs: string[]; subCuts?: number[] };
+  // mauve: the Black Friday campaign's caps (Lee's tight mauve, no underline) in place of the house gold
+  text?: {
+    eyebrow: string;
+    title: string;
+    subs: string[];
+    subCuts?: number[];
+    mauve?: boolean;
+  };
   // a hard cut on the downbeat instead of the crossfade (Scott: "more engaging, just little touches")
   cut?: boolean;
   // the camera pushes into a point of the photo, gathering speed into the next cut (Kenilworth's
@@ -109,7 +116,8 @@ const Caption: React.FC<{
   t: number;
   subT: number;
   wide: boolean;
-}> = ({ eyebrow, title, sub, t, subT, wide }) => {
+  mauve?: boolean;
+}> = ({ eyebrow, title, sub, t, subT, wide, mauve }) => {
   const a = progress(t, 6, 18, EASE_OUT);
   const b = progress(t, 12, 18, EASE_OUT);
   const c = progress(subT, 0, 14, EASE_OUT);
@@ -135,15 +143,17 @@ const Caption: React.FC<{
             fontFamily: sans,
             fontWeight: 600,
             fontSize: wide ? 20 : 26,
-            letterSpacing: "0.28em",
-            color: colors.gold,
+            letterSpacing: mauve ? "0.02em" : "0.28em",
+            color: mauve ? MAUVE : colors.gold,
             textTransform: "uppercase",
             textShadow: LIFT,
           }}
         >
           {eyebrow}
         </div>
-        <div style={{ height: 2, background: colors.gold, marginTop: 8 }} />
+        {mauve ? null : (
+          <div style={{ height: 2, background: colors.gold, marginTop: 8 }} />
+        )}
       </div>
       <div
         style={{
@@ -345,6 +355,7 @@ const Scene: React.FC<{ scene: MEScene; len: number; wide: boolean }> = ({
             t={frame}
             subT={subT}
             wide={wide}
+            mauve={scene.text.mauve}
           />
         </>
       ) : null}
@@ -386,20 +397,22 @@ const OfferCard: React.FC<{
             fontFamily: sans,
             fontWeight: 600,
             fontSize: wide ? 24 : 32,
-            letterSpacing: "0.28em",
+            // Lee's tight caps, no underline, as on the carousels and the countdown (polish, 9 Nov)
+            letterSpacing: "0.02em",
             color: MAUVE,
             textTransform: "uppercase",
           }}
         >
           Black Friday Sale
         </div>
-        <div style={{ height: 2, background: MAUVE, marginTop: 10 }} />
       </div>
       {offer.title.split("\n").map((l, i) => (
         <div
           key={l}
           style={{
             fontFamily: serif,
+            fontWeight: 600, // the bold of Lee's headline
+            letterSpacing: "-0.01em",
             fontSize: wide ? 104 : 118,
             lineHeight: 1.04,
             color: colors.cream,

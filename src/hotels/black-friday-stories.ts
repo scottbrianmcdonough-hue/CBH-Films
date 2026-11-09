@@ -83,7 +83,10 @@ const STORIES: Story[] = [
       { src: H + "jockey-club-rooms/dining-room.jpg", pos: "50% 50%" },
       { src: H + "jockey-club-rooms/bedroom.jpg", pos: "35% 50%" },
     ],
-    offer: { title: "15% off B&B", lines: ["Stays to 31 March, selected dates"] },
+    offer: {
+      title: "15% off B&B",
+      lines: ["Stays to 31 March, selected dates"],
+    },
   },
   {
     slug: "whittlebury-park",
@@ -94,7 +97,10 @@ const STORIES: Story[] = [
       { src: H + "whittlebury-park/murrays-dish-2x.jpg", pos: "50% 50%" },
       { src: H + "whittlebury-park/suite.jpg", pos: "45% 50%" },
     ],
-    offer: { title: "10% off\nyour stay", lines: ["B&B or dinner, B&B", "Stays to 31 March, selected dates"] },
+    offer: {
+      title: "10% off\nyour stay",
+      lines: ["B&B or dinner, B&B", "Stays to 31 March, selected dates"],
+    },
   },
   {
     slug: "burleigh-court",
@@ -105,7 +111,10 @@ const STORIES: Story[] = [
       { src: H + "burleigh-court/bedroom.jpg", pos: "50% 50%" },
       { src: H + "burleigh-court/plate.jpg", pos: "58% 50%" },
     ],
-    offer: { title: "25% off B&B", lines: ["Stays to 31 March, selected dates"] },
+    offer: {
+      title: "25% off B&B",
+      lines: ["Stays to 31 March, selected dates"],
+    },
   },
   {
     slug: "oaklands-hall",
@@ -116,27 +125,33 @@ const STORIES: Story[] = [
       { src: H + "oaklands-hall/sausages-fireside.jpg", pos: "40% 50%" },
       { src: H + "oaklands-hall/fireplace.jpg", pos: "50% 50%" },
     ],
-    offer: { title: "18% off\nyour stay", lines: ["Room only, B&B or dinner, B&B", "Selected dates to 31 March"] },
+    offer: {
+      title: "18% off\nyour stay",
+      lines: ["Room only, B&B or dinner, B&B", "Selected dates to 31 March"],
+    },
   },
   {
     slug: "oakley-hall",
     place: "Oakley, Hampshire",
     name: "Oakley Hall Hotel",
     shots: [
-      { src: C + "journey-new/oakley-hall-exterior-frost.jpg", pos: "50% 50%" },
-      { src: H + "oakley-hall/dog-on-the-lawn.mp4", from: 1 },
-      { src: C + "plate-to-pillow/oakley-pillow.jpg", pos: "50% 50%" },
+      { src: H + "oakley-hall/exterior.jpg", pos: "50% 50%" },
+      { src: H + "oakley-hall/afternoon-tea.jpg", pos: "40% 50%" },
+      { src: H + "oakley-hall/bedroom.jpg", pos: "60% 50%" },
     ],
-    offer: { title: "30% off\nyour stay", lines: ["Room only or B&B", "Stays to April"] },
+    offer: {
+      title: "30% off\nyour stay",
+      lines: ["Room only or B&B", "Stays to April"],
+    },
   },
   {
     slug: "dalmahoy",
     place: "Edinburgh",
     name: "Dalmahoy Hotel\n& Country Club",
     shots: [
-      { src: H + "dalmahoy/course-view.mp4" },
+      { src: H + "dalmahoy/bedroom.jpg", pos: "45% 50%" },
       { src: H + "dalmahoy/syrup-pour.mp4", from: 4 },
-      { src: C + "cosy-escapes/page4-dalmahoy-log-fire-bar.jpg", pos: "50% 50%" },
+      { src: H + "dalmahoy/pool.jpg", pos: "50% 50%" },
     ],
     offer: { title: "30% off B&B", lines: ["Stays to 30 April"] },
   },
@@ -146,10 +161,16 @@ const STORIES: Story[] = [
     name: "Forest of Arden Hotel",
     shots: [
       { src: C + "amc-2026/forest-of-arden-aerial.mp4" },
-      { src: C + "november-best-loved/forest-of-arden-exterior.jpg", pos: "50% 50%" },
+      {
+        src: C + "november-best-loved/forest-of-arden-exterior.jpg",
+        pos: "50% 50%",
+      },
     ],
     cuts: [25],
-    offer: { title: "Advance purchase\nB&B rate", lines: ["Non refundable", "Stays to 9 April"] },
+    offer: {
+      title: "Advance purchase\nB&B rate",
+      lines: ["Non refundable", "Stays to 9 April"],
+    },
   },
   {
     slug: "holdsworth-house",
@@ -167,11 +188,17 @@ const STORIES: Story[] = [
     place: "Alfriston, East Sussex",
     name: "The Alfriston",
     shots: [
-      { src: H + "the-alfriston/fireside-table.jpg", pos: "60% 50%" },
-      { src: H + "the-alfriston/bedroom.jpg", pos: "32% 50%" },
-      { src: H + "the-alfriston/afternoon-tea.jpg", pos: "50% 50%" },
+      { src: H + "the-alfriston/bedroom.jpg", pos: "40% 50%" },
+      { src: H + "the-alfriston/afternoon-tea.jpg", pos: "50% 60%" },
     ],
-    offer: { title: "30% off B&B", lines: ["Book 27 to 30 November only", "Stays to 31 March, selected dates"] },
+    cuts: [27],
+    offer: {
+      title: "30% off B&B",
+      lines: [
+        "Book 27 to 30 November only",
+        "Stays to 31 March, selected dates",
+      ],
+    },
   },
   {
     slug: "the-imperial",
@@ -180,8 +207,8 @@ const STORIES: Story[] = [
     shots: [
       { src: H + "the-imperial/bay-from-great-orme.jpg", pos: "60% 50%" },
       { src: H + "the-imperial/breakfast-in-bed.jpg", pos: "50% 50%" },
+      { src: H + "the-imperial/afternoon-tea.jpg", pos: "45% 50%" },
     ],
-    cuts: [27],
     offer: { title: "Up to 30%\noff B&B", lines: ["Stays to 31 March"] },
   },
 ];
@@ -195,9 +222,18 @@ export const BF_STORIES: MESpec[] = STORIES.map((s) => {
       at: i === 0 ? 0 : B(cuts[i - 1]),
       cut: i > 0,
       shots: [shot],
-      text: i === 0 ? { eyebrow: s.place, title: s.name, subs: [""] } : undefined,
+      // the place in the campaign's mauve caps, as on the carousels and the countdown (Scott, 5 Nov)
+      text:
+        i === 0
+          ? { eyebrow: s.place, title: s.name, subs: [""], mauve: true }
+          : undefined,
     })),
     end: { at: B(35), cut: true, name: s.name, place: s.place, offer: s.offer },
-    music: { src: "music/rockot-what-the-funk-549053.mp3", startAt: 285, gain: 0.56, fadeOut: 40 },
+    music: {
+      src: "music/rockot-what-the-funk-549053.mp3",
+      startAt: 285,
+      gain: 0.56,
+      fadeOut: 40,
+    },
   };
 });
