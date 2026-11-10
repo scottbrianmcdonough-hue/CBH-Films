@@ -21,8 +21,8 @@ Black Friday page.
   afternoon tea ("Tea in tiers, / a glass of fizz"), burger ("Stacked tall, / chips on the side"; Scott: "don't use
   supper, that ain't natural"), bedroom ("Sink into / berry velvet"; Scott liked "sink into something velvet" with a
   word in place of something). The exterior photo (grey sky, the road in front) is left out.
-- End card: BLACK FRIDAY SALE in Lee's mauve caps over the live page's offer in cream Cormorant, "B&B plus a food / and
-  drink discount"; nothing else.
+- End card: BLACK FRIDAY SALE in Lee's mauve caps over the live page's offer in cream Cormorant, reworded without "B&B"
+  (Scott, 10 Nov: "sounds so uninviting"): "Breakfast included, / plus food and drink savings"; nothing else.
 - The engine gained a 4:5 layout (`feed` in RippleSpec: label, lines and shade lower, CB in the 4:5 corner) and
   `endCard.eyebrow` / `endCard.sub`.
 

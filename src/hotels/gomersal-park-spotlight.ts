@@ -30,7 +30,7 @@ export const gomersalParkSpotlight: RippleSpec = {
   endCard: {
     at: 468,
     eyebrow: "Black Friday Sale",
-    line: "B&B plus a food\nand drink discount",
+    line: "Breakfast included,\nplus food and drink savings",
     quick: true,
   },
   music: {

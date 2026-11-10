@@ -37,6 +37,7 @@ type Region = {
 // classicbritishhotels.com/offer-category/black-friday-offers/ (9 Nov), each hotel at its lowest from price, lowest
 // first. The Alfriston isn't on the page yet (its offer books 27 to 30 Nov only); Donnington is Donnington Manor,
 // Sevenoaks. No prices on the slides (Scott, 9 Nov): each pill is the page's offer; the cover keeps Lee's Save up to 30%.
+// No "B&B" in the pills (Scott, 10 Nov: "B&B sounds so uninviting"): lead with breakfast; the North done first.
 const REGIONS: Region[] = [
   {
     id: "north",
@@ -50,7 +51,7 @@ const REGIONS: Region[] = [
         tile: { src: H + "gomersal-park/bedroom.jpg", pos: "50% 50%" },
         place: "Gomersal, West Yorkshire",
         name: "Gomersal Park\nHotel & Spa",
-        offer: "B&B plus food and drink discount",
+        offer: "Breakfast plus dining savings",
         terms: "",
       },
       {
@@ -68,7 +69,7 @@ const REGIONS: Region[] = [
         tile: { src: H + "waterton-park/afternoon-tea.jpg", pos: "50% 50%" },
         place: "Wakefield, West Yorkshire",
         name: "Waterton Park\nHotel & Spa",
-        offer: "B&B plus food and drink discount",
+        offer: "Breakfast plus dining savings",
         terms: "",
       },
       {
@@ -80,7 +81,7 @@ const REGIONS: Region[] = [
         },
         place: "Halifax, West Yorkshire",
         name: "Holdsworth House Hotel",
-        offer: "Save 10% on B&B",
+        offer: "10% off, breakfast included",
         terms: "",
       },
     ],
