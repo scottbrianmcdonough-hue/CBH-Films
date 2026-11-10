@@ -77,4 +77,6 @@ No fireplaces (Scott, 5 Nov): Holdsworth pancakes, Oaklands Hall the bedroom, Bu
 
 - Scott (10 Nov): "B&B sounds so uninviting". The North carousel's pills now lead with breakfast: Gomersal Park and Waterton
   Park "Breakfast plus dining savings" (the page's "B&B plus food and drink discount"; the longer wording wrapped the pill),
-  Holdsworth "10% off, breakfast included" (was "Save 10% on B&B"). Skipton unchanged. The other regions still say B&B.
+  Holdsworth "10% off, breakfast included" (was "Save 10% on B&B"). Skipton unchanged. Scotland & Wales the same
+  (10 Nov): Ruthin "Breakfast plus dining savings", Dalmahoy "30% off, breakfast included", The Imperial unchanged. East &
+  Midlands and the South still say B&B. Contact sheets (JPG and PDF) made for each region from the rendered slides.

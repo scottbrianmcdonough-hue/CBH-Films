@@ -98,7 +98,7 @@ const REGIONS: Region[] = [
         tile: { src: H + "ruthin-castle/hot-tub-fizz.jpg", pos: "50% 50%" },
         place: "Ruthin, North Wales",
         name: "Ruthin Castle\nHotel & Spa",
-        offer: "B&B plus food and drink discount",
+        offer: "Breakfast plus dining savings",
         terms: "",
       },
       {
@@ -119,7 +119,7 @@ const REGIONS: Region[] = [
         tile: { src: H + "dalmahoy/pool.jpg", pos: "50% 50%" },
         place: "Edinburgh",
         name: "Dalmahoy Hotel\n& Country Club",
-        offer: "30% off B&B",
+        offer: "30% off, breakfast included",
         terms: "",
       },
     ],
