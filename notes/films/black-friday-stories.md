@@ -94,4 +94,4 @@ No fireplaces (Scott, 5 Nov): Holdsworth pancakes, Oaklands Hall the bedroom, Bu
   Midlands 5, South 5.
 - Donnington Manor (Scott, 10 Nov): its Tudor exterior (the hotel slide) and breakfast on the terrace in front of the
   timber frame (the South cover, in place of the low res Donnington & Co plate), in `public/hotels/donnington-manor/`; a
-  twin bedroom came too (`twin-bedroom.jpg`, not used: dated). The South posts Fri 20 Nov (was Black Friday itself).
+  twin bedroom came too (`twin-bedroom.jpg`, not used: dated). The South posts Mon 23 Nov (was Black Friday itself, then Fri 20).
