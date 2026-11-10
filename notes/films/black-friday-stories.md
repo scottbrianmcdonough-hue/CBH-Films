@@ -99,3 +99,5 @@ No fireplaces (Scott, 5 Nov): Holdsworth pancakes, Oaklands Hall the bedroom, Bu
   for a Classic Double): East & Midlands, fourth, after Forest of Arden (£91.30) and before Jockey Club Rooms; pill
   "30% off, breakfast included". No exterior in the repo, so the riverside terrace (`river.jpg`), the dining room on
   the cover. The post adds "a riverside table at The Kingfisher in Bedford". 6 slides.
+- The Kingfisher's cover tile is Scott's reading in bed photo (`the-kingfisher/reading-in-bed.jpg`), in place of the
+  dining room (Jockey Club's dining room is on the same cover).
