@@ -15,6 +15,7 @@ Statuses as of 2 Nov 2026.
 ## Sent, waiting on Scott
 
 - [Gomersal Park: Black Friday spotlight](films/gomersal-park-spotlight.md): 4:5 reel v4 sent 10 Nov (Rutland Four Roots style, lines that describe each shot, Leva Eternity); goes with the North carousel Wed 11 Nov.
+- [Hintlesham Hall: snow globe giveaway](films/hintlesham-snow-globe.md): Tanya happy to go ahead (10 Nov); prize a family stay June to September 2027; blackout dates to come; runs 1 to 10 Dec.
 - [Oaklands Hall: Black Friday reel](films/oaklands-hall-black-friday.md): HTML preview sent 9 Nov; render after sign off.
 
 - [Rutland Hall: Four Roots Luxury Breaks](films/rutland-four-roots.md): Story signed off for Fri 6 Nov 10 AM; reel IG 12 PM, FB 7 PM; prices and nights to confirm.
