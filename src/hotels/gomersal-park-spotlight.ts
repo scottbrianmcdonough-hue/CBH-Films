@@ -10,7 +10,8 @@ import type { RippleSpec } from "../hotel-film/ripple/types";
 // 92.3 BPM, a bar every 78 frames, from its first downbeat (1.83s in the trimmed file): two bars on the pool, five
 // beats each on the tea and burger, six on the bed, the end card on the phrase start (film frame 468), held a bar and a
 // half under the fade.
-// The lines are about the hotel and what each shot shows, as Rutland's (Scott, 10 Nov: "don't make it about two
+// The lines run as one evening, arrival to the morning's breakfast on the end card (Scott, 10 Nov: "needs something
+// cohesive", "tell a story"); before that they were about the hotel and what each shot shows, as Rutland's (Scott, 10 Nov: "don't make it about two
 // cities", "complement the visuals like the Rutland reel"): the water falling into the spa pool, the tiered tea and fizz,
 // the stacked burger, the berry velvet throw. The end card is the sale and the offer only (Scott: "too much on the
 // end card").
@@ -21,10 +22,10 @@ export const gomersalParkSpotlight: RippleSpec = {
   feed: true,
   label: { eyebrow: "", name: "Gomersal Park\nHotel & Spa", from: 8, to: 70 },
   lines: [
-    { text: "Where the week\nwashes off", from: 78, to: 147 },
-    { text: "Tea in tiers,\na glass of fizz", from: 159, to: 245 },
-    { text: "Stacked tall,\nchips on the side", from: 257, to: 342 },
-    { text: "Sink into\nberry velvet", from: 354, to: 456 },
+    { text: "Leave the week\nin the water", from: 78, to: 147 },
+    { text: "Stay on for tea,\na glass of fizz", from: 159, to: 245 },
+    { text: "Then dinner,\nstacked tall", from: 257, to: 342 },
+    { text: "And stay the night\nin berry velvet", from: 354, to: 456 },
   ],
   deepScrim: true,
   endCard: {

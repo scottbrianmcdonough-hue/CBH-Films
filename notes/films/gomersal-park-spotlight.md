@@ -53,3 +53,6 @@ from the repo or Scott's uploads.
 - Polish pass (10 Nov): every cut, line and the end card checked frame by frame; nothing to change. Cover frame
   (frame 48, the name over the spa pool) made for the grid. Slot Thu 12 Nov, the day after the North carousel
   (CBH-142); ticket with IG, FB and TikTok copy, the hotel tagged, no hashtags.
+- Scott (10 Nov: the reel "doesn't tell a story", "needs something cohesive"): the lines now run as one evening into the
+  morning's breakfast on the end card: "Leave the week / in the water", "Stay on for tea, / a glass of fizz", "Then
+  dinner, / stacked tall", "And stay the night / in berry velvet". Post copy follows the same evening.
