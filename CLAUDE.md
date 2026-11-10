@@ -42,7 +42,8 @@ with no history and no renders:
   "screen time report", "sleeping in", "canopied bed", not "screen-time", "lie-in", "four-poster".
 - Emoji in post copy (Scott, 3 Nov, Black Friday static post): few, and each one earning its place: an emoji that
   stands in for a word ("phone on 🔕"), carries the idea (🔓 for "the wait is over", 🗝️ beside "Book now", 🖤 for Black
-  Friday), never decoration at the end of every line or a row of them; about three or four a post. No lists of three
+  Friday), never decoration at the end of every line or a row of them; about three or four a post. Vary them from
+  post to post (Scott, 10 Nov: "gotta start doing more varied emojis"; the Black Friday set had leaned on 🖤 🗝️ 🛎️). No lists of three
   (Scott: "avoid triad"), and don't ask for comments where people won't answer (a sale post closes on booking).
 - Consistency (Scott, 5 Nov): keep films and posts looking consistent with each other; a campaign's pieces shouldn't
   look too different from the house style. When matching a supplied artwork (Black Friday: Lee's tight mauve caps),
