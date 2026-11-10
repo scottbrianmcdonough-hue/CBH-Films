@@ -32,7 +32,7 @@ Tracks used and where, so a new film doesn't repeat one by accident. [All films]
 | Leva Eternity by lemonmusicstudio (Pixabay) | [dalmahoy](films/dalmahoy.md) (unposted), [gomersal-park-spotlight](films/gomersal-park-spotlight.md) (Scott's pick; Dalmahoy will need a new track) |
 | deep house instrumental by arnaud136 (Pixabay 354596) | [kingfisher-spotlight](films/kingfisher-spotlight.md) |
 | Funky Summer House by BerryDeep (Pixabay 565437) | [imperial-spotlight](films/imperial-spotlight.md) |
-| Luxury Life by Kulakovka (Pixabay 618587) | for Frensham Pond's spotlight (not built yet) |
+| Luxury Life by Kulakovka (Pixabay 618587) | [frensham-spotlight](films/frensham-spotlight.md) |
 | Late Night Big Band Swing by nickpanek (Pixabay 236168) | [haycock-manor](films/haycock-manor.md) (all cuts) |
 | Light it Up Boy (Mixkit 849) | [amc-2026-reel](films/amc-2026-reel.md) (alternative), [amc-2026-wide](films/amc-2026-wide.md) |
 | Luxury by Sub_Clair | [cbh-journey](films/cbh-journey.md), [cbh-showcase](films/cbh-showcase.md), [black-friday-gift-vouchers](films/black-friday-gift-vouchers.md) |

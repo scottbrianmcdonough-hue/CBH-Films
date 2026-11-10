@@ -1,0 +1,13 @@
+{
+  "out": "public/campaigns/frensham-spotlight/picture.mp4",
+  "size": "1080x1350",
+  "shots": [
+    { "src": "public/campaigns/frensham-spotlight/clips/dusk.mp4", "from": 0, "frames": 121, "vf": "eq=saturation=1.0:contrast=1.02" },
+    { "src": "public/campaigns/frensham-spotlight/clips/bar.mp4", "from": 0, "frames": 118, "vf": "eq=saturation=0.96:contrast=1.03:brightness=-0.02" },
+    { "src": "public/campaigns/frensham-spotlight/clips/spa.mp4", "from": 0, "frames": 118, "vf": "eq=saturation=1.0:contrast=1.03" },
+    { "src": "public/campaigns/frensham-spotlight/clips/restaurant.mp4", "from": 0, "frames": 119, "vf": "eq=saturation=1.0:contrast=1.03" },
+    { "src": "public/campaigns/frensham-spotlight/clips/suite.mp4", "from": 0, "frames": 118, "vf": "eq=saturation=1.0:contrast=1.03:brightness=-0.02" }
+  ],
+  "fade": 22,
+  "tail": 118
+}

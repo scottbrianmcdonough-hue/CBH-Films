@@ -15,8 +15,9 @@ Statuses as of 2 Nov 2026.
 ## Sent, waiting on Scott
 
 - [Gomersal Park: Black Friday spotlight](films/gomersal-park-spotlight.md): 4:5 reel final with cover and ticket (10 Nov); Thu 12 Nov, the day after the North carousel.
-- [The Kingfisher: Black Friday spotlight](films/kingfisher-spotlight.md): 4:5 reel sent 10 Nov (deep house instrumental). Next: Frensham Pond.
+- [The Kingfisher: Black Friday spotlight](films/kingfisher-spotlight.md): 4:5 reel sent 10 Nov (deep house instrumental).
 - [The Imperial: Black Friday spotlight](films/imperial-spotlight.md): 4:5 reel sent 10 Nov (Funky Summer House).
+- [Frensham Pond: Black Friday spotlight](films/frensham-spotlight.md): 4:5 reel sent 10 Nov (Luxury Life).
 - [Hintlesham Hall: snow globe giveaway](films/hintlesham-snow-globe.md): Tanya happy to go ahead (10 Nov); prize a family stay June to September 2027; blackout dates to come; runs 1 to 10 Dec.
 - [Oaklands Hall: Black Friday reel](films/oaklands-hall-black-friday.md): HTML preview sent 9 Nov; render after sign off.
 
