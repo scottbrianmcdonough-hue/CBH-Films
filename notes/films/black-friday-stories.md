@@ -82,3 +82,13 @@ No fireplaces (Scott, 5 Nov): Holdsworth pancakes, Oaklands Hall the bedroom, Bu
   Oaklands "Room only, breakfast or half board", Whittlebury "Breakfast or half board" (Scott: "with breakfast or dinner too" was confusing), Forest of Arden and Jockey Club
   "Breakfast included". The South still says B&B. Every carousel ticket now Instagram 12:00 PM, Facebook 8:00 PM
   (Scott: "the usual time"). Contact sheets (JPG and PDF) made for each region from the rendered slides.
+- Bianca (10 Nov): the campaign asset comes off the end of every regional carousel (it goes out on its own Mon 16 Nov,
+  with the email); hotel slides on the hotel's exterior (Gomersal Park keeps its spa, its exterior isn't its best), the
+  cover a mix of hero shots; "don't like the pink bed shot" (Gomersal's bedroom, out). Exteriors: Skipton canal
+  reflection, Waterton footbridge, Holdsworth front, Ruthin castle, The Imperial seafront, Dalmahoy, Oaklands front,
+  Whittlebury, Forest of Arden aerial, Jockey Club garden front, Frensham at dusk, Oakley Hall, Burleigh Court. Donnington
+  Manor has no exterior in the repo, so it keeps its breakfast. Covers: food, spa and rooms (burger, Skipton tea, Waterton
+  hot tub, Holdsworth breakfast in bed; Ruthin hot tub, Imperial breakfast in bed, Dalmahoy salmon; Oaklands plate,
+  Whittlebury spa, Forest of Arden afternoon tea, Jockey Club dining room; Frensham restaurant, Donnington plate, Oakley
+  tea, Burleigh bedroom). The South's pills now lead with breakfast too. Slides: North 5, Scotland & Wales 4, East &
+  Midlands 5, South 5.

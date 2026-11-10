@@ -37,27 +37,29 @@ type Region = {
 // classicbritishhotels.com/offer-category/black-friday-offers/ (9 Nov), each hotel at its lowest from price, lowest
 // first. The Alfriston isn't on the page yet (its offer books 27 to 30 Nov only); Donnington is Donnington Manor,
 // Sevenoaks. No prices on the slides (Scott, 9 Nov): each pill is the page's offer; the cover keeps Lee's Save up to 30%.
+// Hotel slides on the hotel's exterior, the cover a mix of hero shots, no pink bed (Bianca, 10 Nov); Gomersal Park keeps
+// its spa (its exterior isn't its best); Donnington Manor has no exterior here, so it keeps its breakfast.
 // No "B&B" in the pills (Scott, 10 Nov: "B&B sounds so uninviting"): lead with breakfast; the North done first.
 const REGIONS: Region[] = [
   {
     id: "north",
     title: "The North",
     from: "85",
-    cover: { src: H + "gomersal-park/bedroom.jpg", pos: "50% 50%" },
+    cover: { src: H + "gomersal-park/burger.jpg", pos: "60% 50%" },
     hotels: [
       {
         src: H + "gomersal-park/spa-pool.jpg",
         pos: "50% 50%",
-        tile: { src: H + "gomersal-park/bedroom.jpg", pos: "50% 50%" },
+        tile: { src: H + "gomersal-park/burger.jpg", pos: "60% 50%" },
         place: "Gomersal, West Yorkshire",
         name: "Gomersal Park\nHotel & Spa",
         offer: "Breakfast plus dining savings",
         terms: "",
       },
       {
-        src: H + "skipton/afternoon-tea.jpg",
-        pos: "35% 50%",
-        tile: { src: H + "skipton/canal-reflection.jpg", pos: "35% 50%" },
+        src: H + "skipton/canal-reflection.jpg",
+        pos: "22% 50%",
+        tile: { src: H + "skipton/afternoon-tea.jpg", pos: "45% 50%" },
         place: "Skipton, North Yorkshire",
         name: "Skipton Hotel",
         offer: "25% off food and drink",
@@ -66,19 +68,16 @@ const REGIONS: Region[] = [
       {
         src: H + "waterton-park/footbridge-autumn.jpg",
         pos: "47% 50%",
-        tile: { src: H + "waterton-park/afternoon-tea.jpg", pos: "50% 50%" },
+        tile: { src: H + "waterton-park/outdoor-hot-tub.jpg", pos: "55% 50%" },
         place: "Wakefield, West Yorkshire",
         name: "Waterton Park\nHotel & Spa",
         offer: "Breakfast plus dining savings",
         terms: "",
       },
       {
-        src: H + "holdsworth-house/robes-fizz.jpg",
+        src: H + "holdsworth-house/exterior.jpg",
         pos: "50% 50%",
-        tile: {
-          src: H + "holdsworth-house/breakfast-in-bed.jpg",
-          pos: "50% 50%",
-        },
+        tile: { src: H + "holdsworth-house/breakfast-in-bed.jpg", pos: "50% 50%" },
         place: "Halifax, West Yorkshire",
         name: "Holdsworth House Hotel",
         offer: "10% off, breakfast included",
@@ -93,8 +92,8 @@ const REGIONS: Region[] = [
     cover: { src: H + "ruthin-castle/hot-tub-fizz.jpg", pos: "50% 50%" },
     hotels: [
       {
-        src: H + "ruthin-castle/white-bed.jpg",
-        pos: "50% 50%",
+        src: H + "ruthin-castle/castle.jpg",
+        pos: "25% 50%",
         tile: { src: H + "ruthin-castle/hot-tub-fizz.jpg", pos: "50% 50%" },
         place: "Ruthin, North Wales",
         name: "Ruthin Castle\nHotel & Spa",
@@ -102,21 +101,18 @@ const REGIONS: Region[] = [
         terms: "",
       },
       {
-        src: H + "the-imperial/breakfast-in-bed.jpg",
-        pos: "50% 50%",
-        tile: {
-          src: H + "the-imperial/bay-from-great-orme.jpg",
-          pos: "62% 50%",
-        },
+        src: H + "the-imperial/seafront.jpg",
+        pos: "45% 50%",
+        tile: { src: H + "the-imperial/breakfast-in-bed.jpg", pos: "50% 50%" },
         place: "Llandudno, North Wales",
         name: "The Imperial Hotel",
         offer: "Save up to 30%",
         terms: "",
       },
       {
-        src: H + "dalmahoy/bedroom.jpg",
-        pos: "45% 50%",
-        tile: { src: H + "dalmahoy/pool.jpg", pos: "50% 50%" },
+        src: H + "dalmahoy/exterior.jpg",
+        pos: "35% 50%",
+        tile: { src: H + "dalmahoy/salmon-plate.jpg", pos: "50% 50%" },
         place: "Edinburgh",
         name: "Dalmahoy Hotel\n& Country Club",
         offer: "30% off, breakfast included",
@@ -131,18 +127,18 @@ const REGIONS: Region[] = [
     cover: { src: H + "oaklands-hall/bedroom.jpg", pos: "50% 50%" },
     hotels: [
       {
-        src: H + "oaklands-hall/plate.jpg",
-        pos: "50% 50%",
-        tile: { src: H + "oaklands-hall/bedroom.jpg", pos: "50% 50%" },
+        src: H + "oaklands-hall/exterior-front.jpg",
+        pos: "50% 40%",
+        tile: { src: H + "oaklands-hall/plate.jpg", pos: "50% 50%" },
         place: "Laceby, Lincolnshire",
         name: "Oaklands Hall Hotel",
         offer: "Room only, breakfast or half board",
         terms: "",
       },
       {
-        src: H + "whittlebury-park/spa-pool.jpg",
+        src: H + "whittlebury-park/exterior.jpg",
         pos: "50% 50%",
-        tile: { src: H + "whittlebury-park/salt-sauna.jpg", pos: "50% 50%" },
+        tile: { src: H + "whittlebury-park/spa-pool.jpg", pos: "50% 50%" },
         place: "Whittlebury, Northamptonshire",
         name: "Whittlebury Park",
         offer: "Breakfast or half board",
@@ -151,15 +147,15 @@ const REGIONS: Region[] = [
       {
         src: H + "forest-of-arden/aerial-autumn.jpg",
         pos: "72% 50%",
-        tile: { src: H + "forest-of-arden/pool.jpg", pos: "50% 50%" },
+        tile: { src: H + "forest-of-arden/chef-afternoon-tea.jpg", pos: "50% 50%" },
         place: "Meriden, Warwickshire",
         name: "Forest of Arden Hotel",
         offer: "Breakfast included",
         terms: "",
       },
       {
-        src: H + "jockey-club-rooms/bedroom.jpg",
-        pos: "40% 50%",
+        src: H + "jockey-club-rooms/garden-front.jpg",
+        pos: "30% 50%",
         tile: { src: H + "jockey-club-rooms/dining-room.jpg", pos: "50% 50%" },
         place: "Newmarket, Suffolk",
         name: "Jockey Club Rooms",
@@ -180,7 +176,7 @@ const REGIONS: Region[] = [
         tile: { src: H + "frensham-pond/restaurant.jpg", pos: "40% 50%" },
         place: "Farnham, Surrey",
         name: "Frensham Pond\nHotel & Spa",
-        offer: "Save 20% on B&B",
+        offer: "20% off, breakfast included",
         terms: "",
       },
       {
@@ -192,25 +188,25 @@ const REGIONS: Region[] = [
         },
         place: "Sevenoaks, Kent",
         name: "Donnington Manor\nHotel",
-        offer: "Save 20% on B&B",
+        offer: "20% off, breakfast included",
         terms: "",
       },
       {
-        src: H + "oakley-hall/bedroom.jpg",
-        pos: "60% 50%",
-        tile: { src: H + "oakley-hall/dessert.jpg", pos: "50% 50%" },
+        src: H + "oakley-hall/exterior.jpg",
+        pos: "50% 50%",
+        tile: { src: H + "oakley-hall/afternoon-tea.jpg", pos: "40% 50%" },
         place: "Oakley, Hampshire",
         name: "Oakley Hall Hotel",
-        offer: "Room only or B&B",
+        offer: "Room only or with breakfast",
         terms: "",
       },
       {
-        src: H + "burleigh-court/plate.jpg",
-        pos: "52% 50%",
+        src: H + "burleigh-court/garden-house.jpg",
+        pos: "72% 50%",
         tile: { src: H + "burleigh-court/bedroom.jpg", pos: "45% 50%" },
         place: "Minchinhampton, Gloucestershire",
         name: "Burleigh Court",
-        offer: "25% off, B&B included",
+        offer: "25% off, breakfast included",
         terms: "",
       },
     ],
@@ -287,8 +283,9 @@ const OFFICIAL: Record<string, "bed" | "curtains"> = {
 
 // each region's best offer on the 2026 sheet, for the cover's pill
 
+// no closing campaign slide (Bianca, 10 Nov: it goes out on its own on Mon 16 Nov with the email): the cover, then the hotels
 export const bfSlides = (id: string) =>
-  (BF_REGIONS.find((r) => r.id === id)?.hotels.length ?? 0) + 2;
+  (BF_REGIONS.find((r) => r.id === id)?.hotels.length ?? 0) + 1;
 
 export const BlackFridayCarousel: React.FC<{ region: string }> = ({
   region,
