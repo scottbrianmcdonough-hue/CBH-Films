@@ -101,3 +101,5 @@ No fireplaces (Scott, 5 Nov): Holdsworth pancakes, Oaklands Hall the bedroom, Bu
   the cover. The post adds "a riverside table at The Kingfisher in Bedford". 6 slides.
 - The Kingfisher's cover tile is Scott's reading in bed photo (`the-kingfisher/reading-in-bed.jpg`), in place of the
   dining room (Jockey Club's dining room is on the same cover).
+- The Kingfisher's slide is now its exterior from the river (Scott, 10 Nov: `the-kingfisher/exterior-river-boat.jpg`, the
+  pub and rooms with a boat on the river); the post line is "Wake up by the river at The Kingfisher in Bedford".
