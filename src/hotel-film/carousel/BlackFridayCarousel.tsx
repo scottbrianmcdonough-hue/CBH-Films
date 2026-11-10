@@ -38,7 +38,7 @@ type Region = {
 // first. The Alfriston isn't on the page yet (its offer books 27 to 30 Nov only); Donnington is Donnington Manor,
 // Sevenoaks. No prices on the slides (Scott, 9 Nov): each pill is the page's offer; the cover keeps Lee's Save up to 30%.
 // Hotel slides on the hotel's exterior, the cover a mix of hero shots, no pink bed (Bianca, 10 Nov); Gomersal Park keeps
-// its spa (its exterior isn't its best); Donnington Manor has no exterior here, so it keeps its breakfast.
+// its spa (its exterior isn't its best); Donnington Manor's exterior and terrace breakfast are Scott's (10 Nov).
 // No "B&B" in the pills (Scott, 10 Nov: "B&B sounds so uninviting"): lead with breakfast; the North done first.
 const REGIONS: Region[] = [
   {
@@ -180,12 +180,9 @@ const REGIONS: Region[] = [
         terms: "",
       },
       {
-        src: H + "donnington-manor/breakfast.jpg",
-        pos: "50% 50%",
-        tile: {
-          src: H + "donnington-manor/donnington-and-co-plate.jpg",
-          pos: "50% 50%",
-        },
+        src: H + "donnington-manor/exterior.jpg",
+        pos: "4% 50%",
+        tile: { src: H + "donnington-manor/breakfast-terrace.jpg", pos: "50% 50%" },
         place: "Sevenoaks, Kent",
         name: "Donnington Manor\nHotel",
         offer: "20% off, breakfast included",
