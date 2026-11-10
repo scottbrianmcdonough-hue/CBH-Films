@@ -33,6 +33,9 @@ const COUNTER_SCRIM_WIDE =
 const FEED_SCRIM =
   "radial-gradient(ellipse 1150px 640px at 0px 1290px, rgba(9,9,10,0.84) 0%, rgba(9,9,10,0.58) 45%, rgba(9,9,10,0) 100%)";
 const MAUVE = "#A15272"; // Lee's Black Friday caps
+// the region reels' shade, as the carousel slides: a dark gradient up from the bottom, so the small mauve caps read
+const CARD_SCRIM =
+  "linear-gradient(to top, rgba(9,9,10,0.9) 0%, rgba(9,9,10,0.72) 26%, rgba(9,9,10,0.3) 46%, rgba(9,9,10,0) 62%)";
 const FEED_BOTTOM = 190;
 const SCRIM_WIDE =
   "radial-gradient(ellipse 1300px 560px at 0px 1080px, rgba(9,9,10,0.7) 0%, rgba(9,9,10,0.46) 45%, rgba(9,9,10,0) 100%)";
@@ -112,7 +115,11 @@ const Label: React.FC<{
 const SteadyShade: React.FC<{ film: RippleSpec }> = ({ film }) => {
   const frame = useCurrentFrame();
   const shaded = film.lines.filter((l) => !l.sky); // a line over the sky has no shade
-  const first = shaded[0]?.from ?? 0;
+  const first = Math.min(
+    shaded[0]?.from ?? Infinity,
+    film.cards?.[0]?.from ?? Infinity,
+    film.title?.from ?? Infinity,
+  );
   const on =
     progress(frame, first, 12, EASE_IN_OUT) *
     (1 - progress(frame, film.endCard.at + 42, 1));
@@ -125,9 +132,11 @@ const SteadyShade: React.FC<{ film: RippleSpec }> = ({ film }) => {
         opacity: on,
         background: top
           ? `radial-gradient(ellipse 1150px 520px at 0px ${top.top! + 110}px, rgba(9,9,10,0.78) 0%, rgba(9,9,10,0.52) 45%, rgba(9,9,10,0) 100%)`
-          : film.feed
-            ? FEED_SCRIM
-            : DEEP_SCRIM,
+          : film.cards
+            ? CARD_SCRIM
+            : film.feed
+              ? FEED_SCRIM
+              : DEEP_SCRIM,
       }}
     />
   );
@@ -222,6 +231,118 @@ const Line: React.FC<{
             </div>
           );
         })}
+      </div>
+    </AbsoluteFill>
+  );
+};
+
+// A hotel card (the Black Friday region reels), the carousel's order: the place in mauve caps, the name in cream
+// Cormorant, the offer in a mauve pill; it rises in, holds across the hotel's shots, and fades as the next comes.
+const HotelCard: React.FC<{ place: string; name: string; offer: string; out: number }> = ({
+  place,
+  name,
+  offer,
+  out,
+}) => {
+  const frame = useCurrentFrame();
+  const a = progress(frame, 0, 16, EASE_OUT);
+  const o = 1 - progress(frame, out - 10, 10, EASE_IN_OUT);
+  return (
+    <AbsoluteFill style={{ opacity: o }}>
+      <div
+        style={{
+          position: "absolute",
+          left: 72,
+          bottom: FEED_BOTTOM,
+          opacity: a,
+          transform: `translateY(${(1 - a) * 26}px)`,
+        }}
+      >
+        <div
+          style={{
+            fontFamily: sans,
+            fontWeight: 700,
+            fontSize: 30,
+            letterSpacing: "0.04em",
+            color: MAUVE,
+            textTransform: "uppercase",
+            textShadow: LIFT,
+            marginBottom: 10,
+          }}
+        >
+          {place}
+        </div>
+        {name.split("\n").map((l) => (
+          <div
+            key={l}
+            style={{
+              fontFamily: serif,
+              fontSize: 88,
+              lineHeight: 1.04,
+              color: colors.cream,
+              textShadow: LIFT,
+              whiteSpace: "nowrap",
+            }}
+          >
+            {l}
+          </div>
+        ))}
+        <div
+          style={{
+            display: "inline-block",
+            marginTop: 22,
+            fontFamily: sans,
+            fontWeight: 700,
+            fontSize: 30,
+            letterSpacing: "0.02em",
+            textTransform: "uppercase",
+            color: colors.cream,
+            background: MAUVE,
+            padding: "10px 22px",
+            borderRadius: 40,
+            fontVariantNumeric: "lining-nums",
+          }}
+        >
+          {offer}
+        </div>
+      </div>
+    </AbsoluteFill>
+  );
+};
+
+// The opening title (the region reels): mauve caps over a cream Cormorant line, bottom left like the cards.
+const Title: React.FC<{ eyebrow: string; line: string; out: number }> = ({ eyebrow, line, out }) => {
+  const frame = useCurrentFrame();
+  const a = progress(frame, 0, 18, EASE_OUT);
+  const o = 1 - progress(frame, out - 10, 10, EASE_IN_OUT);
+  return (
+    <AbsoluteFill style={{ opacity: o }}>
+      <div
+        style={{
+          position: "absolute",
+          left: 72,
+          bottom: FEED_BOTTOM,
+          opacity: a,
+          transform: `translateY(${(1 - a) * 26}px)`,
+        }}
+      >
+        <div
+          style={{
+            fontFamily: sans,
+            fontWeight: 700,
+            fontSize: 34,
+            letterSpacing: "0.04em",
+            color: MAUVE,
+            textTransform: "uppercase",
+            textShadow: LIFT,
+            marginBottom: 8,
+          }}
+        >
+          {eyebrow}
+        </div>
+        <div style={{ fontFamily: serif, fontSize: 120, lineHeight: 1.02, color: colors.cream, textShadow: LIFT }}>
+          {line}
+        </div>
       </div>
     </AbsoluteFill>
   );
@@ -468,6 +589,16 @@ export const RippleFilm: React.FC<{ film: RippleSpec }> = ({ film }) => {
         </Sequence>
       ) : null}
       {film.deepScrim ? <SteadyShade film={film} /> : null}
+      {film.title ? (
+        <Sequence from={film.title.from} durationInFrames={film.title.to - film.title.from}>
+          <Title eyebrow={film.title.eyebrow} line={film.title.line} out={film.title.to - film.title.from} />
+        </Sequence>
+      ) : null}
+      {(film.cards ?? []).map((c) => (
+        <Sequence key={c.name} from={c.from} durationInFrames={c.to - c.from}>
+          <HotelCard place={c.place} name={c.name} offer={c.offer} out={c.to - c.from} />
+        </Sequence>
+      ))}
       {film.lines.map((l) => (
         <Sequence key={l.text} from={l.from} durationInFrames={l.to - l.from}>
           <Line

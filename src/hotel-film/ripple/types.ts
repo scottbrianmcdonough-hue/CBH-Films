@@ -39,6 +39,11 @@ export type RippleSpec = {
     // over a bright sky: no shade, a tight shadow on the letters (Rutland's opening)
     sky?: boolean;
   }[];
+  // hotel cards (the Black Friday region reels): the place in the campaign's mauve caps, the name in cream Cormorant,
+  // the offer in a mauve pill, as on the regional carousels; each held across that hotel's shots
+  cards?: { from: number; to: number; place: string; name: string; offer: string }[];
+  // a title over the opening shot: mauve caps over a cream Cormorant line ("Black Friday Sale" / "The North")
+  title?: { from: number; to: number; eyebrow: string; line: string };
   // a counter over the shots (Haycock's meetings cut: MEETING SPACES ticking up as the rooms cut
   // on the beat): the caption in gold caps with its underline (the label's order), the number in
   // cream Cormorant beneath, one more at each tick (film frames), punching in as it changes

@@ -22,6 +22,11 @@ import { gomersalParkSpotlight } from "./gomersal-park-spotlight";
 import { kingfisherSpotlight } from "./kingfisher-spotlight";
 import { imperialSpotlight } from "./imperial-spotlight";
 import { frenshamSpotlight } from "./frensham-spotlight";
+import { bfRegionNorth } from "./bf-region-north";
+import { bfRegionScotlandWales } from "./bf-region-scotland-wales";
+import { bfRegionEastMidlands } from "./bf-region-east-midlands";
+import { bfRegionSouth } from "./bf-region-south";
+
 import { novemberOutThere, novemberOutThereStory } from "./november-out-there";
 import {
   validateDepartures,
@@ -171,6 +176,10 @@ export const RIPPLE_FILMS: RippleSpec[] = [
   kingfisherSpotlight,
   imperialSpotlight,
   frenshamSpotlight,
+  bfRegionNorth,
+  bfRegionScotlandWales,
+  bfRegionEastMidlands,
+  bfRegionSouth,
 ];
 RIPPLE_FILMS.forEach(validateRipple);
 export const DEPARTURES_FILMS: DeparturesSpec[] = [departuresKeswick];
