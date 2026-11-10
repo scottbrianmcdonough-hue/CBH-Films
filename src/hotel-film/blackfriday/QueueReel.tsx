@@ -128,40 +128,47 @@ const WAIT: Clip[] = [
 // full frame after the drop: two beats each, The Alfriston's afternoon tea last; no fireplaces (Scott, 5 Nov: "enough
 // fireplaces, get the cosy interiors, beds, food")
 const AFTER: Clip[] = [
-  // Donnington Hotel, Spa & Golf and Frensham Pond joined the sale late (Scott, 6 Nov), in their north to south places
+  // Donnington Hotel, Spa & Golf and Frensham Pond joined the sale late (Scott, 6 Nov), in their north to south places;
+  // The Kingfisher (Bedford) joined on 10 Nov, first after the drop, its exterior from the river (Scott's photo)
+  {
+    src: F + "kingfisher-river-full.mp4",
+    at: 24,
+    place: "Bedford",
+    name: "The Kingfisher",
+  },
   {
     src: F + "whittlebury-full.mp4",
-    at: 24,
+    at: 26,
     place: "Northamptonshire",
     name: "Whittlebury Park",
   },
   {
     src: F + "burleigh-plate-full.mp4",
-    at: 26,
+    at: 28,
     place: "The Cotswolds",
     name: "Burleigh Court",
   },
   {
     src: F + "donnington-valley-full.mp4",
-    at: 28,
+    at: 30,
     place: "Berkshire",
     name: "Donnington Hotel, Spa & Golf", // its name (Scott, 6 Nov)
   },
   {
     src: F + "oakley-hall.mp4",
-    at: 30,
+    at: 32,
     place: "Hampshire",
     name: "Oakley Hall",
   },
   {
     src: F + "frensham-dusk-full.mp4",
-    at: 32,
+    at: 34,
     place: "Surrey",
     name: "Frensham Pond",
   },
   {
     src: F + "alfriston-tea-full.mp4",
-    at: 34,
+    at: 36,
     place: "East Sussex",
     name: "The Alfriston",
   },
@@ -170,7 +177,7 @@ const AFTER: Clip[] = [
 type Cut = { after: Clip[]; end: number; len: number };
 const CUTS: Record<"reel" | "story", Cut> = {
   // three beats longer for the slower recap, so the end card keeps its eight beats (the music file runs on to 28s)
-  reel: { after: AFTER, end: 36, len: 53 },
+  reel: { after: AFTER, end: 38, len: 55 }, // The Kingfisher two beats longer (music to 30.5s)
   story: { after: [], end: 24, len: 41 },
 };
 export const QUEUE_FRAMES = B(CUTS.reel.len);
@@ -760,6 +767,7 @@ const RECAP: { src: string; pos: string }[] = [
   { src: H + "oaklands-hall/plate.jpg", pos: "50% 50%" },
   { src: H + "forest-of-arden/pool.jpg", pos: "50% 50%" },
   { src: H + "jockey-club-rooms/bedroom-blue.jpg", pos: "45% 50%" }, // the full frame shot is the green bedroom
+  { src: H + "the-kingfisher/reading-in-bed.jpg", pos: "62% 50%" },
   { src: H + "whittlebury-park/salt-sauna.jpg", pos: "50% 50%" },
   { src: H + "burleigh-court/bedroom.jpg", pos: "45% 50%" },
   { src: H + "donnington-valley/splendid-suite.jpg", pos: "55% 50%" }, // clear of the door frame on the left (Scott)
@@ -767,7 +775,7 @@ const RECAP: { src: string; pos: string }[] = [
   { src: H + "frensham-pond/restaurant.jpg", pos: "40% 50%" },
   { src: H + "the-alfriston/bedroom.jpg", pos: "40% 50%" },
 ];
-const RECAP_BEATS = 9; // 16 photos now (was 8 beats for 14), the same pace; // calm and steady (Scott: "not so manic", "a calmer steady shutter", "a little slower"): ~9 frames each
+const RECAP_BEATS = 9; // 17 photos now (The Kingfisher, 10 Nov; recap-shutter.wav re-timed to 17), 16 before (was 8 beats for 14), the same pace; // calm and steady (Scott: "not so manic", "a calmer steady shutter", "a little slower"): ~9 frames each
 const Recap: React.FC<{ at: number }> = ({ at }) => {
   const frame = useCurrentFrame();
   const total = B(RECAP_BEATS);

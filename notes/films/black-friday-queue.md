@@ -107,3 +107,8 @@ The counter up top (Scott, 5 Nov: "this counter should be up top"): in the offic
 - Donnington Valley and Frensham Pond joined the sale late (Scott, 6 Nov), so 16 hotels: full frame after the burst in north to south order (Whittlebury, Burleigh, Donnington Valley (Berkshire, robes and reading), Oakley Hall, Frensham Pond (Surrey, the hotel at dusk), The Alfriston), end 36, len 53; the recap 16 photos over 9 beats (Donnington's suite, Frensham's restaurant added; the shutter wav re-timed), the music run on to 30.5s from the original. Photos copied to `public/hotels/donnington-valley/` and `public/hotels/frensham-pond/` from the November Best Loved folders. Ticket: 16 of our hotels. The Story is unchanged but for the recap (the first ten hotels).
 - Donnington's name on screen "Donnington Hotel, Spa & Golf" (Scott, 6 Nov: "called Donnington Hotel, Spa & Golf"; photos still in `public/hotels/donnington-valley/`).
 - Donnington's suite in the recap cropped at 55% (Scott: a white strip on the left, the door frame at 35%); all 16 recap crops checked.
+- The Kingfisher joined (Scott, 10 Nov), so 17 hotels: full frame first after the drop (beat 24), its exterior from the
+  river with a boat (`fourteen/kingfisher-river-full.mp4`, still-push of `hotels/the-kingfisher/exterior-river-boat.jpg`),
+  label BEDFORD / The Kingfisher; the rest two beats later, end 38, len 55 (30.0s; the music file runs to 30.5s). The
+  recap adds its reading in bed photo after Jockey Club, 17 photos over the same 9 beats; `recap-shutter.wav` re-timed to
+  17 clicks. -14.7 LUFS. Post: "16 of our hotels" now 17.
