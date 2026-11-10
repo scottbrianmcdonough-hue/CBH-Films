@@ -5,7 +5,7 @@ feeds, 21.6s, -15.5 LUFS. Back to [all films](../README.md).
 
 ## Status
 
-Second version sent 9 Nov (new lines, new track). Goes with the North carousel (Wed 11 Nov); Gomersal Park is the North's cheapest on the live
+Third version sent 10 Nov (the spa hideaway thread, end card trimmed). Goes with the North carousel (Wed 11 Nov); Gomersal Park is the North's cheapest on the live
 Black Friday page.
 
 ## The film
@@ -16,11 +16,13 @@ Black Friday page.
   (`scripts/still-push.py --hgt 1350`, clips in `public/campaigns/gomersal-park-spotlight/clips/`, cut by
   `scripts/cut-picture.py` with `"size": "1080x1350"`), hard cuts on the bar, a line a shot in cream Cormorant, the
   name in cream Cormorant (no gold caps, as Rutland), the cosy grade.
-- Shots: spa pool (label "Gomersal Park / Hotel & Spa", then "Step down / into the warm"), afternoon tea ("Three
-  tiers / and a little fizz"), burger ("The evening, / something hearty"), bedroom ("Sink in / and stay a while").
-  The exterior photo (grey sky, the road in front) is left out.
-- End card: BLACK FRIDAY SALE in Lee's mauve caps, "Eat well, / rest easy", then the live page's offer on one small
-  line, "B&B plus a food and drink discount".
+- What makes it stand out (Scott, 10 Nov): CBH's Christmas markets blog calls it "a leafy spa hideaway" between Leeds
+  and Bradford, so the lines run as one thought, a spa escape on two cities' doorstep with no trip home: spa pool
+  (label "Gomersal Park / Hotel & Spa", then "The spa hideaway / between two cities"), afternoon tea ("Out of the city /
+  by teatime"), burger ("No last train / to catch"), bedroom ("Bed, / a few steps away"). The exterior photo (grey
+  sky, the road in front) is left out.
+- End card: BLACK FRIDAY SALE in Lee's mauve caps over the live page's offer in cream Cormorant, "B&B plus a food / and
+  drink discount"; nothing else.
 - The engine gained a 4:5 layout (`feed` in RippleSpec: label, lines and shade lower, CB in the 4:5 corner) and
   `endCard.eyebrow` / `endCard.sub`.
 
@@ -40,3 +42,7 @@ or Scott's uploads.
 - Scott (9 Nov): "copy needs elevating and that track needs changing": the lines rewritten (above, the first set was
   "A weekend / in West Yorkshire", "Afternoon tea, / and a little fizz", "Then dinner, / no rush", "And sleep / till
   breakfast", end "Come hungry, / stay the night"), recut to Driving Ambition.
+- Scott (10 Nov): "too much on the end card", "dinner and stay happens in a lot of places, what makes Gomersal stand
+  out": the v2 lines ("Step down / into the warm", "Three tiers / and a little fizz", "The evening, / something hearty",
+  "Sink in / and stay a while", end "Eat well, / rest easy" over the offer line) replaced by the spa hideaway thread;
+  the end card is the sale and the offer only.

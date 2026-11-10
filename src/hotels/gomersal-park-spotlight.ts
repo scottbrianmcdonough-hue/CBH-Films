@@ -9,7 +9,9 @@ import type { RippleSpec } from "../hotel-film/ripple/types";
 // 21.80s: two bars on the pool, a bar and a half each for the tea and dinner, two on the bed, the end card on the first
 // big impact (38.59s, film frame 504), held two bars as it rings on. Dirty Thinkin' was tried first (Scott: "that track
 // needs changing"); the indie rock before it is on November Best Loved.
-// Copy elevated (Scott, 9 Nov: "copy needs elevating").
+// The thread is what makes it stand out (Scott, 10 Nov: "dinner and stay happens in a lot of places"): CBH's own blog
+// calls it "a leafy spa hideaway" between Leeds and Bradford, so a spa escape on two cities' doorstep, with no trip
+// home at the end. The end card is the sale and the offer only (Scott: "too much on the end card").
 export const gomersalParkSpotlight: RippleSpec = {
   id: "gomersal-park-spotlight",
   picture: "campaigns/gomersal-park-spotlight/picture.mp4",
@@ -17,17 +19,16 @@ export const gomersalParkSpotlight: RippleSpec = {
   feed: true,
   label: { eyebrow: "", name: "Gomersal Park\nHotel & Spa", from: 8, to: 66 },
   lines: [
-    { text: "Step down\ninto the warm", from: 72, to: 135 },
-    { text: "Three tiers\nand a little fizz", from: 147, to: 243 },
-    { text: "The evening,\nsomething hearty", from: 255, to: 351 },
-    { text: "Sink in\nand stay a while", from: 363, to: 492 },
+    { text: "The spa hideaway\nbetween two cities", from: 72, to: 135 },
+    { text: "Out of the city\nby teatime", from: 147, to: 243 },
+    { text: "No last train\nto catch", from: 255, to: 351 },
+    { text: "Bed,\na few steps away", from: 363, to: 492 },
   ],
   deepScrim: true,
   endCard: {
     at: 504,
     eyebrow: "Black Friday Sale",
-    line: "Eat well,\nrest easy",
-    sub: "B&B plus a food and drink discount",
+    line: "B&B plus a food\nand drink discount",
     quick: true,
   },
   music: {
