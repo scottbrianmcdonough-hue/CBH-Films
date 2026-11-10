@@ -154,6 +154,15 @@ const REGIONS: Region[] = [
         terms: "",
       },
       {
+        src: H + "the-kingfisher/river.jpg",
+        pos: "35% 50%",
+        tile: { src: H + "the-kingfisher/dining-room.jpg", pos: "45% 50%" },
+        place: "Bedford, Bedfordshire",
+        name: "The Kingfisher",
+        offer: "30% off, breakfast included",
+        terms: "",
+      },
+      {
         src: H + "jockey-club-rooms/garden-front.jpg",
         pos: "30% 50%",
         tile: { src: H + "jockey-club-rooms/dining-room.jpg", pos: "50% 50%" },

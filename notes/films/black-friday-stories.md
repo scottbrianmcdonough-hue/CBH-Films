@@ -95,3 +95,7 @@ No fireplaces (Scott, 5 Nov): Holdsworth pancakes, Oaklands Hall the bedroom, Bu
 - Donnington Manor (Scott, 10 Nov): its Tudor exterior (the hotel slide) and breakfast on the terrace in front of the
   timber frame (the South cover, in place of the low res Donnington & Co plate), in `public/hotels/donnington-manor/`; a
   twin bedroom came too (`twin-bedroom.jpg`, not used: dated). The South posts Mon 23 Nov (was Black Friday itself, then Fri 20).
+- The Kingfisher joined (Scott, 10 Nov; its booking page: "Black Friday Bed & Breakfast: Save 30%", from £104 a room
+  for a Classic Double): East & Midlands, fourth, after Forest of Arden (£91.30) and before Jockey Club Rooms; pill
+  "30% off, breakfast included". No exterior in the repo, so the riverside terrace (`river.jpg`), the dining room on
+  the cover. The post adds "a riverside table at The Kingfisher in Bedford". 6 slides.
