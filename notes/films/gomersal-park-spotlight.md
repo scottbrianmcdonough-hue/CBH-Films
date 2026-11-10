@@ -16,11 +16,11 @@ Black Friday page.
   (`scripts/still-push.py --hgt 1350`, clips in `public/campaigns/gomersal-park-spotlight/clips/`, cut by
   `scripts/cut-picture.py` with `"size": "1080x1350"`), hard cuts on the bar, a line a shot in cream Cormorant, the
   name in cream Cormorant (no gold caps, as Rutland), the cosy grade.
-- What makes it stand out (Scott, 10 Nov): CBH's Christmas markets blog calls it "a leafy spa hideaway" between Leeds
-  and Bradford, so the lines run as one thought, a spa escape on two cities' doorstep with no trip home: spa pool
-  (label "Gomersal Park / Hotel & Spa", then "The spa hideaway / between two cities"), afternoon tea ("Out of the city /
-  by teatime"), burger ("No last train / to catch"), bedroom ("Bed, / a few steps away"). The exterior photo (grey
-  sky, the road in front) is left out.
+- The lines describe each shot, as Rutland's (Scott, 10 Nov: "don't make it about two cities", "complement the
+  visuals like the Rutland reel"): spa pool (label "Gomersal Park / Hotel & Spa", then "Where the week / washes off"),
+  afternoon tea ("Tea in tiers, / a glass of fizz"), burger ("Stacked tall, / chips on the side"; Scott: "don't use
+  supper, that ain't natural"), bedroom ("Sink into / berry velvet"; Scott liked "sink into something velvet" with a
+  word in place of something). The exterior photo (grey sky, the road in front) is left out.
 - End card: BLACK FRIDAY SALE in Lee's mauve caps over the live page's offer in cream Cormorant, "B&B plus a food / and
   drink discount"; nothing else.
 - The engine gained a 4:5 layout (`feed` in RippleSpec: label, lines and shade lower, CB in the 4:5 corner) and
@@ -46,3 +46,5 @@ or Scott's uploads.
   out": the v2 lines ("Step down / into the warm", "Three tiers / and a little fizz", "The evening, / something hearty",
   "Sink in / and stay a while", end "Eat well, / rest easy" over the offer line) replaced by the spa hideaway thread;
   the end card is the sale and the offer only.
+- Scott (10 Nov): "don't make it about two cities", "complement the visuals like the Rutland reel" (lines above);
+  "the music is kinda too dramatic" (Driving Ambition out; the cleared tracks left unused are thin: see Music).
