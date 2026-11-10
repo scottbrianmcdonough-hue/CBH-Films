@@ -1,11 +1,11 @@
 # Gomersal Park: Black Friday spotlight
 
 `gomersal-park-spotlight` (RippleFilm, spec `src/hotels/gomersal-park-spotlight.ts`), 4:5 (1080 x 1350) for the
-feeds, 21.6s, -15.5 LUFS. Back to [all films](../README.md).
+feeds, 19.5s, -15.1 LUFS. Back to [all films](../README.md).
 
 ## Status
 
-Third version sent 10 Nov (the spa hideaway thread, end card trimmed). Goes with the North carousel (Wed 11 Nov); Gomersal Park is the North's cheapest on the live
+Fourth version sent 10 Nov (lines that describe each shot, on Leva Eternity). Goes with the North carousel (Wed 11 Nov); Gomersal Park is the North's cheapest on the live
 Black Friday page.
 
 ## The film
@@ -28,11 +28,13 @@ Black Friday page.
 
 ## Music
 
-Driving Ambition (Mixkit 32; on no posted film), a cinematic build, 99.4 BPM, from 21.80s: two bars on the pool, a bar
-and a half each on the tea and dinner, two on the bed, the end card on the first big impact (38.59s), held two bars.
-Tried first: Inspiring Uplifting Indie Rock (on November Best Loved), then Dirty Thinkin' (Scott: "that track needs
-changing"). New tracks can't be downloaded here (Mixkit and Pixabay unreachable), so picks come from `public/music/`
-or Scott's uploads.
+Leva Eternity (lemonmusicstudio, Pixabay; Scott's pick, 10 Nov), 92.3 BPM, a bar every 78 frames, from its first
+downbeat in the trimmed file (1.83s): two bars on the pool, five beats each on the tea and burger, six on the bed, the
+end card on the phrase start (frame 468), held a bar and a half under the fade. It is the Dalmahoy film's track, so
+Dalmahoy (still waiting on the cocktail bar) will need a new one.
+Tried first: Inspiring Uplifting Indie Rock (on November Best Loved), Dirty Thinkin' ("needs changing"), Driving
+Ambition ("kinda too dramatic"). New tracks can't be downloaded here (Mixkit and Pixabay unreachable), so picks come
+from the repo or Scott's uploads.
 
 ## Notes
 

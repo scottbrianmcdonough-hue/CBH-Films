@@ -20,7 +20,7 @@ Tracks used and where, so a new film doesn't repeat one by accident. [All films]
 | Cooking Groove | [foodie-breaks-match-cut](films/foodie-breaks-match-cut.md) (went out on the Foodie Breaks Story); tried on [the-mount-collage](films/the-mount-collage.md) |
 | Cozy Soulful | [cosy-escapes-flipbook](films/cosy-escapes-flipbook.md) |
 | Dirty Thinkin' (Mixkit 989) | tried on [gomersal-park-spotlight](films/gomersal-park-spotlight.md) (replaced), an AMC option and a black-friday-steam preview; none posted |
-| Driving Ambition (Mixkit 32) | [gomersal-park-spotlight](films/gomersal-park-spotlight.md) (21.80s to just past the first impact); tried on the AMC reel and `cbh-clear-skies-3d` (a test) |
+| Driving Ambition (Mixkit 32) | tried on [gomersal-park-spotlight](films/gomersal-park-spotlight.md) ("too dramatic"), the AMC reel and `cbh-clear-skies-3d` (a test) |
 | Deep Classy House | [november-out-there](films/november-out-there.md) (from 142.6s), [cbh-screen-time](films/cbh-screen-time.md) (its opening) |
 | Deep House Sunset (Sunset House Grooves, Pixabay 538759) | [brand-stings](films/brand-stings.md) (`cbh-circle-c`), [depth-demo](films/depth-demo.md), [rutland-four-roots](films/rutland-four-roots.md) (its opening and last phrase); ruled out for `cbh-screens` |
 | Funk Jazz Shuffle Groove by Catch22Music (Pixabay 358859) | [the-mount-collage](films/the-mount-collage.md) (the one to post) |
@@ -29,6 +29,7 @@ Tracks used and where, so a new film doesn't repeat one by accident. [All films]
 | Happy Feels by MarkJuly | [departures-keswick](films/departures-keswick.md), [cbh-flipbook-winter](films/cbh-flipbook-winter.md); also on the Dad birthday chat reel (flagged) |
 | Jazz Cocktail Lounge Music by alex-morgan (Pixabay 556246) | [brand-stings](films/brand-stings.md) (`cbh-circle-c-cocktail`, `cbh-sash-window`) |
 | Jazz Corporate Cafe by alex-morgan (Pixabay 556232) | [waterton-park-island](films/waterton-park-island.md) |
+| Leva Eternity by lemonmusicstudio (Pixabay) | [dalmahoy](films/dalmahoy.md) (unposted), [gomersal-park-spotlight](films/gomersal-park-spotlight.md) (Scott's pick; Dalmahoy will need a new track) |
 | Late Night Big Band Swing by nickpanek (Pixabay 236168) | [haycock-manor](films/haycock-manor.md) (all cuts) |
 | Light it Up Boy (Mixkit 849) | [amc-2026-reel](films/amc-2026-reel.md) (alternative), [amc-2026-wide](films/amc-2026-wide.md) |
 | Luxury by Sub_Clair | [cbh-journey](films/cbh-journey.md), [cbh-showcase](films/cbh-showcase.md), [black-friday-gift-vouchers](films/black-friday-gift-vouchers.md) |

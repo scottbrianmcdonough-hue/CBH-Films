@@ -14,7 +14,7 @@ Statuses as of 2 Nov 2026.
 
 ## Sent, waiting on Scott
 
-- [Gomersal Park: Black Friday spotlight](films/gomersal-park-spotlight.md): 4:5 reel v3 sent 10 Nov (Rutland Four Roots style, the spa hideaway between two cities, Driving Ambition); goes with the North carousel Wed 11 Nov.
+- [Gomersal Park: Black Friday spotlight](films/gomersal-park-spotlight.md): 4:5 reel v4 sent 10 Nov (Rutland Four Roots style, lines that describe each shot, Leva Eternity); goes with the North carousel Wed 11 Nov.
 - [Oaklands Hall: Black Friday reel](films/oaklands-hall-black-friday.md): HTML preview sent 9 Nov; render after sign off.
 
 - [Rutland Hall: Four Roots Luxury Breaks](films/rutland-four-roots.md): Story signed off for Fri 6 Nov 10 AM; reel IG 12 PM, FB 7 PM; prices and nights to confirm.
@@ -45,7 +45,7 @@ Statuses as of 2 Nov 2026.
 
 ## Needs something (a track, a file, a fix)
 
-- [Dalmahoy](films/dalmahoy.md): Waiting on the cocktail bar still.
+- [Dalmahoy](films/dalmahoy.md): Waiting on the cocktail bar still; its track (Leva Eternity) now on Gomersal Park, so it needs a new one.
 - [Written in](films/cbh-written.md): First version sent; needs a track.
 - [UI explainers](films/ui-explainers.md): Holdsworth weekend needs a track; GN demos sent.
 - [Hardback flipbook](films/cbh-flipbook-winter.md): Needs work (Scott: "messes up in the beginning").

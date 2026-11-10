@@ -5,28 +5,28 @@
     {
       "src": "public/campaigns/gomersal-park-spotlight/clips/pool.mp4",
       "from": 0,
-      "frames": 144,
+      "frames": 156,
       "vf": "eq=saturation=1.04:contrast=1.03,colorbalance=rs=0.04:gs=0.02:bs=-0.03"
     },
     {
       "src": "public/campaigns/gomersal-park-spotlight/clips/tea.mp4",
       "from": 0,
-      "frames": 108,
+      "frames": 98,
       "vf": "eq=saturation=1.02:contrast=1.03:brightness=-0.02,colorbalance=rm=0.03:bm=-0.03"
     },
     {
       "src": "public/campaigns/gomersal-park-spotlight/clips/burger.mp4",
       "from": 0,
-      "frames": 108,
+      "frames": 97,
       "vf": "eq=saturation=1.04:contrast=1.04"
     },
     {
       "src": "public/campaigns/gomersal-park-spotlight/clips/bedroom.mp4",
       "from": 0,
-      "frames": 144,
+      "frames": 117,
       "vf": "eq=saturation=0.96:contrast=1.04:brightness=-0.03,colorbalance=rm=0.03:bm=-0.04"
     }
   ],
   "fade": 22,
-  "tail": 144
+  "tail": 117
 }
