@@ -136,7 +136,7 @@ const REGIONS: Region[] = [
         tile: { src: H + "oaklands-hall/bedroom.jpg", pos: "50% 50%" },
         place: "Laceby, Lincolnshire",
         name: "Oaklands Hall Hotel",
-        offer: "Room only, B&B or dinner, B&B",
+        offer: "Room only, breakfast or dinner",
         terms: "",
       },
       {
@@ -145,7 +145,7 @@ const REGIONS: Region[] = [
         tile: { src: H + "whittlebury-park/salt-sauna.jpg", pos: "50% 50%" },
         place: "Whittlebury, Northamptonshire",
         name: "Whittlebury Park",
-        offer: "B&B or dinner, B&B",
+        offer: "With breakfast, or dinner too",
         terms: "",
       },
       {
@@ -154,7 +154,7 @@ const REGIONS: Region[] = [
         tile: { src: H + "forest-of-arden/pool.jpg", pos: "50% 50%" },
         place: "Meriden, Warwickshire",
         name: "Forest of Arden Hotel",
-        offer: "B&B included",
+        offer: "Breakfast included",
         terms: "",
       },
       {
@@ -163,7 +163,7 @@ const REGIONS: Region[] = [
         tile: { src: H + "jockey-club-rooms/dining-room.jpg", pos: "50% 50%" },
         place: "Newmarket, Suffolk",
         name: "Jockey Club Rooms",
-        offer: "B&B included",
+        offer: "Breakfast included",
         terms: "",
       },
     ],
