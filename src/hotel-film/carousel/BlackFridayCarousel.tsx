@@ -136,7 +136,7 @@ const REGIONS: Region[] = [
         tile: { src: H + "oaklands-hall/bedroom.jpg", pos: "50% 50%" },
         place: "Laceby, Lincolnshire",
         name: "Oaklands Hall Hotel",
-        offer: "Room only, breakfast or dinner",
+        offer: "Room only, breakfast or half board",
         terms: "",
       },
       {
@@ -145,7 +145,7 @@ const REGIONS: Region[] = [
         tile: { src: H + "whittlebury-park/salt-sauna.jpg", pos: "50% 50%" },
         place: "Whittlebury, Northamptonshire",
         name: "Whittlebury Park",
-        offer: "With breakfast, or dinner too",
+        offer: "Breakfast or half board",
         terms: "",
       },
       {
