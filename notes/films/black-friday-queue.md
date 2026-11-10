@@ -112,3 +112,5 @@ The counter up top (Scott, 5 Nov: "this counter should be up top"): in the offic
   label BEDFORD / The Kingfisher; the rest two beats later, end 38, len 55 (30.0s; the music file runs to 30.5s). The
   recap adds its reading in bed photo after Jockey Club, 17 photos over the same 9 beats; `recap-shutter.wav` re-timed to
   17 clicks. -14.7 LUFS. Post: "16 of our hotels" now 17.
+- Donnington Hotel, Spa & Golf's shot re-cropped (Scott, 10 Nov: "what's up with that crop"): the photo has an out of
+  focus reddish door edge down its left side; the clip now starts right of it (`still-push.py --cx 880 --h 1620`, 1.2x).
