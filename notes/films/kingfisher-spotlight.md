@@ -5,7 +5,7 @@
 
 ## Status
 
-Started 10 Nov. Clips made; waiting on a track (Scott to upload; the repo's cleared calm tracks are all used).
+First version sent 10 Nov: 23.1s, -15.2 LUFS; cover frame made.
 
 ## The film
 
@@ -17,3 +17,20 @@ Started 10 Nov. Clips made; waiting on a track (Scott to upload; the repo's clea
 - Clips (`public/campaigns/kingfisher-spotlight/clips/`, still-push at 1080 x 1350): the exterior from the river with
   the boat (label), aperitivo on the terrace, the dining room by the fire, the beetroot plate, reading in bed. Lines to
   run as one stay, like Gomersal's, cut to the track once it arrives.
+
+## Music
+
+deep house instrumental (arnaud136, Pixabay 354596; Scott, 10 Nov, checked not Content ID registered), 123 BPM, from
+25.91s: the exterior over the last two bars of the build, the band in on the cut to the terrace, a cut every two bars,
+the end card on the phrase (45.18s). The other new tracks: Funky Summer House (BerryDeep) for The Imperial, Luxury Life
+(Kulakovka) for Frensham Pond; Deep House Sunset was the fourth (already on three films, so not used).
+
+## Notes
+
+- Lines (one stay): The Kingfisher (label), "Arrive / by the river", "Drinks out / on the terrace", "A table / by the
+  fire", "Stay for / one more course", "Then a slow / morning in bed"; end card BLACK FRIDAY SALE / "30% off, /
+  breakfast included".
+- New CBH palette (Bianca, 10 Nov) not applied: Black Friday pieces keep their look (Scott).
+- Photos wanted for the next two (Scott to pull from the CBH site): The Imperial, a sea view bedroom, the restaurant or a
+  dish, the bar or lounge, a bigger afternoon tea; Frensham Pond, a bedroom, a dish, the bar or lounge, autumn or winter
+  shots.

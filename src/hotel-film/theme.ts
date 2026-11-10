@@ -32,6 +32,20 @@ export const colors = {
   cream: "#F5EFE3",
 };
 
+// CBH's new palette (Bianca, 10 Nov 2026), for work after the Black Friday campaign (Scott: "for the Black Friday reels
+// just keep doing what we're doing", so `colors` above stays until then). Core black, gold and a neutral lead; the
+// secondaries lift a design sparingly, one or two at a time, never as lead colours.
+export const palette = {
+  black: "#000000",
+  gold: "#c7ab77",
+  pale: "#f2f0f0", // neutral (in place of cream text)
+  beige: "#ebe8e4", // neutral
+  red: "#a05272", // secondary
+  green: "#869674", // secondary
+  blue: "#779096", // secondary
+  heather: "#755c78", // secondary
+};
+
 export const EASE_OUT = Easing.bezier(0.16, 1, 0.3, 1);
 export const EASE_IN_OUT = Easing.bezier(0.65, 0, 0.35, 1);
 

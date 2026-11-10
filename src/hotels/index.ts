@@ -19,6 +19,7 @@ import {
 } from "./haycock-manor-depth";
 import { rutlandFourRoots, rutlandFourRootsStory } from "./rutland-four-roots";
 import { gomersalParkSpotlight } from "./gomersal-park-spotlight";
+import { kingfisherSpotlight } from "./kingfisher-spotlight";
 import { novemberOutThere, novemberOutThereStory } from "./november-out-there";
 import {
   validateDepartures,
@@ -165,6 +166,7 @@ export const RIPPLE_FILMS: RippleSpec[] = [
   rutlandFourRoots,
   rutlandFourRootsStory,
   gomersalParkSpotlight,
+  kingfisherSpotlight,
 ];
 RIPPLE_FILMS.forEach(validateRipple);
 export const DEPARTURES_FILMS: DeparturesSpec[] = [departuresKeswick];

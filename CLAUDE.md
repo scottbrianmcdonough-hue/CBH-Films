@@ -33,6 +33,12 @@ with no history and no renders:
   An end card that names a hotel and its place takes the same order (Scott, 20 Oct, Low
   Wood Bay): gold caps place, underline, then the name in cream Cormorant.
 
+- CBH palette (Bianca, 10 Nov 2026; in `theme.ts`): core black `#000000`, gold `#c7ab77`, neutrals Pale `#f2f0f0` (our
+  cream text) and Light beige `#ebe8e4`; secondary highlights red `#a05272`, green `#869674`, blue `#779096`, heather
+  `#755c78`. Black, gold and a neutral are always the dominant colours; a secondary only lifts a design, one or two at
+  most, never as a lead colour ("the premium feel of the brand will be diminished", "all the colours together could look
+  cheap or garish"). Bianca would like to look over new designs and templates as the palette goes in. It is `palette` in
+  `theme.ts`; the Black Friday campaign keeps its current look (Scott, 10 Nov), so `colors` changes after it.
 - CBH charcoal `#282825` (Scott, 22 Oct: "remember that charcoal colour"): the ink of CBH's 25 Years
   lockup, a house colour beside the gold `#C39E55` and black; the AMC reel's end card turns to it
   so the lockup sits in the card.

@@ -1,0 +1,13 @@
+{
+  "out": "public/campaigns/kingfisher-spotlight/picture.mp4",
+  "size": "1080x1350",
+  "shots": [
+    { "src": "public/campaigns/kingfisher-spotlight/clips/exterior.mp4", "from": 0, "frames": 116, "vf": "eq=saturation=1.02:contrast=1.03,colorbalance=rs=0.03:bs=-0.03" },
+    { "src": "public/campaigns/kingfisher-spotlight/clips/aperitivo.mp4", "from": 0, "frames": 115, "vf": "eq=saturation=1.0:contrast=1.03" },
+    { "src": "public/campaigns/kingfisher-spotlight/clips/dining-room.mp4", "from": 0, "frames": 116, "vf": "eq=saturation=1.02:contrast=1.04:brightness=0.01" },
+    { "src": "public/campaigns/kingfisher-spotlight/clips/beetroot.mp4", "from": 0, "frames": 115, "vf": "eq=saturation=1.02:contrast=1.03" },
+    { "src": "public/campaigns/kingfisher-spotlight/clips/reading-in-bed.mp4", "from": 0, "frames": 116, "vf": "eq=saturation=0.98:contrast=1.03:brightness=-0.02,colorbalance=rm=0.02:bm=-0.03" }
+  ],
+  "fade": 22,
+  "tail": 116
+}
