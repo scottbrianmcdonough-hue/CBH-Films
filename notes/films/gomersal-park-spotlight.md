@@ -50,3 +50,6 @@ from the repo or Scott's uploads.
   the end card is the sale and the offer only.
 - Scott (10 Nov): "don't make it about two cities", "complement the visuals like the Rutland reel" (lines above);
   "the music is kinda too dramatic" (Driving Ambition out; the cleared tracks left unused are thin: see Music).
+- Polish pass (10 Nov): every cut, line and the end card checked frame by frame; nothing to change. Cover frame
+  (frame 48, the name over the spa pool) made for the grid. Slot Thu 12 Nov, the day after the North carousel
+  (CBH-142); ticket with IG, FB and TikTok copy, the hotel tagged, no hashtags.
