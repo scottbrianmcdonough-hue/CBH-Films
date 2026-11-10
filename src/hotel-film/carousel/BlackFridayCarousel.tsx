@@ -213,7 +213,7 @@ const REGIONS: Region[] = [
   },
 ];
 
-// in posting order: the North (Wed 11), Scotland & Wales (Fri 13), East & Midlands (Tue 17), the South (Fri 27)
+// in posting order: the North (Wed 11), Scotland & Wales (Fri 13), East & Midlands (Tue 17), the South (Fri 20)
 export const BF_REGIONS: Region[] = REGIONS;
 
 const Shade: React.FC = () => (
