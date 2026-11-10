@@ -1,0 +1,13 @@
+{
+  "out": "public/campaigns/imperial-spotlight/picture.mp4",
+  "size": "1080x1350",
+  "shots": [
+    { "src": "public/campaigns/imperial-spotlight/clips/entrance.mp4", "from": 0, "frames": 118, "vf": "eq=saturation=0.98:contrast=1.02" },
+    { "src": "public/campaigns/imperial-spotlight/clips/pink-gin.mp4", "from": 0, "frames": 119, "vf": "eq=saturation=1.0:contrast=1.03" },
+    { "src": "public/campaigns/imperial-spotlight/clips/sea-view.mp4", "from": 0, "frames": 118, "vf": "eq=saturation=1.02:contrast=1.03" },
+    { "src": "public/campaigns/imperial-spotlight/clips/bay-window.mp4", "from": 0, "frames": 118, "vf": "eq=saturation=1.02:contrast=1.03" },
+    { "src": "public/campaigns/imperial-spotlight/clips/breakfast.mp4", "from": 0, "frames": 119, "vf": "eq=saturation=1.0:contrast=1.03:brightness=-0.01" }
+  ],
+  "fade": 22,
+  "tail": 118
+}

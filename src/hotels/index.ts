@@ -20,6 +20,7 @@ import {
 import { rutlandFourRoots, rutlandFourRootsStory } from "./rutland-four-roots";
 import { gomersalParkSpotlight } from "./gomersal-park-spotlight";
 import { kingfisherSpotlight } from "./kingfisher-spotlight";
+import { imperialSpotlight } from "./imperial-spotlight";
 import { novemberOutThere, novemberOutThereStory } from "./november-out-there";
 import {
   validateDepartures,
@@ -167,6 +168,7 @@ export const RIPPLE_FILMS: RippleSpec[] = [
   rutlandFourRootsStory,
   gomersalParkSpotlight,
   kingfisherSpotlight,
+  imperialSpotlight,
 ];
 RIPPLE_FILMS.forEach(validateRipple);
 export const DEPARTURES_FILMS: DeparturesSpec[] = [departuresKeswick];
