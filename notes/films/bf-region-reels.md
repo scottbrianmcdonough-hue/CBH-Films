@@ -26,3 +26,8 @@ so a region's spotlight and its region reel shouldn't both go out.
   booking page, Save 30%; not on Scott's list because it was a late addition, Scott confirmed), Jockey Club Rooms; the South and Scotland & Wales as before.
   Each end card's "Save up to" is the region's best: the North 20%, the rest 30%. No prices on screen. Ruthin's hot tub
   reframed onto the woman on the left and the toast (cx 640). The North now 36.4s, East & Midlands 23.1s.
+- Late additions (11 Nov): the Metropole (Llandrindod Wells, Mid Wales, 35% off B&B, from £77.23 on its offer card) into
+  Scotland & Wales, and Avisford Park Hotel (Arundel, West Sussex; offer to confirm) into the South: the reels, the
+  cluster posts and carousels, and the countdown (19 hotels). Waiting on photos (exterior and one inside shot each) and
+  Avisford's offer card; the CBH site and both hotels' sites are blocked here. The reel moved to Fri 27 Nov (Scott:
+  "just in case we get more hotels"). Scotland & Wales' end card becomes "Save up to 35%".
