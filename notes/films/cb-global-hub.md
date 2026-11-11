@@ -84,3 +84,5 @@ First version sent 11 Nov for Phill's sign off.
   paced so each step lands before the next (channels light at 176, partners at 216) and the lit diagram holds ~2s more
   before the push (MAP_AT 240); the map act runs 28 frames tighter in the story only (lines every 12 frames, the stats'
   hold unchanged; `noDoor` timing in GlobalHubWide). 25.6s, -15.6 LUFS, the piano.
+- Scott (11 Nov: "lose the sound effects"): the story is the piano only, no click or bells. The piano plays once, from
+  its start to its own end (25.0s), under the 25.6s film; it doesn't loop, though its figure repeats by nature.
