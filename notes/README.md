@@ -14,6 +14,7 @@ Statuses as of 2 Nov 2026.
 
 ## Sent, waiting on Scott
 
+- [CB Global Hub: opening the door](films/cb-global-hub.md): LinkedIn animation for Phill (11 Nov), first in the new palette.
 - [Black Friday: region reels](films/bf-region-reels.md): one reel per region with all its hotels (Bianca, 10 Nov), built 10 Nov; in place of the spotlights.
 - [Gomersal Park: Black Friday spotlight](films/gomersal-park-spotlight.md): 4:5 reel final with cover and ticket (10 Nov); Thu 12 Nov, the day after the North carousel.
 - [The Kingfisher: Black Friday spotlight](films/kingfisher-spotlight.md): 4:5 reel sent 10 Nov (deep house instrumental).
