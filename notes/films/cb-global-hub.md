@@ -95,3 +95,6 @@ First version sent 11 Nov for Phill's sign off.
   @Phillip Allsopp today for a free consultation." It says 75,000+; the animation and the membership page say 750,000+
   global travel agents: to align before it goes out. `cbhub-story` (with the diagram) is parked.
 - The label reads "CBHub" (Scott, 11 Nov: Bianca and Phill write it CBHub), bold gold, not forced to capitals; both cuts.
+- Phill (11 Nov): "love the graphic, I was hoping for a world map! Copy great, just need to add a 0 to 750,000+, maybe get
+  the Empowering Independents strapline in too": the copy's 75,000+ becomes 750,000+ (the animation already said so);
+  "Empowering Independents" in pale Cormorant under the logo at the end (both cuts), and as the post's closing line.

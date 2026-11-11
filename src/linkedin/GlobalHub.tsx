@@ -349,8 +349,21 @@ export const GlobalHub: React.FC = () => {
       {/* the ending (Scott, 11 Nov: "maybe needs a logo and ending"): to black, then the official logo */}
       <AbsoluteFill style={{ backgroundColor: palette.black, opacity: ramp(frame, END, END + 22, Easing.inOut(Easing.cubic)) }} />
       {frame >= END + 16 ? (
-        <AbsoluteFill style={{ alignItems: "center", justifyContent: "center" }}>
-          <CBLogo start={END + 16} width={340} shimmerAt={END + 62} />
+        <AbsoluteFill style={{ alignItems: "center", justifyContent: "center", flexDirection: "column" }}>
+          <CBLogo start={END + 16} width={300} shimmerAt={END + 62} />
+          {/* the strapline (Phill, 11 Nov: "maybe get the Empowering Independents strapline in too") */}
+          <div
+            style={{
+              fontFamily: serif,
+              fontSize: 48,
+              color: palette.pale,
+              marginTop: 34,
+              opacity: ramp(frame, END + 16 + 34, END + 16 + 58),
+              transform: `translateY(${(1 - ramp(frame, END + 16 + 34, END + 16 + 58)) * 14}px)`,
+            }}
+          >
+            Empowering Independents
+          </div>
         </AbsoluteFill>
       ) : null}
     </AbsoluteFill>

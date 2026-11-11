@@ -366,8 +366,21 @@ export const GlobalHubWide: React.FC<{ noDoor?: boolean; silent?: boolean }> = (
       {/* the ending (Scott, 11 Nov: "maybe needs a logo and ending"): to black, then the official logo */}
       <AbsoluteFill style={{ backgroundColor: palette.black, opacity: ramp(frame, E, E + 22, Easing.inOut(Easing.cubic)) }} />
       {frame >= E + 16 ? (
-        <AbsoluteFill style={{ alignItems: "center", justifyContent: "center" }}>
-          <CBLogo start={E + 16} width={340} shimmerAt={E + 62} />
+        <AbsoluteFill style={{ alignItems: "center", justifyContent: "center", flexDirection: "column" }}>
+          <CBLogo start={E + 16} width={300} shimmerAt={E + 62} />
+          {/* the strapline (Phill, 11 Nov: "maybe get the Empowering Independents strapline in too") */}
+          <div
+            style={{
+              fontFamily: serif,
+              fontSize: 48,
+              color: palette.pale,
+              marginTop: 34,
+              opacity: ramp(frame, E + 16 + 34, E + 16 + 58),
+              transform: `translateY(${(1 - ramp(frame, E + 16 + 34, E + 16 + 58)) * 14}px)`,
+            }}
+          >
+            Empowering Independents
+          </div>
         </AbsoluteFill>
       ) : null}
     </AbsoluteFill>
