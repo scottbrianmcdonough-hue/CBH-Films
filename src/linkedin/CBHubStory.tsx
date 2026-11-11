@@ -19,7 +19,8 @@ const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
 export const CBHubStory: React.FC = () => {
   const frame = useCurrentFrame();
   const push = interpolate(frame, PUSH, [0, 1], { ...clamp, easing: Easing.in(Easing.cubic) });
-  const gone = interpolate(frame, [PUSH[1] - 18, PUSH[1]], [1, 0], clamp);
+  // the diagram dissolves through the push's middle, before its words get big enough to read as they fly past (polish)
+const gone = interpolate(frame, [PUSH[0] + 16, PUSH[0] + 38], [1, 0], { ...clamp, easing: Easing.inOut(Easing.cubic) });
   const cx = PARTNERS_BOX.x + PARTNERS_BOX.w / 2 + OFFX;
   const cy = PARTNERS_BOX.y + PARTNERS_BOX.h / 2;
   return (

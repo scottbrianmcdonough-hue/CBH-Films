@@ -86,3 +86,6 @@ First version sent 11 Nov for Phill's sign off.
   hold unchanged; `noDoor` timing in GlobalHubWide). 25.6s, -15.6 LUFS, the piano.
 - Scott (11 Nov: "lose the sound effects"): the story is the piano only, no click or bells. The piano plays once, from
   its start to its own end (25.0s), under the 25.6s film; it doesn't loop, though its figure repeats by nature.
+- Polish pass (11 Nov): the diagram now dissolves through the middle of the push (it had flown past huge, the partners
+  bar's words readable over the map). Checked every second: the build, the hold, the push, the count, the swap, the
+  stats, the logo. 25.6s, -15.3 LUFS, piano only. Sent with the post and email to Bianca.
