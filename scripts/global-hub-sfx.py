@@ -13,6 +13,8 @@ DIAGRAM = "--diagram" in sys.argv
 # --story: the diagram then the map (src/linkedin/CBHubStory.tsx): the click as the hub lights, the bells as the eight
 # markets land in the map act (it starts at frame 180), 25s; writes sound-story.wav
 STORY = "--story" in sys.argv
+# the story tried Fine Taste, then Scott went back to the piano (11 Nov): keep this off
+FINE_TASTE = False
 
 SR = 48000
 FPS = 30
@@ -69,8 +71,6 @@ tmp = "/dev/shm/global-hub-piano.wav"
 # the story is on Fine Taste (miyagisama; Scott, 11 Nov: the piano "is like looping"): from 37.25s, its quiet breakdown
 # under the diagram, the bass back (46.32s) as the camera comes through into the world (story 9.07s), its own ending
 # under the logo
-# (Scott then went back to the piano: FINE_TASTE stays off)
-FINE_TASTE = False
 SRC = "public/campaigns/deck/music-fine-taste.mp3" if (STORY and FINE_TASTE) else "public/campaigns/bonfire/cinematic-piano.mp3"
 SS = "37.25" if (STORY and FINE_TASTE) else "0"
 subprocess.run(["ffmpeg", "-v", "error", "-y", "-ss", SS, "-i", SRC, "-t", str(DUR),
