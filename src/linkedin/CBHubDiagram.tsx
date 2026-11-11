@@ -18,18 +18,24 @@ const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
 const ramp = (f: number, a: number, b: number, e = Easing.out(Easing.cubic)) =>
   interpolate(f, [a, b], [0, 1], { ...clamp, easing: e });
 
-type Box = { id: string; x: number; y: number; w: number; h: number; lines: string[]; at: number; faint?: boolean };
+type Box = { id: string; x: number; y: number; w: number; h: number; lines: string[]; at: number; faint?: boolean; fill?: string };
+// as Phill's diagram, every box at full strength (Scott, 11 Nov: "keep it close to the diagram"), its fills the palette's
+// secondaries as the diagram has them: CB Digital red, RFP Tool and Media Hub blue, RMS green, the hotel gold
 const BOXES: Box[] = [
-  { id: "ota", x: 420, y: 300, w: 130, h: 60, lines: ["OTA"], at: 30, faint: true },
-  { id: "direct", x: 570, y: 300, w: 150, h: 60, lines: ["Book Direct"], at: 34, faint: true },
+  { id: "ota", x: 420, y: 300, w: 130, h: 60, lines: ["OTA"], at: 30 },
+  { id: "direct", x: 570, y: 300, w: 150, h: 60, lines: ["CB Book", "Direct"], at: 34 },
+  { id: "digital", x: 800, y: 300, w: 190, h: 60, lines: ["CB Digital"], at: 36, fill: "#a05272" },
+  { id: "cbhsite", x: 1080, y: 248, w: 290, h: 52, lines: ["Classicbritishhotels.com"], at: 40 },
+  { id: "website", x: 1080, y: 318, w: 290, h: 52, lines: ["Hotel website"], at: 42 },
   { id: "hotel", x: 120, y: 430, w: 210, h: 100, lines: ["Your hotel"], at: 10 },
   { id: "cm", x: 420, y: 430, w: 300, h: 100, lines: ["Channel", "manager"], at: 18 },
+  { id: "rms", x: 470, y: 600, w: 200, h: 56, lines: ["RMS"], at: 36, fill: "#869674" },
   { id: "hub", x: 840, y: 400, w: 340, h: 160, lines: [], at: 26 },
-  { id: "rfp", x: 1310, y: 410, w: 210, h: 56, lines: ["RFP Tool"], at: 38, faint: true },
-  { id: "media", x: 1310, y: 494, w: 210, h: 56, lines: ["Media Hub"], at: 42, faint: true },
-  { id: "gds", x: 770, y: 640, w: 150, h: 60, lines: ["GDS"], at: 46 },
-  { id: "ids", x: 935, y: 640, w: 150, h: 60, lines: ["IDS"], at: 50 },
-  { id: "cc", x: 1100, y: 640, w: 230, h: 60, lines: ["Channel Connect"], at: 54 },
+  { id: "rfp", x: 1310, y: 410, w: 210, h: 56, lines: ["RFP Tool"], at: 38, fill: "#779096" },
+  { id: "media", x: 1310, y: 494, w: 210, h: 56, lines: ["Media Hub"], at: 42, fill: "#779096" },
+  { id: "gds", x: 770, y: 640, w: 150, h: 60, lines: ["CB GDS"], at: 46 },
+  { id: "ids", x: 935, y: 640, w: 150, h: 60, lines: ["CB IDS"], at: 50 },
+  { id: "cc", x: 1100, y: 640, w: 260, h: 60, lines: ["CB Channel Connect"], at: 54 },
   { id: "partners", x: 640, y: 760, w: 820, h: 54, lines: ["Strategic agency partners, global consortia and channel partners"], at: 60 },
 ];
 const B = Object.fromEntries(BOXES.map((b) => [b.id, b]));
@@ -39,19 +45,39 @@ type Line = { pts: Pt[]; at: number; faint?: boolean; dotted?: boolean };
 const HUB = B.hub;
 const hubBottom: Pt = [HUB.x + HUB.w / 2, HUB.y + HUB.h];
 const mid = (b: Box): number => b.x + b.w / 2;
+// soft curves fanning out from the hub (Scott, 11 Nov: "make the diagram connect more, like that's the hub, more
+// flowing connections"): each connector an S curve sampled into points, horizontal or vertical at its ends
+const curve = (a: Pt, b: Pt, dir: "h" | "v"): Pt[] => {
+  const c1: Pt = dir === "h" ? [(a[0] + b[0]) / 2, a[1]] : [a[0], (a[1] + b[1]) / 2];
+  const c2: Pt = dir === "h" ? [(a[0] + b[0]) / 2, b[1]] : [b[0], (a[1] + b[1]) / 2];
+  return Array.from({ length: 33 }, (_, i) => {
+    const t = i / 32;
+    const u = 1 - t;
+    return [
+      u * u * u * a[0] + 3 * u * u * t * c1[0] + 3 * u * t * t * c2[0] + t * t * t * b[0],
+      u * u * u * a[1] + 3 * u * u * t * c1[1] + 3 * u * t * t * c2[1] + t * t * t * b[1],
+    ] as Pt;
+  });
+};
+const hubRight: Pt = [HUB.x + HUB.w, HUB.y + HUB.h / 2];
 const LINES: Record<string, Line> = {
-  hotelCm: { pts: [[330, 480], [420, 480]], at: 20 },
-  cmHub: { pts: [[720, 480], [840, 480]], at: 28 },
-  cmOta: { pts: [[485, 430], [485, 360]], at: 36, faint: true },
-  cmDirect: { pts: [[645, 430], [645, 360]], at: 38, faint: true },
-  hubRfp: { pts: [[1180, 438], [1310, 438]], at: 42, faint: true },
-  hubMedia: { pts: [[1180, 522], [1310, 522]], at: 44, faint: true },
-  hubGds: { pts: [hubBottom, [hubBottom[0], 605], [mid(B.gds), 605], [mid(B.gds), 640]], at: 48 },
-  hubIds: { pts: [hubBottom, [hubBottom[0], 605], [mid(B.ids), 605], [mid(B.ids), 640]], at: 48 },
-  hubCc: { pts: [hubBottom, [hubBottom[0], 605], [mid(B.cc), 605], [mid(B.cc), 640]], at: 48 },
-  gdsP: { pts: [[mid(B.gds), 700], [mid(B.gds), 760]], at: 58, dotted: true },
-  idsP: { pts: [[mid(B.ids), 700], [mid(B.ids), 760]], at: 58, dotted: true },
-  ccP: { pts: [[mid(B.cc), 700], [mid(B.cc), 760]], at: 58, dotted: true },
+  hotelCm: { pts: curve([330, 480], [420, 480], "h"), at: 20 },
+  cmHub: { pts: curve([720, 480], [840, 480], "h"), at: 28 },
+  hotelHub: { pts: curve([225, 530], [920, 560], "v"), at: 40, dotted: true },
+  cmOta: { pts: curve([510, 430], [485, 360], "v"), at: 36 },
+  cmDirect: { pts: curve([630, 430], [645, 360], "v"), at: 38 },
+  hubRfp: { pts: curve(hubRight, [1310, 438], "h"), at: 42 },
+  hubMedia: { pts: curve(hubRight, [1310, 522], "h"), at: 44 },
+  directDigital: { pts: curve([720, 330], [800, 330], "h"), at: 40 },
+  digitalSite: { pts: curve([990, 322], [1080, 274], "h"), at: 44 },
+  digitalWeb: { pts: curve([990, 338], [1080, 344], "h"), at: 46 },
+  cmRms: { pts: curve([570, 530], [570, 600], "v"), at: 40 },
+  hubGds: { pts: curve(hubBottom, [mid(B.gds), 640], "v"), at: 48 },
+  hubIds: { pts: curve(hubBottom, [mid(B.ids), 640], "v"), at: 48 },
+  hubCc: { pts: curve(hubBottom, [mid(B.cc), 640], "v"), at: 48 },
+  gdsP: { pts: curve([mid(B.gds), 700], [910, 760], "v"), at: 58, dotted: true },
+  idsP: { pts: curve([mid(B.ids), 700], [1050, 760], "v"), at: 58, dotted: true },
+  ccP: { pts: curve([mid(B.cc), 700], [1190, 760], "v"), at: 58, dotted: true },
 };
 const ptsD = (p: Pt[]) => "M " + p.map((q) => q.join(" ")).join(" L ");
 const along = (p: Pt[], t: number): Pt => {
@@ -80,11 +106,12 @@ const STAT1 = 206; // 8 new strategic partnerships, ticking
 const STAT2 = 300; // 750,000+ global travel agents
 const TICKS = Array.from({ length: 8 }, (_, i) => STAT1 + 10 + i * 9);
 // light keeps flowing from the hotel to the partners once the route is lit
-const ROUTES = [
-  [LINES.hotelCm, LINES.cmHub, LINES.hubGds, LINES.gdsP],
-  [LINES.hotelCm, LINES.cmHub, LINES.hubIds, LINES.idsP],
-  [LINES.hotelCm, LINES.cmHub, LINES.hubCc, LINES.ccP],
-].map((ls) => ls.flatMap((l, i) => (i ? l.pts.slice(1) : l.pts)) as Pt[]);
+// when light starts running along each connector, for good
+const FLOW_FROM: Record<string, number> = {
+  hotelCm: 118, cmHub: 118, hotelHub: 150, cmOta: 140, cmDirect: 146, hubRfp: 136, hubMedia: 142,
+  hubGds: 160, hubIds: 160, hubCc: 160, gdsP: 184, idsP: 184, ccP: 184,
+  directDigital: 150, digitalSite: 158, digitalWeb: 162, cmRms: 144,
+};
 
 const NodeBox: React.FC<{ b: Box; frame: number; lit: number }> = ({ b, frame, lit }) => {
   const draw = ramp(frame, b.at, b.at + 22, Easing.inOut(Easing.cubic));
@@ -99,9 +126,9 @@ const NodeBox: React.FC<{ b: Box; frame: number; lit: number }> = ({ b, frame, l
         width={b.w}
         height={b.h}
         rx={8}
-        fill={b.id === "hotel" ? palette.gold : "#0b0a09"}
+        fill={b.id === "hotel" ? palette.gold : b.fill ?? "#0b0a09"}
         fillOpacity={b.id === "hotel" ? lit : draw}
-        stroke={palette.gold}
+        stroke={b.fill ?? palette.gold}
         strokeWidth={b.id === "hub" ? 2.4 : 1.6}
         strokeDasharray={per}
         strokeDashoffset={per * (1 - draw)}
@@ -169,6 +196,29 @@ export const CBHubDiagram: React.FC<{ act?: boolean }> = ({ act }) => {
         })}
         {/* the hub's glow */}
         <circle cx={HUB.x + HUB.w / 2} cy={HUB.y + HUB.h / 2} r={260 * hubLit} fill="url(#hubglow)" opacity={0.55} />
+        {/* the hub's heartbeat: soft rings rippling out once it's lit */}
+        {frame >= HUB_ON
+          ? [0, 1, 2].map((j) => {
+              const ph = (((frame - HUB_ON) + j * 30) % 90) / 90;
+              const sc = 1 + 0.42 * ph;
+              const w = HUB.w * sc;
+              const h = HUB.h * sc;
+              return (
+                <rect
+                  key={j}
+                  x={HUB.x + HUB.w / 2 - w / 2}
+                  y={HUB.y + HUB.h / 2 - h / 2}
+                  width={w}
+                  height={h}
+                  rx={10 + 18 * ph}
+                  fill="none"
+                  stroke={palette.gold}
+                  strokeWidth={1.4}
+                  opacity={(1 - ph) * 0.5 * hubLit}
+                />
+              );
+            })
+          : null}
         {BOXES.map((b) => (
           <NodeBox key={b.id} b={b} frame={frame} lit={b.id === "hotel" ? hotelLit : 0} />
         ))}
@@ -185,16 +235,28 @@ export const CBHubDiagram: React.FC<{ act?: boolean }> = ({ act }) => {
         {[LINES.gdsP, LINES.idsP, LINES.ccP].map((l, i) => (
           <React.Fragment key={i}>{pulse(l.pts, TO_P[0], TO_P[1])}</React.Fragment>
         ))}
-        {frame > P_ON
-          ? ROUTES.flatMap((r, i) =>
-              [0, 1].map((j) => {
-                const period = 84;
-                const k = ((frame - P_ON + i * 28 + j * 42) % period) / period;
-                const [x, y] = along(r, k);
-                return <circle key={`${i}-${j}`} cx={x} cy={y} r={3.6} fill={palette.pale} opacity={Math.sin(Math.PI * k) * 0.9} />;
-              }),
-            )
-          : null}
+        {/* light running along every connector, the hub's own path brighter */}
+        {Object.entries(LINES).flatMap(([k, l]) => {
+          const from = FLOW_FROM[k];
+          if (frame < from) return [];
+          const len = l.pts.slice(1).reduce((a2, q, i) => a2 + Math.hypot(q[0] - l.pts[i][0], q[1] - l.pts[i][1]), 0);
+          const period = Math.max(26, len / 4.2);
+          const on = ramp(frame, from, from + 20);
+          return [0, 0.5].map((off) => {
+            const k2 = ((frame - from) / period + off) % 1;
+            const [x, y] = along(l.pts, k2);
+            return (
+              <circle
+                key={`${k}-${off}`}
+                cx={x}
+                cy={y}
+                r={l.faint ? 2.6 : 3.8}
+                fill={palette.pale}
+                opacity={on * Math.sin(Math.PI * k2) * (l.faint ? 0.45 : 0.95)}
+              />
+            );
+          });
+        })}
       </svg>
 
       {/* the box labels */}

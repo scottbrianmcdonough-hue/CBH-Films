@@ -65,3 +65,7 @@ First version sent 11 Nov for Phill's sign off.
   The camera pushes into the partners bar and comes out over the UK as the world draws back: act 2 is the map cut
   without its door (GlobalHubWide noDoor), the lines and bells, 8 new partnerships, 750,000+ global travel agents, the
   logo. One sound (`global-hub-sfx.py --story`, sound-story.wav). The diagram alone is `cbhub-diagram`.
+- Scott (11 Nov: "make the diagram connect more, like that's the hub, more flowing connections"): the elbow lines are now
+  S curves fanning out from the CBHUB (`curve()`), light runs along every connector once lit (the faint ones fainter),
+  soft rings ripple out from the hub like a heartbeat, and the diagram's dotted hotel to CRS link is back as a faint
+  curve.
