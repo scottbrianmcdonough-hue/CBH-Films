@@ -36,3 +36,6 @@ First version sent 11 Nov for Phill's sign off.
   5 Nov, this is LinkedIn) with a quiet latch as the door opens, a soft bell as each market lights (F major pentatonic,
   rising) and a faint shimmer under the agents, by `scripts/global-hub-sfx.py` into `public/campaigns/global-hub/sound.wav`.
   14.0s, -15.4 LUFS.
+- Scott (11 Nov): "don't like the count noise, sounds like sparkling" (the shimmer under the count is out), "maybe needs a
+  logo and ending": from frame 396 all fades to black and the official logo rises with its light sweep; 17.0s. The
+  still for the post is the two stats frame (392).

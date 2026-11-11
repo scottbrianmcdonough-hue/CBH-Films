@@ -2,6 +2,7 @@ import React from "react";
 import { Audio } from "@remotion/media";
 import { AbsoluteFill, Easing, Img, interpolate, staticFile, useCurrentFrame } from "remotion";
 import { palette, sans, serif } from "../hotel-film/theme";
+import { CBLogo } from "../hotel-film/components/CBLogo";
 import map from "./global-hub/map.json";
 
 // CB Global Hub on LinkedIn: the door (Scott, 11 Nov: "do it from scratch, it doesn't have to be like the other ones,
@@ -14,9 +15,11 @@ import map from "./global-hub/map.json";
 // markets, each lighting as it lands while the count climbs to 8; light keeps travelling the lines to the end. The
 // headline is there from frame one (LinkedIn previews the first frame), and the last frame stands as the still. The
 // new CBH palette (Bianca, 10 Nov): black, gold and the pale neutral only. CB GLOBAL HUB in bold, tight caps like Lee's
-// "THE WAIT IS OVER" (Scott, 11 Nov). Sound: the soft cinematic piano with a latch, eight bells and a shimmer.
+// "THE WAIT IS OVER" (Scott, 11 Nov). Sound: the soft cinematic piano with a latch and eight bells (no shimmer under the count, Scott). Ends on the
+// official logo with its light sweep (Scott: "maybe needs a logo and ending").
 
-export const GLOBAL_HUB_FRAMES = 420;
+export const GLOBAL_HUB_FRAMES = 510;
+const END = 396; // the ending: all to black, the CBH logo rises with its light sweep
 const STAT2 = 276; // the second stat: 750,000+ global travel agents (the membership page)
 type P = { id: string; x: number; y: number };
 const HOME = map.home as P;
@@ -342,6 +345,13 @@ export const GlobalHub: React.FC = () => {
         src={staticFile("brand/cb-watermark.png")}
         style={{ position: "absolute", left: 940, top: 1214, width: 92, height: 99, opacity: logo }}
       />
+      {/* the ending (Scott, 11 Nov: "maybe needs a logo and ending"): to black, then the official logo */}
+      <AbsoluteFill style={{ backgroundColor: palette.black, opacity: ramp(frame, END, END + 22, Easing.inOut(Easing.cubic)) }} />
+      {frame >= END + 16 ? (
+        <AbsoluteFill style={{ alignItems: "center", justifyContent: "center" }}>
+          <CBLogo start={END + 16} width={340} shimmerAt={END + 62} />
+        </AbsoluteFill>
+      ) : null}
     </AbsoluteFill>
   );
 };

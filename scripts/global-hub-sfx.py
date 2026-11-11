@@ -9,7 +9,7 @@ import numpy as np, subprocess, soundfile as sf, os
 
 SR = 48000
 FPS = 30
-DUR = 14.0
+DUR = 17.0
 OPEN = 12
 LANDS = [112 + 16 * i + 28 for i in range(8)]
 STAT2 = 276
@@ -53,7 +53,7 @@ notes = [392.0, 440.0, 523.25, 587.33, 698.46, 783.99, 880.0, 1046.5]  # G A C D
 pans = [-0.5, 0.3, -0.6, 0.6, -0.2, 0.5, -0.4, 0.2]
 for f, fr, p in zip(notes, LANDS, pans):
     put(bell(f), fr, p)
-put(shimmer(), STAT2 + 4)
+# no shimmer under the count (Scott, 11 Nov: "don't like the count noise, sounds like sparkling")
 
 # the piano, from its start, faded over the last second
 tmp = "/dev/shm/global-hub-piano.wav"
@@ -61,7 +61,7 @@ subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", "public/campaigns/bonfire/c
                 "-ar", str(SR), "-ac", "2", tmp], check=True)
 piano, _ = sf.read(tmp)
 piano = np.pad(piano, ((0, max(0, n - len(piano))), (0, 0)))[:n]
-fade = np.ones(n); f0 = int((DUR - 1.2) * SR); fade[f0:] = np.linspace(1, 0, n - f0)
+fade = np.ones(n); f0 = int((DUR - 2.4) * SR); fade[f0:] = np.linspace(1, 0, n - f0) ** 1.5
 fade[: int(0.15 * SR)] = np.linspace(0, 1, int(0.15 * SR))
 mix = piano * 0.8 * fade[:, None] + fx
 mix /= max(1.0, np.abs(mix).max() / 0.89)
