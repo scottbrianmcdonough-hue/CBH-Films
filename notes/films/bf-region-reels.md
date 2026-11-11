@@ -43,3 +43,11 @@ so a region's spotlight and its region reel shouldn't both go out.
   Photos in `public/hotels/avisford-park/` (exterior, golf, pool, restaurant, terrace), from the CBH site.
 - The Metropole's offer amended to 30% (Scott, 11 Nov): Scotland & Wales stays "Save up to 30%" (end card, cover, post);
   its card "Save 30%". Still first by price (from £77.23 at 35%; check the new from price on its card).
+- South made snappy (Scott, 11 Nov: "add some dynamic text or snappy transitions ... it's kinda just a flat
+  slideshow"): RippleSpec `snap` (beat, kicks). Each hotel is three shots on the beat: exterior two beats... half a bar
+  (4 beats), then a hero and a third shot two beats each (Avisford golf, Frensham spa pool, Donnington twin bedroom,
+  Oakley bedroom, Burleigh fireside), every cut a zoom snap (the old shot pushes in over 4 frames, the new one lands
+  10% large and settles in 9, a touch of blur across it), a punch in on the opening as "The South" slams in. Text on
+  the beat: caps wipe in, the name rises line by line, the pill pops a beat later with its percentage counting up;
+  the title's line slams in two beats after its caps; the end card's 30% counts up over two beats. 27.6s, -15.0 LUFS.
+  The other three region reels are unchanged until Scott signs this one off.

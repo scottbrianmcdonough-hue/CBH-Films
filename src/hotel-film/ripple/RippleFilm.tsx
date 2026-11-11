@@ -532,8 +532,220 @@ const SceneEndCard: React.FC<{ line: string; top: number; rise: number }> = ({
   );
 };
 
+// Snappy mode (Scott, 11 Nov, the South region reel: "add some dynamic text or snappy transitions ... it's kinda just a
+// flat slideshow"). The zoom snap at each cut: the outgoing shot pushes in over its last 4 frames, the new one lands
+// 10% large and settles in 9, a touch of blur across the cut so it reads as one fast move.
+const snapAt = (frame: number, kicks: number[]) => {
+  let scale = 1;
+  let blur = 0;
+  for (const k of kicks) {
+    const d = frame - k;
+    if (d >= -4 && d < 0) {
+      const t = (d + 4) / 4;
+      scale *= 1 + 0.07 * t * t;
+      blur = Math.max(blur, 5 * t * t);
+    } else if (d >= 0 && d < 9) {
+      const e = 1 - Math.pow(1 - d / 9, 3);
+      scale *= 1.1 - 0.1 * e;
+      blur = Math.max(blur, 5 * (1 - e) * (1 - e));
+    }
+  }
+  return { scale, blur };
+};
+
+// a number in the text counting up to its value from frame `at` over `len` frames ("Save 25%" counts 0 to 25)
+const countUp = (text: string, frame: number, at: number, len: number) =>
+  text.replace(/\d+/, (n) => String(Math.round(Number(n) * progress(frame, at, len, EASE_OUT))));
+
+// a pop: from small, past full size and back, over n frames
+const pop = (frame: number, at: number, n = 9) =>
+  interpolate(frame, [at, at + n * 0.6, at + n], [0.55, 1.07, 1], clamp);
+
+// a slam: from large, a touch under and back
+const slam = (frame: number, at: number, n = 9) =>
+  interpolate(frame, [at, at + n * 0.55, at + n], [1.45, 0.97, 1], clamp);
+
+// a line rising out of its own mask
+const Rise: React.FC<{ at: number; children: React.ReactNode; style?: React.CSSProperties }> = ({
+  at,
+  children,
+  style,
+}) => {
+  const frame = useCurrentFrame();
+  const a = progress(frame, at, 11, EASE_OUT);
+  return (
+    <div style={{ overflow: "hidden", paddingBottom: 8, marginBottom: -8 }}>
+      <div style={{ ...style, transform: `translateY(${(1 - a) * 105}%)`, opacity: a > 0 ? 1 : 0 }}>{children}</div>
+    </div>
+  );
+};
+
+// caps wiping in from the left
+const wipe = (frame: number, at: number, n = 9) =>
+  `inset(-20% ${(1 - progress(frame, at, n, EASE_OUT)) * 100}% -20% 0)`;
+
+const SnapCard: React.FC<{ place: string; name: string; offer: string; out: number; beat: number }> = ({
+  place,
+  name,
+  offer,
+  out,
+  beat,
+}) => {
+  const frame = useCurrentFrame();
+  const o = 1 - progress(frame, out - 6, 6, EASE_IN_OUT);
+  const p = Math.round(beat); // the pill pops on the next beat
+  return (
+    <AbsoluteFill style={{ opacity: o, transform: `translateX(${(1 - o) * -40}px)` }}>
+      <div style={{ position: "absolute", left: 72, bottom: FEED_BOTTOM }}>
+        <div
+          style={{
+            fontFamily: sans,
+            fontWeight: 700,
+            fontSize: 30,
+            letterSpacing: "0.04em",
+            color: MAUVE,
+            textTransform: "uppercase",
+            textShadow: LIFT,
+            marginBottom: 10,
+            clipPath: wipe(frame, 0),
+          }}
+        >
+          {place}
+        </div>
+        {name.split("\n").map((l, i) => (
+          <Rise
+            key={l}
+            at={3 + i * 3}
+            style={{
+              fontFamily: serif,
+              fontSize: 88,
+              lineHeight: 1.04,
+              color: colors.cream,
+              textShadow: LIFT,
+              whiteSpace: "nowrap",
+            }}
+          >
+            {l}
+          </Rise>
+        ))}
+        <div
+          style={{
+            display: "inline-block",
+            marginTop: 22,
+            fontFamily: sans,
+            fontWeight: 700,
+            fontSize: 30,
+            letterSpacing: "0.02em",
+            textTransform: "uppercase",
+            color: colors.cream,
+            background: MAUVE,
+            padding: "10px 22px",
+            borderRadius: 40,
+            fontVariantNumeric: "lining-nums tabular-nums",
+            opacity: progress(frame, p, 3),
+            transform: `scale(${pop(frame, p)})`,
+            transformOrigin: "left center",
+          }}
+        >
+          {countUp(offer, frame, p, 12)}
+        </div>
+      </div>
+    </AbsoluteFill>
+  );
+};
+
+const SnapTitle: React.FC<{ eyebrow: string; line: string; out: number; beat: number }> = ({
+  eyebrow,
+  line,
+  out,
+  beat,
+}) => {
+  const frame = useCurrentFrame();
+  const o = 1 - progress(frame, out - 6, 6, EASE_IN_OUT);
+  const s = Math.round(beat * 2); // the line slams in two beats after the caps
+  return (
+    <AbsoluteFill style={{ opacity: o, transform: `translateX(${(1 - o) * -40}px)` }}>
+      <div style={{ position: "absolute", left: 72, bottom: FEED_BOTTOM }}>
+        <div
+          style={{
+            fontFamily: sans,
+            fontWeight: 700,
+            fontSize: 34,
+            letterSpacing: "0.04em",
+            color: MAUVE,
+            textTransform: "uppercase",
+            textShadow: LIFT,
+            marginBottom: 8,
+            clipPath: wipe(frame, 0, 10),
+          }}
+        >
+          {eyebrow}
+        </div>
+        <div
+          style={{
+            fontFamily: serif,
+            fontSize: 120,
+            lineHeight: 1.02,
+            color: colors.cream,
+            textShadow: LIFT,
+            opacity: progress(frame, s, 3),
+            transform: `scale(${slam(frame, s)})`,
+            transformOrigin: "left bottom",
+          }}
+        >
+          {line}
+        </div>
+      </div>
+    </AbsoluteFill>
+  );
+};
+
+const SnapEndCard: React.FC<{ line: string; eyebrow?: string; beat: number }> = ({ line, eyebrow, beat }) => {
+  const frame = useCurrentFrame();
+  const s = Math.round(beat); // the line slams in a beat after the caps, its number counting up over two beats
+  return (
+    <AbsoluteFill style={{ alignItems: "center", justifyContent: "center" }}>
+      <div style={{ textAlign: "center" }}>
+        {eyebrow ? (
+          <div
+            style={{
+              fontFamily: sans,
+              fontWeight: 600,
+              fontSize: 44,
+              letterSpacing: "0.04em",
+              color: MAUVE,
+              textTransform: "uppercase",
+              marginBottom: 26,
+              clipPath: wipe(frame, 2, 10),
+            }}
+          >
+            {eyebrow}
+          </div>
+        ) : null}
+        <div
+          style={{
+            fontFamily: serif,
+            fontSize: 112,
+            lineHeight: 1.08,
+            color: colors.cream,
+            fontVariantNumeric: "lining-nums tabular-nums",
+            whiteSpace: "nowrap",
+            opacity: progress(frame, s, 3),
+            transform: `scale(${slam(frame, s, 10)})`,
+          }}
+        >
+          {countUp(line, frame, s, Math.round(beat * 2))}
+        </div>
+      </div>
+    </AbsoluteFill>
+  );
+};
+
 export const RippleFilm: React.FC<{ film: RippleSpec }> = ({ film }) => {
   const { music } = film;
+  const frame = useCurrentFrame();
+  const snap = film.snap ? snapAt(frame, film.snap.kicks) : null;
+  const beat = film.snap?.beat ?? 0;
   return (
     <AbsoluteFill style={{ backgroundColor: colors.black }}>
       <Audio
@@ -550,7 +762,12 @@ export const RippleFilm: React.FC<{ film: RippleSpec }> = ({ film }) => {
           )
         }
       />
-      <AbsoluteFill style={{ filter: GRADE }}>
+      <AbsoluteFill
+        style={{
+          filter: snap && snap.blur > 0.05 ? `${GRADE} blur(${snap.blur.toFixed(2)}px)` : GRADE,
+          transform: snap ? `scale(${snap.scale})` : undefined,
+        }}
+      >
         <Video
           src={staticFile(film.picture)}
           muted
@@ -591,12 +808,20 @@ export const RippleFilm: React.FC<{ film: RippleSpec }> = ({ film }) => {
       {film.deepScrim ? <SteadyShade film={film} /> : null}
       {film.title ? (
         <Sequence from={film.title.from} durationInFrames={film.title.to - film.title.from}>
-          <Title eyebrow={film.title.eyebrow} line={film.title.line} out={film.title.to - film.title.from} />
+          {film.snap ? (
+            <SnapTitle eyebrow={film.title.eyebrow} line={film.title.line} out={film.title.to - film.title.from} beat={beat} />
+          ) : (
+            <Title eyebrow={film.title.eyebrow} line={film.title.line} out={film.title.to - film.title.from} />
+          )}
         </Sequence>
       ) : null}
       {(film.cards ?? []).map((c) => (
         <Sequence key={c.name} from={c.from} durationInFrames={c.to - c.from}>
-          <HotelCard place={c.place} name={c.name} offer={c.offer} out={c.to - c.from} />
+          {film.snap ? (
+            <SnapCard place={c.place} name={c.name} offer={c.offer} out={c.to - c.from} beat={beat} />
+          ) : (
+            <HotelCard place={c.place} name={c.name} offer={c.offer} out={c.to - c.from} />
+          )}
         </Sequence>
       ))}
       {film.lines.map((l) => (
@@ -638,6 +863,9 @@ export const RippleFilm: React.FC<{ film: RippleSpec }> = ({ film }) => {
         </>
       ) : (
         <Sequence from={film.endCard.at}>
+          {film.snap ? (
+            <SnapEndCard line={film.endCard.line} eyebrow={film.endCard.eyebrow} beat={beat} />
+          ) : (
           <EndCard
             line={film.endCard.line}
             wide={film.wide}
@@ -646,6 +874,7 @@ export const RippleFilm: React.FC<{ film: RippleSpec }> = ({ film }) => {
             eyebrow={film.endCard.eyebrow}
             sub={film.endCard.sub}
           />
+          )}
         </Sequence>
       )}
       {/* with the end card in the scene, the glow goes over the near layer too (last) */}

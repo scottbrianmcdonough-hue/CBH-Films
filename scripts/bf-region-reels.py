@@ -24,13 +24,13 @@ R = {
            ("Meriden, Warwickshire","Forest of Arden Hotel","Save 30%",("forest-of-arden/aerial-autumn.jpg",1000),("forest-of-arden/pool.jpg",960)),
            ("Bedford, Bedfordshire","The Kingfisher","Save 30%",("the-kingfisher/exterior-river-boat.jpg",760),("the-kingfisher/reading-in-bed.jpg",1100)),
            ("Newmarket, Suffolk","Jockey Club Rooms","Save 15%",("jockey-club-rooms/garden-front.jpg",600),("jockey-club-rooms/dining-room.jpg",960))]),
- "south": dict(title="The South", music="music/kulakovka-luxury-life-618587.mp3", start=346, bar=59.1, intro=2, gain=0.78, seconds=145, best="30%",
+ "south": dict(title="The South", music="music/kulakovka-luxury-life-618587.mp3", start=346, bar=59.1, intro=2, gain=0.78, seconds=145, best="30%", snap=True,
    intro_img=("frensham-pond/pond-reflections.jpg",1030),
-   hotels=[("Arundel, West Sussex","Avisford Park Hotel","Save 25%",("avisford-park/exterior.jpg",1180),("avisford-park/restaurant.jpg",660)),
-           ("Farnham, Surrey","Frensham Pond\\nHotel & Spa","Save 20%",("frensham-pond/exterior-dusk.jpg",950),("frensham-pond/restaurant.jpg",820)),
-           ("Sevenoaks, Kent","Donnington Manor\\nHotel","Save 20%",("donnington-manor/exterior.jpg",500),("donnington-manor/breakfast-terrace.jpg",1000)),
-           ("Oakley, Hampshire","Oakley Hall Hotel","Save 30%",("oakley-hall/exterior.jpg",960),("oakley-hall/afternoon-tea.jpg",800)),
-           ("Minchinhampton, Gloucestershire","Burleigh Court","Save 20%",("burleigh-court/garden-house.jpg",1080),("burleigh-court/bedroom.jpg",900))]),
+   hotels=[("Arundel, West Sussex","Avisford Park Hotel","Save 25%",("avisford-park/exterior.jpg",1180),("avisford-park/restaurant.jpg",660),("avisford-park/golf.jpg",None)),
+           ("Farnham, Surrey","Frensham Pond\\nHotel & Spa","Save 20%",("frensham-pond/exterior-dusk.jpg",950),("frensham-pond/restaurant.jpg",820),("frensham-pond/spa-pool.jpg",None)),
+           ("Sevenoaks, Kent","Donnington Manor\\nHotel","Save 20%",("donnington-manor/exterior.jpg",500),("donnington-manor/breakfast-terrace.jpg",1000),("donnington-manor/twin-bedroom.jpg",None)),
+           ("Oakley, Hampshire","Oakley Hall Hotel","Save 30%",("oakley-hall/exterior.jpg",960),("oakley-hall/afternoon-tea.jpg",800),("oakley-hall/bedroom.jpg",None)),
+           ("Minchinhampton, Gloucestershire","Burleigh Court","Save 20%",("burleigh-court/garden-house.jpg",1080),("burleigh-court/bedroom.jpg",900),("burleigh-court/fireside-table.jpg",None))]),
 }
 only = sys.argv[1:] or list(R)
 def clip(img, cx, frames, out):
@@ -42,12 +42,22 @@ def clip(img, cx, frames, out):
     subprocess.run(["python3","scripts/still-push.py",H+img,out,"--cx",str(int(cx)),"--cy",str(Hh//2),"--h",str(h),"--drift","0.05","--frames",str(frames),"--hgt","1350"],check=True,capture_output=True)
 for rid in only:
     r = R[rid]; bar=r["bar"]; D=f"public/campaigns/bf-region-{rid}"; os.makedirs(D+"/clips",exist_ok=True)
-    imgs=[("intro",r["intro_img"],r["intro"])]
-    for i,h in enumerate(r["hotels"]):
-        imgs.append((f"h{i}a",h[3],1)); imgs.append((f"h{i}b",h[4],1))
+    snap=r.get("snap",False)
+    # snap (Scott, 11 Nov: "a flat slideshow"): each hotel two bars as exterior half a bar, then two shots a beat... two beats each
+    if snap:
+        imgs=[("intro",r["intro_img"],r["intro"]*4)]
+        for i,h in enumerate(r["hotels"]):
+            imgs.append((f"h{i}a",h[3],4)); imgs.append((f"h{i}b",h[4],2)); imgs.append((f"h{i}c",h[5],2))
+        unit=bar/4
+    else:
+        imgs=[("intro",r["intro_img"],r["intro"])]
+        for i,h in enumerate(r["hotels"]):
+            imgs.append((f"h{i}a",h[3],1)); imgs.append((f"h{i}b",h[4],1))
+        unit=bar
     bars=[0]
     for _,_,n in imgs: bars.append(bars[-1]+n)
-    fr=[round(b*bar) for b in bars]
+    fr=[round(b*unit) for b in bars]
+    per=3 if snap else 2
     shots=[]
     for k,(name,(img,cx),n) in enumerate(imgs):
         frames=fr[k+1]-fr[k]; out=f"{D}/clips/{name}.mp4"; clip(img,cx,frames+14,out)
@@ -57,8 +67,10 @@ for rid in only:
     subprocess.run(["python3","scripts/cut-picture.py",D+"/cut.json"],check=True,capture_output=True)
     cards=[]
     for i,h in enumerate(r["hotels"]):
-        a=fr[1+2*i]; b=fr[3+2*i]
-        cards.append(f'    {{ from: {a+3}, to: {b-4}, place: "{h[0]}", name: "{h[1]}", offer: "{h[2]}" }},')
+        a=fr[1+per*i]; b=fr[1+per*(i+1)]
+        if snap: cards.append(f'    {{ from: {a+2}, to: {b}, place: "{h[0]}", name: "{h[1]}", offer: "{h[2]}" }},')
+        else: cards.append(f'    {{ from: {a+3}, to: {b-4}, place: "{h[0]}", name: "{h[1]}", offer: "{h[2]}" }},')
+    snapline=(f"\n  snap: {{ beat: {bar/4:.3f}, kicks: [{', '.join(str(f) for f in sorted([8+round(bar/2)]+fr[1:len(imgs)]))}] }}," if snap else "")
     var="bfRegion"+"".join(p.capitalize() for p in rid.split("-"))
     ts=f'''import type {{ RippleSpec }} from "../hotel-film/ripple/types";
 
@@ -73,12 +85,12 @@ export const {var}: RippleSpec = {{
   frames: {total},
   feed: true,
   label: {{ eyebrow: "", name: "", from: 0, to: 1 }},
-  title: {{ from: 8, to: {fr[1]-4}, eyebrow: "Black Friday Sale", line: "{r["title"]}" }},
+  title: {{ from: 8, to: {fr[1] if snap else fr[1]-4}, eyebrow: "Black Friday Sale", line: "{r["title"]}" }},
   cards: [
 {chr(10).join(cards)}
   ],
   lines: [],
-  deepScrim: true,
+  deepScrim: true,{snapline}
   endCard: {{ at: {end}, eyebrow: "Black Friday Sale", line: "Save up to {r["best"]}", quick: true }},
   music: {{
     src: "{r["music"]}",
