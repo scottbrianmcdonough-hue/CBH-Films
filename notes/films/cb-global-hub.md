@@ -30,3 +30,9 @@ First version sent 11 Nov for Phill's sign off.
   the count steps aside for two stats side by side, 8 new partnerships this year and 750,000+ global travel agents
   counting up, while a dust of gold points spreads over the land from the UK; the last frame is the still.
 - "CB Global Hub" is Phill's name for it and isn't on the site: Phill to confirm it's the name to use publicly.
+- Scott (11 Nov): CB GLOBAL HUB "bolder and bigger like Lee's artwork, The Wait Is Over": now 46px, weight 700, tight
+  (0.04em), gold, its underline kept. Sound (Scott: "a mellow track and subtle sound effects", "grab a mellow track from
+  the repo"): the soft cinematic piano from Bonfire Night (public/campaigns/bonfire/cinematic-piano.mp3; on Instagram
+  5 Nov, this is LinkedIn) with a quiet latch as the door opens, a soft bell as each market lights (F major pentatonic,
+  rising) and a faint shimmer under the agents, by `scripts/global-hub-sfx.py` into `public/campaigns/global-hub/sound.wav`.
+  14.0s, -15.4 LUFS.

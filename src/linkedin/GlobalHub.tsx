@@ -1,4 +1,5 @@
 import React from "react";
+import { Audio } from "@remotion/media";
 import { AbsoluteFill, Easing, Img, interpolate, staticFile, useCurrentFrame } from "remotion";
 import { palette, sans, serif } from "../hotel-film/theme";
 import map from "./global-hub/map.json";
@@ -12,7 +13,8 @@ import map from "./global-hub/map.json";
 // (scripts/global-hub-map.mjs) draws its coast in gold on black, the UK lights, then eight gold lines arc out to world
 // markets, each lighting as it lands while the count climbs to 8; light keeps travelling the lines to the end. The
 // headline is there from frame one (LinkedIn previews the first frame), and the last frame stands as the still. The
-// new CBH palette (Bianca, 10 Nov): black, gold and the pale neutral only.
+// new CBH palette (Bianca, 10 Nov): black, gold and the pale neutral only. CB GLOBAL HUB in bold, tight caps like Lee's
+// "THE WAIT IS OVER" (Scott, 11 Nov). Sound: the soft cinematic piano with a latch, eight bells and a shimmer.
 
 export const GLOBAL_HUB_FRAMES = 420;
 const STAT2 = 276; // the second stat: 750,000+ global travel agents (the membership page)
@@ -114,6 +116,8 @@ export const GlobalHub: React.FC = () => {
 
   return (
     <AbsoluteFill style={{ backgroundColor: palette.black }}>
+      {/* the piano with the latch, the eight bells and the shimmer (scripts/global-hub-sfx.py) */}
+      <Audio src={staticFile("campaigns/global-hub/sound.wav")} volume={0.75} />
       <AbsoluteFill
         style={{
           background: `radial-gradient(ellipse 60% 32% at 47% 52%, rgba(199,171,119,0.10), transparent 72%)`,
@@ -258,12 +262,11 @@ export const GlobalHub: React.FC = () => {
           <div
             style={{
               fontFamily: sans,
-              fontWeight: 600,
-              fontSize: 28,
-              letterSpacing: "0.3em",
+              fontWeight: 700,
+              fontSize: 46,
+              letterSpacing: "0.04em",
               color: palette.gold,
               textTransform: "uppercase",
-              marginRight: "-0.3em",
             }}
           >
             CB Global Hub
