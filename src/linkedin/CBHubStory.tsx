@@ -2,7 +2,7 @@ import React from "react";
 import { Audio } from "@remotion/media";
 import { AbsoluteFill, Easing, interpolate, Sequence, staticFile, useCurrentFrame } from "remotion";
 import { CBHubDiagram, OFFX, PARTNERS_BOX } from "./CBHubDiagram";
-import { GlobalHubWide, GLOBAL_HUB_WIDE_FRAMES } from "./GlobalHubWide";
+import { GlobalHubWide, GLOBAL_HUB_STORY_MAP_FRAMES } from "./GlobalHubWide";
 
 // The CBHUB, diagram then map (Scott, 11 Nov: "incorporate the maps and then the diagram, both somehow ... do your magic").
 // Act 1 is Phill's distribution diagram (CBHubDiagram, as an act): the hotel lights, the flow runs through the CBHUB to
@@ -11,8 +11,8 @@ import { GlobalHubWide, GLOBAL_HUB_WIDE_FRAMES } from "./GlobalHubWide";
 // lines out to the world, 8 new partnerships, 750,000+ global travel agents, the logo. One sound across both
 // (scripts/global-hub-sfx.py --story). 16:9 for LinkedIn.
 
-export const MAP_AT = 180; // where the map act starts underneath
-export const CBHUB_STORY_FRAMES = MAP_AT + GLOBAL_HUB_WIDE_FRAMES;
+export const MAP_AT = 240; // where the map act starts underneath (the diagram holds 2s longer, Scott, 11 Nov)
+export const CBHUB_STORY_FRAMES = MAP_AT + GLOBAL_HUB_STORY_MAP_FRAMES;
 const PUSH = [MAP_AT + 40, MAP_AT + 92] as const;
 const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
 

@@ -97,13 +97,15 @@ const along = (p: Pt[], t: number): Pt => {
 };
 
 // the flow: the hotel lights, the pulse reaches the hub, the hub lights, then out to the channels and partners
+// paced so each step lands before the next (Scott, 11 Nov: "let it register on the CBHUB a little more, there is a
+// lot of info and boxes to take in")
 const HOTEL_ON = 76;
 const TO_HUB = [84, 118] as const;
 const HUB_ON = 118;
-const TO_CH = [132, 160] as const;
-const CH_ON = 160;
-const TO_P = [166, 184] as const;
-const P_ON = 184;
+const TO_CH = [146, 176] as const;
+const CH_ON = 176;
+const TO_P = [196, 216] as const;
+const P_ON = 216;
 const STAT1 = 206; // 8 new strategic partnerships, ticking
 const STAT2 = 300; // 750,000+ global travel agents
 const TICKS = Array.from({ length: 8 }, (_, i) => STAT1 + 10 + i * 9);
@@ -111,7 +113,7 @@ const TICKS = Array.from({ length: 8 }, (_, i) => STAT1 + 10 + i * 9);
 // when light starts running along each connector, for good
 const FLOW_FROM: Record<string, number> = {
   hotelCm: 118, cmHub: 118, hotelHub: 150, cmOta: 140, cmDirect: 146, hubRfp: 136, hubMedia: 142,
-  hubGds: 160, hubIds: 160, hubCc: 160, gdsP: 184, idsP: 184, ccP: 184,
+  hubGds: 176, hubIds: 176, hubCc: 176, gdsP: 216, idsP: 216, ccP: 216,
   directDigital: 150, digitalSite: 158, digitalWeb: 162, cmRms: 144,
 };
 
@@ -312,7 +314,7 @@ export const CBHubDiagram: React.FC<{ act?: boolean }> = ({ act }) => {
 
       </AbsoluteFill>
       {/* the headline, from frame one (in the story it gives way before the push to the map) */}
-      <div style={{ position: "absolute", top: 96, left: 120, opacity: act ? 1 - ramp(frame, 204, 220) : 1 }}>
+      <div style={{ position: "absolute", top: 96, left: 120, opacity: act ? 1 - ramp(frame, 266, 282) : 1 }}>
         <div style={{ fontFamily: serif, fontSize: 84, lineHeight: 1.04, color: palette.pale }}>
           Opening the door <span style={{ fontStyle: "italic" }}>to new markets</span>
         </div>

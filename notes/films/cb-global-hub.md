@@ -80,3 +80,7 @@ First version sent 11 Nov for Phill's sign off.
   -15.2 LUFS. Polish: the diagram centred (OFFX 130), its faint outline stronger on frame one (the preview).
 - Scott (11 Nov: "go back to the previous music"): `cbhub-story` back on the soft cinematic piano (`FINE_TASTE = False` in
   the sfx script), bells in F major again; the centring and frame one polish kept.
+- Scott (11 Nov: "let it register on the CBHUB a little more, there is a lot of info and boxes to take in"): the diagram
+  paced so each step lands before the next (channels light at 176, partners at 216) and the lit diagram holds ~2s more
+  before the push (MAP_AT 240); the map act runs 28 frames tighter in the story only (lines every 12 frames, the stats'
+  hold unchanged; `noDoor` timing in GlobalHubWide). 25.6s, -15.6 LUFS, the piano.

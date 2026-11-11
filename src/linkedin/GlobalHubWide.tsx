@@ -22,6 +22,7 @@ import map from "./global-hub/map-wide.json";
 // official logo with its light sweep (Scott: "maybe needs a logo and ending").
 
 export const GLOBAL_HUB_WIDE_FRAMES = 570;
+export const GLOBAL_HUB_STORY_MAP_FRAMES = 528; // the noDoor act: 28 frames tighter, the logo 14 frames shorter
 const END = 456; // the ending: all to black, the CBH logo rises with its light sweep
 const STAT2 = 276; // the second stat: 750,000+ global travel agents (the membership page)
 type P = { id: string; x: number; y: number };
@@ -70,8 +71,6 @@ const Leaf: React.FC = () => {
     </svg>
   );
 };
-const startOf = (i: number) => FIRST + i * EVERY;
-const landOf = (i: number) => startOf(i) + ARC;
 
 // each line a quadratic arc, bowed up and away from the equator, more for the long ones
 const ctrl = (m: P) => {
@@ -108,19 +107,26 @@ const Light: React.FC<{ x: number; y: number; on: number; ripple: number; r?: nu
 
 export const GlobalHubWide: React.FC<{ noDoor?: boolean; silent?: boolean }> = ({ noDoor, silent }) => {
   const frame = useCurrentFrame();
+  // in the story (noDoor) the map act runs a little tighter so the diagram before it can hold longer (Scott, 11 Nov: "let
+  // it register on the CBHUB a little more"): the lines a touch quicker, the stats' hold unchanged
+  const every = noDoor ? 12 : EVERY;
+  const S2 = noDoor ? STAT2 - 28 : STAT2;
+  const E = noDoor ? END - 28 : END;
+  const startOfE = (i: number) => FIRST + i * every;
+  const landOfE = (i: number) => startOfE(i) + ARC;
   const draw = ramp(frame, DRAW[0], DRAW[1], Easing.inOut(Easing.cubic));
   const open = ramp(frame, OPEN[0], OPEN[1], Easing.inOut(Easing.cubic));
   const push = ramp(frame, PUSH[0], PUSH[1], Easing.in(Easing.cubic));
   const pull = ramp(frame, PULL[0], PULL[1], Easing.inOut(Easing.cubic));
-  const count = MARKETS.filter((_, i) => frame >= landOf(i)).length;
-  const lastLand = MARKETS.reduce((a, _, i) => (frame >= landOf(i) ? landOf(i) : a), -99);
+  const count = MARKETS.filter((_, i) => frame >= landOfE(i)).length;
+  const lastLand = MARKETS.reduce((a, _, i) => (frame >= landOfE(i) ? landOfE(i) : a), -99);
   const pop = ramp(frame, lastLand, lastLand + 10, Easing.out(Easing.back(2)));
-  const countOn = ramp(frame, landOf(0) - 8, landOf(0) + 6);
+  const countOn = ramp(frame, landOfE(0) - 8, landOfE(0) + 6);
   // the count out first, then the two stats in (no overlap: the labels ghosted, polish 11 Nov)
-  const swapOut = ramp(frame, STAT2, STAT2 + 8, Easing.in(Easing.cubic));
-  const swap = ramp(frame, STAT2 + 8, STAT2 + 22, Easing.out(Easing.cubic));
-  const agentsCount = ramp(frame, STAT2 + 6, STAT2 + 66, Easing.out(Easing.cubic));
-  const logo = ramp(frame, STAT2 + 80, STAT2 + 104);
+  const swapOut = ramp(frame, S2, S2 + 8, Easing.in(Easing.cubic));
+  const swap = ramp(frame, S2 + 8, S2 + 22, Easing.out(Easing.cubic));
+  const agentsCount = ramp(frame, S2 + 6, S2 + 66, Easing.out(Easing.cubic));
+  const logo = ramp(frame, S2 + 80, S2 + 104);
 
   return (
     <AbsoluteFill style={{ backgroundColor: palette.black }}>
@@ -160,21 +166,21 @@ export const GlobalHubWide: React.FC<{ noDoor?: boolean; silent?: boolean }> = (
 
         {/* the agents: a dust of gold spreading out from the UK as the second count climbs */}
         {AGENTS.map((a, k) => {
-          const t0 = STAT2 + 4 + a.d * 46;
+          const t0 = S2 + 4 + a.d * 46;
           const on = ramp(frame, t0, t0 + 12);
           if (on <= 0) return null;
           const tw = 0.45 + 0.4 * Math.sin((frame + k * 37) / 9);
           return <circle key={k} cx={a.x} cy={a.y} r={1.5} fill={palette.gold} opacity={on * tw} />;
         })}
         {MARKETS.map((m, i) => {
-          const t = ramp(frame, startOf(i), landOf(i), Easing.inOut(Easing.cubic));
+          const t = ramp(frame, startOfE(i), landOfE(i), Easing.inOut(Easing.cubic));
           if (t <= 0) return null;
           const c = ctrl(m);
           const d = `M ${HOME.x} ${HOME.y} Q ${c.x} ${c.y} ${m.x} ${m.y}`;
-          const landed = frame >= landOf(i);
+          const landed = frame >= landOfE(i);
           // light keeps travelling out along the line once it has landed
           const period = 54;
-          const k = landed ? ((frame - landOf(i) + i * 7) % period) / period : -1;
+          const k = landed ? ((frame - landOfE(i) + i * 7) % period) / period : -1;
           const pulse = k >= 0 ? at(m, k) : null;
           return (
             <g key={m.id}>
@@ -194,8 +200,8 @@ export const GlobalHubWide: React.FC<{ noDoor?: boolean; silent?: boolean }> = (
                 <Light
                   x={m.x}
                   y={m.y}
-                  on={ramp(frame, landOf(i), landOf(i) + 8, Easing.out(Easing.back(2)))}
-                  ripple={ramp(frame, landOf(i), landOf(i) + 24, Easing.out(Easing.quad))}
+                  on={ramp(frame, landOfE(i), landOfE(i) + 8, Easing.out(Easing.back(2)))}
+                  ripple={ramp(frame, landOfE(i), landOfE(i) + 24, Easing.out(Easing.quad))}
                 />
               ) : null}
             </g>
@@ -359,10 +365,10 @@ export const GlobalHubWide: React.FC<{ noDoor?: boolean; silent?: boolean }> = (
         style={{ position: "absolute", left: 1740, top: 912, width: 100, height: 108, opacity: logo }}
       />
       {/* the ending (Scott, 11 Nov: "maybe needs a logo and ending"): to black, then the official logo */}
-      <AbsoluteFill style={{ backgroundColor: palette.black, opacity: ramp(frame, END, END + 22, Easing.inOut(Easing.cubic)) }} />
-      {frame >= END + 16 ? (
+      <AbsoluteFill style={{ backgroundColor: palette.black, opacity: ramp(frame, E, E + 22, Easing.inOut(Easing.cubic)) }} />
+      {frame >= E + 16 ? (
         <AbsoluteFill style={{ alignItems: "center", justifyContent: "center" }}>
-          <CBLogo start={END + 16} width={340} shimmerAt={END + 62} />
+          <CBLogo start={E + 16} width={340} shimmerAt={E + 62} />
         </AbsoluteFill>
       ) : null}
     </AbsoluteFill>

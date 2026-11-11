@@ -18,9 +18,9 @@ FINE_TASTE = False
 
 SR = 48000
 FPS = 30
-DUR = 25.0 if STORY else 18.0 if DIAGRAM else 19.0
+DUR = 25.6 if STORY else 18.0 if DIAGRAM else 19.0
 OPEN = 12
-LANDS = [180 + 112 + 16 * i + 28 for i in range(8)] if STORY else [206 + 10 + i * 9 for i in range(8)] if DIAGRAM else [112 + 16 * i + 28 for i in range(8)]
+LANDS = [240 + 112 + 12 * i + 28 for i in range(8)] if STORY else [206 + 10 + i * 9 for i in range(8)] if DIAGRAM else [112 + 16 * i + 28 for i in range(8)]
 STAT2 = 276
 n = int(DUR * SR)
 rng = np.random.default_rng(3)
