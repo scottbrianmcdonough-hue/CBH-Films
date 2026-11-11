@@ -49,5 +49,5 @@ First version sent 11 Nov for Phill's sign off.
   stats come in (the labels ghosted over each other). FINAL: landscape -15.2 LUFS, 4:5 to match; still at 14.5s.
 - Name (Scott, 11 Nov, from the Crest Hotels press release: "Powered by the CBHUB, Classic British Hotels will provide
   Crest Hotels with global distribution, robust demand generation, and seamless access to its agency and corporate
-  commercial partnerships"): the caps now read CBHUB (both cuts); the post says CBHUB and names Crest Hotels as the
-  latest partner (public). Renders cbhub-landscape.mp4 and cbhub-4x5.mp4.
+  commercial partnerships"): the caps now read CBHUB (both cuts); the post says CBHUB; Crest Hotels not named (Scott:
+  "don't mention Crest as a proof point"). Renders cbhub-landscape.mp4 and cbhub-4x5.mp4.
