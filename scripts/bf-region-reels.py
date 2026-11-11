@@ -70,7 +70,7 @@ for rid in only:
         a=fr[1+per*i]; b=fr[1+per*(i+1)]
         if snap: cards.append(f'    {{ from: {a+2}, to: {b}, place: "{h[0]}", name: "{h[1]}", offer: "{h[2]}" }},')
         else: cards.append(f'    {{ from: {a+3}, to: {b-4}, place: "{h[0]}", name: "{h[1]}", offer: "{h[2]}" }},')
-    snapline=(f"\n  snap: {{ beat: {bar/4:.3f}, kicks: [{', '.join(str(f) for f in sorted([8+round(bar/2)]+fr[1:len(imgs)]))}] }}," if snap else "")
+    snapline=(f"\n  snap: {{ beat: {bar/4:.3f}, kicks: [{', '.join(str(f) for f in sorted([8+round(bar/2)]+fr[1:len(imgs)]))}], soft: [{8+round(bar/2)}] }}," if snap else "")
     var="bfRegion"+"".join(p.capitalize() for p in rid.split("-"))
     ts=f'''import type {{ RippleSpec }} from "../hotel-film/ripple/types";
 

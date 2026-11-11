@@ -535,19 +535,22 @@ const SceneEndCard: React.FC<{ line: string; top: number; rise: number }> = ({
 // Snappy mode (Scott, 11 Nov, the South region reel: "add some dynamic text or snappy transitions ... it's kinda just a
 // flat slideshow"). The zoom snap at each cut: the outgoing shot pushes in over its last 4 frames, the new one lands
 // 10% large and settles in 9, a touch of blur across the cut so it reads as one fast move.
-const snapAt = (frame: number, kicks: number[]) => {
+const snapAt = (frame: number, kicks: number[], soft: number[] = []) => {
+  // a notch gentler (Scott, 11 Nov: "turn it back a notch with the pulsing, especially the first one"): the push 3.5%,
+  // the landing 5% large, a whisper of blur; a soft kick (the opening punch in) a third of that
   let scale = 1;
   let blur = 0;
   for (const k of kicks) {
     const d = frame - k;
+    const m = soft.includes(k) ? 0.33 : 1;
     if (d >= -4 && d < 0) {
       const t = (d + 4) / 4;
-      scale *= 1 + 0.07 * t * t;
-      blur = Math.max(blur, 5 * t * t);
+      scale *= 1 + 0.035 * m * t * t;
+      blur = Math.max(blur, 2 * m * t * t);
     } else if (d >= 0 && d < 9) {
       const e = 1 - Math.pow(1 - d / 9, 3);
-      scale *= 1.1 - 0.1 * e;
-      blur = Math.max(blur, 5 * (1 - e) * (1 - e));
+      scale *= 1 + 0.05 * m * (1 - e);
+      blur = Math.max(blur, 2 * m * (1 - e) * (1 - e));
     }
   }
   return { scale, blur };
@@ -744,7 +747,7 @@ const SnapEndCard: React.FC<{ line: string; eyebrow?: string; beat: number }> = 
 export const RippleFilm: React.FC<{ film: RippleSpec }> = ({ film }) => {
   const { music } = film;
   const frame = useCurrentFrame();
-  const snap = film.snap ? snapAt(frame, film.snap.kicks) : null;
+  const snap = film.snap ? snapAt(frame, film.snap.kicks, film.snap.soft) : null;
   const beat = film.snap?.beat ?? 0;
   return (
     <AbsoluteFill style={{ backgroundColor: colors.black }}>

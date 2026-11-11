@@ -45,7 +45,8 @@ export type RippleSpec = {
   // snappy cuts (Scott, 11 Nov, the South region reel: "kinda just a flat slideshow"): kicks are the film frames where
   // the picture cuts; each cut is a zoom snap (the old shot pushes in over its last frames, the new one lands large
   // and settles), and the title, cards and end card animate on the beat (beat: frames a beat) instead of fading up
-  snap?: { kicks: number[]; beat: number };
+  // soft: kicks at a third of the strength (the opening punch in)
+  snap?: { kicks: number[]; beat: number; soft?: number[] };
   // a title over the opening shot: mauve caps over a cream Cormorant line ("Black Friday Sale" / "The North")
   title?: { from: number; to: number; eyebrow: string; line: string };
   // a counter over the shots (Haycock's meetings cut: MEETING SPACES ticking up as the rooms cut

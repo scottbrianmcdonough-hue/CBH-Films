@@ -51,3 +51,5 @@ so a region's spotlight and its region reel shouldn't both go out.
   the beat: caps wipe in, the name rises line by line, the pill pops a beat later with its percentage counting up;
   the title's line slams in two beats after its caps; the end card's 30% counts up over two beats. 27.6s, -15.0 LUFS.
   The other three region reels are unchanged until Scott signs this one off.
+- A notch gentler (Scott, 11 Nov: "turn it back a notch with the pulsing, especially the first one"): the snap's push
+  3.5% (was 7%), the landing 5% large (was 10%), blur 2px (was 5); the opening punch in at a third of that (`soft`).
