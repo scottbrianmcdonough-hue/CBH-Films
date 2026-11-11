@@ -107,3 +107,5 @@ First version sent 11 Nov for Phill's sign off.
   post"): the end card is the logo alone again (340px, shimmer); "Empowering Independents" stays under the two stats, and
   the post closes on it as its strapline, after Phill's call to action. FINAL: CBHub-LinkedIn-final.mp4 (16:9, 19.0s,
   -15.0 LUFS) and the still at 14.6s. The 4:5 `cb-global-hub` still has it under the logo (not posting).
+- Phill (11 Nov: "8 new 'global' strategic partnerships"): the count reads "new global strategic / partnerships this
+  year", the stat "new global partnerships", and the post "8 new global strategic partnerships". Final re-rendered.

@@ -322,9 +322,9 @@ export const GlobalHubWide: React.FC<{ noDoor?: boolean; silent?: boolean }> = (
           {Math.max(1, count)}
         </div>
         <div style={{ fontFamily: serif, fontSize: 42, lineHeight: 1.15, color: palette.pale, marginTop: 8 }}>
-          new strategic partnerships
+          new global strategic
           <br />
-          this year
+          partnerships this year
         </div>
       </div>
       {/* the two stats side by side, the last frame's still */}
@@ -344,7 +344,7 @@ export const GlobalHubWide: React.FC<{ noDoor?: boolean; silent?: boolean }> = (
         }}
       >
         {[
-          { n: "8", label: "new partnerships this year" },
+          { n: "8", label: "new global partnerships" },
           {
             n: `${Math.round(750000 * agentsCount).toLocaleString("en-GB")}${agentsCount >= 1 ? "+" : ""}`,
             label: "global travel agents",
