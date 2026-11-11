@@ -41,3 +41,5 @@ so a region's spotlight and its region reel shouldn't both go out.
   the town grew into a spa town; Rock Spa with an indoor pool; near the Elan Valley; 35% off B&B (from £77.23), so first
   in Scotland & Wales. Its five photos (exterior, pool, Elan Valley, afternoon tea, tower room) to be re-sent as files.
   Photos in `public/hotels/avisford-park/` (exterior, golf, pool, restaurant, terrace), from the CBH site.
+- The Metropole's offer amended to 30% (Scott, 11 Nov): Scotland & Wales stays "Save up to 30%" (end card, cover, post);
+  its card "Save 30%". Still first by price (from £77.23 at 35%; check the new from price on its card).
