@@ -14,13 +14,20 @@ const countries = feature(world, world.objects.countries).features.filter(
   (c) => c.properties.name !== "Antarctica",
 );
 const land = { type: "FeatureCollection", features: countries };
+// 4:5 by default; with --wide, the 16:9 LinkedIn cut's right two thirds
+const WIDE = process.argv.includes("--wide");
 const projection = geoEqualEarth()
   .rotate([-10, 0])
   .fitExtent(
-    [
-      [30, 470],
-      [1050, 1000],
-    ],
+    WIDE
+      ? [
+          [800, 200],
+          [1880, 870],
+        ]
+      : [
+          [30, 470],
+          [1050, 1000],
+        ],
     land,
   );
 const path = geoPath(projection);
@@ -53,7 +60,7 @@ while (agents.length < 420) {
   agents.push({ x: +x.toFixed(1), y: +y.toFixed(1), d: +(Math.hypot(x - home.x, y - home.y) / 600).toFixed(3) });
 }
 writeFileSync(
-  new URL("../src/linkedin/global-hub/map.json", import.meta.url),
+  new URL(`../src/linkedin/global-hub/${WIDE ? "map-wide" : "map"}.json`, import.meta.url),
   JSON.stringify({ land: round(path(land)), home: pt(HOME), markets: MARKETS.map(pt), agents }),
 );
 console.log("ok", pt(HOME));

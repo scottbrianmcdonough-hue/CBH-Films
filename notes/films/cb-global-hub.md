@@ -39,3 +39,8 @@ First version sent 11 Nov for Phill's sign off.
 - Scott (11 Nov): "don't like the count noise, sounds like sparkling" (the shimmer under the count is out), "maybe needs a
   logo and ending": from frame 396 all fades to black and the official logo rises with its light sweep; 17.0s. The
   still for the post is the two stats frame (392).
+- Landscape for LinkedIn (Scott, 11 Nov: "this is for LinkedIn so landscape", "needs better spacing"):
+  `cb-global-hub-wide` (`src/linkedin/GlobalHubWide.tsx`, 1920 x 1080, map from `global-hub-map.mjs --wide`): the
+  headline and stats in a column on the left, the door and the world on the right, all text above the bottom quarter
+  (LinkedIn's player bar). The 4:5 `cb-global-hub` kept. Palette: core only (black, gold, pale); the secondary blue
+  `#779096` offered as a faint ocean tint, not used.

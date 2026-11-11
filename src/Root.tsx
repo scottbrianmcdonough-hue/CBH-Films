@@ -192,6 +192,7 @@ import { GN_FULL_HOUSE_FRAMES, GNFullHouse } from "./linkedin/GNFullHouse";
 import { GN_KEY_FOB_FRAMES, GNKeyFob } from "./linkedin/GNKeyFob";
 import { GN_MAP_FRAMES, GNMap } from "./linkedin/GNMap";
 import { GLOBAL_HUB_FRAMES, GlobalHub } from "./linkedin/GlobalHub";
+import { GLOBAL_HUB_WIDE_FRAMES, GlobalHubWide } from "./linkedin/GlobalHubWide";
 import {
   CRAFT_FILMS,
   REWIND_FILMS,
@@ -1148,6 +1149,14 @@ export const RemotionRoot: React.FC = () => {
         height={GN_HEIGHT}
       />
       {/* Great National Group brand moment: their hotels on the map, gathering into the badge */}
+      <Composition
+        id="cb-global-hub-wide"
+        component={GlobalHubWide}
+        durationInFrames={GLOBAL_HUB_WIDE_FRAMES}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
       <Composition
         id="cb-global-hub"
         component={GlobalHub}
