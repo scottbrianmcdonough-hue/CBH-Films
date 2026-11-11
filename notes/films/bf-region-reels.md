@@ -23,6 +23,6 @@ so a region's spotlight and its region reel shouldn't both go out.
   Midlands 27.0s (deep house instrumental), the South 23.6s (Luxury Life).
 - Final offers and order (Scott, 11 Nov, the list): "Save X%" on every card; Oaklands Hall moved to the North (first,
   £77.90), Skipton then Gomersal (both £85); East & Midlands Whittlebury, Forest of Arden, The Kingfisher (kept from its
-  booking page, Save 30%; not on Scott's list, to confirm), Jockey Club Rooms; the South and Scotland & Wales as before.
+  booking page, Save 30%; not on Scott's list because it was a late addition, Scott confirmed), Jockey Club Rooms; the South and Scotland & Wales as before.
   Each end card's "Save up to" is the region's best: the North 20%, the rest 30%. No prices on screen. Ruthin's hot tub
   reframed onto the woman on the left and the toast (cx 640). The North now 36.4s, East & Midlands 23.1s.
