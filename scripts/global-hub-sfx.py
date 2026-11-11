@@ -57,7 +57,7 @@ def put(sig, frame, pan=0.0):
 
 put(latch(), 118 if (DIAGRAM or STORY) else OPEN + 2)
 notes = [392.0, 440.0, 523.25, 587.33, 698.46, 783.99, 880.0, 1046.5]  # G A C D F G A C (the piano's F major)
-if STORY:  # Fine Taste sits in G major: G major pentatonic
+if STORY and FINE_TASTE:  # Fine Taste sits in G major: G major pentatonic
     notes = [392.0, 440.0, 493.88, 587.33, 659.25, 783.99, 880.0, 987.77]
 pans = [-0.5, 0.3, -0.6, 0.6, -0.2, 0.5, -0.4, 0.2]
 for f, fr, p in zip(notes, LANDS, pans):
@@ -69,15 +69,17 @@ tmp = "/dev/shm/global-hub-piano.wav"
 # the story is on Fine Taste (miyagisama; Scott, 11 Nov: the piano "is like looping"): from 37.25s, its quiet breakdown
 # under the diagram, the bass back (46.32s) as the camera comes through into the world (story 9.07s), its own ending
 # under the logo
-SRC = "public/campaigns/deck/music-fine-taste.mp3" if STORY else "public/campaigns/bonfire/cinematic-piano.mp3"
-SS = "37.25" if STORY else "0"
+# (Scott then went back to the piano: FINE_TASTE stays off)
+FINE_TASTE = False
+SRC = "public/campaigns/deck/music-fine-taste.mp3" if (STORY and FINE_TASTE) else "public/campaigns/bonfire/cinematic-piano.mp3"
+SS = "37.25" if (STORY and FINE_TASTE) else "0"
 subprocess.run(["ffmpeg", "-v", "error", "-y", "-ss", SS, "-i", SRC, "-t", str(DUR),
                 "-ar", str(SR), "-ac", "2", tmp], check=True)
 piano, _ = sf.read(tmp)
 piano = np.pad(piano, ((0, max(0, n - len(piano))), (0, 0)))[:n]
 fade = np.ones(n); f0 = int((DUR - 2.4) * SR); fade[f0:] = np.linspace(1, 0, n - f0) ** 1.5
 fade[: int(0.15 * SR)] = np.linspace(0, 1, int(0.15 * SR))
-mix = piano * (1.3 if STORY else 0.8) * fade[:, None] + fx
+mix = piano * (1.3 if (STORY and FINE_TASTE) else 0.8) * fade[:, None] + fx
 mix /= max(1.0, np.abs(mix).max() / 0.89)
 os.makedirs("public/campaigns/global-hub", exist_ok=True)
 sf.write("public/campaigns/global-hub/" + ("sound-story.wav" if STORY else "sound-diagram.wav" if DIAGRAM else "sound.wav"), mix, SR, subtype="PCM_16")

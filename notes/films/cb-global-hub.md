@@ -78,3 +78,5 @@ First version sent 11 Nov for Phill's sign off.
   the repo for the deck and on the unposted Magnet CB) from 37.25s: its quiet breakdown under the diagram, the bass back
   (46.32s) as the camera comes through into the world, its own ending under the logo; the bells retuned to its G major.
   -15.2 LUFS. Polish: the diagram centred (OFFX 130), its faint outline stronger on frame one (the preview).
+- Scott (11 Nov: "go back to the previous music"): `cbhub-story` back on the soft cinematic piano (`FINE_TASTE = False` in
+  the sfx script), bells in F major again; the centring and frame one polish kept.

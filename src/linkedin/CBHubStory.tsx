@@ -24,7 +24,7 @@ export const CBHubStory: React.FC = () => {
   const cy = PARTNERS_BOX.y + PARTNERS_BOX.h / 2;
   return (
     <AbsoluteFill style={{ backgroundColor: "#000" }}>
-      <Audio src={staticFile("campaigns/global-hub/sound-story.wav")} volume={0.8} />
+      <Audio src={staticFile("campaigns/global-hub/sound-story.wav")} volume={0.7} />
       <Sequence from={MAP_AT}>
         <GlobalHubWide noDoor silent />
       </Sequence>
