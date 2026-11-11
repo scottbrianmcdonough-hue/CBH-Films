@@ -69,3 +69,8 @@ First version sent 11 Nov for Phill's sign off.
   S curves fanning out from the CBHUB (`curve()`), light runs along every connector once lit (the faint ones fainter),
   soft rings ripple out from the hub like a heartbeat, and the diagram's dotted hotel to CRS link is back as a faint
   curve.
+- Scott (11 Nov: "you had the hub right, but the Media and the ones on the right were darkened, keep it close to the
+  diagram"): every box at full strength, and the diagram's other boxes back: CB Digital (red) with Classicbritishhotels.com
+  and Hotel website, RMS (green) under the channel manager, RFP Tool and Media Hub (blue), the hotel gold, as Phill's
+  diagram colours them (the palette's secondaries, here because the diagram uses them); its labels as the diagram (CB
+  Book Direct, CB GDS, CB IDS, CB Channel Connect). The flowing curves, light and hub heartbeat kept.
