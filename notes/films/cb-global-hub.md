@@ -51,3 +51,8 @@ First version sent 11 Nov for Phill's sign off.
   Crest Hotels with global distribution, robust demand generation, and seamless access to its agency and corporate
   commercial partnerships"): the caps now read CBHUB (both cuts); the post says CBHUB; Crest Hotels not named (Scott:
   "don't mention Crest as a proof point"). Renders cbhub-landscape.mp4 and cbhub-4x5.mp4.
+- What the CBHUB is (Phill, 11 Nov, with "CB - Distribution Ecosystem - 2026.pptx"): the Aven/SynXis platform, the CB
+  CRS Distribution Hub in the ecosystem diagram, connecting hotels to the GDS (with CB IDS and CB Channel Connect) and
+  through them to CBH's strategic agency partners, Global Consortia and Channel Connect partners. Book Direct, OTAs and
+  CB Digital sit outside it. The post now calls it "our central distribution hub" (was "centralised ecosystem ... from
+  travel trade to direct bookings", too broad); the vendor isn't named. The animation stands.
