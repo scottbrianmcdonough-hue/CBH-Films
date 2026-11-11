@@ -57,7 +57,7 @@ with no history and no renders:
   (gold caps place, spaced, underlined; cream Cormorant name).
 - No hashtags in post copy for now (Scott, 6 Nov: "if they don't add, they just clutter, going to try cleaner posts for a while without hashtags"): tickets leave out the Hashtags section; tag the hotels instead.
 - Urgency lines (Bianca, 11 Nov): never "while the best dates are still free" (or "before your favourite dates go");
-  say something like "lock your dates in before it's gone".
+  her own fix on the North post: "Claim your weekend away and lock in your dates before they're gone."
 - End lines: an "X first, or Y?" question is good but not every time (Scott, 3 Nov: "getting to be a pattern");
   mix in a statement ("Tee off, / then turn in").
 
