@@ -103,3 +103,7 @@ First version sent 11 Nov for Phill's sign off.
   rebalanced (headline 166, stats 534, strapline 786). Not in the post: it ends on Phill's call to action.
 - Scott: "too many gold underlines?": the short rules under the two stats are gone; the CBHub label keeps the only one.
   FINAL for LinkedIn: CBHub-LinkedIn-final.mp4 (16:9, 19.0s, -15.0 LUFS) and the still.
+- Scott (11 Nov: "take it off the end card, keep it under the count", "we'll put it back under as the strapline for the
+  post"): the end card is the logo alone again (340px, shimmer); "Empowering Independents" stays under the two stats, and
+  the post closes on it as its strapline, after Phill's call to action. FINAL: CBHub-LinkedIn-final.mp4 (16:9, 19.0s,
+  -15.0 LUFS) and the still at 14.6s. The 4:5 `cb-global-hub` still has it under the logo (not posting).
