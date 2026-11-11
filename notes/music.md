@@ -23,6 +23,7 @@ Tracks used and where, so a new film doesn't repeat one by accident. [All films]
 | Driving Ambition (Mixkit 32) | tried on [gomersal-park-spotlight](films/gomersal-park-spotlight.md) ("too dramatic"), the AMC reel and `cbh-clear-skies-3d` (a test) |
 | Deep Classy House | [november-out-there](films/november-out-there.md) (from 142.6s), [cbh-screen-time](films/cbh-screen-time.md) (its opening) |
 | Deep House Sunset (Sunset House Grooves, Pixabay 538759) | [brand-stings](films/brand-stings.md) (`cbh-circle-c`), [depth-demo](films/depth-demo.md), [rutland-four-roots](films/rutland-four-roots.md) (its opening and last phrase); ruled out for `cbh-screens` |
+| Fine Taste by miyagisama | [magnet-cb](films/magnet-cb.md) (unposted), [cb-global-hub](films/cb-global-hub.md) (`cbhub-story`, LinkedIn) |
 | Funk Jazz Shuffle Groove by Catch22Music (Pixabay 358859) | [the-mount-collage](films/the-mount-collage.md) (the one to post) |
 | Funk Music by SigmaMusicArt | [october-best-loved](films/october-best-loved.md) |
 | Funkee Monkeee (Mixkit 1140) | [stick-flip](films/stick-flip.md) |

@@ -1,7 +1,7 @@
 import React from "react";
 import { Audio } from "@remotion/media";
 import { AbsoluteFill, Easing, interpolate, Sequence, staticFile, useCurrentFrame } from "remotion";
-import { CBHubDiagram, PARTNERS_BOX } from "./CBHubDiagram";
+import { CBHubDiagram, OFFX, PARTNERS_BOX } from "./CBHubDiagram";
 import { GlobalHubWide, GLOBAL_HUB_WIDE_FRAMES } from "./GlobalHubWide";
 
 // The CBHUB, diagram then map (Scott, 11 Nov: "incorporate the maps and then the diagram, both somehow ... do your magic").
@@ -20,11 +20,11 @@ export const CBHubStory: React.FC = () => {
   const frame = useCurrentFrame();
   const push = interpolate(frame, PUSH, [0, 1], { ...clamp, easing: Easing.in(Easing.cubic) });
   const gone = interpolate(frame, [PUSH[1] - 18, PUSH[1]], [1, 0], clamp);
-  const cx = PARTNERS_BOX.x + PARTNERS_BOX.w / 2;
+  const cx = PARTNERS_BOX.x + PARTNERS_BOX.w / 2 + OFFX;
   const cy = PARTNERS_BOX.y + PARTNERS_BOX.h / 2;
   return (
     <AbsoluteFill style={{ backgroundColor: "#000" }}>
-      <Audio src={staticFile("campaigns/global-hub/sound-story.wav")} volume={0.75} />
+      <Audio src={staticFile("campaigns/global-hub/sound-story.wav")} volume={0.8} />
       <Sequence from={MAP_AT}>
         <GlobalHubWide noDoor silent />
       </Sequence>

@@ -13,6 +13,8 @@ import { CBLogo } from "../hotel-film/components/CBLogo";
 // page), then the logo. All text above the bottom quarter (LinkedIn's player bar).
 
 export const CBHUB_DIAGRAM_FRAMES = 540;
+// the diagram drawn left to right sits left of centre: shift it right as a whole (polish, 11 Nov)
+export const OFFX = 130;
 const END = 426;
 const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
 const ramp = (f: number, a: number, b: number, e = Easing.out(Easing.cubic)) =>
@@ -119,7 +121,7 @@ const NodeBox: React.FC<{ b: Box; frame: number; lit: number }> = ({ b, frame, l
   const per = 2 * (b.w + b.h);
   return (
     <g opacity={op}>
-      <rect x={b.x} y={b.y} width={b.w} height={b.h} rx={8} fill="none" stroke={palette.gold} strokeWidth={1} opacity={0.16} />
+      <rect x={b.x} y={b.y} width={b.w} height={b.h} rx={8} fill="none" stroke={palette.gold} strokeWidth={1} opacity={0.32} />
       <rect
         x={b.x}
         y={b.y}
@@ -163,6 +165,7 @@ export const CBHubDiagram: React.FC<{ act?: boolean }> = ({ act }) => {
   return (
     <AbsoluteFill style={{ backgroundColor: palette.black }}>
       {act ? null : <Audio src={staticFile("campaigns/global-hub/sound-diagram.wav")} volume={0.75} />}
+      <AbsoluteFill style={{ transform: `translateX(${OFFX}px)` }}>
       <AbsoluteFill
         style={{
           background: `radial-gradient(ellipse 34% 40% at ${(HUB.x + HUB.w / 2) / 19.2}% ${(HUB.y + HUB.h / 2) / 10.8}%, rgba(199,171,119,${0.05 + 0.13 * hubLit}), transparent 72%)`,
@@ -307,6 +310,7 @@ export const CBHubDiagram: React.FC<{ act?: boolean }> = ({ act }) => {
         <div style={{ fontFamily: sans, fontSize: 21, color: palette.pale, opacity: 0.85, marginTop: 4 }}>Central distribution hub</div>
       </div>
 
+      </AbsoluteFill>
       {/* the headline, from frame one (in the story it gives way before the push to the map) */}
       <div style={{ position: "absolute", top: 96, left: 120, opacity: act ? 1 - ramp(frame, 204, 220) : 1 }}>
         <div style={{ fontFamily: serif, fontSize: 84, lineHeight: 1.04, color: palette.pale }}>

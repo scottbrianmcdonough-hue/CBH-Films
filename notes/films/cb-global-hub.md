@@ -74,3 +74,7 @@ First version sent 11 Nov for Phill's sign off.
   and Hotel website, RMS (green) under the channel manager, RFP Tool and Media Hub (blue), the hotel gold, as Phill's
   diagram colours them (the palette's secondaries, here because the diagram uses them); its labels as the diagram (CB
   Book Direct, CB GDS, CB IDS, CB Channel Connect). The flowing curves, light and hub heartbeat kept.
+- Track (Scott, 11 Nov: the piano "is like looping", "polish it up"): `cbhub-story` is now on Fine Taste (miyagisama, in
+  the repo for the deck and on the unposted Magnet CB) from 37.25s: its quiet breakdown under the diagram, the bass back
+  (46.32s) as the camera comes through into the world, its own ending under the logo; the bells retuned to its G major.
+  -15.2 LUFS. Polish: the diagram centred (OFFX 130), its faint outline stronger on frame one (the preview).
