@@ -275,7 +275,7 @@ export const GlobalHubWide: React.FC<{ noDoor?: boolean; silent?: boolean }> = (
         </>
       )}
       {/* the headline, from frame one */}
-      <div style={{ position: "absolute", top: 190, left: 130, width: 900, textAlign: "left", whiteSpace: "nowrap", opacity: noDoor ? ramp(frame, 96, 122) : 1 }}>
+      <div style={{ position: "absolute", top: 166, left: 130, width: 900, textAlign: "left", whiteSpace: "nowrap", opacity: noDoor ? ramp(frame, 96, 122) : 1 }}>
         <div style={{ display: "inline-block" }}>
           <div
             style={{
@@ -301,7 +301,7 @@ export const GlobalHubWide: React.FC<{ noDoor?: boolean; silent?: boolean }> = (
       <div
         style={{
           position: "absolute",
-          top: 540,
+          top: 534,
           left: 130,
           width: 640,
           textAlign: "left",
@@ -331,7 +331,7 @@ export const GlobalHubWide: React.FC<{ noDoor?: boolean; silent?: boolean }> = (
       <div
         style={{
           position: "absolute",
-          top: 540,
+          top: 534,
           left: 130,
           width: 760,
           display: "flex",
@@ -354,10 +354,28 @@ export const GlobalHubWide: React.FC<{ noDoor?: boolean; silent?: boolean }> = (
             <div style={{ fontFamily: serif, fontSize: 116, lineHeight: 1, color: palette.gold, fontVariantNumeric: "lining-nums tabular-nums" }}>
               {st.n}
             </div>
-            <div style={{ height: 1.5, width: 64, background: palette.gold, opacity: 0.6, margin: "18px 0 14px" }} />
+            {/* no rule under the numbers (Scott, 11 Nov: "too many gold underlines?"): the CBHub label keeps the only one */}
+            <div style={{ height: 14 }} />
             <div style={{ fontFamily: serif, fontSize: 34, color: palette.pale, whiteSpace: "nowrap" }}>{st.label}</div>
           </div>
         ))}
+      </div>
+      {/* the strapline under the stats, so the still carries it too (Phill: "get the Empowering Independents strapline
+          in"; Scott: "try in the graphic") */}
+      <div
+        style={{
+          position: "absolute",
+          top: 786,
+          left: 130,
+          fontFamily: serif,
+          fontStyle: "italic",
+          fontSize: 44,
+          color: palette.pale,
+          opacity: ramp(frame, S2 + 70, S2 + 94),
+          transform: `translateY(${(1 - ramp(frame, S2 + 70, S2 + 94)) * 12}px)`,
+        }}
+      >
+        Empowering Independents
       </div>
       <Img
         src={staticFile("brand/cb-watermark.png")}

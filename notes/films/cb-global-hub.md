@@ -98,3 +98,8 @@ First version sent 11 Nov for Phill's sign off.
 - Phill (11 Nov): "love the graphic, I was hoping for a world map! Copy great, just need to add a 0 to 750,000+, maybe get
   the Empowering Independents strapline in too": the copy's 75,000+ becomes 750,000+ (the animation already said so);
   "Empowering Independents" in pale Cormorant under the logo at the end (both cuts), and as the post's closing line.
+- Strapline in the graphic (Scott, 11 Nov: "try in the graphic, suggest and apply"): "Empowering Independents" in pale
+  Cormorant italic under the two stats (the still carries it), as well as under the logo at the end; the left column
+  rebalanced (headline 166, stats 534, strapline 786). Not in the post: it ends on Phill's call to action.
+- Scott: "too many gold underlines?": the short rules under the two stats are gone; the CBHub label keeps the only one.
+  FINAL for LinkedIn: CBHub-LinkedIn-final.mp4 (16:9, 19.0s, -15.0 LUFS) and the still.
