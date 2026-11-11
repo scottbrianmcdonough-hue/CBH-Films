@@ -9,7 +9,7 @@ import numpy as np, subprocess, soundfile as sf, os
 
 SR = 48000
 FPS = 30
-DUR = 17.0
+DUR = 19.0
 OPEN = 12
 LANDS = [112 + 16 * i + 28 for i in range(8)]
 STAT2 = 276

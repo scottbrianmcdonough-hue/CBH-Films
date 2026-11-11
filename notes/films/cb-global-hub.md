@@ -44,3 +44,6 @@ First version sent 11 Nov for Phill's sign off.
   headline and stats in a column on the left, the door and the world on the right, all text above the bottom quarter
   (LinkedIn's player bar). The 4:5 `cb-global-hub` kept. Palette: core only (black, gold, pale); the secondary blue
   `#779096` offered as a faint ocean tint, not used.
+- Polish (Scott, 11 Nov: "make sure the last bit holds a beat longer so the whole animation registers"): the two stats
+  hold 2s longer before the ending (END 456, 19.0s, both cuts; the sound file 19s); the count fades out before the
+  stats come in (the labels ghosted over each other). FINAL: landscape -15.2 LUFS, 4:5 to match; still at 14.5s.

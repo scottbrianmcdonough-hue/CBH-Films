@@ -21,8 +21,8 @@ import map from "./global-hub/map-wide.json";
 // "THE WAIT IS OVER" (Scott, 11 Nov). Sound: the soft cinematic piano with a latch and eight bells (no shimmer under the count, Scott). Ends on the
 // official logo with its light sweep (Scott: "maybe needs a logo and ending").
 
-export const GLOBAL_HUB_WIDE_FRAMES = 510;
-const END = 396; // the ending: all to black, the CBH logo rises with its light sweep
+export const GLOBAL_HUB_WIDE_FRAMES = 570;
+const END = 456; // the ending: all to black, the CBH logo rises with its light sweep
 const STAT2 = 276; // the second stat: 750,000+ global travel agents (the membership page)
 type P = { id: string; x: number; y: number };
 const HOME = map.home as P;
@@ -116,7 +116,9 @@ export const GlobalHubWide: React.FC = () => {
   const lastLand = MARKETS.reduce((a, _, i) => (frame >= landOf(i) ? landOf(i) : a), -99);
   const pop = ramp(frame, lastLand, lastLand + 10, Easing.out(Easing.back(2)));
   const countOn = ramp(frame, landOf(0) - 8, landOf(0) + 6);
-  const swap = ramp(frame, STAT2, STAT2 + 16, Easing.inOut(Easing.cubic));
+  // the count out first, then the two stats in (no overlap: the labels ghosted, polish 11 Nov)
+  const swapOut = ramp(frame, STAT2, STAT2 + 8, Easing.in(Easing.cubic));
+  const swap = ramp(frame, STAT2 + 8, STAT2 + 22, Easing.out(Easing.cubic));
   const agentsCount = ramp(frame, STAT2 + 6, STAT2 + 66, Easing.out(Easing.cubic));
   const logo = ramp(frame, STAT2 + 80, STAT2 + 104);
 
@@ -294,7 +296,7 @@ export const GlobalHubWide: React.FC = () => {
           left: 130,
           width: 640,
           textAlign: "left",
-          opacity: countOn * (1 - swap),
+          opacity: countOn * (1 - swapOut),
         }}
       >
         <div
