@@ -5,13 +5,20 @@ track and subtle sound effects"): a quiet latch as the door opens and a soft bel
 rising through F major pentatonic (the piano sits on C and F), plus a faint shimmer as the agents' dust spreads. Frame
 times match GlobalHub.tsx. Writes public/campaigns/global-hub/sound.wav (14s, stereo, the piano mixed in).
 Usage: scripts/global-hub-sfx.py"""
-import numpy as np, subprocess, soundfile as sf, os
+import numpy as np, subprocess, soundfile as sf, os, sys
+
+# --diagram: the CBHUB diagram cut (src/linkedin/CBHubDiagram.tsx): a soft click as the hub lights, the eight bells on
+# the partnership count's ticks, 18s; writes sound-diagram.wav
+DIAGRAM = "--diagram" in sys.argv
+# --story: the diagram then the map (src/linkedin/CBHubStory.tsx): the click as the hub lights, the bells as the eight
+# markets land in the map act (it starts at frame 180), 25s; writes sound-story.wav
+STORY = "--story" in sys.argv
 
 SR = 48000
 FPS = 30
-DUR = 19.0
+DUR = 25.0 if STORY else 18.0 if DIAGRAM else 19.0
 OPEN = 12
-LANDS = [112 + 16 * i + 28 for i in range(8)]
+LANDS = [180 + 112 + 16 * i + 28 for i in range(8)] if STORY else [206 + 10 + i * 9 for i in range(8)] if DIAGRAM else [112 + 16 * i + 28 for i in range(8)]
 STAT2 = 276
 n = int(DUR * SR)
 rng = np.random.default_rng(3)
@@ -48,7 +55,7 @@ def put(sig, frame, pan=0.0):
     fx[i : i + len(sig), 0] += sig * (1 - pan) ** 0.5 / 2 ** -0.5 * 0.7071
     fx[i : i + len(sig), 1] += sig * (1 + pan) ** 0.5 / 2 ** -0.5 * 0.7071
 
-put(latch(), OPEN + 2)
+put(latch(), 118 if (DIAGRAM or STORY) else OPEN + 2)
 notes = [392.0, 440.0, 523.25, 587.33, 698.46, 783.99, 880.0, 1046.5]  # G A C D F G A C
 pans = [-0.5, 0.3, -0.6, 0.6, -0.2, 0.5, -0.4, 0.2]
 for f, fr, p in zip(notes, LANDS, pans):
@@ -66,5 +73,5 @@ fade[: int(0.15 * SR)] = np.linspace(0, 1, int(0.15 * SR))
 mix = piano * 0.8 * fade[:, None] + fx
 mix /= max(1.0, np.abs(mix).max() / 0.89)
 os.makedirs("public/campaigns/global-hub", exist_ok=True)
-sf.write("public/campaigns/global-hub/sound.wav", mix, SR, subtype="PCM_16")
+sf.write("public/campaigns/global-hub/" + ("sound-story.wav" if STORY else "sound-diagram.wav" if DIAGRAM else "sound.wav"), mix, SR, subtype="PCM_16")
 print("peak", np.abs(mix).max())

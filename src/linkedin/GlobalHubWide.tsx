@@ -106,7 +106,7 @@ const Light: React.FC<{ x: number; y: number; on: number; ripple: number; r?: nu
   </g>
 );
 
-export const GlobalHubWide: React.FC = () => {
+export const GlobalHubWide: React.FC<{ noDoor?: boolean; silent?: boolean }> = ({ noDoor, silent }) => {
   const frame = useCurrentFrame();
   const draw = ramp(frame, DRAW[0], DRAW[1], Easing.inOut(Easing.cubic));
   const open = ramp(frame, OPEN[0], OPEN[1], Easing.inOut(Easing.cubic));
@@ -125,7 +125,7 @@ export const GlobalHubWide: React.FC = () => {
   return (
     <AbsoluteFill style={{ backgroundColor: palette.black }}>
       {/* the piano with the latch, the eight bells and the shimmer (scripts/global-hub-sfx.py) */}
-      <Audio src={staticFile("campaigns/global-hub/sound.wav")} volume={0.75} />
+      {silent ? null : <Audio src={staticFile("campaigns/global-hub/sound.wav")} volume={0.75} />}
       <AbsoluteFill
         style={{
           background: `radial-gradient(ellipse 40% 40% at 68% 52%, rgba(199,171,119,0.10), transparent 72%)`,
@@ -213,6 +213,8 @@ export const GlobalHubWide: React.FC = () => {
       </svg>
 
       </AbsoluteFill>
+      {noDoor ? null : (
+        <>
       {/* warm light in the doorway as it opens, fading as we go through */}
       <AbsoluteFill
         style={{
@@ -264,8 +266,10 @@ export const GlobalHubWide: React.FC = () => {
           </div>
         </div>
       </AbsoluteFill>
+        </>
+      )}
       {/* the headline, from frame one */}
-      <div style={{ position: "absolute", top: 190, left: 130, width: 900, textAlign: "left", whiteSpace: "nowrap" }}>
+      <div style={{ position: "absolute", top: 190, left: 130, width: 900, textAlign: "left", whiteSpace: "nowrap", opacity: noDoor ? ramp(frame, 96, 122) : 1 }}>
         <div style={{ display: "inline-block" }}>
           <div
             style={{

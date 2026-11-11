@@ -56,3 +56,12 @@ First version sent 11 Nov for Phill's sign off.
   through them to CBH's strategic agency partners, Global Consortia and Channel Connect partners. Book Direct, OTAs and
   CB Digital sit outside it. The post now calls it "our central distribution hub" (was "centralised ecosystem ... from
   travel trade to direct bookings", too broad); the vendor isn't named. The animation stands.
+- Reworked on Phill's diagram (Scott, 11 Nov: "rework the animation so it's like Phill's diagram", then "incorporate the
+  maps and then the diagram, both"): `cbhub-story` (`src/linkedin/CBHubStory.tsx`, 16:9, 25.0s, -14.5 LUFS). Act 1 is
+  the diagram redrawn in the house look (`CBHubDiagram.tsx`): it draws itself (a faint outline from frame one for the
+  preview), the parts outside the hub faint (OTA, Book Direct, RFP Tool, Media Hub), the hotel lights gold, a pulse runs
+  through the channel manager into the CBHUB ("Central distribution hub"), which glows with a soft click, on down to the
+  GDS, IDS and Channel Connect and the partners bar (strategic agency partners, global consortia and channel partners).
+  The camera pushes into the partners bar and comes out over the UK as the world draws back: act 2 is the map cut
+  without its door (GlobalHubWide noDoor), the lines and bells, 8 new partnerships, 750,000+ global travel agents, the
+  logo. One sound (`global-hub-sfx.py --story`, sound-story.wav). The diagram alone is `cbhub-diagram`.
