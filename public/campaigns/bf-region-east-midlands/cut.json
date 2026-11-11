@@ -55,18 +55,6 @@
    "from": 0,
    "frames": 58,
    "vf": "eq=saturation=1.0:contrast=1.03"
-  },
-  {
-   "src": "public/campaigns/bf-region-east-midlands/clips/h4a.mp4",
-   "from": 0,
-   "frames": 58,
-   "vf": "eq=saturation=1.0:contrast=1.03"
-  },
-  {
-   "src": "public/campaigns/bf-region-east-midlands/clips/h4b.mp4",
-   "from": 0,
-   "frames": 58,
-   "vf": "eq=saturation=1.0:contrast=1.03"
   }
  ],
  "fade": 22,
