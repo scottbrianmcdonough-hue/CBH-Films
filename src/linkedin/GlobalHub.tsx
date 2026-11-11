@@ -14,10 +14,12 @@ import map from "./global-hub/map.json";
 // headline is there from frame one (LinkedIn previews the first frame), and the last frame stands as the still. The
 // new CBH palette (Bianca, 10 Nov): black, gold and the pale neutral only.
 
-export const GLOBAL_HUB_FRAMES = 330;
+export const GLOBAL_HUB_FRAMES = 420;
+const STAT2 = 276; // the second stat: 750,000+ global travel agents (the membership page)
 type P = { id: string; x: number; y: number };
 const HOME = map.home as P;
 const MARKETS = map.markets as P[];
+const AGENTS = map.agents as { x: number; y: number; d: number }[];
 const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
 const ramp = (f: number, a: number, b: number, e = Easing.out(Easing.cubic)) =>
   interpolate(f, [a, b], [0, 1], { ...clamp, easing: e });
@@ -106,7 +108,9 @@ export const GlobalHub: React.FC = () => {
   const lastLand = MARKETS.reduce((a, _, i) => (frame >= landOf(i) ? landOf(i) : a), -99);
   const pop = ramp(frame, lastLand, lastLand + 10, Easing.out(Easing.back(2)));
   const countOn = ramp(frame, landOf(0) - 8, landOf(0) + 6);
-  const logo = ramp(frame, landOf(MARKETS.length - 1) + 20, landOf(MARKETS.length - 1) + 44);
+  const swap = ramp(frame, STAT2, STAT2 + 16, Easing.inOut(Easing.cubic));
+  const agentsCount = ramp(frame, STAT2 + 6, STAT2 + 66, Easing.out(Easing.cubic));
+  const logo = ramp(frame, STAT2 + 80, STAT2 + 104);
 
   return (
     <AbsoluteFill style={{ backgroundColor: palette.black }}>
@@ -142,6 +146,14 @@ export const GlobalHub: React.FC = () => {
           strokeDashoffset={1 - draw}
         />
 
+        {/* the agents: a dust of gold spreading out from the UK as the second count climbs */}
+        {AGENTS.map((a, k) => {
+          const t0 = STAT2 + 4 + a.d * 46;
+          const on = ramp(frame, t0, t0 + 12);
+          if (on <= 0) return null;
+          const tw = 0.45 + 0.4 * Math.sin((frame + k * 37) / 9);
+          return <circle key={k} cx={a.x} cy={a.y} r={1.5} fill={palette.gold} opacity={on * tw} />;
+        })}
         {MARKETS.map((m, i) => {
           const t = ramp(frame, startOf(i), landOf(i), Easing.inOut(Easing.cubic));
           if (t <= 0) return null;
@@ -265,7 +277,7 @@ export const GlobalHub: React.FC = () => {
         </div>
       </div>
 
-      {/* the count, climbing as each market lights */}
+      {/* the count, climbing as each market lights; then it steps aside for the second stat */}
       <div
         style={{
           position: "absolute",
@@ -273,7 +285,7 @@ export const GlobalHub: React.FC = () => {
           left: 0,
           right: 0,
           textAlign: "center",
-          opacity: countOn,
+          opacity: countOn * (1 - swap),
         }}
       >
         <div
@@ -292,10 +304,40 @@ export const GlobalHub: React.FC = () => {
           new strategic partnerships this year
         </div>
       </div>
-
+      {/* the two stats side by side, the last frame's still */}
+      <div
+        style={{
+          position: "absolute",
+          top: 1000,
+          left: 40,
+          right: 140,
+          display: "flex",
+          justifyContent: "space-around",
+          alignItems: "flex-start",
+          textAlign: "center",
+          opacity: swap,
+          transform: `translateY(${(1 - swap) * 18}px)`,
+        }}
+      >
+        {[
+          { n: "8", label: "new partnerships this year" },
+          {
+            n: `${Math.round(750000 * agentsCount).toLocaleString("en-GB")}${agentsCount >= 1 ? "+" : ""}`,
+            label: "global travel agents",
+          },
+        ].map((st) => (
+          <div key={st.label} style={{ minWidth: 380 }}>
+            <div style={{ fontFamily: serif, fontSize: 124, lineHeight: 1, color: palette.gold, fontVariantNumeric: "lining-nums tabular-nums" }}>
+              {st.n}
+            </div>
+            <div style={{ height: 1.5, width: 64, background: palette.gold, opacity: 0.6, margin: "18px auto 14px" }} />
+            <div style={{ fontFamily: serif, fontSize: 36, color: palette.pale }}>{st.label}</div>
+          </div>
+        ))}
+      </div>
       <Img
         src={staticFile("brand/cb-watermark.png")}
-        style={{ position: "absolute", left: 920, top: 1190, width: 100, height: 108, opacity: logo }}
+        style={{ position: "absolute", left: 940, top: 1214, width: 92, height: 99, opacity: logo }}
       />
     </AbsoluteFill>
   );

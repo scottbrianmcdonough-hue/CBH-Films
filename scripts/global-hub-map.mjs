@@ -5,7 +5,7 @@
 // ones in MARKETS and rerun. Usage: node scripts/global-hub-map.mjs (writes src/linkedin/global-hub/map.json)
 import { writeFileSync } from "node:fs";
 import { createRequire } from "node:module";
-import { geoEqualEarth, geoPath } from "d3-geo";
+import { geoContains, geoEqualEarth, geoPath } from "d3-geo";
 import { feature } from "topojson-client";
 
 const require = createRequire(import.meta.url);
@@ -40,8 +40,20 @@ const pt = (p) => {
   const [x, y] = projection([p.lon, p.lat]);
   return { id: p.id, x: +x.toFixed(1), y: +y.toFixed(1) };
 };
+// the agents: points scattered over the land (seeded), with their distance from the UK for the spreading wave
+let seed = 7;
+const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
+const home = pt(HOME);
+const agents = [];
+while (agents.length < 420) {
+  const lon = -170 + 340 * rnd();
+  const lat = -55 + 128 * rnd();
+  if (!countries.some((c) => geoContains(c, [lon, lat]))) continue;
+  const [x, y] = projection([lon, lat]);
+  agents.push({ x: +x.toFixed(1), y: +y.toFixed(1), d: +(Math.hypot(x - home.x, y - home.y) / 600).toFixed(3) });
+}
 writeFileSync(
   new URL("../src/linkedin/global-hub/map.json", import.meta.url),
-  JSON.stringify({ land: round(path(land)), home: pt(HOME), markets: MARKETS.map(pt) }),
+  JSON.stringify({ land: round(path(land)), home: pt(HOME), markets: MARKETS.map(pt), agents }),
 );
 console.log("ok", pt(HOME));

@@ -1,6 +1,6 @@
 # CB Global Hub: opening the door
 
-`cb-global-hub` (`src/linkedin/GlobalHub.tsx`, map from `scripts/global-hub-map.mjs`), 4:5, silent, 11s. LinkedIn.
+`cb-global-hub` (`src/linkedin/GlobalHub.tsx`, map from `scripts/global-hub-map.mjs`), 4:5, silent, 14s. LinkedIn.
 Back to [all films](../README.md).
 
 ## Status
@@ -21,3 +21,12 @@ First version sent 11 Nov for Phill's sign off.
 - The eight markets (New York, Los Angeles, São Paulo, Dubai, Mumbai, Singapore, Tokyo, Sydney) are illustrative: the
   partners and their markets weren't given. Swap for the real ones in `MARKETS` and rerun the map script.
 - The new CBH palette (Bianca, 10 Nov): black, gold `#c7ab77`, pale `#f2f0f0` only. No competitor named.
+
+## Notes
+
+- Facts from the membership page (Scott pasted it, 11 Nov; there is no Global Hub page, so the post links to
+  classicbritishhotels.com/membership-for-independent-hotels/): the CB branded GDS chain code puts hotels in front of
+  750,000+ global travel agents. Scott: "as long as it stays clean, add it, make it engaging": after the eighth market
+  the count steps aside for two stats side by side, 8 new partnerships this year and 750,000+ global travel agents
+  counting up, while a dust of gold points spreads over the land from the UK; the last frame is the still.
+- "CB Global Hub" is Phill's name for it and isn't on the site: Phill to confirm it's the name to use publicly.
