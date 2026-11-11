@@ -274,7 +274,7 @@ export const GlobalHub: React.FC = () => {
               textTransform: "uppercase",
             }}
           >
-            CB Global Hub
+            CBHUB
           </div>
           <div style={{ height: 2, background: palette.gold, marginTop: 10 }} />
         </div>
