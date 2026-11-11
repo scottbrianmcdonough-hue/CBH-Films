@@ -80,7 +80,7 @@ piano = np.pad(piano, ((0, max(0, n - len(piano))), (0, 0)))[:n]
 fade = np.ones(n); f0 = int((DUR - 2.4) * SR); fade[f0:] = np.linspace(1, 0, n - f0) ** 1.5
 fade[: int(0.15 * SR)] = np.linspace(0, 1, int(0.15 * SR))
 # the story has no effects, the piano only (Scott, 11 Nov: "lose the sound effects")
-if STORY:
+if True:  # no effects on any cut now (Scott, 11 Nov: "lose the sound effects"), the piano only
     fx[:] = 0
 mix = piano * (1.3 if (STORY and FINE_TASTE) else 0.8) * fade[:, None] + fx
 mix /= max(1.0, np.abs(mix).max() / 0.89)

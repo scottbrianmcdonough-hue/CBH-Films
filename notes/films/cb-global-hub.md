@@ -89,3 +89,8 @@ First version sent 11 Nov for Phill's sign off.
 - Polish pass (11 Nov): the diagram now dissolves through the middle of the push (it had flown past huge, the partners
   bar's words readable over the map). Checked every second: the build, the hold, the push, the count, the swap, the
   stats, the logo. 25.6s, -15.3 LUFS, piano only. Sent with the post and email to Bianca.
+- Bianca (11 Nov): Phill's diagram was an FYI, not for sharing publicly, so V1 goes to Phill: the door and the map, no
+  diagram (`cb-global-hub-wide`, 19.0s, -15.0 LUFS), now piano only (no effects on any cut). Her copy for Phill's
+  sign off: "Unlocking new global markets requires the right distribution channel ... DM our Managing Director
+  @Phillip Allsopp today for a free consultation." It says 75,000+; the animation and the membership page say 750,000+
+  global travel agents: to align before it goes out. `cbhub-story` (with the diagram) is parked.
