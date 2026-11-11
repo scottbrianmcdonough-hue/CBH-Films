@@ -33,3 +33,11 @@ so a region's spotlight and its region reel shouldn't both go out.
   "just in case we get more hotels"). Scotland & Wales' end card becomes "Save up to 35%". Post lines name
   the hotels only until their CBH pages are pasted (facts from the CBH or hotel site only; the rolodex places came from a
   web search).
+- Confirmed from the CBH pages (Scott, 11 Nov). Avisford Park: Arundel/Chichester, West Sussex (Walberton, on the edge of
+  the South Downs National Park), a Georgian manor house in 89 acres with its own 18 hole golf course, the Cedar
+  Restaurant; 25% off room only (from £43.88) and B&B (from £63.75), so first in the South (cheapest). Added to the South
+  carousel ("25% off, breakfast or room only"; exterior, the restaurant as its cover tile) and reel ("Save 25%", the
+  end card stays at 30%), 27.6s, -15.0 LUFS. The Metropole: Llandrindod Wells, Mid Wales, built in the Victorian era as
+  the town grew into a spa town; Rock Spa with an indoor pool; near the Elan Valley; 35% off B&B (from £77.23), so first
+  in Scotland & Wales. Its five photos (exterior, pool, Elan Valley, afternoon tea, tower room) to be re-sent as files.
+  Photos in `public/hotels/avisford-park/` (exterior, golf, pool, restaurant, terrace), from the CBH site.
