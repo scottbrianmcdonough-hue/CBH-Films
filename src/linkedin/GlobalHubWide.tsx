@@ -284,10 +284,9 @@ export const GlobalHubWide: React.FC<{ noDoor?: boolean; silent?: boolean }> = (
               fontSize: 46,
               letterSpacing: "0.04em",
               color: palette.gold,
-              textTransform: "uppercase",
             }}
           >
-            CBHUB
+            CBHub
           </div>
           <div style={{ height: 2, background: palette.gold, marginTop: 10 }} />
         </div>

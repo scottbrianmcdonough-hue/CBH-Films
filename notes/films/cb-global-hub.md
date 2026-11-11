@@ -94,3 +94,4 @@ First version sent 11 Nov for Phill's sign off.
   sign off: "Unlocking new global markets requires the right distribution channel ... DM our Managing Director
   @Phillip Allsopp today for a free consultation." It says 75,000+; the animation and the membership page say 750,000+
   global travel agents: to align before it goes out. `cbhub-story` (with the diagram) is parked.
+- The label reads "CBHub" (Scott, 11 Nov: Bianca and Phill write it CBHub), bold gold, not forced to capitals; both cuts.
