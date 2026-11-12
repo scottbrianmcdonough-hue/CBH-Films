@@ -76,3 +76,6 @@ so a region's spotlight and its region reel shouldn't both go out.
   exterior alone with a slow push and a sideways glide, left and right in turn (`still-push.py --dx`, the spotlights'
   move), its card (place, name, the pill counting up); the end card as before. North a bar a hotel (92 BPM, music from
   55 again), East & Midlands and the South two bars. North 21.5s, East & Midlands 23.1s, South 27.6s; -15.0 to -15.2 LUFS.
+- North polish (Scott, 12 Nov: "doesn't have to go back and forth ... the pans", then "not one way, just not opposite
+  each time"): the moves mixed per region (`moves`): Oaklands a straight push in, Skipton and Gomersal glide right,
+  Waterton a push in, Holdsworth glides left. Ticket hook and length updated (21.5s).
