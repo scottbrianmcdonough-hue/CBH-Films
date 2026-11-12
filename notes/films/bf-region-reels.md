@@ -57,3 +57,9 @@ so a region's spotlight and its region reel shouldn't both go out.
 - Offers confirmed on the CBH pages (Scott, 12 Nov): Avisford Park B&B only (the room only offer disabled), 25% off
   B&B, still first in the South at £63.75; its pill now "25% off, breakfast included". The Metropole 30% off B&B (was
   35%): Scotland & Wales stays "up to 30%" everywhere. No 35% left in the code, slides or notes.
+- North and East & Midlands on the same beat cuts (Scott, 12 Nov: "need the north reel then the East and Midlands",
+  "classy, not too snappy, upbeat energy but not nausea or headache"), third shots: Oaklands fireplace, Skipton pool,
+  Gomersal bedroom, Waterton afternoon tea, Holdsworth tea by the fire; Whittlebury suite, Forest of Arden chef's
+  afternoon tea, The Kingfisher fireside, Jockey Club Rooms blue bedroom. All three reels calmer: no blur, the old shot
+  leans in 1.5%, the new lands 2.5% large and eases back over 14 frames; the title slams from 1.16 (was 1.45), the pill
+  pops from 0.82 (was 0.55). South re-rendered to match.
