@@ -704,7 +704,9 @@ const SnapTitle: React.FC<{ eyebrow: string; line: string; out: number; beat: nu
 
 const SnapEndCard: React.FC<{ line: string; eyebrow?: string; beat: number }> = ({ line, eyebrow, beat }) => {
   const frame = useCurrentFrame();
-  const s = Math.round(beat); // the line slams in a beat after the caps, its number counting up over two beats
+  // the caps wipe in, then each line glides up and fades in, the second a few frames after the first (Scott, 12 Nov:
+  // the end line "just kinda pulses and pops in": no scale, no snap)
+  const s = Math.round(beat * 0.75);
   return (
     <AbsoluteFill style={{ alignItems: "center", justifyContent: "center" }}>
       <div style={{ textAlign: "center" }}>
@@ -718,30 +720,33 @@ const SnapEndCard: React.FC<{ line: string; eyebrow?: string; beat: number }> = 
               color: MAUVE,
               textTransform: "uppercase",
               marginBottom: 26,
-              clipPath: wipe(frame, 2, 10),
+              clipPath: wipe(frame, 2, 16),
             }}
           >
             {eyebrow}
           </div>
         ) : null}
-        <div
-          style={{
-            fontFamily: serif,
-            fontSize: 112,
-            lineHeight: 1.08,
-            color: colors.cream,
-            fontVariantNumeric: "lining-nums tabular-nums",
-            whiteSpace: "nowrap",
-            opacity: progress(frame, s, 3),
-            transform: `scale(${slam(frame, s)})`,
-          }}
-        >
-          {line.split("\n").map((l, i) => (
-            <div key={l} style={{ fontStyle: i ? "italic" : "normal", fontSize: i ? 96 : 112 }}>
+        {line.split("\n").map((l, i) => {
+          const a = progress(frame, s + i * 8, 26, EASE_OUT);
+          return (
+            <div
+              key={l}
+              style={{
+                fontFamily: serif,
+                fontStyle: i ? "italic" : "normal",
+                fontSize: i ? 96 : 112,
+                lineHeight: 1.08,
+                color: colors.cream,
+                fontVariantNumeric: "lining-nums tabular-nums",
+                whiteSpace: "nowrap",
+                opacity: a,
+                transform: `translateY(${(1 - a) * 28}px)`,
+              }}
+            >
               {countUp(l, frame, s, Math.round(beat * 2))}
             </div>
-          ))}
-        </div>
+          );
+        })}
       </div>
     </AbsoluteFill>
   );

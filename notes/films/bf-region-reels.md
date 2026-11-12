@@ -86,3 +86,4 @@ so a region's spotlight and its region reel shouldn't both go out.
   reel"): the countdown reel's own press on the cover's pill, a beat after it pops (frame 137): the pill dips to 93% and
   back, a soft cream touch swells and fades from its middle, and its `tap.wav` (a bright tick and a small thump) plays
   (`collage.tap`), straight into the first hotel on the next beat. A house rule exception Scott asked for.
+- The end card glides in (Scott, 12 Nov: "it just kinda pulses and pops in"): the caps wipe, then each line rises 28px and fades over 26 frames, the second 8 frames after the first; no scale.
