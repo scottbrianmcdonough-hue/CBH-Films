@@ -11,91 +11,31 @@
   {
    "src": "public/campaigns/bf-region-south/clips/h0a.mp4",
    "from": 0,
-   "frames": 59,
-   "vf": "eq=saturation=1.0:contrast=1.03"
-  },
-  {
-   "src": "public/campaigns/bf-region-south/clips/h0b.mp4",
-   "from": 0,
-   "frames": 30,
-   "vf": "eq=saturation=1.0:contrast=1.03"
-  },
-  {
-   "src": "public/campaigns/bf-region-south/clips/h0c.mp4",
-   "from": 0,
-   "frames": 29,
+   "frames": 118,
    "vf": "eq=saturation=1.0:contrast=1.03"
   },
   {
    "src": "public/campaigns/bf-region-south/clips/h1a.mp4",
    "from": 0,
-   "frames": 60,
-   "vf": "eq=saturation=1.0:contrast=1.03"
-  },
-  {
-   "src": "public/campaigns/bf-region-south/clips/h1b.mp4",
-   "from": 0,
-   "frames": 29,
-   "vf": "eq=saturation=1.0:contrast=1.03"
-  },
-  {
-   "src": "public/campaigns/bf-region-south/clips/h1c.mp4",
-   "from": 0,
-   "frames": 30,
+   "frames": 119,
    "vf": "eq=saturation=1.0:contrast=1.03"
   },
   {
    "src": "public/campaigns/bf-region-south/clips/h2a.mp4",
    "from": 0,
-   "frames": 59,
-   "vf": "eq=saturation=1.0:contrast=1.03"
-  },
-  {
-   "src": "public/campaigns/bf-region-south/clips/h2b.mp4",
-   "from": 0,
-   "frames": 29,
-   "vf": "eq=saturation=1.0:contrast=1.03"
-  },
-  {
-   "src": "public/campaigns/bf-region-south/clips/h2c.mp4",
-   "from": 0,
-   "frames": 30,
+   "frames": 118,
    "vf": "eq=saturation=1.0:contrast=1.03"
   },
   {
    "src": "public/campaigns/bf-region-south/clips/h3a.mp4",
    "from": 0,
-   "frames": 59,
-   "vf": "eq=saturation=1.0:contrast=1.03"
-  },
-  {
-   "src": "public/campaigns/bf-region-south/clips/h3b.mp4",
-   "from": 0,
-   "frames": 29,
-   "vf": "eq=saturation=1.0:contrast=1.03"
-  },
-  {
-   "src": "public/campaigns/bf-region-south/clips/h3c.mp4",
-   "from": 0,
-   "frames": 30,
+   "frames": 118,
    "vf": "eq=saturation=1.0:contrast=1.03"
   },
   {
    "src": "public/campaigns/bf-region-south/clips/h4a.mp4",
    "from": 0,
-   "frames": 59,
-   "vf": "eq=saturation=1.0:contrast=1.03"
-  },
-  {
-   "src": "public/campaigns/bf-region-south/clips/h4b.mp4",
-   "from": 0,
-   "frames": 30,
-   "vf": "eq=saturation=1.0:contrast=1.03"
-  },
-  {
-   "src": "public/campaigns/bf-region-south/clips/h4c.mp4",
-   "from": 0,
-   "frames": 29,
+   "frames": 118,
    "vf": "eq=saturation=1.0:contrast=1.03"
   }
  ],

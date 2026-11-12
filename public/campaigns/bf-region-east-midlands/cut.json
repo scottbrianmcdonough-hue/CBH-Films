@@ -11,73 +11,25 @@
   {
    "src": "public/campaigns/bf-region-east-midlands/clips/h0a.mp4",
    "from": 0,
-   "frames": 57,
-   "vf": "eq=saturation=1.0:contrast=1.03"
-  },
-  {
-   "src": "public/campaigns/bf-region-east-midlands/clips/h0b.mp4",
-   "from": 0,
-   "frames": 29,
-   "vf": "eq=saturation=1.0:contrast=1.03"
-  },
-  {
-   "src": "public/campaigns/bf-region-east-midlands/clips/h0c.mp4",
-   "from": 0,
-   "frames": 29,
+   "frames": 115,
    "vf": "eq=saturation=1.0:contrast=1.03"
   },
   {
    "src": "public/campaigns/bf-region-east-midlands/clips/h1a.mp4",
    "from": 0,
-   "frames": 58,
-   "vf": "eq=saturation=1.0:contrast=1.03"
-  },
-  {
-   "src": "public/campaigns/bf-region-east-midlands/clips/h1b.mp4",
-   "from": 0,
-   "frames": 29,
-   "vf": "eq=saturation=1.0:contrast=1.03"
-  },
-  {
-   "src": "public/campaigns/bf-region-east-midlands/clips/h1c.mp4",
-   "from": 0,
-   "frames": 29,
+   "frames": 116,
    "vf": "eq=saturation=1.0:contrast=1.03"
   },
   {
    "src": "public/campaigns/bf-region-east-midlands/clips/h2a.mp4",
    "from": 0,
-   "frames": 58,
-   "vf": "eq=saturation=1.0:contrast=1.03"
-  },
-  {
-   "src": "public/campaigns/bf-region-east-midlands/clips/h2b.mp4",
-   "from": 0,
-   "frames": 29,
-   "vf": "eq=saturation=1.0:contrast=1.03"
-  },
-  {
-   "src": "public/campaigns/bf-region-east-midlands/clips/h2c.mp4",
-   "from": 0,
-   "frames": 28,
+   "frames": 115,
    "vf": "eq=saturation=1.0:contrast=1.03"
   },
   {
    "src": "public/campaigns/bf-region-east-midlands/clips/h3a.mp4",
    "from": 0,
-   "frames": 58,
-   "vf": "eq=saturation=1.0:contrast=1.03"
-  },
-  {
-   "src": "public/campaigns/bf-region-east-midlands/clips/h3b.mp4",
-   "from": 0,
-   "frames": 29,
-   "vf": "eq=saturation=1.0:contrast=1.03"
-  },
-  {
-   "src": "public/campaigns/bf-region-east-midlands/clips/h3c.mp4",
-   "from": 0,
-   "frames": 29,
+   "frames": 116,
    "vf": "eq=saturation=1.0:contrast=1.03"
   }
  ],

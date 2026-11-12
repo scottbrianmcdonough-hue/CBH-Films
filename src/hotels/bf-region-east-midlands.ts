@@ -11,7 +11,7 @@ export const bfRegionEastMidlands: RippleSpec = {
   frames: 694,
   feed: true,
   label: { eyebrow: "", name: "", from: 0, to: 1 },
-  title: { from: 8, to: 116, eyebrow: "Black Friday Sale", line: "East & Midlands" },
+  collage: { to: 116, caps: "East & Midlands", best: "30%", tiles: [{ src: "hotels/whittlebury-park/spa-pool.jpg", pos: "50% 50%" }, { src: "hotels/forest-of-arden/pool.jpg", pos: "50% 50%" }, { src: "hotels/the-kingfisher/reading-in-bed.jpg", pos: "57% 50%" }, { src: "hotels/jockey-club-rooms/dining-room.jpg", pos: "50% 50%" }] },
   cards: [
     { from: 118, to: 231, place: "Whittlebury, Northamptonshire", name: "Whittlebury Park", offer: "Save 10%" },
     { from: 233, to: 347, place: "Meriden, Warwickshire", name: "Forest of Arden Hotel", offer: "Save 30%" },
@@ -20,7 +20,7 @@ export const bfRegionEastMidlands: RippleSpec = {
   ],
   lines: [],
   deepScrim: true,
-  snap: { beat: 14.450, kicks: [116, 173, 202, 231, 289, 318, 347, 405, 434, 462, 520, 549] },
+  snap: { beat: 14.450, kicks: [] },
   endCard: { at: 578, eyebrow: "Black Friday Sale", line: "Save up to 30%", quick: true },
   music: {
     src: "music/arnaud136-deep-house-instrumental-354596.mp3",

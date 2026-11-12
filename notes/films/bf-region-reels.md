@@ -68,3 +68,11 @@ so a region's spotlight and its region reel shouldn't both go out.
   of the island; the opening is one bar on Skipton's canal boats (was two on Holdsworth's robes, Holdsworth closing
   the reel too), the music started a bar later (133) so the hotels sit where they did; "The North" comes in a beat
   after its caps; the end card 1.25 bars (~3s, was ~5s). 31.9s, -15.5 LUFS.
+- Restructured (Scott, 12 Nov: "don't really like the pulse", "like the Gomersal and the Rutland one", then "maybe do
+  like the carousels, a collage first, then the exteriors with the sale percent"): no zoom pulse at all (kicks empty).
+  Each reel opens on the carousel cover come to life (RippleSpec `collage`: the hotels' hero shots as tiles above and
+  below the black band, faint from frame one for the preview, settling in a half beat apart; the region in mauve caps,
+  Black Friday Sale rising, the Save up to pill popping and counting up on the next bar), two bars; then each hotel's
+  exterior alone with a slow push and a sideways glide, left and right in turn (`still-push.py --dx`, the spotlights'
+  move), its card (place, name, the pill counting up); the end card as before. North a bar a hotel (92 BPM, music from
+  55 again), East & Midlands and the South two bars. North 21.5s, East & Midlands 23.1s, South 27.6s; -15.0 to -15.2 LUFS.
