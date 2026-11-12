@@ -35,8 +35,11 @@ const FEED_SCRIM =
 const MAUVE = "#A15272"; // Lee's Black Friday caps
 // the region reels' shade, as the carousel slides: a dark gradient up from the bottom, so the small mauve caps read
 const CARD_SCRIM =
-  "linear-gradient(to top, rgba(9,9,10,0.9) 0%, rgba(9,9,10,0.72) 26%, rgba(9,9,10,0.3) 46%, rgba(9,9,10,0) 62%)";
+  "linear-gradient(to top, rgba(9,9,10,0.9) 0%, rgba(9,9,10,0.72) 34%, rgba(9,9,10,0.3) 54%, rgba(9,9,10,0) 70%)";
 const FEED_BOTTOM = 190;
+// the region reels' cards and title sit higher (Scott, 12 Nov: "bring the CB up a bit and the rest"): the feed's video
+// player puts its controls over the bottom of the frame
+const CARD_BOTTOM = 320;
 const SCRIM_WIDE =
   "radial-gradient(ellipse 1300px 560px at 0px 1080px, rgba(9,9,10,0.7) 0%, rgba(9,9,10,0.46) 45%, rgba(9,9,10,0) 100%)";
 
@@ -253,7 +256,7 @@ const HotelCard: React.FC<{ place: string; name: string; offer: string; out: num
         style={{
           position: "absolute",
           left: 72,
-          bottom: FEED_BOTTOM,
+          bottom: CARD_BOTTOM,
           opacity: a,
           transform: `translateY(${(1 - a) * 26}px)`,
         }}
@@ -321,7 +324,7 @@ const Title: React.FC<{ eyebrow: string; line: string; out: number }> = ({ eyebr
         style={{
           position: "absolute",
           left: 72,
-          bottom: FEED_BOTTOM,
+          bottom: CARD_BOTTOM,
           opacity: a,
           transform: `translateY(${(1 - a) * 26}px)`,
         }}
@@ -597,7 +600,7 @@ const SnapCard: React.FC<{ place: string; name: string; offer: string; out: numb
   const p = Math.round(beat); // the pill pops on the next beat
   return (
     <AbsoluteFill style={{ opacity: o, transform: `translateX(${(1 - o) * -40}px)` }}>
-      <div style={{ position: "absolute", left: 72, bottom: FEED_BOTTOM }}>
+      <div style={{ position: "absolute", left: 72, bottom: CARD_BOTTOM }}>
         <div
           style={{
             fontFamily: sans,
@@ -667,7 +670,7 @@ const SnapTitle: React.FC<{ eyebrow: string; line: string; out: number; beat: nu
   const s = Math.round(beat * (out > beat * 6 ? 2 : 1));
   return (
     <AbsoluteFill style={{ opacity: o, transform: `translateX(${(1 - o) * -40}px)` }}>
-      <div style={{ position: "absolute", left: 72, bottom: FEED_BOTTOM }}>
+      <div style={{ position: "absolute", left: 72, bottom: CARD_BOTTOM }}>
         <div
           style={{
             fontFamily: sans,
@@ -1067,7 +1070,7 @@ export const RippleFilm: React.FC<{ film: RippleSpec }> = ({ film }) => {
         style={{
           position: "absolute",
           left: film.wide ? 1740 : 920,
-          top: film.wide ? 912 : film.feed ? 1176 : 1452,
+          top: film.wide ? 912 : film.cards ? 1060 : film.feed ? 1176 : 1452,
           width: 100,
           height: 108,
         }}
