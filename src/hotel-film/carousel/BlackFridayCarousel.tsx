@@ -180,13 +180,13 @@ const REGIONS: Region[] = [
     cover: { src: H + "frensham-pond/restaurant.jpg", pos: "40% 50%" },
     hotels: [
       {
-        // a late addition (11 Nov, Scott; CBH page: Arundel/Chichester, West Sussex; 25% off room only from £43.88, B&B from £63.75)
+        // a late addition (11 Nov, Scott; CBH page: Arundel/Chichester, West Sussex; 25% off B&B from £63.75, B&B only since 12 Nov)
         src: H + "avisford-park/exterior.jpg",
         pos: "74% 50%",
         tile: { src: H + "avisford-park/restaurant.jpg", pos: "50% 50%" },
         place: "Arundel, West Sussex",
         name: "Avisford Park Hotel",
-        offer: "25% off, breakfast or room only",
+        offer: "25% off, breakfast included",
         terms: "",
       },
       {
