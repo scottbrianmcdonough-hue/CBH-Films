@@ -771,13 +771,16 @@ const Collage: React.FC<{
   const G = 8;
   const BAND = 430;
   const nTop = Math.max(1, Math.floor(tiles.length / 2));
-  const rowH = (1350 - BAND - 2 * G) / 2;
-  const row = (list: { src: string; pos: string }[], y: number, first: number) =>
+  // the band sits high (Scott, 12 Nov: "need to bring it up more"): clear of the caption and buttons over a reel's
+  // lower half, a short top row and a taller bottom one
+  const topH = 300;
+  const botH = 1350 - topH - BAND - 2 * G;
+  const row = (list: { src: string; pos: string }[], y: number, first: number, h: number) =>
     list.map((t, k) => {
       const w = (1080 - G * (list.length - 1)) / list.length;
-      return { t, x: k * (w + G), y, w, i: first + k };
+      return { t, x: k * (w + G), y, w, h, i: first + k };
     });
-  const cells = [...row(tiles.slice(0, nTop), 0, 0), ...row(tiles.slice(nTop), rowH + G + BAND + G, nTop)];
+  const cells = [...row(tiles.slice(0, nTop), 0, 0, topH), ...row(tiles.slice(nTop), topH + G + BAND + G, nTop, botH)];
   const words = Math.round(beat * 4); // the band on the next bar
   const p = words + Math.round(beat * 2); // the pill two beats later
   const push = 1 + 0.025 * progress(frame, 0, 240, EASE_IN_OUT);
@@ -789,7 +792,7 @@ const Collage: React.FC<{
         return (
           <div
             key={c.t.src}
-            style={{ position: "absolute", left: c.x, top: c.y, width: c.w, height: rowH, overflow: "hidden", opacity: a }}
+            style={{ position: "absolute", left: c.x, top: c.y, width: c.w, height: c.h, overflow: "hidden", opacity: a }}
           >
             <Img
               src={staticFile(c.t.src)}
@@ -804,7 +807,20 @@ const Collage: React.FC<{
           </div>
         );
       })}
-      <AbsoluteFill style={{ alignItems: "center", justifyContent: "center", textAlign: "center" }}>
+      <div
+        style={{
+          position: "absolute",
+          left: 0,
+          right: 0,
+          top: topH + G,
+          height: BAND,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          textAlign: "center",
+        }}
+      >
         <div
           style={{
             fontFamily: sans,
@@ -881,7 +897,7 @@ const Collage: React.FC<{
             </>
           )}
         </div>
-      </AbsoluteFill>
+      </div>
     </AbsoluteFill>
   );
 };
