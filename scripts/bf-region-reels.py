@@ -33,13 +33,21 @@ R = {
            ("Minchinhampton, Gloucestershire","Burleigh Court","Save 20%",("burleigh-court/garden-house.jpg",1080),("burleigh-court/bedroom.jpg",900),("burleigh-court/fireside-table.jpg",None))]),
 }
 only = sys.argv[1:] or list(R)
-def clip(img, cx, frames, out):
+def clip(img, cx, frames, out, glide=0):
+    # glide: 0 a plain slow push (the original reels); +1/-1 the spotlights' move (Scott, 12 Nov: "don't really like the
+    # pulse ... like the Gomersal and the Rutland one"): a steady push with a sideways glide, left or right, as far as
+    # the photo allows (up to a tenth of its width), the push scaled to the shot's length so every shot moves at one pace
     W,Hh = Image.open(H+img).size
     h = min(Hh, int(W*1350/1080))
     if cx is None: cx = W/2
     w = h*1080/1350
     cx = max(w/2, min(W-w/2, cx))
-    subprocess.run(["python3","scripts/still-push.py",H+img,out,"--cx",str(int(cx)),"--cy",str(Hh//2),"--h",str(h),"--drift","0.05","--frames",str(frames),"--hgt","1350"],check=True,capture_output=True)
+    drift, dx = 0.05, 0
+    if glide:
+        room = min(cx - w/2, W - cx - w/2)
+        dx = glide * min(2*room, 0.10*W)
+        drift = min(0.09, 0.0011*frames)
+    subprocess.run(["python3","scripts/still-push.py",H+img,out,"--cx",str(int(cx)),"--cy",str(Hh//2),"--h",str(h),"--drift",str(drift),"--dx",str(int(dx)),"--frames",str(frames),"--hgt","1350"],check=True,capture_output=True)
 for rid in only:
     r = R[rid]; bar=r["bar"]; D=f"public/campaigns/bf-region-{rid}"; os.makedirs(D+"/clips",exist_ok=True)
     snap=r.get("snap",False)
@@ -64,7 +72,7 @@ for rid in only:
     starts=[k for k,(name,_,_) in enumerate(imgs) if name.endswith("a") and name.startswith("h")]+[len(imgs)]
     shots=[]
     for k,(name,(img,cx),n) in enumerate(imgs):
-        frames=fr[k+1]-fr[k]; out=f"{D}/clips/{name}.mp4"; clip(img,cx,frames+14,out)
+        frames=fr[k+1]-fr[k]; out=f"{D}/clips/{name}.mp4"; clip(img,cx,frames+14,out,(1 if k%2 else -1) if snap else 0)
         shots.append({"src":out,"from":0,"frames":frames,"vf":"eq=saturation=1.0:contrast=1.03"})
     end=fr[-1]; total=end+round(r.get("tail_bars",2)*bar)
     json.dump({"out":f"{D}/picture.mp4","size":"1080x1350","shots":shots,"fade":22,"tail":total-end},open(D+"/cut.json","w"),indent=1)
@@ -74,7 +82,7 @@ for rid in only:
         a=fr[starts[i]]; b=fr[starts[i+1]]
         if snap: cards.append(f'    {{ from: {a+2}, to: {b}, place: "{h[0]}", name: "{h[1]}", offer: "{h[2]}" }},')
         else: cards.append(f'    {{ from: {a+3}, to: {b-4}, place: "{h[0]}", name: "{h[1]}", offer: "{h[2]}" }},')
-    snapline=(f"\n  snap: {{ beat: {bar/4:.3f}, kicks: [{', '.join(str(f) for f in fr[1:len(imgs)])}] }}," if snap else "")
+    snapline=(f"\n  snap: {{ beat: {bar/4:.3f}, kicks: [] }}," if snap else "")
     var="bfRegion"+"".join(p.capitalize() for p in rid.split("-"))
     ts=f'''import type {{ RippleSpec }} from "../hotel-film/ripple/types";
 
