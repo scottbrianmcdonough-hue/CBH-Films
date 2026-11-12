@@ -536,24 +536,22 @@ const SceneEndCard: React.FC<{ line: string; top: number; rise: number }> = ({
 // flat slideshow"). The zoom snap at each cut: the outgoing shot pushes in over its last 4 frames, the new one lands
 // 10% large and settles in 9, a touch of blur across the cut so it reads as one fast move.
 const snapAt = (frame: number, kicks: number[], soft: number[] = []) => {
-  // a notch gentler (Scott, 11 Nov: "turn it back a notch with the pulsing, especially the first one"): the push 3.5%,
-  // the landing 5% large, a whisper of blur; a soft kick (the opening punch in) a third of that
+  // classy, not frantic (Scott, 11 to 12 Nov: "turn it back a notch with the pulsing", "classy, not too snappy, upbeat
+  // energy but not nausea or headache"): the old shot leans in 1.5% over its last 4 frames, the new one lands 2.5%
+  // large and eases back over 14; no blur; a soft kick a third of that
   let scale = 1;
-  let blur = 0;
   for (const k of kicks) {
     const d = frame - k;
     const m = soft.includes(k) ? 0.33 : 1;
     if (d >= -4 && d < 0) {
       const t = (d + 4) / 4;
-      scale *= 1 + 0.035 * m * t * t;
-      blur = Math.max(blur, 2 * m * t * t);
-    } else if (d >= 0 && d < 9) {
-      const e = 1 - Math.pow(1 - d / 9, 3);
-      scale *= 1 + 0.05 * m * (1 - e);
-      blur = Math.max(blur, 2 * m * (1 - e) * (1 - e));
+      scale *= 1 + 0.015 * m * t * t;
+    } else if (d >= 0 && d < 14) {
+      const e = 1 - Math.pow(1 - d / 14, 3);
+      scale *= 1 + 0.025 * m * (1 - e);
     }
   }
-  return { scale, blur };
+  return { scale, blur: 0 };
 };
 
 // a number in the text counting up to its value from frame `at` over `len` frames ("Save 25%" counts 0 to 25)
@@ -561,12 +559,12 @@ const countUp = (text: string, frame: number, at: number, len: number) =>
   text.replace(/\d+/, (n) => String(Math.round(Number(n) * progress(frame, at, len, EASE_OUT))));
 
 // a pop: from small, past full size and back, over n frames
-const pop = (frame: number, at: number, n = 9) =>
-  interpolate(frame, [at, at + n * 0.6, at + n], [0.55, 1.07, 1], clamp);
+const pop = (frame: number, at: number, n = 12) =>
+  interpolate(frame, [at, at + n * 0.6, at + n], [0.82, 1.03, 1], clamp);
 
 // a slam: from large, a touch under and back
-const slam = (frame: number, at: number, n = 9) =>
-  interpolate(frame, [at, at + n * 0.55, at + n], [1.45, 0.97, 1], clamp);
+const slam = (frame: number, at: number, n = 14) =>
+  interpolate(frame, [at, at + n * 0.55, at + n], [1.16, 0.99, 1], clamp);
 
 // a line rising out of its own mask
 const Rise: React.FC<{ at: number; children: React.ReactNode; style?: React.CSSProperties }> = ({
@@ -734,7 +732,7 @@ const SnapEndCard: React.FC<{ line: string; eyebrow?: string; beat: number }> = 
             fontVariantNumeric: "lining-nums tabular-nums",
             whiteSpace: "nowrap",
             opacity: progress(frame, s, 3),
-            transform: `scale(${slam(frame, s, 10)})`,
+            transform: `scale(${slam(frame, s)})`,
           }}
         >
           {countUp(line, frame, s, Math.round(beat * 2))}
