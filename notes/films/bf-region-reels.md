@@ -87,3 +87,4 @@ so a region's spotlight and its region reel shouldn't both go out.
   back, a soft cream touch swells and fades from its middle, and its `tap.wav` (a bright tick and a small thump) plays
   (`collage.tap`), straight into the first hotel on the next beat. A house rule exception Scott asked for.
 - The end card glides in (Scott, 12 Nov: "it just kinda pulses and pops in"): the caps wipe, then each line rises 28px and fades over 26 frames, the second 8 frames after the first; no scale.
+- The collage band higher (Scott, 12 Nov: "need to bring it up more"): a 300px top row and a taller bottom one, so the band (308 to 738) and the Book now pill sit clear of the caption and buttons over a reel's lower half.
