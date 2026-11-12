@@ -10,7 +10,7 @@ R = {
    intro_img=("skipton/canal-boats.jpg", 760),
    hotels=[("Laceby, Lincolnshire","Oaklands Hall Hotel","Save 18%",("oaklands-hall/exterior-front.jpg",None),("oaklands-hall/plate.jpg",960),("oaklands-hall/fireplace.jpg",None)),
            ("Skipton, North Yorkshire","Skipton Hotel","Save 20%",("skipton/canal-reflection.jpg",420),("skipton/afternoon-tea.jpg",1000),("skipton/pool.jpg",None)),
-           ("Gomersal, West Yorkshire","Gomersal Park\\nHotel & Spa","Save 20%",("gomersal-park/exterior.jpg",1330),("gomersal-park/afternoon-tea.jpg",760),None),
+           ("Gomersal, West Yorkshire","Gomersal Park\\nHotel & Spa","Save 20%",("gomersal-park/spa-pool.jpg",960),("gomersal-park/afternoon-tea.jpg",760),None),
            ("Wakefield, West Yorkshire","Waterton Park\\nHotel & Spa","Save 20%",("waterton-park/aerial.jpg",None),("waterton-park/outdoor-hot-tub.jpg",1100),("waterton-park/afternoon-tea.jpg",None)),
            ("Halifax, West Yorkshire","Holdsworth House Hotel","Save 10%",("holdsworth-house/exterior.jpg",960),("holdsworth-house/breakfast-in-bed.jpg",960),("holdsworth-house/tea-by-the-fire.jpg",None))]),
  "scotland-wales": dict(title="Scotland & Wales", music="music/berrydeep-funky-summer-house-565437.mp3", start=353, bar=59.2, intro=2, gain=0.58, seconds=141, best="30%",

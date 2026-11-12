@@ -90,3 +90,4 @@ so a region's spotlight and its region reel shouldn't both go out.
 - The collage band higher (Scott, 12 Nov: "need to bring it up more"): a 300px top row and a taller bottom one, so the band (308 to 738) and the Book now pill sit clear of the caption and buttons over a reel's lower half.
 - Cards, title and CB raised (Scott, 12 Nov: "bring the CB up a bit and the rest"; the feed player's controls covered the pill): region reels only (`cards`), the cards and title 320px off the bottom (was 190), the shade rising with them, the CB at 1060 (was 1176).
 - The CB up to 980 (Scott: "CB slightly up"; the player's menu dots sat on it).
+- Gomersal back on its spa pool (Bianca, 12 Nov: "replace Gomersal exterior with their spa shot as per feedback on the other post, their exterior is shocking", then G2G), as on the carousel.
