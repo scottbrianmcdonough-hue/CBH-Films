@@ -911,7 +911,7 @@ export const RippleFilm: React.FC<{ film: RippleSpec }> = ({ film }) => {
       ) : null}
       {film.deepScrim ? <SteadyShade film={film} /> : null}
       {film.collage ? (
-        <Sequence from={0} durationInFrames={film.collage.to}>
+        <Sequence durationInFrames={film.collage.to}>
           <Collage caps={film.collage.caps} best={film.collage.best} tiles={film.collage.tiles} beat={beat} />
         </Sequence>
       ) : null}
