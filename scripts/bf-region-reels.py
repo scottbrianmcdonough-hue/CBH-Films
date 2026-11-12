@@ -6,7 +6,7 @@ H = "public/hotels/"
 # offers and order from the final list (Scott, 11 Nov): "Save X%", cheapest first; Oaklands moved to the North; the
 # Kingfisher kept in East & Midlands from its booking page (Save 30%); "up to" on each end card is the region's best offer
 R = {
- "north": dict(title="The North", music="hotels/dalmahoy/leva-eternity.mp3", start=55, bar=78.0, intro=2, gain=0.8, seconds=40, best="20%", snap=True, hotel_beats=4, tail_bars=1.25,
+ "north": dict(title="The North", music="hotels/dalmahoy/leva-eternity.mp3", start=55, bar=78.0, intro=2, gain=0.8, seconds=40, best="20%", snap=True, moves=[0,1,1,0,-1], hotel_beats=4, tail_bars=1.25,
    intro_img=("skipton/canal-boats.jpg", 760),
    hotels=[("Laceby, Lincolnshire","Oaklands Hall Hotel","Save 18%",("oaklands-hall/exterior-front.jpg",None),("oaklands-hall/plate.jpg",960),("oaklands-hall/fireplace.jpg",None)),
            ("Skipton, North Yorkshire","Skipton Hotel","Save 20%",("skipton/canal-reflection.jpg",420),("skipton/afternoon-tea.jpg",1000),("skipton/pool.jpg",None)),
@@ -33,20 +33,22 @@ R = {
            ("Minchinhampton, Gloucestershire","Burleigh Court","Save 20%",("burleigh-court/garden-house.jpg",1080),("burleigh-court/bedroom.jpg",900),("burleigh-court/fireside-table.jpg",None))]),
 }
 only = sys.argv[1:] or list(R)
-def clip(img, cx, frames, out, glide=0):
-    # glide: 0 a plain slow push (the original reels); +1/-1 the spotlights' move (Scott, 12 Nov: "don't really like the
-    # pulse ... like the Gomersal and the Rutland one"): a steady push with a sideways glide, left or right, as far as
-    # the photo allows (up to a tenth of its width), the push scaled to the shot's length so every shot moves at one pace
+def clip(img, cx, frames, out, glide=None):
+    # glide None: a plain slow push (the original reels). In the collage reels, the spotlights' move (Scott, 12 Nov:
+    # "like the Gomersal and the Rutland one"): a steady push scaled to the shot's length, so every shot moves at one
+    # pace, with glide +1/-1 a sideways glide right or left as far as the photo allows (up to a tenth of its width) or
+    # with 0 a straight push in; mixed, not left right left right (Scott: "not opposite times each time")
     W,Hh = Image.open(H+img).size
     h = min(Hh, int(W*1350/1080))
     if cx is None: cx = W/2
     w = h*1080/1350
     cx = max(w/2, min(W-w/2, cx))
     drift, dx = 0.05, 0
-    if glide:
-        room = min(cx - w/2, W - cx - w/2)
-        dx = glide * min(2*room, 0.10*W)
-        drift = min(0.09, 0.0011*frames)
+    if glide is not None:
+        drift = min(0.09, 0.0011*frames) if glide else min(0.12, 0.0015*frames)
+        if glide:
+            room = min(cx - w/2, W - cx - w/2)
+            dx = glide * min(2*room, 0.10*W)
     subprocess.run(["python3","scripts/still-push.py",H+img,out,"--cx",str(int(cx)),"--cy",str(Hh//2),"--h",str(h),"--drift",str(drift),"--dx",str(int(dx)),"--frames",str(frames),"--hgt","1350"],check=True,capture_output=True)
 for rid in only:
     r = R[rid]; bar=r["bar"]; D=f"public/campaigns/bf-region-{rid}"; os.makedirs(D+"/clips",exist_ok=True)
@@ -72,7 +74,7 @@ for rid in only:
     starts=[k for k,(name,_,_) in enumerate(imgs) if name.endswith("a") and name.startswith("h")]+[len(imgs)]
     shots=[]
     for k,(name,(img,cx),n) in enumerate(imgs):
-        frames=fr[k+1]-fr[k]; out=f"{D}/clips/{name}.mp4"; clip(img,cx,frames+14,out,(1 if k%2 else -1) if snap else 0)
+        frames=fr[k+1]-fr[k]; out=f"{D}/clips/{name}.mp4"; clip(img,cx,frames+14,out,(r["moves"][k-1] if "moves" in r and k else (1 if k%2 else -1)) if snap else None)
         shots.append({"src":out,"from":0,"frames":frames,"vf":"eq=saturation=1.0:contrast=1.03"})
     end=fr[-1]; total=end+round(r.get("tail_bars",2)*bar)
     json.dump({"out":f"{D}/picture.mp4","size":"1080x1350","shots":shots,"fade":22,"tail":total-end},open(D+"/cut.json","w"),indent=1)
