@@ -736,7 +736,11 @@ const SnapEndCard: React.FC<{ line: string; eyebrow?: string; beat: number }> = 
             transform: `scale(${slam(frame, s)})`,
           }}
         >
-          {countUp(line, frame, s, Math.round(beat * 2))}
+          {line.split("\n").map((l, i) => (
+            <div key={l} style={{ fontStyle: i ? "italic" : "normal", fontSize: i ? 96 : 112 }}>
+              {countUp(l, frame, s, Math.round(beat * 2))}
+            </div>
+          ))}
         </div>
       </div>
     </AbsoluteFill>
@@ -745,9 +749,10 @@ const SnapEndCard: React.FC<{ line: string; eyebrow?: string; beat: number }> = 
 
 // The carousel cover as the reel's opening: tiles settle in one after another (a half beat apart), the band's words come
 // in on the bar after (caps wipe, Black Friday Sale rises, the pill pops and counts up), a slow push over the whole.
-const Collage: React.FC<{ caps: string; best: string; tiles: { src: string; pos: string }[]; beat: number }> = ({
+const Collage: React.FC<{ caps: string; best: string; pill?: string; tiles: { src: string; pos: string }[]; beat: number }> = ({
   caps,
   best,
+  pill,
   tiles,
   beat,
 }) => {
@@ -835,10 +840,16 @@ const Collage: React.FC<{ caps: string; best: string; tiles: { src: string; pos:
             transform: `scale(${pop(frame, p)})`,
           }}
         >
-          <span style={{ fontSize: 30, letterSpacing: "0.02em" }}>Save up to</span>
-          <span style={{ fontSize: 46, fontWeight: 700, fontVariantNumeric: "lining-nums tabular-nums" }}>
-            {countUp(best, frame, p, Math.round(beat * 2))}
-          </span>
+          {pill ? (
+            <span style={{ fontSize: 34, letterSpacing: "0.04em" }}>{pill}</span>
+          ) : (
+            <>
+              <span style={{ fontSize: 30, letterSpacing: "0.02em" }}>Save up to</span>
+              <span style={{ fontSize: 46, fontWeight: 700, fontVariantNumeric: "lining-nums tabular-nums" }}>
+                {countUp(best, frame, p, Math.round(beat * 2))}
+              </span>
+            </>
+          )}
         </div>
       </AbsoluteFill>
     </AbsoluteFill>
@@ -912,7 +923,7 @@ export const RippleFilm: React.FC<{ film: RippleSpec }> = ({ film }) => {
       {film.deepScrim ? <SteadyShade film={film} /> : null}
       {film.collage ? (
         <Sequence durationInFrames={film.collage.to}>
-          <Collage caps={film.collage.caps} best={film.collage.best} tiles={film.collage.tiles} beat={beat} />
+          <Collage caps={film.collage.caps} best={film.collage.best} pill={film.collage.pill} tiles={film.collage.tiles} beat={beat} />
         </Sequence>
       ) : null}
       {film.title ? (

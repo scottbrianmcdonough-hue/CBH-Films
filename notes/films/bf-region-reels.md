@@ -79,3 +79,6 @@ so a region's spotlight and its region reel shouldn't both go out.
 - North polish (Scott, 12 Nov: "doesn't have to go back and forth ... the pans", then "not one way, just not opposite
   each time"): the moves mixed per region (`moves`): Oaklands a straight push in, Skipton and Gomersal glide right,
   Waterton a push in, Holdsworth glides left. Ticket hook and length updated (21.5s).
+- North wording (Bianca via Scott, 12 Nov: "wonder if the 20% will cause confusion ... change it to something else to
+  create some urgency to book"): the cover's pill reads BOOK NOW (`collage.pill`), the end card "Lock in your dates /
+  before they're gone" (Bianca's line), no percentage outside the hotels' own cards; the post drops "up to 20%".

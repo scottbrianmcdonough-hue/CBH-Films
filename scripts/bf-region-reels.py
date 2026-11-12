@@ -6,7 +6,7 @@ H = "public/hotels/"
 # offers and order from the final list (Scott, 11 Nov): "Save X%", cheapest first; Oaklands moved to the North; the
 # Kingfisher kept in East & Midlands from its booking page (Save 30%); "up to" on each end card is the region's best offer
 R = {
- "north": dict(title="The North", music="hotels/dalmahoy/leva-eternity.mp3", start=55, bar=78.0, intro=2, gain=0.8, seconds=40, best="20%", snap=True, moves=[0,1,1,0,-1], hotel_beats=4, tail_bars=1.25,
+ "north": dict(title="The North", music="hotels/dalmahoy/leva-eternity.mp3", start=55, bar=78.0, intro=2, gain=0.8, seconds=40, best="20%", pill="Book now", end_line="Lock in your dates\\nbefore they're gone", snap=True, moves=[0,1,1,0,-1], hotel_beats=4, tail_bars=1.25,
    intro_img=("skipton/canal-boats.jpg", 760),
    hotels=[("Laceby, Lincolnshire","Oaklands Hall Hotel","Save 18%",("oaklands-hall/exterior-front.jpg",None),("oaklands-hall/plate.jpg",960),("oaklands-hall/fireplace.jpg",None)),
            ("Skipton, North Yorkshire","Skipton Hotel","Save 20%",("skipton/canal-reflection.jpg",420),("skipton/afternoon-tea.jpg",1000),("skipton/pool.jpg",None)),
@@ -89,7 +89,7 @@ for rid in only:
         return f'{{ src: "hotels/{img}", pos: "{50 if cx is None else round(100*cx/W)}% 50%" }}'
     if snap:
         tiles=", ".join(tile(h[4][0],h[4][1]) for h in r["hotels"])
-        collageline=f'  collage: {{ to: {fr[1]}, caps: "{r["title"]}", best: "{r["best"]}", tiles: [{tiles}] }},'
+        collageline=f'  collage: {{ to: {fr[1]}, caps: "{r["title"]}", best: "{r["best"]}",{(' pill: "'+r["pill"]+'",') if r.get("pill") else ""} tiles: [{tiles}] }},'
     else:
         collageline=f'  title: {{ from: 8, to: {fr[1]-4}, eyebrow: "Black Friday Sale", line: "{r["title"]}" }},'
     snapline=(f"\n  snap: {{ beat: {bar/4:.3f}, kicks: [] }}," if snap else "")
@@ -113,7 +113,7 @@ export const {var}: RippleSpec = {{
   ],
   lines: [],
   deepScrim: true,{snapline}
-  endCard: {{ at: {end}, eyebrow: "Black Friday Sale", line: "Save up to {r["best"]}", quick: true }},
+  endCard: {{ at: {end}, eyebrow: "Black Friday Sale", line: "{r.get("end_line","Save up to "+r["best"])}", quick: true }},
   music: {{
     src: "{r["music"]}",
     startAt: {r["start"]},
