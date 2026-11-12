@@ -53,3 +53,4 @@ so a region's spotlight and its region reel shouldn't both go out.
   The other three region reels are unchanged until Scott signs this one off.
 - A notch gentler (Scott, 11 Nov: "turn it back a notch with the pulsing, especially the first one"): the snap's push
   3.5% (was 7%), the landing 5% large (was 10%), blur 2px (was 5); the opening punch in at a third of that (`soft`).
+- No punch in on the opening (Scott, 11 Nov: "don't do it on the first, the South"): the title shot holds steady; the snaps start at the first cut.

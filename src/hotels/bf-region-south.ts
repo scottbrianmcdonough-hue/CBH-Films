@@ -21,7 +21,7 @@ export const bfRegionSouth: RippleSpec = {
   ],
   lines: [],
   deepScrim: true,
-  snap: { beat: 14.775, kicks: [38, 118, 177, 207, 236, 296, 325, 355, 414, 443, 473, 532, 561, 591, 650, 680], soft: [38] },
+  snap: { beat: 14.775, kicks: [118, 177, 207, 236, 296, 325, 355, 414, 443, 473, 532, 561, 591, 650, 680] },
   endCard: { at: 709, eyebrow: "Black Friday Sale", line: "Save up to 30%", quick: true },
   music: {
     src: "music/kulakovka-luxury-life-618587.mp3",
