@@ -47,6 +47,10 @@ export type RippleSpec = {
   // and settles), and the title, cards and end card animate on the beat (beat: frames a beat) instead of fading up
   // soft: kicks at a third of the strength (the opening punch in)
   snap?: { kicks: number[]; beat: number; soft?: number[] };
+  // the carousel cover come to life as the opening (Scott, 12 Nov: "like the carousels, a collage first, then the
+  // exteriors with the sale percent"): the hotels' tiles above and below a black band, the region in mauve caps,
+  // Black Friday Sale in cream Cormorant and the mauve Save up to pill; it holds until `to`, then the first exterior
+  collage?: { to: number; caps: string; best: string; tiles: { src: string; pos: string }[] };
   // a title over the opening shot: mauve caps over a cream Cormorant line ("Black Friday Sale" / "The North")
   title?: { from: number; to: number; eyebrow: string; line: string };
   // a counter over the shots (Haycock's meetings cut: MEETING SPACES ticking up as the rooms cut

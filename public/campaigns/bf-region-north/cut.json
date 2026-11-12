@@ -5,7 +5,7 @@
   {
    "src": "public/campaigns/bf-region-north/clips/intro.mp4",
    "from": 0,
-   "frames": 78,
+   "frames": 156,
    "vf": "eq=saturation=1.0:contrast=1.03"
   },
   {
@@ -15,43 +15,13 @@
    "vf": "eq=saturation=1.0:contrast=1.03"
   },
   {
-   "src": "public/campaigns/bf-region-north/clips/h0b.mp4",
-   "from": 0,
-   "frames": 39,
-   "vf": "eq=saturation=1.0:contrast=1.03"
-  },
-  {
-   "src": "public/campaigns/bf-region-north/clips/h0c.mp4",
-   "from": 0,
-   "frames": 39,
-   "vf": "eq=saturation=1.0:contrast=1.03"
-  },
-  {
    "src": "public/campaigns/bf-region-north/clips/h1a.mp4",
    "from": 0,
    "frames": 78,
    "vf": "eq=saturation=1.0:contrast=1.03"
   },
   {
-   "src": "public/campaigns/bf-region-north/clips/h1b.mp4",
-   "from": 0,
-   "frames": 39,
-   "vf": "eq=saturation=1.0:contrast=1.03"
-  },
-  {
-   "src": "public/campaigns/bf-region-north/clips/h1c.mp4",
-   "from": 0,
-   "frames": 39,
-   "vf": "eq=saturation=1.0:contrast=1.03"
-  },
-  {
    "src": "public/campaigns/bf-region-north/clips/h2a.mp4",
-   "from": 0,
-   "frames": 78,
-   "vf": "eq=saturation=1.0:contrast=1.03"
-  },
-  {
-   "src": "public/campaigns/bf-region-north/clips/h2b.mp4",
    "from": 0,
    "frames": 78,
    "vf": "eq=saturation=1.0:contrast=1.03"
@@ -63,33 +33,9 @@
    "vf": "eq=saturation=1.0:contrast=1.03"
   },
   {
-   "src": "public/campaigns/bf-region-north/clips/h3b.mp4",
-   "from": 0,
-   "frames": 39,
-   "vf": "eq=saturation=1.0:contrast=1.03"
-  },
-  {
-   "src": "public/campaigns/bf-region-north/clips/h3c.mp4",
-   "from": 0,
-   "frames": 39,
-   "vf": "eq=saturation=1.0:contrast=1.03"
-  },
-  {
    "src": "public/campaigns/bf-region-north/clips/h4a.mp4",
    "from": 0,
    "frames": 78,
-   "vf": "eq=saturation=1.0:contrast=1.03"
-  },
-  {
-   "src": "public/campaigns/bf-region-north/clips/h4b.mp4",
-   "from": 0,
-   "frames": 39,
-   "vf": "eq=saturation=1.0:contrast=1.03"
-  },
-  {
-   "src": "public/campaigns/bf-region-north/clips/h4c.mp4",
-   "from": 0,
-   "frames": 39,
    "vf": "eq=saturation=1.0:contrast=1.03"
   }
  ],

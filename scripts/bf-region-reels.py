@@ -6,7 +6,7 @@ H = "public/hotels/"
 # offers and order from the final list (Scott, 11 Nov): "Save X%", cheapest first; Oaklands moved to the North; the
 # Kingfisher kept in East & Midlands from its booking page (Save 30%); "up to" on each end card is the region's best offer
 R = {
- "north": dict(title="The North", music="hotels/dalmahoy/leva-eternity.mp3", start=133, bar=78.0, intro=1, gain=0.8, seconds=40, best="20%", snap=True, tail_bars=1.25,
+ "north": dict(title="The North", music="hotels/dalmahoy/leva-eternity.mp3", start=55, bar=78.0, intro=2, gain=0.8, seconds=40, best="20%", snap=True, hotel_beats=4, tail_bars=1.25,
    intro_img=("skipton/canal-boats.jpg", 760),
    hotels=[("Laceby, Lincolnshire","Oaklands Hall Hotel","Save 18%",("oaklands-hall/exterior-front.jpg",None),("oaklands-hall/plate.jpg",960),("oaklands-hall/fireplace.jpg",None)),
            ("Skipton, North Yorkshire","Skipton Hotel","Save 20%",("skipton/canal-reflection.jpg",420),("skipton/afternoon-tea.jpg",1000),("skipton/pool.jpg",None)),
@@ -53,12 +53,12 @@ for rid in only:
     snap=r.get("snap",False)
     # snap (Scott, 11 Nov: "a flat slideshow"): each hotel two bars as exterior half a bar, then two shots a beat... two beats each
     if snap:
+        # the collage opening (Scott, 12 Nov: "like the carousels, a collage first, then the exteriors with the sale
+        # percent"): the collage holds the intro (the picture under it is hidden), then each hotel's exterior alone, a
+        # bar (the North, 92 BPM) or two (the faster tracks), gliding
         imgs=[("intro",r["intro_img"],r["intro"]*4)]
         for i,h in enumerate(r["hotels"]):
-            if len(h)>5 and h[5]:
-                imgs.append((f"h{i}a",h[3],4)); imgs.append((f"h{i}b",h[4],2)); imgs.append((f"h{i}c",h[5],2))
-            else:  # two shots, half a bar each (North polish, 12 Nov: Gomersal's third shot was its weakest)
-                imgs.append((f"h{i}a",h[3],4)); imgs.append((f"h{i}b",h[4],4))
+            imgs.append((f"h{i}a",h[3],r.get("hotel_beats",8)))
         unit=bar/4
     else:
         imgs=[("intro",r["intro_img"],r["intro"])]
@@ -82,6 +82,14 @@ for rid in only:
         a=fr[starts[i]]; b=fr[starts[i+1]]
         if snap: cards.append(f'    {{ from: {a+2}, to: {b}, place: "{h[0]}", name: "{h[1]}", offer: "{h[2]}" }},')
         else: cards.append(f'    {{ from: {a+3}, to: {b-4}, place: "{h[0]}", name: "{h[1]}", offer: "{h[2]}" }},')
+    def tile(img,cx):
+        W=Image.open(H+img[0] if isinstance(img,tuple) else H+img).size[0]
+        return f'{{ src: "hotels/{img}", pos: "{50 if cx is None else round(100*cx/W)}% 50%" }}'
+    if snap:
+        tiles=", ".join(tile(h[4][0],h[4][1]) for h in r["hotels"])
+        collageline=f'  collage: {{ to: {fr[1]}, caps: "{r["title"]}", best: "{r["best"]}", tiles: [{tiles}] }},'
+    else:
+        collageline=f'  title: {{ from: 8, to: {fr[1]-4}, eyebrow: "Black Friday Sale", line: "{r["title"]}" }},'
     snapline=(f"\n  snap: {{ beat: {bar/4:.3f}, kicks: [] }}," if snap else "")
     var="bfRegion"+"".join(p.capitalize() for p in rid.split("-"))
     ts=f'''import type {{ RippleSpec }} from "../hotel-film/ripple/types";
@@ -97,7 +105,7 @@ export const {var}: RippleSpec = {{
   frames: {total},
   feed: true,
   label: {{ eyebrow: "", name: "", from: 0, to: 1 }},
-  title: {{ from: 8, to: {fr[1] if snap else fr[1]-4}, eyebrow: "Black Friday Sale", line: "{r["title"]}" }},
+{collageline}
   cards: [
 {chr(10).join(cards)}
   ],

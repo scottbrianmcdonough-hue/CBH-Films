@@ -743,6 +743,108 @@ const SnapEndCard: React.FC<{ line: string; eyebrow?: string; beat: number }> = 
   );
 };
 
+// The carousel cover as the reel's opening: tiles settle in one after another (a half beat apart), the band's words come
+// in on the bar after (caps wipe, Black Friday Sale rises, the pill pops and counts up), a slow push over the whole.
+const Collage: React.FC<{ caps: string; best: string; tiles: { src: string; pos: string }[]; beat: number }> = ({
+  caps,
+  best,
+  tiles,
+  beat,
+}) => {
+  const frame = useCurrentFrame();
+  const G = 8;
+  const BAND = 430;
+  const nTop = Math.max(1, Math.floor(tiles.length / 2));
+  const rowH = (1350 - BAND - 2 * G) / 2;
+  const row = (list: { src: string; pos: string }[], y: number, first: number) =>
+    list.map((t, k) => {
+      const w = (1080 - G * (list.length - 1)) / list.length;
+      return { t, x: k * (w + G), y, w, i: first + k };
+    });
+  const cells = [...row(tiles.slice(0, nTop), 0, 0), ...row(tiles.slice(nTop), rowH + G + BAND + G, nTop)];
+  const words = Math.round(beat * 4); // the band on the next bar
+  const p = words + Math.round(beat * 2); // the pill two beats later
+  const push = 1 + 0.025 * progress(frame, 0, 240, EASE_IN_OUT);
+  return (
+    <AbsoluteFill style={{ backgroundColor: colors.black, transform: `scale(${push})` }}>
+      {cells.map((c) => {
+        // faint from frame one (the feed's preview), each tile settling in a half beat after the last
+        const a = 0.3 + 0.7 * progress(frame, Math.round((c.i * beat) / 2), 16, EASE_OUT);
+        return (
+          <div
+            key={c.t.src}
+            style={{ position: "absolute", left: c.x, top: c.y, width: c.w, height: rowH, overflow: "hidden", opacity: a }}
+          >
+            <Img
+              src={staticFile(c.t.src)}
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                objectPosition: c.t.pos,
+                transform: `scale(${1.08 - 0.08 * a})`,
+              }}
+            />
+          </div>
+        );
+      })}
+      <AbsoluteFill style={{ alignItems: "center", justifyContent: "center", textAlign: "center" }}>
+        <div
+          style={{
+            fontFamily: sans,
+            fontWeight: 600,
+            fontSize: 32,
+            letterSpacing: "0.02em",
+            color: MAUVE,
+            textTransform: "uppercase",
+            clipPath: wipe(frame, words, 12),
+          }}
+        >
+          {caps}
+        </div>
+        <Rise
+          at={words + 4}
+          style={{
+            fontFamily: serif,
+            fontWeight: 600,
+            fontSize: 118,
+            lineHeight: 1,
+            color: colors.cream,
+            marginTop: 14,
+            whiteSpace: "nowrap",
+            letterSpacing: "-0.01em",
+          }}
+        >
+          Black Friday Sale
+        </Rise>
+        <div
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: 18,
+            height: 78,
+            padding: "0 36px",
+            borderRadius: 39,
+            backgroundColor: MAUVE,
+            marginTop: 30,
+            fontFamily: sans,
+            fontWeight: 600,
+            color: colors.cream,
+            textTransform: "uppercase",
+            opacity: progress(frame, p, 3),
+            transform: `scale(${pop(frame, p)})`,
+          }}
+        >
+          <span style={{ fontSize: 30, letterSpacing: "0.02em" }}>Save up to</span>
+          <span style={{ fontSize: 46, fontWeight: 700, fontVariantNumeric: "lining-nums tabular-nums" }}>
+            {countUp(best, frame, p, Math.round(beat * 2))}
+          </span>
+        </div>
+      </AbsoluteFill>
+    </AbsoluteFill>
+  );
+};
+
 export const RippleFilm: React.FC<{ film: RippleSpec }> = ({ film }) => {
   const { music } = film;
   const frame = useCurrentFrame();
@@ -808,6 +910,11 @@ export const RippleFilm: React.FC<{ film: RippleSpec }> = ({ film }) => {
         </Sequence>
       ) : null}
       {film.deepScrim ? <SteadyShade film={film} /> : null}
+      {film.collage ? (
+        <Sequence from={0} durationInFrames={film.collage.to}>
+          <Collage caps={film.collage.caps} best={film.collage.best} tiles={film.collage.tiles} beat={beat} />
+        </Sequence>
+      ) : null}
       {film.title ? (
         <Sequence from={film.title.from} durationInFrames={film.title.to - film.title.from}>
           {film.snap ? (
