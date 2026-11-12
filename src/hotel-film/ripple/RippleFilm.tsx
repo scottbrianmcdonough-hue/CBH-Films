@@ -663,7 +663,8 @@ const SnapTitle: React.FC<{ eyebrow: string; line: string; out: number; beat: nu
 }) => {
   const frame = useCurrentFrame();
   const o = 1 - progress(frame, out - 6, 6, EASE_IN_OUT);
-  const s = Math.round(beat * 2); // the line slams in two beats after the caps
+  // the line comes in two beats after the caps, or one when the opening is a single bar (the North, 12 Nov)
+  const s = Math.round(beat * (out > beat * 6 ? 2 : 1));
   return (
     <AbsoluteFill style={{ opacity: o, transform: `translateX(${(1 - o) * -40}px)` }}>
       <div style={{ position: "absolute", left: 72, bottom: FEED_BOTTOM }}>

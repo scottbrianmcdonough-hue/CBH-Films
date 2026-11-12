@@ -63,3 +63,8 @@ so a region's spotlight and its region reel shouldn't both go out.
   afternoon tea, The Kingfisher fireside, Jockey Club Rooms blue bedroom. All three reels calmer: no blur, the old shot
   leans in 1.5%, the new lands 2.5% large and eases back over 14 frames; the title slams from 1.16 (was 1.45), the pill
   pops from 0.82 (was 0.55). South re-rendered to match.
+- North polish (Scott, 12 Nov: "go ahead and do all five"): Gomersal Park opens on its exterior (the spa crop read as
+  a shower wall) and drops its third shot (exterior and afternoon tea half a bar each); Waterton opens on the aerial
+  of the island; the opening is one bar on Skipton's canal boats (was two on Holdsworth's robes, Holdsworth closing
+  the reel too), the music started a bar later (133) so the hotels sit where they did; "The North" comes in a beat
+  after its caps; the end card 1.25 bars (~3s, was ~5s). 31.9s, -15.5 LUFS.

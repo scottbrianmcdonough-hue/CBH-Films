@@ -6,12 +6,12 @@ H = "public/hotels/"
 # offers and order from the final list (Scott, 11 Nov): "Save X%", cheapest first; Oaklands moved to the North; the
 # Kingfisher kept in East & Midlands from its booking page (Save 30%); "up to" on each end card is the region's best offer
 R = {
- "north": dict(title="The North", music="hotels/dalmahoy/leva-eternity.mp3", start=55, bar=78.0, intro=2, gain=0.8, seconds=40, best="20%", snap=True,
-   intro_img=("holdsworth-house/robes-fizz.jpg", 700),
+ "north": dict(title="The North", music="hotels/dalmahoy/leva-eternity.mp3", start=133, bar=78.0, intro=1, gain=0.8, seconds=40, best="20%", snap=True, tail_bars=1.25,
+   intro_img=("skipton/canal-boats.jpg", 760),
    hotels=[("Laceby, Lincolnshire","Oaklands Hall Hotel","Save 18%",("oaklands-hall/exterior-front.jpg",None),("oaklands-hall/plate.jpg",960),("oaklands-hall/fireplace.jpg",None)),
            ("Skipton, North Yorkshire","Skipton Hotel","Save 20%",("skipton/canal-reflection.jpg",420),("skipton/afternoon-tea.jpg",1000),("skipton/pool.jpg",None)),
-           ("Gomersal, West Yorkshire","Gomersal Park\\nHotel & Spa","Save 20%",("gomersal-park/spa-pool.jpg",960),("gomersal-park/afternoon-tea.jpg",760),("gomersal-park/bedroom.jpg",None)),
-           ("Wakefield, West Yorkshire","Waterton Park\\nHotel & Spa","Save 20%",("waterton-park/walton-hall.jpg",960),("waterton-park/outdoor-hot-tub.jpg",1100),("waterton-park/afternoon-tea.jpg",None)),
+           ("Gomersal, West Yorkshire","Gomersal Park\\nHotel & Spa","Save 20%",("gomersal-park/exterior.jpg",1330),("gomersal-park/afternoon-tea.jpg",760),None),
+           ("Wakefield, West Yorkshire","Waterton Park\\nHotel & Spa","Save 20%",("waterton-park/aerial.jpg",None),("waterton-park/outdoor-hot-tub.jpg",1100),("waterton-park/afternoon-tea.jpg",None)),
            ("Halifax, West Yorkshire","Holdsworth House Hotel","Save 10%",("holdsworth-house/exterior.jpg",960),("holdsworth-house/breakfast-in-bed.jpg",960),("holdsworth-house/tea-by-the-fire.jpg",None))]),
  "scotland-wales": dict(title="Scotland & Wales", music="music/berrydeep-funky-summer-house-565437.mp3", start=353, bar=59.2, intro=2, gain=0.58, seconds=141, best="30%",
    intro_img=("the-imperial/bay-from-great-orme.jpg",750),
@@ -47,7 +47,10 @@ for rid in only:
     if snap:
         imgs=[("intro",r["intro_img"],r["intro"]*4)]
         for i,h in enumerate(r["hotels"]):
-            imgs.append((f"h{i}a",h[3],4)); imgs.append((f"h{i}b",h[4],2)); imgs.append((f"h{i}c",h[5],2))
+            if len(h)>5 and h[5]:
+                imgs.append((f"h{i}a",h[3],4)); imgs.append((f"h{i}b",h[4],2)); imgs.append((f"h{i}c",h[5],2))
+            else:  # two shots, half a bar each (North polish, 12 Nov: Gomersal's third shot was its weakest)
+                imgs.append((f"h{i}a",h[3],4)); imgs.append((f"h{i}b",h[4],4))
         unit=bar/4
     else:
         imgs=[("intro",r["intro_img"],r["intro"])]
@@ -57,17 +60,18 @@ for rid in only:
     bars=[0]
     for _,_,n in imgs: bars.append(bars[-1]+n)
     fr=[round(b*unit) for b in bars]
-    per=3 if snap else 2
+    # each hotel's first shot index (shots per hotel vary in snap mode)
+    starts=[k for k,(name,_,_) in enumerate(imgs) if name.endswith("a") and name.startswith("h")]+[len(imgs)]
     shots=[]
     for k,(name,(img,cx),n) in enumerate(imgs):
         frames=fr[k+1]-fr[k]; out=f"{D}/clips/{name}.mp4"; clip(img,cx,frames+14,out)
         shots.append({"src":out,"from":0,"frames":frames,"vf":"eq=saturation=1.0:contrast=1.03"})
-    end=fr[-1]; total=end+round(2*bar)
+    end=fr[-1]; total=end+round(r.get("tail_bars",2)*bar)
     json.dump({"out":f"{D}/picture.mp4","size":"1080x1350","shots":shots,"fade":22,"tail":total-end},open(D+"/cut.json","w"),indent=1)
     subprocess.run(["python3","scripts/cut-picture.py",D+"/cut.json"],check=True,capture_output=True)
     cards=[]
     for i,h in enumerate(r["hotels"]):
-        a=fr[1+per*i]; b=fr[1+per*(i+1)]
+        a=fr[starts[i]]; b=fr[starts[i+1]]
         if snap: cards.append(f'    {{ from: {a+2}, to: {b}, place: "{h[0]}", name: "{h[1]}", offer: "{h[2]}" }},')
         else: cards.append(f'    {{ from: {a+3}, to: {b-4}, place: "{h[0]}", name: "{h[1]}", offer: "{h[2]}" }},')
     snapline=(f"\n  snap: {{ beat: {bar/4:.3f}, kicks: [{', '.join(str(f) for f in fr[1:len(imgs)])}] }}," if snap else "")

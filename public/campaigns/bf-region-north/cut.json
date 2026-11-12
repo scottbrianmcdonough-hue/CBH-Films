@@ -5,7 +5,7 @@
   {
    "src": "public/campaigns/bf-region-north/clips/intro.mp4",
    "from": 0,
-   "frames": 156,
+   "frames": 78,
    "vf": "eq=saturation=1.0:contrast=1.03"
   },
   {
@@ -53,13 +53,7 @@
   {
    "src": "public/campaigns/bf-region-north/clips/h2b.mp4",
    "from": 0,
-   "frames": 39,
-   "vf": "eq=saturation=1.0:contrast=1.03"
-  },
-  {
-   "src": "public/campaigns/bf-region-north/clips/h2c.mp4",
-   "from": 0,
-   "frames": 39,
+   "frames": 78,
    "vf": "eq=saturation=1.0:contrast=1.03"
   },
   {
@@ -100,5 +94,5 @@
   }
  ],
  "fade": 22,
- "tail": 156
+ "tail": 98
 }
