@@ -89,7 +89,7 @@ for rid in only:
         return f'{{ src: "hotels/{img}", pos: "{50 if cx is None else round(100*cx/W)}% 50%" }}'
     if snap:
         tiles=", ".join(tile(h[4][0],h[4][1]) for h in r["hotels"])
-        collageline=f'  collage: {{ to: {fr[1]}, caps: "{r["title"]}", best: "{r["best"]}",{(' pill: "'+r["pill"]+'",') if r.get("pill") else ""} tiles: [{tiles}] }},'
+        collageline=f'  collage: {{ to: {fr[1]}, caps: "{r["title"]}", best: "{r["best"]}",{(' pill: "'+r["pill"]+'", tap: '+str(round(7*bar/4))+',') if r.get("pill") else ""} tiles: [{tiles}] }},'
     else:
         collageline=f'  title: {{ from: 8, to: {fr[1]-4}, eyebrow: "Black Friday Sale", line: "{r["title"]}" }},'
     snapline=(f"\n  snap: {{ beat: {bar/4:.3f}, kicks: [] }}," if snap else "")

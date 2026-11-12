@@ -749,14 +749,20 @@ const SnapEndCard: React.FC<{ line: string; eyebrow?: string; beat: number }> = 
 
 // The carousel cover as the reel's opening: tiles settle in one after another (a half beat apart), the band's words come
 // in on the bar after (caps wipe, Black Friday Sale rises, the pill pops and counts up), a slow push over the whole.
-const Collage: React.FC<{ caps: string; best: string; pill?: string; tiles: { src: string; pos: string }[]; beat: number }> = ({
-  caps,
-  best,
-  pill,
-  tiles,
-  beat,
-}) => {
+const Collage: React.FC<{
+  caps: string;
+  best: string;
+  pill?: string;
+  tap?: number;
+  tiles: { src: string; pos: string }[];
+  beat: number;
+}> = ({ caps, best, pill, tap, tiles, beat }) => {
   const frame = useCurrentFrame();
+  // the tap on Book now, as the countdown reel's (Scott, 12 Nov: "do a click on the Book now and a sound effect", "see
+  // the original Black Friday reel"): the pill dips to 93% and back, a soft touch swells and fades where the finger lands
+  const press =
+    tap === undefined ? 1 : interpolate(frame, [tap, tap + 3, tap + 9], [1, 0.93, 1], clamp);
+  const touch = tap === undefined ? 0 : progress(frame, tap, 14, EASE_OUT);
   const G = 8;
   const BAND = 430;
   const nTop = Math.max(1, Math.floor(tiles.length / 2));
@@ -837,9 +843,28 @@ const Collage: React.FC<{ caps: string; best: string; pill?: string; tiles: { sr
             color: colors.cream,
             textTransform: "uppercase",
             opacity: progress(frame, p, 3),
-            transform: `scale(${pop(frame, p)})`,
+            transform: `scale(${pop(frame, p) * press})`,
+            position: "relative",
+            boxShadow: "0 12px 40px rgba(0,0,0,0.3)",
           }}
         >
+          {tap !== undefined && frame >= tap ? (
+            <div
+              style={{
+                position: "absolute",
+                left: "50%",
+                top: "50%",
+                width: 80 + touch * 80,
+                height: 80 + touch * 80,
+                marginLeft: -(40 + touch * 40),
+                marginTop: -(40 + touch * 40),
+                borderRadius: "50%",
+                border: "3px solid rgba(245,239,227,0.8)",
+                backgroundColor: `rgba(245,239,227,${0.35 * (1 - touch)})`,
+                opacity: 1 - touch,
+              }}
+            />
+          ) : null}
           {pill ? (
             <span style={{ fontSize: 34, letterSpacing: "0.04em" }}>{pill}</span>
           ) : (
@@ -923,7 +948,20 @@ export const RippleFilm: React.FC<{ film: RippleSpec }> = ({ film }) => {
       {film.deepScrim ? <SteadyShade film={film} /> : null}
       {film.collage ? (
         <Sequence durationInFrames={film.collage.to}>
-          <Collage caps={film.collage.caps} best={film.collage.best} pill={film.collage.pill} tiles={film.collage.tiles} beat={beat} />
+          <Collage
+            caps={film.collage.caps}
+            best={film.collage.best}
+            pill={film.collage.pill}
+            tap={film.collage.tap}
+            tiles={film.collage.tiles}
+            beat={beat}
+          />
+        </Sequence>
+      ) : null}
+      {film.collage?.tap !== undefined ? (
+        // the countdown reel's soft press (a bright tick and a small thump, peaks -16 dBFS)
+        <Sequence from={film.collage.tap} durationInFrames={10}>
+          <Audio src={staticFile("campaigns/black-friday-2026/tap.wav")} volume={0.9} />
         </Sequence>
       ) : null}
       {film.title ? (

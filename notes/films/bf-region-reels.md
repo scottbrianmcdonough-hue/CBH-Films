@@ -82,3 +82,7 @@ so a region's spotlight and its region reel shouldn't both go out.
 - North wording (Bianca via Scott, 12 Nov: "wonder if the 20% will cause confusion ... change it to something else to
   create some urgency to book"): the cover's pill reads BOOK NOW (`collage.pill`), the end card "Lock in your dates /
   before they're gone" (Bianca's line), no percentage outside the hotels' own cards; the post drops "up to 20%".
+- The Book now tap (Scott, 12 Nov: "do a click on the Book now and a sound effect", "see the original Black Friday
+  reel"): the countdown reel's own press on the cover's pill, a beat after it pops (frame 137): the pill dips to 93% and
+  back, a soft cream touch swells and fades from its middle, and its `tap.wav` (a bright tick and a small thump) plays
+  (`collage.tap`), straight into the first hotel on the next beat. A house rule exception Scott asked for.

@@ -51,7 +51,8 @@ export type RippleSpec = {
   // exteriors with the sale percent"): the hotels' tiles above and below a black band, the region in mauve caps,
   // Black Friday Sale in cream Cormorant and the mauve Save up to pill; it holds until `to`, then the first exterior
   // pill: the pill's own words in place of Save up to (the North, 12 Nov: "the 20% may cause confusion")
-  collage?: { to: number; caps: string; best: string; pill?: string; tiles: { src: string; pos: string }[] };
+  // tap: film frame where a finger taps the pill, as the countdown reel's Book now (press, touch, its tap.wav)
+  collage?: { to: number; caps: string; best: string; pill?: string; tap?: number; tiles: { src: string; pos: string }[] };
   // a title over the opening shot: mauve caps over a cream Cormorant line ("Black Friday Sale" / "The North")
   title?: { from: number; to: number; eyebrow: string; line: string };
   // a counter over the shots (Haycock's meetings cut: MEETING SPACES ticking up as the rooms cut

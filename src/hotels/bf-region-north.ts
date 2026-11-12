@@ -11,7 +11,7 @@ export const bfRegionNorth: RippleSpec = {
   frames: 644,
   feed: true,
   label: { eyebrow: "", name: "", from: 0, to: 1 },
-  collage: { to: 156, caps: "The North", best: "20%", pill: "Book now", tiles: [{ src: "hotels/oaklands-hall/plate.jpg", pos: "50% 50%" }, { src: "hotels/skipton/afternoon-tea.jpg", pos: "52% 50%" }, { src: "hotels/gomersal-park/afternoon-tea.jpg", pos: "40% 50%" }, { src: "hotels/waterton-park/outdoor-hot-tub.jpg", pos: "57% 50%" }, { src: "hotels/holdsworth-house/breakfast-in-bed.jpg", pos: "50% 50%" }] },
+  collage: { to: 156, caps: "The North", best: "20%", pill: "Book now", tap: 137, tiles: [{ src: "hotels/oaklands-hall/plate.jpg", pos: "50% 50%" }, { src: "hotels/skipton/afternoon-tea.jpg", pos: "52% 50%" }, { src: "hotels/gomersal-park/afternoon-tea.jpg", pos: "40% 50%" }, { src: "hotels/waterton-park/outdoor-hot-tub.jpg", pos: "57% 50%" }, { src: "hotels/holdsworth-house/breakfast-in-bed.jpg", pos: "50% 50%" }] },
   cards: [
     { from: 158, to: 234, place: "Laceby, Lincolnshire", name: "Oaklands Hall Hotel", offer: "Save 18%" },
     { from: 236, to: 312, place: "Skipton, North Yorkshire", name: "Skipton Hotel", offer: "Save 20%" },
