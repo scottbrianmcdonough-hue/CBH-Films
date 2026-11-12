@@ -1070,7 +1070,7 @@ export const RippleFilm: React.FC<{ film: RippleSpec }> = ({ film }) => {
         style={{
           position: "absolute",
           left: film.wide ? 1740 : 920,
-          top: film.wide ? 912 : film.cards ? 1060 : film.feed ? 1176 : 1452,
+          top: film.wide ? 912 : film.cards ? 980 : film.feed ? 1176 : 1452,
           width: 100,
           height: 108,
         }}

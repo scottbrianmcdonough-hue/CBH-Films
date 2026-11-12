@@ -89,3 +89,4 @@ so a region's spotlight and its region reel shouldn't both go out.
 - The end card glides in (Scott, 12 Nov: "it just kinda pulses and pops in"): the caps wipe, then each line rises 28px and fades over 26 frames, the second 8 frames after the first; no scale.
 - The collage band higher (Scott, 12 Nov: "need to bring it up more"): a 300px top row and a taller bottom one, so the band (308 to 738) and the Book now pill sit clear of the caption and buttons over a reel's lower half.
 - Cards, title and CB raised (Scott, 12 Nov: "bring the CB up a bit and the rest"; the feed player's controls covered the pill): region reels only (`cards`), the cards and title 320px off the bottom (was 190), the shade rising with them, the CB at 1060 (was 1176).
+- The CB up to 980 (Scott: "CB slightly up"; the player's menu dots sat on it).
