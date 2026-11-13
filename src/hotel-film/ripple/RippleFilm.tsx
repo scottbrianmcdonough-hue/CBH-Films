@@ -18,6 +18,8 @@ const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
 const SKY_LIFT =
   "0 1px 2px rgba(9,9,10,0.7), 0 2px 10px rgba(9,9,10,0.45), 0 0 26px rgba(9,9,10,0.3)";
 const LIFT = "0 3px 28px rgba(9,9,10,0.55), 0 1px 3px rgba(9,9,10,0.45)";
+// the small mauve caps over a bright exterior (Scott, 13 Nov: "can't read the text now"): a tight dark halo
+const CAPS_HALO = "0 0 2px rgba(9,9,10,0.95), 0 1px 4px rgba(9,9,10,0.9), 0 0 14px rgba(9,9,10,0.75)";
 // Cosy autumn, as Departures (Scott: "grade it cosy autumn"): the summer photos warmed and
 // softened toward gold under an amber glow.
 const GRADE =
@@ -37,7 +39,7 @@ const FEED_SCRIM =
 const MAUVE = "#A15272"; // Lee's Black Friday caps
 // the region reels' shade, as the carousel slides: a dark gradient up from the bottom, so the small mauve caps read
 const CARD_SCRIM =
-  "linear-gradient(to top, rgba(9,9,10,0.84) 0%, rgba(9,9,10,0.7) 28%, rgba(9,9,10,0.3) 46%, rgba(9,9,10,0) 58%)";
+  "linear-gradient(to top, rgba(9,9,10,0.9) 0%, rgba(9,9,10,0.82) 36%, rgba(9,9,10,0.5) 50%, rgba(9,9,10,0) 64%)";
 const FEED_BOTTOM = 190;
 // the region reels' cards and title sit higher (Scott, 12 Nov: "bring the CB up a bit and the rest"): the feed's video
 // player puts its controls over the bottom of the frame
@@ -611,7 +613,7 @@ const SnapCard: React.FC<{ place: string; name: string; offer: string; out: numb
             letterSpacing: "0.04em",
             color: MAUVE,
             textTransform: "uppercase",
-            textShadow: LIFT,
+            textShadow: CAPS_HALO,
             marginBottom: 10,
             clipPath: wipe(frame, 0),
           }}
