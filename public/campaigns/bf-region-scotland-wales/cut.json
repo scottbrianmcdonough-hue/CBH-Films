@@ -11,37 +11,19 @@
   {
    "src": "public/campaigns/bf-region-scotland-wales/clips/h0a.mp4",
    "from": 0,
-   "frames": 60,
-   "vf": "eq=saturation=1.0:contrast=1.03"
-  },
-  {
-   "src": "public/campaigns/bf-region-scotland-wales/clips/h0b.mp4",
-   "from": 0,
-   "frames": 59,
+   "frames": 119,
    "vf": "eq=saturation=1.0:contrast=1.03"
   },
   {
    "src": "public/campaigns/bf-region-scotland-wales/clips/h1a.mp4",
    "from": 0,
-   "frames": 59,
-   "vf": "eq=saturation=1.0:contrast=1.03"
-  },
-  {
-   "src": "public/campaigns/bf-region-scotland-wales/clips/h1b.mp4",
-   "from": 0,
-   "frames": 59,
+   "frames": 118,
    "vf": "eq=saturation=1.0:contrast=1.03"
   },
   {
    "src": "public/campaigns/bf-region-scotland-wales/clips/h2a.mp4",
    "from": 0,
-   "frames": 59,
-   "vf": "eq=saturation=1.0:contrast=1.03"
-  },
-  {
-   "src": "public/campaigns/bf-region-scotland-wales/clips/h2b.mp4",
-   "from": 0,
-   "frames": 60,
+   "frames": 119,
    "vf": "eq=saturation=1.0:contrast=1.03"
   }
  ],

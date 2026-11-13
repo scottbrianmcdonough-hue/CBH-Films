@@ -11,7 +11,7 @@ export const bfRegionSouth: RippleSpec = {
   frames: 827,
   feed: true,
   label: { eyebrow: "", name: "", from: 0, to: 1 },
-  collage: { to: 118, caps: "The South", best: "30%", tiles: [{ src: "hotels/avisford-park/restaurant.jpg", pos: "52% 50%" }, { src: "hotels/frensham-pond/restaurant.jpg", pos: "43% 50%" }, { src: "hotels/donnington-manor/breakfast-terrace.jpg", pos: "52% 50%" }, { src: "hotels/oakley-hall/afternoon-tea.jpg", pos: "42% 50%" }, { src: "hotels/burleigh-court/bedroom.jpg", pos: "47% 50%" }] },
+  collage: { to: 118, caps: "The South", best: "30%", pill: "Book now", tap: 103, tiles: [{ src: "hotels/avisford-park/restaurant.jpg", pos: "52% 50%" }, { src: "hotels/frensham-pond/restaurant.jpg", pos: "43% 50%" }, { src: "hotels/donnington-manor/breakfast-terrace.jpg", pos: "52% 50%" }, { src: "hotels/oakley-hall/afternoon-tea.jpg", pos: "42% 50%" }, { src: "hotels/burleigh-court/bedroom.jpg", pos: "47% 50%" }] },
   cards: [
     { from: 120, to: 236, place: "Arundel, West Sussex", name: "Avisford Park Hotel", offer: "Save 25%" },
     { from: 238, to: 355, place: "Farnham, Surrey", name: "Frensham Pond\nHotel & Spa", offer: "Save 20%" },
@@ -22,7 +22,7 @@ export const bfRegionSouth: RippleSpec = {
   lines: [],
   deepScrim: true,
   snap: { beat: 14.775, kicks: [] },
-  endCard: { at: 709, eyebrow: "Black Friday Sale", line: "Save up to 30%", quick: true },
+  endCard: { at: 709, eyebrow: "Black Friday Sale", line: "Make it yours\nwhile it lasts", quick: true },
   music: {
     src: "music/kulakovka-luxury-life-618587.mp3",
     startAt: 346,
