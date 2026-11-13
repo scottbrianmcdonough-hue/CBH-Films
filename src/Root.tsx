@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import { Composition } from "remotion";
+import { Composition, Still } from "remotion";
 import { MyComposition } from "./Composition";
 import { EditorialFilm } from "./hotel-film/editorial/EditorialFilm";
 import { Film } from "./hotel-film/Film";
@@ -192,6 +192,8 @@ import { GN_FULL_HOUSE_FRAMES, GNFullHouse } from "./linkedin/GNFullHouse";
 import { GN_KEY_FOB_FRAMES, GNKeyFob } from "./linkedin/GNKeyFob";
 import { GN_MAP_FRAMES, GNMap } from "./linkedin/GNMap";
 import { GLOBAL_HUB_FRAMES, GlobalHub } from "./linkedin/GlobalHub";
+import { ChatCover, ChatReel, validateChat } from "./hotel-film/chat/ChatReel";
+import { dadBirthdayChat, dadBirthdayChatQuiet } from "./hotels/dad-birthday-chat";
 import { GLOBAL_HUB_WIDE_FRAMES, GlobalHubWide } from "./linkedin/GlobalHubWide";
 import { CBHUB_DIAGRAM_FRAMES, CBHubDiagram } from "./linkedin/CBHubDiagram";
 import { CBHUB_STORY_FRAMES, CBHubStory } from "./linkedin/CBHubStory";
@@ -218,10 +220,41 @@ import {
   UNWRAP_FILMS,
 } from "./hotels";
 
+validateChat(dadBirthdayChat);
+validateChat(dadBirthdayChatQuiet);
+
 export const RemotionRoot: React.FC = () => {
   return (
     <>
       <MyComposition />
+      {/* the Dad birthday chat reel (gift vouchers; from claude/loving-brown-0k56ps, 13 Nov) */}
+      {[dadBirthdayChat, dadBirthdayChatQuiet].map((spec) => (
+        <Composition
+          key={spec.id}
+          id={spec.id}
+          component={ChatReel}
+          defaultProps={{ spec }}
+          durationInFrames={spec.durationInFrames}
+          fps={30}
+          width={1080}
+          height={1920}
+        />
+      ))}
+      <Still
+        id="dad-birthday-chat-cover"
+        component={ChatCover}
+        defaultProps={{
+          spec: dadBirthdayChat,
+          still: {
+            src: "campaigns/dad-birthday/ruthin-autumn-cover.jpg",
+            size: [720, 1280] as [number, number],
+            cx: 360,
+          },
+          messages: dadBirthdayChat.messages.filter((m) => m.text && m.at < 200),
+        }}
+        width={1080}
+        height={1920}
+      />
       {FILMS.map((film) => (
         <Composition
           key={film.id}
