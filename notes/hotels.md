@@ -46,3 +46,5 @@ Collection-wide films (many hotels): [cbh-journey](films/cbh-journey.md), [cbh-s
 [cbh-mosaic](films/cbh-mosaic.md), [cbh-comic-flip](films/cbh-comic-flip.md), [cbh-rolodex](films/cbh-rolodex.md),
 [cbh-screens](films/cbh-screens.md), [brand-stings](films/brand-stings.md).
 | Donnington Valley | [black-friday-queue](films/black-friday-queue.md) |
+
+- Maids Head Hotel (Norwich): back in the rotation until 27 January 2027, then off again (Scott, 13 Nov 2026). No films use it yet; it was left out of AA Rosettes, the journey, rolodex, showcase, Cosy Escapes and Festive Lights On while it was leaving.

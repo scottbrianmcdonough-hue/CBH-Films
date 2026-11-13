@@ -61,6 +61,9 @@ with no history and no renders:
 - End lines: an "X first, or Y?" question is good but not every time (Scott, 3 Nov: "getting to be a pattern");
   mix in a statement ("Tee off, / then turn in").
 
+- Maids Head Hotel (Norwich, The WinePress Restaurant) is back in the rotation until 27 January 2027, then comes off
+  again (Scott, 13 Nov 2026): use it in content dated up to 27 Jan 2027, never in anything posting after it. The older
+  spec comments that say "leaving the collection, never use it" predate this.
 - Rules Scott and Bianca gave on single films that hold for every film (the film notes have the context):
   - Never name a dish the photo may not show (The Mount: the "fondant").
   - No "not X, just Y" lines ("an AI tell"); no "link in bio"; no "worth ..." end lines; nothing corny
