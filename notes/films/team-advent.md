@@ -17,3 +17,4 @@ Mock-up sent 13 Nov with Scott's clip only; waiting on the team's clips.
 - Clips go in `public/campaigns/team-advent/` (each converted to 30fps, loudnorm -16), listed in `MEMBERS` with the
   door number, name and length. Only Scott's is in (`scott.mp4`, 2.4s, landscape, cropped to his face); doors 12 and 7
   read "Clip to come". A Christmas team photo would suit the ending better than the gala stage (purple light).
+- Placeholders (Scott, 13 Nov: "take out my one and add placeholder shots of the hotels and the team photo"): Scott's clip removed; all six small doors (1, 3, 7, 9, 12, 18) open on festive hotel photos as stand ins (Donnington Santa, Fairlawns crackers, Hogarths entrance, Langshott nutcracker, Rowton mantel, Barnett Hill staircase), 40 frames each, the music no longer ducked (no voices); door 24 the team. 24.2s, -16.3 LUFS.

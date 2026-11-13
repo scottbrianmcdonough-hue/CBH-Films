@@ -11,15 +11,19 @@ import { caps, clamp, Mark } from "./common";
 // the person's clip plays full frame with their own voice and their name in gold caps, then back out to the board
 // for the next door; the big door 24 opens last onto the whole team (the gala team photo), "Merry Christmas / from
 // all of us", the white CB. Christmas Jazz (Tunetank, the festive reel's) low under the voices. A mock-up: only
-// Scott's clip is in; the other doors read "Clip to come" until the team send theirs.
+// For now (Scott, 13 Nov: "take out my one and add placeholder shots of the hotels and the team photo") every door
+// opens on a festive hotel photo as a stand in until the team send their clips.
 
-type Member = { n: number; name?: string; clip?: string; len: number; pos?: string };
-const T = "campaigns/team-advent/";
+type Member = { n: number; name?: string; clip?: string; still?: string; len: number; pos?: string };
 // in opening order (clips are each person's few seconds; len in frames)
+const F = "campaigns/festive/graded/";
 const MEMBERS: Member[] = [
-  { n: 1, name: "Scott", clip: T + "scott.mp4", len: 71, pos: "45% 40%" },
-  { n: 12, len: 60 },
-  { n: 7, len: 60 },
+  { n: 1, still: F + "donnington-santa.jpg", len: 40 },
+  { n: 3, still: F + "fairlawns-crackers.jpg", len: 40 },
+  { n: 7, still: F + "hogarths-entrance.jpg", len: 40 },
+  { n: 9, still: F + "langshott-manor-nutcracker.jpg", len: 40, pos: "62% 55%" },
+  { n: 12, still: F + "rowton-hall-mantel.jpg", len: 40 },
+  { n: 18, still: F + "barnett-hill-staircase.jpg", len: 40 },
 ];
 // the board: three small doors a row, door 24 two rows high across the bottom
 const X0 = 110;
@@ -94,6 +98,11 @@ const Inside: React.FC<{ m?: Member; team?: boolean }> = ({ m, team }) =>
       src={staticFile("campaigns/amc-2026/team-gala-sharp.jpg")}
       style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "50% 45%" }}
     />
+  ) : m?.still ? (
+    <Img
+      src={staticFile(m.still)}
+      style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: m.pos ?? "50% 50%" }}
+    />
   ) : m?.clip ? (
     <OffthreadVideo
       src={staticFile(m.clip)}
@@ -138,7 +147,7 @@ export const TeamAdvent: React.FC = () => {
         src={staticFile("campaigns/festive/christmas-jazz.mp3")}
         trimBefore={Math.round(14.12 * 30)}
         volume={(t) => {
-          const talking = SLOTS.some((s) => t >= s.full - 4 && t < s.back + 2);
+          const talking = SLOTS.some((s) => s.m.clip && t >= s.full - 4 && t < s.back + 2);
           return (
             (talking ? 0.28 : 0.9) *
             interpolate(t, [0, 6, TEAM_ADVENT_FRAMES - 40, TEAM_ADVENT_FRAMES - 1], [0, 1, 1, 0], clamp)
