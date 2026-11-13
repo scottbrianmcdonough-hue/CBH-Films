@@ -10,7 +10,7 @@
   {
    "src": "public/campaigns/bf-mood-story/clips/robes.mp4",
    "from": 0,
-   "frames": 59
+   "frames": 89
   },
   {
    "src": "public/campaigns/bf-mood-story/clips/fireside.mp4",
@@ -20,9 +20,9 @@
   {
    "src": "public/campaigns/bf-mood-story/clips/breakfast.mp4",
    "from": 0,
-   "frames": 60
+   "frames": 89
   }
  ],
  "fade": 20,
- "tail": 147
+ "tail": 88
 }

@@ -14,7 +14,7 @@ export const bfMoodStory: RippleSpec = {
   label: { eyebrow: "", name: "", from: 0, to: 1 },
   lines: [{ text: "Long nights,\nwarm rooms", from: 12, to: 170 }],
   deepScrim: true,
-  endCard: { at: 296, eyebrow: "Black Friday Sale", line: "Save up to 30%", quick: true },
+  endCard: { at: 355, eyebrow: "Black Friday Sale", line: "Save up to 30%", quick: true },
   music: {
     src: "music/kulakovka-luxury-life-618587.mp3",
     startAt: 346,
