@@ -6,6 +6,8 @@ Statuses as of 2 Nov 2026.
 
 ## Going out / scheduled
 
+- [Ruthin Castle: Friday the 13th](films/ruthin-friday13.md): Sent 13 Nov for that day's Facebook post.
+
 - [Black Friday mood Story](films/bf-mood-story.md): Built 13 Nov for that day's Story.
 
 - [Map journey](films/cbh-journey.md): Going out Mon 2 Nov (`cbh-journey-short` and `cbh-journey-story`).
