@@ -14,3 +14,4 @@ Built 13 Nov for that day's Story.
   Lee's mauve over "Save up to 30%". Luxury Life (the South reel's track) from 11.53s. Sticker: "Shop the sale" to the
   Black Friday offers page.
 - The toast pans from her to him (Scott, 13 Nov: "it cuts the guy off"): a slow pan across the glasses, held a bar and a half (cuts at bars 2, 3.5, 4.5; the end card on bar 6, held a bar and a half). Sticker "Black Friday Sale" to the offers page.
+- The third shot is the Fairlawns copper bath (Scott, 13 Nov: "two fireplace shots, maybe another shot for the third"), in place of Burleigh Court's table by the fire.
