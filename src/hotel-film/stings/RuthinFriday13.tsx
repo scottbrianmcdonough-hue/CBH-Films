@@ -63,7 +63,7 @@ export const RuthinFriday13: React.FC = () => {
         style={{
           zIndex: 20,
           background:
-            "radial-gradient(ellipse 1050px 640px at 0% 100%, rgba(9,9,10,0.82) 0%, rgba(9,9,10,0.55) 45%, rgba(9,9,10,0) 100%)",
+            "radial-gradient(ellipse 1050px 640px at 0% 100%, rgba(9,9,10,0.9) 0%, rgba(9,9,10,0.66) 48%, rgba(9,9,10,0) 100%)",
         }}
       />
       <div style={{ position: "absolute", zIndex: 21, left: 72, bottom: 92 }}>
@@ -71,17 +71,17 @@ export const RuthinFriday13: React.FC = () => {
           <div
             style={{
               fontFamily: sans,
-              fontWeight: 600,
-              fontSize: 26,
-              letterSpacing: "0.24em",
+              fontWeight: 700,
+              fontSize: 34,
+              letterSpacing: "0.18em",
               textTransform: "uppercase",
               color: colors.gold,
-              textShadow: "0 1px 6px rgba(9,9,10,0.6)",
+              textShadow: "0 0 2px rgba(9,9,10,0.9), 0 1px 10px rgba(9,9,10,0.7)",
             }}
           >
-            Ruthin Castle · North Wales
+            Ruthin Castle Hotel &amp; Spa
           </div>
-          <div style={{ height: 2, background: colors.gold, marginTop: 12, opacity: 0.9 }} />
+          <div style={{ height: 3, background: colors.gold, marginTop: 14 }} />
         </div>
         {["Happy Friday", "the 13th"].map((l, i) => (
           <div

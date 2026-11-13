@@ -15,3 +15,4 @@ Sent 13 Nov for that day's Facebook post.
   caps with its underline over "Happy Friday / the 13th" in cream Cormorant, held still; the white CB top right (bottom
   right sat on the peacock). MP4 for Facebook (it plays GIFs as video anyway) and a 600 x 750 GIF. The armour photo is
   1024 x 576, so it is soft at 4:5.
+- The caps (Scott, 13 Nov: no dot between name and place, "too long", "bolder", then "need the full name of the hotel at least"): RUTHIN CASTLE HOTEL & SPA in bolder gold caps (700, 34px), a 3px underline, the shade deeper behind the words.
