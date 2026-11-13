@@ -21,7 +21,7 @@ export const bfRegionEastMidlands: RippleSpec = {
   lines: [],
   deepScrim: true,
   snap: { beat: 14.450, kicks: [] },
-  endCard: { at: 578, eyebrow: "Black Friday Sale", line: "Lock in your dates\nbefore they're gone", quick: true },
+  endCard: { at: 578, eyebrow: "Black Friday Sale", line: "Claim your dates\nwhile they last", quick: true },
   music: {
     src: "music/arnaud136-deep-house-instrumental-354596.mp3",
     startAt: 777,

@@ -92,3 +92,4 @@ so a region's spotlight and its region reel shouldn't both go out.
 - The CB up to 980 (Scott: "CB slightly up"; the player's menu dots sat on it).
 - Gomersal back on its spa pool (Bianca, 12 Nov: "replace Gomersal exterior with their spa shot as per feedback on the other post, their exterior is shocking", then G2G), as on the carousel.
 - East & Midlands as the North (Scott, 13 Nov: "the next regional reel"): collage with Book now and the tap, the end card "Lock in your dates / before they're gone", the moves mixed (Whittlebury push in, Forest of Arden and The Kingfisher glide right, Jockey Club glides left), the collage's Forest of Arden tile its chef with afternoon tea (two pools side by side otherwise). 23.1s, -15.1 LUFS. Ticket `out/bf-region-east-midlands-ticket.txt`.
+- East & Midlands end line freshly worded (Scott, 13 Nov: "the same lock in your dates but fresh worded"): "Claim your dates / while they last", and the post's urgency line to match.
