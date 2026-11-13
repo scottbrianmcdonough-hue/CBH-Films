@@ -1,0 +1,28 @@
+{
+ "out": "public/campaigns/bf-mood-story/picture.mp4",
+ "size": "1080x1920",
+ "shots": [
+  {
+   "src": "public/hotels/the-kingfisher/dessert-by-the-fire.mp4",
+   "from": 0,
+   "frames": 118
+  },
+  {
+   "src": "public/campaigns/bf-mood-story/clips/robes.mp4",
+   "from": 0,
+   "frames": 59
+  },
+  {
+   "src": "public/campaigns/bf-mood-story/clips/fireside.mp4",
+   "from": 0,
+   "frames": 59
+  },
+  {
+   "src": "public/campaigns/bf-mood-story/clips/breakfast.mp4",
+   "from": 0,
+   "frames": 60
+  }
+ ],
+ "fade": 20,
+ "tail": 147
+}

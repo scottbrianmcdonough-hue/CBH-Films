@@ -6,6 +6,8 @@ Statuses as of 2 Nov 2026.
 
 ## Going out / scheduled
 
+- [Black Friday mood Story](films/bf-mood-story.md): Built 13 Nov for that day's Story.
+
 - [Map journey](films/cbh-journey.md): Going out Mon 2 Nov (`cbh-journey-short` and `cbh-journey-story`).
 - [November everywhere else / at ours](films/november-out-there.md): Final; suggested Tue 3 Nov; Story ready.
 - [Haycock Manor: depth, meetings, collage](films/haycock-manor.md): Story Wed 4 Nov; meetings cut rebuilt on the Nailcote template (2 Nov); collage built.

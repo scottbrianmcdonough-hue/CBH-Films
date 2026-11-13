@@ -26,6 +26,7 @@ import { bfRegionNorth } from "./bf-region-north";
 import { bfRegionScotlandWales } from "./bf-region-scotland-wales";
 import { bfRegionEastMidlands } from "./bf-region-east-midlands";
 import { bfRegionSouth } from "./bf-region-south";
+import { bfMoodStory } from "./bf-mood-story";
 
 import { novemberOutThere, novemberOutThereStory } from "./november-out-there";
 import {
@@ -180,6 +181,7 @@ export const RIPPLE_FILMS: RippleSpec[] = [
   bfRegionScotlandWales,
   bfRegionEastMidlands,
   bfRegionSouth,
+  bfMoodStory,
 ];
 RIPPLE_FILMS.forEach(validateRipple);
 export const DEPARTURES_FILMS: DeparturesSpec[] = [departuresKeswick];
