@@ -11,7 +11,7 @@ import { colors, sans, serif } from "../theme";
 
 const D = "campaigns/ruthin-friday13/";
 const SHOTS = [
-  { src: D + "castle-peacock.jpg", pos: "34% 50%" },
+  { src: D + "castle-peacock.jpg", pos: "40% 50%" }, // the peacock clear of the CB in the corner
   { src: D + "armour.jpg", pos: "66% 45%" },
   { src: D + "lounge.jpg", pos: "70% 55%" },
   { src: D + "burger-fire.jpg", pos: "45% 60%" },
@@ -102,7 +102,7 @@ export const RuthinFriday13: React.FC = () => {
       </div>
       <Img
         src={staticFile("brand/cb-watermark.png")}
-        style={{ position: "absolute", zIndex: 21, right: 60, top: 56, width: 84, height: 91, filter: "drop-shadow(0 2px 8px rgba(9,9,10,0.45))" }}
+        style={{ position: "absolute", zIndex: 21, right: 56, bottom: 64, width: 72, height: 78, filter: "drop-shadow(0 2px 8px rgba(9,9,10,0.45))" }}
       />
     </AbsoluteFill>
   );
