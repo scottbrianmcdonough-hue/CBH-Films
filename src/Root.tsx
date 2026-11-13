@@ -193,6 +193,7 @@ import { GN_KEY_FOB_FRAMES, GNKeyFob } from "./linkedin/GNKeyFob";
 import { GN_MAP_FRAMES, GNMap } from "./linkedin/GNMap";
 import { GLOBAL_HUB_FRAMES, GlobalHub } from "./linkedin/GlobalHub";
 import { ChatCover, ChatReel, validateChat } from "./hotel-film/chat/ChatReel";
+import { TEAM_ADVENT_FRAMES, TeamAdvent } from "./hotel-film/december/TeamAdvent";
 import { dadBirthdayChat, dadBirthdayChatQuiet } from "./hotels/dad-birthday-chat";
 import { GLOBAL_HUB_WIDE_FRAMES, GlobalHubWide } from "./linkedin/GlobalHubWide";
 import { CBHUB_DIAGRAM_FRAMES, CBHubDiagram } from "./linkedin/CBHubDiagram";
@@ -227,6 +228,8 @@ export const RemotionRoot: React.FC = () => {
   return (
     <>
       <MyComposition />
+      {/* the team's Christmas message: an advent calendar opening on each of us (13 Nov) */}
+      <Composition id="team-advent" component={TeamAdvent} durationInFrames={TEAM_ADVENT_FRAMES} fps={30} width={1080} height={1920} />
       {/* the Dad birthday chat reel (gift vouchers; from claude/loving-brown-0k56ps, 13 Nov) */}
       {[dadBirthdayChat, dadBirthdayChatQuiet].map((spec) => (
         <Composition
