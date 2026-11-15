@@ -18,6 +18,8 @@ Statuses as of 2 Nov 2026.
 
 ## Sent, waiting on Scott
 
+- [Camera roll: winter weekends](films/cbh-camera-roll.md): Re-sent 15 Nov for TikTok; the album's dates need updating before it goes out.
+
 - [Wish you were here (postcards)](films/cbh-postcards.md): First version sent 15 Nov; an original for TikTok.
 
 - [Going up (the lift)](films/cbh-lift.md): First version sent 15 Nov; an original for TikTok.
