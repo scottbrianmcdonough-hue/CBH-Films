@@ -197,6 +197,7 @@ import { TEAM_ADVENT_FRAMES, TeamAdvent } from "./hotel-film/december/TeamAdvent
 import { FRIDAY13_FRAMES, RuthinFriday13 } from "./hotel-film/stings/RuthinFriday13";
 import { CLEAR_SKIES_ART_FRAMES, ClearSkiesArt } from "./hotel-film/stings/ClearSkiesArt";
 import { LIT_WINDOWS_FRAMES, LitWindows } from "./hotel-film/stings/LitWindows";
+import { LIFT_FRAMES, LiftCB } from "./hotel-film/stings/LiftCB";
 import { dadBirthdayChat, dadBirthdayChatQuiet } from "./hotels/dad-birthday-chat";
 import { GLOBAL_HUB_WIDE_FRAMES, GlobalHubWide } from "./linkedin/GlobalHubWide";
 import { CBHUB_DIAGRAM_FRAMES, CBHubDiagram } from "./linkedin/CBHubDiagram";
@@ -231,6 +232,8 @@ export const RemotionRoot: React.FC = () => {
   return (
     <>
       <MyComposition />
+      {/* "Going up": the lift whose doors carry the CB (15 Nov) */}
+      <Composition id="cbh-lift" component={LiftCB} durationInFrames={LIFT_FRAMES} fps={30} width={1080} height={1920} />
       {/* the starry night (from my-video) and its second scene, the lit windows (15 Nov) */}
       <Composition id="cbh-clear-skies-art" component={ClearSkiesArt} durationInFrames={CLEAR_SKIES_ART_FRAMES} fps={30} width={1080} height={1920} />
       <Composition id="cbh-lit-windows" component={LitWindows} durationInFrames={LIT_WINDOWS_FRAMES} fps={30} width={1080} height={1920} />
