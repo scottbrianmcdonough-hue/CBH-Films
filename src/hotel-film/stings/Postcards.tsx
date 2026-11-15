@@ -12,22 +12,17 @@ import { colors, EASE_IN_OUT, EASE_OUT, progress, sans, serif } from "../theme";
 // bridge, Ruthin's castle and its peacock, Holdsworth's tea by the fire). The last note ends "Wish you were here"; the
 // camera goes in on its stamp, a gold CB, until the stamp's CB is exactly the logo's, the table falls to black and the
 // logo is there, shimmer.
-// Music: Event Music by prettyjohn1 (Pixabay 595091, unused till now), 152 BPM, from its drop (6.27s): the cards land
-// on the phrase starts, a card every 16 beats (BEATS from librosa).
+// Music (Scott, 15 Nov: "change the music"; Event Music by prettyjohn1 before): Party Pop by atlasaudio (Pixabay 606271,
+// unused till now), 143.6 BPM, from the end of its first break: the first card lands as the kick comes back (15.93s), a
+// card every 16 beats (BEATS from librosa).
 
 const HAND = "Caveat";
 loadFont({ family: HAND, url: staticFile("fonts/Caveat-SemiBold.woff2"), weight: "600" });
 
 const W = 1080;
 const H = 1920;
-const MUSIC = "music/prettyjohn1-event-music-595091.mp3";
-const BEATS = [
-  6.269, 6.664, 7.036, 7.407, 7.802, 8.197, 8.568, 8.963, 9.358, 9.752, 10.124, 10.519, 10.89, 11.285, 11.68, 12.074,
-  12.446, 12.841, 13.212, 13.607, 14.002, 14.396, 14.768, 15.163, 15.557, 15.952, 16.324, 16.718, 17.09, 17.485, 17.879,
-  18.274, 18.646, 19.04, 19.412, 19.807, 20.201, 20.573, 20.968, 21.362, 21.757, 22.129, 22.523, 22.895, 23.29, 23.684,
-  24.056, 24.451, 24.845, 25.24, 25.612, 26.006, 26.378, 26.773, 27.167, 27.562, 27.934, 28.328, 28.7, 29.095, 29.489,
-  29.884, 30.256, 30.65,
-];
+const MUSIC = "music/atlasaudio-party-pop-606271.mp3";
+const BEATS = [15.929, 16.347, 16.788, 17.206, 17.624, 18.042, 18.483, 18.924, 19.342, 19.760, 20.201, 20.619, 21.060, 21.478, 21.920, 22.338, 22.779, 23.197, 23.638, 24.056, 24.497, 24.915, 25.356, 25.774, 26.215, 26.633, 27.051, 27.492, 27.910, 28.352, 28.770, 29.211, 29.629, 30.047, 30.488, 30.906, 31.347, 31.765, 32.206, 32.624, 33.065, 33.483, 33.924, 34.342, 34.783, 35.201, 35.643, 36.061, 36.502, 36.920, 37.338, 37.779, 38.197, 38.638, 39.056, 39.497, 39.915, 40.356, 40.774, 41.192, 41.633, 42.051, 42.493, 42.910];
 const LEAD = 8; // the first card is already falling on frame one; it lands on the drop
 const MUSIC_FROM = BEATS[0] - LEAD / 30;
 // frame of beat k (fractional beats interpolate)
@@ -353,7 +348,7 @@ export const Postcards: React.FC = () => {
       <Audio
         src={staticFile(MUSIC)}
         trimBefore={Math.round(MUSIC_FROM * 30)}
-        volume={(t) => 0.39 * interpolate(t, [0, 4], [0, 1], clamp) * interpolate(t, [POSTCARDS_FRAMES - 45, POSTCARDS_FRAMES], [1, 0], clamp)}
+        volume={(t) => 0.43 * interpolate(t, [0, 4], [0, 1], clamp) * interpolate(t, [POSTCARDS_FRAMES - 45, POSTCARDS_FRAMES], [1, 0], clamp)}
       />
       {f < BLACK + 16 ? (
         <AbsoluteFill style={{ transform: `translate(${cam.tx}px, ${cam.ty}px) scale(${cam.z})`, transformOrigin: "0 0" }}>

@@ -1,6 +1,6 @@
 # Wish you were here (postcards)
 
-`cbh-postcards` (`src/hotel-film/stings/Postcards.tsx`), 9:16, 22.7s, -15.3 LUFS. Back to [all films](../README.md).
+`cbh-postcards` (`src/hotel-film/stings/Postcards.tsx`), 9:16, 25.1s, -15.3 LUFS. Back to [all films](../README.md).
 
 ## Status
 
@@ -19,3 +19,5 @@ First version sent 15 Nov.
   it, shimmer.
 - Music: Event Music by prettyjohn1 (Pixabay 595091, first use), 152 BPM, from its drop (6.27s); a card lands every 16
   beats on the phrase starts. The postmark is visual only (no sound effects).
+- Music changed (Scott, 15 Nov: "change the music"): Party Pop by atlasaudio (Pixabay 606271, first use), 143.6 BPM,
+  the first card landing as the kick comes back after its first break (15.93s), a card every 16 beats. 25.1s.
