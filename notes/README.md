@@ -18,6 +18,8 @@ Statuses as of 2 Nov 2026.
 
 ## Sent, waiting on Scott
 
+- [The lights are on (lit windows)](films/cbh-lit-windows.md): First version sent 15 Nov; the starry night's second scene, for TikTok.
+
 - [Team Christmas advent](films/team-advent.md): Mock-up with hotel stand ins sent 13 Nov; waiting on the team's clips.
 
 - [CBHUB: opening the door](films/cb-global-hub.md): LinkedIn animation for Phill: V1 (door and map, `cb-global-hub-wide`, 19s) with Bianca's copy sent for his sign off 11 Nov; the diagram cut parked (internal FYI only).

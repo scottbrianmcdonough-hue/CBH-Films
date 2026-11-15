@@ -195,6 +195,8 @@ import { GLOBAL_HUB_FRAMES, GlobalHub } from "./linkedin/GlobalHub";
 import { ChatCover, ChatReel, validateChat } from "./hotel-film/chat/ChatReel";
 import { TEAM_ADVENT_FRAMES, TeamAdvent } from "./hotel-film/december/TeamAdvent";
 import { FRIDAY13_FRAMES, RuthinFriday13 } from "./hotel-film/stings/RuthinFriday13";
+import { CLEAR_SKIES_ART_FRAMES, ClearSkiesArt } from "./hotel-film/stings/ClearSkiesArt";
+import { LIT_WINDOWS_FRAMES, LitWindows } from "./hotel-film/stings/LitWindows";
 import { dadBirthdayChat, dadBirthdayChatQuiet } from "./hotels/dad-birthday-chat";
 import { GLOBAL_HUB_WIDE_FRAMES, GlobalHubWide } from "./linkedin/GlobalHubWide";
 import { CBHUB_DIAGRAM_FRAMES, CBHubDiagram } from "./linkedin/CBHubDiagram";
@@ -229,6 +231,9 @@ export const RemotionRoot: React.FC = () => {
   return (
     <>
       <MyComposition />
+      {/* the starry night (from my-video) and its second scene, the lit windows (15 Nov) */}
+      <Composition id="cbh-clear-skies-art" component={ClearSkiesArt} durationInFrames={CLEAR_SKIES_ART_FRAMES} fps={30} width={1080} height={1920} />
+      <Composition id="cbh-lit-windows" component={LitWindows} durationInFrames={LIT_WINDOWS_FRAMES} fps={30} width={1080} height={1920} />
       {/* Ruthin Castle's Friday the 13th GIF in the house style (13 Nov) */}
       <Composition id="ruthin-friday13" component={RuthinFriday13} durationInFrames={FRIDAY13_FRAMES} fps={30} width={1080} height={1350} />
       {/* the team's Christmas message: an advent calendar opening on each of us (13 Nov) */}

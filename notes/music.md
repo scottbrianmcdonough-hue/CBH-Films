@@ -16,6 +16,7 @@ Tracks used and where, so a new film doesn't repeat one by accident. [All films]
 | Autumn Piano by leberch (Pixabay 611124) | [ruthin-castle-depth](films/ruthin-castle-depth.md) |
 | Bonfire piano (cinematic piano) | [bonfire-night](films/bonfire-night.md), [cb-global-hub](films/cb-global-hub.md) (LinkedIn) |
 | Bring Back the Swing by EvolvingVibes (Pixabay 617230) | [cbh-postit-weekend](films/cbh-postit-weekend.md); tried on [the-mount-collage](films/the-mount-collage.md) and [cbh-mosaic](films/cbh-mosaic.md) ("not going to work") |
+| Soul Funky Vibes by soundoffreedom (Pixabay 578186) | the starry night (`cbh-clear-skies-art`, in `my-video`), [cbh-lit-windows](films/cbh-lit-windows.md) (the same stretch, a set) |
 | Christmas Jazz by Tunetank | [festive-lights-on](films/festive-lights-on.md), [cbh-baubles-cb](films/cbh-baubles-cb.md); the [december-almost-christmas](films/december-almost-christmas.md) drafts (to be replaced) |
 | Cooking Groove | [foodie-breaks-match-cut](films/foodie-breaks-match-cut.md) (went out on the Foodie Breaks Story); tried on [the-mount-collage](films/the-mount-collage.md) |
 | Cozy Soulful | [cosy-escapes-flipbook](films/cosy-escapes-flipbook.md) |
