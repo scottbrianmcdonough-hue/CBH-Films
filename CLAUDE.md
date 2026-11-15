@@ -64,6 +64,7 @@ with no history and no renders:
 - Maids Head Hotel (Norwich, The WinePress Restaurant) is back in the rotation until 27 January 2027, then comes off
   again (Scott, 13 Nov 2026): use it in content dated up to 27 Jan 2027, never in anything posting after it. The older
   spec comments that say "leaving the collection, never use it" predate this.
+- TikTok music (Scott, 15 Nov, on the postcards reel): upbeat pop suits TikTok ("more TikToky", Party Pop over Event Music).
 - Rules Scott and Bianca gave on single films that hold for every film (the film notes have the context):
   - Never name a dish the photo may not show (The Mount: the "fondant").
   - No "not X, just Y" lines ("an AI tell"); no "link in bio"; no "worth ..." end lines; nothing corny

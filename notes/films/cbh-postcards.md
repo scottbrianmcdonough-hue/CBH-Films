@@ -21,3 +21,4 @@ First version sent 15 Nov.
   beats on the phrase starts. The postmark is visual only (no sound effects).
 - Music changed (Scott, 15 Nov: "change the music"): Party Pop by atlasaudio (Pixabay 606271, first use), 143.6 BPM,
   the first card landing as the kick comes back after its first break (15.93s), a card every 16 beats. 25.1s.
+- Scott (15 Nov) on Party Pop: "that's more like it, more TikToky like that". Upbeat pop over loungey for TikTok pieces.
