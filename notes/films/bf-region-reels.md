@@ -96,3 +96,11 @@ so a region's spotlight and its region reel shouldn't both go out.
 - Lighter (Scott, 13 Nov: "why does it seem so dark"): the region reels take a lighter grade (`GRADE_DAY`: sepia 0.18, brightness 1.06, a touch more contrast and colour) and the shade sits tighter behind the cards (to 58% of the frame, was 70%). North and East & Midlands re-rendered.
 - Text readable again (Scott, 13 Nov: "can't read the text now" after the lighter grade): the shade back up behind the cards (0.82 at 36%, to 64%) and a tight dark halo on the mauve place caps (`CAPS_HALO`).
 - South and Scotland & Wales as the North and East & Midlands (Scott, 13 Nov: "need the South and the other regional reel now"): collage with Book now and the tap, mixed moves (South push, right, right, push, left; Scotland & Wales right, push, left), freshly worded end lines: South "Make it yours / while it lasts", Scotland & Wales "Plan your escape / before it's gone". Scotland & Wales without the Metropole (its photos never came through as files). South 27.6s, Scotland & Wales 19.7s.
+- Improved, East & Midlands as the test (Scott, 15 Nov: "let's do a new reel for the regionals or improve on them", then
+  "ok" to improving): each hotel two shots, its exterior a bar then its best inside shot a bar (`two`), the card held
+  across both; real footage where there is some (Forest of Arden's aerial from the AMC film, The Kingfisher's cocktail
+  being stirred; a shot can be `("path.mp4", first frame)`); the opening no longer the tile collage but the words and
+  the Book now tap over a hero shot, Whittlebury's spa pool (`hero`). Whittlebury exterior then suite, Forest of Arden
+  aerial then the chef's afternoon tea, The Kingfisher from the river then the cocktail, Jockey Club Rooms front then
+  the dining room. 23.1s. The North (signed off by Bianca) unchanged; South and Scotland & Wales to follow if Scott
+  likes it.

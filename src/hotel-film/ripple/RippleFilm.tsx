@@ -766,9 +766,10 @@ const Collage: React.FC<{
   best: string;
   pill?: string;
   tap?: number;
+  hero?: boolean;
   tiles: { src: string; pos: string }[];
   beat: number;
-}> = ({ caps, best, pill, tap, tiles, beat }) => {
+}> = ({ caps, best, pill, tap, hero, tiles, beat }) => {
   const frame = useCurrentFrame();
   // the tap on Book now, as the countdown reel's (Scott, 12 Nov: "do a click on the Book now and a sound effect", "see
   // the original Black Friday reel"): the pill dips to 93% and back, a soft touch swells and fades where the finger lands
@@ -792,7 +793,15 @@ const Collage: React.FC<{
   const p = words + Math.round(beat * 2); // the pill two beats later
   const push = 1 + 0.025 * progress(frame, 0, 240, EASE_IN_OUT);
   return (
-    <AbsoluteFill style={{ backgroundColor: colors.black, transform: `scale(${push})` }}>
+    <AbsoluteFill
+      style={{
+        // hero: the picture's opening shot shows through, shaded so the words read
+        background: hero
+          ? "linear-gradient(to bottom, rgba(9,9,10,0.35) 0%, rgba(9,9,10,0.62) 30%, rgba(9,9,10,0.62) 55%, rgba(9,9,10,0.25) 100%)"
+          : colors.black,
+        transform: hero ? undefined : `scale(${push})`,
+      }}
+    >
       {cells.map((c) => {
         // faint from frame one (the feed's preview), each tile settling in a half beat after the last
         const a = 0.3 + 0.7 * progress(frame, Math.round((c.i * beat) / 2), 16, EASE_OUT);
@@ -981,6 +990,7 @@ export const RippleFilm: React.FC<{ film: RippleSpec }> = ({ film }) => {
             best={film.collage.best}
             pill={film.collage.pill}
             tap={film.collage.tap}
+            hero={film.collage.hero}
             tiles={film.collage.tiles}
             beat={beat}
           />

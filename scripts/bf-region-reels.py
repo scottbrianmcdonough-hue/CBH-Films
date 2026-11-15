@@ -18,12 +18,13 @@ R = {
    hotels=[("Ruthin, North Wales","Ruthin Castle\\nHotel & Spa","Save 20%",("ruthin-castle/castle.jpg",500),("ruthin-castle/hot-tub-fizz.jpg",640)),
            ("Llandudno, North Wales","The Imperial Hotel","Save 20%",("the-imperial/seafront.jpg",900),("the-imperial/sea-view-room-wine.jpg",1200)),
            ("Edinburgh","Dalmahoy Hotel\\n& Country Club","Save 30%",("dalmahoy/exterior.jpg",700),("dalmahoy/pool.jpg",960))]),
- "east-midlands": dict(title="East & Midlands", music="music/arnaud136-deep-house-instrumental-354596.mp3", start=777, bar=57.8, intro=2, gain=0.71, seconds=231, best="30%", pill="Book now", end_line="Claim your dates\\nwhile they last", snap=True, moves=[0,1,1,-1],
-   intro_img=("the-kingfisher/aperitivo.jpg",None),
-   hotels=[("Whittlebury, Northamptonshire","Whittlebury Park","Save 10%",("whittlebury-park/exterior.jpg",960),("whittlebury-park/spa-pool.jpg",960),("whittlebury-park/suite.jpg",None)),
-           ("Meriden, Warwickshire","Forest of Arden Hotel","Save 30%",("forest-of-arden/aerial-autumn.jpg",1000),("forest-of-arden/chef-afternoon-tea.jpg",None),("forest-of-arden/pool.jpg",960)),
-           ("Bedford, Bedfordshire","The Kingfisher","Save 30%",("the-kingfisher/exterior-river-boat.jpg",760),("the-kingfisher/reading-in-bed.jpg",1100),("the-kingfisher/fireside.jpg",None)),
-           ("Newmarket, Suffolk","Jockey Club Rooms","Save 15%",("jockey-club-rooms/garden-front.jpg",600),("jockey-club-rooms/dining-room.jpg",960),("jockey-club-rooms/bedroom-blue.jpg",None))]),
+ "east-midlands": dict(title="East & Midlands", music="music/arnaud136-deep-house-instrumental-354596.mp3", start=777, bar=57.8, intro=2, gain=0.71, seconds=231, best="30%", pill="Book now", end_line="Claim your dates\\nwhile they last", snap=True, two=True, hero=True,
+   moves=[1, 0,-1, 0,1, 1,0, -1,0],
+   intro_img=("whittlebury-park/spa-pool.jpg",960),
+   hotels=[("Whittlebury, Northamptonshire","Whittlebury Park","Save 10%",("whittlebury-park/exterior.jpg",960),("whittlebury-park/suite.jpg",None)),
+           ("Meriden, Warwickshire","Forest of Arden Hotel","Save 30%",("campaigns/amc-2026/forest-of-arden-aerial.mp4",0),("forest-of-arden/chef-afternoon-tea.jpg",None)),
+           ("Bedford, Bedfordshire","The Kingfisher","Save 30%",("the-kingfisher/exterior-river-boat.jpg",760),("hotels/the-kingfisher/screen-time/cocktail.mp4",0)),
+           ("Newmarket, Suffolk","Jockey Club Rooms","Save 15%",("jockey-club-rooms/garden-front.jpg",600),("jockey-club-rooms/dining-room.jpg",960))]),
  "south": dict(title="The South", music="music/kulakovka-luxury-life-618587.mp3", start=346, bar=59.1, intro=2, gain=0.78, seconds=145, best="30%", pill="Book now", end_line="Make it yours\\nwhile it lasts", snap=True, moves=[0,1,1,0,-1],
    intro_img=("frensham-pond/pond-reflections.jpg",1030),
    hotels=[("Arundel, West Sussex","Avisford Park Hotel","Save 25%",("avisford-park/exterior.jpg",1180),("avisford-park/restaurant.jpg",660),("avisford-park/golf.jpg",None)),
@@ -60,7 +61,12 @@ for rid in only:
         # bar (the North, 92 BPM) or two (the faster tracks), gliding
         imgs=[("intro",r["intro_img"],r["intro"]*4)]
         for i,h in enumerate(r["hotels"]):
-            imgs.append((f"h{i}a",h[3],r.get("hotel_beats",8)))
+            if r.get("two"):
+                # exterior a bar, then the hotel's best inside shot a bar (Scott, 15 Nov, "improve on them": the middle
+                # was a run of exteriors); a shot may be real footage: ("path.mp4 under public/", first frame)
+                imgs.append((f"h{i}a",h[3],4)); imgs.append((f"h{i}b",h[4],4))
+            else:
+                imgs.append((f"h{i}a",h[3],r.get("hotel_beats",8)))
         unit=bar/4
     else:
         imgs=[("intro",r["intro_img"],r["intro"])]
@@ -74,7 +80,10 @@ for rid in only:
     starts=[k for k,(name,_,_) in enumerate(imgs) if name.endswith("a") and name.startswith("h")]+[len(imgs)]
     shots=[]
     for k,(name,(img,cx),n) in enumerate(imgs):
-        frames=fr[k+1]-fr[k]; out=f"{D}/clips/{name}.mp4"; clip(img,cx,frames+14,out,(r["moves"][k-1] if "moves" in r and k else (1 if k%2 else -1)) if snap else None)
+        frames=fr[k+1]-fr[k]; out=f"{D}/clips/{name}.mp4"
+        if img.endswith(".mp4"):  # real footage, from frame cx
+            shots.append({"src":"public/"+img,"from":cx or 0,"frames":frames,"vf":"eq=saturation=1.0:contrast=1.03"}); continue
+        clip(img,cx,frames+14,out,(r["moves"][k if r.get("hero") else k-1] if "moves" in r and (k or r.get("hero")) else (1 if k%2 else -1)) if snap else None)
         shots.append({"src":out,"from":0,"frames":frames,"vf":"eq=saturation=1.0:contrast=1.03"})
     end=fr[-1]; total=end+round(r.get("tail_bars",2)*bar)
     json.dump({"out":f"{D}/picture.mp4","size":"1080x1350","shots":shots,"fade":22,"tail":total-end},open(D+"/cut.json","w"),indent=1)
@@ -88,8 +97,8 @@ for rid in only:
         W=Image.open(H+img[0] if isinstance(img,tuple) else H+img).size[0]
         return f'{{ src: "hotels/{img}", pos: "{50 if cx is None else round(100*cx/W)}% 50%" }}'
     if snap:
-        tiles=", ".join(tile(h[4][0],h[4][1]) for h in r["hotels"])
-        collageline=f'  collage: {{ to: {fr[1]}, caps: "{r["title"]}", best: "{r["best"]}",{(' pill: "'+r["pill"]+'", tap: '+str(round(7*bar/4))+',') if r.get("pill") else ""} tiles: [{tiles}] }},'
+        tiles="" if r.get("hero") else ", ".join(tile(h[4][0],h[4][1]) for h in r["hotels"])
+        collageline=f'  collage: {{ to: {fr[1]}, caps: "{r["title"]}", best: "{r["best"]}",{(' pill: "'+r["pill"]+'", tap: '+str(round(7*bar/4))+',') if r.get("pill") else ""} tiles: [{tiles}]{", hero: true" if r.get("hero") else ""} }},'
     else:
         collageline=f'  title: {{ from: 8, to: {fr[1]-4}, eyebrow: "Black Friday Sale", line: "{r["title"]}" }},'
     snapline=(f"\n  snap: {{ beat: {bar/4:.3f}, kicks: [] }}," if snap else "")

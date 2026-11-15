@@ -11,7 +11,7 @@ export const bfRegionEastMidlands: RippleSpec = {
   frames: 694,
   feed: true,
   label: { eyebrow: "", name: "", from: 0, to: 1 },
-  collage: { to: 116, caps: "East & Midlands", best: "30%", pill: "Book now", tap: 101, tiles: [{ src: "hotels/whittlebury-park/spa-pool.jpg", pos: "50% 50%" }, { src: "hotels/forest-of-arden/chef-afternoon-tea.jpg", pos: "50% 50%" }, { src: "hotels/the-kingfisher/reading-in-bed.jpg", pos: "57% 50%" }, { src: "hotels/jockey-club-rooms/dining-room.jpg", pos: "50% 50%" }] },
+  collage: { to: 116, caps: "East & Midlands", best: "30%", pill: "Book now", tap: 101, tiles: [], hero: true },
   cards: [
     { from: 118, to: 231, place: "Whittlebury, Northamptonshire", name: "Whittlebury Park", offer: "Save 10%" },
     { from: 233, to: 347, place: "Meriden, Warwickshire", name: "Forest of Arden Hotel", offer: "Save 30%" },
