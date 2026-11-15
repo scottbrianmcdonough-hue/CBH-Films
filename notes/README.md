@@ -18,6 +18,8 @@ Statuses as of 2 Nov 2026.
 
 ## Sent, waiting on Scott
 
+- [Wish you were here (postcards)](films/cbh-postcards.md): First version sent 15 Nov; an original for TikTok.
+
 - [Going up (the lift)](films/cbh-lift.md): First version sent 15 Nov; an original for TikTok.
 
 - [The lights are on (lit windows)](films/cbh-lit-windows.md): First version sent 15 Nov; the starry night's second scene, for TikTok.

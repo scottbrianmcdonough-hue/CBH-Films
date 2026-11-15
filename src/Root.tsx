@@ -198,6 +198,7 @@ import { FRIDAY13_FRAMES, RuthinFriday13 } from "./hotel-film/stings/RuthinFrida
 import { CLEAR_SKIES_ART_FRAMES, ClearSkiesArt } from "./hotel-film/stings/ClearSkiesArt";
 import { LIT_WINDOWS_FRAMES, LitWindows } from "./hotel-film/stings/LitWindows";
 import { LIFT_FRAMES, LiftCB } from "./hotel-film/stings/LiftCB";
+import { POSTCARDS_FRAMES, Postcards } from "./hotel-film/stings/Postcards";
 import { dadBirthdayChat, dadBirthdayChatQuiet } from "./hotels/dad-birthday-chat";
 import { GLOBAL_HUB_WIDE_FRAMES, GlobalHubWide } from "./linkedin/GlobalHubWide";
 import { CBHUB_DIAGRAM_FRAMES, CBHubDiagram } from "./linkedin/CBHubDiagram";
@@ -232,6 +233,8 @@ export const RemotionRoot: React.FC = () => {
   return (
     <>
       <MyComposition />
+      {/* "Wish you were here": postcards on a table, the stamp's CB becomes the logo (15 Nov) */}
+      <Composition id="cbh-postcards" component={Postcards} durationInFrames={POSTCARDS_FRAMES} fps={30} width={1080} height={1920} />
       {/* "Going up": the lift whose doors carry the CB (15 Nov) */}
       <Composition id="cbh-lift" component={LiftCB} durationInFrames={LIFT_FRAMES} fps={30} width={1080} height={1920} />
       {/* the starry night (from my-video) and its second scene, the lit windows (15 Nov) */}
