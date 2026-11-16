@@ -40,11 +40,11 @@ Link: the CBH hotel page (once live)
 
 Time slot: Instagram 12:00 PM; Facebook 8:00 PM; TikTok 8:00 PM
 Platforms: Instagram, Facebook, TikTok
-Creative: intro reel or carousel from the CBH media library photos (to follow)
+Creative: Instagram and Facebook a carousel (the aerial, the front over the parterre, The Lady Craven, the Garden Room, the lake path); TikTok the turret bathroom, then the aerial
 
 Notes
 - Tag Coombe Abbey on every platform (handles to confirm).
 - Facts from coombeabbey.com only: founded 1150 as the Abbey of Cumbe; 500 acres of parkland, with gardens and a lake laid out by Capability Brown; the lake's heronry; the moat; The Princess Elizabeth's private staircase to a hidden turret bathroom.
-- The TikTok needs a photo of The Princess Elizabeth (requested from the media library); until then, lead on the aerial.
+- The TikTok leads on The Princess Elizabeth's turret bathroom (`public/hotels/coombe-abbey/the-princess-elizabeth-grand-feature-bathroom-001.jpg`), then the aerial.
 - Every link waits for the CBH hotel page.
 - Links: Jira shows URLs as smart chips that copy as the page title. Switch them to URL display before copying.
