@@ -76,9 +76,11 @@ import { PAD_FRAMES, PadFlip } from "./hotel-film/flipbook/PadFlip";
 import {
   STICK_FRAMES,
   STICK_REEL_FRAMES,
+  STICK_TIKTOK_FRAMES,
   STICK_XMAS_FRAMES,
   StickFlip,
   StickReel,
+  StickTikTok,
   StickXmas,
 } from "./hotel-film/doodle/StickFlip";
 import { PostItList, POSTIT_FRAMES } from "./hotel-film/postit/PostItList";
@@ -370,6 +372,15 @@ export const RemotionRoot: React.FC = () => {
         id="stick-flip-rowton"
         component={StickReel}
         durationInFrames={STICK_REEL_FRAMES}
+        fps={FPS}
+        width={WIDTH}
+        height={HEIGHT}
+      />
+      {/* the TikTok cut: text hook on frame one, shorter, no end card */}
+      <Composition
+        id="stick-flip-rowton-tiktok"
+        component={StickTikTok}
+        durationInFrames={STICK_TIKTOK_FRAMES}
         fps={FPS}
         width={WIDTH}
         height={HEIGHT}

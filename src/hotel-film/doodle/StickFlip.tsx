@@ -840,32 +840,37 @@ const REEL_SCENES = [
   { from: 730, len: 120, el: <Gag time="Saturday, 11:00pm" clip={`${R}/four-poster.mp4`} from={[852, 1280]} draw={Bed} /> },
 ];
 type Scene = { from: number; len: number; el: React.ReactNode };
-const StickFilm: React.FC<{ look: "pad" | "gold"; xmas?: boolean; scenes: Scene[]; endAt: number; frames: number; end: [string, string] }> = ({
-  look: lookId, xmas, scenes, endAt, frames, end,
-}) => (
+// `skip` starts the opening that many frames in (the music with it); with no `end` the last scene holds to the
+// last frame instead of lifting away to an end card; `over` sits on top of everything (the TikTok cut's text)
+const StickFilm: React.FC<{
+  look: "pad" | "gold"; xmas?: boolean; scenes: Scene[]; endAt?: number; frames: number; end?: [string, string]; skip?: number; over?: React.ReactNode;
+}> = ({ look: lookId, xmas, scenes, endAt, frames, end, skip = 0, over }) => (
   <LookCtx.Provider value={LOOKS[lookId]}>
   <XmasCtx.Provider value={Boolean(xmas)}>
     <AbsoluteFill style={{ backgroundColor: LOOKS[lookId].bg }}>
       {/* each page comes in FLIP frames early, under the one lifting away; the earlier page drawn on top */}
-      <Sequence from={endAt - FLIP}>
-        <EndLine lines={end} />
-      </Sequence>
-      {[...scenes].reverse().map((s) => (
+      {end && endAt !== undefined ? (
+        <Sequence from={endAt - FLIP}>
+          <EndLine lines={end} />
+        </Sequence>
+      ) : null}
+      {[...scenes].reverse().map((s, k) => (
         <Sequence key={s.from} from={s.from - FLIP} durationInFrames={s.len + FLIP}>
-          <FlipOut total={s.len + FLIP}>{s.el}</FlipOut>
+          {!end && k === 0 ? s.el : <FlipOut total={s.len + FLIP}>{s.el}</FlipOut>}
         </Sequence>
       ))}
-      <Sequence durationInFrames={310}>
+      <Sequence from={-skip} durationInFrames={310}>
         <FlipOut total={310}>
           <StickFlip look={lookId} xmas={xmas} bare />
         </FlipOut>
       </Sequence>
       <Audio
         src={staticFile(MUSIC)}
-        trimBefore={Math.round(MUSIC_FROM * 30)}
-        volume={(v) => interpolate(v, [0, 6, frames - 30, frames], [0, 1, 1, 0], { extrapolateRight: "clamp" })}
+        trimBefore={Math.round(MUSIC_FROM * 30) + skip}
+        volume={(v) => interpolate(v, [0, 6, frames - (end ? 30 : 14), frames], [0, 1, 1, 0], { extrapolateRight: "clamp" })}
       />
       <FilmFinish />
+      {over}
     </AbsoluteFill>
   </XmasCtx.Provider>
   </LookCtx.Provider>
@@ -874,6 +879,53 @@ const StickFilm: React.FC<{ look: "pad" | "gold"; xmas?: boolean; scenes: Scene[
 export const STICK_REEL_FRAMES = 970;
 export const StickReel: React.FC<{ look?: "pad" | "gold" }> = ({ look = "gold" }) => (
   <StickFilm look={look} scenes={REEL_SCENES} endAt={850} frames={STICK_REEL_FRAMES} end={["Out of office", "till Monday"]} />
+);
+
+// ---------------------------------------------------------------------------------------------
+// The TikTok cut (Scott, 16 Nov: a separate TikTok grid, "tik tok text"): the same film made native. A text hook
+// on frame one in TikTok's own caption look (white bold sans on black pills, top third, clear of the app's right
+// rail and caption area), the slump trimmed to a second so the lightbulb comes quickly, three gags (fizz, pool,
+// bed; the cake out), no end card and no logo: the line sits over the last page and its shot. 23.3s. The page's
+// handwritten timestamps stay. Scenes still fall on the track's downbeats.
+const TIKTOK = "Figtree";
+loadFont({ family: TIKTOK, url: staticFile("fonts/Figtree-Bold.woff2"), weight: "700" });
+const TikTokText: React.FC<{ lines: string[]; top: number; left?: number; out?: number; still?: boolean }> = ({ lines, top, left = 90, out, still }) => {
+  const frame = useCurrentFrame();
+  const gone = out === undefined ? 0 : progress(frame, out, 5);
+  return (
+    <div style={{ position: "absolute", top, left, width: 800, display: "flex", flexDirection: "column", alignItems: "center", gap: 0, opacity: 1 - gone }}>
+      {lines.map((l, k) => {
+        const t = still ? 1 : progress(frame, k * 3, 6); // the hook is there on frame one (the feed's preview)
+        return (
+          <div key={k} style={{ fontFamily: TIKTOK, fontWeight: 700, fontSize: 60, lineHeight: 1, color: "#fff", background: "#000",
+            padding: "17px 26px 19px", borderRadius: 16, marginTop: k ? -6 : 0, opacity: Math.min(1, t * 2),
+            transform: `scale(${0.86 + 0.14 * t + 0.05 * Math.sin(Math.PI * t)})` }}>
+            {l}
+          </div>
+        );
+      })}
+    </div>
+  );
+};
+const TT_SKIP = 30;
+const TT_SCENES = [
+  { from: 280, len: 120, el: <Gag time="Friday, 6:15pm" clip={`${R}/welcome-fizz.mp4`} from={FIZZ_FROM} draw={Fizz} /> },
+  { from: 400, len: 180, el: <Gag time="Saturday, 10:00am" clip={`${R}/pool-4s.mp4`} from={SPLASH} draw={Pool} ground={[60, 540]} /> },
+  { from: 580, len: 120, el: <Gag time="Saturday, 11:00pm" clip={`${R}/four-poster.mp4`} from={[852, 1280]} draw={Bed} /> },
+];
+export const STICK_TIKTOK_FRAMES = 700;
+export const StickTikTok: React.FC = () => (
+  <StickFilm look="gold" scenes={TT_SCENES} frames={STICK_TIKTOK_FRAMES} skip={TT_SKIP}
+    over={
+      <>
+        <Sequence durationInFrames={67} layout="none">
+          <TikTokText lines={["POV: it\u2019s 4:59pm", "on a Friday"]} top={440} left={280} out={62} still />
+        </Sequence>
+        <Sequence from={614} layout="none">
+          <TikTokText lines={["out of office", "till Monday"]} top={420} />
+        </Sequence>
+      </>
+    } />
 );
 
 // ---------------------------------------------------------------------------------------------

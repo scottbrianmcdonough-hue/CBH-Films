@@ -991,6 +991,15 @@ with no history and no renders:
   `hotels/hogarths-stone-manor/festive/`): the doodle a timbered manor with tall chimneys and oak doors
   (from its spring clip); arrival, drinks tray, turkey, toast, bed, bath; 34.3s. The party is Fri 20 Nov
   (Scott), so the timestamps run Fri 20 Nov 4:59pm to Sat 21 Nov 10am. Rowton's goes out Fri 11 Dec.
+- TikTok (Scott, 16 Nov: a separate TikTok grid from Instagram and Facebook, more fun animation like the stick
+  figure and frame within a frame, TikTok text, posting more often). `stick-flip-rowton-tiktok` (`StickTikTok` in
+  `doodle/StickFlip.tsx`) is the first: the Rowton reel with a hook on frame one in TikTok's caption look (`TikTokText`:
+  white Figtree Bold on black pills, top third, clear of the right rail), "POV: it's 4:59pm / on a Friday", the slump
+  trimmed to a second (`skip`), fizz, pool and bed (cake out), no end card or logo, "out of office / till Monday" over
+  the last page and shot; 23.3s, -14.5 LUFS (+1.1 dB through a limiter after the render). Sent, awaiting Scott's view.
+  Ideas offered: a stick figure series (a hotel an episode), the UI films recut, how it's made, this or that.
+- The session-start hook now also finds the headless shell at `chrome-headless-shell-linux64/chrome-headless-shell`
+  (the container's new layout); if `REMOTION_BROWSER_EXECUTABLE` is empty, export that path by hand.
 - `november-best-loved` (+ `-silent`, `-carousel`): the CBH newsletter's six (Hatherley Manor, Ramside
   Hall, Frensham Pond, Forest of Arden, Donnington, Rowton Hall), light so it scrolls (Scott: "light on
   the funk and music"), one calm shot a hotel, six beats each, on a low indie track, 24s (after the polish: no flags, the bath held); carousel 4:5 with the from prices
