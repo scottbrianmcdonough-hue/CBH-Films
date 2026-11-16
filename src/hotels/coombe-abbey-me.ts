@@ -23,7 +23,7 @@ export const coombeAbbeyME: MESpec = {
     {
       at: 0,
       shots: [{ src: P + "hotel-aerial-view-001.jpg", pos: "50% 55%" }],
-      text: { eyebrow: "Meetings & Events", title: "Coombe Abbey Hotel", subs: ["Ten minutes from Coventry"] },
+      text: { eyebrow: "Coventry, Warwickshire", title: "Coombe Abbey Hotel", subs: ["Ten minutes from the city centre"] },
     },
     {
       at: F.a,
