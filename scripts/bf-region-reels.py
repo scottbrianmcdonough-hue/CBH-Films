@@ -17,7 +17,7 @@ R = {
    moves=[0, 1,None, 0,1, -1,0],  # East & Midlands' improved format (16 Nov): exterior a bar, then inside or footage
    intro_img=("the-imperial/bay-from-great-orme.jpg",750),
    hotels=[("Edinburgh","Dalmahoy Hotel\\n& Country Club","Save 30%",("dalmahoy/exterior.jpg",700),("hotels/dalmahoy/syrup-pour.mp4",0)),
-           ("Ruthin, North Wales","Ruthin Castle\\nHotel & Spa","Save 20%",("ruthin-castle/castle.jpg",500),("hotels/ruthin-castle/hot-tub.mp4",0)),
+           ("Ruthin, North Wales","Ruthin Castle\\nHotel & Spa","Save 20%",("ruthin-castle/castle.jpg",500),("ruthin-castle/hot-tub-fizz.jpg",640)),
            ("Llandudno, North Wales","The Imperial Hotel","Save 20%",("the-imperial/seafront.jpg",900),("the-imperial/sea-view-room-wine.jpg",1200))]),
  "east-midlands": dict(title="East & Midlands", music="music/arnaud136-deep-house-instrumental-354596.mp3", start=777, bar=57.8, intro=2, gain=0.71, seconds=231, best="30%", pill="Book now", end_line="Claim your dates\\nwhile they last", snap=True, two=True, hero=True,
    moves=[1, None,0, 1,None, -1,0, 0,1],

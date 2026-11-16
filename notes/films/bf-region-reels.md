@@ -111,3 +111,4 @@ so a region's spotlight and its region reel shouldn't both go out.
   then inside or footage a bar; hero opening: Frensham's pond, Llandudno's bay): Avisford's restaurant, Frensham's spa
   pool, Ruthin's hot tub and Dalmahoy's syrup pour as footage. Tickets updated (order, hooks, no "in our bio" lines).
   The North (signed off) keeps its order. Burleigh: the reel says 20% (Scott's list), the carousel 25% (live page).
+  Ruthin's hot tub footage read dark and murky beside the castle, so Ruthin keeps its hot tub still (the toast); Dalmahoy's syrup pour is the one clip in Scotland & Wales. Renders 16 Nov: South 27.6s -14.9 LUFS, Scotland & Wales 19.7s -15.1, East & Midlands 23.1s -15.1.
