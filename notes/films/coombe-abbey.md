@@ -34,3 +34,9 @@ intro (`out/coombe-abbey/15-socials-intro.txt`) and the travel guide (`out/coomb
   rounds (so the reel lands 350 on the Marquee dinner photo, or 450 if a theatre shot comes); De Camville has no room
   page; the Courthouse date (1817 vs 18th century) left out; ECOsmart Bronze vs Silver left out.
 - 16 Nov: editorial pass on all four drafts (house rules, triads, facts rechecked against the site; the Walnut's 30 was theatre, not cabaret; ECOsmart out of the guide; the IG bio nod out).
+- 16 Nov, proofs: the 30 photos came as a zip (now in `public/hotels/coombe-abbey/`, short names; the De Camille file
+  renamed De Camville, the brochure's spelling). Travel guide and LinkedIn article rebuilt as HTML proofs with the photos
+  embedded: copy in `scripts/coombe/coombe_copy.py`, `python3 scripts/coombe/build.py out/coombe-abbey` builds
+  `out/coombe-abbey/*-proof.html` and prints the audit (dashes, banned words, triads, from X to Y, paragraph lengths,
+  "The" openers, numerals, command voice, links, six word runs shared with the hotel's site and the benchmark). Open
+  questions sit in each proof's notes box, not the copy. Contact kept as events@ (the series' address).
