@@ -45,7 +45,7 @@ export const coombeAbbeyME: MESpec = {
         { src: P + "meeting-room-griffin-001.jpg", name: "", widePos: "60% 50%" },
         { src: P + "meeting-room-de-camville-001.jpg", name: "", widePos: "70% 50%" },
       ],
-      text: { eyebrow: "Day delegates", title: "From £45 per person", subs: ["Plus VAT, with lunch and refreshments"] },
+      text: { eyebrow: "Day delegates", title: "Lunch included", subs: ["Unlimited tea and coffee all day"] },
     },
     {
       at: B(32),
@@ -80,7 +80,7 @@ export const coombeAbbeyME: MESpec = {
       at: B(64),
       cut: true,
       shots: [{ src: P + "lady-craven-grand-feature-room-002.jpg", pos: "50% 55%" }],
-      text: { eyebrow: "Stay over", title: "121 bedrooms", subs: ["24 hour packages from £165 plus VAT"] },
+      text: { eyebrow: "Stay over", title: "121 bedrooms", subs: ["24 hour packages add dinner and a room"] },
     },
   ],
   end: { at: B(72), cut: true, name: "Coombe Abbey Hotel", place: "Coventry, Warwickshire" },

@@ -55,3 +55,10 @@ intro (`out/coombe-abbey/15-socials-intro.txt`) and the travel guide (`out/coomb
   Coombe Abbey Hotel. Event Music by prettyjohn1 (Pixabay 595091) from 31.03s.
 - 16 Nov: the guide's second line now "Coombe Abbey is the newest member of Classic British Hotels: nine centuries of history, with room service through the night." (Scott: "wears its nine centuries lightly" needed more impact).
 - 16 Nov: precision trim on the article (Scott), 708 to about 665 words; same structure and facts.
+- 16 Nov, Scott on the article: "why would anyone choose this one over others in the collection, needs a USP", "too many
+  junction and capacities". USP now the second paragraph (the whole programme on one estate: the day in the Marquee,
+  the evening at a mediaeval banquet, parkland between and 121 bedrooms); subhead "A Moated 12th Century Abbey Inside a
+  Country Park, Ten Minutes from Coventry"; location heading "Easy to Reach, Easy to Switch Off"; the junction once;
+  one capacity per room, the five boardrooms in one bullet ("up to 24"); Enquiries line on the one estate. Then "no
+  prices": package prices out of the article and the reel (captions now "Lunch included" and "24 hour packages add
+  dinner and a room"). 629 words. Reel re-rendered, -15.3 LUFS, 33.3s.
