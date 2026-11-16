@@ -54,3 +54,4 @@ intro (`out/coombe-abbey/15-socials-intro.txt`) and the travel guide (`out/coomb
   ("500 acres of parkland"); The Lady Craven ("121 bedrooms", 24 hour packages); end card COVENTRY, WARWICKSHIRE /
   Coombe Abbey Hotel. Event Music by prettyjohn1 (Pixabay 595091) from 31.03s.
 - 16 Nov: the guide's second line now "Coombe Abbey is the newest member of Classic British Hotels: nine centuries of history, with room service through the night." (Scott: "wears its nine centuries lightly" needed more impact).
+- 16 Nov: precision trim on the article (Scott), 708 to about 665 words; same structure and facts.
