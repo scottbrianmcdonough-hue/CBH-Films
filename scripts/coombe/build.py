@@ -45,7 +45,8 @@ li{margin:0 0 .7em}
 
 def render(blocks, notes, title, label, head_extra=""):
     o = [f"<!doctype html><html lang='en-GB'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>{html.escape(title)}</title>{head_extra}<style>{CSS}</style></head><body><main>"]
-    o.append("<aside class='notes'><h3>Notes for review (not part of the copy)</h3><ul>" + "".join(f"<li>{md(n)}</li>" for n in notes) + "</ul></aside>")
+    if notes:  # Scott, 16 Nov: proofs go out without the notes box (pass notes=None)
+        o.append("<aside class='notes'><h3>Notes for review (not part of the copy)</h3><ul>" + "".join(f"<li>{md(n)}</li>" for n in notes) + "</ul></aside>")
     for b in blocks:
         k = b[0]
         if k == "h1": o.append(f"<h1>{md(b[1])}</h1>")
@@ -123,8 +124,8 @@ if __name__ == "__main__":
             f"<meta property='og:type' content='article'><meta property='og:site_name' content='Classic British Hotels'>"
             f"<meta property='og:locale' content='en_GB'><meta property='og:title' content='{html.escape(M['og_title'])}'>"
             f"<meta property='og:description' content='{html.escape(M['description'])}'><meta name='twitter:card' content='summary_large_image'>")
-    (OUT / "coombe-abbey-travel-guide-proof.html").write_text(render(C.GUIDE, C.GUIDE_NOTES, M["title"], "Travel guide · leisure", head))
-    (OUT / "coombe-abbey-linkedin-article-proof.html").write_text(render(C.ARTICLE, C.ARTICLE_NOTES, C.ARTICLE_META["title"], "LinkedIn article · meetings and events"))
+    (OUT / "coombe-abbey-travel-guide-proof.html").write_text(render(C.GUIDE, None, M["title"], "Travel guide · leisure", head))
+    (OUT / "coombe-abbey-linkedin-article-proof.html").write_text(render(C.ARTICLE, None, C.ARTICLE_META["title"], "LinkedIn article · meetings and events"))
     up = Path("/root/.claude/uploads/0e269233-fe29-52e3-a8d2-6f8b091e3ba3")
     sources = [p.read_text(errors="ignore") for p in [up / "9884b3e5-coombe-abbey-official-site-text.txt", up / "48b18642-coombe-abbey-meeting-room-capacities.txt", up / "78c9edc5-benchmark-cbh-linkedin-me-article-the-mount.txt", Path(sys.argv[2]) if len(sys.argv) > 2 else up / "none"] if p.exists()]
     rep = {"travel guide": audit(C.GUIDE, sources, [M["title"], M["description"], M["og_title"]]),

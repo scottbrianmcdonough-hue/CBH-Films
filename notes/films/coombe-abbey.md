@@ -62,3 +62,10 @@ intro (`out/coombe-abbey/15-socials-intro.txt`) and the travel guide (`out/coomb
   one capacity per room, the five boardrooms in one bullet ("up to 24"); Enquiries line on the one estate. Then "no
   prices": package prices out of the article and the reel (captions now "Lunch included" and "24 hour packages add
   dinner and a room"). 629 words. Reel re-rendered, -15.3 LUFS, 33.3s.
+- 16 Nov, source and numbers check (Scott; notes box taken off the proofs, `render(..., None)`): every figure traced to
+  the source pack, the room pages or the brochure. Corrected: Capability Brown laid out the gardens and the lake (not the
+  500 acres); "nine centuries" is almost nine (1150); not every guest sleeps inside the moat (Park Priory); afternoon tea
+  is served in "selected dining rooms" looking over the parkland (the Garden Room was only from a photo); "Crown
+  Bedchambers make up the core" and "Overlooking the grounds" had no source; No Ordinary Hospitality Management is
+  "rooted in Coventry", not "Coventry's". Fixed in the proofs and the socials, LinkedIn intro and travel guide tickets.
+  The Abbeygate's 140 theatre style is confirmed by the brochure's capacity table (open question closed).
