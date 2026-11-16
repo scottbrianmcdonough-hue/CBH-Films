@@ -103,3 +103,4 @@ No fireplaces (Scott, 5 Nov): Holdsworth pancakes, Oaklands Hall the bedroom, Bu
   dining room (Jockey Club's dining room is on the same cover).
 - The Kingfisher's slide is now its exterior from the river (Scott, 10 Nov: `the-kingfisher/exterior-river-boat.jpg`, the
   pub and rooms with a boat on the river); the post line is "Wake up by the river at The Kingfisher in Bedford".
+- 16 Nov: South carousel re-rendered with Avisford Park (slide 2, its exterior; "25% off, breakfast included", as on its CBH page; the cover's top left tile is its restaurant) for the Instagram post; slides in `out/bf-carousel-south/`.
