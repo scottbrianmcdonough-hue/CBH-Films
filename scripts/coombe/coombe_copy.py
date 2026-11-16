@@ -19,7 +19,7 @@ GUIDE = [
     ("stand", "A 12th century abbey ten minutes from Coventry, with herons on the lake and a bathroom hidden in a turret."),
     ("img", "hotel-exterior-001.jpg", "Coombe Abbey Hotel across its formal gardens"),
     ("p", "Coombe Abbey Hotel was founded in 1150 as a monastery, the Abbey of Cumbe, and monks held it for almost four centuries. Guests now sleep inside its moat, with 500 acres of gardens and parkland around them and Coventry ten minutes' drive away."),
-    ("p", "Now part of Classic British Hotels, Coombe Abbey wears its nine centuries lightly."),
+    ("p", "Coombe Abbey is the newest member of Classic British Hotels: nine centuries of history, with room service through the night."),
     ("h2", "Nine centuries in the making"),
     ("img", "hotel-aerial-view-001.jpg", "The abbey from above, inside its moat"),
     ("p", "Coombe was Warwickshire's largest monastery until 1539, when the dissolution passed the land to Henry VIII. John Harrington took on the abbey in 1581 and folded much of the old building into his new home."),
