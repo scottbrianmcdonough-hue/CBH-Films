@@ -104,3 +104,10 @@ so a region's spotlight and its region reel shouldn't both go out.
   aerial then the chef's afternoon tea, The Kingfisher from the river then the cocktail, Jockey Club Rooms front then
   the dining room. 23.1s. The North (signed off by Bianca) unchanged; South and Scotland & Wales to follow if Scott
   likes it.
+- Highest to lowest (Bianca, via Scott, 16 Nov: "since we're doing percentages she changed it"): East & Midlands, the
+  South and Scotland & Wales now run highest offer first (ties kept in their old order): Forest of Arden, The Kingfisher,
+  Jockey Club Rooms, Whittlebury; Oakley Hall, Avisford Park, Frensham Pond, Donnington Manor, Burleigh Court; Dalmahoy,
+  Ruthin Castle, The Imperial. The South and Scotland & Wales also take East & Midlands' improved format (exterior a bar,
+  then inside or footage a bar; hero opening: Frensham's pond, Llandudno's bay): Avisford's restaurant, Frensham's spa
+  pool, Ruthin's hot tub and Dalmahoy's syrup pour as footage. Tickets updated (order, hooks, no "in our bio" lines).
+  The North (signed off) keeps its order. Burleigh: the reel says 20% (Scott's list), the carousel 25% (live page).

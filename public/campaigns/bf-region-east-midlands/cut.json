@@ -9,7 +9,7 @@
    "vf": "eq=saturation=1.0:contrast=1.03"
   },
   {
-   "src": "public/campaigns/bf-region-east-midlands/clips/h0a.mp4",
+   "src": "public/campaigns/amc-2026/forest-of-arden-aerial.mp4",
    "from": 0,
    "frames": 57,
    "vf": "eq=saturation=1.0:contrast=1.03"
@@ -21,13 +21,13 @@
    "vf": "eq=saturation=1.0:contrast=1.03"
   },
   {
-   "src": "public/campaigns/amc-2026/forest-of-arden-aerial.mp4",
+   "src": "public/campaigns/bf-region-east-midlands/clips/h1a.mp4",
    "from": 0,
    "frames": 58,
    "vf": "eq=saturation=1.0:contrast=1.03"
   },
   {
-   "src": "public/campaigns/bf-region-east-midlands/clips/h1b.mp4",
+   "src": "public/hotels/the-kingfisher/screen-time/cocktail.mp4",
    "from": 0,
    "frames": 58,
    "vf": "eq=saturation=1.0:contrast=1.03"
@@ -39,7 +39,7 @@
    "vf": "eq=saturation=1.0:contrast=1.03"
   },
   {
-   "src": "public/hotels/the-kingfisher/screen-time/cocktail.mp4",
+   "src": "public/campaigns/bf-region-east-midlands/clips/h2b.mp4",
    "from": 0,
    "frames": 57,
    "vf": "eq=saturation=1.0:contrast=1.03"
