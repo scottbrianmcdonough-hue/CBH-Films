@@ -16,7 +16,7 @@ each one goes.
 | `47643651-attraction-nudisco-pop-450602.mp3` | Attraction (Disco x NuDisco x Pop) | 47643651 | pixabay.com/music/dance-attraction-disco-x-nudisco-x-pop-instrumental-450602 | 103.4 | nu-disco; breakdowns with the bass out at 56-63s and 120-128s, the kick back at 64.68s and, harder, 129.28s; 104 BPM in its second half; the last bar stops at 184.66s | AMC sample (top 2); AMC reel option `amc-2026-reel-attraction` |
 | `nickpanek-late-night-big-band-swing-236168.mp3` | Late Night Big Band Swing | NickPanek | pixabay.com/music/traditional-jazz-late-night-big-band-swing-jazz-instrumental-236168 | 86 (swing) | big band; short band stops at 54s, 66s and 76s, each back on a hit; ends 89s | |
 | `musicforcreators-inspiring-uplifting-indie-rock-328509.mp3` | Inspiring Uplifting Indie Rock | Music_for_Creators | pixabay.com/music/indie-pop-inspiring-uplifting-indie-rock-328509 | 117.5 | builds in over the first 10s, then even; a thinner verse at 114-130s | |
-| `rockot-what-the-funk-549053.mp3` | What The Funk | Rockot | pixabay.com/music/funk-what-the-funk-549053 | 123 | busy funk throughout; a quieter middle 108-130s | |
+| `rockot-what-the-funk-549053.mp3` | What The Funk | Rockot | pixabay.com/music/funk-what-the-funk-549053 | 123 | busy funk throughout; a quieter middle 108-130s; tempo drifts (about 125 locally), cut on detected beats | `cbh-camera-roll-tiktok` (22.9-40.7s) |
 
 ## Mixkit (Mixkit Stock Music Free License)
 

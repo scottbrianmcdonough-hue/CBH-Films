@@ -1017,6 +1017,17 @@ with no history and no renders:
   only the Grand Prix. Stills (no Whittlebury footage). Tech House vibes (Mixkit 130, 122 BPM, from 25.66s, the
   window opening on its lift at 31.56s; the render comes out hot, -5.2 dB after: -14.8 LUFS), 17.2s. Sent as
   `out/whittlebury-silverstone-ticket-tiktok.mp4`. Confirm "next door" with the hotel before posting.
+- Scott on the Silverstone tie-ins (16 Nov): people go "once every year or couple of years", so not a series; event
+  tie-ins should be things that recur (arena gigs, the Piece Hall season, race days, match days). Both Whittlebury
+  cuts parked.
+- `cbh-camera-roll-tiktok` (`roll/CameraRoll.tsx`; Scott: "try something for TikTok"): a phone camera roll
+  ("Recents", 12 thumbnails all playing, creeping up) under the hook "my camera roll / this winter"; a tap opens one
+  full screen and six are swiped through, a clip every four beats, each with its house label (Gisborough misty
+  sunrise, Low Wood Bay candles, Rowton cake by the fire, Rutland candlelit bath, Gisborough snowy garden, Rowton
+  canopied bed); the last drops back into the grid, "not one photo / of my sofa". Real footage at real speed, no logo.
+  What The Funk (Rockot, Pixabay 549053) from 22.94s, cuts on its own beat times (`BEATS`; its tempo drifts, so no
+  fixed grid); the render comes out hot, -4.5 dB after: -15.0 LUFS, 17.7s. Sent. The roll is data (`ROLL`, `OPENED`):
+  one hotel's roll or another season is a new list.
 - The session-start hook now also finds the headless shell at `chrome-headless-shell-linux64/chrome-headless-shell`
   (the container's new layout); if `REMOTION_BROWSER_EXECUTABLE` is empty, export that path by hand.
 - `november-best-loved` (+ `-silent`, `-carousel`): the CBH newsletter's six (Hatherley Manor, Ramside

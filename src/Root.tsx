@@ -86,6 +86,7 @@ import {
   StickXmas,
 } from "./hotel-film/doodle/StickFlip";
 import { EventTicket, ticketFrames, whittleburyRaceTicket } from "./hotel-film/ticket/EventTicket";
+import { CameraRoll, ROLL_FRAMES } from "./hotel-film/roll/CameraRoll";
 import { PostItList, POSTIT_FRAMES } from "./hotel-film/postit/PostItList";
 import {
   ScreenTime,
@@ -397,6 +398,8 @@ export const RemotionRoot: React.FC = () => {
         width={WIDTH}
         height={HEIGHT}
       />
+      {/* a camera roll of winter weekends, swiped through: TikTok */}
+      <Composition id="cbh-camera-roll-tiktok" component={CameraRoll} durationInFrames={ROLL_FRAMES} fps={FPS} width={WIDTH} height={HEIGHT} />
       {/* the event ticket that flips into the hotel's room key: TikTok event tie-ins */}
       <Composition
         id="whittlebury-race-ticket-tiktok"
