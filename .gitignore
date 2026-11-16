@@ -11,3 +11,4 @@ out/*
 
 # Agent worktrees (Claude Code)
 .claude/worktrees/
+__pycache__/
