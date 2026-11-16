@@ -40,3 +40,16 @@ intro (`out/coombe-abbey/15-socials-intro.txt`) and the travel guide (`out/coomb
   `out/coombe-abbey/*-proof.html` and prints the audit (dashes, banned words, triads, from X to Y, paragraph lengths,
   "The" openers, numerals, command voice, links, six word runs shared with the hotel's site and the benchmark). Open
   questions sit in each proof's notes box, not the copy. Contact kept as events@ (the series' address).
+- 16 Nov, Scott: no Gunpowder Plot or kidnap anywhere (the guide, the article, the socials, the TikTok, the LinkedIn
+  intro, the reel); history kept light (the abbey, the 500 acres, the Cravens, Capability Brown). The Princess Elizabeth
+  stays as the TikTok hook, as a room quirk only.
+- Article matched to The Mount's format (Scott's checklist): "Coombe Abbey Hotel: Where Business Meets 500 Acres", a
+  one line subhead, two opening paragraphs, location, "121 Bedrooms ...", "Meeting and Function Spaces" (one line on
+  what every room has, a bullet per room, then the packages), dining, team building (with the stay on for the weekend
+  line), "Enquiries" with the series' contact line as a mailto. 708 words (The Mount 632). Proofs now minimal: no
+  label above the title, no rules or boxes, only the notes box.
+- M&E reel `coombe-abbey-meetings` (`src/hotels/coombe-abbey-me.ts`, MEReel, 16:9, ~33s): aerial; Harrington, Kellway
+  and Walnut ("11 rooms to meet in"); Stuart, Griffin and De Camville ("From £45 per person"); the Cloisters ("Cabaret
+  for 64", the band back in); Garden Room into the steak; the Marquee ("Dinner for 350", on the dinner shot); gardens
+  ("500 acres of parkland"); The Lady Craven ("121 bedrooms", 24 hour packages); end card COVENTRY, WARWICKSHIRE /
+  Coombe Abbey Hotel. Event Music by prettyjohn1 (Pixabay 595091) from 31.03s.

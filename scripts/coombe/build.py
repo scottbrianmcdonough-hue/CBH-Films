@@ -18,6 +18,7 @@ def b64(name, w=1400):
 
 def md(t):
     t = html.escape(t, quote=False)
+    t = re.sub(r"\[([^\]]+)\]\((mailto:[^)\s]+)\)", r"<a href='\2'>\1</a>", t)
     return re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", t)
 
 CSS = """
@@ -27,7 +28,8 @@ CSS = """
 body{margin:0;background:var(--paper);color:var(--ink);font:18px/1.65 Georgia,'Times New Roman',serif}
 main{max-width:720px;margin:0 auto;padding:40px 16px 80px}
 h1{font-size:2.1rem;line-height:1.2;margin:.2em 0 .3em;font-weight:normal}
-h2{font-size:1.4rem;line-height:1.3;margin:2em 0 .5em;font-weight:normal;border-top:1px solid var(--rule);padding-top:1.2em}
+h2{font-size:1.4rem;line-height:1.3;margin:1.8em 0 .5em;font-weight:normal}
+a{color:inherit}
 .stand{font-size:1.15rem;color:var(--soft);margin:0 0 1.4em}
 p{margin:0 0 1em}
 strong{font-weight:700}
@@ -39,15 +41,11 @@ li{margin:0 0 .7em}
 .notes{background:var(--note);border:1px solid var(--rule);border-left:3px solid var(--gold);padding:14px 18px;margin:0 0 32px;font:14px/1.5 -apple-system,Segoe UI,Helvetica,Arial,sans-serif}
 .notes h3{margin:0 0 6px;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--soft);font-weight:600}
 .notes ul{margin:0;padding-left:1.1em}.notes li{margin:0 0 .45em}
-.box{border:1px solid var(--rule);padding:16px 20px;margin:2.4em 0 0}
-.box h2{border:0;margin:0 0 .6em;padding:0;font-size:1.15rem}
-.label{font:12px/1 -apple-system,Segoe UI,Helvetica,Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin:0 0 10px}
 """
 
 def render(blocks, notes, title, label, head_extra=""):
     o = [f"<!doctype html><html lang='en-GB'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>{html.escape(title)}</title>{head_extra}<style>{CSS}</style></head><body><main>"]
     o.append("<aside class='notes'><h3>Notes for review (not part of the copy)</h3><ul>" + "".join(f"<li>{md(n)}</li>" for n in notes) + "</ul></aside>")
-    o.append(f"<p class='label'>{label}</p>")
     for b in blocks:
         k = b[0]
         if k == "h1": o.append(f"<h1>{md(b[1])}</h1>")
@@ -56,7 +54,7 @@ def render(blocks, notes, title, label, head_extra=""):
         elif k == "p": o.append(f"<p>{md(b[1])}</p>")
         elif k == "ul": o.append("<ul>" + "".join(f"<li>{md(i)}</li>" for i in b[1]) + "</ul>")
         elif k == "img": o.append(f"<figure><img src='{b64(b[1])}' alt='{html.escape(b[2])}'><figcaption>{md(b[2])}</figcaption></figure>")
-        elif k == "box": o.append(f"<section class='box'><h2>{md(b[1])}</h2>" + "".join(f"<p>{md(p)}</p>" for p in b[2]) + "</section>")
+        elif k == "box": o.append(f"<h2>{md(b[1])}</h2>" + "".join(f"<p>{md(p)}</p>" for p in b[2]))
     o.append("</main></body></html>")
     return "".join(o)
 
@@ -74,7 +72,7 @@ def copy_units(blocks):
         elif b[0] == "ul": u += [("li", i) for i in b[1]]
         elif b[0] == "img": u.append(("cap", b[2]))
         elif b[0] == "box": u += [("box", p) for p in b[2]]
-    return [(k, re.sub(r"\*\*", "", t)) for k, t in u]
+    return [(k, re.sub(r"\[([^\]]+)\]\([^)]*\)", r"\1", re.sub(r"\*\*", "", t))) for k, t in u]
 
 def sentences(t): return [s for s in re.split(r"(?<=[.!?:])\s+", t) if s]
 
@@ -99,6 +97,7 @@ def audit(blocks, sources, meta_texts=()):
     R["listing sentences (3+ commas)"] = [s for _, t in units for s in sentences(t) if s.count(",") >= 3]
     R["paragraphs over 350 chars"] = [(len(t), t[:60]) for k, t in units if len(t) >= 350]
     R["longest paragraph"] = max(len(t) for _, t in units)
+    R["word count (headings and body, no captions)"] = sum(len(t.split()) for k, t in units if k != "cap")
     sents = [s for k, t in units if k in ("p", "li", "box", "stand") for s in sentences(t)]
     R["'The' sentence openers"] = [s[:50] for s in sents if s.startswith("The ")]
     R["'it' count"] = len(re.findall(r"\bit\b|\bit's\b", text, re.I))

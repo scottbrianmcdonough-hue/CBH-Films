@@ -15,7 +15,7 @@ Intro
 Coombe Abbey began life in 1150 as the Abbey of Cumbe. Nine centuries on, you can sleep inside its moat, with 500 acres of gardens and parkland running out to a lake, ten minutes' drive from Coventry city centre. It is the newest member of Classic British Hotels.
 
 A history you can sleep in
-For almost four hundred years this was the largest and most influential monastery in Warwickshire, until it was surrendered to Henry VIII in 1539. The Craven family bought the estate in 1622 and kept it for three centuries, adding the West Wing in 1677 and asking Capability Brown to reshape the land around the house. Coombe also has a part in the Gunpowder Plot: Princess Elizabeth was staying here when the conspirators planned to kidnap her. Coventry City Council took on the estate in 1964, and the abbey has been a hotel since 1995.
+For almost four hundred years this was the largest and most influential monastery in Warwickshire, until it was surrendered to Henry VIII in 1539. The Craven family bought the estate in 1622 and kept it for three centuries, adding the West Wing in 1677 and asking Capability Brown to reshape the land around the house. Coventry City Council took on the estate in 1964, and the abbey has been a hotel since 1995.
 
 The rooms
 There are 121 bedrooms, many within the historic abbey and some in Park Priory, a quieter building across the grounds.
@@ -51,12 +51,12 @@ Founded as a monastery in 1150, Coombe Abbey now has 121 bedrooms inside its moa
 
 Historic and romantic stays (about 60 words)
 Coombe Abbey Hotel, Warwickshire
-Few hotels can say the Gunpowder plotters planned a kidnap under their roof. At Coombe Abbey, a 12th century abbey near Coventry, the Grand Feature Bedchambers have canopied beds, and The Princess Elizabeth has a private staircase up to a hidden bathroom in the turret.
+At Coombe Abbey, a 12th century abbey near Coventry, the Grand Feature Bedchambers have canopied beds, and The Princess Elizabeth has a private staircase up to a hidden bathroom in the turret.
 
 ==================================================
 GAPS AND FLAGS
 ==================================================
 - Link: the CBH hotel page isn't live yet; add it to every "find out more" link once it is.
 - The awards page lists a West Midlands Tourism Award dated 2027, which looks like an error on their site; left out.
-- The site's overview mentions Queen Elizabeth I; the history page is about Princess Elizabeth and the Gunpowder Plot. Only Princess Elizabeth is used.
+- History kept light (Scott, 16 Nov): no royal visitors or 1605 plot in any piece. Superseded by coombe-abbey-travel-guide-proof.html.
 - ECOsmart: the conference pages say Bronze 2025, the awards and green pages say Silver 2025. Left out until the hotel confirms.

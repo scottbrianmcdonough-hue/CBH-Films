@@ -28,6 +28,7 @@ import {
   nailcoteHallMeetingsReel,
 } from "./hotels/nailcote-hall-meetings";
 import { haycockManorMeetingsME } from "./hotels/haycock-manor-me";
+import { coombeAbbeyME } from "./hotels/coombe-abbey-me";
 import { BF_STORIES } from "./hotels/black-friday-stories";
 import { BF_SPOTLIGHTS } from "./hotels/black-friday-spotlights";
 import { CorporateGifting } from "./linkedin/CorporateGifting";
@@ -589,6 +590,15 @@ export const RemotionRoot: React.FC = () => {
         component={MEReel}
         defaultProps={{ film: nailcoteHallMeetings }}
         durationInFrames={nailcoteHallMeetings.frames}
+        fps={FPS}
+        width={1920}
+        height={1080}
+      />
+      <Composition
+        id={coombeAbbeyME.id}
+        component={MEReel}
+        defaultProps={{ film: coombeAbbeyME }}
+        durationInFrames={coombeAbbeyME.frames}
         fps={FPS}
         width={1920}
         height={1080}
