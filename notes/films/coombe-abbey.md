@@ -69,3 +69,4 @@ intro (`out/coombe-abbey/15-socials-intro.txt`) and the travel guide (`out/coomb
   Bedchambers make up the core" and "Overlooking the grounds" had no source; No Ordinary Hospitality Management is
   "rooted in Coventry", not "Coventry's". Fixed in the proofs and the socials, LinkedIn intro and travel guide tickets.
   The Abbeygate's 140 theatre style is confirmed by the brochure's capacity table (open question closed).
+- 16 Nov, new music (Scott: "definitely needs new music", "more housey jazzy"; an indie rock edit was dropped before render): Jazz Cocktail Lounge Music (alex-morgan), edited by `scripts/coombe-me-music.py`; the band stops under the second set of rooms and returns on the Cloisters, a bar jump to the track's ending at the bedroom, the end card on its final hits and last chord. 37.0s, -15.1 LUFS. Mixkit is blocked here, so new tracks have to come from Scott.

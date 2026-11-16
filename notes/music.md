@@ -17,7 +17,7 @@ Tracks used and where, so a new film doesn't repeat one by accident. [All films]
 | Bonfire piano (cinematic piano) | [bonfire-night](films/bonfire-night.md), [cb-global-hub](films/cb-global-hub.md) (LinkedIn) |
 | Bring Back the Swing by EvolvingVibes (Pixabay 617230) | [cbh-postit-weekend](films/cbh-postit-weekend.md); tried on [the-mount-collage](films/the-mount-collage.md) and [cbh-mosaic](films/cbh-mosaic.md) ("not going to work") |
 | Soul Funky Vibes by soundoffreedom (Pixabay 578186) | the starry night (`cbh-clear-skies-art`, in `my-video`), [cbh-lit-windows](films/cbh-lit-windows.md) (the same stretch, a set) |
-| Event Music by prettyjohn1 (Pixabay 595091) | [coombe-abbey](films/coombe-abbey.md) (M&E reel, from 31.03s); tried on [cbh-postcards](films/cbh-postcards.md) (changed) |
+| Event Music by prettyjohn1 (Pixabay 595091) | tried on [coombe-abbey](films/coombe-abbey.md) (M&E reel; Scott: "definitely needs new music") and [cbh-postcards](films/cbh-postcards.md) (changed) |
 | Party Pop by atlasaudio (Pixabay 606271) | [cbh-postcards](films/cbh-postcards.md) |
 | Christmas Jazz by Tunetank | [festive-lights-on](films/festive-lights-on.md), [cbh-baubles-cb](films/cbh-baubles-cb.md); the [december-almost-christmas](films/december-almost-christmas.md) drafts (to be replaced) |
 | Cooking Groove | [foodie-breaks-match-cut](films/foodie-breaks-match-cut.md) (went out on the Foodie Breaks Story); tried on [the-mount-collage](films/the-mount-collage.md) |
@@ -31,7 +31,7 @@ Tracks used and where, so a new film doesn't repeat one by accident. [All films]
 | Funk Music by SigmaMusicArt | [october-best-loved](films/october-best-loved.md) |
 | Funkee Monkeee (Mixkit 1140) | [stick-flip](films/stick-flip.md) |
 | Happy Feels by MarkJuly | [departures-keswick](films/departures-keswick.md), [cbh-flipbook-winter](films/cbh-flipbook-winter.md); also on the Dad birthday chat reel (flagged) |
-| Jazz Cocktail Lounge Music by alex-morgan (Pixabay 556246) | [brand-stings](films/brand-stings.md) (`cbh-circle-c-cocktail`, `cbh-sash-window`) |
+| Jazz Cocktail Lounge Music by alex-morgan (Pixabay 556246) | [brand-stings](films/brand-stings.md) (`cbh-circle-c-cocktail`, `cbh-sash-window`), [coombe-abbey](films/coombe-abbey.md) (M&E reel, edited: 39.3s to 65.1s, then 152.6s to the end) |
 | Jazz Corporate Cafe by alex-morgan (Pixabay 556232) | [waterton-park-island](films/waterton-park-island.md) |
 | Leva Eternity by lemonmusicstudio (Pixabay) | [dalmahoy](films/dalmahoy.md) (unposted), [gomersal-park-spotlight](films/gomersal-park-spotlight.md) (Scott's pick; Dalmahoy will need a new track) |
 | deep house instrumental by arnaud136 (Pixabay 354596) | [kingfisher-spotlight](films/kingfisher-spotlight.md) |

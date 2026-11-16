@@ -8,15 +8,17 @@ import type { MESpec } from "../hotel-film/me/MEReel";
 // describes, in the layout pictured: the Cloisters set cabaret (64), the Marquee set for dinner on rounds (350).
 // History kept light, no Gunpowder Plot (Scott, 16 Nov).
 //
-// Music: Event Music by prettyjohn1 (Pixabay 595091; tried on the postcards, not on any posted film), 155 BPM,
-// from 31.03s (its quieter phrase) so the boardrooms sit in the calm and the band comes back on the Cloisters
-// (beat 32, 43.42s); the end card on beat 72 (58.91s), the track's own ending under it.
-const B = (k: number) => Math.round(11.6136 * k);
+// Music (Scott, 16 Nov: Event Music "definitely needs new music", "more housey jazzy"): Jazz Cocktail Lounge Music by
+// alex-morgan (Pixabay 556246; on two brand stings, no hotel film), 110.6 BPM, edited by scripts/coombe-me-music.py
+// into public/music/edits/coombe-me-jazz-cocktail.m4a: from 39.31s (beat 73), the band stopping under the second set
+// of rooms and coming back on the Cloisters (52.2s), then a jump on the bar to the ending at the bedroom (152.6s), so
+// the end card lands on the final hits (156.5s) and the last chord (160.3s) rings out. Frames measured off the beats.
+const F = { a: 129, b: 257, cloisters: 386, garden: 483, dining: 531, marquee: 579, park: 676, bed: 773, end: 890 };
 const P = "hotels/coombe-abbey/";
 
 export const coombeAbbeyME: MESpec = {
   id: "coombe-abbey-meetings",
-  frames: 1000,
+  frames: 1110,
   scenes: [
     {
       at: 0,
@@ -24,10 +26,10 @@ export const coombeAbbeyME: MESpec = {
       text: { eyebrow: "Meetings & Events", title: "Coombe Abbey Hotel", subs: ["Ten minutes from Coventry"] },
     },
     {
-      at: B(12),
+      at: F.a,
       cut: true,
       layout: "feature",
-      panelBeat: B(2),
+      panelBeat: 32,
       panels: [
         { src: P + "meeting-room-harrington-001.jpg", name: "", widePos: "50% 50%" },
         { src: P + "meeting-room-kellway-001.jpg", name: "", widePos: "55% 50%" },
@@ -36,10 +38,10 @@ export const coombeAbbeyME: MESpec = {
       text: { eyebrow: "Meeting spaces", title: "11 rooms to meet in", subs: ["Just off junction 2 of the M6"] },
     },
     {
-      at: B(22),
+      at: F.b,
       cut: true,
       layout: "feature",
-      panelBeat: B(2),
+      panelBeat: 32,
       panels: [
         { src: P + "meeting-room-stuart-001.jpg", name: "", widePos: "50% 50%" },
         { src: P + "meeting-room-griffin-001.jpg", name: "", widePos: "60% 50%" },
@@ -48,41 +50,41 @@ export const coombeAbbeyME: MESpec = {
       text: { eyebrow: "Day delegates", title: "Lunch included", subs: ["Unlimited tea and coffee all day"] },
     },
     {
-      at: B(32),
+      at: F.cloisters,
       cut: true,
       shots: [{ src: P + "conference-room-cloisters-002.jpg", pos: "50% 50%" }],
       text: { eyebrow: "The Cloisters", title: "Cabaret for 64", subs: ["With its own function bar"] },
     },
     {
-      at: B(40),
+      at: F.garden,
       cut: true,
       shots: [
         { src: P + "garden-room-restaurant-001.jpg", pos: "50% 50%" },
         { src: P + "dining-001.jpg", pos: "50% 50%" },
       ],
-      cuts: [B(44)],
+      cuts: [F.dining],
       text: { eyebrow: "The Garden Room", title: "Dinner in the conservatory", subs: ["Classic dishes, local produce"] },
     },
     {
-      at: B(48),
+      at: F.marquee,
       cut: true,
       shots: [{ src: P + "private-dining-marquee-001.jpg", pos: "50% 50%" }],
       push: { to: 1.12, pos: "50% 45%" },
       text: { eyebrow: "The Marquee", title: "Dinner for 350", subs: ["Or 450 theatre style"] },
     },
     {
-      at: B(56),
+      at: F.park,
       cut: true,
       shots: [{ src: P + "gardens-001.jpg", pos: "50% 60%" }],
       text: { eyebrow: "Team building", title: "500 acres of parkland", subs: ["Go Ape in the historic woodland"] },
     },
     {
-      at: B(64),
+      at: F.bed,
       cut: true,
       shots: [{ src: P + "lady-craven-grand-feature-room-002.jpg", pos: "50% 55%" }],
       text: { eyebrow: "Stay over", title: "121 bedrooms", subs: ["24 hour packages add dinner and a room"] },
     },
   ],
-  end: { at: B(72), cut: true, name: "Coombe Abbey Hotel", place: "Coventry, Warwickshire" },
-  music: { src: "music/prettyjohn1-event-music-595091.mp3", startAt: 931, gain: 0.9, fadeOut: 30 },
+  end: { at: F.end, cut: true, name: "Coombe Abbey Hotel", place: "Coventry, Warwickshire" },
+  music: { src: "music/edits/coombe-me-jazz-cocktail.m4a", startAt: 0, gain: 0.9, fadeOut: 20 },
 };
