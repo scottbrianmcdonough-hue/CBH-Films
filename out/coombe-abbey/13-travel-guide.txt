@@ -1,0 +1,67 @@
+COOMBE ABBEY HOTEL: TRAVEL GUIDE (solus guide and destination guide blurbs)
+Facts from coombeabbey.com only (pulled 16 Nov 2026); no CBH page yet. Original wording throughout.
+
+==================================================
+SOLUS GUIDE
+==================================================
+
+Page title
+Coombe Abbey Hotel: a guide to Warwickshire's 12th century abbey
+
+Meta description (155 characters)
+Stay in a 12th century abbey set in 500 acres of Capability Brown parkland near Coventry. Our guide to Coombe Abbey Hotel, its rooms, dining and grounds.
+
+Intro
+Coombe Abbey began life in 1150 as the Abbey of Cumbe, and nine centuries later it is one of the most characterful places to stay in the Midlands. The hotel sits inside its own moat, surrounded by 500 acres of formal gardens, woodland and lakeside parkland, ten minutes' drive from Coventry city centre. It is the newest member of Classic British Hotels.
+
+A history you can sleep in
+For almost four hundred years this was a working monastery, the largest and most influential in Warwickshire, until it was surrendered to Henry VIII in 1539. The Craven family bought the estate in 1622 and kept it for three centuries, adding the West Wing in 1677 and asking Capability Brown to reshape the land around the house. Coombe also has a part in the Gunpowder Plot: Princess Elizabeth was staying here when the conspirators planned to kidnap her. Coventry City Council took on the estate in 1964, and the abbey opened as a hotel in 1995.
+
+The rooms
+There are 121 bedrooms, and many sit within the historic abbey itself, with others in Park Priory, a quieter building across the grounds.
+- Grand Feature Bedchambers: 14 rooms, each designed individually, all with canopied beds and countryside views. The Princess Elizabeth has a private staircase up to a bathroom in the turret, with a roll top bath. The Mowbray is set over three levels with views of the lake and gardens. Booking a Grand Feature includes complimentary parking.
+- Feature Doubles: rooms with a canopied bed or a Victorian roll top bath.
+- Crown Bedchambers: individually styled rooms, many with an ornate fireplace, in the abbey or in Park Priory.
+- Dove Cottage: a private cottage with two bedrooms, a kitchen, a lounge and its own garden looking out over the parkland.
+Stays include daytime entry to St Mary's Guildhall, the hotel's sister site in Coventry (terms apply).
+
+Eating and drinking
+Dinner is served in the Garden Room, a conservatory restaurant looking onto the grounds. Afternoon tea is one of Coombe's best known traditions and has won awards of its own, while the Mediaeval Banquets turn the abbey's history into a night of feasting and theatre. For something easy there's bar food and the Café in the Park, and room service runs around the clock, with hot food until 10pm.
+
+The grounds
+The 500 acres were designed by Capability Brown. Walk the moat and the formal gardens, or head out to the 80 acre lake, a Site of Special Scientific Interest and home to Warwickshire's largest heronry. Bird hides look out over the water, where grey herons and kingfishers are regulars. In the historic woodland, Go Ape takes the adventurous up into the treetops.
+
+Beyond the gates
+Coventry city centre is ten minutes away by car. St Mary's Guildhall, in the Cathedral Quarter, is one of the city's few surviving medieval buildings, came through the bombing of the Second World War and is home to the Coventry Tapestry.
+
+Meetings and events
+Coombe has 11 meeting rooms and a marquee for up to 500 guests, with day and overnight delegate packages, private dining rooms and team building in the grounds. It is MIA accredited.
+
+Getting there
+By car: leave the M6 at junction 2, join the A46, then follow signs for Coombe Park; the hotel is about a mile along the B4027. Parking is chargeable (£6 up to 8 hours, £12 up to 24 hours), and there are 8 electric car charging points.
+By train: Coventry station (direct to London Euston) is a short taxi ride away.
+By air: Birmingham Airport is 14.3 miles away.
+
+Good to know
+Check in from 3pm, check out by 10:30am. The hotel is cashless and card only. Children are welcome, with family rooms for two adults and two children. Pets can't stay. Coombe holds the Greengage ECOsmart Silver award (2025) for sustainability.
+
+==================================================
+DESTINATION GUIDE BLURBS (add to the relevant guides)
+==================================================
+
+Warwickshire / Coventry and the Midlands (about 70 words)
+Coombe Abbey Hotel
+Founded as a monastery in 1150, Coombe Abbey now welcomes guests to 121 rooms inside its moat, with 500 acres of Capability Brown parkland all around. Watch the herons on the 80 acre lake, take afternoon tea in the Garden Room, then retire to a bedchamber with a canopied bed. Coventry city centre is ten minutes' drive away.
+
+Historic and romantic stays (about 60 words)
+Coombe Abbey Hotel, Warwickshire
+Few hotels can say the Gunpowder plotters planned a kidnap under their roof. At Coombe Abbey, a 12th century abbey near Coventry, the Grand Feature Bedchambers come with canopied beds and roll top baths, and one has a private staircase up to a bathroom in the turret.
+
+==================================================
+GAPS AND FLAGS
+==================================================
+- Link: the CBH hotel page isn't live yet; add it to every "find out more" link once it is.
+- The awards page lists a West Midlands Tourism Award dated 2027, which looks like an error on their site; left out.
+- The site's overview mentions Queen Elizabeth I; the history page is about Princess Elizabeth and the Gunpowder Plot. Only Princess Elizabeth is used.
+- The conferences page says ECOsmart Bronze 2025, the awards and green pages say Silver 2025. Silver used; worth a quick check with the hotel.
+- Capacities for the 11 meeting rooms and the GDS codes wait for the sales profile PDF.
