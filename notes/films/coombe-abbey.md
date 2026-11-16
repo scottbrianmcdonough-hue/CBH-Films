@@ -27,3 +27,9 @@ intro (`out/coombe-abbey/15-socials-intro.txt`) and the travel guide (`out/coomb
   Garden Room, the bar and a room; "up to 500" only over the Marquee, the room it describes. Capacities for the
   others wait for the sales profile.
 - Needs a photo of The Princess Elizabeth (the turret staircase is the TikTok hook) from the media library.
+- 16 Nov, round two: Scott's steer, the LinkedIn article is M&E and B2B (agents, PAs, bookers) after The Mount (July
+  2026), the travel guide B2C (its M&E section taken out). Room capacities from each room page (they win over the 2022
+  brochure, since refurbished). Drafted `16-linkedin-intro.txt` (GDS codes as gaps) and `17-linkedin-article.txt`.
+  Flags in the article: the Abbeygate page is headed Marquee and says 500; the Marquee page says 450 theatre and 350
+  rounds (so the reel lands 350 on the Marquee dinner photo, or 450 if a theatre shot comes); De Camville has no room
+  page; the Courthouse date (1817 vs 18th century) left out; ECOsmart Bronze vs Silver left out.
