@@ -564,11 +564,11 @@ const Gag: React.FC<{
         <g clipPath="url(#write)"><Scribble x={90} y={300} size={64} o={0.95}>{time}</Scribble></g>
         {xmas ? <Garland p={p} f={frame} look={look} /> : null}
       </svg>
-      {frame >= OPEN_AT ? (
+      {frame >= OPEN_AT && (clip || still) ? (
         <AbsoluteFill style={{ clipPath: `circle(${radius}px at ${cx}px ${cy}px)` }}>
           {still ? (
             <Img src={staticFile(still)} style={{ position: "absolute", width: W, height: H, objectFit: "cover", objectPosition: pos ?? "50% 50%",
-              transform: `scale(${interpolate(frame, [OPEN_AT, OPEN_AT + 62], [1, 1.05], { extrapolateRight: "clamp" })})` }} />
+              transform: `scale(${interpolate(frame, [OPEN_AT, OPEN_AT + 62], [1, 1.05])})` }} />
           ) : (
             <Sequence from={OPEN_AT + FLIP} layout="none">
               <OffthreadVideo src={staticFile(clip!)} muted style={{ position: "absolute", width: W, height: H }} />
@@ -576,7 +576,7 @@ const Gag: React.FC<{
           )}
         </AbsoluteFill>
       ) : null}
-      {frame >= OPEN_AT ? <InkRing c={[cx, cy]} r={radius} o={1 - reveal * reveal} /> : null}
+      {frame >= OPEN_AT && (clip || still) ? <InkRing c={[cx, cy]} r={radius} o={1 - reveal * reveal} /> : null}
       <LiftShadow />
     </AbsoluteFill>
   );
@@ -844,7 +844,8 @@ type Scene = { from: number; len: number; el: React.ReactNode };
 // last frame instead of lifting away to an end card; `over` sits on top of everything (the TikTok cut's text)
 const StickFilm: React.FC<{
   look: "pad" | "gold"; xmas?: boolean; scenes: Scene[]; endAt?: number; frames: number; end?: [string, string]; skip?: number; over?: React.ReactNode;
-}> = ({ look: lookId, xmas, scenes, endAt, frames, end, skip = 0, over }) => (
+  musicAt?: number; // with it there is no office opening: the film is its scenes, the track from this frame of its file
+}> = ({ look: lookId, xmas, scenes, endAt, frames, end, skip = 0, over, musicAt }) => (
   <LookCtx.Provider value={LOOKS[lookId]}>
   <XmasCtx.Provider value={Boolean(xmas)}>
     <AbsoluteFill style={{ backgroundColor: LOOKS[lookId].bg }}>
@@ -859,14 +860,16 @@ const StickFilm: React.FC<{
           {!end && k === 0 ? s.el : <FlipOut total={s.len + FLIP}>{s.el}</FlipOut>}
         </Sequence>
       ))}
-      <Sequence from={-skip} durationInFrames={310}>
-        <FlipOut total={310}>
-          <StickFlip look={lookId} xmas={xmas} bare />
-        </FlipOut>
-      </Sequence>
+      {musicAt === undefined ? (
+        <Sequence from={-skip} durationInFrames={310}>
+          <FlipOut total={310}>
+            <StickFlip look={lookId} xmas={xmas} bare />
+          </FlipOut>
+        </Sequence>
+      ) : null}
       <Audio
         src={staticFile(MUSIC)}
-        trimBefore={Math.round(MUSIC_FROM * 30) + skip}
+        trimBefore={musicAt ?? Math.round(MUSIC_FROM * 30) + skip}
         volume={(v) => interpolate(v, [0, 6, frames - (end ? 30 : 14), frames], [0, 1, 1, 0], { extrapolateRight: "clamp" })}
       />
       <FilmFinish />
@@ -923,6 +926,152 @@ export const StickTikTok: React.FC = () => (
         </Sequence>
         <Sequence from={614} layout="none">
           <TikTokText lines={["out of office", "till Monday"]} top={420} />
+        </Sequence>
+      </>
+    } />
+);
+
+// ---------------------------------------------------------------------------------------------
+// The first event tie-in for TikTok (Scott, 16 Nov: "sports events and music events where our hotels are", "do
+// one"): race day at Silverstone, Whittlebury Park next door. The hook on frame one over him waving a chequered
+// flag as the cars go by; five o'clock, everyone else in the car park queue while he jogs past it, opening into
+// the hotel; then the evening as the Rowton gags on Whittlebury's photos (pool, fizz like a podium, bed), "and
+// it's lights out". No race logos, footage or names beyond the place. Funkee Monkeee from 56.02s, a scene a bar
+// or two. Stills, since there is no Whittlebury footage in the repo.
+const raceCar = (cx: number, p: number, id: number, look: Look, lines = true) => (
+  <>
+    <Pencil d={[[cx - 140, 1356], [cx - 122, 1318], [cx - 30, 1312], [cx - 8, 1288], [cx + 34, 1288], [cx + 52, 1318], [cx + 150, 1338], [cx + 176, 1358], [cx - 140, 1358]]} p={p} id={id} w={6} closed />
+    <Pencil d={[[cx - 156, 1276], [cx - 104, 1276]]} p={p} id={id + 1} w={6} />
+    <Pencil d={[[cx - 130, 1276], [cx - 126, 1318]]} p={p} id={id + 2} w={5} />
+    <Pencil d={[[cx + 150, 1362], [cx + 196, 1362]]} p={p} id={id + 3} w={5} />
+    <circle cx={cx - 92} cy={1364} r={27} fill={look.paper} />
+    <circle cx={cx + 88} cy={1364} r={27} fill={look.paper} />
+    <Circle c={[cx - 92, 1364]} r={27} p={p} id={id + 4} w={6} />
+    <Circle c={[cx + 88, 1364]} r={27} p={p} id={id + 5} w={6} />
+    <Circle c={[cx + 12, 1280]} r={17} p={p} id={id + 6} w={5} />
+    {lines
+      ? [[1296, 150], [1328, 210], [1352, 120]].map(([y, len], k) => (
+          <Pencil key={k} d={[[cx - 190, y], [cx - 190 - len, y]]} p={p} id={id + 7 + k} w={4} />
+        ))
+      : null}
+  </>
+);
+const FLAG_A: Pose = { x: 300, y: 1208, lean: 0.04, head: 0.1, ua: [2.3, -0.25], fa: [2.6, -0.15], th: [0.12, -0.12], sh: [0, 0] };
+const FLAG_B: Pose = { x: 300, y: 1208, lean: -0.04, head: 0.2, ua: [2.75, 0.5], fa: [3.0, 1.2], th: [0.12, -0.12], sh: [0, 0] };
+const PASSES = [6, 66, 78]; // when a car comes into the page
+const Race = (f: number, p: number, look: Look) => {
+  const wave = (1 - Math.cos((f / 15) * Math.PI * 2)) / 2; // a wave of the flag a beat
+  // a hop as each car goes by
+  const hop = PASSES.reduce((h, t) => Math.max(h, f >= t + 4 && f < t + 16 ? Math.sin(((f - t - 4) / 12) * Math.PI) : 0), 0);
+  const q0 = mix(FLAG_A, FLAG_B, wave);
+  const q: Pose = { ...q0, y: q0.y - 46 * hop, th: [0.12 + 0.25 * hop, -0.12 - 0.25 * hop], sh: [-0.3 * hop, -0.5 * hop] };
+  const h = hand(q, 0);
+  const tilt = -0.35 + 0.7 * wave; // the stick swings with the arm
+  const top: Pt = [h[0] + Math.sin(tilt) * 190, h[1] - Math.cos(tilt) * 190];
+  // the flag: four by three squares flying off the top of the stick, rippling
+  const cell = (i: number, k: number): Pt => {
+    const fl = 0.5 + 0.5 * Math.sin(f * 0.5 - i * 0.9);
+    return [top[0] + Math.sin(tilt) * -k * 34 + Math.cos(tilt) * i * 40, top[1] + Math.cos(tilt) * k * 34 + Math.sin(tilt) * i * 40 + i * 5 * fl];
+  };
+  return (
+    <>
+      {/* the far kerb */}
+      <Pencil d={Array.from({ length: 12 }, (_, k): Pt => [60 + k * 86, 1180 + (k % 2) * 3])} p={p} id={640} w={3} />
+      <Figure q={q} p={p} />
+      <Pencil d={[h, top]} p={p} id={641} w={5} />
+      {[0, 1, 2, 3].flatMap((i) => [0, 1, 2].map((k) =>
+        (i + k) % 2 === 0 ? (
+          <path key={`${i}-${k}`} d={`M${cell(i, k).join(" ")} L${cell(i + 1, k).join(" ")} L${cell(i + 1, k + 1).join(" ")} L${cell(i, k + 1).join(" ")} Z`} fill={look.ink} opacity={0.9} />
+        ) : null))}
+      <Pencil d={[cell(0, 0), cell(4, 0), cell(4, 3), cell(0, 3)]} p={p} id={642} w={4} closed />
+      {/* the cars, through in under half a second each */}
+      {PASSES.map((t, k) => {
+        const cx = -260 + (f - t) * 84;
+        return f >= t && f < t + 20 ? <g key={k} transform={`translate(${cx} 1392) scale(1.4) translate(${-cx} -1392)`}>{raceCar(cx, p, 650 + k * 12, look)}</g> : null;
+      })}
+    </>
+  );
+};
+const boxCar = (c: number, dy: number, p: number, id: number, look: Look) => (
+  <>
+    <rect x={c - 104} y={1296 + dy} width={208} height={70} fill={look.paper} />
+    <Pencil d={[[c - 104, 1300 + dy], [c + 104, 1300 + dy], [c + 108, 1366 + dy], [c - 106, 1366 + dy]]} p={p} id={id} w={6} closed />
+    <Pencil d={[[c - 66, 1300 + dy], [c - 44, 1246 + dy], [c + 36, 1246 + dy], [c + 64, 1300 + dy]]} p={p} id={id + 1} w={6} />
+    <Pencil d={[[c - 4, 1248 + dy], [c - 4, 1298 + dy]]} p={p} id={id + 2} w={3} />
+    <circle cx={c - 60} cy={1368} r={23} fill={look.paper} />
+    <circle cx={c + 60} cy={1368} r={23} fill={look.paper} />
+    <Circle c={[c - 60, 1368]} r={23} p={p} id={id + 3} w={6} />
+    <Circle c={[c + 60, 1368]} r={23} p={p} id={id + 4} w={6} />
+  </>
+);
+const QUEUE = [170, 500, 830];
+const WALK_TO: Pt = [900, 1150];
+const Traffic = (f: number, p: number, look: Look) => {
+  const q = runPose(f * 0.85, interpolate(f, [0, 56], [140, WALK_TO[0]], { extrapolateRight: "clamp" }));
+  return (
+    <>
+      {QUEUE.map((c, k) => (
+        <g key={k} transform={`translate(${c} 1392) scale(1.5) translate(${-c} -1392)`}>
+          {boxCar(c, 2 * Math.sin(f * 1.3 + k * 2), p, 700 + k * 8, look)}
+          {/* exhaust, puffing up behind each one */}
+          {[0, 1, 2].map((n) => {
+            const t = (f * 0.03 + n * 0.33 + k * 0.2) % 1;
+            return <Circle key={n} c={[c - 126 - t * 26, 1350 - t * 110]} r={7 + t * 12} p={p} id={724 + k * 3 + n} w={3} />;
+          })}
+        </g>
+      ))}
+      {/* a horn from the middle car, on the beat */}
+      {f % 30 < 12
+        ? [-0.5, 0, 0.5].map((a, i) => (
+            <Pencil key={i} d={[[QUEUE[1] + Math.sin(a) * 30, 1150 - Math.cos(a) * 30], [QUEUE[1] + Math.sin(a) * 66, 1150 - Math.cos(a) * 66]]} p={p} id={740 + i} w={4} />
+          ))
+        : null}
+      <Figure q={q} p={p} />
+    </>
+  );
+};
+const WP = "hotels/whittlebury-park";
+const RACE_SCENES = [
+  { from: 0, len: 120, el: <Gag time="Sunday, 3:00pm" from={[0, 0]} draw={Race} /> },
+  { from: 120, len: 180, el: <Gag time="Sunday, 5:00pm" still={`${WP}/exterior.jpg`} pos="33% 50%" from={WALK_TO} draw={Traffic} /> },
+  { from: 300, len: 120, el: <Gag time="Sunday, 5:45pm" still={`${WP}/pool.jpg`} pos="49% 50%" from={SPLASH} draw={Pool} ground={[60, 540]} /> },
+  { from: 420, len: 120, el: <Gag time="Sunday, 7:30pm" still={`${WP}/murrays-dish-2x.jpg`} pos="62% 50%" from={FIZZ_FROM} draw={Fizz} /> },
+  { from: 540, len: 120, el: <Gag time="Sunday, 10:30pm" still={`${WP}/room.jpg`} pos="40% 50%" from={[852, 1280]} draw={Bed} /> },
+];
+// the house label over the hotel's first shot: the place in gold caps, underlined, the name in cream Cormorant
+const PlaceLabel: React.FC<{ place: string; name: string; len: number }> = ({ place, name, len }) => {
+  const frame = useCurrentFrame();
+  const o = progress(frame, 0, 12) * (1 - progress(frame, len - 10, 8));
+  return (
+    <AbsoluteFill style={{ opacity: o }}>
+      <AbsoluteFill style={{ background: "linear-gradient(to bottom, rgba(9,9,10,0) 52%, rgba(9,9,10,0.55) 74%, rgba(9,9,10,0.3) 100%)" }} />
+      <div style={{ position: "absolute", left: 72, bottom: 500 }}>
+        <div style={{ display: "inline-block" }}>
+          <div style={{ fontFamily: sans, fontWeight: 600, fontSize: 28, letterSpacing: "0.24em", color: colors.gold }}>{place}</div>
+          <div style={{ height: 2, marginTop: 12, background: colors.gold }} />
+        </div>
+        <div style={{ fontFamily: serif, fontSize: 64, lineHeight: 1.1, marginTop: 14, color: colors.cream }}>{name}</div>
+      </div>
+    </AbsoluteFill>
+  );
+};
+export const STICK_RACE_FRAMES = 660;
+export const StickRaceDay: React.FC = () => (
+  <StickFilm look="gold" scenes={RACE_SCENES} frames={STICK_RACE_FRAMES} musicAt={Math.round(56.02 * 30)}
+    over={
+      <>
+        <Sequence durationInFrames={105} layout="none">
+          <TikTokText lines={["POV: your hotel is", "next door to Silverstone"]} top={440} left={140} out={100} still />
+        </Sequence>
+        <Sequence from={126} durationInFrames={56} layout="none">
+          <TikTokText lines={["everyone else:", "the car park queue"]} top={440} left={140} out={51} />
+        </Sequence>
+        <Sequence from={198} durationInFrames={94} layout="none">
+          <PlaceLabel place="NORTHAMPTONSHIRE" name="Whittlebury Park" len={94} />
+          <TikTokText lines={["you: already checked in"]} top={440} left={140} out={86} />
+        </Sequence>
+        <Sequence from={576} layout="none">
+          <TikTokText lines={["and it\u2019s lights out"]} top={440} left={140} />
         </Sequence>
       </>
     } />

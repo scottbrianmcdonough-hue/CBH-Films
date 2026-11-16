@@ -75,10 +75,12 @@ import {
 import { PAD_FRAMES, PadFlip } from "./hotel-film/flipbook/PadFlip";
 import {
   STICK_FRAMES,
+  STICK_RACE_FRAMES,
   STICK_REEL_FRAMES,
   STICK_TIKTOK_FRAMES,
   STICK_XMAS_FRAMES,
   StickFlip,
+  StickRaceDay,
   StickReel,
   StickTikTok,
   StickXmas,
@@ -381,6 +383,15 @@ export const RemotionRoot: React.FC = () => {
         id="stick-flip-rowton-tiktok"
         component={StickTikTok}
         durationInFrames={STICK_TIKTOK_FRAMES}
+        fps={FPS}
+        width={WIDTH}
+        height={HEIGHT}
+      />
+      {/* race day at Silverstone, Whittlebury Park next door: the first TikTok event tie-in */}
+      <Composition
+        id="whittlebury-race-day-tiktok"
+        component={StickRaceDay}
+        durationInFrames={STICK_RACE_FRAMES}
         fps={FPS}
         width={WIDTH}
         height={HEIGHT}

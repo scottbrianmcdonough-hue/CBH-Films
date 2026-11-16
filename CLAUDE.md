@@ -998,6 +998,15 @@ with no history and no renders:
   trimmed to a second (`skip`), fizz, pool and bed (cake out), no end card or logo, "out of office / till Monday" over
   the last page and shot; 23.3s, -14.5 LUFS (+1.1 dB through a limiter after the render). Sent, awaiting Scott's view.
   Ideas offered: a stick figure series (a hotel an episode), the UI films recut, how it's made, this or that.
+- TikTok event tie-ins (Scott, 16 Nov: "sports events and music events where our hotels are", "do one"):
+  `whittlebury-race-day-tiktok` (`StickRaceDay` in `doodle/StickFlip.tsx`), race day at Silverstone with Whittlebury
+  Park next door: hook "POV: your hotel is / next door to Silverstone" over him waving a chequered flag as cars go by
+  (`Race`), five o'clock "everyone else: / the car park queue" as he jogs past it (`Traffic`), opening into the hotel
+  (NORTHAMPTONSHIRE / Whittlebury Park, "you: already checked in"), then pool, fizz and bed on Whittlebury's photos
+  (stills: no Whittlebury footage in the repo), "and it's lights out". No race logos, footage or event names beyond
+  the place. Funkee Monkeee from 56.02s (`musicAt`: StickFilm without the office opening), 22.0s, -14.1 LUFS. Sent.
+  To confirm with the hotel before posting: the "next door" wording and race weekend availability. Others offered:
+  Holdsworth and the Piece Hall gigs, Hatherley and Cheltenham, Dalmahoy and Murrayfield, Rowton and Chester Races.
 - The session-start hook now also finds the headless shell at `chrome-headless-shell-linux64/chrome-headless-shell`
   (the container's new layout); if `REMOTION_BROWSER_EXECUTABLE` is empty, export that path by hand.
 - `november-best-loved` (+ `-silent`, `-carousel`): the CBH newsletter's six (Hatherley Manor, Ramside
