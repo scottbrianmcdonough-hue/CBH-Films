@@ -119,17 +119,24 @@ export const CameraRoll: React.FC<{ spec?: RollSpec }> = ({ spec = winterRoll })
   const shot = (k: number, x: number) => {
     const c = ROLL[OPENED[k]];
     const at = slotAt(k);
-    const end = k === OPENED.length - 1 ? shutAt + 10 : slotAt(k + 1) + SWIPE;
-    const o = progress(frame, at + 10, 10) * (1 - progress(frame, end - SWIPE - 8, 7));
     return (
       <div key={k} style={{ position: "absolute", left: x, top: 0, width: "100%", height: "100%" }}>
         <Sequence from={k === 0 ? openAt - 2 : at} layout="none">
           <OffthreadVideo src={staticFile(c.src)} muted style={{ position: "absolute", width: "100%", height: "100%", objectFit: "cover" }} />
         </Sequence>
-        {c.place && c.hotel && open > 0.98 ? <Label place={c.place} hotel={c.hotel} o={o} /> : null}
       </div>
     );
   };
+
+  // the label comes up once a hotel and holds across that hotel's clips (Scott: it flashed up on every clip),
+  // changing only when the hotel does; it sits over the swipes, not on them
+  const cur = ROLL[OPENED[slot]];
+  let runFrom = slot;
+  while (runFrom > 0 && ROLL[OPENED[runFrom - 1]].hotel === cur.hotel) runFrom--;
+  let runTo = slot;
+  while (runTo < OPENED.length - 1 && ROLL[OPENED[runTo + 1]].hotel === cur.hotel) runTo++;
+  const runEnd = runTo === OPENED.length - 1 ? shutAt - 2 : slotAt(runTo + 1);
+  const labelO = progress(frame, slotAt(runFrom) + 10, 10) * (1 - progress(frame, runEnd - 9, 8));
 
   return (
     <AbsoluteFill style={{ backgroundColor: "#000" }}>
@@ -163,6 +170,7 @@ export const CameraRoll: React.FC<{ spec?: RollSpec }> = ({ spec = winterRoll })
         <div style={{ position: "absolute", left: m(from.x, 0), top: m(from.y, 0), width: m(CELL_W, W), height: m(CELL_H, H), overflow: "hidden", background: "#000" }}>
           {slot > 0 && swipe < 1 ? shot(slot - 1, -swipe * (W + 40)) : null}
           {shot(slot, (1 - swipe) * (W + 40))}
+          {cur.place && cur.hotel && open > 0.98 ? <Label place={cur.place} hotel={cur.hotel} o={labelO} /> : null}
         </div>
       ) : null}
       <Audio src={staticFile(MUSIC)} trimBefore={Math.round(MUSIC_FROM * 30)}

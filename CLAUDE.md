@@ -1032,6 +1032,8 @@ with no history and no renders:
   `cbh-camera-roll-north-west-tiktok`, "my camera roll after / a winter in the North West": Low Wood Bay (misty lake,
   candles, the quartet) then Rowton Hall (dusk, cake by the fire, canopied bed), same track and timing; sent. Yorkshire
   and East & Midlands would need more footage (Gisborough only on its best shots; no Kingfisher river or roast).
+  The label comes up once a hotel and holds across that hotel's clips, over the swipes (Scott: it showed "three
+  times ... hold it or flash it once, then once when new hotel"): two labels in the North West cut. Re-sent.
 - The session-start hook now also finds the headless shell at `chrome-headless-shell-linux64/chrome-headless-shell`
   (the container's new layout); if `REMOTION_BROWSER_EXECUTABLE` is empty, export that path by hand.
 - `november-best-loved` (+ `-silent`, `-carousel`): the CBH newsletter's six (Hatherley Manor, Ramside
