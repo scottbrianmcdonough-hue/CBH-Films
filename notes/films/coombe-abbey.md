@@ -33,3 +33,4 @@ intro (`out/coombe-abbey/15-socials-intro.txt`) and the travel guide (`out/coomb
   Flags in the article: the Abbeygate page is headed Marquee and says 500; the Marquee page says 450 theatre and 350
   rounds (so the reel lands 350 on the Marquee dinner photo, or 450 if a theatre shot comes); De Camville has no room
   page; the Courthouse date (1817 vs 18th century) left out; ECOsmart Bronze vs Silver left out.
+- 16 Nov: editorial pass on all four drafts (house rules, triads, facts rechecked against the site; the Walnut's 30 was theatre, not cabaret; ECOsmart out of the guide; the IG bio nod out).
