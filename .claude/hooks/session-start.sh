@@ -12,7 +12,7 @@ cd "$CLAUDE_PROJECT_DIR"
 npm install --no-audit --no-fund --loglevel=error
 
 # Python tools: scripts/analyze-beats.py (librosa); Pillow for frame QA.
-python3 -m pip install --quiet --disable-pip-version-check numpy pillow librosa 2>&1 \
+python3 -m pip install --quiet --disable-pip-version-check numpy pillow librosa opencv-python-headless 2>&1 \
   | grep -v "Running pip as the 'root' user" || true
 
 # Remotion can't download its own Chrome here; use the preinstalled headless shell.

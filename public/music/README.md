@@ -8,7 +8,7 @@ each one goes.
 | File | Track | Artist | Source page | BPM | Shape | Used on |
 | --- | --- | --- | --- | --- | --- | --- |
 | `miromaxmusic-club-no-copyright-618622.mp3` | Club No Copyright | MiroMaxMusic | pixabay.com/music/dance-club-no-copyright-618622 | 128 | groove from 15.6s; the bass drops out at 60.6s, a build from 68.1s with a riser, a hard drop at 75.6s (the bass back 35 dB up), phrases every 15s | first AMC cut; Scott: "the current pick isn't working" |
-| `prettyjohn1-party-dance-526227.mp3` | Party Dance | prettyjohn1 | pixabay.com/music/dance-party-dance-526227 | 112 | riser intro to a drop at 18s; a 14s breakdown (bass down ~10 dB) and riser to a second drop at 70.4s; ends 88s | |
+| `prettyjohn1-party-dance-526227.mp3` | Party Dance | prettyjohn1 | pixabay.com/music/dance-party-dance-526227 | 112 | riser intro to a drop at 18s (beat at 18.04s, two silent beats before it); a 14s breakdown (bass down ~10 dB) and riser to a second drop at 70.4s; ends 88s | `ramside-gig-night-tiktok` (11.5-30.6s) |
 | `atlasaudio-party-pop-606271.mp3` | Party Pop | AtlasAudio | pixabay.com/music/dance-party-pop-606271 | 144 | even all the way; one short break at 114-124s | |
 | `toolikes-upbeat-dance-pop-infectious-225269.mp3` | Upbeat Dance Pop Infectious | toolikes | pixabay.com/music/techno-trance-toolike-upbeat-dance-pop-infectious-electro-225269 | 129 | even; a small dip at 82-88s | |
 | `prettyjohn1-event-music-595091.mp3` | Event Music | prettyjohn1 | pixabay.com/music/electronic-event-event-music-595091 | 152 | 66s, busy throughout, no clear build or drop | |

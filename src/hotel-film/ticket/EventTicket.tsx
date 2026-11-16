@@ -16,7 +16,7 @@ const W = 1080;
 const H = 1920;
 
 export type TicketSpec = {
-  ticket: { kicker: string; title: string; venue: string; details: [string, string][]; chequered?: boolean };
+  ticket: { kicker: string; title: string; titleSize?: number; venue: string; details: [string, string][]; chequered?: boolean };
   key: { place: string; name: string; line: string };
   hook: string[];
   ask: string[];
@@ -74,7 +74,7 @@ const Front: React.FC<{ t: TicketSpec["ticket"] }> = ({ t }) => (
     </svg>
     <div style={{ position: "absolute", top: 176, width: CW, textAlign: "center", color: INK }}>
       <div style={{ fontFamily: sans, fontWeight: 700, fontSize: 26, letterSpacing: "0.34em", color: "#9A7A36" }}>{t.kicker}</div>
-      <div style={{ fontFamily: serif, fontWeight: 600, fontSize: 168, lineHeight: 1, marginTop: 26 }}>{t.title}</div>
+      <div style={{ fontFamily: serif, fontWeight: 600, fontSize: t.titleSize ?? 168, lineHeight: 1, marginTop: 26 }}>{t.title}</div>
       <div style={{ width: 96, height: 3, background: "#9A7A36", margin: "34px auto 0" }} />
       <div style={{ fontFamily: sans, fontWeight: 700, fontSize: 40, letterSpacing: "0.3em", marginTop: 34, paddingLeft: "0.3em" }}>{t.venue}</div>
     </div>
@@ -233,4 +233,44 @@ export const whittleburyRaceTicket: TicketSpec = {
   // Tech House vibes (Mixkit 130), 122 BPM, beat 0 at 0.087s: the film's beat 12 (the window opening) on the
   // track's lift at its beat 64
   music: { src: "music/mixkit-tech-house-vibes-130.mp3", from: 0.0873 + 52 * 0.49183, bpm: 121.994 },
+};
+
+// Gig night (Scott: events that come round all year, not one race weekend): any gig in Halifax, the Piece Hall's
+// season in mind but not named; Holdsworth House, where the Beatles stayed. Party Dance (prettyjohn1, Pixabay
+// 526227), 110 BPM: the flip in the build, the track's two silent beats just before the window opens on its drop
+// at 18.04s.
+const HH = "hotels/holdsworth-house";
+export const holdsworthGigTicket: TicketSpec = {
+  ticket: { kicker: "LIVE TONIGHT", title: "Gig Night", titleSize: 150, venue: "HALIFAX", details: [["DOORS", "7pm"], ["AREA", "Floor"], ["NO.", "042"]] },
+  key: { place: "HALIFAX, WEST YORKSHIRE", name: "Holdsworth House", line: "THE BEATLES STAYED HERE" },
+  hook: ["POV: you got", "gig tickets"],
+  ask: ["now where are", "you sleeping?"],
+  answer: ["flip it over"],
+  last: ["the encore:", "breakfast in bed"],
+  end: ["gig night: sorted"],
+  shots: [
+    { src: `${HH}/exterior.jpg`, pos: "42% 50%", beats: 4 },
+    { src: `${HH}/main-hall.jpg`, pos: "50% 50%", beats: 2 },
+    { src: `${HH}/dinner.jpg`, pos: "86% 50%", beats: 2 },
+    { src: `${HH}/tea-by-the-fire.jpg`, pos: "56% 50%", beats: 4 },
+    { src: `${HH}/breakfast-in-bed.jpg`, pos: "45% 50%", beats: 4 },
+  ],
+  music: { src: "music/prettyjohn1-party-dance-526227.mp3", from: 18.0419 - 12 * 0.5455, bpm: 109.99 },
+};
+
+// The same night on fresh photos (Scott: "don't use the same footage", the Holdsworth stills had been out before):
+// Ramside Hall, Durham, for a gig anywhere in the North East; the newsletter's photos, none used in a reel.
+const RH = "campaigns/november-best-loved/ramside-hall";
+export const ramsideGigTicket: TicketSpec = {
+  ...holdsworthGigTicket,
+  ticket: { kicker: "LIVE TONIGHT", title: "Gig Night", titleSize: 150, venue: "THE NORTH EAST", details: [["DOORS", "7pm"], ["AREA", "Floor"], ["NO.", "042"]] },
+  key: { place: "DURHAM", name: "Ramside Hall", line: "DINNER BEFORE, SPA AFTER" },
+  last: ["the encore"],
+  shots: [
+    { src: `${RH}/rib-room-diners.jpg`, pos: "27% 50%", beats: 4 },
+    { src: `${RH}/rib-room.jpg`, pos: "45% 50%", beats: 2 },
+    { src: `${RH}/hydrotherapy-pool-full.jpg`, pos: "50% 50%", beats: 2 },
+    { src: `${RH}/infinity-pool.jpg`, pos: "52% 50%", beats: 4 },
+    { src: `${RH}/hot-tub-dusk.jpg`, pos: "56% 50%", beats: 4 },
+  ],
 };

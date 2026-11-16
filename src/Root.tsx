@@ -85,8 +85,9 @@ import {
   StickTikTok,
   StickXmas,
 } from "./hotel-film/doodle/StickFlip";
-import { EventTicket, ticketFrames, whittleburyRaceTicket } from "./hotel-film/ticket/EventTicket";
+import { EventTicket, holdsworthGigTicket, ramsideGigTicket, ticketFrames, whittleburyRaceTicket } from "./hotel-film/ticket/EventTicket";
 import { CameraRoll, northWestRoll, ROLL_FRAMES } from "./hotel-film/roll/CameraRoll";
+import { STARRY_FRAMES, StarryNight } from "./hotel-film/stings/StarryNight";
 import { PostItList, POSTIT_FRAMES } from "./hotel-film/postit/PostItList";
 import {
   ScreenTime,
@@ -398,6 +399,8 @@ export const RemotionRoot: React.FC = () => {
         width={WIDTH}
         height={HEIGHT}
       />
+      {/* Starry Night repainted on a hotel at dusk, clearing to the real photo: TikTok */}
+      <Composition id="cbh-starry-night-tiktok" component={StarryNight} durationInFrames={STARRY_FRAMES} fps={FPS} width={WIDTH} height={HEIGHT} />
       {/* a camera roll of winter weekends, swiped through: TikTok */}
       <Composition id="cbh-camera-roll-tiktok" component={CameraRoll} durationInFrames={ROLL_FRAMES} fps={FPS} width={WIDTH} height={HEIGHT} />
       <Composition id="cbh-camera-roll-north-west-tiktok" component={CameraRoll} defaultProps={{ spec: northWestRoll }} durationInFrames={ROLL_FRAMES} fps={FPS} width={WIDTH} height={HEIGHT} />
@@ -407,6 +410,24 @@ export const RemotionRoot: React.FC = () => {
         component={EventTicket}
         defaultProps={{ spec: whittleburyRaceTicket }}
         durationInFrames={ticketFrames(whittleburyRaceTicket)}
+        fps={FPS}
+        width={WIDTH}
+        height={HEIGHT}
+      />
+      <Composition
+        id="holdsworth-gig-night-tiktok"
+        component={EventTicket}
+        defaultProps={{ spec: holdsworthGigTicket }}
+        durationInFrames={ticketFrames(holdsworthGigTicket)}
+        fps={FPS}
+        width={WIDTH}
+        height={HEIGHT}
+      />
+      <Composition
+        id="ramside-gig-night-tiktok"
+        component={EventTicket}
+        defaultProps={{ spec: ramsideGigTicket }}
+        durationInFrames={ticketFrames(ramsideGigTicket)}
         fps={FPS}
         width={WIDTH}
         height={HEIGHT}

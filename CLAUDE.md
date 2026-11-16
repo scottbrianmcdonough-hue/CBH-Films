@@ -1034,6 +1034,23 @@ with no history and no renders:
   and East & Midlands would need more footage (Gisborough only on its best shots; no Kingfisher river or roast).
   The label comes up once a hotel and holds across that hotel's clips, over the swipes (Scott: it showed "three
   times ... hold it or flash it once, then once when new hotel"): two labels in the North West cut. Re-sent.
+- TikTok set for Bianca (Scott, 16 Nov: "a few more for Bianca", its own grid with more like the camera roll, "maybe
+  gig night", "animation stuff like the starry night"; and "don't use the same footage, you have like 2 repos full of
+  photos": use the photos in this repo no reel has shown, e.g. `campaigns/november-best-loved/` (Frensham Pond,
+  Ramside Hall, Hatherley Manor, Donnington Valley), `campaigns/journey-new/` (Speech House, Hythe, Whitley Hall,
+  Langshott, Oakley), `campaigns/showcase/`; the old repo `my-video` can be attached with add_repo if more is needed):
+  `cbh-starry-night-tiktok` (`stings/StarryNight.tsx`, picture by `scripts/starry-night.py`, needs
+  opencv-python-headless): Frensham Pond's dusk photo repainted in moving brush strokes, the sky half the frame (the
+  photo's sky carried on upwards), swirls, eight stars and a moon coming out in rings of dashes, "Starry Night, / but
+  make it Surrey"; the paint clears outwards from the lit doorway (frames 165-213) to the real photo on a slow push,
+  label FARNHAM, SURREY / Frensham Pond Hotel & Spa in the sky above the roof (lower it sat on the hotel's own sign),
+  "the real one has / room service"; Leva's Eternity (the unposted Dalmahoy film's track), 10.0s, -15.3 LUFS.
+  `ramside-gig-night-tiktok` (ticket engine, `ramsideGigTicket`): LIVE TONIGHT / Gig Night / THE NORTH EAST flips to
+  DURHAM / Ramside Hall / DINNER BEFORE, SPA AFTER; rib room diners, hydrotherapy pool, infinity pool, the hot tub at
+  dusk ("the encore"), "gig night: sorted"; Party Dance (prettyjohn1, 110 BPM, from 11.5s, the window opening on its
+  drop at 18.04s), 19.1s, -15.1 LUFS (-5.8 dB after the render). `holdsworth-gig-night-tiktok` (the Beatles stayed
+  here) is registered but not sent: its stills had been used. Both sent. The starry night Scott meant was not in
+  this repo: this is a new one.
 - The session-start hook now also finds the headless shell at `chrome-headless-shell-linux64/chrome-headless-shell`
   (the container's new layout); if `REMOTION_BROWSER_EXECUTABLE` is empty, export that path by hand.
 - `november-best-loved` (+ `-silent`, `-carousel`): the CBH newsletter's six (Hatherley Manor, Ramside
