@@ -892,7 +892,7 @@ export const StickReel: React.FC<{ look?: "pad" | "gold" }> = ({ look = "gold" }
 // handwritten timestamps stay. Scenes still fall on the track's downbeats.
 const TIKTOK = "Figtree";
 loadFont({ family: TIKTOK, url: staticFile("fonts/Figtree-Bold.woff2"), weight: "700" });
-const TikTokText: React.FC<{ lines: string[]; top: number; left?: number; out?: number; still?: boolean }> = ({ lines, top, left = 90, out, still }) => {
+export const TikTokText: React.FC<{ lines: string[]; top: number; left?: number; out?: number; still?: boolean }> = ({ lines, top, left = 90, out, still }) => {
   const frame = useCurrentFrame();
   const gone = out === undefined ? 0 : progress(frame, out, 5);
   return (

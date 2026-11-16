@@ -85,6 +85,7 @@ import {
   StickTikTok,
   StickXmas,
 } from "./hotel-film/doodle/StickFlip";
+import { EventTicket, ticketFrames, whittleburyRaceTicket } from "./hotel-film/ticket/EventTicket";
 import { PostItList, POSTIT_FRAMES } from "./hotel-film/postit/PostItList";
 import {
   ScreenTime,
@@ -392,6 +393,16 @@ export const RemotionRoot: React.FC = () => {
         id="whittlebury-race-day-tiktok"
         component={StickRaceDay}
         durationInFrames={STICK_RACE_FRAMES}
+        fps={FPS}
+        width={WIDTH}
+        height={HEIGHT}
+      />
+      {/* the event ticket that flips into the hotel's room key: TikTok event tie-ins */}
+      <Composition
+        id="whittlebury-race-ticket-tiktok"
+        component={EventTicket}
+        defaultProps={{ spec: whittleburyRaceTicket }}
+        durationInFrames={ticketFrames(whittleburyRaceTicket)}
         fps={FPS}
         width={WIDTH}
         height={HEIGHT}

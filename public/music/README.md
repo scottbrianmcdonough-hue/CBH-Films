@@ -31,4 +31,4 @@ picks). Source pages: mixkit.co, track numbers as below.
 | `mixkit-driving-ambition-32.mp3` | Driving Ambition (cinematic build) | 32 | 99.4 | builds steadily; a big impact on the downbeat at 38.60s, a second at 48.17s; a quiet outro from 87s, a last hit at 96.2s | auditioned for the AMC reel (Scott: "best so far", then dropped); free |
 | `mixkit-funkee-monkeee-1140.mp3` | Funkee Monkeee (disco funk, brass) | 1140 | 120 | sparse intro, the groove fades up from 8s rather than landing; even after that | |
 | `mixkit-light-it-up-boy-849.mp3` | Light it Up Boy (jazz funk, brass, showbiz) | 849 | 120 | one level throughout; the horns lift in at 58.75s; last hit 91.24s | `amc-2026-reel`, `amc-2026-story` (first take) |
-| `mixkit-tech-house-vibes-130.mp3` | Tech House vibes | 130 | 123 | steady four to the floor, small fills every bar; club, not celebration | |
+| `mixkit-tech-house-vibes-130.mp3` | Tech House vibes | 130 | 123 | steady four to the floor, small fills every bar; club, not celebration; 122 BPM, beat 0 at 0.087s, a lift at 31.56s | `whittlebury-race-ticket-tiktok` (25.7-42.9s) |

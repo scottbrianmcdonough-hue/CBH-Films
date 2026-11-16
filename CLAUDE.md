@@ -1007,6 +1007,16 @@ with no history and no renders:
   the place. Funkee Monkeee from 56.02s (`musicAt`: StickFilm without the office opening), 22.0s, -14.1 LUFS. Sent.
   To confirm with the hotel before posting: the "next door" wording and race weekend availability. Others offered:
   Holdsworth and the Piece Hall gigs, Hatherley and Cheltenham, Dalmahoy and Murrayfield, Rowton and Chester Races.
+- `whittlebury-race-ticket-tiktok` (`ticket/EventTicket.tsx`, new, a `TicketSpec` per event; Scott, 16 Nov: the stick
+  figure "been done though"; then "don't do so much on race weekend ... hard to get tickets"): a cream event ticket
+  (A DAY AT THE TRACK / Sunday / SILVERSTONE, chequered top, generic, no event logos) under the TikTok hook "POV:
+  you're off / to Silverstone", "now where are / you sleeping?", it flips on the beat ("flip it over") to a black and
+  gold room key with the hotel's photo in its window (NORTHAMPTONSHIRE / Whittlebury Park / NEXT DOOR TO THE CIRCUIT);
+  the window opens to the full frame for exterior, pool, spa pool, plate, bedroom ("and no drive home") on hard beat
+  cuts, shuts back, the ticket and key end side by side, "Silverstone: sorted". Words fit any day at the circuit, not
+  only the Grand Prix. Stills (no Whittlebury footage). Tech House vibes (Mixkit 130, 122 BPM, from 25.66s, the
+  window opening on its lift at 31.56s; the render comes out hot, -5.2 dB after: -14.8 LUFS), 17.2s. Sent as
+  `out/whittlebury-silverstone-ticket-tiktok.mp4`. Confirm "next door" with the hotel before posting.
 - The session-start hook now also finds the headless shell at `chrome-headless-shell-linux64/chrome-headless-shell`
   (the container's new layout); if `REMOTION_BROWSER_EXECUTABLE` is empty, export that path by hand.
 - `november-best-loved` (+ `-silent`, `-carousel`): the CBH newsletter's six (Hatherley Manor, Ramside
