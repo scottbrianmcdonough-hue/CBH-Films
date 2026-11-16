@@ -39,6 +39,28 @@ const ROLL: Clip[] = [
   { src: `${R}/log-burner.mp4`, len: 60 },
 ];
 const OPENED = [4, 5, 6, 7, 8, 10]; // the ones swiped through, in the roll's order
+export type RollSpec = { roll: Clip[]; opened: number[]; hook: string[]; end: string[] };
+export const winterRoll: RollSpec = { roll: ROLL, opened: OPENED, hook: ["my camera roll", "this winter"], end: ["not one photo", "of my sofa"] };
+// Regional (Scott: the mixed one was "just random"): the North West, the Lakes then Chester
+export const northWestRoll: RollSpec = {
+  roll: [
+    { src: `${R}/robe.mp4`, len: 60 },
+    { src: `${L}/snowy-rooftops.mp4`, len: 62 },
+    { src: `${R}/massage.mp4`, len: 60 },
+    { src: `${R}/champagne.mp4`, len: 60 },
+    { src: `${L}/misty-lake.mp4`, len: 62, place: "WINDERMERE, LAKE DISTRICT", hotel: "Low Wood Bay\nResort & Spa" },
+    { src: `${L}/candles.mp4`, len: 62, place: "WINDERMERE, LAKE DISTRICT", hotel: "Low Wood Bay\nResort & Spa" },
+    { src: `${L}/quartet-4s.mp4`, len: 120, place: "WINDERMERE, LAKE DISTRICT", hotel: "Low Wood Bay\nResort & Spa" },
+    { src: `${R}/dusk-4s.mp4`, len: 120, place: "CHESTER", hotel: "Rowton Hall Hotel & Spa" },
+    { src: `${R}/cake-by-the-fire.mp4`, len: 58, place: "CHESTER", hotel: "Rowton Hall Hotel & Spa" },
+    { src: `${R}/pool-4s.mp4`, len: 120 },
+    { src: `${R}/four-poster.mp4`, len: 60, place: "CHESTER", hotel: "Rowton Hall Hotel & Spa" },
+    { src: `${R}/log-burner.mp4`, len: 60 },
+  ],
+  opened: [4, 5, 6, 7, 8, 10],
+  hook: ["my camera roll after", "a winter in the North West"],
+  end: ["not one photo", "of my sofa"],
+};
 
 // What The Funk (Rockot, Pixabay 549053) from 22.94s, where the band is full: its beats, in frames
 const MUSIC = "music/rockot-what-the-funk-549053.mp3";
@@ -70,7 +92,8 @@ const Label: React.FC<{ place: string; hotel: string; o: number }> = ({ place, h
   </AbsoluteFill>
 );
 
-export const CameraRoll: React.FC = () => {
+export const CameraRoll: React.FC<{ spec?: RollSpec }> = ({ spec = winterRoll }) => {
+  const { roll: ROLL, opened: OPENED } = spec;
   const frame = useCurrentFrame();
   const openAt = b(OPEN);
   const shutAt = b(SHUT);
@@ -146,10 +169,10 @@ export const CameraRoll: React.FC = () => {
         volume={(v) => interpolate(v, [0, 5, ROLL_FRAMES - 18, ROLL_FRAMES], [0, 1, 1, 0], { extrapolateRight: "clamp" })} />
       <FilmFinish />
       <Sequence durationInFrames={openAt + 2} layout="none">
-        <TikTokText lines={["my camera roll", "this winter"]} top={560} left={140} out={openAt - 6} still />
+        <TikTokText lines={spec.hook} top={560} left={140} out={openAt - 6} still />
       </Sequence>
       <Sequence from={shutAt + 14} layout="none">
-        <TikTokText lines={["not one photo", "of my sofa"]} top={560} left={140} />
+        <TikTokText lines={spec.end} top={560} left={140} />
       </Sequence>
     </AbsoluteFill>
   );

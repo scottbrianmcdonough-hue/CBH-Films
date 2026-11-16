@@ -1028,6 +1028,10 @@ with no history and no renders:
   What The Funk (Rockot, Pixabay 549053) from 22.94s, cuts on its own beat times (`BEATS`; its tempo drifts, so no
   fixed grid); the render comes out hot, -4.5 dB after: -15.0 LUFS, 17.7s. Sent. The roll is data (`ROLL`, `OPENED`):
   one hotel's roll or another season is a new list.
+  Scott: "I like it but it's just random or regional": so regional, like the screen time set (`RollSpec`):
+  `cbh-camera-roll-north-west-tiktok`, "my camera roll after / a winter in the North West": Low Wood Bay (misty lake,
+  candles, the quartet) then Rowton Hall (dusk, cake by the fire, canopied bed), same track and timing; sent. Yorkshire
+  and East & Midlands would need more footage (Gisborough only on its best shots; no Kingfisher river or roast).
 - The session-start hook now also finds the headless shell at `chrome-headless-shell-linux64/chrome-headless-shell`
   (the container's new layout); if `REMOTION_BROWSER_EXECUTABLE` is empty, export that path by hand.
 - `november-best-loved` (+ `-silent`, `-carousel`): the CBH newsletter's six (Hatherley Manor, Ramside
