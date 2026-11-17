@@ -18,7 +18,7 @@ Statuses as of 2 Nov 2026.
 
 ## Sent, waiting on Scott
 
-- [Coombe Abbey: new member pack](films/coombe-abbey.md): Travel guide and LinkedIn article proofs and the M&E reel sent 16 Nov; GDS codes wait for the sales profile.
+- [Coombe Abbey: new member pack](films/coombe-abbey.md): Travel guide final for Bianca (17 Nov, Word doc with photos and email); LinkedIn article, socials and M&E reel sent; GDS codes in.
 
 - [Camera roll: winter weekends](films/cbh-camera-roll.md): Re-sent 15 Nov for TikTok; the album's dates need updating before it goes out.
 
