@@ -13,12 +13,14 @@ import type { MESpec } from "../hotel-film/me/MEReel";
 // into public/music/edits/coombe-me-jazz-cocktail.m4a: from 39.31s (beat 73), the band stopping under the second set
 // of rooms and coming back on the Cloisters (52.2s), then a jump on the bar to the ending at the bedroom (152.6s), so
 // the end card lands on the final hits (156.5s) and the last chord (160.3s) rings out. Frames measured off the beats.
-const F = { a: 129, b: 257, cloisters: 386, garden: 483, dining: 531, marquee: 579, park: 676, bed: 773, end: 890 };
+// two bars a scene from the Cloisters on (Scott: "some scenes are too fast to read"), the music edit now runs to beat 129
+const F = { a: 129, b: 257, cloisters: 386, garden: 515, dining: 579, marquee: 644, park: 773, bed: 903, end: 1020 };
 const P = "hotels/coombe-abbey/";
 
 export const coombeAbbeyME: MESpec = {
   id: "coombe-abbey-meetings",
-  frames: 1110,
+  frames: 1240,
+  even: true,
   scenes: [
     {
       at: 0,
@@ -29,29 +31,29 @@ export const coombeAbbeyME: MESpec = {
       at: F.a,
       cut: true,
       layout: "feature",
-      panelBeat: 32,
+      panelBeat: 5, // all three in on the cut, a quick cascade (no black waiting for a panel)
       panels: [
         { src: P + "meeting-room-harrington-001.jpg", name: "", widePos: "50% 50%" },
         { src: P + "meeting-room-kellway-001.jpg", name: "", widePos: "55% 50%" },
         { src: P + "meeting-room-walnut-001.jpg", name: "", widePos: "50% 50%" },
       ],
-      text: { eyebrow: "Meeting spaces", title: "11 rooms, none of them beige", subs: ["Just off junction 2 of the M6"] },
+      text: { eyebrow: "Meeting spaces", title: "11 rooms, none of them beige", subs: ["Just off the M6"] },
     },
     {
       at: F.b,
       cut: true,
       layout: "feature",
-      panelBeat: 32,
+      panelBeat: 5, // all three in on the cut, a quick cascade (no black waiting for a panel)
       panels: [
         { src: P + "meeting-room-stuart-001.jpg", name: "", widePos: "50% 50%" },
         { src: P + "meeting-room-griffin-001.jpg", name: "", widePos: "60% 50%" },
         { src: P + "meeting-room-de-camville-001.jpg", name: "", widePos: "70% 50%" },
       ],
-      text: { eyebrow: "Day delegates", title: "The coffee doesn't run out", subs: ["Lunch included on day packages"] },
+      text: { eyebrow: "Day delegates", title: "The coffee doesn't run out", subs: ["Lunch included"] },
     },
     {
       at: F.cloisters,
-      cut: true,
+      whip: true, // the band comes back
       shots: [{ src: P + "conference-room-cloisters-002.jpg", pos: "50% 50%" }],
       text: { eyebrow: "The Cloisters", title: "Cabaret for 64", subs: ["And the bar is next door"] },
     },
@@ -80,7 +82,7 @@ export const coombeAbbeyME: MESpec = {
     },
     {
       at: F.bed,
-      cut: true,
+      whip: true, // the jump to the track's ending
       shots: [{ src: P + "lady-craven-grand-feature-room-002.jpg", pos: "50% 55%" }],
       text: { eyebrow: "Stay over", title: "121 bedrooms", subs: ["So nobody's late for the 9am"] },
     },

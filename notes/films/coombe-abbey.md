@@ -72,3 +72,10 @@ intro (`out/coombe-abbey/15-socials-intro.txt`) and the travel guide (`out/coomb
 - 16 Nov, new music (Scott: "definitely needs new music", "more housey jazzy"; an indie rock edit was dropped before render): Jazz Cocktail Lounge Music (alex-morgan), edited by `scripts/coombe-me-music.py`; the band stops under the second set of rooms and returns on the Cloisters, a bar jump to the track's ending at the bedroom, the end card on its final hits and last chord. 37.0s, -15.1 LUFS. Mixkit is blocked here, so new tracks have to come from Scott.
 - 16 Nov, wittier copy (Scott: "copy needs to be more witty"; the Marquee's numbers alone were "a waste of good copy"): captions "11 rooms, none of them beige", "The coffee doesn't run out" (lunch included on day packages), Cloisters "Cabaret for 64 / And the bar is next door", "Dinner under glass", Marquee "Bring the whole company / Up to 350 for dinner", "500 acres of breakout space / Go Ape is in the woods", "121 bedrooms / So nobody's late for the 9am"; post: "The monks didn't have WiFi. Your delegates will." Re-rendered, -15.1 LUFS.
 - 16 Nov: the opening's eyebrow is the place, COVENTRY, WARWICKSHIRE (was MEETINGS & EVENTS; Scott), the line under the name "Ten minutes from the city centre".
+- 17 Nov, polish (Scott: "some start after the transitions, it should be smooth all around", "some scenes are too
+  fast to read", "little cool transitions ... beat matched", then "too many, keep it simple and slick, nice and
+  clean"): MEReel `even` (opt in, so Haycock and Nailcote are untouched): every still drifts at one pace from its first
+  frame (the Marquee's push linear, no ease in), panels land with the cut in a quick cascade (5 frames apart, 10 frame
+  slides); MEScene `whip`, used twice only, landing on the beat: into the Cloisters as the band comes back, and into
+  the bedroom on the jump to the track's ending; the other cuts are hard cuts on the downbeats. Two bars a scene from
+  the Cloisters on (the music edit now runs to beat 129), ~41s. Copy trimmed: "Just off the M6", "Lunch included".

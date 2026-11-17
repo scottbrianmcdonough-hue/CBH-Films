@@ -56,10 +56,16 @@ export type MEScene = {
   // the camera pushes into a point of the photo, gathering speed into the next cut (Kenilworth's
   // screen, so the rooms' panels open out of it)
   push?: { to: number; pos: string };
+  // a quick whip into the scene that lands on its beat (Coombe Abbey, Scott: "keep it simple and slick"): the old
+  // scene slides out left as this one slides in, over WHIP frames ending exactly on `at`
+  whip?: boolean;
 };
 export type MESpec = {
   id: string;
   frames: number;
+  // every still drifts at one even pace from its first frame, pushes included, and panels land on the beat
+  // (Coombe Abbey, Scott: "some start after the transitions, it should be smooth all around")
+  even?: boolean;
   scenes: MEScene[];
   // offer: the Black Friday Stories' card in place of the name card: BLACK FRIDAY SALE in the
   // campaign's mauve caps with its underline, the offer in cream Cormorant, small lines beneath
@@ -76,6 +82,8 @@ export type MESpec = {
 };
 
 const X = 14; // crossfade frames
+const WHIP = 10; // a whip's frames, ending on the beat
+const RATE = 0.0004; // the even drift: scale gained per frame (~1.05 over 4s)
 const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
 const LIFT = "0 2px 18px rgba(9,9,10,0.6), 0 1px 3px rgba(9,9,10,0.5)";
 
@@ -206,18 +214,23 @@ const Caption: React.FC<{
   );
 };
 
-const Scene: React.FC<{ scene: MEScene; len: number; wide: boolean }> = ({
-  scene,
-  len,
-  wide,
-}) => {
+const Scene: React.FC<{
+  scene: MEScene;
+  len: number;
+  wide: boolean;
+  even?: boolean;
+}> = ({ scene, len, wide, even }) => {
   const frame = useCurrentFrame();
   const { width, height } = useVideoConfig();
   const push = scene.push;
   // a push gathers speed (ease in) toward the next cut; otherwise the slow, even drift
-  const z = push
-    ? 1 + (push.to - 1) * Math.pow(Math.min(1, frame / len), 2.2)
-    : interpolate(frame, [0, len], [1.0, 1.05], clamp);
+  const z = even
+    ? push
+      ? 1 + (push.to - 1) * Math.min(1, frame / len)
+      : 1 + RATE * frame
+    : push
+      ? 1 + (push.to - 1) * Math.pow(Math.min(1, frame / len), 2.2)
+      : interpolate(frame, [0, len], [1.0, 1.05], clamp);
   const cuts = scene.cuts ?? [];
   const off = scene.cut ? 0 : X / 2; // a crossfading scene starts half a fade early
   let body: React.ReactNode = null;
@@ -226,7 +239,9 @@ const Scene: React.FC<{ scene: MEScene; len: number; wide: boolean }> = ({
       const from = i === 0 ? 0 : cuts[i - 1] - scene.at;
       const o = i === 0 ? 1 : progress(frame, from - X / 2, X, EASE_IN_OUT);
       if (frame < from - X / 2) return null;
-      const zz = interpolate(frame, [from, from + len], [1.0, 1.05], clamp);
+      const zz = even
+        ? 1 + RATE * Math.max(0, frame - from + X / 2)
+        : interpolate(frame, [from, from + len], [1.0, 1.05], clamp);
       return (
         <AbsoluteFill key={s.src} style={{ opacity: o }}>
           <Photo
@@ -254,7 +269,7 @@ const Scene: React.FC<{ scene: MEScene; len: number; wide: boolean }> = ({
           // each panel drifts its own way (Scott: "more engaging"): up, down, up across a split
           const drift =
             interpolate(frame, [0, len], [1, -1], clamp) * (i % 2 ? -14 : 14);
-          const s = progress(frame, at, 16, EASE_OUT);
+          const s = progress(frame, at, even ? 10 : 16, EASE_OUT);
           const feature = wide && scene.layout === "feature";
           const fw = Math.round((width * 2) / 3 - G / 2);
           const rect = feature
@@ -294,7 +309,7 @@ const Scene: React.FC<{ scene: MEScene; len: number; wide: boolean }> = ({
               <Photo
                 src={p.src}
                 pos={pos}
-                z={1.04 + 0.02 * (frame / len)}
+                z={even ? 1.04 + RATE * 0.5 * frame : 1.04 + 0.02 * (frame / len)}
                 dy={wide ? drift : 0}
                 dx={wide ? 0 : drift}
               />
@@ -570,10 +585,28 @@ export const MEReel: React.FC<{ film: MESpec }> = ({ film }) => {
   return (
     <AbsoluteFill style={{ backgroundColor: colors.black }}>
       {film.scenes.map((s, i) => {
-        const from = i === 0 || s.cut ? s.at : s.at - X / 2;
+        const from = s.whip
+          ? s.at - WHIP
+          : i === 0 || s.cut
+            ? s.at
+            : s.at - X / 2;
         const to = (i + 1 < starts.length ? starts[i + 1] : endAt) + X / 2;
         const fadeIn =
-          i === 0 || s.cut ? 1 : progress(frame, from, X, EASE_IN_OUT);
+          i === 0 || s.cut || s.whip
+            ? 1
+            : progress(frame, from, X, EASE_IN_OUT);
+        // the whip: this scene slides in from the right as the one before slides out left, a touch of blur at speed
+        const next = film.scenes[i + 1];
+        const pIn = s.whip
+          ? progress(frame, s.at - WHIP, WHIP, EASE_IN_OUT)
+          : 1;
+        const pOut = next?.whip
+          ? progress(frame, next.at - WHIP, WHIP, EASE_IN_OUT)
+          : 0;
+        const shift = (1 - pIn) * width - pOut * width;
+        const blur =
+          (s.whip ? Math.sin(Math.PI * pIn) : 0) +
+          (next?.whip ? Math.sin(Math.PI * pOut) : 0);
         return (
           <Sequence
             key={s.at}
@@ -581,8 +614,19 @@ export const MEReel: React.FC<{ film: MESpec }> = ({ film }) => {
             durationInFrames={to - from}
             layout="none"
           >
-            <AbsoluteFill style={{ opacity: fadeIn }}>
-              <Scene scene={{ ...s, at: from }} len={to - from} wide={wide} />
+            <AbsoluteFill
+              style={{
+                opacity: fadeIn,
+                transform: shift ? `translateX(${shift}px)` : undefined,
+                filter: blur > 0.01 ? `blur(${(blur * 10).toFixed(1)}px)` : undefined,
+              }}
+            >
+              <Scene
+                scene={{ ...s, at: from }}
+                len={to - from}
+                wide={wide}
+                even={film.even}
+              />
             </AbsoluteFill>
           </Sequence>
         );
