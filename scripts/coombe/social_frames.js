@@ -40,7 +40,7 @@ if (process.argv[3] === 'linkedin') {
   jobs.length = 0;
   const L = (n, src, pos) => jobs.push(['linkedin-' + n, 1920, 1080, src, pos, false, 0, 1080 - 130]);
   L(1, 'hotel-aerial-view-001.jpg', '50% 50%');
-  L(2, 'conference-room-cloisters-002.jpg', '50% 50%');
+  L(2, 'conference-room-cloisters-003.jpg', '50% 50%');  // the boardroom table down the centre to the stage (pick, 17 Nov)
   L(3, 'private-dining-marquee-001.jpg', '50% 50%');
   L(4, 'garden-room-restaurant-002.jpg', '50% 50%');
   L(5, 'the-princess-elizabeth-grand-feature-bathroom-001.jpg', '50% 50%');
