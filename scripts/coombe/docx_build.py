@@ -3,7 +3,8 @@ import io, re, sys
 from pathlib import Path
 from PIL import Image
 from docx import Document
-from docx.shared import Pt, Inches, RGBColor
+from docx.shared import Pt, Inches, Cm, RGBColor
+from docx.enum.text import WD_ALIGN_PARAGRAPH
 sys.path.insert(0, str(Path(__file__).parent))
 import coombe_copy as C
 from docx_style import plain
@@ -23,11 +24,18 @@ def runs(p, text):
 def pic(d, name, cap):
     im = Image.open(PH / name).convert("RGB"); im.thumbnail((1600, 1600))
     b = io.BytesIO(); im.save(b, "JPEG", quality=82); b.seek(0)
-    d.add_picture(b, width=Inches(6.2))
-    c = d.add_paragraph(); r = c.add_run(cap); r.italic = True; r.font.size = Pt(9); r.font.color.rgb = RGBColor(0x5d, 0x5a, 0x55)
+    w, h = im.size; W = 6.1; H = min(W * h / w, 3.1)   # cap the height so pages fill and photos sit with their text
+    d.add_picture(b, width=Inches(H * w / h), height=Inches(H))
+    pp = d.paragraphs[-1]; pp.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    pp.paragraph_format.keep_with_next = True; pp.paragraph_format.space_before = Pt(6); pp.paragraph_format.space_after = Pt(3)
+    c = d.add_paragraph(); c.alignment = WD_ALIGN_PARAGRAPH.CENTER; c.paragraph_format.space_after = Pt(12); r = c.add_run(cap); r.italic = True; r.font.size = Pt(9); r.font.color.rgb = RGBColor(0x5d, 0x5a, 0x55)
 
 def build(blocks, out, seo=None):
     d = Document(); plain(d, "Georgia")
+    for sec in d.sections: sec.left_margin = sec.right_margin = Cm(2.2); sec.top_margin = sec.bottom_margin = Cm(2.2)
+    pf = d.styles["Normal"].paragraph_format; pf.space_after = Pt(8); pf.line_spacing = 1.15
+    for h, before in (("Heading 1", 0), ("Heading 2", 16)):
+        hf = d.styles[h].paragraph_format; hf.space_before = Pt(before); hf.space_after = Pt(6); hf.keep_with_next = True
     if seo:
         d.add_heading("Page details", level=3)
         for k, v in seo: p = d.add_paragraph(); r = p.add_run(k + ": "); r.bold = True; p.add_run(v)
