@@ -40,7 +40,7 @@ GUIDE = [
     ("p", "Afternoon tea is served in dining rooms that look out over the parkland. Vegetarian and vegan menus are on offer, and two children can share an **Abbot's Afternoon Tea**."),
     ("img", "garden-room-restaurant-002.jpg", "The Garden Room conservatory"),
     ("p", "Dinner is \u00e0 la carte in the Garden Room, a glass conservatory with the gardens on the other side of the windows. Menus also run to Sunday lunch and a roast with a name that explains itself: **We Cook, You Carve**."),
-    ("p", "After dark, the **Mediaeval Banquets** turn the abbey's history into a night of feasting and song, and tribute nights fill the events calendar through the year."),
+    ("p", "After dark, the **Mediaeval Banquets** invite guests to play lords and ladies at a hearty feast fit for a king and queen, with song between the courses. Tribute nights join them on the events calendar through the year."),
     ("p", "Room service runs around the clock, with hot food until 10pm. By day, the **Café in the Park** looks after walkers."),
     ("img", "cafe-in-the-park-001.jpg", "Lunch at the Café in the Park"),
     ("h2", "500 acres of fresh air"),
