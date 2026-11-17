@@ -84,3 +84,4 @@ intro (`out/coombe-abbey/15-socials-intro.txt`) and the travel guide (`out/coomb
 - 17 Nov (Scott: "at 22 there's like a sharp cut"): the picture, not the music (the one music join is at 30s); the hard cut from the dark steak to the white Marquee at 21.5s is now a quick crossfade on the same beat.
 - 17 Nov: GDS codes in (CB mapping, live 17 Nov): Amadeus CVT889, Galileo 65059, Sabre 19277, Worldspan 09270, Dhisco 102239; the LinkedIn intro is complete.
 - 17 Nov: the travel guide as a live Claude Doc for Scott's edits and comments: https://claude.ai/artifact/Cb9ZFXv5Nb9hid939DJcF2 (carry his changes back into `scripts/coombe/coombe_copy.py`).
+- 17 Nov, travel guide lifted to Bianca's notes (location after the name, what's special, the offering before the history): "Coombe Abbey Hotel, Coventry" headline, a Why Coombe Abbey section, The Juliet's turret bathroom, tribute nights, Go Ape higher; Since 1150 moved after the park. Live doc, proofs and Word doc all match.
