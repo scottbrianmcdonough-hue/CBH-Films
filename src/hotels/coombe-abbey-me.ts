@@ -5,7 +5,7 @@ import type { MESpec } from "../hotel-film/me/MEReel";
 // Cormorant headline, a short fact line) and the house end card. 16:9 for LinkedIn.
 //
 // Facts from coombeabbey.com only (room pages win over the 2022 brochure). Each figure sits on the room it
-// describes, in the layout pictured: the Cloisters set cabaret (64), the Marquee set for dinner on rounds (350).
+// describes; one capacity only (Scott, 17 Nov: "maybe max capacity but not every room"): the Marquee's 450.
 // History kept light, no Gunpowder Plot (Scott, 16 Nov).
 //
 // Music (Scott, 16 Nov: Event Music "definitely needs new music", "more housey jazzy"): Jazz Cocktail Lounge Music by
@@ -55,7 +55,7 @@ export const coombeAbbeyME: MESpec = {
       at: F.cloisters,
       whip: true, // the band comes back
       shots: [{ src: P + "conference-room-cloisters-002.jpg", pos: "50% 50%" }],
-      text: { eyebrow: "The Cloisters", title: "Cabaret for 64", subs: ["And the bar is next door"] },
+      text: { eyebrow: "The Cloisters", title: "Keynote under a chandelier", subs: ["With its own bar next door"] },
     },
     {
       at: F.garden,
@@ -72,7 +72,7 @@ export const coombeAbbeyME: MESpec = {
       cut: true,
       shots: [{ src: P + "private-dining-marquee-001.jpg", pos: "50% 50%" }],
       push: { to: 1.12, pos: "50% 45%" },
-      text: { eyebrow: "The Marquee", title: "Bring the whole company", subs: ["Up to 350 for dinner"] },
+      text: { eyebrow: "The Marquee", title: "Bring the whole company", subs: ["Up to 450 delegates"] },
     },
     {
       at: F.park,

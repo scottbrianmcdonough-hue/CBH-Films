@@ -79,3 +79,4 @@ intro (`out/coombe-abbey/15-socials-intro.txt`) and the travel guide (`out/coomb
   slides); MEScene `whip`, used twice only, landing on the beat: into the Cloisters as the band comes back, and into
   the bedroom on the jump to the track's ending; the other cuts are hard cuts on the downbeats. Two bars a scene from
   the Cloisters on (the music edit now runs to beat 129), ~41s. Copy trimmed: "Just off the M6", "Lunch included".
+- 17 Nov, copy (Scott: "stronger copy than just cabaret for 64 ... maybe max capacity but not every room"): the Cloisters "Keynote under a chandelier / With its own bar next door"; one capacity in the film, the Marquee's maximum: "Bring the whole company / Up to 450 delegates".
