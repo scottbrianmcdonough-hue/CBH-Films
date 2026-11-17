@@ -279,3 +279,27 @@ export const ramsideGigTicket: TicketSpec = {
     { src: `${RH}/infinity-pool.jpg`, pos: "52% 50%", beats: 4 },
   ],
 };
+
+// Coombe Abbey, Warwickshire (Scott, 17 Nov, pasted its Stay and Private Dining pages): the event is the hotel's
+// own, so it recurs and there is nowhere to travel: its Mediaeval Banquet. This one ends on a bed, so "where are
+// you sleeping?" is back. Photos from coombeabbey.com (`public/hotels/coombe-abbey/`). Upbeat Dance Pop Infectious
+// (toolikes, Pixabay 225269), 128 BPM, beat 0 at 0.990s: the window opens on its lift at 60.99s.
+const CA = "hotels/coombe-abbey";
+export const coombeBanquetTicket: TicketSpec = {
+  ticket: { kicker: "A MEDIAEVAL", title: "Banquet", venue: "COOMBE ABBEY", details: [["TABLE", "12"], ["SEATS", "2"], ["NO.", "042"]] },
+  key: { place: "WARWICKSHIRE", name: "Coombe Abbey", line: "A CANOPIED BED UPSTAIRS" },
+  hook: ["POV: you got", "banquet tickets"],
+  ask: ["now where are", "you sleeping?"],
+  answer: ["flip it over"],
+  last: ["then upstairs to bed"],
+  end: ["banquet night: sorted"],
+  shots: [
+    { src: `${CA}/aerial.jpg`, pos: "47% 50%", beats: 4 },
+    { src: `${CA}/banquet-cast.jpg`, pos: "52% 50%", beats: 2 },
+    { src: `${CA}/banquet-show.jpg`, pos: "44% 50%", beats: 2 },
+    { src: `${CA}/plate.jpg`, pos: "50% 50%", beats: 2 },
+    { src: `${CA}/roll-top-bath.jpg`, pos: "22% 50%", beats: 2 },
+    { src: `${CA}/four-poster-room.jpg`, pos: "75% 50%", beats: 4 }, // the whole bed in a 9:16 crop (the gold canopied one cropped to its headboard)
+  ],
+  music: { src: "music/toolikes-upbeat-dance-pop-infectious-225269.mp3", from: 0.98987 + 116 * 0.468764, bpm: 127.996 },
+};

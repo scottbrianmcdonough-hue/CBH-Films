@@ -85,7 +85,7 @@ import {
   StickTikTok,
   StickXmas,
 } from "./hotel-film/doodle/StickFlip";
-import { EventTicket, holdsworthGigTicket, ramsideGigTicket, ticketFrames, whittleburyRaceTicket } from "./hotel-film/ticket/EventTicket";
+import { coombeBanquetTicket, EventTicket, holdsworthGigTicket, ramsideGigTicket, ticketFrames, whittleburyRaceTicket } from "./hotel-film/ticket/EventTicket";
 import { CameraRoll, northWestRoll, ROLL_FRAMES } from "./hotel-film/roll/CameraRoll";
 import { STARRY_FRAMES, StarryNight } from "./hotel-film/stings/StarryNight";
 import { PostItList, POSTIT_FRAMES } from "./hotel-film/postit/PostItList";
@@ -428,6 +428,15 @@ export const RemotionRoot: React.FC = () => {
         component={EventTicket}
         defaultProps={{ spec: ramsideGigTicket }}
         durationInFrames={ticketFrames(ramsideGigTicket)}
+        fps={FPS}
+        width={WIDTH}
+        height={HEIGHT}
+      />
+      <Composition
+        id="coombe-banquet-night-tiktok"
+        component={EventTicket}
+        defaultProps={{ spec: coombeBanquetTicket }}
+        durationInFrames={ticketFrames(coombeBanquetTicket)}
         fps={FPS}
         width={WIDTH}
         height={HEIGHT}

@@ -1072,6 +1072,19 @@ with no history and no renders:
   full-frame picture, `TT_TOP_CARD` (196) above a card. Hotel names stay in the gold and cream house label.
   Final assets for the three (17 Nov, sent): `out/<id>.mp4`, `-silent.mp4`, `-cover.jpg` for
   `cbh-camera-roll-north-west-tiktok`, `ramside-gig-night-tiktok`, `cbh-starry-night-tiktok`, and the ticket.
+- `coombe-banquet-night-tiktok` (ticket engine, `coombeBanquetTicket`; Scott, 17 Nov, pasted Coombe Abbey's Stay and
+  Private Dining pages with no note, read as "do Coombe Abbey"): the hotel's own Mediaeval Banquet, so the event
+  recurs and is on site. A MEDIAEVAL / Banquet / COOMBE ABBEY ticket, "POV: you got / banquet tickets", "now where
+  are / you sleeping?" (back, since it ends on a bed), flips to WARWICKSHIRE / Coombe Abbey / A CANOPIED BED
+  UPSTAIRS; the abbey from the air, the banquet cast, the show, a plate, the roll top bath, the four poster room
+  ("then upstairs to bed"), "banquet night: sorted". Upbeat Dance Pop Infectious (toolikes, 128 BPM, from 55.37s,
+  the window opening on its lift at 60.99s), 16.4s, -15.2 LUFS (-2 dB after the render). Sent with `-silent` and
+  `-cover`. Photos fetched from coombeabbey.com into `public/hotels/coombe-abbey/` (aerial, banquet cast and show,
+  plate, roll top bath, four poster room, garden front, Lady Craven room, afternoon tea, garden room). To confirm:
+  that Coombe Abbey is a CBH member and how CBH lists its place; the ticket's table and seat numbers are made up.
+- Network: this session now runs on the personal environment `cbh-films` (created 17 Nov, Scott approved), which
+  allows coombeabbey.com and classicbritishhotels.com (with and without www). The CBH site still answers 403 to
+  curl (its own bot block), so its photos still come from Scott; other hotel sites need adding to the environment.
 - The session-start hook now also finds the headless shell at `chrome-headless-shell-linux64/chrome-headless-shell`
   (the container's new layout); if `REMOTION_BROWSER_EXECUTABLE` is empty, export that path by hand.
 - `november-best-loved` (+ `-silent`, `-carousel`): the CBH newsletter's six (Hatherley Manor, Ramside
