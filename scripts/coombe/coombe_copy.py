@@ -23,7 +23,7 @@ GUIDE = [
     ("img", "hotel-aerial-view-001.jpg", "The abbey from above, inside its moat"),
     ("p", "Coombe Abbey puts a 12th century abbey and its moat in 500 acres of parkland, ten minutes from Coventry city centre."),
     ("p", "Inside, 121 bedchambers are each designed individually, and two keep their bathrooms up in the turrets. Outside, the formal gardens run down to an 80 acre lake, both laid out by Lancelot \"Capability\" Brown, the renowned 18th century landscape gardener the Craven family brought in to reshape the estate. Go Ape waits in the woods beyond."),
-    ("p", "Coombe Abbey was named Best Hotel in the Muddy Stilettos Awards 2024, and holds a Tripadvisor Travellers' Choice award for 2026. Its afternoon tea is award winning too, and the Mediaeval Banquets turn the abbey's history into a night of feasting."),
+    ("p", "Coombe Abbey holds a Tripadvisor Travellers' Choice award for 2026. Its afternoon tea is award winning too, and the Mediaeval Banquets turn the abbey's history into a night of feasting."),
     ("h2", "Bedtime stories"),
     ("p", "Many of the bedchambers sit within the abbey walls, and others are in Park Priory, a quieter building across the grounds."),
     ("img", "the-princess-elizabeth-grand-feature-bathroom-001.jpg", "Up in the turret: the bathroom of The Princess Elizabeth"),
@@ -63,10 +63,6 @@ GUIDE = [
     ("h2", "Before you cross the moat"),
     ("p", "Rooms are ready from 3pm, and check out is by 10.30am. Coombe Abbey is cashless and takes cards only. Pets are not able to stay."),
     ("closer", "COOMBE ABBEY HOTEL", "Your abbey in the park", "A 12th century abbey inside its own moat, with 500 acres of parkland outside the door and Coventry ten minutes away. Stay a night for the banquet, or a weekend for the treetops and the turret bath.", "BOOK NOW"),
-    ("box", "Destination guide entries", [
-        "**Coventry and Warwickshire.** **Coombe Abbey Hotel**, Coventry. Founded as a monastery in 1150, Coombe Abbey now has 121 bedchambers, set in 500 acres where Capability Brown laid out the gardens and the lake. Herons nest on the lake beyond the formal gardens, and Coventry city centre is ten minutes away.",
-        "**Historic and romantic stays.** **Coombe Abbey Hotel**, Coventry. A 12th century abbey where the Grand Feature Bedchambers come with canopied beds. In The Princess Elizabeth, a private staircase climbs to a bathroom hidden in the turret, with a roll top bath waiting at the top.",
-    ]),
 ]
 
 ARTICLE_META = {"title": "Coombe Abbey Hotel: Where Business Meets 500 Acres | Classic British Hotels"}
