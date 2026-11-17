@@ -18,7 +18,7 @@ GUIDE = [
     ("h1", "Coombe Abbey Hotel, Coventry: a night inside the moat"),
     ("stand", "A 12th century abbey inside its own moat, ten minutes from Coventry city centre, where the rooms hide turret bathrooms and the evenings can end in a banquet."),
     ("img", "hotel-exterior-001.jpg", "Coombe Abbey Hotel across its formal gardens"),
-    ("p", "Coombe Abbey Hotel, near Coventry in Warwickshire, is the newest member of Classic British Hotels: almost nine centuries of history, with room service through the night."),
+    ("p", "Coombe Abbey Hotel, near Coventry in Warwickshire, is the newest member of Classic British Hotels: a 12th century abbey where guests can sleep inside the moat and feast at a mediaeval banquet."),
     ("h2", "Why Coombe Abbey"),
     ("img", "hotel-aerial-view-001.jpg", "The abbey from above, inside its moat"),
     ("p", "Coombe Abbey puts a 12th century abbey and its moat in 500 acres of parkland, ten minutes from Coventry city centre."),

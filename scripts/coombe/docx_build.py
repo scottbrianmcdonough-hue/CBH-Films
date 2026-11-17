@@ -46,7 +46,7 @@ def build(blocks, out, seo=None):
     d.save(out)
 
 M = C.GUIDE_META
-build(C.GUIDE, OUT / "Coombe Abbey travel guide.docx",
-      seo=[("Title tag", M["title"]), ("Meta description", M["description"]), ("Social share title", M["og_title"])])
+# no page details section in the Word doc (Scott, 17 Nov: "get rid of the notes section in the word doc")
+build(C.GUIDE, OUT / "Coombe Abbey travel guide.docx")
 build(C.ARTICLE, OUT / "Coombe Abbey LinkedIn article.docx")
 print("ok")
