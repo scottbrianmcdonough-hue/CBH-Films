@@ -21,20 +21,20 @@ Junction 2 of the M6 is close by, Coventry station has direct trains to London E
 Welcome to the collection, Coombe Abbey. 👏
 
 𝗔𝘃𝗮𝗶𝗹𝗮𝗯𝗹𝗲 𝘁𝗼 𝗯𝗼𝗼𝗸 𝗻𝗼𝘄 𝗼𝗻 𝗚𝗗𝗦 (search CB):
-𝗔𝗺𝗮𝗱𝗲𝘂𝘀: [to come]
-𝗚𝗮𝗹𝗶𝗹𝗲𝗼: [to come]
-𝗦𝗮𝗯𝗿𝗲: [to come]
-𝗪𝗼𝗿𝗹𝗱𝘀𝗽𝗮𝗻: [to come]
-𝗗𝗵𝗶𝘀𝗰𝗼: [to come]
+𝗔𝗺𝗮𝗱𝗲𝘂𝘀: CVT889
+𝗚𝗮𝗹𝗶𝗹𝗲𝗼: 65059
+𝗦𝗮𝗯𝗿𝗲: 19277
+𝗪𝗼𝗿𝗹𝗱𝘀𝗽𝗮𝗻: 09270
+𝗗𝗵𝗶𝘀𝗰𝗼: 102239
 
 For appointments, fam trips, RFPs or meetings and events, get in touch with our Central Desk Team: Hayley Milton, Liz Gibbon, Georgina Brown and Katie Pratt
 
 CTA
 - Tag Coombe Abbey Hotel (its LinkedIn company page, to confirm) and Hayley Milton, Liz Gibbon, Georgina Brown and Katie Pratt
-Time slot: once the GDS codes are in, day TBC
+Time slot: from Tue 17 Nov (GDS live today), 1–3 PM
 Platforms: LinkedIn
 Creative: the aerial, or a carousel (aerial, the Cloisters, The Lady Craven)
 
 Notes
-- GDS codes wait for the sales profile PDF; the post can't go out until they're in.
+- GDS codes from the CB mapping (property 102239), live on all GDS from 17 Nov 2026; chain code CB.
 - Facts from coombeabbey.com only (source and numbers checked 16 Nov). No Gunpowder Plot (Scott); no prices.
