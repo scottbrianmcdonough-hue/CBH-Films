@@ -32,7 +32,7 @@ GUIDE = [
     ("img", "lady-craven-grand-feature-room-002.jpg", "The Lady Craven, its canopied bed raised behind a carved balustrade"),
     ("p", "Two rooms stretch over three levels: in **The Giordino** a sunken bath looks across the lake and gardens, and **The Mowbray** has some of the finest views of the water."),
     ("img", "lake-view-grand-feature-bathroom-001.jpg", "Lake View, where the bath sits beside a tall window"),
-    ("p", "Every Grand Feature stay comes with a canopied bed, and with free parking until 5pm on the day guests leave."),
+    ("p", "Every Grand Feature stay comes with a canopied bed and a view out over the Warwickshire countryside."),
     ("p", "**Crown Bedchambers** carry the same individual styling, and family rooms sleep two adults and two children. **Dove Cottage** gives families a place of their own, with two bedrooms upstairs and a private garden that looks onto the parkland."),
     ("img", "dove-cottage-bedroom-001.jpg", "A bedroom in Dove Cottage"),
     ("h2", "Feasts, old and new"),
