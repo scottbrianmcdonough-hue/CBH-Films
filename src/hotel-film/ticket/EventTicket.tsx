@@ -265,14 +265,15 @@ export const ramsideGigTicket: TicketSpec = {
   ...holdsworthGigTicket,
   ticket: { kicker: "LIVE TONIGHT", title: "Gig Night", titleSize: 150, venue: "THE NORTH EAST", details: [["DOORS", "7pm"], ["AREA", "Floor"], ["NO.", "042"]] },
   key: { place: "DURHAM", name: "Ramside Hall", line: "DINNER BEFORE, SPA AFTER" },
-  last: ["the encore"],
+  // plain words over the last shot (Scott: "the encore" over two women in a hot tub read as suggestive)
+  last: ["then a spa day", "the next morning"],
   shots: [
     // one photo of the Rib Room couple only (Scott: the diners with the waiter was out, and it was "two photos of
     // the same" woman)
     { src: `${RH}/rib-room.jpg`, pos: "45% 50%", beats: 4 },
     { src: `${RH}/hydrotherapy-pool-full.jpg`, pos: "50% 50%", beats: 2 },
     { src: `${RH}/thermal-sauna.jpg`, pos: "60% 50%", beats: 2 },
-    { src: `${RH}/infinity-pool.jpg`, pos: "52% 50%", beats: 4 },
     { src: `${RH}/hot-tub-dusk.jpg`, pos: "56% 50%", beats: 4 },
+    { src: `${RH}/infinity-pool.jpg`, pos: "52% 50%", beats: 4 },
   ],
 };
