@@ -62,6 +62,7 @@ GUIDE = [
     ("p", "Parking charges apply, and there are eight electric vehicle (EV) charging points."),
     ("h2", "Before you cross the moat"),
     ("p", "Rooms are ready from 3pm, and check out is by 10.30am. Coombe Abbey is cashless and takes cards only. Pets are not able to stay."),
+    ("closer", "COOMBE ABBEY HOTEL", "Your abbey in the park", "A 12th century abbey inside its own moat, with 500 acres of parkland outside the door and Coventry ten minutes away. Stay a night for the banquet, or a weekend for the treetops and the turret bath.", "BOOK NOW"),
     ("box", "Destination guide entries", [
         "**Coventry and Warwickshire.** **Coombe Abbey Hotel**, Coventry. Founded as a monastery in 1150, Coombe Abbey now has 121 bedchambers, set in 500 acres where Capability Brown laid out the gardens and the lake. Herons nest on the lake beyond the formal gardens, and Coventry city centre is ten minutes away.",
         "**Historic and romantic stays.** **Coombe Abbey Hotel**, Coventry. A 12th century abbey where the Grand Feature Bedchambers come with canopied beds. In The Princess Elizabeth, a private staircase climbs to a bathroom hidden in the turret, with a roll top bath waiting at the top.",

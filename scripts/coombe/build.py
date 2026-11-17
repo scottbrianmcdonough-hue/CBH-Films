@@ -55,6 +55,7 @@ def render(blocks, notes, title, label, head_extra=""):
         elif k == "p": o.append(f"<p>{md(b[1])}</p>")
         elif k == "ul": o.append("<ul>" + "".join(f"<li>{md(i)}</li>" for i in b[1]) + "</ul>")
         elif k == "img": o.append(f"<figure><img src='{b64(b[1])}' alt='{html.escape(b[2])}'><figcaption>{md(b[2])}</figcaption></figure>")
+        elif k == "closer": o.append(f"<div style='text-align:center;margin:3em 0'><p style='color:#c7ab77;letter-spacing:.18em;font-size:.8em;font-weight:600'>{md(b[1])}</p><h2 style='border:0'>{md(b[2])}</h2><p>{md(b[3])}</p><p><span style='display:inline-block;background:#000;color:#fff;border-radius:2em;padding:.7em 1.6em;font-weight:700;letter-spacing:.04em'>{md(b[4])}</span></p></div>")
         elif k == "box": o.append(f"<h2>{md(b[1])}</h2>" + "".join(f"<p>{md(p)}</p>" for p in b[2]))
     o.append("</main></body></html>")
     return "".join(o)
@@ -73,6 +74,7 @@ def copy_units(blocks):
         elif b[0] == "ul": u += [("li", i) for i in b[1]]
         elif b[0] == "img": u.append(("cap", b[2]))
         elif b[0] == "box": u += [("box", p) for p in b[2]]
+        elif b[0] == "closer": u += [("h2", b[2]), ("p", b[3])]
     return [(k, re.sub(r"\[([^\]]+)\]\([^)]*\)", r"\1", re.sub(r"\*\*", "", t))) for k, t in u]
 
 def sentences(t): return [s for s in re.split(r"(?<=[.!?:])\s+", t) if s]

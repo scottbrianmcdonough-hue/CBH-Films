@@ -48,6 +48,26 @@ def build(blocks, out, seo=None):
         elif k == "ul":
             for i in b[1]: runs(d.add_paragraph(style="List Bullet"), i)
         elif k == "img": pic(d, b[1], b[2])
+        elif k == "closer":
+            cap = d.add_paragraph(); cap.alignment = WD_ALIGN_PARAGRAPH.CENTER; cap.paragraph_format.space_before = Pt(24)
+            r = cap.add_run(b[1]); r.bold = True; r.font.size = Pt(9); r.font.color.rgb = RGBColor(0xc7, 0xab, 0x77)
+            r._element.get_or_add_rPr().append(__import__("docx.oxml", fromlist=["parse_xml"]).parse_xml('<w:spacing xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" w:val="40"/>'))
+            h = d.add_heading(b[2], level=2); h.alignment = WD_ALIGN_PARAGRAPH.CENTER
+            body = d.add_paragraph(); body.alignment = WD_ALIGN_PARAGRAPH.CENTER; runs(body, b[3])
+            t = d.add_table(rows=1, cols=1); t.alignment = 1
+            t.autofit = False; t.columns[0].width = Inches(1.6)
+            tblPr = t._tbl.tblPr
+            for el in tblPr.findall("{http://schemas.openxmlformats.org/wordprocessingml/2006/main}tblW"): tblPr.remove(el)
+            from docx.oxml import parse_xml as _px
+            tblPr.append(_px('<w:tblW xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" w:w="2304" w:type="dxa"/>'))
+            tblPr.append(_px('<w:tblLayout xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" w:type="fixed"/>'))
+            cell = t.rows[0].cells[0]; cell.width = Inches(1.6)
+            from docx.oxml import parse_xml
+            cell._tc.get_or_add_tcPr().append(parse_xml('<w:shd xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" w:val="clear" w:color="auto" w:fill="000000"/>'))
+            bp = cell.paragraphs[0]; bp.alignment = WD_ALIGN_PARAGRAPH.CENTER
+            bp.paragraph_format.space_before = Pt(5); bp.paragraph_format.space_after = Pt(5)
+            br = bp.add_run(b[4]); br.bold = True; br.font.size = Pt(10); br.font.color.rgb = RGBColor(0xff, 0xff, 0xff)
+            d.add_paragraph()
         elif k == "box":
             d.add_heading(b[1], level=2)
             for x in b[2]: runs(d.add_paragraph(), x)
