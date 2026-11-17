@@ -89,3 +89,9 @@ intro (`out/coombe-abbey/15-socials-intro.txt`) and the travel guide (`out/coomb
 17 Nov: travel guide comments from Scott worked into the live doc and the Word file. Room service is out ("standard at hotels"), and Capability Brown is cut from the gardens line (he was mentioned three times). Go Ape is now a hook: it's on the estate, guests can go up in the trees in the morning and be back for afternoon tea, and Kids Stay Free includes a 10% Go Ape code. Parking now reads "charges apply". New facts from the hotel pages Scott pasted: Feature Doubles, the freshly cooked breakfast, Elvis and Bruno Mars tribute nights (with B&B), the We Cook, You Carve private roast for up to 40, The Avenue at Coombe, and the Coventry Tapestry and Tales of Tea at the Guildhall. The Price Promise and the Gunpowder Plot are left out. The Word doc is polished for submission: 11 photos, height capped, captions centred, 8 pages. Email to Bianca in `out/coombe-abbey/19-travel-guide-email.txt`.
 
 17 Nov: Scott's edit of the Word guide synced back into the live doc and the copy script. The Muddy Stilettos award and the destination guide entries are out, and the Tripadvisor 2026 award stays. His file is saved as `out/coombe-abbey/Coombe Abbey travel guide (Scott's edit).docx`.
+
+17 Nov, Bianca's feedback on the guide:
+- "Newest member" is out, so the blog won't need amending later. The intro now reads "is part of the Classic British Hotels collection, set in Coombe Abbey Park near Coventry in Warwickshire".
+- The first two paragraphs repeated each other, so the opening section now starts "Monks founded Coombe in 1150".
+- The award winning afternoon tea moved into the dining section.
+- Capability Brown moved into the grounds section ("500 acres of fresh air"), and the opener no longer mentions either.
