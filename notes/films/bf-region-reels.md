@@ -112,3 +112,4 @@ so a region's spotlight and its region reel shouldn't both go out.
   pool, Ruthin's hot tub and Dalmahoy's syrup pour as footage. Tickets updated (order, hooks, no "in our bio" lines).
   The North (signed off) keeps its order. Burleigh: the reel says 20% (Scott's list), the carousel 25% (live page).
   Ruthin's hot tub footage read dark and murky beside the castle, so Ruthin keeps its hot tub still (the toast); Dalmahoy's syrup pour is the one clip in Scotland & Wales. Renders 16 Nov: South 27.6s -14.9 LUFS, Scotland & Wales 19.7s -15.1, East & Midlands 23.1s -15.1.
+- 17 Nov (Scott: "lessen the dark grade, it seems dark"): GRADE_DAY lighter (sepia 0.1, brightness 1.12) and the card shade only deep behind the card's text (0.72 at 24% to 0.64 at 40%, 0.5 at the foot, gone by 58%). East & Midlands, the South and Scotland & Wales re-rendered.

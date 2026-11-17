@@ -26,7 +26,8 @@ const GRADE =
   "sepia(0.34) hue-rotate(-14deg) saturate(1.05) contrast(0.97) brightness(0.97)";
 const GLOW = "rgba(255,150,64,0.16)";
 // the region reels' exteriors in daylight (Scott, 13 Nov: "why does it seem so dark"): a lighter touch of the grade
-const GRADE_DAY = "sepia(0.18) hue-rotate(-8deg) saturate(1.08) contrast(1.02) brightness(1.06)";
+// lighter again (Scott, 17 Nov: "lessen the dark grade, it seems dark"): less sepia, a little brighter
+const GRADE_DAY = "sepia(0.1) hue-rotate(-5deg) saturate(1.08) contrast(1.02) brightness(1.12)";
 // the shade behind lines over bright photos (RippleSpec deepScrim)
 const DEEP_SCRIM =
   "radial-gradient(ellipse 1250px 720px at 0px 1330px, rgba(9,9,10,0.86) 0%, rgba(9,9,10,0.62) 45%, rgba(9,9,10,0) 100%)";
@@ -39,7 +40,8 @@ const FEED_SCRIM =
 const MAUVE = "#A15272"; // Lee's Black Friday caps
 // the region reels' shade, as the carousel slides: a dark gradient up from the bottom, so the small mauve caps read
 const CARD_SCRIM =
-  "linear-gradient(to top, rgba(9,9,10,0.9) 0%, rgba(9,9,10,0.82) 36%, rgba(9,9,10,0.5) 50%, rgba(9,9,10,0) 64%)";
+  // deepest only behind the card's text (24% to 40% up), lighter below it and gone by 58% (17 Nov: it read dark)
+  "linear-gradient(to top, rgba(9,9,10,0.5) 0%, rgba(9,9,10,0.72) 24%, rgba(9,9,10,0.64) 40%, rgba(9,9,10,0.25) 50%, rgba(9,9,10,0) 58%)";
 const FEED_BOTTOM = 190;
 // the region reels' cards and title sit higher (Scott, 12 Nov: "bring the CB up a bit and the rest"): the feed's video
 // player puts its controls over the bottom of the frame
