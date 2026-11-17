@@ -1082,6 +1082,14 @@ with no history and no renders:
   `-cover`. Photos fetched from coombeabbey.com into `public/hotels/coombe-abbey/` (aerial, banquet cast and show,
   plate, roll top bath, four poster room, garden front, Lady Craven room, afternoon tea, garden room). To confirm:
   that Coombe Abbey is a CBH member and how CBH lists its place; the ticket's table and seat numbers are made up.
+- Coombe Abbey is a new CBH member (17 Nov: the news article goes live 9am Wed 18 Nov, Bianca: not before).
+  LinkedIn intro (Scott: "need the Coombe Abbey LinkedIn intro post and the carousel"): `coombe-abbey-intro-carousel`
+  (`src/linkedin/CoombeIntro.tsx`, 4:5, six slides rendered as stills, then a PDF for a document post): cover
+  WELCOME TO THE COLLECTION / Coombe Abbey / Warwickshire over the aerial; SINCE THE 12TH CENTURY (the bust),
+  121 BEDROOMS (the canopied bed), 500 ACRES (the garden front, Capability Brown), EVENTS (the banquet cast,
+  private dining for 10 to 500); a black close, Welcome, / Coombe Abbey over the CBH logo. Post copy and ticket in
+  `out/coombe-abbey-linkedin-post.txt` (article link to fill in, post after 9am Wed 18 Nov). Slides and PDF in
+  `out/coombe-abbey-intro/`. Facts from coombeabbey.com: check against the article. Sent.
 - Network: this session now runs on the personal environment `cbh-films` (created 17 Nov, Scott approved), which
   allows coombeabbey.com and classicbritishhotels.com (with and without www). The CBH site still answers 403 to
   curl (its own bot block), so its photos still come from Scott; other hotel sites need adding to the environment.

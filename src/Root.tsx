@@ -88,6 +88,7 @@ import {
 import { coombeBanquetTicket, EventTicket, holdsworthGigTicket, ramsideGigTicket, ticketFrames, whittleburyRaceTicket } from "./hotel-film/ticket/EventTicket";
 import { CameraRoll, northWestRoll, ROLL_FRAMES } from "./hotel-film/roll/CameraRoll";
 import { STARRY_FRAMES, StarryNight } from "./hotel-film/stings/StarryNight";
+import { COOMBE_INTRO_SLIDES, CoombeIntro } from "./linkedin/CoombeIntro";
 import { PostItList, POSTIT_FRAMES } from "./hotel-film/postit/PostItList";
 import {
   ScreenTime,
@@ -466,6 +467,8 @@ export const RemotionRoot: React.FC = () => {
         width={WIDTH}
         height={HEIGHT}
       />
+      {/* Coombe Abbey joins the collection: the LinkedIn carousel, a frame per slide */}
+      <Composition id="coombe-abbey-intro-carousel" component={CoombeIntro} durationInFrames={COOMBE_INTRO_SLIDES} fps={FPS} width={1080} height={1350} />
       {/* November Best Loved as a 4:5 carousel, a frame per slide (render each as a still) */}
       <Composition
         id="november-best-loved-carousel"
