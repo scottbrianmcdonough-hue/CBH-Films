@@ -269,7 +269,8 @@ const Scene: React.FC<{
           // each panel drifts its own way (Scott: "more engaging"): up, down, up across a split
           const drift =
             interpolate(frame, [0, len], [1, -1], clamp) * (i % 2 ? -14 : 14);
-          const s = progress(frame, at, even ? 10 : 16, EASE_OUT);
+          // even: every panel is there on the cut, a clean hard cut (a staggered panel showed black for a moment)
+          const s = even ? 1 : progress(frame, at, 16, EASE_OUT);
           const feature = wide && scene.layout === "feature";
           const fw = Math.round((width * 2) / 3 - G / 2);
           const rect = feature
