@@ -95,3 +95,5 @@ intro (`out/coombe-abbey/15-socials-intro.txt`) and the travel guide (`out/coomb
 - The first two paragraphs repeated each other, so the opening section now starts "Monks founded Coombe in 1150".
 - The award winning afternoon tea moved into the dining section.
 - Capability Brown moved into the grounds section ("500 acres of fresh air"), and the opener no longer mentions either.
+
+17 Nov, Bianca's schedule for launch day, Wed 18 Nov: the news page goes live at 9am. The travel guide and all the social intros (Instagram, Facebook, TikTok and the LinkedIn GDS post) follow at 10am. Both tickets now carry these times.
