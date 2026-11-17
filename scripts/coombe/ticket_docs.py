@@ -4,7 +4,7 @@ from pathlib import Path
 from docx import Document
 from docx.shared import Pt, RGBColor
 sys.path.insert(0, str(Path(__file__).parent))
-from docx_style import plain
+from docx_style import plain, add_text
 
 OUT = Path(__file__).resolve().parents[2] / "out/coombe-abbey"
 HEADS = {"Hook", "Post", "CTA", "CTA:", "Notes", "Linktree", "Instagram profile link"}
@@ -17,11 +17,11 @@ def build(src, out, title):
         t = l.rstrip()
         if t in HEADS or re.match(r"^Post \(.*\)$", t): d.add_heading(t.rstrip(":"), level=2); continue
         if not t: continue
-        if t.startswith("- "): d.add_paragraph(t[2:], style="List Bullet"); continue
+        if t.startswith("- "): add_text(d.add_paragraph(style="List Bullet"), t[2:]); continue
         m = re.match(r"^(Time slot|Platforms|Creative|Title|Link|LinkedIn):\s*(.*)$", t)
         p = d.add_paragraph()
-        if m: r = p.add_run(m.group(1) + ": "); r.bold = True; p.add_run(m.group(2))
-        else: p.add_run(t)
+        if m: add_text(p, m.group(1) + ": ", bold=True); add_text(p, m.group(2))
+        else: add_text(p, t)
     d.save(OUT / out)
 
 build("15-socials-intro.txt", "Coombe Abbey socials intro.docx", "Coombe Abbey Hotel: socials intro (Instagram, Facebook, TikTok)")

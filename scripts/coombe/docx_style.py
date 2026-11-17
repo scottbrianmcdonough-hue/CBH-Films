@@ -14,3 +14,18 @@ def plain(d, font):
         st.font.size = Pt(size)
         st.font.color.rgb = RGBColor(0, 0, 0)
         if name.startswith("Heading"): st.font.bold = True; st.font.italic = False
+
+import re as _re
+from docx.oxml.ns import qn as _qn
+EMOJI = _re.compile("([\U0001F000-\U0001FAFF☀-➿⬀-⯿←-⇿⌀-⏿](?:[️‍][\U0001F000-\U0001FAFF☀-➿]?)*️?)")
+
+def add_text(p, text, bold=False, italic=False):
+    """Adds text to a paragraph, each emoji in its own run in the colour emoji font (Word draws emoji in black
+    when the run's font is a text font)."""
+    for part in EMOJI.split(text):
+        if not part: continue
+        r = p.add_run(part); r.bold = bold or None; r.italic = italic or None
+        if EMOJI.fullmatch(part):
+            rf = r._element.get_or_add_rPr().get_or_add_rFonts()
+            for a in ("w:ascii", "w:hAnsi", "w:cs", "w:eastAsia"): rf.set(_qn(a), "Segoe UI Emoji")
+    return p
