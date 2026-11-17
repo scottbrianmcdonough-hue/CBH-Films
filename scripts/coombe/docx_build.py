@@ -6,6 +6,7 @@ from docx import Document
 from docx.shared import Pt, Inches, RGBColor
 sys.path.insert(0, str(Path(__file__).parent))
 import coombe_copy as C
+from docx_style import plain
 
 ROOT = Path(__file__).resolve().parents[2]
 PH = ROOT / "public/hotels/coombe-abbey"
@@ -26,8 +27,7 @@ def pic(d, name, cap):
     c = d.add_paragraph(); r = c.add_run(cap); r.italic = True; r.font.size = Pt(9); r.font.color.rgb = RGBColor(0x5d, 0x5a, 0x55)
 
 def build(blocks, out, seo=None):
-    d = Document()
-    st = d.styles["Normal"]; st.font.name = "Georgia"; st.font.size = Pt(11)
+    d = Document(); plain(d, "Georgia")
     if seo:
         d.add_heading("Page details", level=3)
         for k, v in seo: p = d.add_paragraph(); r = p.add_run(k + ": "); r.bold = True; p.add_run(v)
