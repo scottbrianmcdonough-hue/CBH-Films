@@ -4,7 +4,7 @@ const { chromium } = require('playwright');
 const path = require('path');
 const ROOT = path.resolve(__dirname, '../..');
 const P = (f) => 'file://' + path.join(ROOT, 'public', f);
-const out = process.argv[2];
+const out = path.resolve(process.argv[2]);
 const css = `
 @font-face{font-family:Corm;src:url(${P('fonts/CormorantGaramond.woff2')})}
 @font-face{font-family:CormI;src:url(${P('fonts/CormorantGaramond-Italic.woff2')})}
@@ -24,12 +24,16 @@ const frame = (w, h, src, pos, label, labBottom, cbTop) => `<div class="f" style
 ${label ? `<div class="shade"></div><div class="lab" style="bottom:${labBottom}px"><div class="line">New to the collection</div>
 <div style="display:inline-block"><div class="caps">Coventry, Warwickshire</div><div class="rule"></div></div><div class="name">Coombe Abbey Hotel</div></div>` : ''}
 <img class="cb" src="${P('brand/cb-watermark.png')}" style="left:${w - 84 - 56}px;top:${cbTop}px"></div>`;
+// the new member carousel (Scott, 17 Nov, after Castle Inn and Atholl Palace): six full bleed slides, the white CB
+// bottom right, no text: the aerial, The Princess Elizabeth's turret bathroom, The Lady Craven, dinner served,
+// afternoon tea, the garden path to the lake
 const jobs = [
-  ['carousel-1', 1080, 1350, 'hotel-aerial-view-001.jpg', '50% 50%', true, 120, 1350 - 130],
-  ['carousel-2', 1080, 1350, 'hotel-exterior-001.jpg', '60% 50%', false, 0, 1350 - 130],
+  ['carousel-1', 1080, 1350, 'hotel-aerial-view-001.jpg', '50% 50%', false, 0, 1350 - 130],
+  ['carousel-2', 1080, 1350, 'the-princess-elizabeth-grand-feature-bathroom-001.jpg', '62% 50%', false, 0, 1350 - 130],
   ['carousel-3', 1080, 1350, 'lady-craven-grand-feature-room-002.jpg', '50% 50%', false, 0, 1350 - 130],
-  ['carousel-4', 1080, 1350, 'garden-room-restaurant-002.jpg', '45% 50%', false, 0, 1350 - 130],
-  ['carousel-5', 1080, 1350, 'gardens-001.jpg', '50% 50%', false, 0, 1350 - 130],
+  ['carousel-4', 1080, 1350, 'dining-001.jpg', '45% 50%', false, 0, 1350 - 130],
+  ['carousel-5', 1080, 1350, 'afternoon-tea-001.jpg', '35% 50%', false, 0, 1350 - 130],
+  ['carousel-6', 1080, 1350, 'gardens-001.jpg', '50% 50%', false, 0, 1350 - 130],
 ];
 (async () => {
   const b = await chromium.launch(); const pg = await b.newPage();
