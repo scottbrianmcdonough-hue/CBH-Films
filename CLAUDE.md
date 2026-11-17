@@ -1059,6 +1059,12 @@ with no history and no renders:
   night's second line "now make / a night of it" (Scott: "where are you sleeping" with no bed shots; no Ramside
   bedroom photo in the repo; the Whittlebury ticket keeps the sleeping line, it ends on a bedroom). Ticket for all
   three, `out/tiktok-set-ticket.txt` (TikTok only, 8pm, one a day).
+- Starry Night repainted (17 Nov, Scott: "needs to look more hand painted, pointillism, it just looks like bars"):
+  `scripts/starry-night.py` no longer draws lines: every dab is a brush-mark stamp (`base_stamps`: ragged edge,
+  bristle streaks, a thinner tail, a ridge of paint; turned and scaled, cached), shorter and rounder, laid with its
+  own thickness into a height map that is lit from the top left (relief and a glint on ridges) over a canvas weave;
+  broken colour in the sky (blues with greens, violets, pale touches, ochre flecks), the hotel in small touches on a
+  9px grid, the stars' rings and hearts as dabs too. About 2.7s a painted frame, ~10 minutes for the video.
 - The session-start hook now also finds the headless shell at `chrome-headless-shell-linux64/chrome-headless-shell`
   (the container's new layout); if `REMOTION_BROWSER_EXECUTABLE` is empty, export that path by hand.
 - `november-best-loved` (+ `-silent`, `-carousel`): the CBH newsletter's six (Hatherley Manor, Ramside
