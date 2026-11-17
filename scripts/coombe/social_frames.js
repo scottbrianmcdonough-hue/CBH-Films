@@ -30,8 +30,6 @@ const jobs = [
   ['carousel-3', 1080, 1350, 'lady-craven-grand-feature-room-002.jpg', '50% 50%', false, 0, 1350 - 130],
   ['carousel-4', 1080, 1350, 'garden-room-restaurant-002.jpg', '45% 50%', false, 0, 1350 - 130],
   ['carousel-5', 1080, 1350, 'gardens-001.jpg', '50% 50%', false, 0, 1350 - 130],
-  ['story-1', 1080, 1920, 'hotel-aerial-view-001.jpg', '50% 50%', true, 470, 1452],
-  ['story-2', 1080, 1920, 'lady-craven-grand-feature-room-002.jpg', '50% 50%', false, 0, 1452],
 ];
 (async () => {
   const b = await chromium.launch(); const pg = await b.newPage();
