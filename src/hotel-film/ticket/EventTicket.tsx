@@ -266,7 +266,7 @@ export const ramsideGigTicket: TicketSpec = {
   ticket: { kicker: "LIVE TONIGHT", title: "Gig Night", titleSize: 150, venue: "THE NORTH EAST", details: [["DOORS", "7pm"], ["AREA", "Floor"], ["NO.", "042"]] },
   key: { place: "DURHAM", name: "Ramside Hall", line: "DINNER BEFORE, SPA AFTER" },
   // plain words over the last shot (Scott: "the encore" over two women in a hot tub read as suggestive)
-  last: ["then a spa day", "the next morning"],
+  last: ["tomorrow: spa day"], // short (Scott: "then a spa day / the next morning" was long and clunky)
   shots: [
     // one photo of the Rib Room couple only (Scott: the diners with the waiter was out, and it was "two photos of
     // the same" woman)

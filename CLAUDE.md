@@ -1048,7 +1048,7 @@ with no history and no renders:
   `ramside-gig-night-tiktok` (ticket engine, `ramsideGigTicket`): LIVE TONIGHT / Gig Night / THE NORTH EAST flips to
   DURHAM / Ramside Hall / DINNER BEFORE, SPA AFTER; the Rib Room couple (one photo only: Scott disliked the diners
   with the waiter, and it was two photos of the same woman), hydrotherapy pool, sauna, infinity pool, the hot tub at
-  dusk, then the infinity pool in daylight under "then a spa day / the next morning" (Scott: "the encore" over two
+  dusk, then the infinity pool in daylight under "tomorrow: spa day" (was "then a spa day / the next morning": long and clunky, Scott) (Scott: "the encore" over two
   women in a hot tub "can be misconstrued": keep captions over people plain), "gig night: sorted"; Party Dance (prettyjohn1, 110 BPM, from 11.5s, the window opening on its
   drop at 18.04s), 19.1s, -15.1 LUFS (-5.8 dB after the render). `holdsworth-gig-night-tiktok` (the Beatles stayed
   here) is registered but not sent: its stills had been used. Both sent. The starry night Scott meant was not in
