@@ -1046,7 +1046,8 @@ with no history and no renders:
   label FARNHAM, SURREY / Frensham Pond Hotel & Spa in the sky above the roof (lower it sat on the hotel's own sign),
   "the real one has / room service"; Leva's Eternity (the unposted Dalmahoy film's track), 10.0s, -15.3 LUFS.
   `ramside-gig-night-tiktok` (ticket engine, `ramsideGigTicket`): LIVE TONIGHT / Gig Night / THE NORTH EAST flips to
-  DURHAM / Ramside Hall / DINNER BEFORE, SPA AFTER; rib room diners, hydrotherapy pool, infinity pool, the hot tub at
+  DURHAM / Ramside Hall / DINNER BEFORE, SPA AFTER; the Rib Room couple (one photo only: Scott disliked the diners
+  with the waiter, and it was two photos of the same woman), hydrotherapy pool, sauna, infinity pool, the hot tub at
   dusk ("the encore"), "gig night: sorted"; Party Dance (prettyjohn1, 110 BPM, from 11.5s, the window opening on its
   drop at 18.04s), 19.1s, -15.1 LUFS (-5.8 dB after the render). `holdsworth-gig-night-tiktok` (the Beatles stayed
   here) is registered but not sent: its stills had been used. Both sent. The starry night Scott meant was not in
