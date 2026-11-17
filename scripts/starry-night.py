@@ -111,13 +111,17 @@ def make_strokes(real, sky):
     gy = cv2.Sobel(gray, cv2.CV_32F, 0, 1, ksize=5)
     hsv = cv2.cvtColor(real, cv2.COLOR_BGR2HSV).astype(np.float32)
     S = []
-    step = 15
-    for y0 in range(-10, H + 10, step):
-        for x0 in range(-10, W + 10, step):
-            x = float(np.clip(x0 + rng.uniform(-7, 7), 0, W - 1))
-            y = float(np.clip(y0 + rng.uniform(-7, 7), 0, H - 1))
+    # the sky on a coarse grid of long dabs; the hotel on a finer one of small dabs, so it still reads
+    pts = [(x0, y0, 7, True) for y0 in range(-10, H + 10, 15) for x0 in range(-10, W + 10, 15)]
+    pts += [(x0, y0, 4, False) for y0 in range(TOP, H + 8, 10) for x0 in range(-6, W + 8, 10)]
+    for x0, y0, jit, want_sky in pts:
+        if True:
+            x = float(np.clip(x0 + rng.uniform(-jit, jit), 0, W - 1))
+            y = float(np.clip(y0 + rng.uniform(-jit, jit), 0, H - 1))
             xi, yi = int(x), int(y)
             is_sky = sky[yi, xi] > 0.5
+            if is_sky != want_sky:
+                continue
             hh, ss, vv = hsv[yi, xi]
             if is_sky:
                 # the sky in Starry Night's blues: deeper and more saturated than the photo, in bands
@@ -130,13 +134,13 @@ def make_strokes(real, sky):
                 length, width, travel = rng.uniform(34, 58), rng.uniform(9, 14), rng.uniform(50, 90)
                 ang = None
             else:
-                ss = np.clip(ss * 1.35 + 12, 0, 255)
-                vv = np.clip(vv * rng.uniform(0.86, 1.2) + 6, 0, 255)
-                hh = hh + rng.uniform(-3, 3)
-                length, width, travel = rng.uniform(16, 30), rng.uniform(7, 11), rng.uniform(4, 10)
+                ss = np.clip(ss * 1.3 + 10, 0, 255)
+                vv = np.clip(vv * rng.uniform(0.93, 1.1) + 5, 0, 255)
+                hh = hh + rng.uniform(-2, 2)
+                length, width, travel = rng.uniform(13, 22), rng.uniform(6, 9), rng.uniform(3, 7)
                 g = np.hypot(gx[yi, xi], gy[yi, xi])
-                # along the edges where there are any, else a loose slant
-                ang = np.arctan2(gx[yi, xi], -gy[yi, xi]) if g > 60 else rng.uniform(-0.5, 0.5)
+                # along the edges where there are any, else one steady slant, like a hand working across
+                ang = np.arctan2(gx[yi, xi], -gy[yi, xi]) if g > 45 else 0.35 + rng.uniform(-0.22, 0.22)
             col = cv2.cvtColor(np.uint8([[[hh % 180, ss, vv]]]), cv2.COLOR_HSV2BGR)[0, 0]
             S.append((x, y, is_sky, ang if ang is not None else 0.0, length, width, travel, rng.random(), rng.uniform(0.012, 0.022), *[int(c) for c in col]))
     S = np.array(S, np.float32)
@@ -144,21 +148,42 @@ def make_strokes(real, sky):
     return S
 
 
+_DABS = {}
+
+
+def star_dabs(key, s):
+    """A star's halo as hand-laid dabs: rings that wobble, dabs of uneven length, weight and colour."""
+    if key in _DABS:
+        return _DABS[key]
+    r_ = np.random.default_rng(100 + int(key[0]) * 7 + int(key[1]))
+    rings = [(26, (170, 240, 255)), (46, (95, 215, 250)), (67, (120, 205, 225)), (90, (200, 180, 120))]
+    out = []
+    for i, (r, col) in enumerate(rings):
+        n = max(7, int(2 * np.pi * r * s / 30))
+        ph = r_.uniform(0, 6.28)
+        for j in range(n):
+            a = 2 * np.pi * j / n + r_.uniform(-0.09, 0.09)
+            rr = r * (1 + r_.uniform(-0.07, 0.07) + 0.05 * np.sin(3 * a + ph))
+            c = [int(np.clip(v * r_.uniform(0.86, 1.1) + r_.uniform(-10, 10), 0, 255)) for v in col]
+            out.append((i, a, rr, r_.uniform(8, 13), r_.uniform(5.5, 9.5), c, r_.uniform(-0.25, 0.25)))
+    _DABS[key] = out
+    return out
+
+
 def draw_star(img, x, y, s, t, born):
     k = smooth((t - born) / 12.0)
     if k <= 0:
         return
-    rings = [(24, (150, 235, 255)), (44, (90, 215, 250)), (64, (120, 200, 215)), (86, (190, 170, 110))]
-    for i, (r, col) in enumerate(rings):
-        r = r * s * k
-        n = max(8, int(2 * np.pi * r / 26))
-        for j in range(n):
-            a = 2 * np.pi * j / n + t * (0.035 - 0.006 * i) * (1 if i % 2 == 0 else -1) + i
-            c, sn = np.cos(a), np.sin(a)
-            p = (x + c * r, y + sn * r)
-            d = 9 * s
-            cv2.line(img, (int(p[0] + sn * d), int(p[1] - c * d)), (int(p[0] - sn * d), int(p[1] + c * d)), col, max(2, int(7 * s)), cv2.LINE_AA)
-    cv2.circle(img, (int(x), int(y)), int(13 * s * k), (200, 245, 255), -1, cv2.LINE_AA)
+    for i, a0, rr, half, wd, col, tilt in star_dabs((x, y), s):
+        a = a0 + t * (0.03 - 0.005 * i) * (1 if i % 2 == 0 else -1)
+        r = rr * s * k
+        c, sn = np.cos(a), np.sin(a)
+        px, py = x + c * r, y + sn * r
+        tx, ty = np.cos(a + np.pi / 2 + tilt), np.sin(a + np.pi / 2 + tilt)
+        d = half * s
+        cv2.line(img, (int(px - tx * d), int(py - ty * d)), (int(px + tx * d), int(py + ty * d)), col, max(2, int(wd * s)), cv2.LINE_AA)
+    cv2.circle(img, (int(x), int(y)), int(13 * s * k), (205, 246, 255), -1, cv2.LINE_AA)
+    cv2.circle(img, (int(x - 3 * s), int(y - 3 * s)), int(7 * s * k), (235, 252, 255), -1, cv2.LINE_AA)
 
 
 def main():

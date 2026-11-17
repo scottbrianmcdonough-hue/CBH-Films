@@ -32,7 +32,7 @@ export const StarryNight: React.FC = () => {
         <TikTokText lines={["Starry Night,", "but make it Surrey"]} top={470} left={140} out={152} still />
       </Sequence>
       <Sequence from={226} layout="none">
-        <TikTokText lines={["the real one has", "room service"]} top={470} left={140} />
+        <TikTokText lines={["better in real life"]} top={470} left={140} />
       </Sequence>
     </AbsoluteFill>
   );
