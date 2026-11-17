@@ -6,9 +6,9 @@ Attached is the Coombe Abbey Hotel travel guide, polished and ready for your rev
 
 It leads on what sets Coombe apart in the collection: a 12th century abbey where guests sleep inside the moat, turret bathrooms, Mediaeval Banquets after dark and Go Ape on the estate itself. Every fact comes from the hotel's own website, and the copy keeps to our rules: no prices, and no links away from classicbritishhotels.com.
 
-All eleven photos are embedded with captions, and the two destination guide entries are at the end.
+All eleven photos are embedded with captions, and it closes on a booking panel.
 
-The only gap is the link to the CBH hotel page, which I'll add as soon as the page is live.
+The only gap is the link to the CBH hotel page, which I'll add to the Book Now button as soon as the page is live.
 
 Thanks,
 Scott
