@@ -18,7 +18,7 @@ def build(src, out, title):
         if t in HEADS or re.match(r"^Post \(.*\)$", t): d.add_heading(t.rstrip(":"), level=2); continue
         if not t: continue
         if t.startswith("- "): add_text(d.add_paragraph(style="List Bullet"), t[2:]); continue
-        m = re.match(r"^(Time slot|Platforms|Creative|Title|Link|LinkedIn):\s*(.*)$", t)
+        m = re.match(r"^(Time slot|Platforms|Creative|Title|Link|LinkedIn|Tags):\s*(.*)$", t)
         p = d.add_paragraph()
         if m: add_text(p, m.group(1) + ": ", bold=True); add_text(p, m.group(2))
         else: add_text(p, t)
