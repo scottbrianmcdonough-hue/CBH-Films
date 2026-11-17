@@ -23,7 +23,7 @@ GUIDE = [
     ("img", "hotel-aerial-view-001.jpg", "The abbey from above, inside its moat"),
     ("p", "Coombe Abbey puts a 12th century abbey and its moat in 500 acres of parkland, ten minutes from Coventry city centre."),
     ("p", "Inside, 121 bedchambers are each designed individually, and two keep their bathrooms up in the turrets. Outside, the formal gardens run down to an 80 acre lake, both laid out by Lancelot \"Capability\" Brown, the renowned 18th century landscape gardener the Craven family brought in to reshape the estate. Go Ape waits in the woods beyond."),
-    ("p", "Afternoon tea here has won awards, and the Mediaeval Banquets turn the abbey's history into a night of feasting."),
+    ("p", "Coombe Abbey was named Best Hotel in the Muddy Stilettos Awards 2024, and holds a Tripadvisor Travellers' Choice award for 2026. Its afternoon tea is award winning too, and the Mediaeval Banquets turn the abbey's history into a night of feasting."),
     ("h2", "Rooms with a story"),
     ("p", "Many of the bedchambers sit within the abbey walls, and others are in Park Priory, a quieter building across the grounds."),
     ("img", "the-princess-elizabeth-grand-feature-bathroom-001.jpg", "Up in the turret: the bathroom of The Princess Elizabeth"),
