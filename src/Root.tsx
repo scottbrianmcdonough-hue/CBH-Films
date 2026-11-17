@@ -29,6 +29,13 @@ import {
 } from "./hotels/nailcote-hall-meetings";
 import { haycockManorMeetingsME } from "./hotels/haycock-manor-me";
 import { coombeAbbeyME } from "./hotels/coombe-abbey-me";
+import { LoadingFilm } from "./hotel-film/loading/LoadingFilm";
+import {
+  lowWoodBay,
+  lowWoodBaySilent,
+  lowWoodBayStory,
+  lowWoodBayStorySilent,
+} from "./hotels/low-wood-bay";
 import { BF_STORIES } from "./hotels/black-friday-stories";
 import { BF_SPOTLIGHTS } from "./hotels/black-friday-spotlights";
 import { CorporateGifting } from "./linkedin/CorporateGifting";
@@ -594,6 +601,18 @@ export const RemotionRoot: React.FC = () => {
         width={1920}
         height={1080}
       />
+      {[lowWoodBay, lowWoodBaySilent, lowWoodBayStory, lowWoodBayStorySilent].map((film) => (
+        <Composition
+          key={film.id}
+          id={film.id}
+          component={LoadingFilm}
+          defaultProps={{ film }}
+          durationInFrames={film.durationInFrames}
+          fps={FPS}
+          width={WIDTH}
+          height={HEIGHT}
+        />
+      ))}
       <Composition
         id={coombeAbbeyME.id}
         component={MEReel}

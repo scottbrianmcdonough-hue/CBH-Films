@@ -73,7 +73,7 @@ Statuses as of 2 Nov 2026.
 - [Hardback flipbook](films/cbh-flipbook-winter.md): Needs work (Scott: "messes up in the beginning").
 - [Baubles CB](films/cbh-baubles-cb.md): Work in progress, not rendered.
 - [Up next](films/up-next.md): Story posted silent with in-app Good Day (Wed 21 Oct); the reel needs a new track.
-- [Low Wood Bay: Weekend loaded](films/low-wood-bay.md): End card redone; confirm the booking URL slug.
+- [Low Wood Bay: Lake mode (was Weekend loaded)](films/low-wood-bay.md): Story retitled "Lake mode / on" for midweek (17 Nov); confirm the booking URL slug.
 - [Great National stat videos](films/gn-stats.md): Post A out 14 Oct; Post B to follow; `gn-conversion` waits for its copy.
 
 ## Final or posted
