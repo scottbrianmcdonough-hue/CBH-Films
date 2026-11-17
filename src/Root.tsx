@@ -35,6 +35,8 @@ import {
   lowWoodBaySilent,
   lowWoodBayStory,
   lowWoodBayStorySilent,
+  lowWoodBayStoryAward,
+  lowWoodBayStoryAwardSilent,
 } from "./hotels/low-wood-bay";
 import { BF_STORIES } from "./hotels/black-friday-stories";
 import { BF_SPOTLIGHTS } from "./hotels/black-friday-spotlights";
@@ -601,7 +603,7 @@ export const RemotionRoot: React.FC = () => {
         width={1920}
         height={1080}
       />
-      {[lowWoodBay, lowWoodBaySilent, lowWoodBayStory, lowWoodBayStorySilent].map((film) => (
+      {[lowWoodBay, lowWoodBaySilent, lowWoodBayStory, lowWoodBayStorySilent, lowWoodBayStoryAward, lowWoodBayStoryAwardSilent].map((film) => (
         <Composition
           key={film.id}
           id={film.id}

@@ -14,3 +14,10 @@
   `src/hotels/low-wood-bay.ts` (from `claude/relaxed-newton-8vytys`, with the place first end card from
   `out/low-wood-bay-end-card.patch`), the clips, track and sounds in `public/hotels/low-wood-bay/`; all four
   compositions registered. Story and silent Story re-rendered.
+- 17 Nov, award Story (Scott, passing on a reviewer's three tweaks): `low-wood-bay-story-award` (+ `-silent`): the
+  99% spa clip, raised clear of the bar, left a black band at the foot, so the loading engine now fills that strip with
+  a blurred, darkened copy of the same clip (every raised shot, the Lake mode Story too); the 100% beat is the infinity
+  pool (`spa-infinity.mp4`, the depth move from the old branch) with "Best Resort / Spa" and the step "Good Spa Guide
+  Awards 2026"; the end card adds BEST RESORT SPA 2026 in the place's gold caps above it (EndCard `award`).
+  The award is not on the hotel's or CBH's site in the source pack: confirm it (and that the spa is still rated 5
+  Bubbles, from the CBH page on 15 Oct) before posting. A second gold line on the end card bends the text rule.

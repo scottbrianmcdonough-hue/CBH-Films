@@ -31,7 +31,7 @@ export type LoadingSpec = {
   close: string[]; // italic headline when the bar hits 100% ("Weekend / loaded")
   endAt: number; // the last shot starts to fade to black
   endFade: number;
-  endCard: { lines: string[]; location: string };
+  endCard: { lines: string[]; location: string; award?: string };
   watermark?: { src: string; size: [number, number]; x: number; y: number };
   // sound effects (scripts/loading-sfx.py): `jump` as the bar climbs (it lands 12 frames
   // in), `done` at 100%. Scott asked for them on Low Wood Bay; the house default is none.

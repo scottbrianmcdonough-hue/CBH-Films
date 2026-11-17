@@ -117,3 +117,30 @@ export const lowWoodBayStorySilent: LoadingSpec = {
   id: "low-wood-bay-story-silent",
   music: undefined,
 };
+
+// The award Story (17 Nov; Scott, from a reviewer's notes): the same loading bar ending on the win. The 100% beat is the
+// spa (the infinity pool depth move) with "Best Resort / Spa" and the step "Good Spa Guide Awards 2026"; the end card
+// adds BEST RESORT SPA 2026 above the place. The award isn't on the hotel's or CBH's site yet: confirm it before posting.
+export const lowWoodBayStoryAward: LoadingSpec = {
+  ...lowWoodBayStory,
+  id: "low-wood-bay-story-award",
+  shots: [
+    story("jetty", 0, 25),
+    story("steps", 58, 70),
+    story("pontoon", 117, 99),
+    {
+      src: "hotels/low-wood-bay/spa-infinity.mp4",
+      at: 205,
+      label: "Good Spa Guide Awards 2026",
+      pct: 100,
+    },
+  ],
+  close: ["Best Resort", "Spa"],
+  endCard: { ...common.endCard, award: "Best Resort Spa 2026" },
+};
+
+export const lowWoodBayStoryAwardSilent: LoadingSpec = {
+  ...lowWoodBayStoryAward,
+  id: "low-wood-bay-story-award-silent",
+  music: undefined,
+};

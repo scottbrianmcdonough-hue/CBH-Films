@@ -351,6 +351,22 @@ export const LoadingFilm: React.FC<{ film: LoadingSpec }> = ({ film }) => {
         >
           <Wipe on={i > 0}>
             <AbsoluteFill style={{ opacity: i === n - 1 ? out : 1 }}>
+              {shot.lift ? (
+                // the strip a raised shot uncovers at the foot (the 99% spa clip left a black band under the bar):
+                // filled with a blurred, darkened copy of the same clip, so the frame stays full 9:16
+                <Video
+                  src={staticFile(shot.src)}
+                  muted
+                  objectFit="cover"
+                  style={{
+                    position: "absolute",
+                    width: "100%",
+                    height: "100%",
+                    filter: "blur(36px) brightness(0.6)",
+                    transform: "scale(1.15)",
+                  }}
+                />
+              ) : null}
               <Video
                 src={staticFile(shot.src)}
                 muted
@@ -389,6 +405,7 @@ export const LoadingFilm: React.FC<{ film: LoadingSpec }> = ({ film }) => {
         <EndCard
           lines={film.endCard.lines}
           location={film.endCard.location}
+          award={film.endCard.award}
           placeFirst
           rule={false}
           delay={2}

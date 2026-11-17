@@ -561,10 +561,12 @@ export const EndCard: React.FC<{
   // the house label order (Scott, 20 Oct, on Low Wood Bay): the place in small gold caps with
   // its gold underline on top, then the name in cream Cormorant
   placeFirst?: boolean;
+  award?: string; // placeFirst only: an award line in the same gold caps, above the place (Low Wood Bay, 17 Nov)
   delay: number;
 }> = ({
   lines,
   location,
+  award,
   clear,
   placeFirst,
   logo,
@@ -605,6 +607,22 @@ export const EndCard: React.FC<{
             textAlign: "center",
           }}
         >
+          {award ? (
+            <div
+              style={{
+                fontFamily: sans,
+                fontWeight: 600,
+                fontSize: 30,
+                letterSpacing: "0.32em",
+                paddingLeft: "0.32em",
+                textTransform: "uppercase",
+                color: colors.gold,
+                marginBottom: 22,
+              }}
+            >
+              {award}
+            </div>
+          ) : null}
           {location ? (
             <div style={{ display: "inline-block", marginBottom: 34 }}>
               <div
