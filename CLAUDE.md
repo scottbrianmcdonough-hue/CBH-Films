@@ -1090,6 +1090,11 @@ with no history and no renders:
   private dining for 10 to 500); a black close, Welcome, / Coombe Abbey over the CBH logo. Post copy and ticket in
   `out/coombe-abbey-linkedin-post.txt` (article link to fill in, post after 9am Wed 18 Nov). Slides and PDF in
   `out/coombe-abbey-intro/`. Facts from coombeabbey.com: check against the article. Sent.
+  CBH's own page (classicbritishhotels.com/meeting-rooms/coombe-abbey, pasted by Scott) is the source to follow
+  where it differs from the hotel's site: 11 meeting spaces, the Marquee 450 theatre style (the hotel's site says
+  500), 121 bedrooms, a Cistercian abbey built in 1150, the centre of Coventry a ten minute drive, Go Ape, Greengage
+  ECOsmart Silver. Slide 5 is now MEETINGS AND EVENTS / 11 meeting spaces and a marquee for 450. Scott's own post is
+  Jira CBH-159 (meetings angle, GDS codes, the Central Desk team, 10am Wed 18 Nov); mine is the general welcome.
 - Network: this session now runs on the personal environment `cbh-films` (created 17 Nov, Scott approved), which
   allows coombeabbey.com and classicbritishhotels.com (with and without www). The CBH site still answers 403 to
   curl (its own bot block), so its photos still come from Scott; other hotel sites need adding to the environment.

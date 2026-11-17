@@ -7,14 +7,14 @@ import { colors, sans, serif } from "../hotel-film/theme";
 // CBH's look: full-bleed photo, the kicker in gold caps over its underline, the line in cream Cormorant, a quiet
 // italic beneath, white CB; a black close with the logo. Facts from coombeabbey.com (121 rooms, 500 acres laid out
 // by Capability Brown, an abbey since the 12th century, Elizabeth I, the Gunpowder Plot, Mediaeval Banquets,
-// private dining for 10 to 500). Photos from its site, `public/hotels/coombe-abbey/`.
+// 11 meeting spaces and a marquee for 450, CBH's own meetings page; the hotel's site says 500). Photos from its site, `public/hotels/coombe-abbey/`.
 const C = "hotels/coombe-abbey";
 type Slide = { src: string; pos: string; kicker: string; line: string; sub: string; shade?: number };
 const SLIDES: Slide[] = [
   { src: `${C}/history-bust.jpg`, pos: "4% 50%", kicker: "SINCE THE 12TH CENTURY", line: "An abbey with\nnine centuries\nof stories", sub: "Elizabeth I stayed. The Gunpowder Plot came calling.", shade: 30 },
   { src: `${C}/canopied-bed.jpg`, pos: "50% 50%", kicker: "121 BEDROOMS", line: "Canopied beds\nand roll top baths", sub: "Four posters, canopies and Victorian tubs" },
   { src: `${C}/garden-front.jpg`, pos: "40% 50%", kicker: "500 ACRES", line: "Parkland by\nCapability Brown", sub: "Formal gardens, a lake and room to roam" },
-  { src: `${C}/banquet-cast.jpg`, pos: "50% 50%", kicker: "EVENTS", line: "Mediaeval Banquets,\nweddings and\nmeetings", sub: "Private dining for 10 to 500" },
+  { src: `${C}/banquet-cast.jpg`, pos: "50% 50%", kicker: "MEETINGS AND EVENTS", line: "11 meeting spaces\nand a marquee\nfor 450", sub: "Then a Mediaeval Banquet when the agenda is done" },
 ];
 export const COOMBE_INTRO_SLIDES = SLIDES.length + 2;
 
