@@ -35,6 +35,17 @@ const jobs = [
   ['carousel-5', 1080, 1350, 'afternoon-tea-001.jpg', '35% 50%', false, 0, 1350 - 130],
   ['carousel-6', 1080, 1350, 'gardens-001.jpg', '50% 50%', false, 0, 1350 - 130],
 ];
+// LinkedIn intro (Scott, 17 Nov: "landscape for LinkedIn"): six 16:9 slides in the post's order, same look
+if (process.argv[3] === 'linkedin') {
+  jobs.length = 0;
+  const L = (n, src, pos) => jobs.push(['linkedin-' + n, 1920, 1080, src, pos, false, 0, 1080 - 130]);
+  L(1, 'hotel-aerial-view-001.jpg', '50% 50%');
+  L(2, 'conference-room-cloisters-002.jpg', '50% 50%');
+  L(3, 'private-dining-marquee-001.jpg', '50% 50%');
+  L(4, 'garden-room-restaurant-002.jpg', '50% 50%');
+  L(5, 'the-princess-elizabeth-grand-feature-bathroom-001.jpg', '50% 50%');
+  L(6, 'gardens-001.jpg', '50% 55%');
+}
 (async () => {
   const b = await chromium.launch(); const pg = await b.newPage();
   for (const [name, w, h, src, pos, label, lb, cb] of jobs) {
