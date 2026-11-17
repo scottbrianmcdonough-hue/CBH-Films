@@ -68,8 +68,7 @@ export const coombeAbbeyME: MESpec = {
       text: { eyebrow: "The Garden Room", title: "Dinner under glass", subs: ["Classic dishes, local produce"] },
     },
     {
-      at: F.marquee,
-      cut: true,
+      at: F.marquee, // a quick crossfade on the beat, not a hard cut (Scott: "a sharp cut at 22": dark steak to the white Marquee)
       shots: [{ src: P + "private-dining-marquee-001.jpg", pos: "50% 50%" }],
       push: { to: 1.12, pos: "50% 45%" },
       text: { eyebrow: "The Marquee", title: "Bring the whole company", subs: ["Up to 450 delegates"] },
