@@ -64,6 +64,10 @@ Hashtags
 Sound: Party Dance by prettyjohn1 (Pixabay) is baked in; or mute it and add a trending sound in the app.
 
 
+Files: each post has its video, a silent copy for an in-app sound (same name ending -silent.mp4) and a cover image (ending -cover.jpg).
+
+Text style (fixed, so the grid stays consistent): white bold text on black blocks, lower case, at most two short lines, top third of the frame, always baked into the video and never added in the app. Hotel names stay in the gold and cream label.
+
 Time slot: TikTok 8:00 PM, one a day (suggested: camera roll first, Starry Night second, gig night third)
 Platforms: TikTok only
 

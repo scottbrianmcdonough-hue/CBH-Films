@@ -2,7 +2,7 @@ import { Audio } from "@remotion/media";
 import React from "react";
 import { AbsoluteFill, interpolate, Loop, OffthreadVideo, Sequence, staticFile, useCurrentFrame } from "remotion";
 import { FilmFinish } from "../components/FilmFinish";
-import { TikTokText } from "../doodle/StickFlip";
+import { TikTokText, TT_TOP } from "../doodle/StickFlip";
 import { colors, EASE_IN_OUT, progress, sans, serif } from "../theme";
 
 // The camera roll (Scott, 16 Nov: "try something for TikTok"; not the stick figure again, not one event): a
@@ -177,10 +177,10 @@ export const CameraRoll: React.FC<{ spec?: RollSpec }> = ({ spec = winterRoll })
         volume={(v) => interpolate(v, [0, 5, ROLL_FRAMES - 18, ROLL_FRAMES], [0, 1, 1, 0], { extrapolateRight: "clamp" })} />
       <FilmFinish />
       <Sequence durationInFrames={openAt + 2} layout="none">
-        <TikTokText lines={spec.hook} top={560} left={140} out={openAt - 6} still />
+        <TikTokText lines={spec.hook} top={TT_TOP} left={140} out={openAt - 6} still />
       </Sequence>
       <Sequence from={shutAt + 14} layout="none">
-        <TikTokText lines={spec.end} top={560} left={140} />
+        <TikTokText lines={spec.end} top={TT_TOP} left={140} />
       </Sequence>
     </AbsoluteFill>
   );

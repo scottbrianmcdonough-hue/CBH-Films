@@ -1065,6 +1065,13 @@ with no history and no renders:
   own thickness into a height map that is lit from the top left (relief and a glint on ridges) over a canvas weave;
   broken colour in the sky (blues with greens, violets, pale touches, ochre flecks), the hotel in small touches on a
   9px grid, the stars' rings and hearts as dabs too. About 2.7s a painted frame, ~10 minutes for the video.
+- TikTok caption style is fixed (Scott, 17 Nov: "are you sure about the black and white subtitle style because once
+  we go with it it needs to be consistent", then "keep it"): `TikTokText` in `doodle/StickFlip.tsx`, white Figtree
+  Bold 60px on black rounded blocks, lower case, at most two short lines, a hook on frame one and one closing line,
+  always baked in (TikTok's own font differs, so never add text in the app); its top at `TT_TOP` (470) over a
+  full-frame picture, `TT_TOP_CARD` (196) above a card. Hotel names stay in the gold and cream house label.
+  Final assets for the three (17 Nov, sent): `out/<id>.mp4`, `-silent.mp4`, `-cover.jpg` for
+  `cbh-camera-roll-north-west-tiktok`, `ramside-gig-night-tiktok`, `cbh-starry-night-tiktok`, and the ticket.
 - The session-start hook now also finds the headless shell at `chrome-headless-shell-linux64/chrome-headless-shell`
   (the container's new layout); if `REMOTION_BROWSER_EXECUTABLE` is empty, export that path by hand.
 - `november-best-loved` (+ `-silent`, `-carousel`): the CBH newsletter's six (Hatherley Manor, Ramside

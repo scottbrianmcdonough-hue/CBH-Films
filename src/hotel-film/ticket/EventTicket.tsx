@@ -2,7 +2,7 @@ import { Audio } from "@remotion/media";
 import React from "react";
 import { AbsoluteFill, Img, interpolate, Sequence, staticFile, useCurrentFrame } from "remotion";
 import { FilmFinish } from "../components/FilmFinish";
-import { TikTokText } from "../doodle/StickFlip";
+import { TikTokText, TT_TOP, TT_TOP_CARD } from "../doodle/StickFlip";
 import { colors, EASE_IN_OUT, progress, sans, serif } from "../theme";
 
 // The event ticket (Scott, 16 Nov: TikTok tie-ins to "sports events and music events where our hotels are"; the
@@ -195,19 +195,19 @@ export const EventTicket: React.FC<{ spec: TicketSpec }> = ({ spec }) => {
       <FilmFinish />
       {/* TikTok's own caption look, top third */}
       <Sequence durationInFrames={b(4)} layout="none">
-        <TikTokText lines={spec.hook} top={196} left={140} out={b(4) - 5} still />
+        <TikTokText lines={spec.hook} top={TT_TOP_CARD} left={140} out={b(4) - 5} still />
       </Sequence>
       <Sequence from={b(4)} durationInFrames={b(4)} layout="none">
-        <TikTokText lines={spec.ask} top={196} left={140} out={b(4) - 5} />
+        <TikTokText lines={spec.ask} top={TT_TOP_CARD} left={140} out={b(4) - 5} />
       </Sequence>
       <Sequence from={b(8) + 6} durationInFrames={b(4) - 8} layout="none">
-        <TikTokText lines={spec.answer} top={196} left={140} out={b(4) - 13} />
+        <TikTokText lines={spec.answer} top={TT_TOP_CARD} left={140} out={b(4) - 13} />
       </Sequence>
       <Sequence from={last.from + 4} durationInFrames={last.len - 4} layout="none">
-        <TikTokText lines={spec.last} top={420} left={140} out={last.len - 10} />
+        <TikTokText lines={spec.last} top={TT_TOP} left={140} out={last.len - 10} />
       </Sequence>
       <Sequence from={b(shut + 1) + 8} layout="none">
-        <TikTokText lines={spec.end} top={236} left={140} />
+        <TikTokText lines={spec.end} top={TT_TOP_CARD} left={140} />
       </Sequence>
     </AbsoluteFill>
   );

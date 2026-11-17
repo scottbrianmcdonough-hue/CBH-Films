@@ -1,7 +1,7 @@
 import { Audio } from "@remotion/media";
 import React from "react";
 import { AbsoluteFill, interpolate, OffthreadVideo, Sequence, staticFile, useCurrentFrame } from "remotion";
-import { TikTokText } from "../doodle/StickFlip";
+import { TikTokText, TT_TOP } from "../doodle/StickFlip";
 import { colors, progress, sans, serif } from "../theme";
 
 // Starry Night, but a CBH hotel (Scott, 16 Nov: for TikTok, "animation stuff like the starry night"): Frensham
@@ -29,10 +29,10 @@ export const StarryNight: React.FC = () => {
       <Audio src={staticFile("hotels/dalmahoy/leva-eternity.mp3")} trimBefore={55}
         volume={(v) => 0.83 * interpolate(v, [0, 8, STARRY_FRAMES - 30, STARRY_FRAMES], [0, 1, 1, 0], { extrapolateRight: "clamp" })} />
       <Sequence durationInFrames={160} layout="none">
-        <TikTokText lines={["Starry Night,", "but make it Surrey"]} top={470} left={140} out={152} still />
+        <TikTokText lines={["Starry Night,", "but make it Surrey"]} top={TT_TOP} left={140} out={152} still />
       </Sequence>
       <Sequence from={226} layout="none">
-        <TikTokText lines={["better in real life"]} top={470} left={140} />
+        <TikTokText lines={["better in real life"]} top={TT_TOP} left={140} />
       </Sequence>
     </AbsoluteFill>
   );

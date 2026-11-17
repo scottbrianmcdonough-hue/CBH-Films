@@ -890,6 +890,11 @@ export const StickReel: React.FC<{ look?: "pad" | "gold" }> = ({ look = "gold" }
 // rail and caption area), the slump trimmed to a second so the lightbulb comes quickly, three gags (fizz, pool,
 // bed; the cake out), no end card and no logo: the line sits over the last page and its shot. 23.3s. The page's
 // handwritten timestamps stay. Scenes still fall on the track's downbeats.
+// The TikTok caption style, fixed (Scott, 17 Nov: "once we go with it it needs to be consistent"): white Figtree
+// Bold 60px on black rounded blocks, lower case, at most two short lines, always baked in (never added in the app,
+// whose own font differs); over a full-frame picture its top sits at TT_TOP, above a card at TT_TOP_CARD.
+export const TT_TOP = 470;
+export const TT_TOP_CARD = 196;
 const TIKTOK = "Figtree";
 loadFont({ family: TIKTOK, url: staticFile("fonts/Figtree-Bold.woff2"), weight: "700" });
 export const TikTokText: React.FC<{ lines: string[]; top: number; left?: number; out?: number; still?: boolean }> = ({ lines, top, left = 90, out, still }) => {
