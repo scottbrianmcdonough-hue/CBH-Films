@@ -1053,6 +1053,12 @@ with no history and no renders:
   drop at 18.04s), 19.1s, -15.1 LUFS (-5.8 dB after the render). `holdsworth-gig-night-tiktok` (the Beatles stayed
   here) is registered but not sent: its stills had been used. Both sent. The starry night Scott meant was not in
   this repo: this is a new one.
+- TikTok polish and ticket (17 Nov, Scott): shorter lines: the camera roll's hook "camera roll dump: / the North West"
+  (the mixed one "this winter") and end "0 photos of my sofa"; Starry Night's end "better in real life", its stars now
+  rings of uneven hand-laid dabs (they read as targets) and the hotel in finer, calmer dabs so it reads; the gig
+  night's second line "now make / a night of it" (Scott: "where are you sleeping" with no bed shots; no Ramside
+  bedroom photo in the repo; the Whittlebury ticket keeps the sleeping line, it ends on a bedroom). Ticket for all
+  three, `out/tiktok-set-ticket.txt` (TikTok only, 8pm, one a day).
 - The session-start hook now also finds the headless shell at `chrome-headless-shell-linux64/chrome-headless-shell`
   (the container's new layout); if `REMOTION_BROWSER_EXECUTABLE` is empty, export that path by hand.
 - `november-best-loved` (+ `-silent`, `-carousel`): the CBH newsletter's six (Hatherley Manor, Ramside
