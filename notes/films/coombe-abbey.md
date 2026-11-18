@@ -106,3 +106,9 @@ intro (`out/coombe-abbey/15-socials-intro.txt`) and the travel guide (`out/coomb
 - The Lady Craven wide shot
 - steak and red wine in place of the afternoon tea
 The travel guide is published. Next: link the Book Now button in the travel guide.
+
+18 Nov: `coombe-abbey-sketch-story` built, the launch Story, in the sketch Story series (`src/hotels/coombe-abbey-sketch.ts`). It shares Holdsworth's track and timing, so it is 23.3s at -15.6 LUFS.
+- The aerial draws itself in pencil, with "Not every hotel / comes with / its own moat" written over the moat and the bridge; it turns cream as the colour arrives.
+- Then The Lady Craven's canopied bed, with "Sleep inside / the moat".
+- Then the drawn end card: COVENTRY, WARWICKSHIRE, then Coombe Abbey Hotel, then the CB washed gold.
+The clips were made by scripts/sketch-to-life.py into `public/hotels/coombe-abbey/sketch/`. Render: `out/coombe-abbey/coombe-abbey-sketch-story.mp4`, not in git.

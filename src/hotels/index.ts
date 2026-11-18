@@ -72,6 +72,7 @@ import { cbhJourney, cbhJourneyShort, cbhJourneyStory } from "./cbh-journey";
 import { cbhRolodex } from "./cbh-rolodex";
 import { holdsworthSketch, holdsworthSketchStory } from "./holdsworth-sketch";
 import { ruthinSketchStory } from "./ruthin-sketch";
+import { coombeAbbeySketchStory } from "./coombe-abbey-sketch";
 import { cbhShowcase } from "./cbh-showcase";
 import { cosyEscapesFlipbook } from "./cosy-escapes-flipbook";
 import { dalmahoyFilm } from "./dalmahoy";
@@ -226,6 +227,7 @@ export const SKETCH_FILMS: SketchSpec[] = [
   holdsworthSketch,
   holdsworthSketchStory,
   ruthinSketchStory,
+  coombeAbbeySketchStory,
 ];
 SKETCH_FILMS.forEach(validateSketch);
 
