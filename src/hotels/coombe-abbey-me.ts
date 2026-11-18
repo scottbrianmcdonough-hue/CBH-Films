@@ -9,18 +9,19 @@ import type { MESpec } from "../hotel-film/me/MEReel";
 // the hotel's private dining page says up to 500, its conference page 450 theatre style).
 // History kept light, no Gunpowder Plot (Scott, 16 Nov).
 //
-// Music (Bianca, 18 Nov: "change music to the same as social one, suits the hotel better. That should then speed the
-// whole thing up"): the launch Story's track, Warm Acoustic Guitar by Universfield (Pixabay; the sketch Story series),
-// from the same point as the Story (startAt 60 in Holdsworth's trim), a beat every 21.825 frames. Every scene now a bar
-// (four beats, ~2.9s), the opening and the end card two; cuts on the downbeats (b(4n)). The Jazz Cocktail edit
-// (scripts/coombe-me-music.py) is no longer used here.
-const b = (n: number) => Math.round(n * 21.825);
-const F = { a: b(8), b: b(12), cloisters: b(16), garden: b(20), dining: b(22), marquee: b(24), apes: b(28), bed: b(32), end: b(36) };
+// Music (Bianca, 18 Nov: "change music to the same as social one ... speed the whole thing up"; the Story's Warm Acoustic
+// Guitar was the first try, then Scott sent five Pixabay folk tracks, all checked as not Content ID registered): Acoustic
+// Indie Folk by JonasBlakewood (Pixabay 619515, the 63s edit; Indie Acoustic 619516 and Indie Folk Acoustic 619517 are the
+// same piece at other lengths), 117.5 BPM, a beat every 0.511s; it builds from ~27s to its last hit at 59.05s. The film
+// takes the track from beat 56 (29.05s, a downbeat) to the end: the opening ten beats, then a scene every six beats
+// (~3s, the cuts alternating downbeats and third beats), the end card on beat 108 (55.05s), the final hit on beat 116 at
+// frame 960, and the guitar rings out. Frames measured off librosa's beats.
+const F = { a: 150, b: 240, cloisters: 329, garden: 420, dining: 465, marquee: 511, apes: 600, bed: 690, end: 780 };
 const P = "hotels/coombe-abbey/";
 
 export const coombeAbbeyME: MESpec = {
   id: "coombe-abbey-meetings",
-  frames: b(44), // 32.0s
+  frames: 988, // 32.9s: to the track's own end
   even: true,
   scenes: [
     {
@@ -88,5 +89,5 @@ export const coombeAbbeyME: MESpec = {
     },
   ],
   end: { at: F.end, cut: true, name: "Coombe Abbey Hotel", place: "Coventry, Warwickshire" },
-  music: { src: "hotels/holdsworth-house/warm-acoustic-guitar-37s.mp3", startAt: 60, gain: 1.2, fadeOut: 44 },
+  music: { src: "music/jonasblakewood-acoustic-indie-folk-619515.mp3", startAt: 871, gain: 0.37, fadeOut: 20 // the track is hot: -6.7 LUFS at gain 1; this lands about -15.3 },
 };

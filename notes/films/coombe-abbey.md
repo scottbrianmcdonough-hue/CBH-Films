@@ -122,3 +122,8 @@ The clips were made by scripts/sketch-to-life.py into `public/hotels/coombe-abbe
   - the Marquee "Up to 500 guests". The hotel's private dining page says 500; its conference page says 450 theatre style.
 - A team building card: Go Ape ("Go Ape is in the woods / 500 acres for the away day"), in place of the formal gardens.
 - The Cloisters is now the boardroom shot.
+
+18 Nov, the M&E reel's track: Scott sent five Pixabay folk tracks to make it "fresher, faster" for Bianca. It's now on Acoustic Indie Folk by JonasBlakewood (117.5 BPM), from beat 56 (29.05s) to the track's own end.
+- The aerial and label run ten beats, then a scene every six beats (~3s).
+- The end card lands on beat 108 and the final hit at frame 900; the guitar then rings out.
+- 32.9s, -15.3 LUFS. The track is hot, so the audio was brought down 8.6 dB after the render, and gain 0.37 in the spec matches that.
