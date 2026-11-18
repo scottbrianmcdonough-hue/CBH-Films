@@ -1,4 +1,7 @@
 // Good Spa Guide Awards 2026 winners, the LinkedIn collage (Scott, 18 Nov: "a better collage"), 1920x1080.
+// Final (18 Nov): Low Wood Bay's infinity-pool-005 (the couple facing each other, warm, at 58% 50%) beside Gisborough's
+// spa-treatment-room-001 (50% 60%): the two warm shots sit together; the shot from behind lost the couple's heads under
+// the label, and the head spa and massage shots crop awkwardly.
 // node scripts/spa-awards.js <out.jpg> <left photo> <left pos> <right photo> <right pos>   (photos relative to public/)
 // House look: black, full bleed photos, no frame; the title across the top (gold caps with its underline, then cream
 // Cormorant); each winner's label in the house order (gold caps place, underline, cream Cormorant name) with the award

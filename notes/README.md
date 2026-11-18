@@ -18,6 +18,8 @@ Statuses as of 2 Nov 2026.
 
 ## Sent, waiting on Scott
 
+- [Good Spa Guide winners collage](films/spa-awards.md): LinkedIn 16:9 rebuilt 18 Nov for review; going out Thu 19 Nov.
+
 - [Coombe Abbey: new member pack](films/coombe-abbey.md): Launched 18 Nov (news 9am; travel guide, socials, LinkedIn 10am); launch sketch Story built 18 Nov.
 
 - [Camera roll: winter weekends](films/cbh-camera-roll.md): Re-sent 15 Nov for TikTok; the album's dates need updating before it goes out.
