@@ -18,3 +18,9 @@ Spa.
   Gisborough spa-treatment-room-001, the warm pair. The shot from behind of the couple lost their heads under the label.
 - Final: `out/spa-awards/Good Spa Guide winners 2026 LinkedIn.jpg`.
 - 18 Nov, the version going out is a different one: Scott: "that's the best one". It has six tiles: the two spa photos full height at the sides, and between them the Low Wood Bay sunset, candles, Gisborough's ivy front and a misty lawn. A dark roundel sits in the middle with the CB, GOOD SPA GUIDE AWARDS 2026 and "Winners". Each award is in gold caps over the full hotel name in cream Cormorant, with the place in white caps beneath. Mine (`scripts/spa-awards.js`) is kept as the alternative.
+- 18 Nov, the 4:5 of the roundel version (Scott: "I need the 4:5 version"), made by `scripts/spa-awards-4x5.js`:
+  - the two spa shots side by side on top (Low Wood Bay infinity-pool-005, Gisborough head spa), each with its award in
+    gold caps, the full name in cream Cormorant and the place in white caps
+  - four scenes along the bottom: Low Wood Bay steaming pool, candles, Gisborough's ivy front, misty sunrise
+  - the charcoal roundel over the middle: CB, GOOD SPA GUIDE / AWARDS 2026, "Winners"
+  Output: `out/spa-awards/Good Spa Guide winners 2026 4x5.jpg`.
