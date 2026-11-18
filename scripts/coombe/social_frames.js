@@ -48,6 +48,8 @@ if (process.argv[3] === 'linkedin') {
 }
 // one off 4:5 of The Lady Craven, the wide shot (Scott, 18 Nov)
 if (process.argv[3] === 'lady-craven') { jobs.length = 0; jobs.push(['lady-craven-4x5', 1080, 1350, 'lady-craven-grand-feature-room-wide.jpg', process.argv[4] || '72% 50%', false, 0, 1350 - 130]); }
+// any one off 4:5 slide: node social_frames.js <outdir> one <name> <photo> [pos]
+if (process.argv[3] === 'one') { jobs.length = 0; jobs.push([process.argv[4], 1080, 1350, process.argv[5], process.argv[6] || '50% 50%', false, 0, 1350 - 130]); }
 (async () => {
   const b = await chromium.launch(); const pg = await b.newPage();
   for (const [name, w, h, src, pos, label, lb, cb] of jobs) {
