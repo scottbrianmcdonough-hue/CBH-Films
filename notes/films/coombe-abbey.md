@@ -143,3 +143,5 @@ The travel guide already published on the CBH site still says "Mediaeval" and ne
 18 Nov: the Garden Room scene runs ten beats, two more than the others (Scott: "the Medieval Banquet needs a beat more ... or a trim line"), and its line is trimmed to "Or a Medieval Banquet". The film now takes the track from beat 42. 39.9s, -15.6 LUFS.
 
 18 Nov: the Story's second line is now "Bedtime, / under a canopy" (Scott: "repeating the moat twice"; it was "Sleep inside / the moat"). Suggested link sticker: "Spend a night in the abbey", to the CBH hotel page.
+
+18 Nov: the second line is now "Bedtime, / in a canopied bed" (Scott: "isn't a canopy like a forest").

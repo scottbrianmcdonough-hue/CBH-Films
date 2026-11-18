@@ -39,7 +39,7 @@ export const coombeAbbeySketchStory: SketchSpec = {
       src: `${P}/sketch/lady-craven.mp4`,
       at: 262, // beat 12
       note: {
-        lines: ["Bedtime,", "under a canopy"], // was "Sleep inside the moat" (Scott: the moat twice)
+        lines: ["Bedtime,", "in a canopied bed"], // was "Sleep inside the moat" (the moat twice), then "under a canopy" (read as trees)
         write: [10, 50],
         fade: [84, 108],
         top: 1400, // on the dark carpet at the foot of the frame, above the safe zone
