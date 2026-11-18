@@ -1107,8 +1107,8 @@ with no history and no renders:
   inpaint; `public/campaigns/spa-awards/*-tall.jpg`): swap in the originals if he sends them.
   `out/spa-awards/spa-awards-winners.jpg`. Then no gold underline under the awards (Scott: "lets lose the gold
   underline"); the seal keeps its gold rings. Low Wood Bay's two side tiles swapped (Scott: "need a better one in the middle"): the
-  infinity pool over Windermere at sunset (`flipbook-winter/lake-end.jpg`) and the rooftops under snow
-  (`spa-awards/lwb-snowy-rooftops.jpg`, a frame of the screen time clip). Sent.
+  infinity pool over Windermere at sunset (`flipbook-winter/lake-end.jpg`) and, after the snowy rooftops at sunset (Scott: "two of the same shot"), the candles in the spa garden at night
+  (`spa-awards/lwb-candles.jpg`, a frame of the screen time clip): never two lake sunsets side by side. Sent.
 - Network: this session now runs on the personal environment `cbh-films` (created 17 Nov, Scott approved), which
   allows coombeabbey.com and classicbritishhotels.com (with and without www). The CBH site still answers 403 to
   curl (its own bot block), so its photos still come from Scott; other hotel sites need adding to the environment.
