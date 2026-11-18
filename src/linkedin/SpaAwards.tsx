@@ -7,7 +7,7 @@ import { colors, sans, serif } from "../hotel-film/theme";
 // template, not a collage). A real collage, 16:9: each winner a block of three tiles (its spa photo tall, two
 // smaller views of the hotel beside it), the two blocks mirrored about the middle, and a charcoal seal over the
 // seam with the title in it. The winner's label sits in the foot of its tall photo, house order with the award
-// where the place goes: gold caps over its underline, the name in cream Cormorant, the place in small caps.
+// where the place goes: gold caps (no underline, Scott), the name in cream Cormorant, the place in small caps.
 // The tall photos are cut from Scott's collage with his lettering painted out (cv2 inpaint), so no enlarging:
 // public/campaigns/spa-awards/*-tall.jpg. Swap in the originals if he sends them.
 const CHARCOAL = "#282825";
@@ -47,10 +47,8 @@ export const SpaAwards: React.FC = () => (
           <Tile src={w.hero} pos={w.heroPos} x={heroX} y={M} w={HERO_W} h={FULL_H}>
             <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(20,20,18,0) 56%, rgba(20,20,18,0.78) 82%, rgba(20,20,18,0.9) 100%)" }} />
             <div style={{ position: "absolute", left: 40, right: 40, bottom: 44 }}>
-              <div style={{ display: "inline-block" }}>
-                <div style={{ fontFamily: sans, fontWeight: 600, fontSize: 23, letterSpacing: "0.26em", color: colors.gold }}>{w.award}</div>
-                <div style={{ height: 2, marginTop: 10, background: colors.gold }} />
-              </div>
+              {/* no underline under the award (Scott) */}
+              <div style={{ fontFamily: sans, fontWeight: 600, fontSize: 23, letterSpacing: "0.26em", color: colors.gold }}>{w.award}</div>
               <div style={{ fontFamily: serif, fontSize: 50, lineHeight: 1.08, color: colors.cream, marginTop: 14, whiteSpace: "pre-line" }}>{w.name}</div>
               <div style={{ fontFamily: sans, fontWeight: 600, fontSize: 18, letterSpacing: "0.22em", color: colors.cream, opacity: 0.78, marginTop: 14 }}>{w.place}</div>
             </div>
