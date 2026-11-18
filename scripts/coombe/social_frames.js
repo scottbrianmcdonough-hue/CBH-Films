@@ -50,6 +50,20 @@ if (process.argv[3] === 'linkedin') {
 if (process.argv[3] === 'lady-craven') { jobs.length = 0; jobs.push(['lady-craven-4x5', 1080, 1350, 'lady-craven-grand-feature-room-wide.jpg', process.argv[4] || '72% 50%', false, 0, 1350 - 130]); }
 // any one off 4:5 slide: node social_frames.js <outdir> one <name> <photo> [pos]
 if (process.argv[3] === 'one') { jobs.length = 0; jobs.push([process.argv[4], 1080, 1350, process.argv[5], process.argv[6] || '50% 50%', false, 0, 1350 - 130]); }
+// the 4:5 carousel as it went out (18 Nov, Bianca and Scott): no turret bathroom, no sitting room; steak in place of
+// afternoon tea; the M&E shots together; Go Ape at the end
+if (process.argv[3] === 'final') {
+  jobs.length = 0;
+  const F = (n, src, pos) => jobs.push(['final-' + n, 1080, 1350, src, pos, false, 0, 1350 - 130]);
+  F(1, 'hotel-aerial-view-001.jpg', '50% 50%');
+  F(2, 'lady-craven-grand-feature-room-wide.jpg', '72% 50%');
+  F(3, 'conference-room-cloisters-003.jpg', '50% 50%');
+  F(4, 'private-dining-marquee-001.jpg', '50% 50%');
+  F(5, 'garden-room-restaurant-002.jpg', '35% 50%');
+  F(6, 'steak-red-wine-001.jpg', '100% 50%');
+  F(7, 'gardens-001.jpg', '50% 50%');
+  F(8, 'go-ape-001.jpg', '49% 50%');
+}
 (async () => {
   const b = await chromium.launch(); const pg = await b.newPage();
   for (const [name, w, h, src, pos, label, lb, cb] of jobs) {
