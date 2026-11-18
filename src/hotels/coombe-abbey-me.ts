@@ -5,21 +5,22 @@ import type { MESpec } from "../hotel-film/me/MEReel";
 // Cormorant headline, a short fact line) and the house end card. 16:9 for LinkedIn.
 //
 // Facts from coombeabbey.com only (room pages win over the 2022 brochure). Each figure sits on the room it
-// describes; one capacity only (Scott, 17 Nov: "maybe max capacity but not every room"): the Marquee's 450.
+// describes; one capacity only (Scott, 17 Nov: "maybe max capacity but not every room"): the Marquee's 500 guests (Bianca, 18 Nov;
+// the hotel's private dining page says up to 500, its conference page 450 theatre style).
 // History kept light, no Gunpowder Plot (Scott, 16 Nov).
 //
-// Music (Scott, 16 Nov: Event Music "definitely needs new music", "more housey jazzy"): Jazz Cocktail Lounge Music by
-// alex-morgan (Pixabay 556246; on two brand stings, no hotel film), 110.6 BPM, edited by scripts/coombe-me-music.py
-// into public/music/edits/coombe-me-jazz-cocktail.m4a: from 39.31s (beat 73), the band stopping under the second set
-// of rooms and coming back on the Cloisters (52.2s), then a jump on the bar to the ending at the bedroom (152.6s), so
-// the end card lands on the final hits (156.5s) and the last chord (160.3s) rings out. Frames measured off the beats.
-// two bars a scene from the Cloisters on (Scott: "some scenes are too fast to read"), the music edit now runs to beat 129
-const F = { a: 129, b: 257, cloisters: 386, garden: 515, dining: 579, marquee: 644, park: 773, bed: 903, end: 1020 };
+// Music (Bianca, 18 Nov: "change music to the same as social one, suits the hotel better. That should then speed the
+// whole thing up"): the launch Story's track, Warm Acoustic Guitar by Universfield (Pixabay; the sketch Story series),
+// from the same point as the Story (startAt 60 in Holdsworth's trim), a beat every 21.825 frames. Every scene now a bar
+// (four beats, ~2.9s), the opening and the end card two; cuts on the downbeats (b(4n)). The Jazz Cocktail edit
+// (scripts/coombe-me-music.py) is no longer used here.
+const b = (n: number) => Math.round(n * 21.825);
+const F = { a: b(8), b: b(12), cloisters: b(16), garden: b(20), dining: b(22), marquee: b(24), apes: b(28), bed: b(32), end: b(36) };
 const P = "hotels/coombe-abbey/";
 
 export const coombeAbbeyME: MESpec = {
   id: "coombe-abbey-meetings",
-  frames: 1240,
+  frames: b(44), // 32.0s
   even: true,
   scenes: [
     {
@@ -37,7 +38,7 @@ export const coombeAbbeyME: MESpec = {
         { src: P + "meeting-room-kellway-001.jpg", name: "", widePos: "55% 50%" },
         { src: P + "meeting-room-walnut-001.jpg", name: "", widePos: "50% 50%" },
       ],
-      text: { eyebrow: "Meeting spaces", title: "11 rooms, none of them beige", subs: ["Just off the M6"] },
+      text: { eyebrow: "Meeting spaces", title: "11 spaces, none of them beige", subs: ["Just off the M6"] },
     },
     {
       at: F.b,
@@ -53,8 +54,8 @@ export const coombeAbbeyME: MESpec = {
     },
     {
       at: F.cloisters,
-      whip: true, // the band comes back
-      shots: [{ src: P + "conference-room-cloisters-002.jpg", pos: "50% 50%" }],
+      whip: true,
+      shots: [{ src: P + "conference-room-cloisters-003.jpg", pos: "50% 50%" }],
       text: { eyebrow: "The Cloisters", title: "Keynote under a chandelier", subs: ["With its own bar next door"] },
     },
     {
@@ -65,27 +66,27 @@ export const coombeAbbeyME: MESpec = {
         { src: P + "dining-001.jpg", pos: "50% 50%" },
       ],
       cuts: [F.dining],
-      text: { eyebrow: "The Garden Room", title: "Dinner under glass", subs: ["Classic dishes, local produce"] },
+      text: { eyebrow: "The Garden Room", title: "Dinner, with the gardens looking in", subs: ["Or a Mediaeval Banquet after dark"] },
     },
     {
       at: F.marquee, // a quick crossfade on the beat, not a hard cut (Scott: "a sharp cut at 22": dark steak to the white Marquee)
       shots: [{ src: P + "private-dining-marquee-001.jpg", pos: "50% 50%" }],
       push: { to: 1.12, pos: "50% 45%" },
-      text: { eyebrow: "The Marquee", title: "Bring the whole company", subs: ["Up to 450 delegates"] },
+      text: { eyebrow: "The Marquee", title: "Bring the whole company", subs: ["Up to 500 guests"] },
     },
     {
-      at: F.park,
+      at: F.apes, // the team building card (Bianca, 18 Nov): Go Ape on the estate, in place of the formal gardens
       cut: true,
-      shots: [{ src: P + "gardens-001.jpg", pos: "50% 60%" }],
-      text: { eyebrow: "Team building", title: "500 acres of breakout space", subs: ["Go Ape is in the woods"] },
+      shots: [{ src: P + "go-ape-001.jpg", pos: "50% 50%" }],
+      text: { eyebrow: "Team building", title: "Go Ape is in the woods", subs: ["500 acres for the away day"] },
     },
     {
       at: F.bed,
-      whip: true, // the jump to the track's ending
+      whip: true,
       shots: [{ src: P + "lady-craven-grand-feature-room-002.jpg", pos: "50% 55%" }],
-      text: { eyebrow: "Stay over", title: "121 bedrooms", subs: ["So nobody's late for the 9am"] },
+      text: { eyebrow: "Stay over", title: "121 unique bedchambers", subs: ["So nobody's late for the 9am"] },
     },
   ],
   end: { at: F.end, cut: true, name: "Coombe Abbey Hotel", place: "Coventry, Warwickshire" },
-  music: { src: "music/edits/coombe-me-jazz-cocktail.m4a", startAt: 0, gain: 0.9, fadeOut: 20 },
+  music: { src: "hotels/holdsworth-house/warm-acoustic-guitar-37s.mp3", startAt: 60, gain: 1.2, fadeOut: 44 },
 };

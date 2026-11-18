@@ -112,3 +112,13 @@ The travel guide is published. Next: link the Book Now button in the travel guid
 - Then The Lady Craven's canopied bed, with "Sleep inside / the moat".
 - Then the drawn end card: COVENTRY, WARWICKSHIRE, then Coombe Abbey Hotel, then the CB washed gold.
 The clips were made by scripts/sketch-to-life.py into `public/hotels/coombe-abbey/sketch/`. Render: `out/coombe-abbey/coombe-abbey-sketch-story.mp4`, not in git.
+
+18 Nov, Bianca's notes on the M&E reel:
+- New track: the launch Story's Warm Acoustic Guitar ("suits the hotel better"), from the Story's start. Every scene is now one bar (~2.9s); the opening and the end card are two. The reel is 32.0s (was 41.3s) at -15.4 LUFS.
+- New copy:
+  - "121 unique bedchambers"
+  - the Garden Room now reads "Dinner, with the gardens looking in / Or a Mediaeval Banquet after dark" (was "Dinner under glass")
+  - "11 spaces, none of them beige"
+  - the Marquee "Up to 500 guests". The hotel's private dining page says 500; its conference page says 450 theatre style.
+- A team building card: Go Ape ("Go Ape is in the woods / 500 acres for the away day"), in place of the formal gardens.
+- The Cloisters is now the boardroom shot.
