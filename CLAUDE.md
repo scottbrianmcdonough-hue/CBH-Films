@@ -1095,6 +1095,14 @@ with no history and no renders:
   500), 121 bedrooms, a Cistercian abbey built in 1150, the centre of Coventry a ten minute drive, Go Ape, Greengage
   ECOsmart Silver. Slide 5 is now MEETINGS AND EVENTS / 11 meeting spaces and a marquee for 450. Scott's own post is
   Jira CBH-159 (meetings angle, GDS codes, the Central Desk team, 10am Wed 18 Nov); mine is the general welcome.
+- `spa-awards-collage` (`src/linkedin/SpaAwards.tsx`, a 16:9 still; Scott, 18 Nov: "can you do a better collage"
+  than his Good Spa Guide Awards 2026 one, which left a third of the frame empty charcoal and set the names over the
+  photos): CB, GOOD SPA GUIDE AWARDS 2026 in gold caps and Our Winners in cream Cormorant across the top; the two
+  photos as a matched pair across the width; under each the award in gold caps over its underline, the name in cream
+  Cormorant, the place in small caps: BEST RESORT SPA / Low Wood Bay Resort & Spa / WINDERMERE, LAKE DISTRICT and
+  BEST NEW SPA / Gisborough Hall Country House Hotel & Spa / NORTH YORKSHIRE; on CBH charcoal. The photos are cut
+  from Scott's collage (`public/campaigns/spa-awards/`, upscaled 1.3x): swap in the originals if he sends them.
+  `out/spa-awards/spa-awards-winners.jpg`. Sent.
 - Network: this session now runs on the personal environment `cbh-films` (created 17 Nov, Scott approved), which
   allows coombeabbey.com and classicbritishhotels.com (with and without www). The CBH site still answers 403 to
   curl (its own bot block), so its photos still come from Scott; other hotel sites need adding to the environment.

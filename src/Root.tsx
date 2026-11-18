@@ -89,6 +89,7 @@ import { coombeBanquetTicket, EventTicket, holdsworthGigTicket, ramsideGigTicket
 import { CameraRoll, northWestRoll, ROLL_FRAMES } from "./hotel-film/roll/CameraRoll";
 import { STARRY_FRAMES, StarryNight } from "./hotel-film/stings/StarryNight";
 import { COOMBE_INTRO_SLIDES, CoombeIntro } from "./linkedin/CoombeIntro";
+import { SpaAwards } from "./linkedin/SpaAwards";
 import { PostItList, POSTIT_FRAMES } from "./hotel-film/postit/PostItList";
 import {
   ScreenTime,
@@ -467,6 +468,8 @@ export const RemotionRoot: React.FC = () => {
         width={WIDTH}
         height={HEIGHT}
       />
+      {/* Good Spa Guide Awards 2026, our winners: a 16:9 still */}
+      <Composition id="spa-awards-collage" component={SpaAwards} durationInFrames={1} fps={FPS} width={1920} height={1080} />
       {/* Coombe Abbey joins the collection: the LinkedIn carousel, a frame per slide */}
       <Composition id="coombe-abbey-intro-carousel" component={CoombeIntro} durationInFrames={COOMBE_INTRO_SLIDES} fps={FPS} width={1080} height={1350} />
       {/* November Best Loved as a 4:5 carousel, a frame per slide (render each as a still) */}
