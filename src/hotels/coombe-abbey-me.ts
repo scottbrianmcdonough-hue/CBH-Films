@@ -18,12 +18,14 @@ import type { MESpec } from "../hotel-film/me/MEReel";
 // frame 960, and the guitar rings out. Frames measured off librosa's beats.
 // Longer to read (Scott, 18 Nov: "some scenes need a little longer to read, it's a lot of text"): two bars a scene (~4s),
 // the film taken from beat 44 (23.5s) so the end card still lands on beat 108 and the final hit (beat 116) at frame 1080.
-const F = { a: 120, b: 240, cloisters: 360, garden: 479, dining: 540, marquee: 600, apes: 720, bed: 840, end: 960 };
+// The Garden Room ten beats, two more than the rest (Scott: "the Medieval Banquet needs a beat more"), with its line
+// trimmed; the film now from beat 42 (22.5s) so the end card stays on beat 108.
+const F = { a: 120, b: 240, cloisters: 359, garden: 480, dining: 539, marquee: 630, apes: 750, bed: 870, end: 990 };
 const P = "hotels/coombe-abbey/";
 
 export const coombeAbbeyME: MESpec = {
   id: "coombe-abbey-meetings",
-  frames: 1166, // 38.9s: to the track's own end
+  frames: 1196, // 39.9s: to the track's own end
   even: true,
   // more movement and energy (Scott, 18 Nov): a quicker push, a gentle sideways glide, and in the longer scenes a second
   // picture on the bar (beats 48, 72, 96, 104) while the caption holds
@@ -80,7 +82,7 @@ export const coombeAbbeyME: MESpec = {
         { src: P + "dining-001.jpg", pos: "50% 50%" },
       ],
       cuts: [F.dining],
-      text: { eyebrow: "The Garden Room", title: "Dinner, with the gardens looking in", subs: ["Or a Medieval Banquet after dark"] },
+      text: { eyebrow: "The Garden Room", title: "Dinner, with the gardens looking in", subs: ["Or a Medieval Banquet"] },
     },
     {
       at: F.marquee, // a quick crossfade on the beat, not a hard cut (Scott: "a sharp cut at 22": dark steak to the white Marquee)
@@ -95,7 +97,7 @@ export const coombeAbbeyME: MESpec = {
         { src: P + "go-ape-001.jpg", pos: "50% 50%" },
         { src: P + "gardens-001.jpg", pos: "50% 60%" },
       ],
-      cuts: [780],
+      cuts: [810],
       text: { eyebrow: "Team building", title: "Go Ape is in the woods", subs: ["500 acres for the away day"] },
     },
     {
@@ -105,11 +107,11 @@ export const coombeAbbeyME: MESpec = {
         { src: P + "lady-craven-grand-feature-room-wide.jpg", pos: "50% 50%" },
         { src: P + "lady-craven-grand-feature-room-002.jpg", pos: "50% 55%" },
       ],
-      cuts: [900],
+      cuts: [930],
       text: { eyebrow: "Stay over", title: "121 unique bedchambers", subs: ["So nobody's late for the 9am"] },
     },
   ],
   end: { at: F.end, cut: true, name: "Coombe Abbey Hotel", place: "Coventry, Warwickshire" },
   // the track is hot: -6.7 LUFS at gain 1; 0.37 lands about -15.3
-  music: { src: "music/jonasblakewood-acoustic-indie-folk-619515.mp3", startAt: 692, gain: 0.37, fadeOut: 20 },
+  music: { src: "music/jonasblakewood-acoustic-indie-folk-619515.mp3", startAt: 662, gain: 0.37, fadeOut: 20 },
 };

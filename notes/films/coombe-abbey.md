@@ -139,3 +139,5 @@ The travel guide already published on the CBH site still says "Mediaeval" and ne
 - Two bars a scene (~4s). The film now takes the track from beat 44 (23.5s), so the end card is still on beat 108 and the final hit on 116. 38.9s, -15.5 LUFS.
 - More movement: a new `move` option in MEReel. Every still pushes about twice as fast (rate 0.0009 from 1.04) and glides sideways 0.25px a frame, alternating direction scene to scene.
 - A second picture on the bar in four of the longer scenes while the caption holds: the aerial then the exterior, the Cloisters boardroom then the cabaret, Go Ape then the gardens, The Lady Craven wide then the bed close up.
+
+18 Nov: the Garden Room scene runs ten beats, two more than the others (Scott: "the Medieval Banquet needs a beat more ... or a trim line"), and its line is trimmed to "Or a Medieval Banquet". The film now takes the track from beat 42. 39.9s, -15.6 LUFS.
