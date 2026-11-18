@@ -16,17 +16,26 @@ import type { MESpec } from "../hotel-film/me/MEReel";
 // takes the track from beat 56 (29.05s, a downbeat) to the end: the opening ten beats, then a scene every six beats
 // (~3s, the cuts alternating downbeats and third beats), the end card on beat 108 (55.05s), the final hit on beat 116 at
 // frame 960, and the guitar rings out. Frames measured off librosa's beats.
-const F = { a: 150, b: 240, cloisters: 329, garden: 420, dining: 465, marquee: 511, apes: 600, bed: 690, end: 780 };
+// Longer to read (Scott, 18 Nov: "some scenes need a little longer to read, it's a lot of text"): two bars a scene (~4s),
+// the film taken from beat 44 (23.5s) so the end card still lands on beat 108 and the final hit (beat 116) at frame 1080.
+const F = { a: 120, b: 240, cloisters: 360, garden: 479, dining: 540, marquee: 600, apes: 720, bed: 840, end: 960 };
 const P = "hotels/coombe-abbey/";
 
 export const coombeAbbeyME: MESpec = {
   id: "coombe-abbey-meetings",
-  frames: 988, // 32.9s: to the track's own end
+  frames: 1166, // 38.9s: to the track's own end
   even: true,
+  // more movement and energy (Scott, 18 Nov): a quicker push, a gentle sideways glide, and in the longer scenes a second
+  // picture on the bar (beats 48, 72, 96, 104) while the caption holds
+  move: { rate: 0.0009, glide: 0.25 },
   scenes: [
     {
       at: 0,
-      shots: [{ src: P + "hotel-aerial-view-001.jpg", pos: "50% 55%" }],
+      shots: [
+        { src: P + "hotel-aerial-view-001.jpg", pos: "50% 55%" },
+        { src: P + "hotel-exterior-001.jpg", pos: "50% 50%" },
+      ],
+      cuts: [60],
       text: { eyebrow: "Coventry, Warwickshire", title: "Coombe Abbey Hotel", subs: ["Ten minutes from the city centre"] },
     },
     {
@@ -56,7 +65,11 @@ export const coombeAbbeyME: MESpec = {
     {
       at: F.cloisters,
       whip: true,
-      shots: [{ src: P + "conference-room-cloisters-003.jpg", pos: "50% 50%" }],
+      shots: [
+        { src: P + "conference-room-cloisters-003.jpg", pos: "50% 50%" },
+        { src: P + "conference-room-cloisters-001.jpg", pos: "50% 50%" },
+      ],
+      cuts: [420],
       text: { eyebrow: "The Cloisters", title: "Keynote under a chandelier", subs: ["With its own bar next door"] },
     },
     {
@@ -78,17 +91,25 @@ export const coombeAbbeyME: MESpec = {
     {
       at: F.apes, // the team building card (Bianca, 18 Nov): Go Ape on the estate, in place of the formal gardens
       cut: true,
-      shots: [{ src: P + "go-ape-001.jpg", pos: "50% 50%" }],
+      shots: [
+        { src: P + "go-ape-001.jpg", pos: "50% 50%" },
+        { src: P + "gardens-001.jpg", pos: "50% 60%" },
+      ],
+      cuts: [780],
       text: { eyebrow: "Team building", title: "Go Ape is in the woods", subs: ["500 acres for the away day"] },
     },
     {
       at: F.bed,
       whip: true,
-      shots: [{ src: P + "lady-craven-grand-feature-room-002.jpg", pos: "50% 55%" }],
+      shots: [
+        { src: P + "lady-craven-grand-feature-room-wide.jpg", pos: "50% 50%" },
+        { src: P + "lady-craven-grand-feature-room-002.jpg", pos: "50% 55%" },
+      ],
+      cuts: [900],
       text: { eyebrow: "Stay over", title: "121 unique bedchambers", subs: ["So nobody's late for the 9am"] },
     },
   ],
   end: { at: F.end, cut: true, name: "Coombe Abbey Hotel", place: "Coventry, Warwickshire" },
   // the track is hot: -6.7 LUFS at gain 1; 0.37 lands about -15.3
-  music: { src: "music/jonasblakewood-acoustic-indie-folk-619515.mp3", startAt: 871, gain: 0.37, fadeOut: 20 },
+  music: { src: "music/jonasblakewood-acoustic-indie-folk-619515.mp3", startAt: 692, gain: 0.37, fadeOut: 20 },
 };

@@ -66,6 +66,9 @@ export type MESpec = {
   // every still drifts at one even pace from its first frame, pushes included, and panels land on the beat
   // (Coombe Abbey, Scott: "some start after the transitions, it should be smooth all around")
   even?: boolean;
+  // more movement (Coombe Abbey, Scott: "a bit more movement and energy"): with `even`, the drift at `rate` scale a frame
+  // from 1.04 and a sideways glide of `glide` px a frame, centred on the scene, alternating direction scene to scene
+  move?: { rate: number; glide: number };
   scenes: MEScene[];
   // offer: the Black Friday Stories' card in place of the name card: BLACK FRIDAY SALE in the
   // campaign's mauve caps with its underline, the offer in cream Cormorant, small lines beneath
@@ -219,7 +222,9 @@ const Scene: React.FC<{
   len: number;
   wide: boolean;
   even?: boolean;
-}> = ({ scene, len, wide, even }) => {
+  move?: { rate: number; glide: number };
+  dir?: number;
+}> = ({ scene, len, wide, even, move, dir = 1 }) => {
   const frame = useCurrentFrame();
   const { width, height } = useVideoConfig();
   const push = scene.push;
@@ -227,7 +232,9 @@ const Scene: React.FC<{
   const z = even
     ? push
       ? 1 + (push.to - 1) * Math.min(1, frame / len)
-      : 1 + RATE * frame
+      : move
+        ? 1.04 + move.rate * frame
+        : 1 + RATE * frame
     : push
       ? 1 + (push.to - 1) * Math.pow(Math.min(1, frame / len), 2.2)
       : interpolate(frame, [0, len], [1.0, 1.05], clamp);
@@ -240,7 +247,9 @@ const Scene: React.FC<{
       const o = i === 0 ? 1 : progress(frame, from - X / 2, X, EASE_IN_OUT);
       if (frame < from - X / 2) return null;
       const zz = even
-        ? 1 + RATE * Math.max(0, frame - from + X / 2)
+        ? move
+          ? 1.04 + move.rate * Math.max(0, frame - from + X / 2)
+          : 1 + RATE * Math.max(0, frame - from + X / 2)
         : interpolate(frame, [from, from + len], [1.0, 1.05], clamp);
       return (
         <AbsoluteFill key={s.src} style={{ opacity: o }}>
@@ -253,6 +262,7 @@ const Scene: React.FC<{
                 : ((wide ? s.widePos : s.pos) ?? "50% 50%")
             }
             z={i === 0 ? z : zz}
+            dx={move && !(push && i === 0) ? (i % 2 ? -dir : dir) * move.glide * (frame - len / 2) : 0}
           />
         </AbsoluteFill>
       );
@@ -627,6 +637,8 @@ export const MEReel: React.FC<{ film: MESpec }> = ({ film }) => {
                 len={to - from}
                 wide={wide}
                 even={film.even}
+                move={film.move}
+                dir={i % 2 ? -1 : 1}
               />
             </AbsoluteFill>
           </Sequence>

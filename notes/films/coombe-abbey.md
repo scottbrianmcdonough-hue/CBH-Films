@@ -134,3 +134,8 @@ The clips were made by scripts/sketch-to-life.py into `public/hotels/coombe-abbe
 - the LinkedIn article
 - the M&E ticket
 The travel guide already published on the CBH site still says "Mediaeval" and needs the same edit there.
+
+18 Nov, M&E reel (Scott: "some scenes need a little longer to read, it's a lot of text", then "a bit more movement and energy"):
+- Two bars a scene (~4s). The film now takes the track from beat 44 (23.5s), so the end card is still on beat 108 and the final hit on 116. 38.9s, -15.5 LUFS.
+- More movement: a new `move` option in MEReel. Every still pushes about twice as fast (rate 0.0009 from 1.04) and glides sideways 0.25px a frame, alternating direction scene to scene.
+- A second picture on the bar in four of the longer scenes while the caption holds: the aerial then the exterior, the Cloisters boardroom then the cabaret, Go Ape then the gardens, The Lady Craven wide then the bed close up.
