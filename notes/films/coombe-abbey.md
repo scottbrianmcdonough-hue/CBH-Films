@@ -141,3 +141,5 @@ The travel guide already published on the CBH site still says "Mediaeval" and ne
 - A second picture on the bar in four of the longer scenes while the caption holds: the aerial then the exterior, the Cloisters boardroom then the cabaret, Go Ape then the gardens, The Lady Craven wide then the bed close up.
 
 18 Nov: the Garden Room scene runs ten beats, two more than the others (Scott: "the Medieval Banquet needs a beat more ... or a trim line"), and its line is trimmed to "Or a Medieval Banquet". The film now takes the track from beat 42. 39.9s, -15.6 LUFS.
+
+18 Nov: the Story's second line is now "Bedtime, / under a canopy" (Scott: "repeating the moat twice"; it was "Sleep inside / the moat"). Suggested link sticker: "Spend a night in the abbey", to the CBH hotel page.
