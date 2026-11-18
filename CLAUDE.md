@@ -61,6 +61,23 @@ with no history and no renders:
 - End lines: an "X first, or Y?" question is good but not every time (Scott, 3 Nov: "getting to be a pattern");
   mix in a statement ("Tee off, / then turn in").
 
+- Bianca's preferred post and ticket style (Scott, 18 Nov: "remember her preferred ticket and post style"; she rewrote
+  the Coombe Abbey LinkedIn GDS intro and the Good Spa Guide awards post this way). Use it for announcements, awards and
+  new members, the posts she takes over; on these it wins over the house copy rules (hashtags, lists):
+  - Two versions in one ticket: "LinkedIn Version" (B2B, corporate) and "Facebook & IG Version" (consumer).
+  - LinkedIn opens on the news, stated plainly with a count or "Big news for the Classic British Hotels portfolio: ...",
+    then one ✨ or 🏰. FB/IG opens on a consumer hook question ("Planning a relaxing getaway? Start with ..."), then the
+    same news line.
+  - Bold section headers with an emoji in front ("🏆 The Winners:", "🌿 Shortlisted Finalists:", "About the Hotel:",
+    "💼 Meetings & Conferences:"), then bullets: "Category – Name at @Hotel". Each hotel is tagged with @ on LinkedIn and
+    written out in full on FB/IG, where the bullets become ✨.
+  - Every member mentioned is named and tagged, finalists included (more tags, more reshares).
+  - A congratulations line to the teams with 👏, then "Explore the full collection of Classic British Hotels ...: 👉"
+    (LinkedIn) or "... here 👇" (FB/IG), and the CBH category or news page link.
+  - A one line close in a "X by day, Y by night" shape on hotel intros. GDS codes as "Bookable under CB chain code:" with
+    📍 and bold system names, then the Central Desk Team.
+  - Hashtags at the end, about six (#GoodSpaGuideAwards #ClassicBritishHotels ... ; #MICE #CorporateTravel #GDS on B2B).
+  - Unicode bold for the headers when Scott pastes it to post.
 - Maids Head Hotel (Norwich, The WinePress Restaurant) is back in the rotation until 27 January 2027, then comes off
   again (Scott, 13 Nov 2026): use it in content dated up to 27 Jan 2027, never in anything posting after it. The older
   spec comments that say "leaving the collection, never use it" predate this.
