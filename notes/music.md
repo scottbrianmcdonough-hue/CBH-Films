@@ -48,6 +48,7 @@ Tracks used and where, so a new film doesn't repeat one by accident. [All films]
 | Smooth Soul | [plate-to-pillow](films/plate-to-pillow.md) (B), [hintlesham-hall-search](films/hintlesham-hall-search.md), [cbh-craft](films/cbh-craft.md) |
 | Soul Retro Groove by alexguz (Pixabay 378379) | [hardwick-hall-search](films/hardwick-hall-search.md), [cbh-mosaic](films/cbh-mosaic.md) and its variants |
 | Tech House Vibes (Mixkit 130) | [nailcote-hall-meetings](films/nailcote-hall-meetings.md) |
+| Warm Acoustic Guitar by Universfield (Pixabay) | [holdsworth-sketch](films/holdsworth-sketch.md) (reel and Story), the Ruthin sketch Story, [coombe-abbey](films/coombe-abbey.md) (the launch sketch Story, and the M&E reel from 18 Nov, Bianca: "the same as social one") |
 | Upbeat Acoustic | [oakley-hall-story](films/oakley-hall-story.md) |
 | Whittlebury's cooking track | [cbh-rolodex](films/cbh-rolodex.md) |
 | In-app sounds (no music baked in) | Hello October ([october-best-loved](films/october-best-loved.md) silent versions), Good Day ([up-next](films/up-next.md) Story) |
