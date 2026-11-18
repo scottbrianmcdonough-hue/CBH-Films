@@ -23,7 +23,9 @@ const R = 6;
 
 type Winner = { hero: string; heroPos: string; side: [string, string][]; award: string; name: string; place: string };
 const WINNERS: Winner[] = [
-  { hero: `${A}/low-wood-bay-tall.jpg`, heroPos: "45% 50%", side: [[`${S}/lwb-lake-poster.jpg`, "50% 62%"], ["campaigns/flipbook-winter/lake-poster.jpg", "50% 45%"]],
+  { hero: `${A}/low-wood-bay-tall.jpg`, heroPos: "45% 50%", // the infinity pool over Windermere at sunset, then the rooftops under snow (Scott: the first pair, the misty
+    // hillside and the lake at dusk, needed better)
+    side: [["campaigns/flipbook-winter/lake-end.jpg", "30% 62%"], [`${A}/lwb-snowy-rooftops.jpg`, "40% 60%"]],
     award: "BEST RESORT SPA", name: "Low Wood Bay\nResort & Spa", place: "WINDERMERE, LAKE DISTRICT" },
   { hero: `${A}/gisborough-hall-tall.jpg`, heroPos: "28% 50%", side: [["campaigns/showcase/gisborough-exterior.jpg", "50% 50%"], [`${S}/gis-sunrise-poster.jpg`, "50% 40%"]],
     award: "BEST NEW SPA", name: "Gisborough Hall Country\nHouse Hotel & Spa", place: "NORTH YORKSHIRE" },
