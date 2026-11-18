@@ -43,7 +43,7 @@ if (process.argv[3] === 'linkedin') {
   L(2, 'conference-room-cloisters-003.jpg', '50% 50%');  // the boardroom table down the centre to the stage (pick, 17 Nov)
   L(3, 'private-dining-marquee-001.jpg', '50% 50%');
   L(4, 'garden-room-restaurant-002.jpg', '50% 50%');
-  L(5, 'the-princess-elizabeth-grand-feature-bathroom-001.jpg', '50% 50%');
+  L(5, 'lady-craven-grand-feature-room-wide.jpg', '50% 50%');  // The Lady Craven in place of the turret bathroom (Scott, 18 Nov)
   L(6, 'gardens-001.jpg', '50% 55%');
 }
 (async () => {
