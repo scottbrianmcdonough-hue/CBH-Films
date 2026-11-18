@@ -46,6 +46,8 @@ if (process.argv[3] === 'linkedin') {
   L(5, 'lady-craven-grand-feature-room-wide.jpg', '50% 50%');  // The Lady Craven in place of the turret bathroom (Scott, 18 Nov)
   L(6, 'gardens-001.jpg', '50% 55%');
 }
+// one off 4:5 of The Lady Craven, the wide shot (Scott, 18 Nov)
+if (process.argv[3] === 'lady-craven') { jobs.length = 0; jobs.push(['lady-craven-4x5', 1080, 1350, 'lady-craven-grand-feature-room-wide.jpg', process.argv[4] || '72% 50%', false, 0, 1350 - 130]); }
 (async () => {
   const b = await chromium.launch(); const pg = await b.newPage();
   for (const [name, w, h, src, pos, label, lb, cb] of jobs) {
