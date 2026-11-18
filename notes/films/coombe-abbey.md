@@ -99,3 +99,10 @@ intro (`out/coombe-abbey/15-socials-intro.txt`) and the travel guide (`out/coomb
 17 Nov, Bianca's schedule for launch day, Wed 18 Nov: the news page goes live at 9am. The travel guide and all the social intros (Instagram, Facebook, TikTok and the LinkedIn GDS post) follow at 10am. Both tickets now carry these times.
 
 17 Nov: Bianca rewrote the LinkedIn GDS intro herself for the corporate audience ("such a big deal for us"), in Jira CBH-159. It goes out on Wed 18 Nov at 10am in her words, as she sent them; my draft stays in `out/coombe-abbey/16-linkedin-intro.txt` for reference.
+
+18 Nov: the CBH hotel page is live at https://classicbritishhotels.com/hotels/coombe-abbey/ and now fills the Facebook CTA. The socials intro went out in the copy Scott and Bianca settled on ("Not every hotel comes with its own moat"), with the carousel changed:
+- Go Ape at the end
+- the M&E photos kept together
+- The Lady Craven wide shot
+- steak and red wine in place of the afternoon tea
+The travel guide is published. Next: link the Book Now button in the travel guide.
