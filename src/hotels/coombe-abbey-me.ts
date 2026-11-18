@@ -67,7 +67,7 @@ export const coombeAbbeyME: MESpec = {
         { src: P + "dining-001.jpg", pos: "50% 50%" },
       ],
       cuts: [F.dining],
-      text: { eyebrow: "The Garden Room", title: "Dinner, with the gardens looking in", subs: ["Or a Mediaeval Banquet after dark"] },
+      text: { eyebrow: "The Garden Room", title: "Dinner, with the gardens looking in", subs: ["Or a Medieval Banquet after dark"] },
     },
     {
       at: F.marquee, // a quick crossfade on the beat, not a hard cut (Scott: "a sharp cut at 22": dark steak to the white Marquee)
@@ -89,5 +89,6 @@ export const coombeAbbeyME: MESpec = {
     },
   ],
   end: { at: F.end, cut: true, name: "Coombe Abbey Hotel", place: "Coventry, Warwickshire" },
-  music: { src: "music/jonasblakewood-acoustic-indie-folk-619515.mp3", startAt: 871, gain: 0.37, fadeOut: 20 // the track is hot: -6.7 LUFS at gain 1; this lands about -15.3 },
+  // the track is hot: -6.7 LUFS at gain 1; 0.37 lands about -15.3
+  music: { src: "music/jonasblakewood-acoustic-indie-folk-619515.mp3", startAt: 871, gain: 0.37, fadeOut: 20 },
 };

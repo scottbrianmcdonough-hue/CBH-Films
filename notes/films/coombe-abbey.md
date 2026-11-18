@@ -127,3 +127,10 @@ The clips were made by scripts/sketch-to-life.py into `public/hotels/coombe-abbe
 - The aerial and label run ten beats, then a scene every six beats (~3s).
 - The end card lands on beat 108 and the final hit at frame 900; the guitar then rings out.
 - 32.9s, -15.3 LUFS. The track is hot, so the audio was brought down 8.6 dB after the render, and gain 0.37 in the spec matches that.
+
+18 Nov: "Medieval Banquet(s)" everywhere (Scott: the hotel's "Mediaeval" spelling is a mistake). Changed in:
+- the M&E reel's Garden Room line (re-rendered)
+- the travel guide (live doc, Word and HTML)
+- the LinkedIn article
+- the M&E ticket
+The travel guide already published on the CBH site still says "Mediaeval" and needs the same edit there.
