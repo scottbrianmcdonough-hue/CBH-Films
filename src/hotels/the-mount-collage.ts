@@ -239,6 +239,7 @@ export const theMountCollage: CollageSpec = {
     // the full name (Scott): The Mount Country Manor Hotel & Golf, on three lines
     name: "The Mount\nCountry Manor\nHotel & Golf",
     until: 5.5, // held about 3s (Scott: "too quick to read")
+    noRule: true, // no gold underline (Scott, 19 Nov: "get rid of the gold underline")
   },
   // The ending (Scott: the blurred wall was "kind of abrupt"): the fondant flies up out of
   // the wall from 38.5 and fills the frame on the 39.5 kick, holds a beat, then to black on

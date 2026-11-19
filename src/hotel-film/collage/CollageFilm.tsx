@@ -276,10 +276,11 @@ const Tile: React.FC<
 
 // The opening label: the place in gold caps with its still underline, the hotel's name in
 // Cormorant beneath, bottom-left over the scrim; it lifts away before `until`.
-const Label: React.FC<{ eyebrow: string; name: string; out: number }> = ({
+const Label: React.FC<{ eyebrow: string; name: string; out: number; noRule?: boolean }> = ({
   eyebrow,
   name,
   out,
+  noRule,
 }) => {
   const frame = useCurrentFrame();
   const a = progress(frame, 6, 18, EASE_OUT);
@@ -309,7 +310,7 @@ const Label: React.FC<{ eyebrow: string; name: string; out: number }> = ({
           >
             {eyebrow}
           </div>
-          <div style={{ height: 2, background: colors.gold, marginTop: 8 }} />
+          {noRule ? null : <div style={{ height: 2, background: colors.gold, marginTop: 8 }} />}
         </div>
         {name.split("\n").map((l) => (
           <div
@@ -460,6 +461,7 @@ export const CollageFilm: React.FC<{ film: CollageSpec }> = ({ film }) => {
           eyebrow={film.label.eyebrow}
           name={film.label.name}
           out={Math.round(film.label.until * film.beat)}
+          noRule={film.label.noRule}
         />
       </Sequence>
       <Sequence from={endAt}>

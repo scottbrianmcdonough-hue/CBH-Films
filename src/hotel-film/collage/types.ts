@@ -43,7 +43,7 @@ export type CollageSpec = {
   move: number; // frames each move takes, settling 3 frames after its hit
   photos: Record<string, CollagePhoto>;
   states: CollageState[];
-  label: { eyebrow: string; name: string; until: number }; // over the opening; beat it leaves
+  label: { eyebrow: string; name: string; until: number; noRule?: boolean }; // noRule: the gold caps without the underline (Scott, 19 Nov, The Mount) // over the opening; beat it leaves
   // The ending: one tile flies up out of the wall to fill the frame (`zoom`: it sets off
   // on `from` and fills the frame on `land`, beats), the wall dropping into shadow behind
   // it; it fades to black, black by `beat`, where the question ("\n" breaks it) rises.
