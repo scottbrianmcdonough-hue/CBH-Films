@@ -1109,6 +1109,10 @@ with no history and no renders:
   underline"); the seal keeps its gold rings. Low Wood Bay's two side tiles swapped (Scott: "need a better one in the middle"): the
   infinity pool over Windermere at sunset (`flipbook-winter/lake-end.jpg`) and, after the snowy rooftops at sunset (Scott: "two of the same shot"), the candles in the spa garden at night
   (`spa-awards/lwb-candles.jpg`, a frame of the screen time clip): never two lake sunsets side by side. Sent.
+- Ramside Hall reel bank (Scott, 19 Nov): 34 portrait clips, 1080 x 1920, 25fps, 8-12s, in
+  `public/hotels/ramside-hall/reel-bank/` (two A frame treehouse drone shots, two breakfast, ext-009 to 011, 21
+  interiors int-001 to 024 with gaps, eight Rib Room; the INT files are separate from the Charcoal INT ones). Only
+  batches 14-21 of his 82 reached this session; nothing made from them yet. 25fps: conform to 30 when cutting.
 - Network: this session now runs on the personal environment `cbh-films` (created 17 Nov, Scott approved), which
   allows coombeabbey.com and classicbritishhotels.com (with and without www). The CBH site still answers 403 to
   curl (its own bot block), so its photos still come from Scott; other hotel sites need adding to the environment.
