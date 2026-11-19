@@ -1124,6 +1124,20 @@ with no history and no renders:
   wait". Party Pop (AtlasAudio, Pixabay 606271) from 123.03s, its detected beats (`BEATS`), drop on beat 6; the render
   comes out hot, -7 dB after: -15.1 LUFS, 18.5s. `out/ramside-treehouses-tiktok.mp4`, `-silent`, `-cover.jpg`. Sent.
   The drone and exteriors are summer green (flagged). No bedroom, spa or treehouse interior in the batches received.
+- TikTok set 2 (Scott, 19 Nov: "a few more for tiktok, frontload", Bianca on board with the separate grid; ticket
+  `out/tiktok-set-2-ticket.txt`, each with `-silent` and `-cover`; audio set to -15 LUFS after the render by measuring):
+  `this-or-that-tiktok` (`cuts/ThisOrThat.tsx`): the frame split top and bottom, a hotel in each half with its name
+  and an "or" pill at the seam, a round every eight beats (top in on the downbeat, bottom a beat on, both leave
+  together), four rounds, eight hotels; "this or that: / hotel edition", "comment your picks"; Event Music
+  (prettyjohn1, Pixabay 595091) from 6.27s, 15.0s. `cbh-camera-roll-christmas-tiktok` (`christmasRoll`): Hogarths
+  Stone Manor (arrival, drinks, dinner), The Kingfisher (tree, fire), Ramside's tree; "our camera roll: / Christmas
+  edition" (the festive reel's clips again: flagged). `hatherley-frame-in-frame-tiktok` (`cuts/FrameInFrame.tsx`;
+  Scott: "frame within a frame"): every picture holds a small cream-edged frame of the next room and the camera dives
+  through it on the beat (house, lounge, spa cafe, thermal suite, relaxation room, bed), creeping between dives;
+  "POV: you only came / for a look round", "staying, then"; label GLOUCESTERSHIRE / Hatherley Manor Hotel & Spa
+  (confirm how CBH lists its place); Tech House vibes from 25.66s, 13.3s; levels are data (`LEVELS`).
+  `cbh-starry-night-hythe-tiktok`: the second Starry Night, Hythe Imperial's ballroom at dusk, "but make it Kent"
+  (`scripts/starry-night.py --name hythe`, `VARIANTS`; `StarrySpec` in StarryNight.tsx).
 - Network: this session now runs on the personal environment `cbh-films` (created 17 Nov, Scott approved), which
   allows coombeabbey.com and classicbritishhotels.com (with and without www). The CBH site still answers 403 to
   curl (its own bot block), so its photos still come from Scott; other hotel sites need adding to the environment.

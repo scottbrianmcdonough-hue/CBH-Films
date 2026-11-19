@@ -62,6 +62,31 @@ export const northWestRoll: RollSpec = {
   end: ["0 photos of the sofa"],
 };
 
+// Christmas (Scott, 19 Nov: "a few more for TikTok"): a theme, not a region: the festive footage across the
+// collection, three hotels, the label once a hotel
+const K = "hotels/the-kingfisher/festive";
+const HG = "hotels/hogarths-stone-manor/festive";
+const FF = "campaigns/festive/footage";
+export const christmasRoll: RollSpec = {
+  roll: [
+    { src: `${G}/snowy-garden.mp4`, len: 62 },
+    { src: `${K}/garland-30.mp4`, len: 343 },
+    { src: `${R}/log-burner.mp4`, len: 60 },
+    { src: `${FF}/treehouse-canopy.mp4`, len: 89 },
+    { src: `${HG}/arrival.mp4`, len: 78, place: "KIDDERMINSTER", hotel: "Hogarths Stone Manor" },
+    { src: `${HG}/drinks.mp4`, len: 69, place: "KIDDERMINSTER", hotel: "Hogarths Stone Manor" },
+    { src: `${HG}/dinner.mp4`, len: 69, place: "KIDDERMINSTER", hotel: "Hogarths Stone Manor" },
+    { src: `${K}/tree.mp4`, len: 79, place: "BEDFORD", hotel: "The Kingfisher" },
+    { src: `${K}/fire.mp4`, len: 109, place: "BEDFORD", hotel: "The Kingfisher" },
+    { src: `${L}/snowy-rooftops.mp4`, len: 62 },
+    { src: `${FF}/ramside-tree.mp4`, len: 168, place: "DURHAM", hotel: "Ramside Hall" },
+    { src: `${FF}/treehouse-bath.mp4`, len: 90 },
+  ],
+  opened: [4, 5, 6, 7, 8, 10],
+  hook: ["our camera roll:", "Christmas edition"],
+  end: ["0 photos of the sofa"],
+};
+
 // What The Funk (Rockot, Pixabay 549053) from 22.94s, where the band is full: its beats, in frames
 const MUSIC = "music/rockot-what-the-funk-549053.mp3";
 const MUSIC_FROM = 22.9413;

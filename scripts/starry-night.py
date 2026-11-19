@@ -32,6 +32,11 @@ TOTAL = 300
 SCALE, CX, TOP = 1.2, 0.57, 560  # the photo's scale, the crop's centre across it, where its top sits
 DOOR = (430, 1330)  # the lit doorway the real picture spreads from
 
+# other hotels (--name): the photo, its placing and the lit doorway the clearing spreads from
+VARIANTS = {
+    "hythe": {"src": "public/campaigns/journey-new/hythe-ballroom-dusk.jpg", "scale": 1.2, "cx": 0.5, "top": 560, "door": (540, 1500)},
+}
+
 rng = np.random.default_rng(7)
 
 
@@ -270,7 +275,13 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--stills", default=None)
     ap.add_argument("--only", default=None, help="comma list of frames")
+    ap.add_argument("--name", default=None, help="another hotel's picture: see VARIANTS")
     args = ap.parse_args()
+    if args.name:
+        global SRC, OUT, SCALE, CX, TOP, DOOR
+        v = VARIANTS[args.name]
+        SRC, OUT = ROOT / v["src"], ROOT / f"public/stings/starry-night-{args.name}.mp4"
+        SCALE, CX, TOP, DOOR = v["scale"], v["cx"], v["top"], v["door"]
 
     base_stamps()
     real = build_real()

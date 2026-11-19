@@ -86,8 +86,8 @@ import {
   StickXmas,
 } from "./hotel-film/doodle/StickFlip";
 import { coombeBanquetTicket, EventTicket, holdsworthGigTicket, ramsideGigTicket, ticketFrames, whittleburyRaceTicket } from "./hotel-film/ticket/EventTicket";
-import { CameraRoll, northWestRoll, ROLL_FRAMES } from "./hotel-film/roll/CameraRoll";
-import { STARRY_FRAMES, StarryNight } from "./hotel-film/stings/StarryNight";
+import { CameraRoll, christmasRoll, northWestRoll, ROLL_FRAMES } from "./hotel-film/roll/CameraRoll";
+import { STARRY_FRAMES, StarryNight, starryHythe } from "./hotel-film/stings/StarryNight";
 import { COOMBE_INTRO_SLIDES, CoombeIntro } from "./linkedin/CoombeIntro";
 import { SpaAwards } from "./linkedin/SpaAwards";
 import { PostItList, POSTIT_FRAMES } from "./hotel-film/postit/PostItList";
@@ -110,6 +110,8 @@ import { MontageFilm } from "./hotel-film/montage/MontageFilm";
 import { MotionFilm } from "./hotel-film/motion/MotionFilm";
 import { PulseFilm } from "./hotel-film/pulse/PulseFilm";
 import { SearchFilm } from "./hotel-film/search/SearchFilm";
+import { FIF_FRAMES, FrameInFrame } from "./hotel-film/cuts/FrameInFrame";
+import { ThisOrThat, TOT_FRAMES } from "./hotel-film/cuts/ThisOrThat";
 import { RAMSIDE_TT_FRAMES, RamsideTikTok } from "./hotel-film/cuts/RamsideTikTok";
 import { FPS, HEIGHT, WIDTH } from "./hotel-film/types";
 import { CraftFilm } from "./hotel-film/craft/CraftFilm";
@@ -404,9 +406,13 @@ export const RemotionRoot: React.FC = () => {
       />
       {/* Starry Night repainted on a hotel at dusk, clearing to the real photo: TikTok */}
       <Composition id="cbh-starry-night-tiktok" component={StarryNight} durationInFrames={STARRY_FRAMES} fps={FPS} width={WIDTH} height={HEIGHT} />
+      <Composition id="cbh-starry-night-hythe-tiktok" component={StarryNight} defaultProps={{ spec: starryHythe }} durationInFrames={STARRY_FRAMES} fps={FPS} width={WIDTH} height={HEIGHT} />
+      <Composition id="hatherley-frame-in-frame-tiktok" component={FrameInFrame} durationInFrames={FIF_FRAMES} fps={FPS} width={WIDTH} height={HEIGHT} />
+      <Composition id="this-or-that-tiktok" component={ThisOrThat} durationInFrames={TOT_FRAMES} fps={FPS} width={WIDTH} height={HEIGHT} />
       {/* a camera roll of winter weekends, swiped through: TikTok */}
       <Composition id="ramside-treehouses-tiktok" component={RamsideTikTok} durationInFrames={RAMSIDE_TT_FRAMES} fps={FPS} width={WIDTH} height={HEIGHT} />
       <Composition id="cbh-camera-roll-tiktok" component={CameraRoll} durationInFrames={ROLL_FRAMES} fps={FPS} width={WIDTH} height={HEIGHT} />
+      <Composition id="cbh-camera-roll-christmas-tiktok" component={CameraRoll} defaultProps={{ spec: christmasRoll }} durationInFrames={ROLL_FRAMES} fps={FPS} width={WIDTH} height={HEIGHT} />
       <Composition id="cbh-camera-roll-north-west-tiktok" component={CameraRoll} defaultProps={{ spec: northWestRoll }} durationInFrames={ROLL_FRAMES} fps={FPS} width={WIDTH} height={HEIGHT} />
       {/* the event ticket that flips into the hotel's room key: TikTok event tie-ins */}
       <Composition
