@@ -18,6 +18,8 @@ Statuses as of 2 Nov 2026.
 
 ## Sent, waiting on Scott
 
+- [Every name, one CB](films/cbh-names-cb.md): Silent mock-up built 19 Nov; needs a track.
+
 - [Gift vouchers: the temperature Story](films/gift-temperature.md): First version built 19 Nov for TikTok and Stories.
 
 - [Good Spa Guide winners collage](films/spa-awards.md): Scott picked the six-tile roundel version (18 Nov); going out Thu 19 Nov.
