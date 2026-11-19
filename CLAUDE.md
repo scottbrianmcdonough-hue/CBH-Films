@@ -1053,7 +1053,7 @@ with no history and no renders:
   drop at 18.04s), 19.1s, -15.1 LUFS (-5.8 dB after the render). `holdsworth-gig-night-tiktok` (the Beatles stayed
   here) is registered but not sent: its stills had been used. Both sent. The starry night Scott meant was not in
   this repo: this is a new one.
-- TikTok polish and ticket (17 Nov, Scott): shorter lines: the camera roll's hook "my camera roll: / the North West" (was "camera roll dump": Scott, 19 Nov, never "dump", in the video, the copy or the hashtags)
+- TikTok polish and ticket (17 Nov, Scott): shorter lines: the camera roll's hook "my camera roll: / the North West" (was "camera roll dump": Scott, 19 Nov, never "dump", in the video, the copy or the hashtags) then "our camera roll: / the North West" and "0 photos of the sofa" (Scott: "our", not "my": it is CBH speaking)
   (the mixed one "this winter") and end "0 photos of my sofa"; Starry Night's end "better in real life", its stars now
   rings of uneven hand-laid dabs (they read as targets) and the hotel in finer, calmer dabs so it reads; the gig
   night's second line "now make / a night of it" (Scott: "where are you sleeping" with no bed shots; no Ramside
