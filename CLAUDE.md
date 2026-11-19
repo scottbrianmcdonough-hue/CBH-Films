@@ -1164,6 +1164,7 @@ with no history and no renders:
   is Hythe/Folkestone, Kent. CBH's collection lists (spa 31, waterfront 14, country house 35, with places) are in
   `src/hotels/cbh-collections.ts` for the "save for later" lists. Footage to come in batches of 5: The Kingfisher,
   Coombe Abbey, fresh festive clips.
+- Spell it "Medieval" (Scott, 19 Nov), not the hotel's "Mediaeval": Coombe Abbey's Medieval Banquet, in videos and copy.
 - No member against member (Scott, 19 Nov, on `this-or-that-tiktok`: "don't want them to compete against each
   other"): never set two member hotels against each other for a vote or a pick. `this-or-that-tiktok` is not to be
   posted as it is; a this or that inside one hotel (pool or thermal suite) would be fine.

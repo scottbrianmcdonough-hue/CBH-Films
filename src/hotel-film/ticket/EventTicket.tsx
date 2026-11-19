@@ -279,12 +279,12 @@ export const ramsideGigTicket: TicketSpec = {
 };
 
 // Coombe Abbey, Warwickshire (Scott, 17 Nov, pasted its Stay and Private Dining pages): the event is the hotel's
-// own, so it recurs and there is nowhere to travel: its Mediaeval Banquet. This one ends on a bed, so "where are
+// own, so it recurs and there is nowhere to travel: its Medieval Banquet (spelt Medieval: Scott, 19 Nov). This one ends on a bed, so "where are
 // you sleeping?" is back. Photos from coombeabbey.com (`public/hotels/coombe-abbey/`). Upbeat Dance Pop Infectious
 // (toolikes, Pixabay 225269), 128 BPM, beat 0 at 0.990s: the window opens on its lift at 60.99s.
 const CA = "hotels/coombe-abbey";
 export const coombeBanquetTicket: TicketSpec = {
-  ticket: { kicker: "A MEDIAEVAL", title: "Banquet", venue: "COOMBE ABBEY", details: [["TABLE", "12"], ["SEATS", "2"], ["NO.", "042"]] },
+  ticket: { kicker: "A MEDIEVAL", title: "Banquet", venue: "COOMBE ABBEY", details: [["TABLE", "12"], ["SEATS", "2"], ["NO.", "042"]] },
   key: { place: "WARWICKSHIRE", name: "Coombe Abbey", line: "A CANOPIED BED UPSTAIRS" },
   hook: ["POV: you got", "banquet tickets"],
   ask: ["now where are", "you sleeping?"],
