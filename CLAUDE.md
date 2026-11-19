@@ -1154,6 +1154,16 @@ with no history and no renders:
   theme (spa, waterside, country house), seasonal moments from member footage, TikTok only animation and photo
   stories. Festive stays lead UK hotel search now. Posted so far (views, 19 Nov): North West camera roll 376, Starry
   Night Surrey 335, Ramside treehouses 265, The Mount wall 192.
+- TikTok rulings (Scott, 19 Nov, after the plan): every unposted TikTok ends on a question in the video itself
+  (this or that "which four / are you picking?", Christmas roll "where are you / spending yours?", frame within a
+  frame "which room would / you stop in?", Starry Night Hythe "which hotel do / we paint next?", Ramside gig night
+  "who are you taking?", Coombe banquet "who gets the / other ticket?"); sound is a mix of trending and original:
+  always deliver with a track and never put a silent copy on a Jira ticket (Bianca); where a reel only works on its
+  own music (tile walls) keep it, otherwise cut to a steady beat so a trending sound can go over it in the app.
+  Places as CBH lists them: Hatherley Manor Hotel & Spa is Cotswolds (Gloucester), Hythe Imperial Hotel, Golf & Spa
+  is Hythe/Folkestone, Kent. CBH's collection lists (spa 31, waterfront 14, country house 35, with places) are in
+  `src/hotels/cbh-collections.ts` for the "save for later" lists. Footage to come in batches of 5: The Kingfisher,
+  Coombe Abbey, fresh festive clips.
 - Network: this session now runs on the personal environment `cbh-films` (created 17 Nov, Scott approved), which
   allows coombeabbey.com and classicbritishhotels.com (with and without www). The CBH site still answers 403 to
   curl (its own bot block), so its photos still come from Scott; other hotel sites need adding to the environment.

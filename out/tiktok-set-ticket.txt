@@ -23,7 +23,7 @@ What's the last thing in your camera roll? 👇
 Hashtags
 #ClassicBritishHotels #CameraRoll #LakeDistrict #Chester #WinterBreak
 
-Sound: What The Funk by Rockot (Pixabay) is baked in; or mute it and add a trending sound in the app.
+Sound: What The Funk by Rockot (Pixabay) is baked in; a trending sound can be added over it in the app.
 
 
 2. Starry Night, but make it Surrey
@@ -42,7 +42,7 @@ Which hotel should we paint next? 👇
 Hashtags
 #ClassicBritishHotels #StarryNight #Surrey #ArtTok #HotelStay
 
-Sound: Eternity by Leva (Pixabay) is baked in; or mute it and add a trending sound in the app.
+Sound: Eternity by Leva (Pixabay) is baked in; a trending sound can be added over it in the app.
 
 
 3. Gig night: sorted
@@ -61,10 +61,10 @@ Who are you taking? Tag them 👇
 Hashtags
 #ClassicBritishHotels #GigNight #Durham #NorthEast #SpaBreak
 
-Sound: Party Dance by prettyjohn1 (Pixabay) is baked in; or mute it and add a trending sound in the app.
+Sound: Party Dance by prettyjohn1 (Pixabay) is baked in; a trending sound can be added over it in the app.
 
 
-Files: each post has its video, a silent copy for an in-app sound (same name ending -silent.mp4) and a cover image (ending -cover.jpg).
+Files: each post has its video and a cover image (ending -cover.jpg).
 
 Text style (fixed, so the grid stays consistent): white bold text on black blocks, lower case, at most two short lines, top third of the frame, always baked into the video and never added in the app. Hotel names stay in the gold and cream label.
 

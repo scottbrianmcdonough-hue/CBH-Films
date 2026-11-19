@@ -102,7 +102,7 @@ Hashtags
 Sound: Party Pop by AtlasAudio (Pixabay) is baked in.
 
 
-Files: each post has its video, a silent copy for an in-app sound (same name ending -silent.mp4) and a cover image (ending -cover.jpg).
+Files: each post has its video and a cover image (ending -cover.jpg).
 
 Time slot: TikTok 8:00 PM, one a day
 Platforms: TikTok only

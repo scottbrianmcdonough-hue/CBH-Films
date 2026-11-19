@@ -84,7 +84,7 @@ export const christmasRoll: RollSpec = {
   ],
   opened: [4, 5, 6, 7, 8, 10],
   hook: ["our camera roll:", "Christmas edition"],
-  end: ["0 photos of the sofa"],
+  end: ["where are you", "spending yours?"], // a question to close (the TikTok plan)
 };
 
 // What The Funk (Rockot, Pixabay 549053) from 22.94s, where the band is full: its beats, in frames

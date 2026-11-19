@@ -6,7 +6,7 @@ Campaign: TikTok
 Video: this-or-that-tiktok.mp4 (15.0s, 9:16)
 
 Hook
-The screen split in two under "this or that: hotel edition", a hotel in each half with an "or" between them, a new pair on the beat: Hatherley Manor's pool or Frensham Pond's spa pool, Hythe Imperial's champagne bar or The Speech House's fairy lit cabin, Donnington Valley's suite or Whittlebury Park's, Whitley Hall's terrace or Ramside Hall's hot tub. It ends on "comment your picks".
+The screen split in two under "this or that: hotel edition", a hotel in each half with an "or" between them, a new pair on the beat: Hatherley Manor's pool or Frensham Pond's spa pool, Hythe Imperial's champagne bar or The Speech House's fairy lit cabin, Donnington Valley's suite or Whittlebury Park's, Whitley Hall's terrace or Ramside Hall's hot tub. It ends on a question: "which four are you picking?"
 
 Post
 This or that: hotel edition 👀
@@ -18,7 +18,7 @@ Comment yours 👇
 Hashtags
 #ClassicBritishHotels #ThisOrThat #HotelStay #SpaBreak #WeekendAway
 
-Sound: Event Music by prettyjohn1 (Pixabay) is baked in; or mute it and add a trending sound in the app (silent copy: this-or-that-tiktok-silent.mp4).
+Sound: Event Music by prettyjohn1 (Pixabay) is baked in; a trending sound can be added over it in the app.
 
 Cover: this-or-that-tiktok-cover.jpg
 

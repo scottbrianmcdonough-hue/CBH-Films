@@ -245,7 +245,7 @@ export const holdsworthGigTicket: TicketSpec = {
   ask: ["now where are", "you sleeping?"],
   answer: ["flip it over"],
   last: ["the encore:", "breakfast in bed"],
-  end: ["gig night: sorted"],
+  end: ["who are you taking?"], // a question to close (the TikTok plan); was "gig night: sorted"
   shots: [
     { src: `${HH}/exterior.jpg`, pos: "42% 50%", beats: 4 },
     { src: `${HH}/main-hall.jpg`, pos: "50% 50%", beats: 2 },
@@ -290,7 +290,7 @@ export const coombeBanquetTicket: TicketSpec = {
   ask: ["now where are", "you sleeping?"],
   answer: ["flip it over"],
   last: ["then upstairs to bed"],
-  end: ["banquet night: sorted"],
+  end: ["who gets the", "other ticket?"], // a question to close; was "banquet night: sorted"
   shots: [
     { src: `${CA}/aerial.jpg`, pos: "47% 50%", beats: 4 },
     { src: `${CA}/banquet-cast.jpg`, pos: "52% 50%", beats: 2 },

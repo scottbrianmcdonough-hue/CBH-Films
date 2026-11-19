@@ -11,11 +11,12 @@ import { colors, progress, sans, serif } from "../theme";
 // house label and the music (Leva's Eternity, the Dalmahoy film's track, never posted).
 export const STARRY_FRAMES = 300;
 // Another hotel's painting is a variant: its picture (scripts/starry-night.py --name), words and label
-export type StarrySpec = { video: string; hook: string[]; place: string; hotel: string; labelTop: number };
+export type StarrySpec = { video: string; hook: string[]; place: string; hotel: string; labelTop: number; end?: string[]; shade?: boolean };
 const FRENSHAM: StarrySpec = { video: "stings/starry-night.mp4", hook: ["Starry Night,", "but make it Surrey"], place: "FARNHAM, SURREY",
   hotel: "Frensham Pond\nHotel & Spa", labelTop: 720 };
 export const starryHythe: StarrySpec = { video: "stings/starry-night-hythe.mp4", hook: ["Starry Night,", "but make it Kent"], place: "HYTHE, KENT",
-  hotel: "Hythe Imperial Hotel,\nGolf & Spa", labelTop: 560 };
+  hotel: "Hythe Imperial Hotel,\nGolf & Spa", labelTop: 590,
+  end: ["which hotel do", "we paint next?"], shade: true }; // a question to close; a shade so the gold reads on the pale sky
 export const StarryNight: React.FC<{ spec?: StarrySpec }> = ({ spec = FRENSHAM }) => {
   const frame = useCurrentFrame();
   const label = progress(frame, 214, 14);
@@ -24,7 +25,7 @@ export const StarryNight: React.FC<{ spec?: StarrySpec }> = ({ spec = FRENSHAM }
       <OffthreadVideo src={staticFile(spec.video)} muted />
       <AbsoluteFill style={{ opacity: label }}>
         {/* in the sky above the roof: lower down it sat on the hotel's own lit sign */}
-        <div style={{ position: "absolute", left: 72, top: spec.labelTop, textShadow: "0 2px 18px rgba(0,10,40,0.55)" }}>
+        <div style={{ position: "absolute", left: 72, top: spec.labelTop, textShadow: spec.shade ? "0 2px 14px rgba(0,10,40,0.85), 0 0 40px rgba(0,10,40,0.6)" : "0 2px 18px rgba(0,10,40,0.55)" }}>
           <div style={{ display: "inline-block" }}>
             <div style={{ fontFamily: sans, fontWeight: 600, fontSize: 28, letterSpacing: "0.24em", color: colors.gold }}>{spec.place}</div>
           </div>
@@ -37,7 +38,7 @@ export const StarryNight: React.FC<{ spec?: StarrySpec }> = ({ spec = FRENSHAM }
         <TikTokText lines={spec.hook} top={TT_TOP} left={140} out={152} still />
       </Sequence>
       <Sequence from={226} layout="none">
-        <TikTokText lines={["better in real life"]} top={TT_TOP} left={140} />
+        <TikTokText lines={spec.end ?? ["better in real life"]} top={TT_TOP - (spec.end ? 90 : 0)} left={140} />
       </Sequence>
     </AbsoluteFill>
   );

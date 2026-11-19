@@ -81,7 +81,7 @@ export const FrameInFrame: React.FC = () => {
         <AbsoluteFill style={{ opacity: labelO }}>
           <AbsoluteFill style={{ background: "linear-gradient(to bottom, rgba(9,9,10,0) 54%, rgba(9,9,10,0.6) 76%, rgba(9,9,10,0.3) 100%)" }} />
           <div style={{ position: "absolute", left: 72, bottom: 480 }}>
-            <div style={{ fontFamily: sans, fontWeight: 600, fontSize: 28, letterSpacing: "0.24em", color: colors.gold }}>GLOUCESTERSHIRE</div>
+            <div style={{ fontFamily: sans, fontWeight: 600, fontSize: 28, letterSpacing: "0.24em", color: colors.gold }}>COTSWOLDS, GLOUCESTER</div>
             <div style={{ fontFamily: serif, fontSize: 68, lineHeight: 1.08, marginTop: 12, color: colors.cream }}>Hatherley Manor<br />Hotel & Spa</div>
           </div>
         </AbsoluteFill>
@@ -93,7 +93,7 @@ export const FrameInFrame: React.FC = () => {
         <TikTokText lines={["POV: you only came", "for a look round"]} top={TT_TOP - 190} left={140} out={b(PER) - DIVE - 6} still />
       </Sequence>
       <Sequence from={b(last * PER) + 8} layout="none">
-        <TikTokText lines={["staying, then"]} top={TT_TOP - 190} left={140} />
+        <TikTokText lines={["which room would", "you stop in?"]} top={TT_TOP - 190} left={140} />
       </Sequence>
     </AbsoluteFill>
   );

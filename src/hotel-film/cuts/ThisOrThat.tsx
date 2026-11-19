@@ -84,7 +84,7 @@ export const ThisOrThat: React.FC = () => {
         <TikTokText lines={["this or that:", "hotel edition"]} top={TT_TOP - 250} left={140} out={b(PER) - 12} still />
       </Sequence>
       <Sequence from={b(last * PER + 5)} layout="none">
-        <TikTokText lines={["comment your picks"]} top={TT_TOP - 250} left={140} />
+        <TikTokText lines={["which four", "are you picking?"]} top={TT_TOP - 250} left={140} />
       </Sequence>
     </AbsoluteFill>
   );
