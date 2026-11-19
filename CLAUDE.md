@@ -950,7 +950,7 @@ with no history and no renders:
   back (the depth move is the camera dropping lower), all but still once the letters start (Scott: "less camera
   movement after the reveal, focus on the CB rise"); the ripples' rings follow the CB's outline (a signed distance
   field; Scott: "less circle ripples and more CB shape ripples"); then they sink back,
-  the CB fills solid gold and becomes the logo, shimmer. 17.3s. The 3D page never goes below the film's black. Render with `--gl=angle`. Renders with `--public-dir` set to a slim folder (brand SVGs and fonts only) when the
+  the CB fills solid gold and becomes the logo, shimmer. 17.3s. The 3D page never goes below the film's black. Render with `--gl=angle`. (In the container's current layout `--gl=angle` cannot create a WebGL context: use `--gl=swangle`; re-rendered and re-sent 19 Nov for TikTok, still silent.) Renders with `--public-dir` set to a slim folder (brand SVGs and fonts only) when the
   disk is tight. First version sent; needs a track.
 - `cbh-screen-time-{yorkshire,north-west-wales,east-midlands}` (`screentime/ScreenTime.tsx`, 26.5s): a
   weekend screen-time report (CBH black and gold, a generic look) whose "Most used" apps open into the
