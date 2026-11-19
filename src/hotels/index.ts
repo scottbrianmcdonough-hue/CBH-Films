@@ -12,6 +12,7 @@ import {
   watertonParkIslandStory,
 } from "./waterton-park-island";
 import { ruthinCastleDepth } from "./ruthin-castle-depth";
+import { coombeAbbeyCollage } from "./coombe-abbey-collage";
 import { haycockManorCollage } from "./haycock-manor-collage";
 import {
   haycockManorDepth,
@@ -171,6 +172,7 @@ export const COLLAGE_FILMS: CollageSpec[] = [
   theMountCollageSwing,
   theMountCollageShuffle,
   haycockManorCollage,
+  coombeAbbeyCollage,
 ];
 COLLAGE_FILMS.forEach(validateCollage);
 

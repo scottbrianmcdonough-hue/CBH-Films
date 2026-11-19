@@ -1138,6 +1138,12 @@ with no history and no renders:
   (confirm how CBH lists its place); Tech House vibes from 25.66s, 13.3s; levels are data (`LEVELS`).
   `cbh-starry-night-hythe-tiktok`: the second Starry Night, Hythe Imperial's ballroom at dusk, "but make it Kent"
   (`scripts/starry-night.py --name hythe`, `VARIANTS`; `StarrySpec` in StarryNight.tsx).
+- `coombe-abbey-collage` (`src/hotels/coombe-abbey-collage.ts`; Scott, 19 Nov: "do another one like the mount
+  tiles"): the tile wall for the new member, built on the Haycock wall's choreography and big band edit (its states
+  renamed onto Coombe's twelve photos), the aerial opening and flying up at the end, "Banquet first, / or the roll top
+  bath?", label Warwickshire / Coombe Abbey Hotel; 25.4s, -15.3 LUFS; ticket `out/coombe-abbey-collage-ticket.txt`.
+  Sent. The Mount's shuffle wall also has a TikTok ticket now (`out/the-mount-collage-tiktok-ticket.txt`; Scott
+  uploaded the render and asked for one). Single tickets for each TikTok are in `out/*-tiktok-ticket.txt`.
 - Network: this session now runs on the personal environment `cbh-films` (created 17 Nov, Scott approved), which
   allows coombeabbey.com and classicbritishhotels.com (with and without www). The CBH site still answers 403 to
   curl (its own bot block), so its photos still come from Scott; other hotel sites need adding to the environment.
