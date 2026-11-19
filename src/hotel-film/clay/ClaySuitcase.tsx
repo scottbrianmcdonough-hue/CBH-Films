@@ -214,7 +214,6 @@ const Label: React.FC<{ on: number }> = ({ on }) => (
     <div style={{ position: "absolute", left: 72, bottom: 500, transform: `translateY(${(1 - on) * 18}px)` }}>
       <div style={{ display: "inline-block" }}>
         <div style={{ fontFamily: sans, fontWeight: 600, fontSize: 28, letterSpacing: "0.24em", color: colors.gold }}>WARWICKSHIRE</div>
-        <div style={{ height: 2, marginTop: 12, background: colors.gold }} />
       </div>
       <div style={{ fontFamily: serif, fontSize: 64, lineHeight: 1.1, marginTop: 14, color: colors.cream, whiteSpace: "pre" }}>{"Nailcote Hall"}</div>
     </div>

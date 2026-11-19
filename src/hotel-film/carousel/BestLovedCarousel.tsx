@@ -73,7 +73,6 @@ export const BestLovedCarousel: React.FC = () => {
       <div style={{ position: "absolute", left: 72, right: 72, bottom: 96 + lift }}>
         <div style={{ display: "inline-block" }}>
           <div style={{ fontFamily: sans, fontWeight: 600, fontSize: 28, letterSpacing: "0.24em", color: colors.gold }}>{s.place}</div>
-          <div style={{ height: 2, marginTop: 12, background: colors.gold }} />
         </div>
         <div style={{ fontFamily: serif, fontSize: 72, lineHeight: 1.08, marginTop: 16, color: colors.cream, whiteSpace: "pre-line" }}>{tall ? s.tall[1] : s.name}</div>
         {/* the offer only, no prices (Scott) */}

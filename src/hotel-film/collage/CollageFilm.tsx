@@ -309,7 +309,6 @@ const Label: React.FC<{ eyebrow: string; name: string; out: number }> = ({
           >
             {eyebrow}
           </div>
-          <div style={{ height: 2, background: colors.gold, marginTop: 8 }} />
         </div>
         {name.split("\n").map((l) => (
           <div

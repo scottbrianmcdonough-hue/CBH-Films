@@ -290,7 +290,6 @@ const Label: React.FC<{
               style={{
                 display: "inline-block",
                 paddingBottom: 8,
-                borderBottom: `2px solid ${colors.gold}`,
               }}
             >
               <span style={{ marginRight: "-0.26em" }}>{place}</span>

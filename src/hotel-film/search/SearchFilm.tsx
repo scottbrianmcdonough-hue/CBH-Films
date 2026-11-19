@@ -243,7 +243,6 @@ const Caption: React.FC<{
                       marginRight: "-0.26em",
                       paddingRight: 0,
                       paddingBottom: 8,
-                      borderBottom: `2px solid ${colors.gold}`,
                       boxShadow: "0 6px 10px -8px rgba(9,9,10,0.6)",
                     }
                   : undefined

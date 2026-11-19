@@ -28,10 +28,12 @@ with no history and no renders:
 
 - Text rule (Scott, 16 Oct; in the skill): end cards clean cream Cormorant, centred, white CB
   in the corner, no gold place line; lines and questions over shots in cream Cormorant; hotel
-  labels over a shot (only where the place needs saying) a small gold caps place with its
-  underline on top, then the name in cream Cormorant: the only gold, the one brand touch.
+  labels over a shot (only where the place needs saying) a small gold caps place on top, then
+  the name in cream Cormorant: the only gold, the one brand touch. No gold underline (Scott,
+  19 Nov: "change the house label, no more underline"): it is out of every engine's label
+  (the AMC films excepted, posted); new renders only, posted films are left as they are.
   An end card that names a hotel and its place takes the same order (Scott, 20 Oct, Low
-  Wood Bay): gold caps place, underline, then the name in cream Cormorant.
+  Wood Bay): gold caps place, then the name in cream Cormorant.
 
 - CBH charcoal `#282825` (Scott, 22 Oct: "remember that charcoal colour"): the ink of CBH's 25 Years
   lockup, a house colour beside the gold `#C39E55` and black; the AMC reel's end card turns to it

@@ -499,7 +499,6 @@ export const WeekendCalendar: React.FC = () => {
           >
             HALIFAX, WEST YORKSHIRE
           </div>
-          <div style={{ height: 2, background: colors.gold, marginTop: 8 }} />
         </div>
         <div
           style={{

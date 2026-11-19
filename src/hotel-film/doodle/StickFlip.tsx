@@ -460,7 +460,6 @@ export const StickFlip: React.FC<{ look?: "pad" | "gold"; bare?: boolean; xmas?:
             <div style={{ position: "absolute", left: 72, bottom: 500 }}>
               <div style={{ display: "inline-block" }}>
                 <div style={{ fontFamily: sans, fontWeight: 600, fontSize: 28, letterSpacing: "0.24em", color: colors.gold }}>{xmas ? "KIDDERMINSTER" : "CHESTER"}</div>
-                <div style={{ height: 2, marginTop: 12, background: colors.gold }} />
               </div>
               <div style={{ fontFamily: serif, fontSize: 64, lineHeight: 1.1, marginTop: 14, color: colors.cream }}>{xmas ? "Hogarths Stone Manor" : "Rowton Hall Hotel & Spa"}</div>
             </div>
@@ -1053,7 +1052,6 @@ const PlaceLabel: React.FC<{ place: string; name: string; len: number }> = ({ pl
       <div style={{ position: "absolute", left: 72, bottom: 500 }}>
         <div style={{ display: "inline-block" }}>
           <div style={{ fontFamily: sans, fontWeight: 600, fontSize: 28, letterSpacing: "0.24em", color: colors.gold }}>{place}</div>
-          <div style={{ height: 2, marginTop: 12, background: colors.gold }} />
         </div>
         <div style={{ fontFamily: serif, fontSize: 64, lineHeight: 1.1, marginTop: 14, color: colors.cream }}>{name}</div>
       </div>

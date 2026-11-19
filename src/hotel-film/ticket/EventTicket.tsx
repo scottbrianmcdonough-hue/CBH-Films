@@ -103,7 +103,6 @@ const Back: React.FC<{ k: TicketSpec["key"]; photo: React.ReactNode }> = ({ k, p
     <div style={{ position: "absolute", top: PERF + 50, left: 56, right: 56 }}>
       <div style={{ display: "inline-block" }}>
         <div style={{ fontFamily: sans, fontWeight: 600, fontSize: 24, letterSpacing: "0.24em", color: colors.gold }}>{k.place}</div>
-        <div style={{ height: 2, marginTop: 10, background: colors.gold }} />
       </div>
       <div style={{ fontFamily: serif, fontSize: 80, lineHeight: 1.05, marginTop: 12, color: colors.cream }}>{k.name}</div>
       <div style={{ fontFamily: sans, fontWeight: 600, fontSize: 21, letterSpacing: "0.2em", marginTop: 16, color: colors.cream, opacity: 0.8 }}>{k.line}</div>
@@ -183,7 +182,6 @@ export const EventTicket: React.FC<{ spec: TicketSpec }> = ({ spec }) => {
             <div style={{ position: "absolute", left: 72, bottom: 500 }}>
               <div style={{ display: "inline-block" }}>
                 <div style={{ fontFamily: sans, fontWeight: 600, fontSize: 28, letterSpacing: "0.24em", color: colors.gold }}>{spec.key.place}</div>
-                <div style={{ height: 2, marginTop: 12, background: colors.gold }} />
               </div>
               <div style={{ fontFamily: serif, fontSize: 72, lineHeight: 1.1, marginTop: 14, color: colors.cream }}>{spec.key.name}</div>
             </div>

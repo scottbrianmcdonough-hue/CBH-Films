@@ -139,7 +139,6 @@ const Label: React.FC<{ it: Item; i: number }> = ({ it, i }) => {
         <div style={{ display: "inline-block" }}>
           <div style={{ fontFamily: sans, fontWeight: 600, fontSize: 28, letterSpacing: "0.24em", color: colors.gold,
             textShadow: "0 2px 16px rgba(9,9,10,0.7)" }}>{it.place}</div>
-          <div style={{ height: 2, marginTop: 12, background: colors.gold }} />
         </div>
         <div style={{ fontFamily: serif, fontSize: 64, lineHeight: 1.1, marginTop: 14, color: colors.cream,
           whiteSpace: "pre", textShadow: "0 2px 22px rgba(9,9,10,0.55)" }}>{it.hotel}</div>

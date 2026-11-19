@@ -62,7 +62,6 @@ const Label: React.FC<{
           >
             {eyebrow}
           </div>
-          <div style={{ height: 2, background: colors.gold, marginTop: 8 }} />
         </div>
         {name.split("\n").map((l) => (
           <div
@@ -179,7 +178,6 @@ const Counter: React.FC<{
           >
             {caption}
           </div>
-          <div style={{ height: 2, background: colors.gold, marginTop: 8 }} />
         </div>
         <div
           style={{

@@ -173,7 +173,6 @@ const Clock: React.FC<{ clock: RewindSpec["clock"] }> = ({ clock }) => {
             color: colors.gold,
             opacity: eyebrowIn,
             transform: `translateY(${(1 - eyebrowIn) * 14}px)`,
-            borderBottom: `2px solid ${colors.gold}`,
             paddingBottom: 8,
           }}
         >

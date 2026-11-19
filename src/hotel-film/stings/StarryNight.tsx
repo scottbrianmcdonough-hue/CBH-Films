@@ -21,7 +21,6 @@ export const StarryNight: React.FC = () => {
         <div style={{ position: "absolute", left: 72, top: 720, textShadow: "0 2px 18px rgba(0,10,40,0.55)" }}>
           <div style={{ display: "inline-block" }}>
             <div style={{ fontFamily: sans, fontWeight: 600, fontSize: 28, letterSpacing: "0.24em", color: colors.gold }}>FARNHAM, SURREY</div>
-            <div style={{ height: 2, marginTop: 12, background: colors.gold }} />
           </div>
           <div style={{ fontFamily: serif, fontSize: 68, lineHeight: 1.08, marginTop: 14, color: colors.cream }}>Frensham Pond<br />Hotel & Spa</div>
         </div>

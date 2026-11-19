@@ -224,7 +224,6 @@ const Tag: React.FC<{ name: string; place: string; from: number }> = ({
               display: "inline-block",
               whiteSpace: "nowrap",
               paddingBottom: 10,
-              borderBottom: `2px solid ${colors.gold}`,
             }}
           >
             <span style={{ marginRight: "-0.26em" }}>{place}</span>

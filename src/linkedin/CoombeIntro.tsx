@@ -60,7 +60,6 @@ export const CoombeIntro: React.FC = () => {
       <div style={{ position: "absolute", left: 72, right: 150, bottom: 96 }}>
         <div style={{ display: "inline-block" }}>
           <div style={{ fontFamily: sans, fontWeight: 600, fontSize: 28, letterSpacing: "0.24em", color: colors.gold }}>{s.kicker}</div>
-          <div style={{ height: 2, marginTop: 12, background: colors.gold }} />
         </div>
         <div style={{ fontFamily: serif, fontSize: 84, lineHeight: 1.06, marginTop: 18, color: colors.cream, whiteSpace: "pre-line" }}>{s.line}</div>
         <div style={{ fontFamily: serif, fontStyle: "italic", fontSize: 40, color: colors.cream, opacity: 0.9, marginTop: 22 }}>{s.sub}</div>

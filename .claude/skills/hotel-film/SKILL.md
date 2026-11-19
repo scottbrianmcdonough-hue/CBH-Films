@@ -65,14 +65,14 @@ validation enforces this).
 - **Lines and questions over shots**: cream Cormorant (as on the festive opening line and the
   November hook).
 - **Hotel labels over a shot**, only where the place needs saying: a small gold caps place
-  with its still underline on top, then the hotel's name in cream Cormorant beneath (The
-  Mount tile wall's opening label is the reference). This is the only place gold appears:
+  on top, then the hotel's name in cream Cormorant beneath, with no underline (Scott, 19 Nov
+  2026: "change the house label, no more underline"; it applies to every new render, end
+  cards that name a hotel included; posted films are left as they are). This is the only place gold appears:
   the one brand touch.
 
-**Gold underline** (Scott, Hintlesham Hall search reel): gold caps eyebrows get a still
-2px gold underline exactly the width of the words, rising in with them. Never a growing or
-drawing line (Scott: the drawing gold rule is in every film). Default in `search/`
-(`eyebrowRule`); use it on new films in any engine.
+**No gold underline** (Scott, 19 Nov 2026): gold caps places and eyebrows stand on their own,
+with no rule under them, in every engine. (They had a still 2px gold underline from the
+Hintlesham Hall search reel until then; never a growing or drawing line either.)
 
 **Copy voice** (agreed on Whittlebury Park): original and specific, never generic hotel
 clichés ("luxury", "exceptional cuisine", "unwind", "stay in style"), and no full stops.

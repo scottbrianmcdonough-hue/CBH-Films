@@ -399,7 +399,6 @@ const makeSpace = (cut: Cut) => {
             >
               Bedford
             </div>
-            <div style={{ height: 2, background: colors.gold, marginTop: 8 }} />
           </div>
           <div
             style={{
