@@ -50,6 +50,7 @@ Tracks used and where, so a new film doesn't repeat one by accident. [All films]
 | Tech House Vibes (Mixkit 130) | [nailcote-hall-meetings](films/nailcote-hall-meetings.md) |
 | Warm Acoustic Guitar by Universfield (Pixabay) | [holdsworth-sketch](films/holdsworth-sketch.md) (reel and Story), the Ruthin sketch Story, [coombe-abbey](films/coombe-abbey.md) (the launch sketch Story, and the M&E reel from 18 Nov, Bianca: "the same as social one") |
 | Acoustic Indie Folk by JonasBlakewood (Pixabay 619515; not Content ID registered, Scott) | [coombe-abbey](films/coombe-abbey.md) (M&E reel, 18 Nov, from beat 56 at 29.05s to its own end). Indie Acoustic (619516) and Indie Folk Acoustic (619517) are the same piece at other lengths |
+| Happy Cheerful Folk Pop by emmraan (Pixabay 264393) | [gift-temperature](films/gift-temperature.md) (from 32.09s) |
 | Upbeat Acoustic | [oakley-hall-story](films/oakley-hall-story.md) |
 | Whittlebury's cooking track | [cbh-rolodex](films/cbh-rolodex.md) |
 | In-app sounds (no music baked in) | Hello October ([october-best-loved](films/october-best-loved.md) silent versions), Good Day ([up-next](films/up-next.md) Story) |
@@ -58,4 +59,4 @@ Tried and not used: Peaceful Acoustic Guitar (lost to Happy Feels on `departures
 "isn't working"), Dirty Thinkin' and Soul Funky Vibes (AMC alternatives), A Simple Reveal Logo ("a sound effect"),
 Lounge Chill Nu Jazz Restaurant (busy), Lounge by prettyjohn1 (no hit). For the Coombe Abbey M&E reel (18 Nov), not
 picked: Folk Acoustic Upbeat by 331music (Pixabay 591941, 108 BPM, slower and its energy pulses), Happy Cheerful Folk Pop
-by emmraan (Pixabay 264393, claps, whistles and chants: busy under captions). Both are free for another film.
+by emmraan (Pixabay 264393, claps, whistles and chants: busy under captions; since used on gift-temperature).
