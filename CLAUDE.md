@@ -1144,6 +1144,16 @@ with no history and no renders:
   bath?", label Warwickshire / Coombe Abbey Hotel; 25.4s, -15.3 LUFS; ticket `out/coombe-abbey-collage-ticket.txt`.
   Sent. The Mount's shuffle wall also has a TikTok ticket now (`out/the-mount-collage-tiktok-ticket.txt`; Scott
   uploaded the render and asked for one). Single tickets for each TikTok are in `out/*-tiktok-ticket.txt`.
+- TikTok growth strategy (Scott, 19 Nov; his plan for Bianca is a claude.ai artifact): 470 followers, 2026 target
+  500; views up but few profile visits and shares, so the job is turning viewers into follows. Standing rules for the
+  TikTok grid: a text hook on frame one, always (the first six posts: ~325 views with one, ~196 without); close on a
+  question or "Follow for more like this", never a link or a "search [hotel]" line; trending sounds are added in the
+  app, so the `-silent` copy is the one that gets posted (still deliver both); about 80/20 footage to stills; 8:00 PM.
+  Pillars: POV stays (like the Ramside treehouses, ending on a question), food and drink moments (members' biggest
+  hitters: The Kingfisher's fondue, Coombe Abbey's punt and afternoon tea), "save for later" lists grouping hotels by
+  theme (spa, waterside, country house), seasonal moments from member footage, TikTok only animation and photo
+  stories. Festive stays lead UK hotel search now. Posted so far (views, 19 Nov): North West camera roll 376, Starry
+  Night Surrey 335, Ramside treehouses 265, The Mount wall 192.
 - Network: this session now runs on the personal environment `cbh-films` (created 17 Nov, Scott approved), which
   allows coombeabbey.com and classicbritishhotels.com (with and without www). The CBH site still answers 403 to
   curl (its own bot block), so its photos still come from Scott; other hotel sites need adding to the environment.
