@@ -28,10 +28,10 @@ R = {
            ("Whittlebury, Northamptonshire","Whittlebury Park","Save 10%",("whittlebury-park/exterior.jpg",960),("whittlebury-park/suite.jpg",None))]),
  "south": dict(title="The South", music="music/kulakovka-luxury-life-618587.mp3", start=346, bar=59.1, intro=2, gain=0.78, seconds=145, best="30%", pill="Book now", end_line="Make it yours\\nwhile it lasts", snap=True, two=True, hero=True,
    moves=[0, 1,0, 0,1, 1,-1, 1,0, -1,0],  # East & Midlands' improved format (16 Nov)
-   intro_img=("frensham-pond/pond-reflections.jpg",1030),
+   intro_img=("frensham-pond/pond-reflections-lift.jpg",1030),  # shadows lifted (Scott, 19 Nov: "the south in the beginning is too dark")
    hotels=[("Oakley, Hampshire","Oakley Hall Hotel","Save 30%",("oakley-hall/exterior.jpg",960),("oakley-hall/afternoon-tea.jpg",800),("oakley-hall/bedroom.jpg",None)),
            ("Arundel, West Sussex","Avisford Park Hotel","Save 25%",("avisford-park/exterior.jpg",1180),("avisford-park/restaurant.jpg",660),("avisford-park/pool.jpg",None)),
-           ("Farnham, Surrey","Frensham Pond\\nHotel & Spa","Save 20%",("frensham-pond/exterior-dusk.jpg",950),("frensham-pond/spa-pool.jpg",None),("frensham-pond/restaurant.jpg",820)),
+           ("Farnham, Surrey","Frensham Pond\\nHotel & Spa","Save 20%",("frensham-pond/exterior-dusk-lift.jpg",950),("frensham-pond/spa-pool.jpg",None),("frensham-pond/restaurant.jpg",820)),
            ("Sevenoaks, Kent","Donnington Manor\\nHotel","Save 20%",("donnington-manor/exterior.jpg",500),("donnington-manor/breakfast-terrace.jpg",1000),("donnington-manor/twin-bedroom.jpg",None)),
            ("Minchinhampton, Gloucestershire","Burleigh Court","Save 20%",("burleigh-court/garden-house.jpg",1080),("burleigh-court/bedroom.jpg",900),("burleigh-court/fireside-table.jpg",None))]),
 }
