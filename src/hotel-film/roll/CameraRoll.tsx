@@ -40,7 +40,7 @@ const ROLL: Clip[] = [
 ];
 const OPENED = [4, 5, 6, 7, 8, 10]; // the ones swiped through, in the roll's order
 export type RollSpec = { roll: Clip[]; opened: number[]; hook: string[]; end: string[] };
-export const winterRoll: RollSpec = { roll: ROLL, opened: OPENED, hook: ["camera roll dump:", "this winter"], end: ["0 photos of my sofa"] };
+export const winterRoll: RollSpec = { roll: ROLL, opened: OPENED, hook: ["my camera roll:", "this winter"], end: ["0 photos of my sofa"] };
 // Regional (Scott: the mixed one was "just random"): the North West, the Lakes then Chester
 export const northWestRoll: RollSpec = {
   roll: [
@@ -58,7 +58,7 @@ export const northWestRoll: RollSpec = {
     { src: `${R}/log-burner.mp4`, len: 60 },
   ],
   opened: [4, 5, 6, 7, 8, 10],
-  hook: ["camera roll dump:", "the North West"], // short (Scott: polish the copy)
+  hook: ["my camera roll:", "the North West"], // short; never "dump" (Scott)
   end: ["0 photos of my sofa"],
 };
 
