@@ -85,9 +85,9 @@ const Label: React.FC<{ place: string; hotel: string; o: number }> = ({ place, h
     <div style={{ position: "absolute", left: 72, bottom: 480 }}>
       <div style={{ display: "inline-block" }}>
         <div style={{ fontFamily: sans, fontWeight: 600, fontSize: 28, letterSpacing: "0.24em", color: colors.gold }}>{place}</div>
-        <div style={{ height: 2, marginTop: 12, background: colors.gold }} />
       </div>
-      <div style={{ fontFamily: serif, fontSize: 68, lineHeight: 1.08, marginTop: 14, color: colors.cream, whiteSpace: "pre-line" }}>{hotel}</div>
+      {/* no gold underline under the place (Scott, 19 Nov) */}
+      <div style={{ fontFamily: serif, fontSize: 68, lineHeight: 1.08, marginTop: 12, color: colors.cream, whiteSpace: "pre-line" }}>{hotel}</div>
     </div>
   </AbsoluteFill>
 );
