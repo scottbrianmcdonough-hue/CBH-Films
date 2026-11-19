@@ -1113,6 +1113,15 @@ with no history and no renders:
   `public/hotels/ramside-hall/reel-bank/` (two A frame treehouse drone shots, two breakfast, ext-009 to 011, 21
   interiors int-001 to 024 with gaps, eight Rib Room; the INT files are separate from the Charcoal INT ones). Only
   batches 14-21 of his 82 reached this session; nothing made from them yet. 25fps: conform to 30 when cutting.
+- `ramside-treehouses-tiktok` (`cuts/RamsideTikTok.tsx`, Scott, 19 Nov: "do a ramside tiktok with the new footage"):
+  the reel bank on hard cuts, a shot every two beats. Opens on the A frame treehouses from the air under "POV: your
+  hotel / has treehouses", cuts into the hotel on the drop (terrace with the label DURHAM / Ramside Hall, lamp, lounge,
+  green chairs), a match cut of four lights a beat each, each hanging mid frame (scaled 1.14x and cropped in
+  `scripts/ramside-tiktok-clips.py`, which also runs the 25fps clips 1.2x to 30), yellow sofas, the Rib Room (glasses,
+  table, frames, the local farms chalkboard), breakfast, back to the treehouses in the band's stop: "checkout can
+  wait". Party Pop (AtlasAudio, Pixabay 606271) from 123.03s, its detected beats (`BEATS`), drop on beat 6; the render
+  comes out hot, -7 dB after: -15.1 LUFS, 18.5s. `out/ramside-treehouses-tiktok.mp4`, `-silent`, `-cover.jpg`. Sent.
+  The drone and exteriors are summer green (flagged). No bedroom, spa or treehouse interior in the batches received.
 - Network: this session now runs on the personal environment `cbh-films` (created 17 Nov, Scott approved), which
   allows coombeabbey.com and classicbritishhotels.com (with and without www). The CBH site still answers 403 to
   curl (its own bot block), so its photos still come from Scott; other hotel sites need adding to the environment.

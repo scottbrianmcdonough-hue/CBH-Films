@@ -110,6 +110,7 @@ import { MontageFilm } from "./hotel-film/montage/MontageFilm";
 import { MotionFilm } from "./hotel-film/motion/MotionFilm";
 import { PulseFilm } from "./hotel-film/pulse/PulseFilm";
 import { SearchFilm } from "./hotel-film/search/SearchFilm";
+import { RAMSIDE_TT_FRAMES, RamsideTikTok } from "./hotel-film/cuts/RamsideTikTok";
 import { FPS, HEIGHT, WIDTH } from "./hotel-film/types";
 import { CraftFilm } from "./hotel-film/craft/CraftFilm";
 import { RewindFilm } from "./hotel-film/rewind/RewindFilm";
@@ -404,6 +405,7 @@ export const RemotionRoot: React.FC = () => {
       {/* Starry Night repainted on a hotel at dusk, clearing to the real photo: TikTok */}
       <Composition id="cbh-starry-night-tiktok" component={StarryNight} durationInFrames={STARRY_FRAMES} fps={FPS} width={WIDTH} height={HEIGHT} />
       {/* a camera roll of winter weekends, swiped through: TikTok */}
+      <Composition id="ramside-treehouses-tiktok" component={RamsideTikTok} durationInFrames={RAMSIDE_TT_FRAMES} fps={FPS} width={WIDTH} height={HEIGHT} />
       <Composition id="cbh-camera-roll-tiktok" component={CameraRoll} durationInFrames={ROLL_FRAMES} fps={FPS} width={WIDTH} height={HEIGHT} />
       <Composition id="cbh-camera-roll-north-west-tiktok" component={CameraRoll} defaultProps={{ spec: northWestRoll }} durationInFrames={ROLL_FRAMES} fps={FPS} width={WIDTH} height={HEIGHT} />
       {/* the event ticket that flips into the hotel's room key: TikTok event tie-ins */}
