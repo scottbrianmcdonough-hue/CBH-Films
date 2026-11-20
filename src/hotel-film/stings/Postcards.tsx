@@ -167,7 +167,6 @@ const Front: React.FC<{ c: Card }> = ({ c }) => (
           <div style={{ fontFamily: sans, fontWeight: 600, fontSize: 21, letterSpacing: "0.24em", textTransform: "uppercase", color: colors.gold }}>
             {c.place}
           </div>
-          <div style={{ height: 2, background: colors.gold, marginTop: 8 }} />
         </div>
         <div style={{ fontFamily: serif, fontSize: 62, lineHeight: 1.05, color: colors.cream, marginTop: 10, textShadow: "0 2px 16px rgba(9,9,10,0.6)" }}>
           {c.name}

@@ -20,3 +20,5 @@ First version sent 15 Nov.
   comes back; the logo on the final chord (160.31s). Also on the unposted circle C (cocktail cut) and sash window.
 - The bell (`public/stings/lift/ding.wav`, synthesised on the track's G, quiet under the music) is a sound effect, an
   exception to the house rule for Scott to keep or drop.
+
+20 Nov: the floor labels lost their gold underline (Scott: no gold underlines), re-rendered for TikTok, 21.6s.

@@ -167,7 +167,7 @@ export const LiftCB: React.FC = () => {
           ) : null}
           <AbsoluteFill style={{ boxShadow: "inset 0 0 90px rgba(0,0,0,0.55)" }} />
           <AbsoluteFill style={{ background: "linear-gradient(to top, rgba(9,9,10,0.86) 0%, rgba(9,9,10,0.62) 26%, rgba(9,9,10,0) 46%)" }} />
-          {/* the floor, in the house label's order: gold caps with their underline, the name in cream Cormorant */}
+          {/* the floor, in the house label's order: gold caps (no underline, Scott, 19 Nov), the name in cream Cormorant */}
           {current ? (
             <div
               style={{
@@ -182,7 +182,6 @@ export const LiftCB: React.FC = () => {
                 <div style={{ fontFamily: sans, fontWeight: 600, fontSize: 21, letterSpacing: "0.24em", textTransform: "uppercase", color: colors.gold }}>
                   {current.caps}
                 </div>
-                <div style={{ height: 2, background: colors.gold, marginTop: 8 }} />
               </div>
               <div style={{ fontFamily: serif, fontSize: 66, lineHeight: 1.05, color: colors.cream, marginTop: 12, textShadow: "0 2px 20px rgba(9,9,10,0.6)", whiteSpace: "nowrap" }}>
                 {current.name}
