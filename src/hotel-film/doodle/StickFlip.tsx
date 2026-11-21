@@ -1727,12 +1727,55 @@ const Quiz = (f: number, p: number) => {
   );
 };
 
+// 4. Drinks (Scott: "he didn't trip and drop his glasses", the waiter got a slap from the host): the waiter with
+// his tray, the host winds up and slaps him; he reels, and the tray never moves
+const SL_STAND: Pose = { x: 380, y: 1208, lean: 0, head: 0.05, ua: [0.2, -0.15], fa: [0.3, -0.1], th: [0.12, -0.12], sh: [0, 0] };
+const SL_WIND: Pose = { x: 375, y: 1208, lean: 0.14, head: 0.05, ua: [-1.3, -0.2], fa: [-2.3, -0.1], th: [0.05, -0.15], sh: [0, 0] };
+const SL_HIT: Pose = { x: 430, y: 1206, lean: -0.25, head: 0.1, ua: [2.0, -0.5], fa: [2.3, -0.6], th: [0.3, -0.2], sh: [0, -0.2] };
+const WHACK = 24;
+const SLAP_FROM: Pt = [600, 960];
+const Slap = (f: number, p: number) => {
+  let q = mix(SL_STAND, SL_WIND, smooth(f, 8, WHACK - 4));
+  if (f >= WHACK - 4) q = mix(SL_WIND, SL_HIT, smooth(f, WHACK - 4, WHACK));
+  if (f >= WHACK + 8) q = mix(SL_HIT, SL_STAND, smooth(f, WHACK + 8, WHACK + 18));
+  const reel = f >= WHACK ? Math.exp(-(f - WHACK) / 12) : 0;
+  const w0 = mirror({ ...CARRY, x: 0 }, 690);
+  const w: Pose = { ...w0, lean: w0.lean + 0.4 * reel * Math.cos((f - WHACK) * 0.5), head: w0.head - 0.9 * reel * Math.cos((f - WHACK) * 0.7) };
+  const h = hand(w0, 0);
+  const hd = headOf(w);
+  return (
+    <>
+      <Figure q={q} p={p} />
+      <Figure q={w} p={p} />
+      <Pencil d={[[h[0] - 76, h[1] - 6], [h[0] + 64, h[1] - 6]]} p={p} id={880} w={6} />
+      {[0, 1, 2].map((k) => glass([h[0] - 46 + k * 40, h[1] - 50], 0, 1).map((d, i) => <Pencil key={`${k}${i}`} d={d} p={p} id={881 + k * 3 + i} w={4} />))}
+      {f >= WHACK && f < WHACK + 7
+        ? [0, 1, 2, 3, 4].map((k) => {
+            const a = -2.6 + k * 0.5;
+            return <Pencil key={k} d={[[hd[0] - 30 + Math.cos(a) * 44, hd[1] + Math.sin(a) * 44], [hd[0] - 30 + Math.cos(a) * 78, hd[1] + Math.sin(a) * 78]]} p={p} id={892 + k} w={4} />;
+          })
+        : null}
+      {f >= WHACK + 5
+        ? [0, 1, 2].map((k) => {
+            const a = f * 0.45 + (k * 2 * Math.PI) / 3;
+            const c: Pt = [hd[0] + 56 * Math.cos(a), hd[1] - 64 + 14 * Math.sin(a)];
+            return <Pencil key={k} d={Array.from({ length: 11 }, (_, i): Pt => {
+              const b = -Math.PI / 2 + (i / 10) * Math.PI * 2;
+              const r = i % 2 ? 5 : 12;
+              return [c[0] + Math.cos(b) * r, c[1] + Math.sin(b) * r];
+            })} p={p} id={897 + k} w={3} />;
+          })
+        : null}
+    </>
+  );
+};
+
 // 0. Check in: the bell on the desk, dinged politely, then not politely, and nobody comes
 const RING_UP: Pose = { x: 400, y: 1208, lean: 0.06, head: 0.1, ua: [1.5, -0.15], fa: [2.0, -0.1], th: [0.1, -0.1], sh: [0, 0] };
 const RING_DN: Pose = { x: 400, y: 1208, lean: 0.1, head: 0.16, ua: [1.15, -0.15], fa: [1.25, -0.1], th: [0.1, -0.1], sh: [0, 0] };
 const GIVE_UP: Pose = { x: 400, y: 1208, lean: -0.05, head: -0.3, ua: [1.2, -1.2], fa: [2.4, -2.4], th: [0.1, -0.1], sh: [0, 0] };
 const PING = 44;
-const Bell = (f: number, p: number) => {
+export const Bell = (f: number, p: number) => {
   // two polite dings, a pause to look round, then a frantic run of them
   const rate = f < 20 ? 10 : f < 26 ? 0 : 3.2;
   const ph = rate ? (f % rate) / rate : 1;
@@ -1842,7 +1885,7 @@ const PARTY: { time: string; draw: (f: number, p: number, look: Look, xmas: bool
   { time: "Fri 20 Nov, 3:00pm", draw: Quiz, from: [540, 1130], stills: [{ src: `${P}/meeting-smiles.jpg`, len: 2 * beat, split: true }] },
   { time: "Fri 20 Nov, 3:30pm", draw: Dice, from: DICE_FROM, stills: [{ src: `${P}/dice-game.jpg`, len: 2 * beat, split: true }] },
   { time: "Fri 20 Nov, 4:00pm", draw: Steal, from: STEAL_FROM, stills: [{ src: `${P}/secret-santa.jpg`, len: 2 * beat, split: true }] },
-  { time: "Fri 20 Nov, 7:00pm", draw: Tray, from: TRAY_FROM, stills: [
+  { time: "Fri 20 Nov, 7:00pm", draw: Slap, from: SLAP_FROM, stills: [
     { src: `${P}/cast-tree-portrait.jpg`, len: 2 * beat, pos: "50% 40%" },
     { src: `${P}/table-1-group.jpg`, len: 2 * beat, split: true }, { src: `${P}/table-2-group.jpg`, len: 2 * beat, split: true }] },
   { time: "Fri 20 Nov, 8:00pm", draw: Carving, from: [420, 1130], stills: [
@@ -1857,8 +1900,8 @@ const PARTY: { time: string; draw: (f: number, p: number, look: Look, xmas: bool
     { src: "grid", len: 3 * beat, grid: FACES }] },
 ];
 const PARTY_SCENES: Scene[] = (() => {
-  const out: Scene[] = [{ from: 0, len: 60, el: <Gag time="Fri 20 Nov, 1:45pm" from={[610, 1160]} draw={Bell} /> }];
-  let at0 = 60;
+  const out: Scene[] = [];
+  let at0 = 0;
   for (const s of PARTY) {
     const len = 60 + s.stills.reduce((a, x) => a + x.len, 0);
     out.push({ from: at0, len, el: <Gag time={s.time} from={s.from} draw={s.draw} stills={s.stills} /> });
@@ -1869,8 +1912,8 @@ const PARTY_SCENES: Scene[] = (() => {
   return out;
 })();
 const PARTY_END = PARTY_SCENES[PARTY_SCENES.length - 1].from + 90;
-export const STICK_PARTY_FRAMES = PARTY_END + 76;
+export const STICK_PARTY_FRAMES = PARTY_END + 100;
 export const StickParty: React.FC = () => (
   <StickFilm look="gold" xmas scenes={PARTY_SCENES} endAt={PARTY_END} frames={STICK_PARTY_FRAMES} end={["Same again", "next year?"]} musicAt={241}
-    over={<Sequence from={128} durationInFrames={78} layout="none"><PlaceLabel place="KIDDERMINSTER" name="Hogarths Stone Manor" len={78} /></Sequence>} />
+    over={<Sequence from={68} durationInFrames={78} layout="none"><PlaceLabel place="KIDDERMINSTER" name="Hogarths Stone Manor" len={78} /></Sequence>} />
 );
