@@ -1787,15 +1787,12 @@ const Laughers = (f: number, p: number, act: "rant" | "mic" | "chase") => {
   const b = lf({ ...SEAT_R, x: 520 }, 1.7, -1);
   const w = Math.sin(f * 0.9);
   const star: Pose = act === "rant"
-    ? { x: 830, y: 1204, lean: 0.1 * w, head: 0.2 * w, ua: [-2.4 + 0.5 * w, 2.4 + 0.5 * w], fa: [-2.8 + 0.8 * w, 2.8 + 0.8 * w], th: [0.2, -0.2], sh: [0, 0] }
+    ? { x: 850, y: 1204, lean: 0.1 * w, head: 0.2 * w, ua: [-2.4 + 0.5 * w, 2.4 + 0.5 * w], fa: [-2.8 + 0.8 * w, 2.8 + 0.8 * w], th: [0.2, -0.2], sh: [0, 0] }
     : { x: 830, y: 1208, lean: -0.05 + 0.05 * w, head: 0.1, ua: [-1.3, 0.9 + 0.5 * w], fa: [-2.6, 1.6 + 0.6 * w], th: [0.12, -0.12], sh: [0, 0] };
   const m = hand(star, 0);
-  const ha = (c: Pt, id: number, on: boolean) => on ? [0, 1, 2].map((k) => {
-    const an = -2.2 + k * 0.6;
-    return <Pencil key={`${id}${k}`} d={[[c[0] + Math.cos(an) * 46, c[1] + Math.sin(an) * 46], [c[0] + Math.cos(an) * 72, c[1] + Math.sin(an) * 72]]} p={p} id={id + k} w={3} />;
-  }) : null;
   return (
     <>
+      <g transform="translate(110 0)">
       <Pencil d={[[215, 1176], [435, 1176]]} p={p} id={910} />
       <Pencil d={[[325, 1176], [325, 1392]]} p={p} id={911} w={5} />
       <Pencil d={[[265, 1392], [385, 1392]]} p={p} id={912} w={5} />
@@ -1810,8 +1807,14 @@ const Laughers = (f: number, p: number, act: "rant" | "mic" | "chase") => {
       ))}
       <Figure q={a} p={p} />
       <Figure q={b} p={p} />
-      {ha(headOf(a), 921, f % 8 < 5)}
-      {ha(headOf(b), 925, (f + 4) % 8 < 5)}
+      {/* the laughter written in (Scott: "put ha ha on the laughter bit"), popping up over the table in turn */}
+      {[[90, 880, 0, 62], [290, 840, 5, 76], [480, 890, 10, 62], [180, 770, 15, 54], [410, 760, 21, 58]].map(([x, y, at0, size], k) => {
+        const t = f - at0;
+        if (t < 0) return null;
+        const bob = 6 * Math.sin(f * 0.9 + k);
+        return <Scribble key={k} x={x} y={y + bob - Math.min(14, t)} size={size} o={Math.min(1, t / 3)}>{k % 2 ? "ha ha" : "ha"}</Scribble>;
+      })}
+      </g>
       {act === "chase" ? (
         <>
           {/* the actors tearing round the room: the waiter, the host after him */}
