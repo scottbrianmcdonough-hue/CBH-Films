@@ -1277,6 +1277,13 @@ with no history and no renders:
   half-beat cuts, twelve faces flicking past then landing as a 3 x 4 wall (`grid`); bed and breakfast on the hotel's
   suite and restaurant photos (none taken); "Same again / next year?". Funkee Monkeee from 8.02s, 55.0s, -15 LUFS.
   Photos in `public/campaigns/xmas-party-2026/` (name cards cropped out; the yawn photo left out). First cut sent.
+  Second cut (Scott: "polish pass and more stick figure animation, it gets lost"; "slap a Christmas tree sticker over"
+  the chart, not the board falling; "meeting started at 2pm"; the afternoon was a quiz, dice rolled and gifts stolen
+  across the table, all seated, "not chasing", "don't make up events" (a dance floor page was dropped); the humour
+  British hotel farce): eleven gag pages: reception bell nobody answers 1:45pm, sticker on the chart 2:00, quiz peek
+  3:00, dice 3:30, the present swiped back and forth across the table 4:00, drinks tray 7:00, turkey 8:00 with the
+  figure holding each plate up, two waiters colliding in the kitchen doorway 8:45, toast 9:30, bed, breakfast.
+  59.5s. Sent.
   To confirm: the times on the pages are guesses; where it is going (it has the reel end card, no TikTok text);
   everyone shown is happy to be posted; a festive track would suit it better than the Rowton reel's.
 - `the-kingfisher`, `whittlebury-park-stay-dine` (+ `-story` cuts): done.
