@@ -681,11 +681,9 @@ const Gag: React.FC<{
         <g clipPath="url(#write)"><Scribble x={90} y={300} size={64} o={0.95}>{time}</Scribble></g>
         {xmas ? <Garland p={p} f={frame} look={look} /> : null}
       </svg>
-      {frame >= OPEN_AT && stills ? (
-        <AbsoluteFill style={{ clipPath: reveal < 1 ? `circle(${radius}px at ${cx}px ${cy}px)` : undefined }}>
-          {shotAt(stills, frame)}
-        </AbsoluteFill>
-      ) : null}
+      {/* a run of photos comes in on a straight cut on the beat, no opening circle (Scott: "lose the circle in the
+          middle before every transition") */}
+      {frame >= 60 && stills ? <AbsoluteFill>{shotAt(stills, frame)}</AbsoluteFill> : null}
       {frame >= OPEN_AT && (clip || still) ? (
         <AbsoluteFill style={{ clipPath: `circle(${radius}px at ${cx}px ${cy}px)` }}>
           {still ? (
@@ -698,7 +696,7 @@ const Gag: React.FC<{
           )}
         </AbsoluteFill>
       ) : null}
-      {frame >= OPEN_AT && (clip || still || stills) ? <InkRing c={[cx, cy]} r={radius} o={1 - reveal * reveal} /> : null}
+      {frame >= OPEN_AT && (clip || still) ? <InkRing c={[cx, cy]} r={radius} o={1 - reveal * reveal} /> : null}
       <LiftShadow />
     </AbsoluteFill>
   );
@@ -1985,7 +1983,7 @@ export const Doors = (f: number, p: number) => {
 // 7. Breakfast: the toast leaves the toaster, one for the plate, one for his head
 const WAIT: Pose = { x: 600, y: 1208, lean: 0, head: -0.05, ua: [-1.2, 0.15], fa: [-1.7, 0.1], th: [0.1, -0.1], sh: [0, 0] };
 const POPT = 16;
-const Breakfast = (f: number, p: number) => {
+export const Breakfast = (f: number, p: number) => {
   const q = WAIT;
   const plate = hand(q, 0);
   const head = headOf(q);
@@ -2044,13 +2042,14 @@ const PARTY_SCENES: Scene[] = (() => {
     out.push({ from: at0, len, el: <HatCtx.Provider value={hats}><Gag time={s.time} from={s.from} draw={s.draw} stills={s.stills} /></HatCtx.Provider> });
     at0 += len;
   }
-  out.push({ from: at0, len: 90, el: <Gag time="Sat 21 Nov, 1:00am" still={`${SM}/luxury-suite.jpg`} pos="50% 50%" from={[852, 1280]} draw={Bed} /> });
-  out.push({ from: at0 + 90, len: 90, el: <HatCtx.Provider value={false}><Gag time="Sat 21 Nov, 9:00am" still={`${SM}/breakfast-eggs.jpg`} pos="54% 50%" from={[600, 1000]} draw={Breakfast} /></HatCtx.Provider> });
+  // bed, then the morning as photos only (Scott: "lose the breakfast gag")
+  out.push({ from: at0, len: 120, el: <Gag time="Sat 21 Nov, 1:00am" from={[852, 1280]} draw={Bed}
+    stills={[{ src: `${SM}/luxury-suite.jpg`, len: beat }, { src: `${SM}/breakfast-eggs.jpg`, len: beat, pos: "54% 50%" }]} /> });
   return out;
 })();
-const PARTY_END = PARTY_SCENES[PARTY_SCENES.length - 1].from + 90;
+const PARTY_END = PARTY_SCENES[PARTY_SCENES.length - 1].from + 120;
 export const STICK_PARTY_FRAMES = PARTY_END + 140;
 export const StickParty: React.FC = () => (
-  <StickFilm look="gold" xmas scenes={PARTY_SCENES} endAt={PARTY_END} frames={STICK_PARTY_FRAMES} end={["A faultless night,", "almost"]} endEl={<FaultlessEnd />} musicAt={189} track={`${P}/funky-christmas.mp3`}
+  <StickFilm look="gold" xmas scenes={PARTY_SCENES} endAt={PARTY_END} frames={STICK_PARTY_FRAMES} end={["A faultless night,", "almost"]} endEl={<FaultlessEnd />} musicAt={0} track={`${P}/christmas-fun-120.mp3`}
     over={<Sequence from={66} durationInFrames={54} layout="none"><PlaceLabel place="KIDDERMINSTER" name="Hogarths Stone Manor" len={54} /></Sequence>} />
 );
