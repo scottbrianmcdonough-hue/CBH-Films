@@ -1652,23 +1652,77 @@ export const Santa = (f: number, p: number) => {
   );
 };
 
-// 3b. The steal: the dice said so. He makes off with someone's present, its owner after him
-const STEAL_FROM: Pt = [640, 1010];
+// 3b. The steal (Scott: "all sitting at a table stealing gifts ... gifts being stolen across the table", not a
+// chase): two of them sat either side, the present swiped across, swiped back, swiped again, a die between them
+const STEAL_FROM: Pt = [540, 1130];
+const SEAT_R: Pose = { ...SIT_L, x: 850 };
+const GRAB_R: Pose = { ...EAT_REACH, x: 850, lean: 0.42, ua: [-1.45, -0.2], fa: [-1.6, -0.5] };
 const Steal = (f: number, p: number) => {
-  const x = 250 + f * 9.5;
-  const run = runPose(f * 0.6, x);
-  const thief: Pose = { ...run, ua: [2.5, 2.9], fa: [2.9, 3.2] };
-  const owner: Pose = { ...runPose(f * 0.6 + 0.5, x - 300 + Math.min(60, f * 1.2)), ua: [1.5, 1.2], fa: [1.6, 1.3] };
-  const h = hand(thief, 0);
-  const c: Pt = [h[0] + 6, h[1] - 52 + 4 * Math.sin(f * 1.2)];
+  const swipe = (a: number) => smooth(f, a, a + 8);
+  const gx = 400 + 280 * (swipe(12) - swipe(28) + swipe(44));
+  const reach = (a: number) => Math.max(0, 1 - Math.abs(f - a - 2) / 7);
+  const right = mix(SEAT_R, GRAB_R, Math.max(reach(12), reach(44)));
+  const left = mirror(mix(SEAT_R, GRAB_R, reach(28)), 230);
+  const c: Pt = [gx, 1132];
+  const stool = (x: number, id: number) => (
+    <>
+      <Pencil d={[[x - 46, 1218], [x + 46, 1218]]} p={p} id={id} w={5} />
+      <Pencil d={[[x - 34, 1218], [x - 40, 1392]]} p={p} id={id + 1} w={4} />
+      <Pencil d={[[x + 34, 1218], [x + 40, 1392]]} p={p} id={id + 2} w={4} />
+    </>
+  );
   return (
     <>
-      {x - 300 > -80 ? <Figure q={owner} p={p} /> : null}
-      <Figure q={thief} p={p} />
-      <Pencil d={rot([[-48, -40], [48, -40], [48, 40], [-48, 40]], c, 0.08 * Math.sin(f * 0.9))} p={p} id={780} closed />
+      <Pencil d={[[330, 1176], [750, 1176]]} p={p} id={784} />
+      <Pencil d={[[540, 1176], [540, 1392]]} p={p} id={785} w={5} />
+      <Pencil d={[[470, 1392], [610, 1392]]} p={p} id={786} w={5} />
+      {stool(230, 787)}
+      {stool(850, 791)}
+      <Figure q={left} p={p} />
+      <Figure q={right} p={p} />
+      <Pencil d={rot([[-44, -40], [44, -40], [44, 40], [-44, 40]], c, 0)} p={p} id={780} closed />
       <Pencil d={[[c[0], c[1] - 40], [c[0], c[1] + 40]]} p={p} id={781} w={4} />
-      <Pencil d={[[c[0] - 48, c[1]], [c[0] + 48, c[1]]]} p={p} id={782} w={4} />
+      <Pencil d={[[c[0] - 44, c[1]], [c[0] + 44, c[1]]]} p={p} id={782} w={4} />
       <Pencil d={[[c[0], c[1] - 40], [c[0] - 22, c[1] - 66], [c[0] - 30, c[1] - 44], [c[0], c[1] - 40], [c[0] + 22, c[1] - 66], [c[0] + 30, c[1] - 44], [c[0], c[1] - 40]]} p={p} id={783} w={4} />
+      {/* the die, knocked about each time */}
+      <Pencil d={rot([[-14, -14], [14, -14], [14, 14], [-14, 14]], [540 + 30 * Math.sin(f * 0.5), 1160], f * 0.4)} p={p} id={795} w={4} closed />
+    </>
+  );
+};
+
+// 3c. The quiz: question marks, then a long look at the answers across the table, which get covered up
+const PEEK: Pose = { ...SEAT_R, lean: 0.8, head: 0.35, ua: [-0.3, -0.2], fa: [-0.6, -0.4] };
+const COVER: Pose = { ...SEAT_R, lean: 0.32, head: 0.3, ua: [-1.0, -0.9], fa: [-1.9, -1.8] };
+const Quiz = (f: number, p: number) => {
+  const left = mirror(mix(SEAT_R, PEEK, smooth(f, 26, 36)), 230);
+  const right = mix(SEAT_R, COVER, smooth(f, 34, 42));
+  const q = (c: Pt, id: number) => (
+    <React.Fragment key={id}>
+      <Pencil d={[...Array.from({ length: 9 }, (_, k): Pt => {
+        const a = -2.6 + (k / 8) * 4.0;
+        return [c[0] + 17 * Math.cos(a), c[1] - 22 + 17 * Math.sin(a)];
+      }), [c[0], c[1] + 10]]} p={p} id={id} w={5} />
+      <Circle c={[c[0], c[1] + 28]} r={3} p={p} id={id + 1} w={4} />
+    </React.Fragment>
+  );
+  const sheet = (x: number, id: number) => <Pencil d={[[x - 34, 1172], [x - 22, 1150], [x + 40, 1150], [x + 28, 1172]]} p={p} id={id} w={4} closed />;
+  return (
+    <>
+      <Pencil d={[[330, 1176], [750, 1176]]} p={p} id={860} />
+      <Pencil d={[[540, 1176], [540, 1392]]} p={p} id={861} w={5} />
+      <Pencil d={[[470, 1392], [610, 1392]]} p={p} id={862} w={5} />
+      {[230, 850].map((x, k) => (
+        <React.Fragment key={k}>
+          <Pencil d={[[x - 46, 1218], [x + 46, 1218]]} p={p} id={863 + k * 3} w={5} />
+          <Pencil d={[[x - 34, 1218], [x - 40, 1392]]} p={p} id={864 + k * 3} w={4} />
+          <Pencil d={[[x + 34, 1218], [x + 40, 1392]]} p={p} id={865 + k * 3} w={4} />
+        </React.Fragment>
+      ))}
+      {sheet(410, 870)}
+      {sheet(670, 871)}
+      <Figure q={left} p={p} />
+      <Figure q={right} p={p} />
+      {f < 30 ? [[190, 900], [262, 860], [322, 910]].map((c, k) => (f >= 4 + k * 7 ? q(c as Pt, 872 + k * 2) : null)) : null}
     </>
   );
 };
@@ -1784,7 +1838,8 @@ const beat = 30;
 const FACES = ["red-antlers", "cream", "green-antlers", "sequin", "brown-antlers", "gingerbread", "tubes", "peace", "boppers", "lace", "thumbs", "santa-boppers"].map((n) => `${P}/p-${n}.jpg`);
 const PARTY: { time: string; draw: (f: number, p: number, look: Look, xmas: boolean) => React.ReactNode; from: Pt; stills: Shot[] }[] = [
   { time: "Fri 20 Nov, 2:00pm", draw: Meeting, from: CHART_FROM, stills: [
-    { src: `${P}/meeting-wide.jpg`, len: 2 * beat, split: true }, { src: `${P}/meeting-smiles.jpg`, len: beat, split: true }] },
+    { src: `${P}/meeting-wide.jpg`, len: 3 * beat, split: true }] },
+  { time: "Fri 20 Nov, 3:00pm", draw: Quiz, from: [540, 1130], stills: [{ src: `${P}/meeting-smiles.jpg`, len: 2 * beat, split: true }] },
   { time: "Fri 20 Nov, 3:30pm", draw: Dice, from: DICE_FROM, stills: [{ src: `${P}/dice-game.jpg`, len: 2 * beat, split: true }] },
   { time: "Fri 20 Nov, 4:00pm", draw: Steal, from: STEAL_FROM, stills: [{ src: `${P}/secret-santa.jpg`, len: 2 * beat, split: true }] },
   { time: "Fri 20 Nov, 7:00pm", draw: Tray, from: TRAY_FROM, stills: [
@@ -1797,8 +1852,7 @@ const PARTY: { time: string; draw: (f: number, p: number, look: Look, xmas: bool
       .map((n): Shot => ({ src: `${P}/${n}.jpg`, len: beat / 2 })),
     { src: `${P}/cast-tree.jpg`, len: beat / 2, split: true }] },
   { time: "Fri 20 Nov, 9:30pm", draw: Toast, from: TOAST_FROM, stills: [
-    { src: `${P}/comedian-1.jpg`, len: beat }, { src: `${P}/comedian-2.jpg`, len: beat }, { src: `${P}/table-2-laughing.jpg`, len: 2 * beat, split: true }] },
-  { time: "Fri 20 Nov, 10:15pm", draw: Crackers, from: [420, 1130], stills: [
+    { src: `${P}/comedian-1.jpg`, len: beat }, { src: `${P}/comedian-2.jpg`, len: beat }, { src: `${P}/table-2-laughing.jpg`, len: beat, split: true },
     ...FACES.map((src): Shot => ({ src, len: 10, pos: "50% 30%" })),
     { src: "grid", len: 3 * beat, grid: FACES }] },
 ];
@@ -1815,8 +1869,8 @@ const PARTY_SCENES: Scene[] = (() => {
   return out;
 })();
 const PARTY_END = PARTY_SCENES[PARTY_SCENES.length - 1].from + 90;
-export const STICK_PARTY_FRAMES = PARTY_END + 90;
+export const STICK_PARTY_FRAMES = PARTY_END + 76;
 export const StickParty: React.FC = () => (
   <StickFilm look="gold" xmas scenes={PARTY_SCENES} endAt={PARTY_END} frames={STICK_PARTY_FRAMES} end={["Same again", "next year?"]} musicAt={241}
-    over={<Sequence from={124} durationInFrames={112} layout="none"><PlaceLabel place="KIDDERMINSTER" name="Hogarths Stone Manor" len={112} /></Sequence>} />
+    over={<Sequence from={128} durationInFrames={78} layout="none"><PlaceLabel place="KIDDERMINSTER" name="Hogarths Stone Manor" len={78} /></Sequence>} />
 );
