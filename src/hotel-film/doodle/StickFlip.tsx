@@ -37,6 +37,8 @@ const HaloCtx = React.createContext(false);
 // the Christmas cut (Scott: "add more Christmassy elements in the gags, elevate"): a Santa hat on him
 // throughout, a garland under the time on every party page, and a festive touch in each gag
 const XmasCtx = React.createContext(false);
+// off for the pages before the party hats went on (Scott: "we didn't have the headgear on till dinner")
+const HatCtx = React.createContext(true);
 
 const page = (f: number) => Math.floor(f / 2); // drawn on twos
 const smooth = (f: number, a: number, b: number) => {
@@ -84,7 +86,7 @@ const L = { torso: 150, head: 40, upper: 78, fore: 72, thigh: 92, shin: 90 };
 const at = (o: Pt, a: number, len: number): Pt => [o[0] + Math.sin(a) * len, o[1] + Math.cos(a) * len];
 type Hat = "santa" | "antlers" | "elf";
 const Figure: React.FC<{ q: Pose; p: number; hat?: Hat }> = ({ q, p, hat = "santa" }) => {
-  const xmas = React.useContext(XmasCtx);
+  const xmas = React.useContext(XmasCtx) && React.useContext(HatCtx);
   const hip: Pt = [q.x, q.y];
   const neck = at(hip, Math.PI + q.lean, L.torso);
   const headC = at(neck, Math.PI + q.lean + q.head, L.head + 6);
@@ -2006,11 +2008,12 @@ const PARTY_SCENES: Scene[] = (() => {
   let at0 = 0;
   for (const s of PARTY) {
     const len = 60 + s.stills.reduce((a, x) => a + x.len, 0);
-    out.push({ from: at0, len, el: <Gag time={s.time} from={s.from} draw={s.draw} stills={s.stills} /> });
+    const hats = /7:00pm|8:00pm|8:45pm|9:15pm/.test(s.time);
+    out.push({ from: at0, len, el: <HatCtx.Provider value={hats}><Gag time={s.time} from={s.from} draw={s.draw} stills={s.stills} /></HatCtx.Provider> });
     at0 += len;
   }
   out.push({ from: at0, len: 90, el: <Gag time="Sat 21 Nov, 1:00am" still={`${SM}/luxury-suite.jpg`} pos="50% 50%" from={[852, 1280]} draw={Bed} /> });
-  out.push({ from: at0 + 90, len: 90, el: <Gag time="Sat 21 Nov, 9:00am" still={`${SM}/restaurant-table.jpg`} pos="50% 50%" from={[600, 1000]} draw={Breakfast} /> });
+  out.push({ from: at0 + 90, len: 90, el: <HatCtx.Provider value={false}><Gag time="Sat 21 Nov, 9:00am" still={`${SM}/restaurant-table.jpg`} pos="50% 50%" from={[600, 1000]} draw={Breakfast} /></HatCtx.Provider> });
   return out;
 })();
 const PARTY_END = PARTY_SCENES[PARTY_SCENES.length - 1].from + 90;
