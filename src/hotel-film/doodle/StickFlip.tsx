@@ -578,7 +578,8 @@ const Scribble: React.FC<{ x: number; y: number; size?: number; o?: number; chil
 // A portrait photo fills the frame on a slow push; a landscape one (`wide`) sits across the middle over its own
 // blurred copy and drifts sideways so the whole group is seen.
 type Shot = { src: string; len: number; pos?: string; split?: boolean; plates?: string[]; grid?: string[];
-  to?: string; toPos?: string }; // `to`: the same view later on, snap cut to half way (the day group, then the night one)
+  to?: string; toPos?: string;
+  halves?: boolean }; // with `split`: the two tiles are the photo's exact left and right halves, nobody shown twice // `to`: the same view later on, snap cut to half way (the day group, then the night one)
 const pop = (f: number, at0: number, n = 5) => Math.min(1, Math.max(0, (f - at0) / n));
 const PartyShot: React.FC<{ s: Shot; f: number }> = ({ s, f }) => {
   const look = React.useContext(LookCtx);
@@ -587,6 +588,20 @@ const PartyShot: React.FC<{ s: Shot; f: number }> = ({ s, f }) => {
   if (s.split) {
     const late = s.len <= 15 ? 3 : s.len <= 30 ? 7 : 15;
     const up = 1 - (1 - pop(f, late, 6)) ** 3;
+    const half = (side: number, top: number, dy: number) => (
+      <div style={{ position: "absolute", left: 0, top, width: W, height: 954, overflow: "hidden", transform: `translateY(${dy}px)` }}>
+        <Img src={staticFile(s.src)} style={{ position: "absolute", left: side ? -W : 0, top: -118, width: 2 * W, height: 1216,
+          transformOrigin: side ? "75% 45%" : "25% 45%", transform: `scale(${1 + 0.03 * t})` }} />
+      </div>
+    );
+    if (s.halves) {
+      return (
+        <AbsoluteFill style={{ backgroundColor: look.bg }}>
+          {half(0, 0, 0)}
+          {f >= late ? half(1, 966, (1 - up) * 960) : null}
+        </AbsoluteFill>
+      );
+    }
     const tile = (side: number, top: number, dy: number) => (
       <div style={{ position: "absolute", left: 0, top, width: W, height: 954, overflow: "hidden", transform: `translateY(${dy}px)` }}>
         <Img src={staticFile(s.src)} style={{ width: W, height: 954, objectFit: "cover", objectPosition: `${side ? 100 - 6 * t : 6 * t}% 50%`, transform: `scale(${1.02 + 0.03 * t})` }} />
@@ -2030,7 +2045,7 @@ const FACES = ["red-antlers", "cream", "green-antlers", "sequin", "brown-antlers
 const PARTY: { time: string; draw: (f: number, p: number, look: Look, xmas: boolean) => React.ReactNode; from: Pt; stills: Shot[] }[] = [
   { time: "Fri 20 Nov, 2:00pm", draw: Meeting, from: CHART_FROM, stills: [
     { src: "campaigns/festive/graded/hogarths-entrance.jpg", len: 2 * beat, pos: "50% 50%" }, { src: `${P}/meeting-wide.jpg`, len: 2 * beat, split: true }] },
-  { time: "Fri 20 Nov, 3:00pm", draw: Quiz, from: [540, 1130], stills: [{ src: `${P}/meeting-smiles.jpg`, len: 2 * beat, split: true }] },
+  { time: "Fri 20 Nov, 3:00pm", draw: Quiz, from: [540, 1130], stills: [{ src: `${P}/meeting-smiles.jpg`, len: 2 * beat, split: true, halves: true }] },
   { time: "Fri 20 Nov, 3:30pm", draw: Dice, from: DICE_FROM, stills: [{ src: `${P}/dice-game.jpg`, len: 2 * beat, split: true }] },
   { time: "Fri 20 Nov, 4:00pm", draw: Steal, from: STEAL_FROM, stills: [{ src: `${P}/secret-santa.jpg`, len: 2 * beat, split: true }, { src: `${P}/group-day.jpg`, len: 4 * beat, pos: "50% 58%", to: `${P}/group-evening.jpg`, toPos: "44% 58%" }] },
   { time: "Fri 20 Nov, 7:00pm", draw: Slap, from: SLAP_FROM, stills: [
