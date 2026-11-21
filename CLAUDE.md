@@ -1310,6 +1310,13 @@ with no history and no renders:
   recut. The opening shot is the Christmas entrance at night (`festive/graded/hogarths-entrance.jpg`: confirm it is
   Stone Manor). The u hangs a second before it drops ("hold it longer"); sleigh bells and the swing track are out
   (`scripts/party-music.py` no longer used). 60.7s, -15 LUFS. Sent with `-silent`.
+  Ninth cut (Scott: "lose the breakfast gag and the music sucks", "lose the circle in the middle before every
+  transition", the day group photo then the night one, "a quick cut snap"): photos come in on a straight cut on the
+  beat, no opening ring (pages with `stills`); the breakfast page is out, the bed page runs into the suite and the
+  eggs as plain shots; the day group by the tree snap cuts to the evening one in the same spot (`Shot.to`), after the
+  gifts; the waving group is the last photo. Music: Christmas Fun (caldena, Pixabay 608432, ~114.3 BPM, slowing a
+  touch after 40s) sped ~5% in two pieces to sit on 120 (`christmas-fun-120.mp3`, beats on 0.5k). Funky Christmas
+  was "sucks". 59.7s, -15 LUFS. Sent with `-silent`. I can't hear the tracks: ask what he wants if this one misses.
   To confirm: the times on the pages are guesses; where it is going (it has the reel end card, no TikTok text);
   everyone shown is happy to be posted; a festive track would suit it better than the Rowton reel's.
 - `the-kingfisher`, `whittlebury-park-stay-dine` (+ `-story` cuts): done.
