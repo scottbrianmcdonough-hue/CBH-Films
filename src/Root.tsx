@@ -78,11 +78,13 @@ import {
   STICK_RACE_FRAMES,
   STICK_REEL_FRAMES,
   STICK_TIKTOK_FRAMES,
+  STICK_PARTY_FRAMES,
   STICK_XMAS_FRAMES,
   StickFlip,
   StickRaceDay,
   StickReel,
   StickTikTok,
+  StickParty,
   StickXmas,
 } from "./hotel-film/doodle/StickFlip";
 import { coombeBanquetTicket, EventTicket, holdsworthGigTicket, ramsideGigTicket, ticketFrames, whittleburyRaceTicket } from "./hotel-film/ticket/EventTicket";
@@ -460,6 +462,7 @@ export const RemotionRoot: React.FC = () => {
         width={WIDTH}
         height={HEIGHT}
       />
+      <Composition id="cbh-christmas-party" component={StickParty} durationInFrames={STICK_PARTY_FRAMES} fps={FPS} width={WIDTH} height={HEIGHT} />
       <Composition
         id="clay-suitcase-test"
         component={ClaySuitcase}
