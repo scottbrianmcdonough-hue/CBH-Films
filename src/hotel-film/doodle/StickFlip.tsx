@@ -961,11 +961,11 @@ const FaultlessEnd: React.FC = () => {
   const look = React.useContext(LookCtx);
   const p = page(frame);
   const line = progress(frame, FLIP + 4, 18);
-  const loose = progress(frame, 40, 8, (x) => x);
-  const swing = frame >= 48 ? 0 : loose * (24 + 8 * Math.sin((frame - 40) * 1.1));
-  const t = Math.max(0, frame - 50);
+  const loose = progress(frame, 36, 8, (x) => x);
+  const swing = loose * (22 + 12 * Math.sin((frame - 36) * 0.55) * Math.exp(-(frame - 36) / 40)); // hangs and swings for a second (Scott: "hold it longer")
+  const t = Math.max(0, frame - 68);
   const dy = 1.5 * t * t;
-  const almost = progress(frame, 82, 12); // only once the u has gone
+  const almost = progress(frame, 98, 12); // only once the u has gone
   return (
     <AbsoluteFill style={{ backgroundColor: look.bg }}>
       <Paper p={p} />
@@ -973,7 +973,7 @@ const FaultlessEnd: React.FC = () => {
         color: colors.cream, opacity: line, transform: `translateY(${(1 - line) * 22}px)`, whiteSpace: "nowrap" }}>
         A fa
         <span style={{ display: "inline-block", transformOrigin: "100% 12%",
-          transform: `translate(${t * 1.6}px, ${dy}px) rotate(${frame >= 50 ? 32 + t * 7 : swing}deg)`, opacity: dy > 1100 ? 0 : 1 }}>u</span>
+          transform: `translate(${t * 1.6}px, ${dy}px) rotate(${frame >= 68 ? swing + t * 7 : swing}deg)`, opacity: dy > 1100 ? 0 : 1 }}>u</span>
         ltless night,
         <br />
         <span style={{ display: "inline-block", opacity: almost, transform: `translateY(${(1 - almost) * 18}px)` }}>almost</span>
@@ -2048,7 +2048,7 @@ const PARTY_SCENES: Scene[] = (() => {
   return out;
 })();
 const PARTY_END = PARTY_SCENES[PARTY_SCENES.length - 1].from + 90;
-export const STICK_PARTY_FRAMES = PARTY_END + 126;
+export const STICK_PARTY_FRAMES = PARTY_END + 140;
 export const StickParty: React.FC = () => (
   <StickFilm look="gold" xmas scenes={PARTY_SCENES} endAt={PARTY_END} frames={STICK_PARTY_FRAMES} end={["A faultless night,", "almost"]} endEl={<FaultlessEnd />} musicAt={241}
     over={<Sequence from={66} durationInFrames={54} layout="none"><PlaceLabel place="KIDDERMINSTER" name="Hogarths Stone Manor" len={54} /></Sequence>} />

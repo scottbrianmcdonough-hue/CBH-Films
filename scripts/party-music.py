@@ -1,6 +1,5 @@
 """The Christmas party reel's sound (Scott: "a festive song like Jingle Bell Rock", "find one within the repos"):
-Bring Back the Swing (120 BPM, kick on 7.61s + 0.5k) from a downbeat at 8.11s, with soft synthesised sleigh bells on
-every beat. Writes public/campaigns/xmas-party-2026/swing-bells.wav. Usage: party-music.py [seconds]"""
+Bring Back the Swing (120 BPM, kick on 7.61s + 0.5k) from a downbeat at 8.11s, sleigh bells on the beat optional (off). Writes public/campaigns/xmas-party-2026/swing.wav. Usage: party-music.py [seconds] [bells 0-1]"""
 import sys
 import librosa, numpy as np, soundfile as sf
 dur = float(sys.argv[1]) if len(sys.argv) > 1 else 59.4
@@ -16,7 +15,8 @@ for k in range(int(dur / 0.5)):
     for off, amp in ((0.012, 0.5 if k % 2 == 0 else 1.0), (0.262, 0.35)):
         i = int((k * 0.5 + off) * sr); j = jingle(amp)
         if i + len(j) < n: bells[i:i + len(j)] += j
-bells *= 0.175 * np.sqrt(np.mean(seg ** 2)) / np.sqrt(np.mean(bells ** 2))
+BELLS = float(sys.argv[2]) if len(sys.argv) > 2 else 0.0  # 0: no sleigh bells (Scott: "lose the jingle"); 1 was the first try
+bells *= BELLS * 0.175 * np.sqrt(np.mean(seg ** 2)) / np.sqrt(np.mean(bells ** 2))
 out = seg + np.vstack([bells * 0.9, bells * 1.1])
 fade = np.ones(n); fo = int(1.5 * sr); fade[-fo:] = np.linspace(1, 0, fo); fade[:2000] = np.linspace(0, 1, 2000)
-sf.write('public/campaigns/xmas-party-2026/swing-bells.wav', (out * fade).T, sr)
+sf.write('public/campaigns/xmas-party-2026/swing.wav', (out * fade).T, sr)
