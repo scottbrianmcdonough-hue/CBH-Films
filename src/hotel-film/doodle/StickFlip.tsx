@@ -82,7 +82,8 @@ const Circle: React.FC<{ c: Pt; r: number; p: number; id: number; w?: number }> 
 type Pose = { x: number; y: number; lean: number; head: number; ua: [number, number]; fa: [number, number]; th: [number, number]; sh: [number, number] };
 const L = { torso: 150, head: 40, upper: 78, fore: 72, thigh: 92, shin: 90 };
 const at = (o: Pt, a: number, len: number): Pt => [o[0] + Math.sin(a) * len, o[1] + Math.cos(a) * len];
-const Figure: React.FC<{ q: Pose; p: number }> = ({ q, p }) => {
+type Hat = "santa" | "antlers" | "elf";
+const Figure: React.FC<{ q: Pose; p: number; hat?: Hat }> = ({ q, p, hat = "santa" }) => {
   const xmas = React.useContext(XmasCtx);
   const hip: Pt = [q.x, q.y];
   const neck = at(hip, Math.PI + q.lean, L.torso);
@@ -105,7 +106,8 @@ const Figure: React.FC<{ q: Pose; p: number }> = ({ q, p }) => {
           <Pencil d={[hip, m.knee, m.foot]} p={p} id={5 + s} />
         </React.Fragment>
       ))}
-      {xmas ? <SantaHat c={headC} a={-(q.lean + q.head)} p={p} /> : null}
+      {xmas && hat === "santa" ? <SantaHat c={headC} a={-(q.lean + q.head)} p={p} /> : null}
+      {xmas && hat !== "santa" ? <Headband c={headC} a={-(q.lean + q.head)} p={p} kind={hat} /> : null}
     </>
   );
   return <Knockout>{lines}</Knockout>;
@@ -124,6 +126,41 @@ const Knockout: React.FC<{ children: React.ReactNode }> = ({ children }) => (
 // one side, a bobble on the tip
 const turn = (pts: Pt[], c: Pt, a: number): Pt[] =>
   pts.map(([x, y]) => [c[0] + x * Math.cos(a) - y * Math.sin(a), c[1] + x * Math.sin(a) + y * Math.cos(a)]);
+// the party's other headgear (Scott: "not so many Christmas hats, do some antlers, some upside down elf legs like the
+// pics"): a headband with reindeer antlers, or with a pair of elf legs sticking up, curly shoes in the air
+const Headband: React.FC<{ c: Pt; a: number; p: number; kind: "antlers" | "elf" }> = ({ c, a, p, kind }) => {
+  const T = (pts: Pt[]) => turn(pts, c, a);
+  const band = <Pencil d={T([[-38, -18], [-24, -36], [0, -43], [24, -36], [38, -18]])} p={p} id={610} w={5} />;
+  if (kind === "antlers") {
+    return (
+      <>
+        {band}
+        {[-1, 1].map((sd) => (
+          <React.Fragment key={sd}>
+            <Pencil d={T([[sd * 18, -40], [sd * 30, -78], [sd * 36, -118]])} p={p} id={611 + sd} w={6} />
+            <Pencil d={T([[sd * 26, -66], [sd * 54, -80]])} p={p} id={614 + sd} w={5} />
+            <Pencil d={T([[sd * 32, -94], [sd * 12, -112]])} p={p} id={617 + sd} w={5} />
+            <Pencil d={T([[sd * 34, -104], [sd * 58, -116]])} p={p} id={620 + sd} w={5} />
+          </React.Fragment>
+        ))}
+      </>
+    );
+  }
+  return (
+    <>
+      {band}
+      {[-1, 1].map((sd) => (
+        <React.Fragment key={sd}>
+          <Pencil d={T([[sd * 10, -42], [sd * 22, -84], [sd * 26, -108]])} p={p} id={623 + sd} w={6} />
+          <Pencil d={T([[sd * 26, -108], [sd * 50, -112], [sd * 60, -128], [sd * 50, -136]])} p={p} id={626 + sd} w={5} />
+          <Pencil d={T([[sd * 8, -62], [sd * 24, -60]])} p={p} id={629 + sd} w={3} />
+          <Pencil d={T([[sd * 13, -80], [sd * 29, -78]])} p={p} id={632 + sd} w={3} />
+          <Pencil d={T([[sd * 17, -97], [sd * 33, -96]])} p={p} id={635 + sd} w={3} />
+        </React.Fragment>
+      ))}
+    </>
+  );
+};
 const SantaHat: React.FC<{ c: Pt; a: number; p: number; sc?: number }> = ({ c, a, p, sc = 1 }) => {
   const T = (pts: Pt[]) => turn(pts.map(([x, y]) => [x * sc, y * sc] as Pt), c, a);
   const bob = T([[54, -80]])[0];
@@ -579,7 +616,7 @@ const PartyShot: React.FC<{ s: Shot; f: number }> = ({ s, f }) => {
           <circle cx={540} cy={CY + dip * 0.6} r={R0 + 14} fill="none" stroke={look.ink} strokeWidth={5} opacity={0.9} />
           {/* he holds every course up; each one lands with a dip of the knees */}
           <Pencil d={[[260, 1856], [820, 1856]]} p={p} id={790} w={5} />
-          <Figure q={atlas} p={p} />
+          <Figure q={atlas} p={p} hat="antlers" />
         </svg>
       </AbsoluteFill>
     );
@@ -1679,7 +1716,7 @@ const Steal = (f: number, p: number) => {
       {stool(230, 787)}
       {stool(850, 791)}
       <Figure q={left} p={p} />
-      <Figure q={right} p={p} />
+      <Figure q={right} p={p} hat="antlers" />
       <Pencil d={rot([[-44, -40], [44, -40], [44, 40], [-44, 40]], c, 0)} p={p} id={780} closed />
       <Pencil d={[[c[0], c[1] - 40], [c[0], c[1] + 40]]} p={p} id={781} w={4} />
       <Pencil d={[[c[0] - 44, c[1]], [c[0] + 44, c[1]]]} p={p} id={782} w={4} />
@@ -1720,8 +1757,8 @@ const Quiz = (f: number, p: number) => {
       ))}
       {sheet(410, 870)}
       {sheet(670, 871)}
-      <Figure q={left} p={p} />
-      <Figure q={right} p={p} />
+      <Figure q={left} p={p} hat="antlers" />
+      <Figure q={right} p={p} hat="elf" />
       {f < 30 ? [[190, 900], [262, 860], [322, 910]].map((c, k) => (f >= 4 + k * 7 ? q(c as Pt, 872 + k * 2) : null)) : null}
     </>
   );
@@ -1783,11 +1820,11 @@ const Laughers = (f: number, p: number, act: "rant" | "mic" | "chase") => {
     return { ...q, y: q.y + 3 * w, lean: q.lean + dir * (0.2 + 0.14 * w), head: q.head - dir * (0.25 + 0.15 * w),
       ua: [q.ua[0] + dir * 0.5 * w, q.ua[1] - dir * 0.4 * w], fa: [q.fa[0] + dir * 0.7 * w, q.fa[1]] };
   };
-  const a = lf(mirror(SEAT_R, 130), 0, 1);
+  const a = lf(mirror(SEAT_R, 165), 0, 1);
   const b = lf({ ...SEAT_R, x: 520 }, 1.7, -1);
   const w = Math.sin(f * 0.9);
   const star: Pose = act === "rant"
-    ? { x: 850, y: 1204, lean: 0.1 * w, head: 0.2 * w, ua: [-2.4 + 0.5 * w, 2.4 + 0.5 * w], fa: [-2.8 + 0.8 * w, 2.8 + 0.8 * w], th: [0.2, -0.2], sh: [0, 0] }
+    ? { x: 820, y: 1204, lean: 0.1 * w, head: 0.2 * w, ua: [-2.4 + 0.5 * w, 2.4 + 0.5 * w], fa: [-2.8 + 0.8 * w, 2.8 + 0.8 * w], th: [0.2, -0.2], sh: [0, 0] }
     : { x: 830, y: 1208, lean: -0.05 + 0.05 * w, head: 0.1, ua: [-1.3, 0.9 + 0.5 * w], fa: [-2.6, 1.6 + 0.6 * w], th: [0.12, -0.12], sh: [0, 0] };
   const m = hand(star, 0);
   return (
@@ -1798,15 +1835,15 @@ const Laughers = (f: number, p: number, act: "rant" | "mic" | "chase") => {
       <Pencil d={[[265, 1392], [385, 1392]]} p={p} id={912} w={5} />
       <Ellipse c={[280, 1168]} rx={34} ry={6} p={p} id={913} w={4} />
       <Ellipse c={[372, 1168]} rx={34} ry={6} p={p} id={914} w={4} />
-      {[130, 520].map((x, k) => (
+      {[165, 520].map((x, k) => (
         <React.Fragment key={k}>
           <Pencil d={[[x - 46, 1218], [x + 46, 1218]]} p={p} id={915 + k * 3} w={5} />
           <Pencil d={[[x - 34, 1218], [x - 40, 1392]]} p={p} id={916 + k * 3} w={4} />
           <Pencil d={[[x + 34, 1218], [x + 40, 1392]]} p={p} id={917 + k * 3} w={4} />
         </React.Fragment>
       ))}
-      <Figure q={a} p={p} />
-      <Figure q={b} p={p} />
+      <Figure q={a} p={p} hat="antlers" />
+      <Figure q={b} p={p} hat="elf" />
       {/* the laughter written in (Scott: "put ha ha on the laughter bit"), popping up over the table in turn */}
       {[[90, 880, 0, 62], [290, 840, 5, 76], [480, 890, 10, 62], [180, 770, 15, 54], [410, 760, 21, 58]].map(([x, y, at0, size], k) => {
         const t = f - at0;
