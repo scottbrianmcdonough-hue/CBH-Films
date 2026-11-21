@@ -579,7 +579,7 @@ const Scribble: React.FC<{ x: number; y: number; size?: number; o?: number; chil
 // blurred copy and drifts sideways so the whole group is seen.
 type Shot = { src: string; len: number; pos?: string; split?: boolean; plates?: string[]; grid?: string[];
   to?: string; toPos?: string;
-  halves?: boolean }; // with `split`: the two tiles are the photo's exact left and right halves, nobody shown twice // `to`: the same view later on, snap cut to half way (the day group, then the night one)
+  halves?: boolean; zoom?: number }; // with `split`: the two tiles are the photo's exact left and right halves, nobody shown twice // `to`: the same view later on, snap cut to half way (the day group, then the night one)
 const pop = (f: number, at0: number, n = 5) => Math.min(1, Math.max(0, (f - at0) / n));
 const PartyShot: React.FC<{ s: Shot; f: number }> = ({ s, f }) => {
   const look = React.useContext(LookCtx);
@@ -644,7 +644,7 @@ const PartyShot: React.FC<{ s: Shot; f: number }> = ({ s, f }) => {
     return (
       <AbsoluteFill style={{ backgroundColor: look.bg }}>
         {s.grid.map((src, k) => {
-          const a = pop(f, k * 4, 5);
+          const a = pop(f, k * 2.5, 5);
           if (a <= 0) return null;
           return (
             <div key={src} style={{ position: "absolute", left: (k % 3) * 360 + 3, top: Math.floor(k / 3) * 480 + 3, width: 354, height: 474, overflow: "hidden",
@@ -658,7 +658,7 @@ const PartyShot: React.FC<{ s: Shot; f: number }> = ({ s, f }) => {
   }
   const one = (src: string, pos: string | undefined, o: number) => (
     <Img src={staticFile(src)} style={{ position: "absolute", width: W, height: H, objectFit: "cover", objectPosition: pos ?? "50% 50%",
-      transform: `scale(${1 + 0.05 * t})`, opacity: o }} />
+      transformOrigin: pos ?? "50% 50%", transform: `scale(${(s.zoom ?? 1) * (1 + 0.05 * t)})`, opacity: o }} />
   );
   if (s.to) {
     // a snap cut on the beat half way (Scott: "or a quick cut snap"), the new photo punching in and settling
@@ -1225,12 +1225,14 @@ const RACE_SCENES = [
   { from: 540, len: 120, el: <Gag time="Sunday, 10:30pm" still={`${WP}/room.jpg`} pos="40% 50%" from={[852, 1280]} draw={Bed} /> },
 ];
 // the house label over the hotel's first shot: the place in gold caps, underlined, the name in cream Cormorant
-const PlaceLabel: React.FC<{ place: string; name: string; len: number }> = ({ place, name, len }) => {
+const PlaceLabel: React.FC<{ place: string; name: string; len: number; strong?: boolean }> = ({ place, name, len, strong }) => {
   const frame = useCurrentFrame();
   const o = progress(frame, 0, 12) * (1 - progress(frame, len - 10, 8));
   return (
     <AbsoluteFill style={{ opacity: o }}>
-      <AbsoluteFill style={{ background: "linear-gradient(to bottom, rgba(9,9,10,0) 52%, rgba(9,9,10,0.55) 74%, rgba(9,9,10,0.3) 100%)" }} />
+      <AbsoluteFill style={{ background: strong
+        ? "linear-gradient(to bottom, rgba(9,9,10,0) 44%, rgba(9,9,10,0.82) 70%, rgba(9,9,10,0.7) 100%)"
+        : "linear-gradient(to bottom, rgba(9,9,10,0) 52%, rgba(9,9,10,0.55) 74%, rgba(9,9,10,0.3) 100%)" }} />
       <div style={{ position: "absolute", left: 72, bottom: 500 }}>
         <div style={{ display: "inline-block" }}>
           <div style={{ fontFamily: sans, fontWeight: 600, fontSize: 28, letterSpacing: "0.24em", color: colors.gold }}>{place}</div>
@@ -1890,7 +1892,8 @@ const Laughers = (f: number, p: number, act: "rant" | "mic" | "chase") => {
   const m = hand(star, 0);
   return (
     <>
-      <g transform="translate(110 0)">
+      <g transform={act === "chase" ? "translate(120 -300) translate(430 1392) scale(0.62) translate(-430 -1392)" : "translate(110 0)"}>
+      {act === "chase" ? <Pencil d={[[40, 1392], [640, 1392]]} p={p} id={909} w={6} /> : null}
       <Pencil d={[[215, 1176], [435, 1176]]} p={p} id={910} />
       <Pencil d={[[325, 1176], [325, 1392]]} p={p} id={911} w={5} />
       <Pencil d={[[265, 1392], [385, 1392]]} p={p} id={912} w={5} />
@@ -2047,7 +2050,7 @@ const PARTY: { time: string; draw: (f: number, p: number, look: Look, xmas: bool
     { src: "campaigns/festive/graded/hogarths-entrance.jpg", len: 2 * beat, pos: "50% 50%" }, { src: `${P}/meeting-wide.jpg`, len: 2 * beat, split: true }] },
   { time: "Fri 20 Nov, 3:00pm", draw: Quiz, from: [540, 1130], stills: [{ src: `${P}/meeting-smiles.jpg`, len: 2 * beat, split: true, halves: true }] },
   { time: "Fri 20 Nov, 3:30pm", draw: Dice, from: DICE_FROM, stills: [{ src: `${P}/dice-game.jpg`, len: 2 * beat, split: true }] },
-  { time: "Fri 20 Nov, 4:00pm", draw: Steal, from: STEAL_FROM, stills: [{ src: `${P}/secret-santa.jpg`, len: 2 * beat, split: true }, { src: `${P}/group-day.jpg`, len: 4 * beat, pos: "50% 58%", to: `${P}/group-evening.jpg`, toPos: "44% 58%" }] },
+  { time: "Fri 20 Nov, 4:00pm", draw: Steal, from: STEAL_FROM, stills: [{ src: `${P}/secret-santa.jpg`, len: 2 * beat, split: true }, { src: `${P}/group-day.jpg`, len: 4 * beat, pos: "50% 56%", to: `${P}/group-evening.jpg`, toPos: "47% 55%", zoom: 1.2 }] },
   { time: "Fri 20 Nov, 7:00pm", draw: Slap, from: SLAP_FROM, stills: [
     { src: `${SM}/waiter-tray.jpg`, len: beat, pos: "16% 50%" }, { src: `${P}/cast-tree-portrait.jpg`, len: beat, pos: "50% 40%" },
     { src: `${P}/table-1-group.jpg`, len: 2 * beat, split: true }, { src: `${P}/table-2-group.jpg`, len: 2 * beat, split: true }] },
@@ -2055,12 +2058,11 @@ const PARTY: { time: string; draw: (f: number, p: number, look: Look, xmas: bool
     { src: "plates", len: 4 * beat, plates: ["prawn", "terrine", "turkey", "pud", "opera", "cheese"].map((n) => `${P}/plate-${n}.jpg`) }] },
   { time: "Fri 20 Nov, 8:45pm", draw: LaughRant, from: [640, 1080], stills: [
     ...["host-card", "hostess-close", "waiter-guest", "host-pour", "hostess-guest", "waiter-antlers", "hostess-table-1"]
-      .map((n): Shot => ({ src: `${P}/${n}.jpg`, len: beat / 2 })),
-    { src: `${P}/cast-tree.jpg`, len: beat / 2, split: true }] },
+      .map((n, k): Shot => ({ src: `${P}/${n}.jpg`, len: k === 6 ? beat : beat / 2 }))] },
   { time: "Fri 20 Nov, 9:15pm", draw: LaughChase, from: [640, 1080], stills: [
     { src: `${P}/comedian-1.jpg`, len: beat }, { src: `${P}/comedian-2.jpg`, len: beat },     { src: `${P}/host-table-2.jpg`, len: beat, pos: "52% 50%" },
     { src: "grid", len: 2 * beat, grid: FACES },
-    { src: `${P}/group-evening-waving.jpg`, len: 2 * beat, pos: "50% 58%" }] },
+    { src: `${P}/group-evening-waving.jpg`, len: 2 * beat, pos: "52% 54%", zoom: 1.15 }] },
 ];
 const PARTY_SCENES: Scene[] = (() => {
   const out: Scene[] = [];
@@ -2080,5 +2082,5 @@ const PARTY_END = PARTY_SCENES[PARTY_SCENES.length - 1].from + 120;
 export const STICK_PARTY_FRAMES = PARTY_END + 140;
 export const StickParty: React.FC = () => (
   <StickFilm look="gold" xmas scenes={PARTY_SCENES} endAt={PARTY_END} frames={STICK_PARTY_FRAMES} end={["A faultless night,", "almost"]} endEl={<FaultlessEnd />} musicAt={0} track={`${P}/christmas-fun-120.mp3`}
-    over={<Sequence from={66} durationInFrames={54} layout="none"><PlaceLabel place="KIDDERMINSTER" name="Hogarths Stone Manor" len={54} /></Sequence>} />
+    over={<Sequence from={66} durationInFrames={54} layout="none"><PlaceLabel place="KIDDERMINSTER" name="Hogarths Stone Manor" len={54} strong /></Sequence>} />
 );
