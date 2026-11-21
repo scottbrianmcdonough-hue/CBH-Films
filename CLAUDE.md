@@ -1284,6 +1284,12 @@ with no history and no renders:
   3:00, dice 3:30, the present swiped back and forth across the table 4:00, drinks tray 7:00, turkey 8:00 with the
   figure holding each plate up, two waiters colliding in the kitchen doorway 8:45, toast 9:30, bed, breakfast.
   59.5s. Sent.
+  Third cut (Scott: only what happened; "don't make up events"): the tray trip, reception bell, flying turkey, waiters'
+  collision, shattering toast and comedian pages are out. Pages now: sticker on the chart 2:00pm, quiz 3:00, dice
+  3:30, gifts swiped across the table 4:00, the host slapping the waiter, whose tray never moves, with a "Manuel" name
+  tag (Scott asked for it; part of the entertainment) 7:00, eating 8:00 and the plates held up, the table laughing at
+  the host's rant 8:45, the actors running round the room 9:15, bed, breakfast. 58.3s. Sent. Known: the laughing
+  table's left diner sits on the frame's left edge.
   To confirm: the times on the pages are guesses; where it is going (it has the reel end card, no TikTok text);
   everyone shown is happy to be posted; a festive track would suit it better than the Rowton reel's.
 - `the-kingfisher`, `whittlebury-park-stay-dine` (+ `-story` cuts): done.
