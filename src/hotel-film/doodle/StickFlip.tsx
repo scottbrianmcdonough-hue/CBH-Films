@@ -1673,6 +1673,82 @@ const Steal = (f: number, p: number) => {
   );
 };
 
+// 0. Check in: the bell on the desk, dinged politely, then not politely, and nobody comes
+const RING_UP: Pose = { x: 400, y: 1208, lean: 0.06, head: 0.1, ua: [1.5, -0.15], fa: [2.0, -0.1], th: [0.1, -0.1], sh: [0, 0] };
+const RING_DN: Pose = { x: 400, y: 1208, lean: 0.1, head: 0.16, ua: [1.15, -0.15], fa: [1.25, -0.1], th: [0.1, -0.1], sh: [0, 0] };
+const GIVE_UP: Pose = { x: 400, y: 1208, lean: -0.05, head: -0.3, ua: [1.2, -1.2], fa: [2.4, -2.4], th: [0.1, -0.1], sh: [0, 0] };
+const PING = 44;
+const Bell = (f: number, p: number) => {
+  // two polite dings, a pause to look round, then a frantic run of them
+  const rate = f < 20 ? 10 : f < 26 ? 0 : 3.2;
+  const ph = rate ? (f % rate) / rate : 1;
+  const down = rate ? Math.max(0, 1 - Math.abs(ph - 0.4) / 0.4) : 0;
+  let q = mix(RING_UP, RING_DN, down);
+  if (f >= 20 && f < 26) q = { ...RING_UP, head: -0.5 + (f - 20) * 0.2 };
+  if (f >= PING) q = mix(RING_UP, GIVE_UP, smooth(f, PING, PING + 8));
+  const t = Math.min(1, Math.max(0, (f - PING) / 16));
+  const bell: Pt = f < PING ? [610, 1162] : [610 + 260 * t, 1162 - 330 * Math.sin(Math.PI * t) + 230 * t];
+  const dome = Array.from({ length: 9 }, (_, k): Pt => [-34 * Math.cos((k / 8) * Math.PI), -30 * Math.sin((k / 8) * Math.PI)]);
+  return (
+    <>
+      {/* the desk, the key rack behind it */}
+      <Pencil d={[[520, 1166], [960, 1166]]} p={p} id={800} />
+      <Pencil d={[[540, 1166], [540, 1392]]} p={p} id={801} w={5} />
+      <Pencil d={[[940, 1166], [940, 1392]]} p={p} id={802} w={5} />
+      <Pencil d={[[700, 900], [920, 900], [920, 1040], [700, 1040]]} p={p} id={803} w={4} closed />
+      {[0, 1, 2, 3, 4, 5].map((k) => <Circle key={k} c={[740 + (k % 3) * 70, 940 + Math.floor(k / 3) * 56]} r={7} p={p} id={804 + k} w={3} />)}
+      <Pencil d={rot([...dome, [-40, 0], [40, 0]], bell, t * 9)} p={p} id={812} w={5} />
+      <Circle c={[bell[0], bell[1] - 36]} r={5} p={p} id={813} w={3} />
+      {down > 0.6 && f < PING
+        ? [-0.8, 0, 0.8].map((a, k) => <Pencil key={k} d={[[610 + 52 * Math.sin(a), 1140 - 52 * Math.cos(a)], [610 + 78 * Math.sin(a), 1140 - 78 * Math.cos(a)]]} p={p} id={814 + k} w={3} />)
+        : null}
+      <Figure q={q} p={p} />
+    </>
+  );
+};
+
+// 5b. The kitchen doorway: one waiter going in, one coming out, both with plates
+const CLASH = 24;
+const DOOR_FROM: Pt = [540, 1060];
+const Doors = (f: number, p: number) => {
+  const go = Math.min(1, f / CLASH);
+  const xa = 150 + 290 * go;
+  const xb = 930 - 290 * go;
+  const wa = runPose(f * 0.55, xa);
+  const carry = (w: Pose): Pose => ({ ...w, lean: -0.05, head: -0.1, ua: [2.5, w.ua[1] * 0.5], fa: [3.0, w.fa[1] * 0.5], y: 1200 + (w.y - 1194) * 0.5 });
+  const a0 = carry(wa);
+  const b0 = mirror(carry(runPose(f * 0.55 + 0.5, 0)), xb);
+  const fall = smooth(f, CLASH, CLASH + 8);
+  const a = f < CLASH ? a0 : mix(a0, { ...BUM, x: 330 }, fall);
+  const b = f < CLASH ? b0 : mix(b0, mirror(BUM, 750), fall);
+  const ha = hand(a0, 0);
+  const hb = hand(b0, 0);
+  const stack = (h: Pt, side: number, id: number) => [0, 1, 2].map((k) => {
+    const t = Math.max(0, (f - CLASH - k) / 20);
+    if (t >= 1) return null;
+    const c: Pt = f < CLASH ? [h[0] + side * 8, h[1] - 10 - k * 13]
+      : [h[0] + side * (40 + k * 70) * t, h[1] - 10 - k * 13 - (300 + k * 60) * Math.sin(Math.PI * t) + (1392 - h[1]) * t];
+    return <Ellipse key={`${id}${k}`} c={c} rx={46} ry={f < CLASH ? 7 : 7 + 22 * Math.abs(Math.sin(t * 9 + k))} p={p} id={id + k} w={4} />;
+  });
+  return (
+    <>
+      <Pencil d={[[440, 1392], [440, 930], [640, 930], [640, 1392]]} p={p} id={820} w={5} />
+      <Circle c={[540, 1010]} r={30} p={p} id={821} w={4} />
+      <Pencil d={[[540, 930], [540, 1392]]} p={p} id={822} w={3} />
+      <Figure q={a} p={p} />
+      <Figure q={b} p={p} />
+      {stack(ha, 1, 830)}
+      {stack(hb, -1, 840)}
+      {f >= CLASH && f < CLASH + 8
+        ? [0, 1, 2, 3, 4].map((k) => {
+            const an = -Math.PI + (k / 4) * Math.PI;
+            return <Pencil key={k} d={[[540 + Math.cos(an) * 50, 1140 + Math.sin(an) * 50], [540 + Math.cos(an) * 96, 1140 + Math.sin(an) * 96]]} p={p} id={850 + k} w={4} />;
+          })
+        : null}
+    </>
+  );
+};
+
 // 7. Breakfast: the toast leaves the toaster, one for the plate, one for his head
 const WAIT: Pose = { x: 600, y: 1208, lean: 0, head: -0.05, ua: [-1.2, 0.15], fa: [-1.7, 0.1], th: [0.1, -0.1], sh: [0, 0] };
 const POPT = 16;
@@ -1716,19 +1792,19 @@ const PARTY: { time: string; draw: (f: number, p: number, look: Look, xmas: bool
     { src: `${P}/table-1-group.jpg`, len: 2 * beat, split: true }, { src: `${P}/table-2-group.jpg`, len: 2 * beat, split: true }] },
   { time: "Fri 20 Nov, 8:00pm", draw: Carving, from: [420, 1130], stills: [
     { src: "plates", len: 4 * beat, plates: ["prawn", "terrine", "turkey", "pud", "opera", "cheese"].map((n) => `${P}/plate-${n}.jpg`) }] },
-  { time: "Fri 20 Nov, 8:45pm", draw: Crackers, from: [420, 1130], stills: [
+  { time: "Fri 20 Nov, 8:45pm", draw: Doors, from: DOOR_FROM, stills: [
     ...["host-card", "hostess-close", "waiter-guest", "host-pour", "hostess-guest", "waiter-antlers", "hostess-table-1"]
       .map((n): Shot => ({ src: `${P}/${n}.jpg`, len: beat / 2 })),
     { src: `${P}/cast-tree.jpg`, len: beat / 2, split: true }] },
   { time: "Fri 20 Nov, 9:30pm", draw: Toast, from: TOAST_FROM, stills: [
     { src: `${P}/comedian-1.jpg`, len: beat }, { src: `${P}/comedian-2.jpg`, len: beat }, { src: `${P}/table-2-laughing.jpg`, len: 2 * beat, split: true }] },
-  { time: "Fri 20 Nov, 11:00pm", draw: Dance, from: TREE_TOP, stills: [
+  { time: "Fri 20 Nov, 10:15pm", draw: Crackers, from: [420, 1130], stills: [
     ...FACES.map((src): Shot => ({ src, len: 10, pos: "50% 30%" })),
     { src: "grid", len: 3 * beat, grid: FACES }] },
 ];
 const PARTY_SCENES: Scene[] = (() => {
-  const out: Scene[] = [];
-  let at0 = 0;
+  const out: Scene[] = [{ from: 0, len: 60, el: <Gag time="Fri 20 Nov, 1:45pm" from={[610, 1160]} draw={Bell} /> }];
+  let at0 = 60;
   for (const s of PARTY) {
     const len = 60 + s.stills.reduce((a, x) => a + x.len, 0);
     out.push({ from: at0, len, el: <Gag time={s.time} from={s.from} draw={s.draw} stills={s.stills} /> });
@@ -1739,8 +1815,8 @@ const PARTY_SCENES: Scene[] = (() => {
   return out;
 })();
 const PARTY_END = PARTY_SCENES[PARTY_SCENES.length - 1].from + 90;
-export const STICK_PARTY_FRAMES = PARTY_END + 105;
+export const STICK_PARTY_FRAMES = PARTY_END + 90;
 export const StickParty: React.FC = () => (
   <StickFilm look="gold" xmas scenes={PARTY_SCENES} endAt={PARTY_END} frames={STICK_PARTY_FRAMES} end={["Same again", "next year?"]} musicAt={241}
-    over={<Sequence from={64} durationInFrames={112} layout="none"><PlaceLabel place="KIDDERMINSTER" name="Hogarths Stone Manor" len={112} /></Sequence>} />
+    over={<Sequence from={124} durationInFrames={112} layout="none"><PlaceLabel place="KIDDERMINSTER" name="Hogarths Stone Manor" len={112} /></Sequence>} />
 );
