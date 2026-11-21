@@ -1267,4 +1267,16 @@ with no history and no renders:
   every Story cut, so `out/autumn-leaves-story.mp4`, the gold one, is from before it), `autumn-leaves-story-plain` (the five hotels only, 14.0s) and `autumn-leaves-story-bare` (the reveal, the
   gold CB with no wordmark or shimmer; LeafPile `bare`). Advice given: too many logo endings this week (leaves Sun, map
   reveal Mon, firework Thu): move the map reveal later in November, a hotel post Monday.
+- `cbh-christmas-party` (`StickParty` in `doodle/StickFlip.tsx`; Scott, 21 Nov, with ~60 phone photos of the team's own
+  party at Hogarths Stone Manor, Fri 20 Nov: "Fawlty Towers dinner party theme. Business meeting, dice games, secret
+  santa, dinner and comedy, then sleep and breakfast", "under a minute", then "a lot more of the photos, rapid cuts,
+  collages, match cut food, tell a story of the day"): the gold flipbook, a page a part of the day where it goes a
+  little wrong (flipchart folds, two sixes, the present on a spring, a cracker, a toast, toast from the toaster: farce
+  in the drawings only, nothing of the show itself), each opening into the photos (`Gag`'s new `stills`, `Shot`):
+  landscape photos as two stacked tiles (`split`), six plates as a match cut in one circle (`plates`), the actors in
+  half-beat cuts, twelve faces flicking past then landing as a 3 x 4 wall (`grid`); bed and breakfast on the hotel's
+  suite and restaurant photos (none taken); "Same again / next year?". Funkee Monkeee from 8.02s, 55.0s, -15 LUFS.
+  Photos in `public/campaigns/xmas-party-2026/` (name cards cropped out; the yawn photo left out). First cut sent.
+  To confirm: the times on the pages are guesses; where it is going (it has the reel end card, no TikTok text);
+  everyone shown is happy to be posted; a festive track would suit it better than the Rowton reel's.
 - `the-kingfisher`, `whittlebury-park-stay-dine` (+ `-story` cuts): done.
