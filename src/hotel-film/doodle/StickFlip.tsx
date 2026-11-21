@@ -563,15 +563,23 @@ const PartyShot: React.FC<{ s: Shot; f: number }> = ({ s, f }) => {
   if (s.plates) {
     const k = Math.min(s.plates.length - 1, Math.floor(Math.max(0, f) / 15));
     const in0 = pop(f, k * 15, 4);
-    const R0 = 500;
+    const R0 = 480;
+    const CY = 860;
+    const p = page(f);
+    const dip = 26 * (1 - in0) ** 2;
+    const atlas: Pose = { x: 540, y: 1672 + dip, lean: 0.03 * Math.sin(f * 0.35), head: -0.05, ua: [2.3, -2.3], fa: [2.75, -2.75],
+      th: [0.22 + dip * 0.012, -0.22 - dip * 0.012], sh: [-0.08 - dip * 0.012, 0.08 + dip * 0.012] };
     return (
       <AbsoluteFill style={{ backgroundColor: look.bg }}>
-        <div style={{ position: "absolute", left: 540 - R0, top: 900 - R0, width: 2 * R0, height: 2 * R0, borderRadius: "50%", overflow: "hidden",
+        <div style={{ position: "absolute", left: 540 - R0, top: CY - R0 + dip * 0.6, width: 2 * R0, height: 2 * R0, borderRadius: "50%", overflow: "hidden",
           transform: `scale(${1.07 - 0.07 * in0})`, boxShadow: "0 30px 90px rgba(0,0,0,0.7)" }}>
           <Img src={staticFile(s.plates[k])} style={{ width: "100%", height: "100%", transform: `rotate(${(1 - in0) * -14 + (f - k * 15) * 0.25}deg) scale(1.08)` }} />
         </div>
         <svg width={W} height={H} style={{ position: "absolute", left: 0, top: 0, filter: look.glow }}>
-          <circle cx={540} cy={900} r={R0 + 14} fill="none" stroke={look.ink} strokeWidth={5} opacity={0.9} />
+          <circle cx={540} cy={CY + dip * 0.6} r={R0 + 14} fill="none" stroke={look.ink} strokeWidth={5} opacity={0.9} />
+          {/* he holds every course up; each one lands with a dip of the knees */}
+          <Pencil d={[[260, 1856], [820, 1856]]} p={p} id={790} w={5} />
+          <Figure q={atlas} p={p} />
         </svg>
       </AbsoluteFill>
     );
@@ -1512,34 +1520,61 @@ export const StickXmas: React.FC = () => (
 // on hard beat cuts. No names, no lines from any show.
 const P = "campaigns/xmas-party-2026";
 
-// 1. The meeting: he points at the chart, the easel folds
-const POINT: Pose = { x: 430, y: 1208, lean: 0.04, head: 0.1, ua: [1.75, -0.15], fa: [1.85, -0.1], th: [0.1, -0.1], sh: [0, 0] };
-const DUCK: Pose = { x: 400, y: 1236, lean: 0.45, head: 0.3, ua: [-2.6, 2.7], fa: [-2.9, 3.0], th: [0.7, -0.4], sh: [-0.5, -0.9] };
+// 1. The meeting: he points at the chart, then slaps a Christmas tree sticker over it (Scott: not the board
+// falling over)
+const POINT: Pose = { x: 470, y: 1208, lean: 0.04, head: 0.1, ua: [1.75, -0.15], fa: [1.85, -0.1], th: [0.1, -0.1], sh: [0, 0] };
+const WIND: Pose = { x: 460, y: 1210, lean: -0.12, head: 0.05, ua: [-0.9, -0.2], fa: [-2.2, -0.1], th: [0.05, -0.15], sh: [0, 0] };
+const SLAP: Pose = { x: 500, y: 1206, lean: 0.2, head: 0.1, ua: [1.6, -0.5], fa: [1.6, -0.6], th: [0.3, -0.2], sh: [0, -0.2] };
+const PROUD: Pose = { x: 470, y: 1208, lean: -0.04, head: -0.15, ua: [0.9, -0.9], fa: [-1.4, 1.4], th: [0.14, -0.14], sh: [0, 0] };
 const FOLD = 26;
-const CHART_FROM: Pt = [790, 1030];
+const CHART_FROM: Pt = [800, 1070];
 const Meeting = (f: number, p: number) => {
-  const tap = f < FOLD ? 0.08 * Math.sin(f * 1.1) : 0;
+  const tap = f < 16 ? 0.08 * Math.sin(f * 1.1) : 0;
   const base: Pose = { ...POINT, ua: [POINT.ua[0] + tap, POINT.ua[1]], fa: [POINT.fa[0] + tap, POINT.fa[1]] };
-  const q = f < FOLD ? base : mix(base, DUCK, smooth(f, FOLD, FOLD + 8));
-  const a = -1.25 * smooth(f, FOLD, FOLD + 12) ** 2; // the board falling towards him
-  const piv: Pt = [690, 1200];
-  const B = (pts: Pt[]) => rot(pts.map(([x, y]) => [x - piv[0], y - piv[1]] as Pt), piv, a);
-  const drawn = Math.min(1, f / 18);
+  let q = f < 16 ? base : mix(base, WIND, smooth(f, 16, FOLD - 3));
+  if (f >= FOLD - 3) q = mix(WIND, SLAP, smooth(f, FOLD - 3, FOLD));
+  if (f >= FOLD + 8) q = mix(SLAP, PROUD, smooth(f, FOLD + 8, FOLD + 16));
+  const hit = f >= FOLD;
+  const jig = hit ? 9 * Math.sin((f - FOLD) * 1.6) * Math.exp(-(f - FOLD) / 5) : 0; // the board takes the slap
+  const B = (pts: Pt[]) => pts.map(([x, y]) => [x + jig, y] as Pt);
+  const drawn = Math.min(1, f / 14);
   const graph: Pt[] = [[715, 1160], [760, 1120], [800, 1135], [850, 1060], [895, 990]];
   const n = Math.max(2, Math.round(1 + drawn * 4));
+  const c: Pt = [800 + jig, 1070];
+  const sc = hit ? 1 + 0.3 * Math.exp(-(f - FOLD) / 2.5) : 1;
+  const T = (pts: Pt[]) => pts.map(([x, y]) => [c[0] + x * sc, c[1] + y * sc] as Pt);
+  const h = hand(q, 0);
   return (
     <>
-      {/* the easel's legs stay; the board is what goes */}
       <Pencil d={[[700, 1200], [660, 1392]]} p={p} id={700} w={5} />
       <Pencil d={[[900, 1200], [940, 1392]]} p={p} id={701} w={5} />
       <Pencil d={[[800, 1200], [800, 1392]]} p={p} id={702} w={4} />
       <Pencil d={B([[690, 940], [910, 940], [910, 1200], [690, 1200]])} p={p} id={703} closed />
-      <Pencil d={B(graph.slice(0, n))} p={p} id={704} w={5} />
-      {drawn >= 1 ? <Pencil d={B([[870, 992], [895, 990], [892, 1016]])} p={p} id={705} w={4} /> : null}
-      <Figure q={q} p={p} />
-      {f >= FOLD + 12
-        ? [-0.5, 0, 0.5].map((d, k) => <Pencil key={k} d={[[470 + k * 50, 1010 - 20 * Math.cos(d * 2)], [455 + k * 58, 960 - 30 * Math.cos(d * 2)]]} p={p} id={706 + k} w={4} />)
+      {!hit ? <Pencil d={graph.slice(0, n)} p={p} id={704} w={5} /> : null}
+      {!hit && drawn >= 1 ? <Pencil d={[[870, 992], [895, 990], [892, 1016]]} p={p} id={705} w={4} /> : null}
+      {/* the sticker: in his hand on the wind up, then on the board, a tree with its star */}
+      {f >= 16 && !hit ? <Circle c={[h[0], h[1] - 6]} r={26} p={p} id={709} w={4} /> : null}
+      {hit ? (
+        <Knockout>
+          <Circle c={c} r={104 * sc} p={p} id={710} w={5} />
+          {[[-78, -44, 34], [-40, 6, 48], [2, 56, 62]].map(([y0, y1, half], k) => (
+            <Pencil key={k} d={T([[0, y0], [-half, y1], [half, y1]])} p={p} id={711 + k} w={5} closed />
+          ))}
+          <Pencil d={T([[-9, 56], [-9, 76], [9, 76], [9, 56]])} p={p} id={714} w={4} />
+          <Pencil d={T(Array.from({ length: 11 }, (_, k): Pt => {
+            const a = -Math.PI / 2 + (k / 10) * Math.PI * 2;
+            const r = k % 2 ? 6 : 14;
+            return [Math.cos(a) * r, -88 + Math.sin(a) * r];
+          }))} p={p} id={715} w={3} />
+        </Knockout>
+      ) : null}
+      {hit && f < FOLD + 8
+        ? [0, 1, 2, 3, 4, 5].map((k) => {
+            const a = (k / 6) * Math.PI * 2 + 0.3;
+            return <Pencil key={k} d={[[c[0] + Math.cos(a) * 122, c[1] + Math.sin(a) * 122], [c[0] + Math.cos(a) * 150, c[1] + Math.sin(a) * 150]]} p={p} id={716 + k} w={4} />;
+          })
         : null}
+      <Figure q={q} p={p} />
     </>
   );
 };
@@ -1654,16 +1689,19 @@ const PARTY: { time: string; draw: (f: number, p: number, look: Look, xmas: bool
   { time: "Fri 20 Nov, 10:00am", draw: Meeting, from: CHART_FROM, stills: [
     { src: `${P}/meeting-wide.jpg`, len: 2 * beat, split: true }, { src: `${P}/meeting-smiles.jpg`, len: beat, split: true }] },
   { time: "Fri 20 Nov, 2:00pm", draw: Dice, from: DICE_FROM, stills: [{ src: `${P}/dice-game.jpg`, len: 2 * beat, split: true }] },
-  { time: "Fri 20 Nov, 3:30pm", draw: Santa, from: SANTA_FROM, stills: [{ src: `${P}/secret-santa.jpg`, len: 3 * beat, split: true }] },
-  { time: "Fri 20 Nov, 7:30pm", draw: Crackers, from: [420, 1130], stills: [
+  { time: "Fri 20 Nov, 3:30pm", draw: Santa, from: SANTA_FROM, stills: [{ src: `${P}/secret-santa.jpg`, len: 2 * beat, split: true }] },
+  { time: "Fri 20 Nov, 7:00pm", draw: Tray, from: TRAY_FROM, stills: [
     { src: `${P}/cast-tree-portrait.jpg`, len: 2 * beat, pos: "50% 40%" },
-    { src: `${P}/table-1-group.jpg`, len: 2 * beat, split: true }, { src: `${P}/table-2-group.jpg`, len: 2 * beat, split: true },
-    { src: "plates", len: 4 * beat, plates: ["prawn", "terrine", "turkey", "pud", "opera", "cheese"].map((n) => `${P}/plate-${n}.jpg`) },
+    { src: `${P}/table-1-group.jpg`, len: 2 * beat, split: true }, { src: `${P}/table-2-group.jpg`, len: 2 * beat, split: true }] },
+  { time: "Fri 20 Nov, 8:00pm", draw: Carving, from: [420, 1130], stills: [
+    { src: "plates", len: 4 * beat, plates: ["prawn", "terrine", "turkey", "pud", "opera", "cheese"].map((n) => `${P}/plate-${n}.jpg`) }] },
+  { time: "Fri 20 Nov, 8:45pm", draw: Crackers, from: [420, 1130], stills: [
     ...["host-card", "hostess-close", "waiter-guest", "host-pour", "hostess-guest", "waiter-antlers", "hostess-table-1"]
       .map((n): Shot => ({ src: `${P}/${n}.jpg`, len: beat / 2 })),
     { src: `${P}/cast-tree.jpg`, len: beat / 2, split: true }] },
   { time: "Fri 20 Nov, 9:30pm", draw: Toast, from: TOAST_FROM, stills: [
-    { src: `${P}/comedian-1.jpg`, len: beat }, { src: `${P}/comedian-2.jpg`, len: beat }, { src: `${P}/table-2-laughing.jpg`, len: 2 * beat, split: true },
+    { src: `${P}/comedian-1.jpg`, len: beat }, { src: `${P}/comedian-2.jpg`, len: beat }, { src: `${P}/table-2-laughing.jpg`, len: 2 * beat, split: true }] },
+  { time: "Fri 20 Nov, 11:00pm", draw: Dance, from: TREE_TOP, stills: [
     ...FACES.map((src): Shot => ({ src, len: 10, pos: "50% 30%" })),
     { src: "grid", len: 3 * beat, grid: FACES }] },
 ];
@@ -1675,12 +1713,12 @@ const PARTY_SCENES: Scene[] = (() => {
     out.push({ from: at0, len, el: <Gag time={s.time} from={s.from} draw={s.draw} stills={s.stills} /> });
     at0 += len;
   }
-  out.push({ from: at0, len: 120, el: <Gag time="Sat 21 Nov, 1:00am" still={`${SM}/luxury-suite.jpg`} pos="50% 50%" from={[852, 1280]} draw={Bed} /> });
-  out.push({ from: at0 + 120, len: 120, el: <Gag time="Sat 21 Nov, 9:00am" still={`${SM}/restaurant-table.jpg`} pos="50% 50%" from={[600, 1000]} draw={Breakfast} /> });
+  out.push({ from: at0, len: 90, el: <Gag time="Sat 21 Nov, 1:00am" still={`${SM}/luxury-suite.jpg`} pos="50% 50%" from={[852, 1280]} draw={Bed} /> });
+  out.push({ from: at0 + 90, len: 90, el: <Gag time="Sat 21 Nov, 9:00am" still={`${SM}/restaurant-table.jpg`} pos="50% 50%" from={[600, 1000]} draw={Breakfast} /> });
   return out;
 })();
-const PARTY_END = PARTY_SCENES[PARTY_SCENES.length - 1].from + 120;
-export const STICK_PARTY_FRAMES = PARTY_END + 120;
+const PARTY_END = PARTY_SCENES[PARTY_SCENES.length - 1].from + 90;
+export const STICK_PARTY_FRAMES = PARTY_END + 105;
 export const StickParty: React.FC = () => (
   <StickFilm look="gold" xmas scenes={PARTY_SCENES} endAt={PARTY_END} frames={STICK_PARTY_FRAMES} end={["Same again", "next year?"]} musicAt={241}
     over={<Sequence from={64} durationInFrames={112} layout="none"><PlaceLabel place="KIDDERMINSTER" name="Hogarths Stone Manor" len={112} /></Sequence>} />
