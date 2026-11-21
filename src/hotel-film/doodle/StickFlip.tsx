@@ -997,8 +997,9 @@ type Scene = { from: number; len: number; el: React.ReactNode };
 const StickFilm: React.FC<{
   look: "pad" | "gold"; xmas?: boolean; scenes: Scene[]; endAt?: number; frames: number; end?: [string, string]; skip?: number; over?: React.ReactNode;
   endEl?: React.ReactNode; // an end card of its own in place of the two plain lines
+  track?: string; // another track in place of Funkee Monkeee, played from frame `musicAt` of its file
   musicAt?: number; // with it there is no office opening: the film is its scenes, the track from this frame of its file
-}> = ({ look: lookId, xmas, scenes, endAt, frames, end, skip = 0, over, musicAt, endEl }) => (
+}> = ({ look: lookId, xmas, scenes, endAt, frames, end, skip = 0, over, musicAt, endEl, track }) => (
   <LookCtx.Provider value={LOOKS[lookId]}>
   <XmasCtx.Provider value={Boolean(xmas)}>
     <AbsoluteFill style={{ backgroundColor: LOOKS[lookId].bg }}>
@@ -1021,7 +1022,7 @@ const StickFilm: React.FC<{
         </Sequence>
       ) : null}
       <Audio
-        src={staticFile(MUSIC)}
+        src={staticFile(track ?? MUSIC)}
         trimBefore={musicAt ?? Math.round(MUSIC_FROM * 30) + skip}
         volume={(v) => interpolate(v, [0, 6, frames - (end ? 30 : 14), frames], [0, 1, 1, 0], { extrapolateRight: "clamp" })}
       />
@@ -2016,7 +2017,7 @@ const beat = 30;
 const FACES = ["red-antlers", "cream", "green-antlers", "sequin", "brown-antlers", "gingerbread", "tubes", "peace", "boppers", "lace", "thumbs", "santa-boppers"].map((n) => `${P}/p-${n}.jpg`);
 const PARTY: { time: string; draw: (f: number, p: number, look: Look, xmas: boolean) => React.ReactNode; from: Pt; stills: Shot[] }[] = [
   { time: "Fri 20 Nov, 2:00pm", draw: Meeting, from: CHART_FROM, stills: [
-    { src: `${SM}/entrance.jpg`, len: 2 * beat, pos: "62% 50%" }, { src: `${P}/meeting-wide.jpg`, len: 2 * beat, split: true }] },
+    { src: "campaigns/festive/graded/hogarths-entrance.jpg", len: 2 * beat, pos: "50% 50%" }, { src: `${P}/meeting-wide.jpg`, len: 2 * beat, split: true }] },
   { time: "Fri 20 Nov, 3:00pm", draw: Quiz, from: [540, 1130], stills: [{ src: `${P}/meeting-smiles.jpg`, len: 2 * beat, split: true }] },
   { time: "Fri 20 Nov, 3:30pm", draw: Dice, from: DICE_FROM, stills: [{ src: `${P}/dice-game.jpg`, len: 2 * beat, split: true }] },
   { time: "Fri 20 Nov, 4:00pm", draw: Steal, from: STEAL_FROM, stills: [{ src: `${P}/secret-santa.jpg`, len: 2 * beat, split: true }, { src: `${P}/group-day.jpg`, len: 2 * beat, pos: "50% 58%" }] },
@@ -2050,6 +2051,6 @@ const PARTY_SCENES: Scene[] = (() => {
 const PARTY_END = PARTY_SCENES[PARTY_SCENES.length - 1].from + 90;
 export const STICK_PARTY_FRAMES = PARTY_END + 140;
 export const StickParty: React.FC = () => (
-  <StickFilm look="gold" xmas scenes={PARTY_SCENES} endAt={PARTY_END} frames={STICK_PARTY_FRAMES} end={["A faultless night,", "almost"]} endEl={<FaultlessEnd />} musicAt={241}
+  <StickFilm look="gold" xmas scenes={PARTY_SCENES} endAt={PARTY_END} frames={STICK_PARTY_FRAMES} end={["A faultless night,", "almost"]} endEl={<FaultlessEnd />} musicAt={189} track={`${P}/funky-christmas.mp3`}
     over={<Sequence from={66} durationInFrames={54} layout="none"><PlaceLabel place="KIDDERMINSTER" name="Hogarths Stone Manor" len={54} /></Sequence>} />
 );
