@@ -1290,6 +1290,15 @@ with no history and no renders:
   tag (Scott asked for it; part of the entertainment) 7:00, eating 8:00 and the plates held up, the table laughing at
   the host's rant 8:45, the actors running round the room 9:15, bed, breakfast. 58.3s. Sent. Known: the laughing
   table's left diner sits on the frame's left edge.
+  Fifth cut (21 Nov): "ha ha" written over the laughing table; headgear mixed (Santa hats, antlers, upside down elf
+  legs: `Figure`'s `hat`, `Headband`) and only from dinner on (`HatCtx`: "we didn't have the headgear on till dinner");
+  Stone Manor's entrance (opens it, under the label), waiter with tray, eggs and toast rack (breakfast) from Scott's
+  extra photos; the team's group photos (day by the tree after the gifts; evening posed then waving, the last photos);
+  the twelve single-face flicks out (the wall of faces stays). Music (Scott: "a festive song like Jingle Bell Rock",
+  "find one within the repos": the song itself can't be baked in, it can be added in the app): Bring Back the Swing
+  from 8.10s (its kick is on 7.61s + 0.5k, not 7.38) with soft synthesised sleigh bells on the beat,
+  `scripts/party-music.py` -> `swing-bells.wav`, muxed on with ffmpeg after the render (the composition still plays
+  Funkee Monkeee). 59.3s, -15 LUFS; `-silent` copy for an in-app sound. Sent.
   To confirm: the times on the pages are guesses; where it is going (it has the reel end card, no TikTok text);
   everyone shown is happy to be posted; a festive track would suit it better than the Rowton reel's.
 - `the-kingfisher`, `whittlebury-park-stay-dine` (+ `-story` cuts): done.
