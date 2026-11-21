@@ -1777,7 +1777,7 @@ const Slap = (f: number, p: number) => {
 // 5. The room in stitches (Scott: "just draw the crowd of people eating at table laughing while they do their comedy
 // bits"; nothing invented): two at a table rocking with laughter, the act beside them (the host mid rant, or the
 // comedian with a mic)
-const Laughers = (f: number, p: number, act: "rant" | "mic") => {
+const Laughers = (f: number, p: number, act: "rant" | "mic" | "chase") => {
   const lf = (q: Pose, ph: number, dir: number): Pose => {
     const w = Math.sin(f * 1.3 + ph);
     return { ...q, y: q.y + 3 * w, lean: q.lean + dir * (0.2 + 0.14 * w), head: q.head - dir * (0.25 + 0.15 * w),
@@ -1812,7 +1812,13 @@ const Laughers = (f: number, p: number, act: "rant" | "mic") => {
       <Figure q={b} p={p} />
       {ha(headOf(a), 921, f % 8 < 5)}
       {ha(headOf(b), 925, (f + 4) % 8 < 5)}
-      <Figure q={star} p={p} />
+      {act === "chase" ? (
+        <>
+          {/* the actors tearing round the room: the waiter, the host after him */}
+          <Figure q={runPose(f * 0.6, -60 + f * 13)} p={p} />
+          <Figure q={{ ...runPose(f * 0.6 + 0.5, -330 + f * 13), ua: [1.5, 1.2], fa: [1.6, 1.3] }} p={p} />
+        </>
+      ) : <Figure q={star} p={p} />}
       {act === "mic" ? (
         <>
           <Pencil d={[m, [m[0] + 4, m[1] + 34]]} p={p} id={930} w={5} />
@@ -1823,7 +1829,8 @@ const Laughers = (f: number, p: number, act: "rant" | "mic") => {
   );
 };
 const LaughRant = (f: number, p: number) => Laughers(f, p, "rant");
-const LaughMic = (f: number, p: number) => Laughers(f, p, "mic");
+export const LaughMic = (f: number, p: number) => Laughers(f, p, "mic");
+const LaughChase = (f: number, p: number) => Laughers(f, p, "chase");
 
 // 0. Check in: the bell on the desk, dinged politely, then not politely, and nobody comes
 const RING_UP: Pose = { x: 400, y: 1208, lean: 0.06, head: 0.1, ua: [1.5, -0.15], fa: [2.0, -0.1], th: [0.1, -0.1], sh: [0, 0] };
@@ -1949,7 +1956,7 @@ const PARTY: { time: string; draw: (f: number, p: number, look: Look, xmas: bool
     ...["host-card", "hostess-close", "waiter-guest", "host-pour", "hostess-guest", "waiter-antlers", "hostess-table-1"]
       .map((n): Shot => ({ src: `${P}/${n}.jpg`, len: beat / 2 })),
     { src: `${P}/cast-tree.jpg`, len: beat / 2, split: true }] },
-  { time: "Fri 20 Nov, 9:30pm", draw: LaughMic, from: [640, 1080], stills: [
+  { time: "Fri 20 Nov, 9:15pm", draw: LaughChase, from: [640, 1080], stills: [
     { src: `${P}/comedian-1.jpg`, len: beat }, { src: `${P}/comedian-2.jpg`, len: beat }, { src: `${P}/table-2-laughing.jpg`, len: beat, split: true },
     ...FACES.map((src): Shot => ({ src, len: 10, pos: "50% 30%" })),
     { src: "grid", len: 3 * beat, grid: FACES }] },
