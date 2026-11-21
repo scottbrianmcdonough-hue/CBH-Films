@@ -1985,12 +1985,12 @@ const beat = 30;
 const FACES = ["red-antlers", "cream", "green-antlers", "sequin", "brown-antlers", "gingerbread", "tubes", "peace", "boppers", "lace", "thumbs", "santa-boppers"].map((n) => `${P}/p-${n}.jpg`);
 const PARTY: { time: string; draw: (f: number, p: number, look: Look, xmas: boolean) => React.ReactNode; from: Pt; stills: Shot[] }[] = [
   { time: "Fri 20 Nov, 2:00pm", draw: Meeting, from: CHART_FROM, stills: [
-    { src: `${P}/meeting-wide.jpg`, len: 3 * beat, split: true }] },
+    { src: `${SM}/entrance.jpg`, len: 2 * beat, pos: "62% 50%" }, { src: `${P}/meeting-wide.jpg`, len: 2 * beat, split: true }] },
   { time: "Fri 20 Nov, 3:00pm", draw: Quiz, from: [540, 1130], stills: [{ src: `${P}/meeting-smiles.jpg`, len: 2 * beat, split: true }] },
   { time: "Fri 20 Nov, 3:30pm", draw: Dice, from: DICE_FROM, stills: [{ src: `${P}/dice-game.jpg`, len: 2 * beat, split: true }] },
   { time: "Fri 20 Nov, 4:00pm", draw: Steal, from: STEAL_FROM, stills: [{ src: `${P}/secret-santa.jpg`, len: 2 * beat, split: true }] },
   { time: "Fri 20 Nov, 7:00pm", draw: Slap, from: SLAP_FROM, stills: [
-    { src: `${P}/cast-tree-portrait.jpg`, len: 2 * beat, pos: "50% 40%" },
+    { src: `${SM}/waiter-tray.jpg`, len: beat, pos: "16% 50%" }, { src: `${P}/cast-tree-portrait.jpg`, len: beat, pos: "50% 40%" },
     { src: `${P}/table-1-group.jpg`, len: 2 * beat, split: true }, { src: `${P}/table-2-group.jpg`, len: 2 * beat, split: true }] },
   { time: "Fri 20 Nov, 8:00pm", draw: Cake, from: [340, 1075], stills: [
     { src: "plates", len: 4 * beat, plates: ["prawn", "terrine", "turkey", "pud", "opera", "cheese"].map((n) => `${P}/plate-${n}.jpg`) }] },
@@ -2001,7 +2001,7 @@ const PARTY: { time: string; draw: (f: number, p: number, look: Look, xmas: bool
   { time: "Fri 20 Nov, 9:15pm", draw: LaughChase, from: [640, 1080], stills: [
     { src: `${P}/comedian-1.jpg`, len: beat }, { src: `${P}/comedian-2.jpg`, len: beat }, { src: `${P}/table-2-laughing.jpg`, len: beat, split: true },
     ...FACES.map((src): Shot => ({ src, len: 10, pos: "50% 30%" })),
-    { src: "grid", len: 3 * beat, grid: FACES }] },
+    { src: "grid", len: 2 * beat, grid: FACES }, { src: `${SM}/fireside-wine-bottle.jpg`, len: 2 * beat, pos: "66% 50%" }] },
 ];
 const PARTY_SCENES: Scene[] = (() => {
   const out: Scene[] = [];
@@ -2013,12 +2013,12 @@ const PARTY_SCENES: Scene[] = (() => {
     at0 += len;
   }
   out.push({ from: at0, len: 90, el: <Gag time="Sat 21 Nov, 1:00am" still={`${SM}/luxury-suite.jpg`} pos="50% 50%" from={[852, 1280]} draw={Bed} /> });
-  out.push({ from: at0 + 90, len: 90, el: <HatCtx.Provider value={false}><Gag time="Sat 21 Nov, 9:00am" still={`${SM}/restaurant-table.jpg`} pos="50% 50%" from={[600, 1000]} draw={Breakfast} /></HatCtx.Provider> });
+  out.push({ from: at0 + 90, len: 90, el: <HatCtx.Provider value={false}><Gag time="Sat 21 Nov, 9:00am" still={`${SM}/breakfast-eggs.jpg`} pos="54% 50%" from={[600, 1000]} draw={Breakfast} /></HatCtx.Provider> });
   return out;
 })();
 const PARTY_END = PARTY_SCENES[PARTY_SCENES.length - 1].from + 90;
 export const STICK_PARTY_FRAMES = PARTY_END + 100;
 export const StickParty: React.FC = () => (
   <StickFilm look="gold" xmas scenes={PARTY_SCENES} endAt={PARTY_END} frames={STICK_PARTY_FRAMES} end={["Same again", "next year?"]} musicAt={241}
-    over={<Sequence from={68} durationInFrames={78} layout="none"><PlaceLabel place="KIDDERMINSTER" name="Hogarths Stone Manor" len={78} /></Sequence>} />
+    over={<Sequence from={66} durationInFrames={54} layout="none"><PlaceLabel place="KIDDERMINSTER" name="Hogarths Stone Manor" len={54} /></Sequence>} />
 );
