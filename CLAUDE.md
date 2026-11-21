@@ -1317,6 +1317,11 @@ with no history and no renders:
   gifts; the waving group is the last photo. Music: Christmas Fun (caldena, Pixabay 608432, ~114.3 BPM, slowing a
   touch after 40s) sped ~5% in two pieces to sit on 120 (`christmas-fun-120.mp3`, beats on 0.5k). Funky Christmas
   was "sucks". 59.7s, -15 LUFS. Sent with `-silent`. I can't hear the tracks: ask what he wants if this one misses.
+  Polish pass (Scott: "not bad eh, how about a polish pass"): the quiz photo as two exact halves (`halves`: the
+  overlapping tiles showed two people twice); the three group photos by the tree framed in on the people (`zoom`);
+  the entrance label on a darker band (`PlaceLabel strong`); the repeated cast photo out, the last actor shot a full
+  beat; the chase page's table set back and smaller with the runners across the front; the faces wall lands faster.
+  59.7s. Sent with `-silent`.
   To confirm: the times on the pages are guesses; where it is going (it has the reel end card, no TikTok text);
   everyone shown is happy to be posted; a festive track would suit it better than the Rowton reel's.
 - `the-kingfisher`, `whittlebury-park-stay-dine` (+ `-story` cuts): done.
