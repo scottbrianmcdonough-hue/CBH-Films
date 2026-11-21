@@ -538,30 +538,69 @@ const Scribble: React.FC<{ x: number; y: number; size?: number; o?: number; chil
 // a run of photos after a page's drawing: the first opens out of the drawing, the rest are hard cuts on the beat.
 // A portrait photo fills the frame on a slow push; a landscape one (`wide`) sits across the middle over its own
 // blurred copy and drifts sideways so the whole group is seen.
-type Shot = { src: string; len: number; pos?: string; wide?: boolean };
+type Shot = { src: string; len: number; pos?: string; split?: boolean; plates?: string[]; grid?: string[] };
+const pop = (f: number, at0: number, n = 5) => Math.min(1, Math.max(0, (f - at0) / n));
 const PartyShot: React.FC<{ s: Shot; f: number }> = ({ s, f }) => {
+  const look = React.useContext(LookCtx);
   const t = Math.min(1, Math.max(0, f / s.len));
-  const e = t * t * (3 - 2 * t);
-  if (!s.wide) {
-    return <Img src={staticFile(s.src)} style={{ position: "absolute", width: W, height: H, objectFit: "cover", objectPosition: s.pos ?? "50% 50%",
-      transform: `scale(${1 + 0.05 * t})` }} />;
+  // a landscape photo as two tiles, its left half over its right half, the second landing half a beat on
+  if (s.split) {
+    const late = s.len <= 15 ? 3 : s.len <= 30 ? 7 : 15;
+    const up = 1 - (1 - pop(f, late, 6)) ** 3;
+    const tile = (side: number, top: number, dy: number) => (
+      <div style={{ position: "absolute", left: 0, top, width: W, height: 954, overflow: "hidden", transform: `translateY(${dy}px)` }}>
+        <Img src={staticFile(s.src)} style={{ width: W, height: 954, objectFit: "cover", objectPosition: `${side ? 100 - 6 * t : 6 * t}% 50%`, transform: `scale(${1.02 + 0.03 * t})` }} />
+      </div>
+    );
+    return (
+      <AbsoluteFill style={{ backgroundColor: look.bg }}>
+        {tile(0, 0, 0)}
+        {f >= late ? tile(1, 966, (1 - up) * 960) : null}
+      </AbsoluteFill>
+    );
   }
-  const w = 1500;
-  const h = 844;
-  const over = (w - W) / 2;
-  return (
-    <AbsoluteFill style={{ backgroundColor: "#0b0b0c", overflow: "hidden" }}>
-      <Img src={staticFile(s.src)} style={{ position: "absolute", width: W, height: H, objectFit: "cover", filter: "blur(30px) brightness(0.42)", transform: "scale(1.2)" }} />
-      <Img src={staticFile(s.src)} style={{ position: "absolute", left: -over + over * 0.92 * (1 - 2 * e), top: (H - h) / 2 - 40, width: w, height: h,
-        objectFit: "cover", boxShadow: "0 30px 80px rgba(0,0,0,0.6)" }} />
-    </AbsoluteFill>
-  );
+  // the plates: a match cut, every plate in the same circle, a new course every half beat
+  if (s.plates) {
+    const k = Math.min(s.plates.length - 1, Math.floor(Math.max(0, f) / 15));
+    const in0 = pop(f, k * 15, 4);
+    const R0 = 500;
+    return (
+      <AbsoluteFill style={{ backgroundColor: look.bg }}>
+        <div style={{ position: "absolute", left: 540 - R0, top: 900 - R0, width: 2 * R0, height: 2 * R0, borderRadius: "50%", overflow: "hidden",
+          transform: `scale(${1.07 - 0.07 * in0})`, boxShadow: "0 30px 90px rgba(0,0,0,0.7)" }}>
+          <Img src={staticFile(s.plates[k])} style={{ width: "100%", height: "100%", transform: `rotate(${(1 - in0) * -14 + (f - k * 15) * 0.25}deg) scale(1.08)` }} />
+        </div>
+        <svg width={W} height={H} style={{ position: "absolute", left: 0, top: 0, filter: look.glow }}>
+          <circle cx={540} cy={900} r={R0 + 14} fill="none" stroke={look.ink} strokeWidth={5} opacity={0.9} />
+        </svg>
+      </AbsoluteFill>
+    );
+  }
+  // the wall: twelve faces, three across, landing one after another
+  if (s.grid) {
+    return (
+      <AbsoluteFill style={{ backgroundColor: look.bg }}>
+        {s.grid.map((src, k) => {
+          const a = pop(f, k * 4, 5);
+          if (a <= 0) return null;
+          return (
+            <div key={src} style={{ position: "absolute", left: (k % 3) * 360 + 3, top: Math.floor(k / 3) * 480 + 3, width: 354, height: 474, overflow: "hidden",
+              transform: `scale(${0.82 + 0.18 * (1 - (1 - a) ** 3)})`, opacity: a }}>
+              <Img src={staticFile(src)} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "50% 30%", transform: `scale(${1.25 + 0.04 * t})`, transformOrigin: "50% 35%" }} />
+            </div>
+          );
+        })}
+      </AbsoluteFill>
+    );
+  }
+  return <Img src={staticFile(s.src)} style={{ position: "absolute", width: W, height: H, objectFit: "cover", objectPosition: s.pos ?? "50% 50%",
+    transform: `scale(${1 + 0.05 * t})` }} />;
 };
 const shotAt = (stills: Shot[], frame: number) => {
   let a = 60;
   for (let k = 0; k < stills.length; k++) {
     const s = stills[k];
-    if (frame < a + s.len || k === stills.length - 1) return <PartyShot key={s.src} s={s} f={frame - a} />;
+    if (frame < a + s.len || k === stills.length - 1) return <PartyShot key={`${k}${s.src}`} s={s} f={frame - a} />;
     a += s.len;
   }
   return null;
@@ -1610,22 +1649,23 @@ const Breakfast = (f: number, p: number) => {
 };
 
 const beat = 30;
+const FACES = ["red-antlers", "cream", "green-antlers", "sequin", "brown-antlers", "gingerbread", "tubes", "peace", "boppers", "lace", "thumbs", "santa-boppers"].map((n) => `${P}/p-${n}.jpg`);
 const PARTY: { time: string; draw: (f: number, p: number, look: Look, xmas: boolean) => React.ReactNode; from: Pt; stills: Shot[] }[] = [
   { time: "Fri 20 Nov, 10:00am", draw: Meeting, from: CHART_FROM, stills: [
-    { src: `${P}/meeting-wide.jpg`, len: 2 * beat, wide: true }, { src: `${P}/meeting-smiles.jpg`, len: 2 * beat, wide: true }] },
-  { time: "Fri 20 Nov, 2:00pm", draw: Dice, from: DICE_FROM, stills: [{ src: `${P}/dice-game.jpg`, len: 2 * beat, wide: true }] },
-  { time: "Fri 20 Nov, 3:30pm", draw: Santa, from: SANTA_FROM, stills: [{ src: `${P}/secret-santa.jpg`, len: 4 * beat, wide: true }] },
+    { src: `${P}/meeting-wide.jpg`, len: 2 * beat, split: true }, { src: `${P}/meeting-smiles.jpg`, len: beat, split: true }] },
+  { time: "Fri 20 Nov, 2:00pm", draw: Dice, from: DICE_FROM, stills: [{ src: `${P}/dice-game.jpg`, len: 2 * beat, split: true }] },
+  { time: "Fri 20 Nov, 3:30pm", draw: Santa, from: SANTA_FROM, stills: [{ src: `${P}/secret-santa.jpg`, len: 3 * beat, split: true }] },
   { time: "Fri 20 Nov, 7:30pm", draw: Crackers, from: [420, 1130], stills: [
     { src: `${P}/cast-tree-portrait.jpg`, len: 2 * beat, pos: "50% 40%" },
-    { src: `${P}/table-1-group.jpg`, len: 2 * beat, wide: true }, { src: `${P}/table-2-group.jpg`, len: 2 * beat, wide: true },
-    { src: `${P}/food-prawn.jpg`, len: beat }, { src: `${P}/food-terrine.jpg`, len: beat },
-    { src: `${P}/food-turkey.jpg`, len: beat }, { src: `${P}/food-pud.jpg`, len: beat },
-    { src: `${P}/host-card.jpg`, len: beat }, { src: `${P}/hostess-close.jpg`, len: beat }, { src: `${P}/waiter-guest.jpg`, len: beat },
-    { src: `${P}/host-pour.jpg`, len: beat }, { src: `${P}/hostess-table-1.jpg`, len: beat }] },
+    { src: `${P}/table-1-group.jpg`, len: 2 * beat, split: true }, { src: `${P}/table-2-group.jpg`, len: 2 * beat, split: true },
+    { src: "plates", len: 4 * beat, plates: ["prawn", "terrine", "turkey", "pud", "opera", "cheese"].map((n) => `${P}/plate-${n}.jpg`) },
+    ...["host-card", "hostess-close", "waiter-guest", "host-pour", "hostess-guest", "waiter-antlers", "hostess-table-1"]
+      .map((n): Shot => ({ src: `${P}/${n}.jpg`, len: beat / 2 })),
+    { src: `${P}/cast-tree.jpg`, len: beat / 2, split: true }] },
   { time: "Fri 20 Nov, 9:30pm", draw: Toast, from: TOAST_FROM, stills: [
-    { src: `${P}/comedian-1.jpg`, len: 2 * beat }, { src: `${P}/comedian-2.jpg`, len: 2 * beat },
-    ...["red-antlers", "cream", "green-antlers", "sequin", "brown-antlers", "gingerbread", "tubes", "peace", "boppers", "lace", "thumbs", "santa-boppers"]
-      .map((n): Shot => ({ src: `${P}/p-${n}.jpg`, len: beat / 2, pos: "50% 30%" }))] },
+    { src: `${P}/comedian-1.jpg`, len: beat }, { src: `${P}/comedian-2.jpg`, len: beat }, { src: `${P}/table-2-laughing.jpg`, len: 2 * beat, split: true },
+    ...FACES.map((src): Shot => ({ src, len: 10, pos: "50% 30%" })),
+    { src: "grid", len: 3 * beat, grid: FACES }] },
 ];
 const PARTY_SCENES: Scene[] = (() => {
   const out: Scene[] = [];
