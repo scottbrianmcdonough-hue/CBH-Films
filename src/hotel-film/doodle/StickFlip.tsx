@@ -1748,6 +1748,10 @@ const Slap = (f: number, p: number) => {
       <Figure q={q} p={p} />
       <Figure q={w} p={p} />
       <Pencil d={[[h[0] - 76, h[1] - 6], [h[0] + 64, h[1] - 6]]} p={p} id={880} w={6} />
+      {/* his name card (Scott: "put a name card, Manuel"), on a tag beside him */}
+      <Pencil d={[[770, 1010], [960, 1010], [960, 1084], [770, 1084]]} p={p} id={905} w={4} closed />
+      <Pencil d={[[770, 1047], [742, 1060]]} p={p} id={906} w={3} />
+      <Scribble x={790} y={1066} size={54}>Manuel</Scribble>
       {[0, 1, 2].map((k) => glass([h[0] - 46 + k * 40, h[1] - 50], 0, 1).map((d, i) => <Pencil key={`${k}${i}`} d={d} p={p} id={881 + k * 3 + i} w={4} />))}
       {f >= WHACK && f < WHACK + 7
         ? [0, 1, 2, 3, 4].map((k) => {
