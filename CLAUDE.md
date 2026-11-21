@@ -1299,6 +1299,10 @@ with no history and no renders:
   from 8.10s (its kick is on 7.61s + 0.5k, not 7.38) with soft synthesised sleigh bells on the beat,
   `scripts/party-music.py` -> `swing-bells.wav`, muxed on with ffmpeg after the render (the composition still plays
   Funkee Monkeee). 59.3s, -15 LUFS; `-silent` copy for an in-app sound. Sent.
+  Sixth cut: end card "A faultless night, / almost" (Scott's pick of five, "make it funny like the u or something
+  falls off the faultless", "then almost"): `FaultlessEnd` (StickFilm's new `endEl`), the u swings loose and drops
+  off the card, then "almost" rises. Only the tail was re-rendered (`--frames=1660-1805`) and joined to the fifth
+  cut's picture with ffmpeg, trimmed to 59.9s. Sent with `-silent`.
   To confirm: the times on the pages are guesses; where it is going (it has the reel end card, no TikTok text);
   everyone shown is happy to be posted; a festive track would suit it better than the Rowton reel's.
 - `the-kingfisher`, `whittlebury-park-stay-dine` (+ `-story` cuts): done.
