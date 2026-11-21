@@ -577,7 +577,8 @@ const Scribble: React.FC<{ x: number; y: number; size?: number; o?: number; chil
 // a run of photos after a page's drawing: the first opens out of the drawing, the rest are hard cuts on the beat.
 // A portrait photo fills the frame on a slow push; a landscape one (`wide`) sits across the middle over its own
 // blurred copy and drifts sideways so the whole group is seen.
-type Shot = { src: string; len: number; pos?: string; split?: boolean; plates?: string[]; grid?: string[] };
+type Shot = { src: string; len: number; pos?: string; split?: boolean; plates?: string[]; grid?: string[];
+  to?: string; toPos?: string }; // `to`: the same view later on, dissolved into half way (the day group into the night one)
 const pop = (f: number, at0: number, n = 5) => Math.min(1, Math.max(0, (f - at0) / n));
 const PartyShot: React.FC<{ s: Shot; f: number }> = ({ s, f }) => {
   const look = React.useContext(LookCtx);
@@ -640,8 +641,20 @@ const PartyShot: React.FC<{ s: Shot; f: number }> = ({ s, f }) => {
       </AbsoluteFill>
     );
   }
-  return <Img src={staticFile(s.src)} style={{ position: "absolute", width: W, height: H, objectFit: "cover", objectPosition: s.pos ?? "50% 50%",
-    transform: `scale(${1 + 0.05 * t})` }} />;
+  const one = (src: string, pos: string | undefined, o: number) => (
+    <Img src={staticFile(src)} style={{ position: "absolute", width: W, height: H, objectFit: "cover", objectPosition: pos ?? "50% 50%",
+      transform: `scale(${1 + 0.05 * t})`, opacity: o }} />
+  );
+  if (s.to) {
+    const x = Math.min(1, Math.max(0, (f - s.len * 0.38) / 24));
+    return (
+      <AbsoluteFill style={{ backgroundColor: "#000" }}>
+        {one(s.src, s.pos, 1)}
+        {x > 0 ? one(s.to, s.toPos ?? s.pos, x * x * (3 - 2 * x)) : null}
+      </AbsoluteFill>
+    );
+  }
+  return one(s.src, s.pos, 1);
 };
 const shotAt = (stills: Shot[], frame: number) => {
   let a = 60;
@@ -2018,7 +2031,7 @@ const PARTY: { time: string; draw: (f: number, p: number, look: Look, xmas: bool
     { src: "campaigns/festive/graded/hogarths-entrance.jpg", len: 2 * beat, pos: "50% 50%" }, { src: `${P}/meeting-wide.jpg`, len: 2 * beat, split: true }] },
   { time: "Fri 20 Nov, 3:00pm", draw: Quiz, from: [540, 1130], stills: [{ src: `${P}/meeting-smiles.jpg`, len: 2 * beat, split: true }] },
   { time: "Fri 20 Nov, 3:30pm", draw: Dice, from: DICE_FROM, stills: [{ src: `${P}/dice-game.jpg`, len: 2 * beat, split: true }] },
-  { time: "Fri 20 Nov, 4:00pm", draw: Steal, from: STEAL_FROM, stills: [{ src: `${P}/secret-santa.jpg`, len: 2 * beat, split: true }, { src: `${P}/group-day.jpg`, len: 2 * beat, pos: "50% 58%" }] },
+  { time: "Fri 20 Nov, 4:00pm", draw: Steal, from: STEAL_FROM, stills: [{ src: `${P}/secret-santa.jpg`, len: 2 * beat, split: true }, { src: `${P}/group-day.jpg`, len: 4 * beat, pos: "50% 58%", to: `${P}/group-evening.jpg`, toPos: "44% 58%" }] },
   { time: "Fri 20 Nov, 7:00pm", draw: Slap, from: SLAP_FROM, stills: [
     { src: `${SM}/waiter-tray.jpg`, len: beat, pos: "16% 50%" }, { src: `${P}/cast-tree-portrait.jpg`, len: beat, pos: "50% 40%" },
     { src: `${P}/table-1-group.jpg`, len: 2 * beat, split: true }, { src: `${P}/table-2-group.jpg`, len: 2 * beat, split: true }] },
@@ -2031,7 +2044,7 @@ const PARTY: { time: string; draw: (f: number, p: number, look: Look, xmas: bool
   { time: "Fri 20 Nov, 9:15pm", draw: LaughChase, from: [640, 1080], stills: [
     { src: `${P}/comedian-1.jpg`, len: beat }, { src: `${P}/comedian-2.jpg`, len: beat },     { src: `${P}/host-table-2.jpg`, len: beat, pos: "52% 50%" },
     { src: "grid", len: 2 * beat, grid: FACES },
-    { src: `${P}/group-evening.jpg`, len: beat, pos: "50% 58%" }, { src: `${P}/group-evening-waving.jpg`, len: 2 * beat, pos: "50% 58%" }] },
+    { src: `${P}/group-evening-waving.jpg`, len: 2 * beat, pos: "50% 58%" }] },
 ];
 const PARTY_SCENES: Scene[] = (() => {
   const out: Scene[] = [];
