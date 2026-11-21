@@ -1988,7 +1988,7 @@ const PARTY: { time: string; draw: (f: number, p: number, look: Look, xmas: bool
     { src: `${SM}/entrance.jpg`, len: 2 * beat, pos: "62% 50%" }, { src: `${P}/meeting-wide.jpg`, len: 2 * beat, split: true }] },
   { time: "Fri 20 Nov, 3:00pm", draw: Quiz, from: [540, 1130], stills: [{ src: `${P}/meeting-smiles.jpg`, len: 2 * beat, split: true }] },
   { time: "Fri 20 Nov, 3:30pm", draw: Dice, from: DICE_FROM, stills: [{ src: `${P}/dice-game.jpg`, len: 2 * beat, split: true }] },
-  { time: "Fri 20 Nov, 4:00pm", draw: Steal, from: STEAL_FROM, stills: [{ src: `${P}/secret-santa.jpg`, len: 2 * beat, split: true }] },
+  { time: "Fri 20 Nov, 4:00pm", draw: Steal, from: STEAL_FROM, stills: [{ src: `${P}/secret-santa.jpg`, len: 2 * beat, split: true }, { src: `${P}/group-day.jpg`, len: 2 * beat, pos: "50% 58%" }] },
   { time: "Fri 20 Nov, 7:00pm", draw: Slap, from: SLAP_FROM, stills: [
     { src: `${SM}/waiter-tray.jpg`, len: beat, pos: "16% 50%" }, { src: `${P}/cast-tree-portrait.jpg`, len: beat, pos: "50% 40%" },
     { src: `${P}/table-1-group.jpg`, len: 2 * beat, split: true }, { src: `${P}/table-2-group.jpg`, len: 2 * beat, split: true }] },
@@ -1999,9 +1999,9 @@ const PARTY: { time: string; draw: (f: number, p: number, look: Look, xmas: bool
       .map((n): Shot => ({ src: `${P}/${n}.jpg`, len: beat / 2 })),
     { src: `${P}/cast-tree.jpg`, len: beat / 2, split: true }] },
   { time: "Fri 20 Nov, 9:15pm", draw: LaughChase, from: [640, 1080], stills: [
-    { src: `${P}/comedian-1.jpg`, len: beat }, { src: `${P}/comedian-2.jpg`, len: beat }, { src: `${P}/table-2-laughing.jpg`, len: beat, split: true },
-    ...FACES.map((src): Shot => ({ src, len: 10, pos: "50% 30%" })),
-    { src: "grid", len: 2 * beat, grid: FACES }, { src: `${SM}/fireside-wine-bottle.jpg`, len: 2 * beat, pos: "66% 50%" }] },
+    { src: `${P}/comedian-1.jpg`, len: beat }, { src: `${P}/comedian-2.jpg`, len: beat },     { src: `${P}/host-table-2.jpg`, len: beat, pos: "52% 50%" },
+    { src: "grid", len: 2 * beat, grid: FACES },
+    { src: `${P}/group-evening.jpg`, len: beat, pos: "50% 58%" }, { src: `${P}/group-evening-waving.jpg`, len: 2 * beat, pos: "50% 58%" }] },
 ];
 const PARTY_SCENES: Scene[] = (() => {
   const out: Scene[] = [];
