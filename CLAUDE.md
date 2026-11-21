@@ -1303,6 +1303,13 @@ with no history and no renders:
   falls off the faultless", "then almost"): `FaultlessEnd` (StickFilm's new `endEl`), the u swings loose and drops
   off the card, then "almost" rises. Only the tail was re-rendered (`--frames=1660-1805`) and joined to the fifth
   cut's picture with ffmpeg, trimmed to 59.9s. Sent with `-silent`.
+  Eighth cut (Scott sent five Pixabay Christmas tracks, "try these", and "swap the shot of Hogarths Stone Manor to a
+  better exterior"): Funky Christmas (Pixabay 421788, exactly 120 BPM, beats on 0.31s + 0.5k) baked into the
+  composition (`track`, from 6.3s: a quiet bar on the first page, the band in as the first photo opens); the other
+  four are slower (Christmas Fun 115, Christmas Celebration 101, hip hop 96, Christmas Spirit 86) and would need a
+  recut. The opening shot is the Christmas entrance at night (`festive/graded/hogarths-entrance.jpg`: confirm it is
+  Stone Manor). The u hangs a second before it drops ("hold it longer"); sleigh bells and the swing track are out
+  (`scripts/party-music.py` no longer used). 60.7s, -15 LUFS. Sent with `-silent`.
   To confirm: the times on the pages are guesses; where it is going (it has the reel end card, no TikTok text);
   everyone shown is happy to be posted; a festive track would suit it better than the Rowton reel's.
 - `the-kingfisher`, `whittlebury-park-stay-dine` (+ `-story` cuts): done.
