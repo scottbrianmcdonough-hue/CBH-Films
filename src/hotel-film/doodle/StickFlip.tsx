@@ -1622,8 +1622,8 @@ const Dice = (f: number, p: number) => {
 // 3. Secret santa: he lifts the lid and it comes out on a spring
 const REACH: Pose = { x: 420, y: 1226, lean: 0.4, head: 0.15, ua: [1.0, 0.8], fa: [1.2, 1.0], th: [0.5, -0.3], sh: [-0.3, -0.5] };
 const LIFT = 20;
-const SANTA_FROM: Pt = [690, 1040];
-const Santa = (f: number, p: number) => {
+export const SANTA_FROM: Pt = [690, 1040];
+export const Santa = (f: number, p: number) => {
   const out = smooth(f, LIFT, LIFT + 7);
   const q = f < LIFT ? mix({ ...STAND, x: 400 }, REACH, smooth(f, 4, 14))
     : mix(REACH, { ...BUM, x: 330 }, smooth(f, LIFT + 2, LIFT + 12));
@@ -1648,6 +1648,27 @@ const Santa = (f: number, p: number) => {
         </>
       ) : null}
       <Figure q={q} p={p} />
+    </>
+  );
+};
+
+// 3b. The steal: the dice said so. He makes off with someone's present, its owner after him
+const STEAL_FROM: Pt = [640, 1010];
+const Steal = (f: number, p: number) => {
+  const x = 250 + f * 9.5;
+  const run = runPose(f * 0.6, x);
+  const thief: Pose = { ...run, ua: [2.5, 2.9], fa: [2.9, 3.2] };
+  const owner: Pose = { ...runPose(f * 0.6 + 0.5, x - 300 + Math.min(60, f * 1.2)), ua: [1.5, 1.2], fa: [1.6, 1.3] };
+  const h = hand(thief, 0);
+  const c: Pt = [h[0] + 6, h[1] - 52 + 4 * Math.sin(f * 1.2)];
+  return (
+    <>
+      {x - 300 > -80 ? <Figure q={owner} p={p} /> : null}
+      <Figure q={thief} p={p} />
+      <Pencil d={rot([[-48, -40], [48, -40], [48, 40], [-48, 40]], c, 0.08 * Math.sin(f * 0.9))} p={p} id={780} closed />
+      <Pencil d={[[c[0], c[1] - 40], [c[0], c[1] + 40]]} p={p} id={781} w={4} />
+      <Pencil d={[[c[0] - 48, c[1]], [c[0] + 48, c[1]]]} p={p} id={782} w={4} />
+      <Pencil d={[[c[0], c[1] - 40], [c[0] - 22, c[1] - 66], [c[0] - 30, c[1] - 44], [c[0], c[1] - 40], [c[0] + 22, c[1] - 66], [c[0] + 30, c[1] - 44], [c[0], c[1] - 40]]} p={p} id={783} w={4} />
     </>
   );
 };
@@ -1686,10 +1707,10 @@ const Breakfast = (f: number, p: number) => {
 const beat = 30;
 const FACES = ["red-antlers", "cream", "green-antlers", "sequin", "brown-antlers", "gingerbread", "tubes", "peace", "boppers", "lace", "thumbs", "santa-boppers"].map((n) => `${P}/p-${n}.jpg`);
 const PARTY: { time: string; draw: (f: number, p: number, look: Look, xmas: boolean) => React.ReactNode; from: Pt; stills: Shot[] }[] = [
-  { time: "Fri 20 Nov, 10:00am", draw: Meeting, from: CHART_FROM, stills: [
+  { time: "Fri 20 Nov, 2:00pm", draw: Meeting, from: CHART_FROM, stills: [
     { src: `${P}/meeting-wide.jpg`, len: 2 * beat, split: true }, { src: `${P}/meeting-smiles.jpg`, len: beat, split: true }] },
-  { time: "Fri 20 Nov, 2:00pm", draw: Dice, from: DICE_FROM, stills: [{ src: `${P}/dice-game.jpg`, len: 2 * beat, split: true }] },
-  { time: "Fri 20 Nov, 3:30pm", draw: Santa, from: SANTA_FROM, stills: [{ src: `${P}/secret-santa.jpg`, len: 2 * beat, split: true }] },
+  { time: "Fri 20 Nov, 3:30pm", draw: Dice, from: DICE_FROM, stills: [{ src: `${P}/dice-game.jpg`, len: 2 * beat, split: true }] },
+  { time: "Fri 20 Nov, 4:00pm", draw: Steal, from: STEAL_FROM, stills: [{ src: `${P}/secret-santa.jpg`, len: 2 * beat, split: true }] },
   { time: "Fri 20 Nov, 7:00pm", draw: Tray, from: TRAY_FROM, stills: [
     { src: `${P}/cast-tree-portrait.jpg`, len: 2 * beat, pos: "50% 40%" },
     { src: `${P}/table-1-group.jpg`, len: 2 * beat, split: true }, { src: `${P}/table-2-group.jpg`, len: 2 * beat, split: true }] },
