@@ -954,6 +954,36 @@ const EndLine: React.FC<{ lines: [string, string] }> = ({ lines }) => {
   );
 };
 
+// the party's end card (Scott: "A faultless night, almost", "make it funny like the u or something falls off the
+// faultless"): the line comes up, the u works loose, swings on one corner and drops off the card; then "almost"
+const FaultlessEnd: React.FC = () => {
+  const frame = useCurrentFrame();
+  const look = React.useContext(LookCtx);
+  const p = page(frame);
+  const line = progress(frame, FLIP + 4, 18);
+  const loose = progress(frame, 40, 8, (x) => x);
+  const swing = frame >= 48 ? 0 : loose * (24 + 8 * Math.sin((frame - 40) * 1.1));
+  const t = Math.max(0, frame - 50);
+  const dy = 1.5 * t * t;
+  const almost = progress(frame, 82, 12); // only once the u has gone
+  return (
+    <AbsoluteFill style={{ backgroundColor: look.bg }}>
+      <Paper p={p} />
+      <div style={{ position: "absolute", top: 760, width: "100%", textAlign: "center", fontFamily: serif, fontSize: 104, lineHeight: 1.12,
+        color: colors.cream, opacity: line, transform: `translateY(${(1 - line) * 22}px)`, whiteSpace: "nowrap" }}>
+        A fa
+        <span style={{ display: "inline-block", transformOrigin: "100% 12%",
+          transform: `translate(${t * 1.6}px, ${dy}px) rotate(${frame >= 50 ? 32 + t * 7 : swing}deg)`, opacity: dy > 1100 ? 0 : 1 }}>u</span>
+        ltless night,
+        <br />
+        <span style={{ display: "inline-block", opacity: almost, transform: `translateY(${(1 - almost) * 18}px)` }}>almost</span>
+      </div>
+      <Img src={staticFile("brand/cb-watermark.png")} style={{ position: "absolute", left: 920, top: 1452, width: 100, height: 108 }} />
+      <LiftShadow />
+    </AbsoluteFill>
+  );
+};
+
 const R = "hotels/rowton-hall/screen-time";
 const REEL_SCENES = [
   { from: 310, len: 120, el: <Gag time="Friday, 6:15pm" clip={`${R}/welcome-fizz.mp4`} from={FIZZ_FROM} draw={Fizz} /> },
@@ -966,15 +996,16 @@ type Scene = { from: number; len: number; el: React.ReactNode };
 // last frame instead of lifting away to an end card; `over` sits on top of everything (the TikTok cut's text)
 const StickFilm: React.FC<{
   look: "pad" | "gold"; xmas?: boolean; scenes: Scene[]; endAt?: number; frames: number; end?: [string, string]; skip?: number; over?: React.ReactNode;
+  endEl?: React.ReactNode; // an end card of its own in place of the two plain lines
   musicAt?: number; // with it there is no office opening: the film is its scenes, the track from this frame of its file
-}> = ({ look: lookId, xmas, scenes, endAt, frames, end, skip = 0, over, musicAt }) => (
+}> = ({ look: lookId, xmas, scenes, endAt, frames, end, skip = 0, over, musicAt, endEl }) => (
   <LookCtx.Provider value={LOOKS[lookId]}>
   <XmasCtx.Provider value={Boolean(xmas)}>
     <AbsoluteFill style={{ backgroundColor: LOOKS[lookId].bg }}>
       {/* each page comes in FLIP frames early, under the one lifting away; the earlier page drawn on top */}
       {end && endAt !== undefined ? (
         <Sequence from={endAt - FLIP}>
-          <EndLine lines={end} />
+          {endEl ?? <EndLine lines={end} />}
         </Sequence>
       ) : null}
       {[...scenes].reverse().map((s, k) => (
@@ -2017,8 +2048,8 @@ const PARTY_SCENES: Scene[] = (() => {
   return out;
 })();
 const PARTY_END = PARTY_SCENES[PARTY_SCENES.length - 1].from + 90;
-export const STICK_PARTY_FRAMES = PARTY_END + 100;
+export const STICK_PARTY_FRAMES = PARTY_END + 126;
 export const StickParty: React.FC = () => (
-  <StickFilm look="gold" xmas scenes={PARTY_SCENES} endAt={PARTY_END} frames={STICK_PARTY_FRAMES} end={["Same again", "next year?"]} musicAt={241}
+  <StickFilm look="gold" xmas scenes={PARTY_SCENES} endAt={PARTY_END} frames={STICK_PARTY_FRAMES} end={["A faultless night,", "almost"]} endEl={<FaultlessEnd />} musicAt={241}
     over={<Sequence from={66} durationInFrames={54} layout="none"><PlaceLabel place="KIDDERMINSTER" name="Hogarths Stone Manor" len={54} /></Sequence>} />
 );
