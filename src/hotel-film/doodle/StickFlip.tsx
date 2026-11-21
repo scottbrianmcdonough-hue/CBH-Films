@@ -1749,9 +1749,9 @@ const Slap = (f: number, p: number) => {
       <Figure q={w} p={p} />
       <Pencil d={[[h[0] - 76, h[1] - 6], [h[0] + 64, h[1] - 6]]} p={p} id={880} w={6} />
       {/* his name card (Scott: "put a name card, Manuel"), on a tag beside him */}
-      <Pencil d={[[770, 1010], [960, 1010], [960, 1084], [770, 1084]]} p={p} id={905} w={4} closed />
-      <Pencil d={[[770, 1047], [742, 1060]]} p={p} id={906} w={3} />
-      <Scribble x={790} y={1066} size={54}>Manuel</Scribble>
+      <Pencil d={[[730, 1010], [920, 1010], [920, 1084], [730, 1084]]} p={p} id={905} w={4} closed />
+      <Pencil d={[[730, 1047], [712, 1060]]} p={p} id={906} w={3} />
+      <Scribble x={750} y={1066} size={54}>Manuel</Scribble>
       {[0, 1, 2].map((k) => glass([h[0] - 46 + k * 40, h[1] - 50], 0, 1).map((d, i) => <Pencil key={`${k}${i}`} d={d} p={p} id={881 + k * 3 + i} w={4} />))}
       {f >= WHACK && f < WHACK + 7
         ? [0, 1, 2, 3, 4].map((k) => {
@@ -1773,6 +1773,57 @@ const Slap = (f: number, p: number) => {
     </>
   );
 };
+
+// 5. The room in stitches (Scott: "just draw the crowd of people eating at table laughing while they do their comedy
+// bits"; nothing invented): two at a table rocking with laughter, the act beside them (the host mid rant, or the
+// comedian with a mic)
+const Laughers = (f: number, p: number, act: "rant" | "mic") => {
+  const lf = (q: Pose, ph: number, dir: number): Pose => {
+    const w = Math.sin(f * 1.3 + ph);
+    return { ...q, y: q.y + 3 * w, lean: q.lean + dir * (0.2 + 0.14 * w), head: q.head - dir * (0.25 + 0.15 * w),
+      ua: [q.ua[0] + dir * 0.5 * w, q.ua[1] - dir * 0.4 * w], fa: [q.fa[0] + dir * 0.7 * w, q.fa[1]] };
+  };
+  const a = lf(mirror(SEAT_R, 130), 0, 1);
+  const b = lf({ ...SEAT_R, x: 520 }, 1.7, -1);
+  const w = Math.sin(f * 0.9);
+  const star: Pose = act === "rant"
+    ? { x: 830, y: 1204, lean: 0.1 * w, head: 0.2 * w, ua: [-2.4 + 0.5 * w, 2.4 + 0.5 * w], fa: [-2.8 + 0.8 * w, 2.8 + 0.8 * w], th: [0.2, -0.2], sh: [0, 0] }
+    : { x: 830, y: 1208, lean: -0.05 + 0.05 * w, head: 0.1, ua: [-1.3, 0.9 + 0.5 * w], fa: [-2.6, 1.6 + 0.6 * w], th: [0.12, -0.12], sh: [0, 0] };
+  const m = hand(star, 0);
+  const ha = (c: Pt, id: number, on: boolean) => on ? [0, 1, 2].map((k) => {
+    const an = -2.2 + k * 0.6;
+    return <Pencil key={`${id}${k}`} d={[[c[0] + Math.cos(an) * 46, c[1] + Math.sin(an) * 46], [c[0] + Math.cos(an) * 72, c[1] + Math.sin(an) * 72]]} p={p} id={id + k} w={3} />;
+  }) : null;
+  return (
+    <>
+      <Pencil d={[[215, 1176], [435, 1176]]} p={p} id={910} />
+      <Pencil d={[[325, 1176], [325, 1392]]} p={p} id={911} w={5} />
+      <Pencil d={[[265, 1392], [385, 1392]]} p={p} id={912} w={5} />
+      <Ellipse c={[280, 1168]} rx={34} ry={6} p={p} id={913} w={4} />
+      <Ellipse c={[372, 1168]} rx={34} ry={6} p={p} id={914} w={4} />
+      {[130, 520].map((x, k) => (
+        <React.Fragment key={k}>
+          <Pencil d={[[x - 46, 1218], [x + 46, 1218]]} p={p} id={915 + k * 3} w={5} />
+          <Pencil d={[[x - 34, 1218], [x - 40, 1392]]} p={p} id={916 + k * 3} w={4} />
+          <Pencil d={[[x + 34, 1218], [x + 40, 1392]]} p={p} id={917 + k * 3} w={4} />
+        </React.Fragment>
+      ))}
+      <Figure q={a} p={p} />
+      <Figure q={b} p={p} />
+      {ha(headOf(a), 921, f % 8 < 5)}
+      {ha(headOf(b), 925, (f + 4) % 8 < 5)}
+      <Figure q={star} p={p} />
+      {act === "mic" ? (
+        <>
+          <Pencil d={[m, [m[0] + 4, m[1] + 34]]} p={p} id={930} w={5} />
+          <Circle c={[m[0] - 2, m[1] - 8]} r={10} p={p} id={931} w={5} />
+        </>
+      ) : null}
+    </>
+  );
+};
+const LaughRant = (f: number, p: number) => Laughers(f, p, "rant");
+const LaughMic = (f: number, p: number) => Laughers(f, p, "mic");
 
 // 0. Check in: the bell on the desk, dinged politely, then not politely, and nobody comes
 const RING_UP: Pose = { x: 400, y: 1208, lean: 0.06, head: 0.1, ua: [1.5, -0.15], fa: [2.0, -0.1], th: [0.1, -0.1], sh: [0, 0] };
@@ -1810,8 +1861,8 @@ export const Bell = (f: number, p: number) => {
 
 // 5b. The kitchen doorway: one waiter going in, one coming out, both with plates
 const CLASH = 24;
-const DOOR_FROM: Pt = [540, 1060];
-const Doors = (f: number, p: number) => {
+export const DOOR_FROM: Pt = [540, 1060];
+export const Doors = (f: number, p: number) => {
   const go = Math.min(1, f / CLASH);
   const xa = 150 + 290 * go;
   const xb = 930 - 290 * go;
@@ -1892,13 +1943,13 @@ const PARTY: { time: string; draw: (f: number, p: number, look: Look, xmas: bool
   { time: "Fri 20 Nov, 7:00pm", draw: Slap, from: SLAP_FROM, stills: [
     { src: `${P}/cast-tree-portrait.jpg`, len: 2 * beat, pos: "50% 40%" },
     { src: `${P}/table-1-group.jpg`, len: 2 * beat, split: true }, { src: `${P}/table-2-group.jpg`, len: 2 * beat, split: true }] },
-  { time: "Fri 20 Nov, 8:00pm", draw: Carving, from: [420, 1130], stills: [
+  { time: "Fri 20 Nov, 8:00pm", draw: Cake, from: [340, 1075], stills: [
     { src: "plates", len: 4 * beat, plates: ["prawn", "terrine", "turkey", "pud", "opera", "cheese"].map((n) => `${P}/plate-${n}.jpg`) }] },
-  { time: "Fri 20 Nov, 8:45pm", draw: Doors, from: DOOR_FROM, stills: [
+  { time: "Fri 20 Nov, 8:45pm", draw: LaughRant, from: [640, 1080], stills: [
     ...["host-card", "hostess-close", "waiter-guest", "host-pour", "hostess-guest", "waiter-antlers", "hostess-table-1"]
       .map((n): Shot => ({ src: `${P}/${n}.jpg`, len: beat / 2 })),
     { src: `${P}/cast-tree.jpg`, len: beat / 2, split: true }] },
-  { time: "Fri 20 Nov, 9:30pm", draw: Toast, from: TOAST_FROM, stills: [
+  { time: "Fri 20 Nov, 9:30pm", draw: LaughMic, from: [640, 1080], stills: [
     { src: `${P}/comedian-1.jpg`, len: beat }, { src: `${P}/comedian-2.jpg`, len: beat }, { src: `${P}/table-2-laughing.jpg`, len: beat, split: true },
     ...FACES.map((src): Shot => ({ src, len: 10, pos: "50% 30%" })),
     { src: "grid", len: 3 * beat, grid: FACES }] },
