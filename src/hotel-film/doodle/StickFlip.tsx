@@ -578,7 +578,7 @@ const Scribble: React.FC<{ x: number; y: number; size?: number; o?: number; chil
 // A portrait photo fills the frame on a slow push; a landscape one (`wide`) sits across the middle over its own
 // blurred copy and drifts sideways so the whole group is seen.
 type Shot = { src: string; len: number; pos?: string; split?: boolean; plates?: string[]; grid?: string[];
-  to?: string; toPos?: string }; // `to`: the same view later on, dissolved into half way (the day group into the night one)
+  to?: string; toPos?: string }; // `to`: the same view later on, snap cut to half way (the day group, then the night one)
 const pop = (f: number, at0: number, n = 5) => Math.min(1, Math.max(0, (f - at0) / n));
 const PartyShot: React.FC<{ s: Shot; f: number }> = ({ s, f }) => {
   const look = React.useContext(LookCtx);
@@ -646,11 +646,12 @@ const PartyShot: React.FC<{ s: Shot; f: number }> = ({ s, f }) => {
       transform: `scale(${1 + 0.05 * t})`, opacity: o }} />
   );
   if (s.to) {
-    const x = Math.min(1, Math.max(0, (f - s.len * 0.38) / 24));
+    // a snap cut on the beat half way (Scott: "or a quick cut snap"), the new photo punching in and settling
+    const at0 = Math.round(s.len / 2);
+    const k = f >= at0 ? 1 + 0.05 * Math.exp(-(f - at0) / 3) : 1;
     return (
-      <AbsoluteFill style={{ backgroundColor: "#000" }}>
-        {one(s.src, s.pos, 1)}
-        {x > 0 ? one(s.to, s.toPos ?? s.pos, x * x * (3 - 2 * x)) : null}
+      <AbsoluteFill style={{ backgroundColor: "#000", transform: `scale(${k})` }}>
+        {f < at0 ? one(s.src, s.pos, 1) : one(s.to, s.toPos ?? s.pos, 1)}
       </AbsoluteFill>
     );
   }
