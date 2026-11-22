@@ -2061,10 +2061,11 @@ const PARTY: { time: string; draw: (f: number, p: number, look: Look, xmas: bool
   { time: "Fri 20 Nov, 8:00pm", draw: Cake, from: [340, 1075], stills: [
     { src: "plates", len: 4 * beat, plates: ["prawn", "terrine", "turkey", "pud", "opera", "cheese"].map((n) => `${P}/plate-${n}.jpg`) }] },
   { time: "Fri 20 Nov, 8:45pm", draw: LaughRant, from: [640, 1080], stills: [
-    ...["host-card", "hostess-close", "waiter-guest", "host-pour", "hostess-guest", "waiter-antlers", "hostess-table-1"]
-      .map((n, k): Shot => ({ src: `${P}/${n}.jpg`, len: k === 6 ? beat : beat / 2 }))] },
+    ...["host-card", "hostess-close", "waiter-guest", "hostess-guest", "waiter-antlers", "hostess-table-1"]
+      .map((n): Shot => ({ src: `${P}/${n}.jpg`, len: beat / 2 }))] },
   { time: "Fri 20 Nov, 9:15pm", draw: LaughChase, from: [640, 1080], stills: [
-    { src: `${P}/comedian-1.jpg`, len: beat }, { src: `${P}/comedian-2.jpg`, len: beat },     { src: `${P}/host-table-2.jpg`, len: beat, pos: "52% 50%" },
+    // one photo at Scott's table here, not three in a row (Scott: "like two or one"); host-pour is out of the run above too
+    { src: `${P}/comedian-2.jpg`, len: 2 * beat },
     { src: "grid", len: 3 * beat, grid: FACES }] }, // the waving group photo is out (Scott: the same as the posed one)
 ];
 const PARTY_SCENES: Scene[] = (() => {
