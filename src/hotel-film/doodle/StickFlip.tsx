@@ -2088,6 +2088,47 @@ export const Breakfast = (f: number, p: number) => {
 
 const beat = 30;
 const FACES = ["red-antlers", "cream", "green-antlers", "sequin", "brown-antlers", "gingerbread", "tubes", "peace", "boppers", "lace", "thumbs", "santa-boppers"].map((n) => `${P}/p-${n}.jpg`);
+// the morning after (Scott: "breakfast the next morning ... then goodbyes and hit the road"): plain, no gag
+const Morning = (f: number, p: number) => {
+  const sip = f >= 10 && f < 56 ? (1 - Math.cos(((f - 10) / 23) * Math.PI * 2)) / 2 : 0;
+  const q = mix(EAT_REACH, EAT_MOUTH, sip);
+  const h = hand(q, 0);
+  return (
+    <>
+      <Pencil d={[[110, 1130], [450, 1130]]} p={p} id={640} />
+      <Pencil d={[[130, 1130], [130, 1390]]} p={p} id={641} />
+      <Pencil d={[[430, 1130], [430, 1390]]} p={p} id={642} />
+      <Pencil d={[[490, 1235], [630, 1235]]} p={p} id={643} />
+      <Pencil d={[[510, 1235], [510, 1390]]} p={p} id={644} />
+      <Pencil d={[[610, 1235], [610, 1390]]} p={p} id={645} />
+      {/* the plate with its egg, the cafetiere and its steam */}
+      <Ellipse c={[330, 1122]} rx={78} ry={11} p={p} id={646} />
+      <Ellipse c={[330, 1108]} rx={34} ry={13} p={p} id={647} w={4} />
+      <Circle c={[330, 1104]} r={9} p={p} id={648} w={4} />
+      <Pencil d={[[170, 1124], [170, 1040], [222, 1040], [222, 1124]]} p={p} id={649} w={5} closed />
+      <Pencil d={[[196, 1040], [196, 1012]]} p={p} id={650} w={4} />
+      <Pencil d={[[182, 1012], [210, 1012]]} p={p} id={651} w={4} />
+      <Pencil d={[[222, 1060], [244, 1066], [244, 1098], [222, 1104]]} p={p} id={652} w={3} />
+      <Pencil d={[[188, 990], [198, 968], [186, 946], [196, 924]]} p={p} id={653} w={3} />
+      <Figure q={q} p={p} />
+      {/* the cup in his hand */}
+      <Pencil d={[[h[0] - 16, h[1] - 22], [h[0] - 13, h[1] + 4], [h[0] + 13, h[1] + 4], [h[0] + 16, h[1] - 22]]} p={p} id={654} w={4} />
+    </>
+  );
+};
+const Goodbye = (f: number, p: number) => {
+  const stand: Pose = { x: 420, y: 1208, lean: 0, head: -0.05, ua: [2.0 + 0.2 * Math.sin(f * 0.9), -0.12], fa: [2.5 + 0.5 * Math.sin(f * 0.9), -0.08], th: [0.1, -0.1], sh: [0, 0] };
+  const q = f < 20 ? stand : runPose(f, interpolate(f, [20, 37], [420, 780], { extrapolateRight: "clamp" }));
+  const h = hand(q, 1);
+  return (
+    <>
+      <Figure q={q} p={p} />
+      {/* his case, swinging from the other hand */}
+      <Pencil d={[[h[0] - 46, h[1] + 12], [h[0] - 46, h[1] + 84], [h[0] + 46, h[1] + 84], [h[0] + 46, h[1] + 12]]} p={p} id={660} closed />
+      <Pencil d={[[h[0] - 16, h[1] + 12], [h[0] - 16, h[1] - 2], [h[0] + 16, h[1] - 2], [h[0] + 16, h[1] + 12]]} p={p} id={661} w={4} />
+    </>
+  );
+};
 const PlainBed = (f: number, p: number, look: Look, xmas = false) => Bed(f, p, look, xmas, true);
 const PARTY: { time: string; draw: (f: number, p: number, look: Look, xmas: boolean) => React.ReactNode; from: Pt; stills: Shot[] }[] = [
   { time: "Fri 20 Nov, 2:00pm", draw: Meeting, from: CHART_FROM, stills: [
@@ -2097,18 +2138,18 @@ const PARTY: { time: string; draw: (f: number, p: number, look: Look, xmas: bool
   { time: "Fri 20 Nov, 4:00pm", draw: Steal, from: STEAL_FROM, stills: [{ src: `${P}/gifts-table-a.jpg`, len: 2 * beat, split: true, pair: `${P}/gifts-table-b.jpg` }, { src: `${P}/secret-santa-a.jpg`, len: 2 * beat, split: true, pair: `${P}/secret-santa-b.jpg` }, { src: `${P}/group-day.jpg`, len: 4 * beat, pos: "50% 56%", to: `${P}/group-evening.jpg`, toPos: "100% 55%", toZoom: 1.08, zoom: 1.2, toLabel: "Party time!" }] },
   { time: "Fri 20 Nov, 7:00pm", draw: Slap, from: SLAP_FROM, stills: [
     { src: `${SM}/waiter-tray.jpg`, len: beat, pos: "16% 50%" },
-    { src: `${P}/table-1-group-a.jpg`, len: 2 * beat, split: true, pair: `${P}/table-1-group-b.jpg` }, { src: `${P}/table-2-group-a.jpg`, len: 2 * beat, split: true, pair: `${P}/table-2-group-b.jpg` }] },
+    { src: `${P}/table-1-group-a.jpg`, len: 1.5 * beat, split: true, pair: `${P}/table-1-group-b.jpg` }, { src: `${P}/table-2-group-a.jpg`, len: 1.5 * beat, split: true, pair: `${P}/table-2-group-b.jpg` }] },
   { time: "Fri 20 Nov, 8:00pm", draw: Cake, from: [340, 1075], stills: [
-    { src: "plates", len: 4 * beat, plates: ["prawn", "terrine", "turkey", "pud", "opera", "cheese"].map((n) => `${P}/plate-${n}.jpg`) }] },
+    { src: "plates", len: 3.5 * beat, plates: ["prawn", "terrine", "turkey", "pud", "opera", "cheese"].map((n) => `${P}/plate-${n}.jpg`) }] },
   { time: "Fri 20 Nov, 8:45pm", draw: LaughRant, from: [640, 1080], stills: [
     ...["host-card", "hostess-close", "waiter-guest", "hostess-guest", "waiter-antlers", "hostess-table-1"]
       .map((n): Shot => ({ src: `${P}/${n}.jpg`, len: beat / 2 }))] },
   { time: "Fri 20 Nov, 9:15pm", draw: LaughChase, from: [640, 1080], stills: [
     // one photo at Scott's table here, not three in a row (Scott: "like two or one"); host-pour is out of the run above too
-    { src: `${P}/comedian-2.jpg`, len: 2 * beat },
+    { src: `${P}/comedian-2.jpg`, len: 1.5 * beat },
     // the cast with the team by the tree: taken after the show, so the last photo before the wall of faces (Scott)
     { src: `${P}/cast-tree-portrait.jpg`, len: beat, pos: "50% 40%" },
-    { src: "grid", len: 3 * beat, grid: FACES }] }, // the waving group photo is out (Scott: the same as the posed one)
+    { src: "grid", len: 2.5 * beat, grid: FACES }] }, // the waving group photo is out (Scott: the same as the posed one)
 ];
 const PARTY_SCENES: Scene[] = (() => {
   const out: Scene[] = [];
@@ -2119,12 +2160,16 @@ const PARTY_SCENES: Scene[] = (() => {
     out.push({ from: at0, len, el: <HatCtx.Provider value={hats}><Gag time={s.time} from={s.from} draw={s.draw} stills={s.stills} /></HatCtx.Provider> });
     at0 += len;
   }
-  // bed, then the morning as photos only (Scott: "lose the breakfast gag")
-  out.push({ from: at0, len: 120, el: <Gag time="Sat 21 Nov, 1:00am" from={[852, 1280]} draw={PlainBed}
-    stills={[{ src: `${SM}/luxury-suite.jpg`, len: beat }, { src: `${SM}/breakfast-eggs.jpg`, len: beat, pos: "54% 50%" }]} /> });
+  // bed and the suite, breakfast at nine, then the goodbyes: a wave and off with his case
+  const tail: { len: number; el: React.ReactElement }[] = [
+    { len: 90, el: <Gag time="Sat 21 Nov, 1:00am" from={[852, 1280]} draw={PlainBed} stills={[{ src: `${SM}/luxury-suite.jpg`, len: beat }]} /> },
+    { len: 90, el: <Gag time="Sat 21 Nov, 9:00am" from={[330, 1100]} draw={Morning} stills={[{ src: `${SM}/breakfast-eggs.jpg`, len: beat, pos: "54% 50%" }]} /> },
+    { len: 45, el: <Gag time="Sat 21 Nov, 10:00am" from={[540, 1200]} draw={Goodbye} /> },
+  ];
+  tail.forEach((t, k) => { out.push({ from: at0, len: t.len, el: <HatCtx.Provider value={k === 0}>{t.el}</HatCtx.Provider> }); at0 += t.len; }); // the hat is off by morning
   return out;
 })();
-const PARTY_END = PARTY_SCENES[PARTY_SCENES.length - 1].from + 120;
+const PARTY_END = PARTY_SCENES[PARTY_SCENES.length - 1].from + 45;
 export const STICK_PARTY_FRAMES = PARTY_END + 140;
 export const StickParty: React.FC = () => (
   <StickFilm look="gold" xmas scenes={PARTY_SCENES} endAt={PARTY_END} frames={STICK_PARTY_FRAMES} end={["A faultless night,", "almost"]} endEl={<FaultlessEnd />} musicAt={0} track={`${P}/christmas-fun-120.mp3`} sfx={`${P}/party-sfx.mp3`}

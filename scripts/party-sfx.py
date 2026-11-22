@@ -7,8 +7,9 @@ rerun after retiming it. Writes public/campaigns/xmas-party-2026/party-sfx.mp3 (
 import subprocess, numpy as np
 from scipy.signal import butter, lfilter
 SR, FPS = 48000, 30
-SCENES = [0, 180, 300, 420, 720, 930, 1110, 1260, 1500]  # where each page starts
-END, TOTAL = 1620, 1760
+SCENES = [0, 180, 300, 420, 720, 900, 1065, 1215, 1425, 1515]
+LAST = 1605  # the goodbye page: a drawing only, no photo  # where each page starts
+END, TOTAL = 1650, 1790
 GAG = 8  # a page's drawing runs FLIP frames behind its scene
 rng = np.random.default_rng(7)
 out = np.zeros((int(TOTAL / FPS * SR) + SR, 2))
@@ -50,7 +51,7 @@ def pluck():
     n = int(0.35 * SR); t = np.arange(n) / SR
     return (np.sin(2 * np.pi * 740 * t) + 0.4 * np.sin(2 * np.pi * 1480 * t)) * env(n, 0.001, 0.07)
 
-for s in SCENES[1:] + [END]:
+for s in SCENES[1:] + [LAST, END]:
     put(flick(), s - 1, -20, rng.uniform(-0.2, 0.2))
 for s in SCENES:
     put(shutter(), s + 60, -24)
