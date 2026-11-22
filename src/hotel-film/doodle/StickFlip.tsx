@@ -682,7 +682,7 @@ const PartyShot: React.FC<{ s: Shot; f: number }> = ({ s, f }) => {
           if (a <= 0) return null;
           return (
             <div key={src} style={{ position: "absolute", left: (k % 3) * 360 + 3, top: Math.floor(k / 3) * 480 + 3, width: 354, height: 474, overflow: "hidden",
-              transform: `scale(${0.82 + 0.18 * (1 - (1 - a) ** 3)})`, opacity: a }}>
+              transform: `scale(${0.82 + 0.18 * (1 - (1 - a) ** 3)})` }}>
               <Img src={staticFile(src)} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "50% 30%", transform: `scale(${1.25 + 0.04 * t})`, transformOrigin: "50% 35%" }} />
             </div>
           );
@@ -743,7 +743,7 @@ const WideShot: React.FC<{ s: Shot; f: number }> = ({ s, f }) => {
           if (a <= 0) return null;
           return (
             <div key={src} style={{ position: "absolute", left: (k % 6) * 320 + 3, top: Math.floor(k / 6) * 540 + 3, width: 314, height: 534, overflow: "hidden",
-              transform: `scale(${0.82 + 0.18 * (1 - (1 - a) ** 3)})`, opacity: a }}>
+              transform: `scale(${0.82 + 0.18 * (1 - (1 - a) ** 3)})` }}>
               <Img src={staticFile(src)} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "50% 30%", transform: `scale(${1.2 + 0.04 * t})`, transformOrigin: "50% 35%" }} />
             </div>
           );

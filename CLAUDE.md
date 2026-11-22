@@ -1391,6 +1391,8 @@ with no history and no renders:
   pages from 8:45pm on sit 15 frames earlier (SCENES in party-sfx.py) and the length is unchanged.
   The portrait bedroom is one photo again (Scott: the two tiles were "the same photo"): the whole bed across the frame
   over its own soft copy (`Shot.fit`); spliced into the portrait file (frames 1462-1507).
+  The faces wall's tiles land at full brightness (a reviewer read a tile caught mid fade as a dim one): scale pop
+  only, no opacity ramp, both cuts; spliced (frames 1330-1412).
   To confirm: the times on the pages are guesses; where it is going (it has the reel end card, no TikTok text);
   everyone shown is happy to be posted; a festive track would suit it better than the Rowton reel's.
 - `the-kingfisher`, `whittlebury-park-stay-dine` (+ `-story` cuts): done.
