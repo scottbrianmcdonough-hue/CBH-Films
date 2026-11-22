@@ -663,9 +663,13 @@ const PartyShot: React.FC<{ s: Shot; f: number }> = ({ s, f }) => {
   if (s.to) {
     // a snap cut on the beat half way (Scott: "or a quick cut snap"), the new photo punching in and settling
     const at0 = Math.round(s.len / 2);
-    const k = f >= at0 ? 1 + 0.05 * Math.exp(-(f - at0) / 3) : 1;
+    // more of a pop (Scott): the day photo leans in a touch, then the night one slams in big and springs back
+    const d = f - at0;
+    const k = d >= 0 ? Math.max(1, 1 + 0.24 * Math.exp(-d / 2.4) + 0.05 * Math.exp(-d / 7) * Math.sin(d * 0.9))
+      : 1 + 0.03 * Math.max(0, 1 + d / 8) ** 2;
+    const lift = d >= 0 ? 1 + 0.22 * Math.exp(-d / 3) : 1;
     return (
-      <AbsoluteFill style={{ backgroundColor: "#000", transform: `scale(${k})` }}>
+      <AbsoluteFill style={{ backgroundColor: "#000", transform: `scale(${k})`, filter: lift > 1.01 ? `brightness(${lift})` : undefined }}>
         {f < at0 ? one(s.src, s.pos, 1) : one(s.to, s.toPos ?? s.pos, 1)}
       </AbsoluteFill>
     );
