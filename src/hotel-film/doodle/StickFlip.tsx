@@ -579,6 +579,7 @@ const Scribble: React.FC<{ x: number; y: number; size?: number; o?: number; chil
 // blurred copy and drifts sideways so the whole group is seen.
 type Shot = { src: string; len: number; pos?: string; split?: boolean; plates?: string[]; grid?: string[];
   to?: string; toPos?: string; toLabel?: string;
+  pair?: string; // with `split`: the lower tile is this second picture (two crops of one photo, framed by hand)
   halves?: boolean; zoom?: number }; // with `split`: the two tiles are the photo's exact left and right halves, nobody shown twice // `to`: the same view later on, snap cut to half way (the day group, then the night one)
 const pop = (f: number, at0: number, n = 5) => Math.min(1, Math.max(0, (f - at0) / n));
 const PartyShot: React.FC<{ s: Shot; f: number }> = ({ s, f }) => {
@@ -594,6 +595,19 @@ const PartyShot: React.FC<{ s: Shot; f: number }> = ({ s, f }) => {
           transformOrigin: side ? "75% 45%" : "25% 45%", transform: `scale(${1 + 0.03 * t})` }} />
       </div>
     );
+    if (s.pair) {
+      const crop = (src: string, top: number, dy: number) => (
+        <div style={{ position: "absolute", left: 0, top, width: W, height: 954, overflow: "hidden", transform: `translateY(${dy}px)` }}>
+          <Img src={staticFile(src)} style={{ width: W, height: 954, objectFit: "cover", transform: `scale(${1 + 0.03 * t})` }} />
+        </div>
+      );
+      return (
+        <AbsoluteFill style={{ backgroundColor: look.bg }}>
+          {crop(s.src, 0, 0)}
+          {f >= late ? crop(s.pair, 966, (1 - up) * 960) : null}
+        </AbsoluteFill>
+      );
+    }
     if (s.halves) {
       return (
         <AbsoluteFill style={{ backgroundColor: look.bg }}>
@@ -2062,7 +2076,7 @@ const PARTY: { time: string; draw: (f: number, p: number, look: Look, xmas: bool
     { src: "campaigns/festive/graded/hogarths-entrance.jpg", len: 2 * beat, pos: "50% 50%" }, { src: `${P}/meeting-wide.jpg`, len: 2 * beat, split: true }] },
   { time: "Fri 20 Nov, 3:00pm", draw: Quiz, from: [540, 1130], stills: [{ src: `${P}/meeting-smiles.jpg`, len: 2 * beat, split: true, halves: true }] },
   { time: "Fri 20 Nov, 3:30pm", draw: Dice, from: DICE_FROM, stills: [{ src: `${P}/dice-game.jpg`, len: 2 * beat, split: true }] },
-  { time: "Fri 20 Nov, 4:00pm", draw: Steal, from: STEAL_FROM, stills: [{ src: `${P}/gifts-table.jpg`, len: 2 * beat, split: true, halves: true }, { src: `${P}/secret-santa.jpg`, len: 2 * beat, split: true }, { src: `${P}/group-day.jpg`, len: 4 * beat, pos: "50% 56%", to: `${P}/group-evening.jpg`, toPos: "47% 55%", zoom: 1.2, toLabel: "Party time!" }] },
+  { time: "Fri 20 Nov, 4:00pm", draw: Steal, from: STEAL_FROM, stills: [{ src: `${P}/gifts-table-a.jpg`, len: 2 * beat, split: true, pair: `${P}/gifts-table-b.jpg` }, { src: `${P}/secret-santa-a.jpg`, len: 2 * beat, split: true, pair: `${P}/secret-santa-b.jpg` }, { src: `${P}/group-day.jpg`, len: 4 * beat, pos: "50% 56%", to: `${P}/group-evening.jpg`, toPos: "47% 55%", zoom: 1.2, toLabel: "Party time!" }] },
   { time: "Fri 20 Nov, 7:00pm", draw: Slap, from: SLAP_FROM, stills: [
     { src: `${SM}/waiter-tray.jpg`, len: beat, pos: "16% 50%" }, { src: `${P}/cast-tree-portrait.jpg`, len: beat, pos: "50% 40%" },
     { src: `${P}/table-1-group.jpg`, len: 2 * beat, split: true }, { src: `${P}/table-2-group.jpg`, len: 2 * beat, split: true }] },
