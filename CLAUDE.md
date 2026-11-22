@@ -1343,6 +1343,7 @@ with no history and no renders:
   Then the cast photo by the tree moved from the 7:00pm run to the last photo before the wall of faces (Scott: it was
   taken after the show); same length, the 8:00pm, 8:45pm and 9:15pm pages a beat earlier (SCENES in party-sfx.py).
   The night group photo framed to its right edge, a little wider (`toZoom` 1.08, `toPos` 100%: Georgina, far right, was cut).
+  The 1:00am page is an ordinary bed with a headboard (`PlainBed`; Scott: "wasn't a four poster"), no stocking.
   To confirm: the times on the pages are guesses; where it is going (it has the reel end card, no TikTok text);
   everyone shown is happy to be posted; a festive track would suit it better than the Rowton reel's.
 - `the-kingfisher`, `whittlebury-park-stay-dine` (+ `-story` cuts): done.

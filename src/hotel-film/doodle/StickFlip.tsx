@@ -939,7 +939,7 @@ const Cake = (f: number, p: number, _look?: Look, xmas = false) => {
 
 // 4. Saturday night: a run and a leap into the four-poster
 const LIE: Pose = { x: 660, y: 1266, lean: -Math.PI / 2, head: -0.1, ua: [0.15, -0.1], fa: [0.15, -0.1], th: [-Math.PI / 2, -Math.PI / 2 + 0.06], sh: [-Math.PI / 2, -Math.PI / 2 + 0.06] };
-const Bed = (f: number, p: number, look: Look, xmas = false) => {
+const Bed = (f: number, p: number, look: Look, xmas = false, plain = false) => {
   let q: Pose;
   if (f < 14) q = runPose(f, interpolate(f, [0, 14], [150, 360]));
   else {
@@ -953,17 +953,27 @@ const Bed = (f: number, p: number, look: Look, xmas = false) => {
   return (
     <>
       {/* the four-poster: posts, a scalloped canopy, its drapes, the mattress, a pillow */}
+      {plain ? (
+        <>
+          {/* an ordinary bed (Scott: "wasn't a four poster"): a low footboard, a headboard with a curved top */}
+          <Pencil d={[[470, 1392], [470, 1262]]} p={p} id={290} />
+          <Pencil d={[[900, 1392], [900, 1196], [912, 1176], [934, 1170], [946, 1190], [946, 1392]]} p={p} id={291} />
+        </>
+      ) : (
+        <>
       <Pencil d={[[470, 1392], [470, 990]]} p={p} id={290} />
       <Pencil d={[[900, 1392], [900, 990]]} p={p} id={291} />
       <Pencil d={[[455, 990], [915, 990]]} p={p} id={292} />
       <Pencil d={Array.from({ length: 19 }, (_, k): Pt => [470 + k * 23.9, 1000 + 22 * Math.abs(Math.sin((k / 18) * Math.PI * 6))])} p={p} id={293} w={4} />
       <Pencil d={[[470, 1000], [500, 1120], [478, 1230]]} p={p} id={294} w={4} />
       <Pencil d={[[900, 1000], [870, 1120], [892, 1230]]} p={p} id={295} w={4} />
+        </>
+      )}
       <Pencil d={[[470, 1300 + sag], [900, 1300 + sag]]} p={p} id={296} />
       <Pencil d={[[470, 1340], [900, 1340]]} p={p} id={297} />
       <Ellipse c={[852, 1290 + sag]} rx={42} ry={14} p={p} id={298} />
       {/* a stocking hung on the foot post, waiting */}
-      {xmas ? (
+      {xmas && !plain ? (
         <>
           <Pencil d={[[906, 1040], [906, 1112], [926, 1138], [962, 1138], [964, 1118], [936, 1104], [936, 1040]]} p={p} id={630} w={5} closed />
           <Pencil d={[[906, 1060], [936, 1060]]} p={p} id={631} w={4} />
@@ -2076,6 +2086,7 @@ export const Breakfast = (f: number, p: number) => {
 
 const beat = 30;
 const FACES = ["red-antlers", "cream", "green-antlers", "sequin", "brown-antlers", "gingerbread", "tubes", "peace", "boppers", "lace", "thumbs", "santa-boppers"].map((n) => `${P}/p-${n}.jpg`);
+const PlainBed = (f: number, p: number, look: Look, xmas = false) => Bed(f, p, look, xmas, true);
 const PARTY: { time: string; draw: (f: number, p: number, look: Look, xmas: boolean) => React.ReactNode; from: Pt; stills: Shot[] }[] = [
   { time: "Fri 20 Nov, 2:00pm", draw: Meeting, from: CHART_FROM, stills: [
     { src: "campaigns/festive/graded/hogarths-entrance.jpg", len: 2 * beat, pos: "50% 50%" }, { src: `${P}/meeting-wide-a.jpg`, len: 2 * beat, split: true, pair: `${P}/meeting-wide-b.jpg` }] },
@@ -2107,7 +2118,7 @@ const PARTY_SCENES: Scene[] = (() => {
     at0 += len;
   }
   // bed, then the morning as photos only (Scott: "lose the breakfast gag")
-  out.push({ from: at0, len: 120, el: <Gag time="Sat 21 Nov, 1:00am" from={[852, 1280]} draw={Bed}
+  out.push({ from: at0, len: 120, el: <Gag time="Sat 21 Nov, 1:00am" from={[852, 1280]} draw={PlainBed}
     stills={[{ src: `${SM}/luxury-suite.jpg`, len: beat }, { src: `${SM}/breakfast-eggs.jpg`, len: beat, pos: "54% 50%" }]} /> });
   return out;
 })();
