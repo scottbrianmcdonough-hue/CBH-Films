@@ -1386,20 +1386,27 @@ const RACE_SCENES = [
   { from: 540, len: 120, el: <Gag time="Sunday, 10:30pm" still={`${WP}/room.jpg`} pos="40% 50%" from={[852, 1280]} draw={Bed} /> },
 ];
 // the house label over the hotel's first shot: the place in gold caps, underlined, the name in cream Cormorant
-const PlaceLabel: React.FC<{ place: string; name: string; len: number; strong?: boolean }> = ({ place, name, len, strong }) => {
+const PlaceLabel: React.FC<{ place: string; name: string; len: number; strong?: boolean; plain?: boolean }> = ({ place, name, len, strong, plain }) => {
+  // `plain`: no dark band across the foot of the frame, the words carry their own soft shadow (Scott: "without the
+  // black shadow across the whole bottom")
+  const sh = plain ? "0 2px 14px rgba(0,0,0,0.9), 0 0 4px rgba(0,0,0,0.8)" : undefined;
   const frame = useCurrentFrame();
   const wide = React.useContext(WideCtx);
   const o = progress(frame, 0, 12) * (1 - progress(frame, len - 10, 8));
   return (
     <AbsoluteFill style={{ opacity: o }}>
-      <AbsoluteFill style={{ background: strong
+      {plain ? null : <AbsoluteFill style={{ background: strong
         ? "linear-gradient(to bottom, rgba(9,9,10,0) 44%, rgba(9,9,10,0.82) 70%, rgba(9,9,10,0.7) 100%)"
-        : "linear-gradient(to bottom, rgba(9,9,10,0) 52%, rgba(9,9,10,0.55) 74%, rgba(9,9,10,0.3) 100%)" }} />
-      <div style={{ position: "absolute", left: wide ? 110 : 72, bottom: wide ? 120 : 500 }}>
+        : "linear-gradient(to bottom, rgba(9,9,10,0) 52%, rgba(9,9,10,0.55) 74%, rgba(9,9,10,0.3) 100%)" }} />}
+      <div style={{ position: "absolute", left: wide ? 110 : 72, bottom: wide ? (plain ? 610 : 120) : 500 }}>
+        {/* a soft shade just behind the words, not a band across the frame */}
+        {plain ? <div style={{ position: "absolute", left: -70, right: -90, top: -50, bottom: -50, background: "rgba(0,0,0,0.5)", filter: "blur(38px)", borderRadius: 80 }} /> : null}
+        <div style={{ position: "relative" }}>
         <div style={{ display: "inline-block" }}>
-          <div style={{ fontFamily: sans, fontWeight: 600, fontSize: 28, letterSpacing: "0.24em", color: colors.gold }}>{place}</div>
+          <div style={{ fontFamily: sans, fontWeight: 600, fontSize: 28, letterSpacing: "0.24em", color: colors.gold, textShadow: sh }}>{place}</div>
         </div>
-        <div style={{ fontFamily: serif, fontSize: 64, lineHeight: 1.1, marginTop: 14, color: colors.cream }}>{name}</div>
+        <div style={{ fontFamily: serif, fontSize: 64, lineHeight: 1.1, marginTop: 14, color: colors.cream, textShadow: sh }}>{name}</div>
+        </div>
       </div>
     </AbsoluteFill>
   );
@@ -2302,6 +2309,6 @@ const PARTY_END = PARTY_SCENES[PARTY_SCENES.length - 1].from + 45;
 export const STICK_PARTY_FRAMES = PARTY_END + 140;
 export const StickParty: React.FC<{ wide?: boolean }> = ({ wide }) => (
   <StickFilm wide={wide} look="gold" xmas scenes={PARTY_SCENES} endAt={PARTY_END} frames={STICK_PARTY_FRAMES} end={["A faultless night,", "almost"]} endEl={<FaultlessEnd />} musicAt={0} track={`${P}/christmas-fun-120.mp3`} sfx={`${P}/party-sfx.mp3`}
-    over={<Sequence from={3} durationInFrames={50} layout="none"><PlaceLabel place="KIDDERMINSTER" name="Hogarths Stone Manor" len={50} strong /></Sequence>} />
+    over={<Sequence from={3} durationInFrames={50} layout="none"><PlaceLabel place="KIDDERMINSTER" name="Hogarths Stone Manor" len={50} plain /></Sequence>} />
 );
 export const StickPartyWide: React.FC = () => <StickParty wide />;

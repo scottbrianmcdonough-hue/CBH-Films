@@ -1372,6 +1372,8 @@ with no history and no renders:
   The slap moved (Scott: "the slap happens right before the actors appear"): the 7:00pm page is dinner (`Cake`: the
   waiter, both tables, the plates), 8:45pm the slap into three actors, 9:00pm the laughing table into the other three,
   9:15pm the run round the room; same length (SCENES in party-sfx.py, the slap sound on SCENES[5]).
+  The opening label has no dark band across the foot of the frame (Scott: "without the black shadow across the whole
+  bottom"; `PlaceLabel plain`: a soft shade just behind the words); in the wide cut it sits on the roof tiles.
   To confirm: the times on the pages are guesses; where it is going (it has the reel end card, no TikTok text);
   everyone shown is happy to be posted; a festive track would suit it better than the Rowton reel's.
 - `the-kingfisher`, `whittlebury-park-stay-dine` (+ `-story` cuts): done.
