@@ -1398,12 +1398,14 @@ const PlaceLabel: React.FC<{ place: string; name: string; len: number; strong?: 
       {plain ? null : <AbsoluteFill style={{ background: strong
         ? "linear-gradient(to bottom, rgba(9,9,10,0) 44%, rgba(9,9,10,0.82) 70%, rgba(9,9,10,0.7) 100%)"
         : "linear-gradient(to bottom, rgba(9,9,10,0) 52%, rgba(9,9,10,0.55) 74%, rgba(9,9,10,0.3) 100%)" }} />}
-      <div style={{ position: "absolute", left: wide ? 110 : 72, bottom: wide ? (plain ? 40 : 120) : 500 }}>
+      <div style={{ position: "absolute", left: wide ? 110 : 72, bottom: wide ? (plain ? 30 : 120) : 500 }}>
         {/* a soft shade just behind the words, not a band across the frame */}
-        {plain ? <div style={{ position: "absolute", left: -70, right: -90, top: -50, bottom: -50, background: "rgba(0,0,0,0.26)", filter: "blur(44px)", borderRadius: 90 }} /> : null}
+        {plain ? <div style={{ position: "absolute", left: -70, right: -90, top: -50, bottom: -50, background: "rgba(0,0,0,0.34)", filter: "blur(40px)", borderRadius: 90 }} /> : null}
         <div style={{ position: "relative" }}>
         <div style={{ display: "inline-block" }}>
-          <div style={{ fontFamily: sans, fontWeight: 600, fontSize: 28, letterSpacing: "0.24em", color: colors.gold, textShadow: sh }}>{place}</div>
+          {/* the gold line was hard to read over a daylight photo (Scott: "hard to read yellow", "keep the gold CB colour"): the same gold, bolder and a touch bigger, its own tight shadow */}
+          <div style={{ fontFamily: sans, fontWeight: plain ? 700 : 600, fontSize: plain ? 31 : 28, letterSpacing: "0.24em", color: colors.gold,
+            textShadow: plain ? "0 1px 5px rgba(0,0,0,0.9), 0 0 2px rgba(0,0,0,0.9), 0 0 14px rgba(0,0,0,0.6)" : sh }}>{place}</div>
         </div>
         <div style={{ fontFamily: serif, fontSize: 64, lineHeight: 1.1, marginTop: 14, color: colors.cream, textShadow: sh }}>{name}</div>
         </div>

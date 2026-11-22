@@ -1375,6 +1375,8 @@ with no history and no renders:
   The opening label has no dark band across the foot of the frame (Scott: "without the black shadow across the whole
   bottom", then "it should be still lower third, just a slight shadow or scrim for legibility"; `PlaceLabel plain`: a
   slight scrim just behind the words, lower third in both cuts: over the doors in portrait, over the hedges in wide).
+  The gold place line was hard to read there (Scott: "hard to read yellow", "keep the gold CB colour"): the same
+  CBH gold, bold, 31px, with its own tight shadow; no brighter yellow.
   To confirm: the times on the pages are guesses; where it is going (it has the reel end card, no TikTok text);
   everyone shown is happy to be posted; a festive track would suit it better than the Rowton reel's.
 - `the-kingfisher`, `whittlebury-park-stay-dine` (+ `-story` cuts): done.
