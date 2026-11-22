@@ -2375,7 +2375,7 @@ const PARTY_SCENES: Scene[] = (() => {
   }
   // bed and the suite, breakfast at nine, then the goodbyes: a wave and off with his case
   const tail: { len: number; el: React.ReactElement }[] = [
-    { len: 90, el: <Gag time="Sat 21 Nov, 1:00am" from={[852, 1280]} draw={PlainBed} stills={[{ src: `${SM}/bedroom-blue.jpg`, len: beat, wpos: "50% 55%", fit: `${SM}/bedroom-blue-a.jpg` }]} /> },
+    { len: 90, el: <Gag time="Sat 21 Nov, 1:00am" from={[852, 1280]} draw={PlainBed} stills={[{ src: `${SM}/bedroom-blue.jpg`, len: beat, wpos: "50% 55%", pos: "70% 50%" }]} /> },
     { len: 90, el: <Gag time="Sat 21 Nov, 9:00am" from={[330, 1100]} draw={Morning} stills={[{ src: `${SM}/breakfast-eggs.jpg`, len: beat, pos: "54% 50%", wpos: "54% 62%" }]} /> },
     { len: 60, el: <Gag time="Sat 21 Nov, 10:30am" from={[540, 1200]} draw={Goodbye} /> },
   ];
