@@ -1340,6 +1340,8 @@ with no history and no renders:
   Polish and package (Scott: "polish pass and package it up"): the other four table photos (meeting-wide, dice-game,
   table-1-group, table-2-group) are hand-framed pairs too; one clean full render; `out/cbh-christmas-party.mp4`,
   `-cover.jpg` (the "Party time!" group photo) and `out/cbh-christmas-party-ticket.txt` (platforms and slot to confirm).
+  Then the cast photo by the tree moved from the 7:00pm run to the last photo before the wall of faces (Scott: it was
+  taken after the show); same length, the 8:00pm, 8:45pm and 9:15pm pages a beat earlier (SCENES in party-sfx.py).
   To confirm: the times on the pages are guesses; where it is going (it has the reel end card, no TikTok text);
   everyone shown is happy to be posted; a festive track would suit it better than the Rowton reel's.
 - `the-kingfisher`, `whittlebury-park-stay-dine` (+ `-story` cuts): done.
