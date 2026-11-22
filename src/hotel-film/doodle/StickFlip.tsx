@@ -2215,7 +2215,7 @@ const PARTY: { time: string; draw: (f: number, p: number, look: Look, xmas: bool
   { time: "Fri 20 Nov, 3:30pm", draw: Dice, from: DICE_FROM, stills: [{ src: `${P}/dice-game-a.jpg`, len: 2 * beat, split: true, pair: `${P}/dice-game-b.jpg` }] },
   { time: "Fri 20 Nov, 4:00pm", draw: Steal, from: STEAL_FROM, stills: [{ src: `${P}/gifts-table-a.jpg`, len: 2 * beat, split: true, pair: `${P}/gifts-table-b.jpg` }, { src: `${P}/secret-santa-a.jpg`, len: 2 * beat, split: true, pair: `${P}/secret-santa-b.jpg` }, { src: `${P}/group-day.jpg`, len: 4 * beat, pos: "50% 56%", to: `${P}/group-evening.jpg`, toPos: "100% 55%", toZoom: 1.08, zoom: 1.2, toLabel: "Party time!" }] },
   { time: "Fri 20 Nov, 7:00pm", draw: Slap, from: SLAP_FROM, stills: [
-    { src: `${SM}/waiter-tray.jpg`, len: beat, pos: "16% 50%" },
+    { src: `${SM}/waiter-tray.jpg`, len: beat, pos: "16% 50%", wpos: "50% 72%" },
     { src: `${P}/table-1-group-a.jpg`, len: 1.5 * beat, split: true, pair: `${P}/table-1-group-b.jpg` }, { src: `${P}/table-2-group-a.jpg`, len: 1.5 * beat, split: true, pair: `${P}/table-2-group-b.jpg` }] },
   { time: "Fri 20 Nov, 8:00pm", draw: Cake, from: [340, 1075], stills: [
     { src: "plates", len: 3.5 * beat, plates: ["prawn", "terrine", "turkey", "pud", "opera", "cheese"].map((n) => `${P}/plate-${n}.jpg`) }] },
