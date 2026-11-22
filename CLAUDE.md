@@ -1393,6 +1393,8 @@ with no history and no renders:
   over its own soft copy (`Shot.fit`); spliced into the portrait file (frames 1462-1507).
   The portrait bedroom is full bleed (Scott: "bed shot needs to be full bleed"): a tall crop centred on the bed
   (`pos` 49%: the painting above, both fern cushions either side; the right-hand crop was "better more centred"), no `fit`; spliced (frames 1462-1507).
+  Final polish (22 Nov, Scott: "polish pass and present both files"): one clean full render of each cut after the
+  splices, -15.0 LUFS, no black frames, cover remade; end card stays "almost" (Scott asked almost or nearly).
   The faces wall's tiles land at full brightness (a reviewer read a tile caught mid fade as a dim one): scale pop
   only, no opacity ramp, both cuts; spliced (frames 1330-1412).
   To confirm: the times on the pages are guesses; where it is going (it has the reel end card, no TikTok text);

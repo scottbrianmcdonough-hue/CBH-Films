@@ -89,7 +89,9 @@ const L = { torso: 150, head: 40, upper: 78, fore: 72, thigh: 92, shin: 90 };
 const at = (o: Pt, a: number, len: number): Pt => [o[0] + Math.sin(a) * len, o[1] + Math.cos(a) * len];
 type Hat = "santa" | "antlers" | "elf";
 const Figure: React.FC<{ q: Pose; p: number; hat?: Hat }> = ({ q, p, hat = "santa" }) => {
-  const xmas = React.useContext(XmasCtx) && React.useContext(HatCtx);
+  const inXmas = React.useContext(XmasCtx);
+  const inHat = React.useContext(HatCtx);
+  const xmas = inXmas && inHat;
   const hip: Pt = [q.x, q.y];
   const neck = at(hip, Math.PI + q.lean, L.torso);
   const headC = at(neck, Math.PI + q.lean + q.head, L.head + 6);
