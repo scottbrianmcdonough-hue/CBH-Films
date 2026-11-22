@@ -578,7 +578,7 @@ const Scribble: React.FC<{ x: number; y: number; size?: number; o?: number; chil
 // A portrait photo fills the frame on a slow push; a landscape one (`wide`) sits across the middle over its own
 // blurred copy and drifts sideways so the whole group is seen.
 type Shot = { src: string; len: number; pos?: string; split?: boolean; plates?: string[]; grid?: string[];
-  to?: string; toPos?: string; toLabel?: string;
+  to?: string; toPos?: string; toLabel?: string; toZoom?: number;
   pair?: string; // with `split`: the lower tile is this second picture (two crops of one photo, framed by hand)
   halves?: boolean; zoom?: number }; // with `split`: the two tiles are the photo's exact left and right halves, nobody shown twice // `to`: the same view later on, snap cut to half way (the day group, then the night one)
 const pop = (f: number, at0: number, n = 5) => Math.min(1, Math.max(0, (f - at0) / n));
@@ -670,9 +670,9 @@ const PartyShot: React.FC<{ s: Shot; f: number }> = ({ s, f }) => {
       </AbsoluteFill>
     );
   }
-  const one = (src: string, pos: string | undefined, o: number) => (
+  const one = (src: string, pos: string | undefined, o: number, z = s.zoom ?? 1) => (
     <Img src={staticFile(src)} style={{ position: "absolute", width: W, height: H, objectFit: "cover", objectPosition: pos ?? "50% 50%",
-      transformOrigin: pos ?? "50% 50%", transform: `scale(${(s.zoom ?? 1) * (1 + 0.05 * t)})`, opacity: o }} />
+      transformOrigin: pos ?? "50% 50%", transform: `scale(${z * (1 + 0.05 * t)})`, opacity: o }} />
   );
   if (s.to) {
     // a snap cut on the beat half way (Scott: "or a quick cut snap"), the new photo punching in and settling
@@ -684,7 +684,7 @@ const PartyShot: React.FC<{ s: Shot; f: number }> = ({ s, f }) => {
     const lift = d >= 0 ? 1 + 0.22 * Math.exp(-d / 3) : 1;
     return (
       <AbsoluteFill style={{ backgroundColor: "#000", transform: `scale(${k})`, filter: lift > 1.01 ? `brightness(${lift})` : undefined }}>
-        {f < at0 ? one(s.src, s.pos, 1) : one(s.to, s.toPos ?? s.pos, 1)}
+        {f < at0 ? one(s.src, s.pos, 1) : one(s.to, s.toPos ?? s.pos, 1, s.toZoom)}
         {/* the switch named in the flipbook's gold hand (Scott: "put like party time ... to signal the transition") */}
         {s.toLabel && d >= 0 ? (
           <div style={{ position: "absolute", left: 0, right: 0, top: 330, textAlign: "center", fontFamily: HAND, fontWeight: 600, fontSize: 170,
@@ -2081,7 +2081,7 @@ const PARTY: { time: string; draw: (f: number, p: number, look: Look, xmas: bool
     { src: "campaigns/festive/graded/hogarths-entrance.jpg", len: 2 * beat, pos: "50% 50%" }, { src: `${P}/meeting-wide-a.jpg`, len: 2 * beat, split: true, pair: `${P}/meeting-wide-b.jpg` }] },
   { time: "Fri 20 Nov, 3:00pm", draw: Quiz, from: [540, 1130], stills: [{ src: `${P}/meeting-smiles.jpg`, len: 2 * beat, split: true, halves: true }] },
   { time: "Fri 20 Nov, 3:30pm", draw: Dice, from: DICE_FROM, stills: [{ src: `${P}/dice-game-a.jpg`, len: 2 * beat, split: true, pair: `${P}/dice-game-b.jpg` }] },
-  { time: "Fri 20 Nov, 4:00pm", draw: Steal, from: STEAL_FROM, stills: [{ src: `${P}/gifts-table-a.jpg`, len: 2 * beat, split: true, pair: `${P}/gifts-table-b.jpg` }, { src: `${P}/secret-santa-a.jpg`, len: 2 * beat, split: true, pair: `${P}/secret-santa-b.jpg` }, { src: `${P}/group-day.jpg`, len: 4 * beat, pos: "50% 56%", to: `${P}/group-evening.jpg`, toPos: "47% 55%", zoom: 1.2, toLabel: "Party time!" }] },
+  { time: "Fri 20 Nov, 4:00pm", draw: Steal, from: STEAL_FROM, stills: [{ src: `${P}/gifts-table-a.jpg`, len: 2 * beat, split: true, pair: `${P}/gifts-table-b.jpg` }, { src: `${P}/secret-santa-a.jpg`, len: 2 * beat, split: true, pair: `${P}/secret-santa-b.jpg` }, { src: `${P}/group-day.jpg`, len: 4 * beat, pos: "50% 56%", to: `${P}/group-evening.jpg`, toPos: "100% 55%", toZoom: 1.08, zoom: 1.2, toLabel: "Party time!" }] },
   { time: "Fri 20 Nov, 7:00pm", draw: Slap, from: SLAP_FROM, stills: [
     { src: `${SM}/waiter-tray.jpg`, len: beat, pos: "16% 50%" },
     { src: `${P}/table-1-group-a.jpg`, len: 2 * beat, split: true, pair: `${P}/table-1-group-b.jpg` }, { src: `${P}/table-2-group-a.jpg`, len: 2 * beat, split: true, pair: `${P}/table-2-group-b.jpg` }] },
