@@ -2061,8 +2061,7 @@ const PARTY: { time: string; draw: (f: number, p: number, look: Look, xmas: bool
       .map((n, k): Shot => ({ src: `${P}/${n}.jpg`, len: k === 6 ? beat : beat / 2 }))] },
   { time: "Fri 20 Nov, 9:15pm", draw: LaughChase, from: [640, 1080], stills: [
     { src: `${P}/comedian-1.jpg`, len: beat }, { src: `${P}/comedian-2.jpg`, len: beat },     { src: `${P}/host-table-2.jpg`, len: beat, pos: "52% 50%" },
-    { src: "grid", len: 2 * beat, grid: FACES },
-    { src: `${P}/group-evening-waving.jpg`, len: 2 * beat, pos: "52% 54%", zoom: 1.15 }] },
+    { src: "grid", len: 3 * beat, grid: FACES }] }, // the waving group photo is out (Scott: the same as the posed one)
 ];
 const PARTY_SCENES: Scene[] = (() => {
   const out: Scene[] = [];
