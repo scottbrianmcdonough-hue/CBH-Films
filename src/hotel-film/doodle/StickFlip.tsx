@@ -955,9 +955,11 @@ const Bed = (f: number, p: number, look: Look, xmas = false, plain = false) => {
       {/* the four-poster: posts, a scalloped canopy, its drapes, the mattress, a pillow */}
       {plain ? (
         <>
-          {/* an ordinary bed (Scott: "wasn't a four poster"): a low footboard, a headboard with a curved top */}
-          <Pencil d={[[470, 1392], [470, 1262]]} p={p} id={290} />
-          <Pencil d={[[900, 1392], [900, 1196], [912, 1176], [934, 1170], [946, 1190], [946, 1392]]} p={p} id={291} />
+          {/* the suite's bed (Scott: "a four poster frame but doesn't have a canopy"): bare posts and a top rail, nothing hung */}
+          <Pencil d={[[470, 1392], [470, 990]]} p={p} id={290} />
+          <Pencil d={[[900, 1392], [900, 990]]} p={p} id={291} />
+          <Pencil d={[[462, 990], [908, 990]]} p={p} id={292} />
+          <Pencil d={[[900, 1300], [900, 1210], [860, 1210]]} p={p} id={293} w={4} />
         </>
       ) : (
         <>
@@ -973,7 +975,7 @@ const Bed = (f: number, p: number, look: Look, xmas = false, plain = false) => {
       <Pencil d={[[470, 1340], [900, 1340]]} p={p} id={297} />
       <Ellipse c={[852, 1290 + sag]} rx={42} ry={14} p={p} id={298} />
       {/* a stocking hung on the foot post, waiting */}
-      {xmas && !plain ? (
+      {xmas ? (
         <>
           <Pencil d={[[906, 1040], [906, 1112], [926, 1138], [962, 1138], [964, 1118], [936, 1104], [936, 1040]]} p={p} id={630} w={5} closed />
           <Pencil d={[[906, 1060], [936, 1060]]} p={p} id={631} w={4} />
