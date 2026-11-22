@@ -1325,6 +1325,9 @@ with no history and no renders:
   Then (22 Nov, Scott): the waving group photo out ("the same as the second"), the faces wall three beats and the
   last photo of the night; the day to night snap "needs more like a pop": the day photo leans in, the night one
   slams in ~1.24x and springs back with a brief lift in brightness (no white flash). 58.7s. Sent with `-silent`.
+  Then (Scott, the bearded man at table 2: "maybe not the three photos of me ... like two or one"): the 9:15 run is one
+  photo (comedian-2, two beats; comedian-1 and host-table-2 out) and host-pour is out of the actors run, so he is in
+  host-card and comedian-2 only, plus the table group and the faces wall. 56.7s. Sent with `-silent`.
   To confirm: the times on the pages are guesses; where it is going (it has the reel end card, no TikTok text);
   everyone shown is happy to be posted; a festive track would suit it better than the Rowton reel's.
 - `the-kingfisher`, `whittlebury-park-stay-dine` (+ `-story` cuts): done.
