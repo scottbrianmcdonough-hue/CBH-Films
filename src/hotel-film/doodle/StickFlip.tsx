@@ -840,13 +840,13 @@ const Gag: React.FC<{
     <AbsoluteFill style={{ backgroundColor: look.bg }}>
       <Paper p={p} />
       <svg width={W} height={H} style={{ position: "absolute", left: dx, top: dy, filter: look.glow }}>
-        <g transform={wide ? "translate(960 965) scale(1.25) translate(-540 -1392)" : "translate(540 1600) scale(1.32) translate(-540 -1392)"}>
+        <g transform={wide ? "translate(960 990) scale(1.16) translate(-540 -1392)" : "translate(540 1600) scale(1.32) translate(-540 -1392)"}>
           <Pencil d={wide ? [[ground[0] - 420, 1392], [ground[1] + 420, 1392]] : [[ground[0], 1392], [ground[1], 1392]]} p={p} id={27} w={5} />
           {draw(frame, p, look, xmas)}
         </g>
-        <clipPath id="write"><rect x={wide ? 100 : 70} y={wide ? 70 : 220} width={20 + 700 * write} height={110} /></clipPath>
-        <g clipPath="url(#write)"><Scribble x={wide ? 120 : 90} y={wide ? 150 : 300} size={64} o={0.95}>{time}</Scribble></g>
-        {xmas ? (wide ? <Garland p={p} f={frame} look={look} x0={110} span={1700} y0={196} n={5} /> : <Garland p={p} f={frame} look={look} />) : null}
+        <clipPath id="write"><rect x={wide ? 100 : 70} y={wide ? 20 : 220} width={20 + 700 * write} height={110} /></clipPath>
+        <g clipPath="url(#write)"><Scribble x={wide ? 120 : 90} y={wide ? 100 : 300} size={wide ? 54 : 64} o={0.95}>{time}</Scribble></g>
+        {xmas ? (wide ? <Garland p={p} f={frame} look={look} x0={110} span={1700} y0={132} n={5} /> : <Garland p={p} f={frame} look={look} />) : null}
       </svg>
       {/* a run of photos comes in on a straight cut on the beat, no opening circle (Scott: "lose the circle in the
           middle before every transition") */}
@@ -2272,7 +2272,8 @@ const PARTY: { time: string; draw: (f: number, p: number, look: Look, xmas: bool
 ];
 // the film opens on the hotel itself (Scott: "Hogarths Kidderminster shot should come first then the presentation and
 // tree gag"), which lifts away like a page onto the 2:00pm meeting
-const ENTRANCE: Shot = { src: "campaigns/festive/graded/hogarths-entrance.jpg", len: 2 * beat, pos: "50% 50%", wpos: "50% 46%" };
+// the front door as it was that afternoon (Scott: "it wasn't decorated in festive yet"); the aerials he sent are summer green
+const ENTRANCE: Shot = { src: "hotels/hogarths-stone-manor/entrance-door.jpg", len: 2 * beat, pos: "58% 50%", wpos: "50% 82%" };
 const Opening: React.FC = () => {
   const f = Math.max(0, useCurrentFrame() - FLIP);
   return <AbsoluteFill style={{ backgroundColor: "#000" }}><PartyShot s={ENTRANCE} f={f} /></AbsoluteFill>;

@@ -1363,6 +1363,9 @@ with no history and no renders:
   Portrait photos in the wide cut go two or three across (`widen`, `Shot.panels`: Scott, "get rid of this shot unless you
   can make it full bleed"); the waiter photo is a landscape original, full bleed there. The bedroom photo is Scott's
   (`bedroom-blue.jpg`, the teal room with the four poster frame) in place of the suite shot, both cuts.
+  The opening shot is the hotel's front door undecorated (`entrance-door.jpg`, Scott: "it wasn't decorated in festive
+  yet"; his two summer aerials, `aerial-courtyard.jpg` and `aerial-lawn.jpg`, are saved unused), not the Christmas
+  entrance. Wide: drawings at 1.16x, the garland higher so it clears the laughing table.
   To confirm: the times on the pages are guesses; where it is going (it has the reel end card, no TikTok text);
   everyone shown is happy to be posted; a festive track would suit it better than the Rowton reel's.
 - `the-kingfisher`, `whittlebury-park-stay-dine` (+ `-story` cuts): done.
