@@ -1377,6 +1377,9 @@ with no history and no renders:
   slight scrim just behind the words, lower third in both cuts: over the doors in portrait, over the hedges in wide).
   The gold place line was hard to read there (Scott: "hard to read yellow", "keep the gold CB colour"): the same
   CBH gold, bold, 31px, with its own tight shadow; no brighter yellow.
+  The opening holds half a beat longer (Scott: "hold half a beat longer"): 2.5 beats, the half beat taken from the
+  meeting photo (1.5) so nothing after frame 180 moves; SCENES[0] is 75. Both cuts then checked at 2 fps: nothing else
+  changed. Spliced onto the `out/` films (frames 0-184) with a fresh audio render (`--codec=wav`), -15.1 LUFS.
   To confirm: the times on the pages are guesses; where it is going (it has the reel end card, no TikTok text);
   everyone shown is happy to be posted; a festive track would suit it better than the Rowton reel's.
 - `the-kingfisher`, `whittlebury-park-stay-dine` (+ `-story` cuts): done.

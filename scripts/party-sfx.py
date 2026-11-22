@@ -7,7 +7,7 @@ rerun after retiming it. Writes public/campaigns/xmas-party-2026/party-sfx.mp3 (
 import subprocess, numpy as np
 from scipy.signal import butter, lfilter
 SR, FPS = 48000, 30
-SCENES = [60, 180, 300, 420, 720, 1005, 1110, 1215, 1425, 1515]
+SCENES = [75, 180, 300, 420, 720, 1005, 1110, 1215, 1425, 1515]
 LAST = 1605  # the goodbye page: a drawing only, no photo  # where each page starts
 END, TOTAL = 1650, 1790
 GAG = 8  # a page's drawing runs FLIP frames behind its scene
