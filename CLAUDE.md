@@ -1383,6 +1383,9 @@ with no history and no renders:
   The dinner order (Scott: "waiter, group photos at tables, then cake, then plates"): the evening opens on a run of
   photos with no page (`PhotoRun`, `DINNER_IN`: the waiter, both tables), then the 8:00pm page (`Cake`) into the
   plates; same length (SCENES[4] is 840, an extra flick at 720).
+  Polish pass (Scott): the portrait bedroom is two tiles (`bedroom-blue-a/-b.jpg`: the whole bed with its four poster
+  frame over a close detail; a tall slice had lost the posts), the wide plates a touch bigger (0.7), the ticket's hook in
+  the new order, the cover remade, and one clean full render of each cut (the `out/` films had been spliced many times).
   To confirm: the times on the pages are guesses; where it is going (it has the reel end card, no TikTok text);
   everyone shown is happy to be posted; a festive track would suit it better than the Rowton reel's.
 - `the-kingfisher`, `whittlebury-park-stay-dine` (+ `-story` cuts): done.

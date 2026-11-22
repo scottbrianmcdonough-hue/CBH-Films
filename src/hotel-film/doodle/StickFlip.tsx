@@ -717,7 +717,7 @@ const WideShot: React.FC<{ s: Shot; f: number }> = ({ s, f }) => {
   if (s.plates) {
     return (
       <AbsoluteFill style={{ backgroundColor: look.bg }}>
-        <div style={{ position: "absolute", left: (W - 1080) / 2, top: (H - 1920) / 2, width: 1080, height: 1920, transform: "translateY(-100px) scale(0.66)" }}>
+        <div style={{ position: "absolute", left: (W - 1080) / 2, top: (H - 1920) / 2, width: 1080, height: 1920, transform: "translateY(-96px) scale(0.7)" }}>
           <WideCtx.Provider value={false}><PartyShot s={s} f={f} /></WideCtx.Provider>
         </div>
       </AbsoluteFill>
@@ -2316,7 +2316,7 @@ const PARTY_SCENES: Scene[] = (() => {
   }
   // bed and the suite, breakfast at nine, then the goodbyes: a wave and off with his case
   const tail: { len: number; el: React.ReactElement }[] = [
-    { len: 90, el: <Gag time="Sat 21 Nov, 1:00am" from={[852, 1280]} draw={PlainBed} stills={[{ src: `${SM}/bedroom-blue.jpg`, len: beat, pos: "50% 50%", wpos: "50% 55%" }]} /> },
+    { len: 90, el: <Gag time="Sat 21 Nov, 1:00am" from={[852, 1280]} draw={PlainBed} stills={[{ src: `${SM}/bedroom-blue-a.jpg`, len: beat, split: true, pair: `${SM}/bedroom-blue-b.jpg` }]} /* portrait: the whole bed with its posts over a close detail (a tall slice of the photo lost the frame) */ /> },
     { len: 90, el: <Gag time="Sat 21 Nov, 9:00am" from={[330, 1100]} draw={Morning} stills={[{ src: `${SM}/breakfast-eggs.jpg`, len: beat, pos: "54% 50%", wpos: "54% 62%" }]} /> },
     { len: 45, el: <Gag time="Sat 21 Nov, 10:30am" from={[540, 1200]} draw={Goodbye} /> },
   ];
