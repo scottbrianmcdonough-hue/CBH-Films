@@ -2266,9 +2266,7 @@ const PARTY: { time: string; draw: (f: number, p: number, look: Look, xmas: bool
   { time: "Fri 20 Nov, 4:00pm", draw: Steal, from: STEAL_FROM, stills: [{ src: `${P}/gifts-table-a.jpg`, len: 2 * beat, split: true, pair: `${P}/gifts-table-b.jpg` }, { src: `${P}/secret-santa-a.jpg`, len: 2 * beat, split: true, pair: `${P}/secret-santa-b.jpg` }, { src: `${P}/group-day.jpg`, len: 4 * beat, pos: "50% 56%", to: `${P}/group-evening.jpg`, toPos: "100% 55%", toZoom: 1.08, zoom: 1.2, toLabel: "Party time!" }] },
   // dinner first: the tables and the six courses on one page, so the slap can sit where it happened, right before
   // the actors appear (Scott: "the slap happens right before the actors appear")
-  { time: "Fri 20 Nov, 7:00pm", draw: Cake, from: [340, 1075], stills: [
-    { src: `${SM}/waiter-tray.jpg`, len: beat, pos: "16% 50%", wpos: "50% 72%" },
-    { src: `${P}/table-1-group-a.jpg`, len: 1.5 * beat, split: true, pair: `${P}/table-1-group-b.jpg` }, { src: `${P}/table-2-group-a.jpg`, len: 1.5 * beat, split: true, pair: `${P}/table-2-group-b.jpg` },
+  { time: "Fri 20 Nov, 8:00pm", draw: Cake, from: [340, 1075], stills: [
     { src: "plates", len: 3.5 * beat, plates: ["prawn", "terrine", "turkey", "pud", "opera", "cheese"].map((n) => `${P}/plate-${n}.jpg`) }] },
   { time: "Fri 20 Nov, 8:45pm", draw: Slap, from: SLAP_FROM, stills: [
     ...["host-card", "hostess-close", "waiter-guest"].map((n): Shot => ({ src: `${P}/${n}.jpg`, len: beat / 2 }))] },
@@ -2285,6 +2283,22 @@ const PARTY: { time: string; draw: (f: number, p: number, look: Look, xmas: bool
 // tree gag"), which lifts away like a page onto the 2:00pm meeting
 // the front door as it was that afternoon (Scott: "it wasn't decorated in festive yet"); the aerials he sent are summer green
 const ENTRANCE: Shot = { src: "hotels/hogarths-stone-manor/entrance-door.jpg", len: 2.5 * beat, pos: "58% 50%", wpos: "50% 82%" };
+// the evening opens on photos, before the dinner page (Scott: "waiter, group photos at tables, then cake, then
+// plates"): a run of its own that lifts away like a page onto the 8:00pm page
+const DINNER_IN: Shot[] = [
+  { src: `${SM}/waiter-tray.jpg`, len: beat, pos: "16% 50%", wpos: "50% 72%" },
+  { src: `${P}/table-1-group-a.jpg`, len: 1.5 * beat, split: true, pair: `${P}/table-1-group-b.jpg` },
+  { src: `${P}/table-2-group-a.jpg`, len: 1.5 * beat, split: true, pair: `${P}/table-2-group-b.jpg` },
+];
+const PhotoRun: React.FC<{ stills: Shot[] }> = ({ stills }) => {
+  const f = Math.max(0, useCurrentFrame() - FLIP);
+  const wide = React.useContext(WideCtx);
+  const list = wide ? widen(stills) : stills;
+  let a = 0;
+  let k = 0;
+  while (k < list.length - 1 && f >= a + list[k].len) { a += list[k].len; k++; }
+  return <AbsoluteFill style={{ backgroundColor: "#000" }}><PartyShot key={k} s={list[k]} f={f - a} /></AbsoluteFill>;
+};
 const Opening: React.FC = () => {
   const f = Math.max(0, useCurrentFrame() - FLIP);
   return <AbsoluteFill style={{ backgroundColor: "#000" }}><PartyShot s={ENTRANCE} f={f} /></AbsoluteFill>;
@@ -2294,8 +2308,9 @@ const PARTY_SCENES: Scene[] = (() => {
   const out: Scene[] = [{ from: 0, len: 2.5 * beat, el: <Opening /> }];
   let at0 = 2.5 * beat;
   for (const s of PARTY) {
+    if (/8:00pm/.test(s.time)) { const n = DINNER_IN.reduce((t, x) => t + x.len, 0); out.push({ from: at0, len: n, el: <PhotoRun stills={DINNER_IN} /> }); at0 += n; }
     const len = 60 + s.stills.reduce((a, x) => a + x.len, 0);
-    const hats = /7:00pm|8:45pm|9:00pm|9:15pm/.test(s.time);
+    const hats = /8:00pm|8:45pm|9:00pm|9:15pm/.test(s.time);
     out.push({ from: at0, len, el: <HatCtx.Provider value={hats}><Gag time={s.time} from={s.from} draw={s.draw} stills={s.stills} /></HatCtx.Provider> });
     at0 += len;
   }
