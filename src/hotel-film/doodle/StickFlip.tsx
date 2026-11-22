@@ -1387,9 +1387,9 @@ const RACE_SCENES = [
 ];
 // the house label over the hotel's first shot: the place in gold caps, underlined, the name in cream Cormorant
 const PlaceLabel: React.FC<{ place: string; name: string; len: number; strong?: boolean; plain?: boolean }> = ({ place, name, len, strong, plain }) => {
-  // `plain`: no dark band across the foot of the frame, the words carry their own soft shadow (Scott: "without the
+  // `plain`: no dark band across the foot of the frame, the words in the lower third over a slight scrim (Scott: "just a slight shadow or scrim for legibility", "without the
   // black shadow across the whole bottom")
-  const sh = plain ? "0 2px 14px rgba(0,0,0,0.9), 0 0 4px rgba(0,0,0,0.8)" : undefined;
+  const sh = plain ? "0 1px 10px rgba(0,0,0,0.55), 0 0 3px rgba(0,0,0,0.45)" : undefined;
   const frame = useCurrentFrame();
   const wide = React.useContext(WideCtx);
   const o = progress(frame, 0, 12) * (1 - progress(frame, len - 10, 8));
@@ -1398,9 +1398,9 @@ const PlaceLabel: React.FC<{ place: string; name: string; len: number; strong?: 
       {plain ? null : <AbsoluteFill style={{ background: strong
         ? "linear-gradient(to bottom, rgba(9,9,10,0) 44%, rgba(9,9,10,0.82) 70%, rgba(9,9,10,0.7) 100%)"
         : "linear-gradient(to bottom, rgba(9,9,10,0) 52%, rgba(9,9,10,0.55) 74%, rgba(9,9,10,0.3) 100%)" }} />}
-      <div style={{ position: "absolute", left: wide ? 110 : 72, bottom: wide ? (plain ? 610 : 120) : 500 }}>
+      <div style={{ position: "absolute", left: wide ? 110 : 72, bottom: wide ? (plain ? 40 : 120) : 500 }}>
         {/* a soft shade just behind the words, not a band across the frame */}
-        {plain ? <div style={{ position: "absolute", left: -70, right: -90, top: -50, bottom: -50, background: "rgba(0,0,0,0.5)", filter: "blur(38px)", borderRadius: 80 }} /> : null}
+        {plain ? <div style={{ position: "absolute", left: -70, right: -90, top: -50, bottom: -50, background: "rgba(0,0,0,0.26)", filter: "blur(44px)", borderRadius: 90 }} /> : null}
         <div style={{ position: "relative" }}>
         <div style={{ display: "inline-block" }}>
           <div style={{ fontFamily: sans, fontWeight: 600, fontSize: 28, letterSpacing: "0.24em", color: colors.gold, textShadow: sh }}>{place}</div>
