@@ -587,7 +587,7 @@ const PartyShot: React.FC<{ s: Shot; f: number }> = ({ s, f }) => {
   const t = Math.min(1, Math.max(0, f / s.len));
   // a landscape photo as two tiles, its left half over its right half, the second landing half a beat on
   if (s.split) {
-    const late = s.len <= 15 ? 3 : s.len <= 30 ? 7 : 15;
+    const late = s.len <= 15 ? 3 : 5; // the lower tile lands almost at once: half a second of black under the first read as an empty frame
     const up = 1 - (1 - pop(f, late, 6)) ** 3;
     const half = (side: number, top: number, dy: number) => (
       <div style={{ position: "absolute", left: 0, top, width: W, height: 954, overflow: "hidden", transform: `translateY(${dy}px)` }}>
@@ -658,7 +658,7 @@ const PartyShot: React.FC<{ s: Shot; f: number }> = ({ s, f }) => {
     return (
       <AbsoluteFill style={{ backgroundColor: look.bg }}>
         {s.grid.map((src, k) => {
-          const a = pop(f, k * 2.5, 5);
+          const a = pop(f, k * 1.5, 5);
           if (a <= 0) return null;
           return (
             <div key={src} style={{ position: "absolute", left: (k % 3) * 360 + 3, top: Math.floor(k / 3) * 480 + 3, width: 354, height: 474, overflow: "hidden",
@@ -1032,7 +1032,7 @@ const FaultlessEnd: React.FC = () => {
   const loose = progress(frame, 36, 8, (x) => x);
   const swing = loose * (22 + 12 * Math.sin((frame - 36) * 0.55) * Math.exp(-(frame - 36) / 40)); // hangs and swings for a second (Scott: "hold it longer")
   const t = Math.max(0, frame - 68);
-  const dy = 1.5 * t * t;
+  const dy = 2.6 * t * t;
   const almost = progress(frame, 98, 12); // only once the u has gone
   return (
     <AbsoluteFill style={{ backgroundColor: look.bg }}>

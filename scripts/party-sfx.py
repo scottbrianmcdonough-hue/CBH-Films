@@ -59,7 +59,8 @@ for k, (df, f0) in enumerate(((12, 1500), (14, 1750), (20, 1650), (22, 1900))):
     put(knock(f0), SCENES[2] + GAG + 18 + df, -18 - 2 * (k // 2), 0.2)  # two dice, a bounce each
 put(slap(), SCENES[4] + GAG + 24, -15)                             # the waiter's slap
 put(pop(), 660, -13)                                                # "Party time!"
-put(pluck(), END + 36, -20)                                         # the u comes loose
+put(pluck(), END + 36, -20)
+put(knock(900), END + 68, -19)                                      # and lets go                                         # the u comes loose
 
 # a small warm room
 d = np.zeros_like(out)

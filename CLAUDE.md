@@ -1345,6 +1345,9 @@ with no history and no renders:
   The night group photo framed to its right edge, a little wider (`toZoom` 1.08, `toPos` 100%: Georgina, far right, was cut).
   The 1:00am page is the suite's bed: a four poster frame with no canopy or drapes (`PlainBed`; Scott: "a four poster
   frame but doesn't have a canopy"), the stocking on its post.
+  After a reviewer's notes Scott passed on (black areas, length, the u): the lower tile of every stacked photo lands
+  within ~10 frames (was half a second of black), the faces wall fills faster, the u falls quicker with a soft tick as
+  it lets go. Length kept (Scott asked for under a minute and more photos); a 30s cut offered for Reels/TikTok.
   To confirm: the times on the pages are guesses; where it is going (it has the reel end card, no TikTok text);
   everyone shown is happy to be posted; a festive track would suit it better than the Rowton reel's.
 - `the-kingfisher`, `whittlebury-park-stay-dine` (+ `-story` cuts): done.
