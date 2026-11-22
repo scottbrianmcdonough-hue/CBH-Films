@@ -1369,6 +1369,9 @@ with no history and no renders:
   Polish pass on both (Scott): the wide plates a touch smaller so the ring never clips the top; both checked at
   full size, -15.0 LUFS, no black frames; ticket updated (the morning, both files). Finals: `out/cbh-christmas-party.mp4`
   (9:16) and `out/cbh-christmas-party-wide.mp4` (16:9), 59.7s each.
+  The slap moved (Scott: "the slap happens right before the actors appear"): the 7:00pm page is dinner (`Cake`: the
+  waiter, both tables, the plates), 8:45pm the slap into three actors, 9:00pm the laughing table into the other three,
+  9:15pm the run round the room; same length (SCENES in party-sfx.py, the slap sound on SCENES[5]).
   To confirm: the times on the pages are guesses; where it is going (it has the reel end card, no TikTok text);
   everyone shown is happy to be posted; a festive track would suit it better than the Rowton reel's.
 - `the-kingfisher`, `whittlebury-park-stay-dine` (+ `-story` cuts): done.

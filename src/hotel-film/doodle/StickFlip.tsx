@@ -2255,14 +2255,16 @@ const PARTY: { time: string; draw: (f: number, p: number, look: Look, xmas: bool
   { time: "Fri 20 Nov, 3:00pm", draw: Quiz, from: [540, 1130], stills: [{ src: `${P}/meeting-smiles.jpg`, len: 2 * beat, split: true, halves: true }] },
   { time: "Fri 20 Nov, 3:30pm", draw: Dice, from: DICE_FROM, stills: [{ src: `${P}/dice-game-a.jpg`, len: 2 * beat, split: true, pair: `${P}/dice-game-b.jpg` }] },
   { time: "Fri 20 Nov, 4:00pm", draw: Steal, from: STEAL_FROM, stills: [{ src: `${P}/gifts-table-a.jpg`, len: 2 * beat, split: true, pair: `${P}/gifts-table-b.jpg` }, { src: `${P}/secret-santa-a.jpg`, len: 2 * beat, split: true, pair: `${P}/secret-santa-b.jpg` }, { src: `${P}/group-day.jpg`, len: 4 * beat, pos: "50% 56%", to: `${P}/group-evening.jpg`, toPos: "100% 55%", toZoom: 1.08, zoom: 1.2, toLabel: "Party time!" }] },
-  { time: "Fri 20 Nov, 7:00pm", draw: Slap, from: SLAP_FROM, stills: [
+  // dinner first: the tables and the six courses on one page, so the slap can sit where it happened, right before
+  // the actors appear (Scott: "the slap happens right before the actors appear")
+  { time: "Fri 20 Nov, 7:00pm", draw: Cake, from: [340, 1075], stills: [
     { src: `${SM}/waiter-tray.jpg`, len: beat, pos: "16% 50%", wpos: "50% 72%" },
-    { src: `${P}/table-1-group-a.jpg`, len: 1.5 * beat, split: true, pair: `${P}/table-1-group-b.jpg` }, { src: `${P}/table-2-group-a.jpg`, len: 1.5 * beat, split: true, pair: `${P}/table-2-group-b.jpg` }] },
-  { time: "Fri 20 Nov, 8:00pm", draw: Cake, from: [340, 1075], stills: [
+    { src: `${P}/table-1-group-a.jpg`, len: 1.5 * beat, split: true, pair: `${P}/table-1-group-b.jpg` }, { src: `${P}/table-2-group-a.jpg`, len: 1.5 * beat, split: true, pair: `${P}/table-2-group-b.jpg` },
     { src: "plates", len: 3.5 * beat, plates: ["prawn", "terrine", "turkey", "pud", "opera", "cheese"].map((n) => `${P}/plate-${n}.jpg`) }] },
-  { time: "Fri 20 Nov, 8:45pm", draw: LaughRant, from: [640, 1080], stills: [
-    ...["host-card", "hostess-close", "waiter-guest", "hostess-guest", "waiter-antlers", "hostess-table-1"]
-      .map((n): Shot => ({ src: `${P}/${n}.jpg`, len: beat / 2 }))] },
+  { time: "Fri 20 Nov, 8:45pm", draw: Slap, from: SLAP_FROM, stills: [
+    ...["host-card", "hostess-close", "waiter-guest"].map((n): Shot => ({ src: `${P}/${n}.jpg`, len: beat / 2 }))] },
+  { time: "Fri 20 Nov, 9:00pm", draw: LaughRant, from: [640, 1080], stills: [
+    ...["hostess-guest", "waiter-antlers", "hostess-table-1"].map((n): Shot => ({ src: `${P}/${n}.jpg`, len: beat / 2 }))] },
   { time: "Fri 20 Nov, 9:15pm", draw: LaughChase, from: [640, 1080], stills: [
     // one photo at Scott's table here, not three in a row (Scott: "like two or one"); host-pour is out of the run above too
     { src: `${P}/comedian-2.jpg`, len: 1.5 * beat },
@@ -2283,7 +2285,7 @@ const PARTY_SCENES: Scene[] = (() => {
   let at0 = 2 * beat;
   for (const s of PARTY) {
     const len = 60 + s.stills.reduce((a, x) => a + x.len, 0);
-    const hats = /7:00pm|8:00pm|8:45pm|9:15pm/.test(s.time);
+    const hats = /7:00pm|8:45pm|9:00pm|9:15pm/.test(s.time);
     out.push({ from: at0, len, el: <HatCtx.Provider value={hats}><Gag time={s.time} from={s.from} draw={s.draw} stills={s.stills} /></HatCtx.Provider> });
     at0 += len;
   }

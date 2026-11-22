@@ -7,7 +7,7 @@ rerun after retiming it. Writes public/campaigns/xmas-party-2026/party-sfx.mp3 (
 import subprocess, numpy as np
 from scipy.signal import butter, lfilter
 SR, FPS = 48000, 30
-SCENES = [60, 180, 300, 420, 720, 900, 1065, 1215, 1425, 1515]
+SCENES = [60, 180, 300, 420, 720, 1005, 1110, 1215, 1425, 1515]
 LAST = 1605  # the goodbye page: a drawing only, no photo  # where each page starts
 END, TOTAL = 1650, 1790
 GAG = 8  # a page's drawing runs FLIP frames behind its scene
@@ -58,7 +58,7 @@ for s in SCENES:
 put(pat(), SCENES[0] + GAG + 26, -15, 0.25)                       # the tree sticker on the chart
 for k, (df, f0) in enumerate(((12, 1500), (14, 1750), (20, 1650), (22, 1900))):
     put(knock(f0), SCENES[2] + GAG + 18 + df, -18 - 2 * (k // 2), 0.2)  # two dice, a bounce each
-put(slap(), SCENES[4] + GAG + 24, -15)                             # the waiter's slap
+put(slap(), SCENES[5] + GAG + 24, -15)                             # the waiter's slap
 put(pop(), 660, -13)                                                # "Party time!"
 put(pluck(), END + 36, -20)
 put(knock(900), END + 68, -19)                                      # and lets go                                         # the u comes loose
