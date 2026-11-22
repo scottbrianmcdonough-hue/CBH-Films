@@ -717,7 +717,7 @@ const WideShot: React.FC<{ s: Shot; f: number }> = ({ s, f }) => {
   if (s.plates) {
     return (
       <AbsoluteFill style={{ backgroundColor: look.bg }}>
-        <div style={{ position: "absolute", left: (W - 1080) / 2, top: (H - 1920) / 2, width: 1080, height: 1920, transform: "translateY(-110px) scale(0.7)" }}>
+        <div style={{ position: "absolute", left: (W - 1080) / 2, top: (H - 1920) / 2, width: 1080, height: 1920, transform: "translateY(-100px) scale(0.66)" }}>
           <WideCtx.Provider value={false}><PartyShot s={s} f={f} /></WideCtx.Provider>
         </div>
       </AbsoluteFill>

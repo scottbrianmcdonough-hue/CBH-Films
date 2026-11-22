@@ -1366,6 +1366,9 @@ with no history and no renders:
   The opening shot is the hotel's front door undecorated (`entrance-door.jpg`, Scott: "it wasn't decorated in festive
   yet"; his two summer aerials, `aerial-courtyard.jpg` and `aerial-lawn.jpg`, are saved unused), not the Christmas
   entrance. Wide: drawings at 1.16x, the garland higher so it clears the laughing table.
+  Polish pass on both (Scott): the wide plates a touch smaller so the ring never clips the top; both checked at
+  full size, -15.0 LUFS, no black frames; ticket updated (the morning, both files). Finals: `out/cbh-christmas-party.mp4`
+  (9:16) and `out/cbh-christmas-party-wide.mp4` (16:9), 59.7s each.
   To confirm: the times on the pages are guesses; where it is going (it has the reel end card, no TikTok text);
   everyone shown is happy to be posted; a festive track would suit it better than the Rowton reel's.
 - `the-kingfisher`, `whittlebury-park-stay-dine` (+ `-story` cuts): done.
