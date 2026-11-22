@@ -1360,6 +1360,9 @@ with no history and no renders:
   landscape photos whole and full frame (no stacked tiles), portrait ones cropped full frame where the picture allows
   (`Shot.wpos`) or as a tall panel over their own blur, the plates scaled in the middle, the faces 6 x 2,
   "Party time!" low over the group. Same timing, music and sound effects.
+  Portrait photos in the wide cut go two or three across (`widen`, `Shot.panels`: Scott, "get rid of this shot unless you
+  can make it full bleed"); the waiter photo is a landscape original, full bleed there. The bedroom photo is Scott's
+  (`bedroom-blue.jpg`, the teal room with the four poster frame) in place of the suite shot, both cuts.
   To confirm: the times on the pages are guesses; where it is going (it has the reel end card, no TikTok text);
   everyone shown is happy to be posted; a festive track would suit it better than the Rowton reel's.
 - `the-kingfisher`, `whittlebury-park-stay-dine` (+ `-story` cuts): done.
