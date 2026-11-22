@@ -892,7 +892,7 @@ function lerpY(t: number) {
 const SIT_L = SIT_UP; // facing the table on the left
 const EAT_REACH: Pose = { ...SIT_L, lean: 0.25, ua: [-1.25, -0.2], fa: [-1.55, -0.5] };
 const EAT_MOUTH: Pose = { ...SIT_L, lean: 0.05, head: -0.1, ua: [-0.75, -0.2], fa: [-2.75, -0.5] };
-const Cake = (f: number, p: number) => {
+const Cake = (f: number, p: number, _look?: Look, xmas = false) => {
   // eats on the beat: to the cake and back to his mouth every half beat
   const bite = f >= 12 && f < 54 ? (1 - Math.cos(((f - 12) / 15) * Math.PI * 2)) / 2 : 0;
   const q = f < 12 ? mix(SIT_L, EAT_REACH, smooth(f, 4, 12) * 0.3) : mix(EAT_MOUTH, EAT_REACH, 1 - bite);
@@ -914,10 +914,15 @@ const Cake = (f: number, p: number) => {
       <Pencil d={[[tip + 4, 1092], [393, 1080]]} p={p} id={268} w={3} />
       <Pencil d={[[tip + 4, 1068 - (tip - 280) * 0.15], [393, 1056]]} p={p} id={269} w={3} />
       <Circle c={[378, 1016]} r={12} p={p} id={270} w={4} />
+      {/* at the party it is a glass of wine, not tea (Scott: "the coffee by the cake is actually wine glass") */}
+      {xmas ? glass([200, 1027], 0, 2.3).map((d, i) => <Pencil key={i} d={d} p={p} id={271 + i} w={4} />) : (
+        <>
       <Pencil d={[[172, 1086], [176, 1124], [222, 1124], [226, 1086]]} p={p} id={271} w={5} />
       <Pencil d={[[226, 1096], [242, 1098], [240, 1112], [224, 1114]]} p={p} id={272} w={3} />
       {/* steam off the tea */}
       <Pencil d={[[190, 1070], [198, 1050], [188, 1030], [196, 1010]]} p={p} id={273} w={3} />
+        </>
+      )}
       <Figure q={q} p={p} />
       {/* the fork */}
       <Pencil d={[h, [h[0] - 34, h[1] - 18]]} p={p} id={274} w={4} />

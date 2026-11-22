@@ -1334,7 +1334,9 @@ with no history and no renders:
   "to signal the transition"), and subtle sound effects (`scripts/party-sfx.py` -> `party-sfx.mp3`, StickFilm's `sfx`:
   a paper flick on each page turn, a soft shutter on each page's first photo, the sticker's pat, dice on the table,
   the slap, a pop on Party time, a pluck as the u comes loose; rerun it after retiming PARTY). No silent copy any
-  more (Scott: "don't need a silent version anymore").
+  more (Scott: "don't need a silent version anymore"). The gift table and table group photos are two hand-framed crops each
+  (`Shot.pair`, `-a.jpg` / `-b.jpg`: the overlapping tiles showed the same people twice, Scott); the 8:00pm page has a
+  wine glass, not a teacup (`Cake` with `xmas`). Patched by re-rendering frames 480-599 and 960-1019 and splicing. 58.7s. Sent.
   To confirm: the times on the pages are guesses; where it is going (it has the reel end card, no TikTok text);
   everyone shown is happy to be posted; a festive track would suit it better than the Rowton reel's.
 - `the-kingfisher`, `whittlebury-park-stay-dine` (+ `-story` cuts): done.
