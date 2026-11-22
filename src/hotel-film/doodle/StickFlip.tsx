@@ -585,6 +585,7 @@ type Shot = { src: string; len: number; pos?: string; split?: boolean; plates?: 
   to?: string; toPos?: string; toLabel?: string; toZoom?: number;
   pair?: string; // with `split`: the lower tile is this second picture (two crops of one photo, framed by hand)
   halves?: boolean; zoom?: number;
+  panels?: { src: string; pos?: string; at: number }[]; // 16:9 cut: portrait photos side by side, each landing at its own frame (built by `widen`)
   wpos?: string }; // 16:9 cut: a portrait photo cropped full frame at this position (without it, a tall panel over its own blur) // with `split`: the two tiles are the photo's exact left and right halves, nobody shown twice // `to`: the same view later on, snap cut to half way (the day group, then the night one)
 const pop = (f: number, at0: number, n = 5) => Math.min(1, Math.max(0, (f - at0) / n));
 const PartyShot: React.FC<{ s: Shot; f: number }> = ({ s, f }) => {
@@ -754,6 +755,25 @@ const WideShot: React.FC<{ s: Shot; f: number }> = ({ s, f }) => {
       </AbsoluteFill>
     );
   }
+  if (s.panels) {
+    // portrait photos two or three across, so the frame is full (Scott: "get rid of this shot unless you can make it full bleed")
+    const n = s.panels.length;
+    const pw = W / n;
+    return (
+      <AbsoluteFill style={{ backgroundColor: look.bg }}>
+        {s.panels.map((q, k) => {
+          const a = pop(f, q.at, 5);
+          if (a <= 0) return null;
+          return (
+            <div key={q.src} style={{ position: "absolute", left: k * pw + (k ? 3 : 0), top: 0, width: pw - (k ? 3 : 0) - (k < n - 1 ? 3 : 0), height: H, overflow: "hidden",
+              transform: `translateY(${(1 - (1 - (1 - a) ** 3)) * 60}px)`, opacity: a }}>
+              <Img src={staticFile(q.src)} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: q.pos ?? "50% 32%", transform: `scale(${1.02 + 0.04 * t})` }} />
+            </div>
+          );
+        })}
+      </AbsoluteFill>
+    );
+  }
   if (s.split) return <AbsoluteFill style={{ backgroundColor: "#000" }}>{full(s.pair ? s.src.replace("-a.jpg", ".jpg") : s.src)}</AbsoluteFill>;
   if (s.wpos) return <AbsoluteFill style={{ backgroundColor: "#000" }}>{full(s.src, s.wpos)}</AbsoluteFill>;
   // a portrait photo: a tall panel over its own soft, darkened copy
@@ -766,6 +786,27 @@ const WideShot: React.FC<{ s: Shot; f: number }> = ({ s, f }) => {
       </div>
     </AbsoluteFill>
   );
+};
+// for the 16:9 cut: runs of portrait photos become one shot of two or three panels, each landing where its own cut was
+const widen = (stills: Shot[]): Shot[] => {
+  const tall = (x: Shot) => !x.split && !x.plates && !x.grid && !x.to && !x.wpos;
+  const out: Shot[] = [];
+  let k = 0;
+  while (k < stills.length) {
+    if (!tall(stills[k])) { out.push(stills[k]); k++; continue; }
+    let n = 1;
+    while (k + n < stills.length && tall(stills[k + n])) n++;
+    for (let g = 0; g < n; ) {
+      const size = n - g === 4 ? 2 : Math.min(3, n - g);
+      const grp = stills.slice(k + g, k + g + size);
+      let at0 = 0;
+      const panels = grp.map((x) => { const q = { src: x.src, pos: x.pos, at: at0 }; at0 += x.len; return q; });
+      out.push({ src: grp[0].src, len: at0, panels });
+      g += size;
+    }
+    k += n;
+  }
+  return out;
 };
 const shotAt = (stills: Shot[], frame: number) => {
   let a = 60;
@@ -809,7 +850,7 @@ const Gag: React.FC<{
       </svg>
       {/* a run of photos comes in on a straight cut on the beat, no opening circle (Scott: "lose the circle in the
           middle before every transition") */}
-      {frame >= 60 && stills ? <AbsoluteFill>{shotAt(stills, frame)}</AbsoluteFill> : null}
+      {frame >= 60 && stills ? <AbsoluteFill>{shotAt(wide ? widen(stills) : stills, frame)}</AbsoluteFill> : null}
       {frame >= OPEN_AT && (clip || still) ? (
         <AbsoluteFill style={{ clipPath: `circle(${radius}px at ${cx}px ${cy}px)` }}>
           {still ? (
