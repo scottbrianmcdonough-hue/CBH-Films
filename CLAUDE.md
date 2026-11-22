@@ -1322,6 +1322,9 @@ with no history and no renders:
   the entrance label on a darker band (`PlaceLabel strong`); the repeated cast photo out, the last actor shot a full
   beat; the chase page's table set back and smaller with the runners across the front; the faces wall lands faster.
   59.7s. Sent with `-silent`.
+  Then (22 Nov, Scott): the waving group photo out ("the same as the second"), the faces wall three beats and the
+  last photo of the night; the day to night snap "needs more like a pop": the day photo leans in, the night one
+  slams in ~1.24x and springs back with a brief lift in brightness (no white flash). 58.7s. Sent with `-silent`.
   To confirm: the times on the pages are guesses; where it is going (it has the reel end card, no TikTok text);
   everyone shown is happy to be posted; a festive track would suit it better than the Rowton reel's.
 - `the-kingfisher`, `whittlebury-park-stay-dine` (+ `-story` cuts): done.
