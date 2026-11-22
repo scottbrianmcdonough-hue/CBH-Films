@@ -586,6 +586,7 @@ type Shot = { src: string; len: number; pos?: string; split?: boolean; plates?: 
   pair?: string; // with `split`: the lower tile is this second picture (two crops of one photo, framed by hand)
   halves?: boolean; zoom?: number;
   panels?: { src: string; pos?: string; at: number }[]; // 16:9 cut: portrait photos side by side, each landing at its own frame (built by `widen`)
+  fit?: string; // portrait: this picture whole across the frame over its own soft copy (one photo, not two tiles of it)
   wpos?: string }; // 16:9 cut: a portrait photo cropped full frame at this position (without it, a tall panel over its own blur) // with `split`: the two tiles are the photo's exact left and right halves, nobody shown twice // `to`: the same view later on, snap cut to half way (the day group, then the night one)
 const pop = (f: number, at0: number, n = 5) => Math.min(1, Math.max(0, (f - at0) / n));
 const PartyShot: React.FC<{ s: Shot; f: number }> = ({ s, f }) => {
@@ -593,6 +594,17 @@ const PartyShot: React.FC<{ s: Shot; f: number }> = ({ s, f }) => {
   const isWide = React.useContext(WideCtx);
   const t = Math.min(1, Math.max(0, f / s.len));
   if (isWide) return <WideShot s={s} f={f} />;
+  if (s.fit) {
+    // one photo, whole (Scott: the two tiles were "the same photo")
+    return (
+      <AbsoluteFill style={{ backgroundColor: "#000", overflow: "hidden" }}>
+        <Img src={staticFile(s.fit)} style={{ position: "absolute", width: W, height: H, objectFit: "cover", filter: "blur(40px) brightness(0.5)", transform: "scale(1.2)" }} />
+        <div style={{ position: "absolute", left: 0, top: (H - 954) / 2, width: W, height: 954, overflow: "hidden", boxShadow: "0 0 90px rgba(0,0,0,0.6)" }}>
+          <Img src={staticFile(s.fit)} style={{ width: W, height: 954, objectFit: "cover", transform: `scale(${1 + 0.04 * t})` }} />
+        </div>
+      </AbsoluteFill>
+    );
+  }
   // a landscape photo as two tiles, its left half over its right half, the second landing half a beat on
   if (s.split) {
     const late = s.len <= 15 ? 3 : 5; // the lower tile lands almost at once: half a second of black under the first read as an empty frame
@@ -2363,7 +2375,7 @@ const PARTY_SCENES: Scene[] = (() => {
   }
   // bed and the suite, breakfast at nine, then the goodbyes: a wave and off with his case
   const tail: { len: number; el: React.ReactElement }[] = [
-    { len: 90, el: <Gag time="Sat 21 Nov, 1:00am" from={[852, 1280]} draw={PlainBed} stills={[{ src: `${SM}/bedroom-blue-a.jpg`, len: beat, split: true, pair: `${SM}/bedroom-blue-b.jpg` }]} /* portrait: the whole bed with its posts over a close detail (a tall slice of the photo lost the frame) */ /> },
+    { len: 90, el: <Gag time="Sat 21 Nov, 1:00am" from={[852, 1280]} draw={PlainBed} stills={[{ src: `${SM}/bedroom-blue.jpg`, len: beat, wpos: "50% 55%", fit: `${SM}/bedroom-blue-a.jpg` }]} /> },
     { len: 90, el: <Gag time="Sat 21 Nov, 9:00am" from={[330, 1100]} draw={Morning} stills={[{ src: `${SM}/breakfast-eggs.jpg`, len: beat, pos: "54% 50%", wpos: "54% 62%" }]} /> },
     { len: 60, el: <Gag time="Sat 21 Nov, 10:30am" from={[540, 1200]} draw={Goodbye} /> },
   ];
