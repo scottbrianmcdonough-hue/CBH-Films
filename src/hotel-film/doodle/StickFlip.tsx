@@ -2244,16 +2244,63 @@ const Morning = (f: number, p: number) => {
     </>
   );
 };
+// the goodbye (Scott: "stick figure at the end jumps in car and drives away"): a wave, a run, a leap into an open
+// car, and off
 const Goodbye = (f: number, p: number) => {
-  const stand: Pose = { x: 420, y: 1208, lean: 0, head: -0.05, ua: [2.0 + 0.2 * Math.sin(f * 0.9), -0.12], fa: [2.5 + 0.5 * Math.sin(f * 0.9), -0.08], th: [0.1, -0.1], sh: [0, 0] };
-  const q = f < 20 ? stand : runPose(f, interpolate(f, [20, 37], [420, 780], { extrapolateRight: "clamp" }));
+  const RUN = 10, LEAP = 20, IN = 30, GO = 34;
+  const dx = f > GO ? 2.6 * (f - GO) ** 2 : 0;
+  const dip = f >= IN && f < IN + 8 ? 12 * Math.sin(((f - IN) / 8) * Math.PI) : 0;
+  const stand: Pose = { x: 260, y: 1208, lean: 0, head: -0.05, ua: [2.0 + 0.2 * Math.sin(f * 0.9), -0.12], fa: [2.5 + 0.5 * Math.sin(f * 0.9), -0.08], th: [0.1, -0.1], sh: [0, 0] };
+  const seat = mirror({ ...SIT_UP, x: 654, y: 1272 }, 654);
+  let q: Pose;
+  if (f < RUN) q = stand;
+  else if (f < LEAP) q = runPose(f, interpolate(f, [RUN, LEAP], [260, 430]));
+  else if (f < IN) {
+    const t = (f - LEAP) / (IN - LEAP);
+    const base = mix(runPose(LEAP, 430), seat, smooth(f, LEAP, IN));
+    q = { ...base, y: base.y - 190 * Math.sin(Math.PI * t) };
+  } else q = { ...seat, x: seat.x + dx, y: seat.y + dip };
   const h = hand(q, 1);
+  const S = 1.25; // the car a size up, about its middle on the ground
+  const M = ([x, y]: Pt): Pt => [690 + (x - 745) * S + dx, 1392 + (y - 1392) * S + dip];
+  const C = (pts: Pt[]) => pts.map(M);
+  const spin = f * 0.5;
+  const wheel = (x: number, id: number) => (
+    <>
+      <Circle c={[M([x, 1358])[0], 1352]} r={40} p={p} id={id} w={6} />
+      <Pencil d={[[M([x, 1358])[0] - 25 * Math.cos(spin), 1352 - 25 * Math.sin(spin)], [M([x, 1358])[0] + 25 * Math.cos(spin), 1352 + 25 * Math.sin(spin)]]} p={p} id={id + 1} w={3} />
+    </>
+  );
   return (
     <>
-      <Figure q={q} p={p} />
-      {/* his case, swinging from the other hand */}
-      <Pencil d={[[h[0] - 46, h[1] + 12], [h[0] - 46, h[1] + 84], [h[0] + 46, h[1] + 84], [h[0] + 46, h[1] + 12]]} p={p} id={660} closed />
-      <Pencil d={[[h[0] - 16, h[1] + 12], [h[0] - 16, h[1] - 2], [h[0] + 16, h[1] - 2], [h[0] + 16, h[1] + 12]]} p={p} id={661} w={4} />
+      {f < IN ? <Figure q={q} p={p} /> : (() => {
+        // seated: only what shows above the door (his legs are inside the car)
+        const hip: Pt = [q.x, q.y];
+        const neck = at(hip, Math.PI + q.lean, L.torso);
+        return (
+          <>
+            <Pencil d={[hip, neck]} p={p} id={680} />
+            <Circle c={headOf(q)} r={L.head} p={p} id={681} />
+            <Pencil d={[at(hip, Math.PI + q.lean, L.torso * 0.8), M([752, 1258])]} p={p} id={682} w={6} />
+          </>
+        );
+      })()}
+      {/* his case in his hand until he lands in the seat */}
+      {f < IN ? (
+        <>
+          <Pencil d={[[h[0] - 46, h[1] + 12], [h[0] - 46, h[1] + 84], [h[0] + 46, h[1] + 84], [h[0] + 46, h[1] + 12]]} p={p} id={660} closed />
+          <Pencil d={[[h[0] - 16, h[1] + 12], [h[0] - 16, h[1] - 2], [h[0] + 16, h[1] - 2], [h[0] + 16, h[1] + 12]]} p={p} id={661} w={4} />
+        </>
+      ) : null}
+      {/* the open car: its body covers his legs once he is in */}
+      <Knockout><Pencil d={C([[575, 1352], [578, 1298], [640, 1286], [806, 1286], [900, 1302], [914, 1352]])} p={p} id={662} closed /></Knockout>
+      <Pencil d={C([[806, 1286], [778, 1224]])} p={p} id={663} w={5} />
+      <Pencil d={C([[764, 1286], [750, 1256]])} p={p} id={664} w={4} />
+      {wheel(646, 665)}
+      {wheel(846, 667)}
+      {f > GO + 1 ? [0, 1, 2].map((k) => (
+        <Pencil key={k} d={[[440 + dx - k * 26, 1290 + k * 26], [360 + dx - k * 40, 1290 + k * 26]]} p={p} id={670 + k} w={4} />
+      )) : null}
     </>
   );
 };
@@ -2267,7 +2314,7 @@ const PARTY: { time: string; draw: (f: number, p: number, look: Look, xmas: bool
   // dinner first: the tables and the six courses on one page, so the slap can sit where it happened, right before
   // the actors appear (Scott: "the slap happens right before the actors appear")
   { time: "Fri 20 Nov, 8:00pm", draw: Cake, from: [340, 1075], stills: [
-    { src: "plates", len: 3.5 * beat, plates: ["prawn", "terrine", "turkey", "pud", "opera", "cheese"].map((n) => `${P}/plate-${n}.jpg`) }] },
+    { src: "plates", len: 3 * beat, plates: ["prawn", "terrine", "turkey", "pud", "opera", "cheese"].map((n) => `${P}/plate-${n}.jpg`) }] },
   { time: "Fri 20 Nov, 8:45pm", draw: Slap, from: SLAP_FROM, stills: [
     ...["host-card", "hostess-close", "waiter-guest"].map((n): Shot => ({ src: `${P}/${n}.jpg`, len: beat / 2 }))] },
   { time: "Fri 20 Nov, 9:00pm", draw: LaughRant, from: [640, 1080], stills: [
@@ -2318,12 +2365,12 @@ const PARTY_SCENES: Scene[] = (() => {
   const tail: { len: number; el: React.ReactElement }[] = [
     { len: 90, el: <Gag time="Sat 21 Nov, 1:00am" from={[852, 1280]} draw={PlainBed} stills={[{ src: `${SM}/bedroom-blue-a.jpg`, len: beat, split: true, pair: `${SM}/bedroom-blue-b.jpg` }]} /* portrait: the whole bed with its posts over a close detail (a tall slice of the photo lost the frame) */ /> },
     { len: 90, el: <Gag time="Sat 21 Nov, 9:00am" from={[330, 1100]} draw={Morning} stills={[{ src: `${SM}/breakfast-eggs.jpg`, len: beat, pos: "54% 50%", wpos: "54% 62%" }]} /> },
-    { len: 45, el: <Gag time="Sat 21 Nov, 10:30am" from={[540, 1200]} draw={Goodbye} /> },
+    { len: 60, el: <Gag time="Sat 21 Nov, 10:30am" from={[540, 1200]} draw={Goodbye} /> },
   ];
   tail.forEach((t, k) => { out.push({ from: at0, len: t.len, el: <HatCtx.Provider value={k === 0}>{t.el}</HatCtx.Provider> }); at0 += t.len; }); // the hat is off by morning
   return out;
 })();
-const PARTY_END = PARTY_SCENES[PARTY_SCENES.length - 1].from + 45;
+const PARTY_END = PARTY_SCENES[PARTY_SCENES.length - 1].from + 60;
 export const STICK_PARTY_FRAMES = PARTY_END + 140;
 export const StickParty: React.FC<{ wide?: boolean }> = ({ wide }) => (
   <StickFilm wide={wide} look="gold" xmas scenes={PARTY_SCENES} endAt={PARTY_END} frames={STICK_PARTY_FRAMES} end={["A faultless night,", "almost"]} endEl={<FaultlessEnd />} musicAt={0} track={`${P}/christmas-fun-120.mp3`} sfx={`${P}/party-sfx.mp3`}
