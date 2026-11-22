@@ -578,7 +578,7 @@ const Scribble: React.FC<{ x: number; y: number; size?: number; o?: number; chil
 // A portrait photo fills the frame on a slow push; a landscape one (`wide`) sits across the middle over its own
 // blurred copy and drifts sideways so the whole group is seen.
 type Shot = { src: string; len: number; pos?: string; split?: boolean; plates?: string[]; grid?: string[];
-  to?: string; toPos?: string;
+  to?: string; toPos?: string; toLabel?: string;
   halves?: boolean; zoom?: number }; // with `split`: the two tiles are the photo's exact left and right halves, nobody shown twice // `to`: the same view later on, snap cut to half way (the day group, then the night one)
 const pop = (f: number, at0: number, n = 5) => Math.min(1, Math.max(0, (f - at0) / n));
 const PartyShot: React.FC<{ s: Shot; f: number }> = ({ s, f }) => {
@@ -671,6 +671,12 @@ const PartyShot: React.FC<{ s: Shot; f: number }> = ({ s, f }) => {
     return (
       <AbsoluteFill style={{ backgroundColor: "#000", transform: `scale(${k})`, filter: lift > 1.01 ? `brightness(${lift})` : undefined }}>
         {f < at0 ? one(s.src, s.pos, 1) : one(s.to, s.toPos ?? s.pos, 1)}
+        {/* the switch named in the flipbook's gold hand (Scott: "put like party time ... to signal the transition") */}
+        {s.toLabel && d >= 0 ? (
+          <div style={{ position: "absolute", left: 0, right: 0, top: 330, textAlign: "center", fontFamily: HAND, fontWeight: 600, fontSize: 170,
+            color: "#E9C877", textShadow: "0 6px 28px rgba(0,0,0,0.85), 0 0 6px rgba(0,0,0,0.6)",
+            transform: `rotate(-5deg) scale(${1 + 0.5 * Math.exp(-d / 2)})`, opacity: Math.min(1, (d + 1) / 2) }}>{s.toLabel}</div>
+        ) : null}
       </AbsoluteFill>
     );
   }
@@ -1029,8 +1035,9 @@ const StickFilm: React.FC<{
   look: "pad" | "gold"; xmas?: boolean; scenes: Scene[]; endAt?: number; frames: number; end?: [string, string]; skip?: number; over?: React.ReactNode;
   endEl?: React.ReactNode; // an end card of its own in place of the two plain lines
   track?: string; // another track in place of Funkee Monkeee, played from frame `musicAt` of its file
+  sfx?: string; // a sound effects bed played from frame 0 (scripts/party-sfx.py)
   musicAt?: number; // with it there is no office opening: the film is its scenes, the track from this frame of its file
-}> = ({ look: lookId, xmas, scenes, endAt, frames, end, skip = 0, over, musicAt, endEl, track }) => (
+}> = ({ look: lookId, xmas, scenes, endAt, frames, end, skip = 0, over, musicAt, endEl, track, sfx }) => (
   <LookCtx.Provider value={LOOKS[lookId]}>
   <XmasCtx.Provider value={Boolean(xmas)}>
     <AbsoluteFill style={{ backgroundColor: LOOKS[lookId].bg }}>
@@ -1057,6 +1064,7 @@ const StickFilm: React.FC<{
         trimBefore={musicAt ?? Math.round(MUSIC_FROM * 30) + skip}
         volume={(v) => interpolate(v, [0, 6, frames - (end ? 30 : 14), frames], [0, 1, 1, 0], { extrapolateRight: "clamp" })}
       />
+      {sfx ? <Audio src={staticFile(sfx)} volume={1.5} /> : null}
       <FilmFinish />
       {over}
     </AbsoluteFill>
@@ -2054,7 +2062,7 @@ const PARTY: { time: string; draw: (f: number, p: number, look: Look, xmas: bool
     { src: "campaigns/festive/graded/hogarths-entrance.jpg", len: 2 * beat, pos: "50% 50%" }, { src: `${P}/meeting-wide.jpg`, len: 2 * beat, split: true }] },
   { time: "Fri 20 Nov, 3:00pm", draw: Quiz, from: [540, 1130], stills: [{ src: `${P}/meeting-smiles.jpg`, len: 2 * beat, split: true, halves: true }] },
   { time: "Fri 20 Nov, 3:30pm", draw: Dice, from: DICE_FROM, stills: [{ src: `${P}/dice-game.jpg`, len: 2 * beat, split: true }] },
-  { time: "Fri 20 Nov, 4:00pm", draw: Steal, from: STEAL_FROM, stills: [{ src: `${P}/gifts-table.jpg`, len: 2 * beat, split: true, halves: true }, { src: `${P}/secret-santa.jpg`, len: 2 * beat, split: true }, { src: `${P}/group-day.jpg`, len: 4 * beat, pos: "50% 56%", to: `${P}/group-evening.jpg`, toPos: "47% 55%", zoom: 1.2 }] },
+  { time: "Fri 20 Nov, 4:00pm", draw: Steal, from: STEAL_FROM, stills: [{ src: `${P}/gifts-table.jpg`, len: 2 * beat, split: true, halves: true }, { src: `${P}/secret-santa.jpg`, len: 2 * beat, split: true }, { src: `${P}/group-day.jpg`, len: 4 * beat, pos: "50% 56%", to: `${P}/group-evening.jpg`, toPos: "47% 55%", zoom: 1.2, toLabel: "Party time!" }] },
   { time: "Fri 20 Nov, 7:00pm", draw: Slap, from: SLAP_FROM, stills: [
     { src: `${SM}/waiter-tray.jpg`, len: beat, pos: "16% 50%" }, { src: `${P}/cast-tree-portrait.jpg`, len: beat, pos: "50% 40%" },
     { src: `${P}/table-1-group.jpg`, len: 2 * beat, split: true }, { src: `${P}/table-2-group.jpg`, len: 2 * beat, split: true }] },
@@ -2085,6 +2093,6 @@ const PARTY_SCENES: Scene[] = (() => {
 const PARTY_END = PARTY_SCENES[PARTY_SCENES.length - 1].from + 120;
 export const STICK_PARTY_FRAMES = PARTY_END + 140;
 export const StickParty: React.FC = () => (
-  <StickFilm look="gold" xmas scenes={PARTY_SCENES} endAt={PARTY_END} frames={STICK_PARTY_FRAMES} end={["A faultless night,", "almost"]} endEl={<FaultlessEnd />} musicAt={0} track={`${P}/christmas-fun-120.mp3`}
+  <StickFilm look="gold" xmas scenes={PARTY_SCENES} endAt={PARTY_END} frames={STICK_PARTY_FRAMES} end={["A faultless night,", "almost"]} endEl={<FaultlessEnd />} musicAt={0} track={`${P}/christmas-fun-120.mp3`} sfx={`${P}/party-sfx.mp3`}
     over={<Sequence from={66} durationInFrames={54} layout="none"><PlaceLabel place="KIDDERMINSTER" name="Hogarths Stone Manor" len={54} strong /></Sequence>} />
 );
