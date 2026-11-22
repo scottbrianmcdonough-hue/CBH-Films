@@ -1328,6 +1328,8 @@ with no history and no renders:
   Then (Scott, the bearded man at table 2: "maybe not the three photos of me ... like two or one"): the 9:15 run is one
   photo (comedian-2, two beats; comedian-1 and host-table-2 out) and host-pour is out of the actors run, so he is in
   host-card and comedian-2 only, plus the table group and the faces wall. 56.7s. Sent with `-silent`.
+  Then Scott's own photo at the gift table (`gifts-table.jpg`, him over the bottles and gift bags, two exact halves,
+  two beats) opens the 4:00pm gifts section at his request. 58.7s. Sent with `-silent`.
   To confirm: the times on the pages are guesses; where it is going (it has the reel end card, no TikTok text);
   everyone shown is happy to be posted; a festive track would suit it better than the Rowton reel's.
 - `the-kingfisher`, `whittlebury-park-stay-dine` (+ `-story` cuts): done.
