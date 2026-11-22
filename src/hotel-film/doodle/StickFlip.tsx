@@ -800,7 +800,7 @@ const widen = (stills: Shot[]): Shot[] => {
       const size = n - g === 4 ? 2 : Math.min(3, n - g);
       const grp = stills.slice(k + g, k + g + size);
       let at0 = 0;
-      const panels = grp.map((x) => { const q = { src: x.src, pos: x.pos, at: at0 }; at0 += x.len; return q; });
+      const panels = grp.map((x, j) => { at0 += x.len; return { src: x.src, pos: x.pos, at: j * 3 }; }); // all land at once, a beat apart left black beside them
       out.push({ src: grp[0].src, len: at0, panels });
       g += size;
     }
