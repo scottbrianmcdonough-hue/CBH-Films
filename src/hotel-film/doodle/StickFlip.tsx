@@ -1648,7 +1648,7 @@ const XMAS_SCENES: Scene[] = [
   { from: 430, len: 120, el: <Gag time="Fri 20 Nov, 8:30pm" clip={`${SM}/festive/dinner.mp4`} from={[420, 1130]} draw={Carving} /> },
   { from: 550, len: 120, el: <Gag time="Fri 20 Nov, 10:00pm" still={`${SM}/drawing-room-event.jpg`} pos="50% 50%" from={TOAST_FROM} draw={Toast} /> },
   { from: 670, len: 120, el: <Gag time="Sat 21 Nov, 1:00am" still={`${SM}/luxury-suite.jpg`} pos="50% 50%" from={[852, 1280]} draw={Bed} /> },
-  { from: 790, len: 120, el: <Gag time="Sat 21 Nov, 10:00am" still={`${SM}/suite-bathroom.jpg`} pos="74% 50%" from={[545, 1240]} draw={Bath} /> },
+  { from: 790, len: 120, el: <Gag time="Sat 21 Nov, 10:30am" still={`${SM}/suite-bathroom.jpg`} pos="74% 50%" from={[545, 1240]} draw={Bath} /> },
 ];
 export const STICK_XMAS_FRAMES = 1030;
 export const StickXmas: React.FC = () => (
@@ -2164,7 +2164,7 @@ const PARTY_SCENES: Scene[] = (() => {
   const tail: { len: number; el: React.ReactElement }[] = [
     { len: 90, el: <Gag time="Sat 21 Nov, 1:00am" from={[852, 1280]} draw={PlainBed} stills={[{ src: `${SM}/luxury-suite.jpg`, len: beat }]} /> },
     { len: 90, el: <Gag time="Sat 21 Nov, 9:00am" from={[330, 1100]} draw={Morning} stills={[{ src: `${SM}/breakfast-eggs.jpg`, len: beat, pos: "54% 50%" }]} /> },
-    { len: 45, el: <Gag time="Sat 21 Nov, 10:00am" from={[540, 1200]} draw={Goodbye} /> },
+    { len: 45, el: <Gag time="Sat 21 Nov, 10:30am" from={[540, 1200]} draw={Goodbye} /> },
   ];
   tail.forEach((t, k) => { out.push({ from: at0, len: t.len, el: <HatCtx.Provider value={k === 0}>{t.el}</HatCtx.Provider> }); at0 += t.len; }); // the hat is off by morning
   return out;

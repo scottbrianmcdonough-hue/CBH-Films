@@ -1349,7 +1349,7 @@ with no history and no renders:
   within ~10 frames (was half a second of black), the faces wall fills faster, the u falls quicker with a soft tick as
   it lets go. Length kept (Scott asked for under a minute and more photos); a 30s cut offered for Reels/TikTok.
   The morning added (Scott: "breakfast the next morning ... then goodbyes and hit the road", agreed as short and
-  plain): a 9:00am page (`Morning`: cafetiere, plate, a cup) into the eggs photo, then a 10:00am drawing only page
+  plain): a 9:00am page (`Morning`: cafetiere, plate, a cup) into the eggs photo, then a 10:30am drawing only page (Scott gave the times: 9:00 and 10:30)
   (`Goodbye`: a wave, then off with his case), no headgear on either; the bed page keeps the suite photo. To stay
   under a minute the two dinner tables and comedian-2 are 1.5 beats, the plates 3.5, the faces wall 2.5. 59.7s.
   To confirm: the times on the pages are guesses; where it is going (it has the reel end card, no TikTok text);
