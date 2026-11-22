@@ -1352,6 +1352,9 @@ with no history and no renders:
   plain): a 9:00am page (`Morning`: cafetiere, plate, a cup) into the eggs photo, then a 10:30am drawing only page (Scott gave the times: 9:00 and 10:30)
   (`Goodbye`: a wave, then off with his case), no headgear on either; the bed page keeps the suite photo. To stay
   under a minute the two dinner tables and comedian-2 are 1.5 beats, the plates 3.5, the faces wall 2.5. 59.7s.
+  The film opens on the hotel (Scott: "Hogarths Kidderminster shot should come first then the presentation and tree
+  gag"): `Opening`, the entrance photo and its label for two beats, lifting away like a page onto the 2:00pm meeting
+  page, then the meeting photo; same length (SCENES in party-sfx.py start at 60).
   To confirm: the times on the pages are guesses; where it is going (it has the reel end card, no TikTok text);
   everyone shown is happy to be posted; a festive track would suit it better than the Rowton reel's.
 - `the-kingfisher`, `whittlebury-park-stay-dine` (+ `-story` cuts): done.

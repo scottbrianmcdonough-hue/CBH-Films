@@ -2132,7 +2132,7 @@ const Goodbye = (f: number, p: number) => {
 const PlainBed = (f: number, p: number, look: Look, xmas = false) => Bed(f, p, look, xmas, true);
 const PARTY: { time: string; draw: (f: number, p: number, look: Look, xmas: boolean) => React.ReactNode; from: Pt; stills: Shot[] }[] = [
   { time: "Fri 20 Nov, 2:00pm", draw: Meeting, from: CHART_FROM, stills: [
-    { src: "campaigns/festive/graded/hogarths-entrance.jpg", len: 2 * beat, pos: "50% 50%" }, { src: `${P}/meeting-wide-a.jpg`, len: 2 * beat, split: true, pair: `${P}/meeting-wide-b.jpg` }] },
+    { src: `${P}/meeting-wide-a.jpg`, len: 2 * beat, split: true, pair: `${P}/meeting-wide-b.jpg` }] },
   { time: "Fri 20 Nov, 3:00pm", draw: Quiz, from: [540, 1130], stills: [{ src: `${P}/meeting-smiles.jpg`, len: 2 * beat, split: true, halves: true }] },
   { time: "Fri 20 Nov, 3:30pm", draw: Dice, from: DICE_FROM, stills: [{ src: `${P}/dice-game-a.jpg`, len: 2 * beat, split: true, pair: `${P}/dice-game-b.jpg` }] },
   { time: "Fri 20 Nov, 4:00pm", draw: Steal, from: STEAL_FROM, stills: [{ src: `${P}/gifts-table-a.jpg`, len: 2 * beat, split: true, pair: `${P}/gifts-table-b.jpg` }, { src: `${P}/secret-santa-a.jpg`, len: 2 * beat, split: true, pair: `${P}/secret-santa-b.jpg` }, { src: `${P}/group-day.jpg`, len: 4 * beat, pos: "50% 56%", to: `${P}/group-evening.jpg`, toPos: "100% 55%", toZoom: 1.08, zoom: 1.2, toLabel: "Party time!" }] },
@@ -2151,9 +2151,16 @@ const PARTY: { time: string; draw: (f: number, p: number, look: Look, xmas: bool
     { src: `${P}/cast-tree-portrait.jpg`, len: beat, pos: "50% 40%" },
     { src: "grid", len: 2.5 * beat, grid: FACES }] }, // the waving group photo is out (Scott: the same as the posed one)
 ];
+// the film opens on the hotel itself (Scott: "Hogarths Kidderminster shot should come first then the presentation and
+// tree gag"), which lifts away like a page onto the 2:00pm meeting
+const ENTRANCE: Shot = { src: "campaigns/festive/graded/hogarths-entrance.jpg", len: 2 * beat, pos: "50% 50%" };
+const Opening: React.FC = () => {
+  const f = Math.max(0, useCurrentFrame() - FLIP);
+  return <AbsoluteFill style={{ backgroundColor: "#000" }}><PartyShot s={ENTRANCE} f={f} /></AbsoluteFill>;
+};
 const PARTY_SCENES: Scene[] = (() => {
-  const out: Scene[] = [];
-  let at0 = 0;
+  const out: Scene[] = [{ from: 0, len: 2 * beat, el: <Opening /> }];
+  let at0 = 2 * beat;
   for (const s of PARTY) {
     const len = 60 + s.stills.reduce((a, x) => a + x.len, 0);
     const hats = /7:00pm|8:00pm|8:45pm|9:15pm/.test(s.time);
@@ -2173,5 +2180,5 @@ const PARTY_END = PARTY_SCENES[PARTY_SCENES.length - 1].from + 45;
 export const STICK_PARTY_FRAMES = PARTY_END + 140;
 export const StickParty: React.FC = () => (
   <StickFilm look="gold" xmas scenes={PARTY_SCENES} endAt={PARTY_END} frames={STICK_PARTY_FRAMES} end={["A faultless night,", "almost"]} endEl={<FaultlessEnd />} musicAt={0} track={`${P}/christmas-fun-120.mp3`} sfx={`${P}/party-sfx.mp3`}
-    over={<Sequence from={66} durationInFrames={54} layout="none"><PlaceLabel place="KIDDERMINSTER" name="Hogarths Stone Manor" len={54} strong /></Sequence>} />
+    over={<Sequence from={3} durationInFrames={50} layout="none"><PlaceLabel place="KIDDERMINSTER" name="Hogarths Stone Manor" len={50} strong /></Sequence>} />
 );
