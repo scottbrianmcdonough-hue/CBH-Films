@@ -39,6 +39,9 @@ const HaloCtx = React.createContext(false);
 const XmasCtx = React.createContext(false);
 // off for the pages before the party hats went on (Scott: "we didn't have the headgear on till dinner")
 const HatCtx = React.createContext(true);
+// the 16:9 cut (Scott: "what about the landscape version"): the same film laid out on a 1920 x 1080 page
+const WideCtx = React.createContext(false);
+const useDims = () => (React.useContext(WideCtx) ? { W: 1920, H: 1080 } : { W: 1080, H: 1920 });
 
 const page = (f: number) => Math.floor(f / 2); // drawn on twos
 const smooth = (f: number, a: number, b: number) => {
@@ -234,6 +237,7 @@ const T = { idea: 70, jump: 85, grab: 108, run: 115, house: 175, door: 220, open
 
 const Paper: React.FC<{ p: number }> = ({ p }) => {
   const look = React.useContext(LookCtx);
+  const { W, H } = useDims();
   // each page sits a little off register; the corner flicks as the pad is thumbed
   const dx = j(p, 901, 5);
   const dy = j(p, 902, 4);
@@ -580,11 +584,14 @@ const Scribble: React.FC<{ x: number; y: number; size?: number; o?: number; chil
 type Shot = { src: string; len: number; pos?: string; split?: boolean; plates?: string[]; grid?: string[];
   to?: string; toPos?: string; toLabel?: string; toZoom?: number;
   pair?: string; // with `split`: the lower tile is this second picture (two crops of one photo, framed by hand)
-  halves?: boolean; zoom?: number }; // with `split`: the two tiles are the photo's exact left and right halves, nobody shown twice // `to`: the same view later on, snap cut to half way (the day group, then the night one)
+  halves?: boolean; zoom?: number;
+  wpos?: string }; // 16:9 cut: a portrait photo cropped full frame at this position (without it, a tall panel over its own blur) // with `split`: the two tiles are the photo's exact left and right halves, nobody shown twice // `to`: the same view later on, snap cut to half way (the day group, then the night one)
 const pop = (f: number, at0: number, n = 5) => Math.min(1, Math.max(0, (f - at0) / n));
 const PartyShot: React.FC<{ s: Shot; f: number }> = ({ s, f }) => {
   const look = React.useContext(LookCtx);
+  const isWide = React.useContext(WideCtx);
   const t = Math.min(1, Math.max(0, f / s.len));
+  if (isWide) return <WideShot s={s} f={f} />;
   // a landscape photo as two tiles, its left half over its right half, the second landing half a beat on
   if (s.split) {
     const late = s.len <= 15 ? 3 : 5; // the lower tile lands almost at once: half a second of black under the first read as an empty frame
@@ -696,6 +703,70 @@ const PartyShot: React.FC<{ s: Shot; f: number }> = ({ s, f }) => {
   }
   return one(s.src, s.pos, 1);
 };
+// the 16:9 cut's photos: landscape originals whole and full frame (no stacked tiles), portrait ones cropped full frame
+// where the picture allows (`wpos`) or as a tall panel over their own soft copy; the plates and the faces re-laid
+const WideShot: React.FC<{ s: Shot; f: number }> = ({ s, f }) => {
+  const look = React.useContext(LookCtx);
+  const W = 1920;
+  const H = 1080;
+  const t = Math.min(1, Math.max(0, f / s.len));
+  const full = (src: string, pos = "50% 50%", z = 1) => (
+    <Img src={staticFile(src)} style={{ position: "absolute", width: W, height: H, objectFit: "cover", objectPosition: pos, transformOrigin: pos, transform: `scale(${z * (1 + 0.04 * t)})` }} />
+  );
+  if (s.plates) {
+    return (
+      <AbsoluteFill style={{ backgroundColor: look.bg }}>
+        <div style={{ position: "absolute", left: (W - 1080) / 2, top: (H - 1920) / 2, width: 1080, height: 1920, transform: "translateY(-110px) scale(0.7)" }}>
+          <WideCtx.Provider value={false}><PartyShot s={s} f={f} /></WideCtx.Provider>
+        </div>
+      </AbsoluteFill>
+    );
+  }
+  if (s.grid) {
+    return (
+      <AbsoluteFill style={{ backgroundColor: look.bg }}>
+        {s.grid.map((src, k) => {
+          const a = pop(f, k * 1.5, 5);
+          if (a <= 0) return null;
+          return (
+            <div key={src} style={{ position: "absolute", left: (k % 6) * 320 + 3, top: Math.floor(k / 6) * 540 + 3, width: 314, height: 534, overflow: "hidden",
+              transform: `scale(${0.82 + 0.18 * (1 - (1 - a) ** 3)})`, opacity: a }}>
+              <Img src={staticFile(src)} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "50% 30%", transform: `scale(${1.2 + 0.04 * t})`, transformOrigin: "50% 35%" }} />
+            </div>
+          );
+        })}
+      </AbsoluteFill>
+    );
+  }
+  if (s.to) {
+    const at0 = Math.round(s.len / 2);
+    const d = f - at0;
+    const k = d >= 0 ? Math.max(1, 1 + 0.2 * Math.exp(-d / 2.4) + 0.04 * Math.exp(-d / 7) * Math.sin(d * 0.9)) : 1 + 0.03 * Math.max(0, 1 + d / 8) ** 2;
+    const lift = d >= 0 ? 1 + 0.22 * Math.exp(-d / 3) : 1;
+    return (
+      <AbsoluteFill style={{ backgroundColor: "#000", transform: `scale(${k})`, filter: lift > 1.01 ? `brightness(${lift})` : undefined }}>
+        {f < at0 ? full(s.src, s.wpos ?? "50% 51%") : full(s.to, s.wpos ?? "50% 51%")}
+        {s.toLabel && d >= 0 ? (
+          <div style={{ position: "absolute", left: 0, right: 0, top: 800, textAlign: "center", fontFamily: HAND, fontWeight: 600, fontSize: 170,
+            color: "#E9C877", textShadow: "0 6px 28px rgba(0,0,0,0.85), 0 0 6px rgba(0,0,0,0.6)",
+            transform: `rotate(-4deg) scale(${1 + 0.5 * Math.exp(-d / 2)})`, opacity: Math.min(1, (d + 1) / 2) }}>{s.toLabel}</div>
+        ) : null}
+      </AbsoluteFill>
+    );
+  }
+  if (s.split) return <AbsoluteFill style={{ backgroundColor: "#000" }}>{full(s.pair ? s.src.replace("-a.jpg", ".jpg") : s.src)}</AbsoluteFill>;
+  if (s.wpos) return <AbsoluteFill style={{ backgroundColor: "#000" }}>{full(s.src, s.wpos)}</AbsoluteFill>;
+  // a portrait photo: a tall panel over its own soft, darkened copy
+  const PW = 810;
+  return (
+    <AbsoluteFill style={{ backgroundColor: "#000", overflow: "hidden" }}>
+      <Img src={staticFile(s.src)} style={{ position: "absolute", width: W, height: H, objectFit: "cover", objectPosition: s.pos ?? "50% 40%", filter: "blur(36px) brightness(0.42)", transform: "scale(1.15)" }} />
+      <div style={{ position: "absolute", left: (W - PW) / 2, top: 0, width: PW, height: H, overflow: "hidden", boxShadow: "0 0 80px rgba(0,0,0,0.6)" }}>
+        <Img src={staticFile(s.src)} style={{ width: PW, height: H, objectFit: "cover", objectPosition: s.pos ?? "50% 40%", transform: `scale(${1 + 0.04 * t})` }} />
+      </div>
+    </AbsoluteFill>
+  );
+};
 const shotAt = (stills: Shot[], frame: number) => {
   let a = 60;
   for (let k = 0; k < stills.length; k++) {
@@ -715,6 +786,8 @@ const Gag: React.FC<{
   const frame = Math.max(0, useCurrentFrame() - FLIP);
   const look = React.useContext(LookCtx);
   const xmas = React.useContext(XmasCtx);
+  const wide = React.useContext(WideCtx);
+  const { W, H } = useDims();
   const p = page(frame);
   const dx = j(p, 901, 5);
   const dy = j(p, 902, 4);
@@ -726,13 +799,13 @@ const Gag: React.FC<{
     <AbsoluteFill style={{ backgroundColor: look.bg }}>
       <Paper p={p} />
       <svg width={W} height={H} style={{ position: "absolute", left: dx, top: dy, filter: look.glow }}>
-        <g transform="translate(540 1600) scale(1.32) translate(-540 -1392)">
-          <Pencil d={[[ground[0], 1392], [ground[1], 1392]]} p={p} id={27} w={5} />
+        <g transform={wide ? "translate(960 965) scale(1.25) translate(-540 -1392)" : "translate(540 1600) scale(1.32) translate(-540 -1392)"}>
+          <Pencil d={wide ? [[ground[0] - 420, 1392], [ground[1] + 420, 1392]] : [[ground[0], 1392], [ground[1], 1392]]} p={p} id={27} w={5} />
           {draw(frame, p, look, xmas)}
         </g>
-        <clipPath id="write"><rect x={70} y={220} width={20 + 700 * write} height={110} /></clipPath>
-        <g clipPath="url(#write)"><Scribble x={90} y={300} size={64} o={0.95}>{time}</Scribble></g>
-        {xmas ? <Garland p={p} f={frame} look={look} /> : null}
+        <clipPath id="write"><rect x={wide ? 100 : 70} y={wide ? 70 : 220} width={20 + 700 * write} height={110} /></clipPath>
+        <g clipPath="url(#write)"><Scribble x={wide ? 120 : 90} y={wide ? 150 : 300} size={64} o={0.95}>{time}</Scribble></g>
+        {xmas ? (wide ? <Garland p={p} f={frame} look={look} x0={110} span={1700} y0={196} n={5} /> : <Garland p={p} f={frame} look={look} />) : null}
       </svg>
       {/* a run of photos comes in on a straight cut on the beat, no opening circle (Scott: "lose the circle in the
           middle before every transition") */}
@@ -756,13 +829,13 @@ const Gag: React.FC<{
 };
 // a garland strung across the top of a party page in three swags, a bauble at the foot of each,
 // glinting in turn
-const Garland: React.FC<{ p: number; f: number; look: Look }> = ({ p, f, look }) => {
-  const swag = (t: number): Pt => [70 + t * 940, 372 + 52 * Math.sin(Math.PI * ((t * 3) % 1))];
-  const line = Array.from({ length: 46 }, (_, k) => swag(k / 45));
+const Garland: React.FC<{ p: number; f: number; look: Look; x0?: number; span?: number; y0?: number; n?: number }> = ({ p, f, look, x0 = 70, span = 940, y0 = 372, n = 3 }) => {
+  const swag = (t: number): Pt => [x0 + t * span, y0 + 52 * Math.sin(Math.PI * ((t * n) % 1))];
+  const line = Array.from({ length: 15 * n + 1 }, (_, k) => swag(k / (15 * n)));
   return (
     <>
       <Pencil d={line} p={p} id={610} w={4} />
-      {[1 / 6, 1 / 2, 5 / 6].map((t, k) => {
+      {Array.from({ length: n }, (_, k) => (k + 0.5) / n).map((t, k) => {
         const [x, y] = swag(t);
         const glint = 0.35 + 0.35 * Math.max(0, Math.sin(f * 0.12 - k * 2.1));
         return (
@@ -1034,10 +1107,11 @@ const FaultlessEnd: React.FC = () => {
   const t = Math.max(0, frame - 68);
   const dy = 2.6 * t * t;
   const almost = progress(frame, 98, 12); // only once the u has gone
+  const wide = React.useContext(WideCtx);
   return (
     <AbsoluteFill style={{ backgroundColor: look.bg }}>
       <Paper p={p} />
-      <div style={{ position: "absolute", top: 760, width: "100%", textAlign: "center", fontFamily: serif, fontSize: 104, lineHeight: 1.12,
+      <div style={{ position: "absolute", top: wide ? 400 : 760, width: "100%", textAlign: "center", fontFamily: serif, fontSize: 104, lineHeight: 1.12,
         color: colors.cream, opacity: line, transform: `translateY(${(1 - line) * 22}px)`, whiteSpace: "nowrap" }}>
         A fa
         <span style={{ display: "inline-block", transformOrigin: "100% 12%",
@@ -1046,7 +1120,7 @@ const FaultlessEnd: React.FC = () => {
         <br />
         <span style={{ display: "inline-block", opacity: almost, transform: `translateY(${(1 - almost) * 18}px)` }}>almost</span>
       </div>
-      <Img src={staticFile("brand/cb-watermark.png")} style={{ position: "absolute", left: 920, top: 1452, width: 100, height: 108 }} />
+      <Img src={staticFile("brand/cb-watermark.png")} style={{ position: "absolute", left: wide ? 1740 : 920, top: wide ? 900 : 1452, width: 100, height: 108 }} />
       <LiftShadow />
     </AbsoluteFill>
   );
@@ -1068,7 +1142,9 @@ const StickFilm: React.FC<{
   track?: string; // another track in place of Funkee Monkeee, played from frame `musicAt` of its file
   sfx?: string; // a sound effects bed played from frame 0 (scripts/party-sfx.py)
   musicAt?: number; // with it there is no office opening: the film is its scenes, the track from this frame of its file
-}> = ({ look: lookId, xmas, scenes, endAt, frames, end, skip = 0, over, musicAt, endEl, track, sfx }) => (
+  wide?: boolean; // the 16:9 page
+}> = ({ look: lookId, xmas, scenes, endAt, frames, end, skip = 0, over, musicAt, endEl, track, sfx, wide = false }) => (
+  <WideCtx.Provider value={wide}>
   <LookCtx.Provider value={LOOKS[lookId]}>
   <XmasCtx.Provider value={Boolean(xmas)}>
     <AbsoluteFill style={{ backgroundColor: LOOKS[lookId].bg }}>
@@ -1101,6 +1177,7 @@ const StickFilm: React.FC<{
     </AbsoluteFill>
   </XmasCtx.Provider>
   </LookCtx.Provider>
+  </WideCtx.Provider>
 );
 
 export const STICK_REEL_FRAMES = 970;
@@ -1270,13 +1347,14 @@ const RACE_SCENES = [
 // the house label over the hotel's first shot: the place in gold caps, underlined, the name in cream Cormorant
 const PlaceLabel: React.FC<{ place: string; name: string; len: number; strong?: boolean }> = ({ place, name, len, strong }) => {
   const frame = useCurrentFrame();
+  const wide = React.useContext(WideCtx);
   const o = progress(frame, 0, 12) * (1 - progress(frame, len - 10, 8));
   return (
     <AbsoluteFill style={{ opacity: o }}>
       <AbsoluteFill style={{ background: strong
         ? "linear-gradient(to bottom, rgba(9,9,10,0) 44%, rgba(9,9,10,0.82) 70%, rgba(9,9,10,0.7) 100%)"
         : "linear-gradient(to bottom, rgba(9,9,10,0) 52%, rgba(9,9,10,0.55) 74%, rgba(9,9,10,0.3) 100%)" }} />
-      <div style={{ position: "absolute", left: 72, bottom: 500 }}>
+      <div style={{ position: "absolute", left: wide ? 110 : 72, bottom: wide ? 120 : 500 }}>
         <div style={{ display: "inline-block" }}>
           <div style={{ fontFamily: sans, fontWeight: 600, fontSize: 28, letterSpacing: "0.24em", color: colors.gold }}>{place}</div>
         </div>
@@ -2153,7 +2231,7 @@ const PARTY: { time: string; draw: (f: number, p: number, look: Look, xmas: bool
 ];
 // the film opens on the hotel itself (Scott: "Hogarths Kidderminster shot should come first then the presentation and
 // tree gag"), which lifts away like a page onto the 2:00pm meeting
-const ENTRANCE: Shot = { src: "campaigns/festive/graded/hogarths-entrance.jpg", len: 2 * beat, pos: "50% 50%" };
+const ENTRANCE: Shot = { src: "campaigns/festive/graded/hogarths-entrance.jpg", len: 2 * beat, pos: "50% 50%", wpos: "50% 46%" };
 const Opening: React.FC = () => {
   const f = Math.max(0, useCurrentFrame() - FLIP);
   return <AbsoluteFill style={{ backgroundColor: "#000" }}><PartyShot s={ENTRANCE} f={f} /></AbsoluteFill>;
@@ -2169,8 +2247,8 @@ const PARTY_SCENES: Scene[] = (() => {
   }
   // bed and the suite, breakfast at nine, then the goodbyes: a wave and off with his case
   const tail: { len: number; el: React.ReactElement }[] = [
-    { len: 90, el: <Gag time="Sat 21 Nov, 1:00am" from={[852, 1280]} draw={PlainBed} stills={[{ src: `${SM}/luxury-suite.jpg`, len: beat }]} /> },
-    { len: 90, el: <Gag time="Sat 21 Nov, 9:00am" from={[330, 1100]} draw={Morning} stills={[{ src: `${SM}/breakfast-eggs.jpg`, len: beat, pos: "54% 50%" }]} /> },
+    { len: 90, el: <Gag time="Sat 21 Nov, 1:00am" from={[852, 1280]} draw={PlainBed} stills={[{ src: `${SM}/luxury-suite.jpg`, len: beat, wpos: "50% 42%" }]} /> },
+    { len: 90, el: <Gag time="Sat 21 Nov, 9:00am" from={[330, 1100]} draw={Morning} stills={[{ src: `${SM}/breakfast-eggs.jpg`, len: beat, pos: "54% 50%", wpos: "54% 62%" }]} /> },
     { len: 45, el: <Gag time="Sat 21 Nov, 10:30am" from={[540, 1200]} draw={Goodbye} /> },
   ];
   tail.forEach((t, k) => { out.push({ from: at0, len: t.len, el: <HatCtx.Provider value={k === 0}>{t.el}</HatCtx.Provider> }); at0 += t.len; }); // the hat is off by morning
@@ -2178,7 +2256,8 @@ const PARTY_SCENES: Scene[] = (() => {
 })();
 const PARTY_END = PARTY_SCENES[PARTY_SCENES.length - 1].from + 45;
 export const STICK_PARTY_FRAMES = PARTY_END + 140;
-export const StickParty: React.FC = () => (
-  <StickFilm look="gold" xmas scenes={PARTY_SCENES} endAt={PARTY_END} frames={STICK_PARTY_FRAMES} end={["A faultless night,", "almost"]} endEl={<FaultlessEnd />} musicAt={0} track={`${P}/christmas-fun-120.mp3`} sfx={`${P}/party-sfx.mp3`}
+export const StickParty: React.FC<{ wide?: boolean }> = ({ wide }) => (
+  <StickFilm wide={wide} look="gold" xmas scenes={PARTY_SCENES} endAt={PARTY_END} frames={STICK_PARTY_FRAMES} end={["A faultless night,", "almost"]} endEl={<FaultlessEnd />} musicAt={0} track={`${P}/christmas-fun-120.mp3`} sfx={`${P}/party-sfx.mp3`}
     over={<Sequence from={3} durationInFrames={50} layout="none"><PlaceLabel place="KIDDERMINSTER" name="Hogarths Stone Manor" len={50} strong /></Sequence>} />
 );
+export const StickPartyWide: React.FC = () => <StickParty wide />;

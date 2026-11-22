@@ -1355,6 +1355,11 @@ with no history and no renders:
   The film opens on the hotel (Scott: "Hogarths Kidderminster shot should come first then the presentation and tree
   gag"): `Opening`, the entrance photo and its label for two beats, lifting away like a page onto the 2:00pm meeting
   page, then the meeting photo; same length (SCENES in party-sfx.py start at 60).
+  `cbh-christmas-party-wide` (Scott: "what about the landscape version"): the same film on a 1920 x 1080 page
+  (`WideCtx`, `StickFilm wide`): the drawings at 1.25x on a ground line across the frame, five baubles on the garland,
+  landscape photos whole and full frame (no stacked tiles), portrait ones cropped full frame where the picture allows
+  (`Shot.wpos`) or as a tall panel over their own blur, the plates scaled in the middle, the faces 6 x 2,
+  "Party time!" low over the group. Same timing, music and sound effects.
   To confirm: the times on the pages are guesses; where it is going (it has the reel end card, no TikTok text);
   everyone shown is happy to be posted; a festive track would suit it better than the Rowton reel's.
 - `the-kingfisher`, `whittlebury-park-stay-dine` (+ `-story` cuts): done.
