@@ -1337,6 +1337,9 @@ with no history and no renders:
   more (Scott: "don't need a silent version anymore"). The gift table and table group photos are two hand-framed crops each
   (`Shot.pair`, `-a.jpg` / `-b.jpg`: the overlapping tiles showed the same people twice, Scott); the 8:00pm page has a
   wine glass, not a teacup (`Cake` with `xmas`). Patched by re-rendering frames 480-599 and 960-1019 and splicing. 58.7s. Sent.
+  Polish and package (Scott: "polish pass and package it up"): the other four table photos (meeting-wide, dice-game,
+  table-1-group, table-2-group) are hand-framed pairs too; one clean full render; `out/cbh-christmas-party.mp4`,
+  `-cover.jpg` (the "Party time!" group photo) and `out/cbh-christmas-party-ticket.txt` (platforms and slot to confirm).
   To confirm: the times on the pages are guesses; where it is going (it has the reel end card, no TikTok text);
   everyone shown is happy to be posted; a festive track would suit it better than the Rowton reel's.
 - `the-kingfisher`, `whittlebury-park-stay-dine` (+ `-story` cuts): done.
