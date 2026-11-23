@@ -1157,7 +1157,7 @@ with no history and no renders:
 - TikTok plan updated 23 Nov (Scott sent a generic TikTok strategy deck, "adapt to our plan"): lead, Who we're for
   (planners 25-34, treat seekers 35-54, dreamers 18-24; check against TikTok Studio), pillars with a share of posts
   (lists and tips 40%, POV and food 30%, stories and behind the scenes 20%, animation 10%), 3 to 4 posts a week (Scott)
-  (weekdays 8 PM, weekends 12-3 PM), Lives after 1,000 followers, paid in three steps (Spark Ads, retargeting,
+  (weekdays 8 PM, weekends 12-3 PM), no Lives (Scott), paid in three steps (Spark Ads, retargeting,
   conversion later), a January to June roadmap, KPI table (watch through 60%, engagement 1.3% -> 3%, profile views
   5.4 -> 10 per 1K views).
 - TikTok rulings (Scott, 19 Nov, after the plan): every unposted TikTok ends on a question in the video itself
