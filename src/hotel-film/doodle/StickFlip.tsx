@@ -2339,12 +2339,14 @@ const PARTY: { time: string; draw: (f: number, p: number, look: Look, xmas: bool
     { src: `${P}/meeting-wide-a.jpg`, len: 1.5 * beat, split: true, pair: `${P}/meeting-wide-b.jpg` }] },
   // the quiz page runs straight on into the dice page, which shares its photo (Scott, 23 Nov: the four smiling at the
   // table out, "combine with the other one")
-  { time: "Fri 20 Nov, 3:00pm", draw: Quiz, from: [540, 1130], stills: [] },
+  // the table photo sits under the quiz page now, so drawings and photos alternate (Scott, 23 Nov: the unwrapping and
+  // this one were "back to back ... like animation pic animation pic")
+  { time: "Fri 20 Nov, 3:00pm", draw: Quiz, from: [540, 1130], stills: [{ src: `${P}/secret-santa-a.jpg`, len: 2 * beat, split: true, pair: `${P}/secret-santa-b.jpg` }] },
   { time: "Fri 20 Nov, 3:30pm", draw: Dice, from: DICE_FROM, stills: [{ src: `${P}/dice-game-a.jpg`, len: 1.5 * beat, split: true, pair: `${P}/dice-game-b.jpg` }] },
   { time: "Fri 20 Nov, 4:00pm", draw: Steal, from: STEAL_FROM, stills: [
     // the whole table unwrapping in place of the gift table photo (Scott, 23 Nov: "get rid of these two photos and use
     // the group photo"), as its two exact halves, held the two beats the quiz photo gave up
-    { src: `${P}/gifts-unwrap.jpg`, len: 3 * beat, split: true, halves: true, wpos: "50% 50%" }, { src: `${P}/secret-santa-a.jpg`, len: 2 * beat, split: true, pair: `${P}/secret-santa-b.jpg` }, { src: `${P}/group-day.jpg`, len: 4 * beat, pos: "50% 56%", to: `${P}/group-evening.jpg`, toPos: "100% 55%", toZoom: 1.08, zoom: 1.2, toLabel: "Party time!" }] },
+    { src: `${P}/gifts-unwrap.jpg`, len: 3 * beat, split: true, halves: true, wpos: "50% 50%" }, { src: `${P}/group-day.jpg`, len: 4 * beat, pos: "50% 56%", to: `${P}/group-evening.jpg`, toPos: "100% 55%", toZoom: 1.08, zoom: 1.2, toLabel: "Party time!" }] },
   // dinner first: the tables and the six courses on one page, so the slap can sit where it happened, right before
   // the actors appear (Scott: "the slap happens right before the actors appear")
   { time: "Fri 20 Nov, 8:00pm", draw: Cake, from: [340, 1075], stills: [

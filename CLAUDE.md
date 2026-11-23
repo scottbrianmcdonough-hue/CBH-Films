@@ -1428,7 +1428,7 @@ with no history and no renders:
   (`PartyEnd`; Scott: simple and straightforward), no letter drop or its ticks. SCENES in party-sfx.py
   [75, 180, 240, 360, ...]. Then Scott's clips arrived: the opening is the card (1.5 beats), the front pan round to the
   courtyard (`front-pan.mp4`, 20261120_131434 8.4-12s at 1.8x, 2 beats), the lounge tree tilting up (`lounge-tree.mp4`,
-  _131918 0.8-7.9s at 2x, so it moves right up to the cut: Scott, "the tilt stops motion before you transition"); to stay at 59.7s the dice photo is 1.5 beats, the unwrapping 3, the end card held
+  _131918 3.0-7.9s at 1.4x: the smooth part only, moving right up to the cut; Scott: "the tilt stops motion before you transition", then the start of the tilt was "sloppy", "use after 3 seconds"); to stay at 59.7s the dice photo is 1.5 beats, the unwrapping 3, the end card held
   110 frames. "Fawlty Towers night" is written on the 8:45pm slap page (Gag `note`; Scott: "so they know it is part of
   that show theme"). Bianca's tile sharpened (2x, unsharp). party-sfx.py SCENES [150, 255, 315, 420, 870, 1020, 1125,
   1230, 1440, 1530], WAITER 750, LAST 1620, END 1680, pop 690. Full clean renders of both cuts, -15.0 LUFS.
@@ -1436,5 +1436,8 @@ with no history and no renders:
   length); the faces wall even (Scott: "all even ... not like a centrefold"): thirteen equal tiles, portrait rows of
   3, 2, 3, 2, 3 (360 x 384), wide rows of 7 and 6 (274 x 540), short rows centred, Bianca in the middle of the middle
   row (`faceSlots`, `wallFaces`). Spliced (frames 0-164 and 1300-1440).
+  The table photo (`secret-santa-a/-b`) moved under the 3pm quiz page so drawings and photos alternate (Scott: the
+  unwrapping and it were "back to back ... animation pic animation pic"); same length; party-sfx.py SCENES[2] 375,
+  SCENES[3] 480, a shutter on every page again. Full renders of both cuts.
   To confirm: the times on the pages are guesses.
 - `the-kingfisher`, `whittlebury-park-stay-dine` (+ `-story` cuts): done.

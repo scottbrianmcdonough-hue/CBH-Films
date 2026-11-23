@@ -7,7 +7,7 @@ rerun after retiming it. Writes public/campaigns/xmas-party-2026/party-sfx.mp3 (
 import subprocess, numpy as np
 from scipy.signal import butter, lfilter
 SR, FPS = 48000, 30
-SCENES = [150, 255, 315, 420, 870, 1020, 1125, 1230, 1440, 1530]
+SCENES = [150, 255, 375, 480, 870, 1020, 1125, 1230, 1440, 1530]
 LAST = 1620  # the goodbye page: a drawing only, no photo
 WAITER = 750  # the waiter and the tables, a run of photos before the 8:00pm page  # where each page starts
 END, TOTAL = 1680, 1790
@@ -54,7 +54,7 @@ def pluck():
 
 for s in SCENES + [WAITER, LAST, END]:
     put(flick(), s - 1, -20, rng.uniform(-0.2, 0.2))
-for s in SCENES[:1] + SCENES[2:]:  # the quiz page has no photo of its own (it runs on into the dice page)
+for s in SCENES:
     put(shutter(), s + 60, -24)
 put(pat(), SCENES[0] + GAG + 26, -15, 0.25)                       # the tree sticker on the chart
 for k, (df, f0) in enumerate(((12, 1500), (14, 1750), (20, 1650), (22, 1900))):
