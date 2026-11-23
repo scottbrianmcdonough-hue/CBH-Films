@@ -7,7 +7,7 @@ rerun after retiming it. Writes public/campaigns/xmas-party-2026/party-sfx.mp3 (
 import subprocess, numpy as np
 from scipy.signal import butter, lfilter
 SR, FPS = 48000, 30
-SCENES = [75, 180, 300, 420, 840, 990, 1095, 1200, 1410, 1500]
+SCENES = [75, 180, 240, 360, 840, 990, 1095, 1200, 1410, 1500]
 LAST = 1590  # the goodbye page: a drawing only, no photo
 WAITER = 720  # the waiter and the tables, a run of photos before the 8:00pm page  # where each page starts
 END, TOTAL = 1650, 1790
@@ -54,7 +54,7 @@ def pluck():
 
 for s in SCENES + [WAITER, LAST, END]:
     put(flick(), s - 1, -20, rng.uniform(-0.2, 0.2))
-for s in SCENES:
+for s in SCENES[:1] + SCENES[2:]:  # the quiz page has no photo of its own (it runs on into the dice page)
     put(shutter(), s + 60, -24)
 put(pat(), SCENES[0] + GAG + 26, -15, 0.25)                       # the tree sticker on the chart
 for k, (df, f0) in enumerate(((12, 1500), (14, 1750), (20, 1650), (22, 1900))):
@@ -62,9 +62,6 @@ for k, (df, f0) in enumerate(((12, 1500), (14, 1750), (20, 1650), (22, 1900))):
 put(slap(), SCENES[5] + GAG + 24, -15)                             # the waiter's slap
 put(pop(), 660, -13)
 put(pat(), LAST + 8 + 30, -18, 0.2)                                 # he lands in the car seat                                                # "Party time!"
-put(pluck(), END + 36, -20)                                          # the e works loose
-for k, f in enumerate([62, 68, 74]):                                 # e, c, t let go (PERFECT_DROP)
-    put(knock(900 + 60 * k), END + f, -19 - 2 * k)
 
 # a small warm room
 d = np.zeros_like(out)

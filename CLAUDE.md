@@ -1420,5 +1420,13 @@ with no history and no renders:
   won't be). Now "Perfect night, / almost" (Scott's pick: "the ect can drop off or tumble off"): `PerfectEnd`, the e, c
   and t wobble loose one after another and tumble off the card, each with a soft tick (party-sfx.py), then "almost";
   the gap stays after "Perf". `FaultlessEnd` is gone. Tail spliced (frames 1640-1789) with a fresh audio render. Going out on CBH's LinkedIn (16:9) and CBH's Instagram and Facebook (9:16).
+  Bianca's swaps (23 Nov, Scott): the opener is the hotel's own Christmas card on a Santa hat at the place setting
+  (`hogarths-stone-manor/christmas-card.jpg`, no place label: the card names the hotel), in place of the front door; the
+  3pm quiz photo (the four smiling) is out, the quiz page running straight into the dice page; the gift table photos
+  are out for the whole table unwrapping (`gifts-unwrap.jpg`, exact halves, 4 beats), so the length holds; Bianca's own
+  shot (`p-red-top.jpg`, cropped from her video still) is a double tile in the middle of the faces wall (portrait 4 x 4,
+  wide 8 x 2, `faceSlots`), landing last; end card now "Merry Christmas / from all of us", then "Here's to next year"
+  (`PartyEnd`; Scott: simple and straightforward), no letter drop or its ticks. SCENES in party-sfx.py
+  [75, 180, 240, 360, ...]. Still to add: Scott's video pan of the hotel front and the tree (never arrived).
   To confirm: the times on the pages are guesses.
 - `the-kingfisher`, `whittlebury-park-stay-dine` (+ `-story` cuts): done.

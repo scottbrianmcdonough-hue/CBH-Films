@@ -679,11 +679,13 @@ const PartyShot: React.FC<{ s: Shot; f: number }> = ({ s, f }) => {
   if (s.grid) {
     return (
       <AbsoluteFill style={{ backgroundColor: look.bg }}>
-        {s.grid.map((src, k) => {
+        {[...s.grid, FACES_BIG].map((src, k) => {
           const a = pop(f, k * 1.5, 5);
           if (a <= 0) return null;
+          const slots = faceSlots(false);
+          const [x, y, w, h] = k < slots.small.length ? slots.small[k] : slots.big;
           return (
-            <div key={src} style={{ position: "absolute", left: (k % 3) * 360 + 3, top: Math.floor(k / 3) * 480 + 3, width: 354, height: 474, overflow: "hidden",
+            <div key={src} style={{ position: "absolute", left: x + 3, top: y + 3, width: w - 6, height: h - 6, overflow: "hidden",
               transform: `scale(${0.82 + 0.18 * (1 - (1 - a) ** 3)})` }}>
               <Img src={staticFile(src)} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "50% 30%", transform: `scale(${1.25 + 0.04 * t})`, transformOrigin: "50% 35%" }} />
             </div>
@@ -740,11 +742,13 @@ const WideShot: React.FC<{ s: Shot; f: number }> = ({ s, f }) => {
   if (s.grid) {
     return (
       <AbsoluteFill style={{ backgroundColor: look.bg }}>
-        {s.grid.map((src, k) => {
+        {[...s.grid, FACES_BIG].map((src, k) => {
           const a = pop(f, k * 1.5, 5);
           if (a <= 0) return null;
+          const slots = faceSlots(true);
+          const [x, y, w, h] = k < slots.small.length ? slots.small[k] : slots.big;
           return (
-            <div key={src} style={{ position: "absolute", left: (k % 6) * 320 + 3, top: Math.floor(k / 6) * 540 + 3, width: 314, height: 534, overflow: "hidden",
+            <div key={src} style={{ position: "absolute", left: x + 3, top: y + 3, width: w - 6, height: h - 6, overflow: "hidden",
               transform: `scale(${0.82 + 0.18 * (1 - (1 - a) ** 3)})` }}>
               <Img src={staticFile(src)} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "50% 30%", transform: `scale(${1.2 + 0.04 * t})`, transformOrigin: "50% 35%" }} />
             </div>
@@ -864,7 +868,7 @@ const Gag: React.FC<{
       </svg>
       {/* a run of photos comes in on a straight cut on the beat, no opening circle (Scott: "lose the circle in the
           middle before every transition") */}
-      {frame >= 60 && stills ? <AbsoluteFill>{shotAt(wide ? widen(stills) : stills, frame)}</AbsoluteFill> : null}
+      {frame >= 60 && stills && stills.length ? <AbsoluteFill>{shotAt(wide ? widen(stills) : stills, frame)}</AbsoluteFill> : null}
       {frame >= OPEN_AT && (clip || still) ? (
         <AbsoluteFill style={{ clipPath: `circle(${radius}px at ${cx}px ${cy}px)` }}>
           {still ? (
@@ -1150,38 +1154,25 @@ const EndLine: React.FC<{ lines: [string, string] }> = ({ lines }) => {
   );
 };
 
-// the party's end card now (Bianca, 23 Nov: the Fawlty Towers pun "won't land" unless you know the show; Scott:
-// "Perfect night, almost and the ect can drop off or tumble off"): the line comes up, the e, c and t work loose
-// one after another, tip and tumble off the card; then "almost"
-const PERFECT_LOOSE = 36; // the e starts to wobble
-const PERFECT_DROP = [62, 68, 74]; // each letter lets go
-const PerfectEnd: React.FC = () => {
+// the party's end card (Scott, 23 Nov: in place of "Perfect night, almost", "something like from all of us to you
+// merry christmas here's to next year. something simple and straightforward"): two lines, then the third a beat later
+const PartyEnd: React.FC = () => {
   const frame = useCurrentFrame();
   const look = React.useContext(LookCtx);
   const p = page(frame);
   const line = progress(frame, FLIP + 4, 18);
-  const almost = progress(frame, 96, 12); // only once the letters have gone
+  const next = progress(frame, FLIP + 40, 16);
   const wide = React.useContext(WideCtx);
-  const letter = (ch: string, i: number) => {
-    const l0 = PERFECT_LOOSE + i * 5;
-    const loose = progress(frame, l0, 8, (x) => x);
-    const wob = loose * (10 + 6 * Math.sin((frame - l0) * 0.7 + i) * Math.exp(-(frame - l0) / 30));
-    const t = Math.max(0, frame - PERFECT_DROP[i]);
-    const dy = 2.6 * t * t;
-    const spin = (i % 2 ? -1 : 1) * (wob + t * (9 + 3 * i));
-    return (
-      <span key={i} style={{ display: "inline-block", transformOrigin: "50% 100%",
-        transform: `translate(${t * (1.2 + i * 0.8)}px, ${dy}px) rotate(${spin}deg)`, opacity: dy > 1100 ? 0 : 1 }}>{ch}</span>
-    );
-  };
   return (
     <AbsoluteFill style={{ backgroundColor: look.bg }}>
       <Paper p={p} />
-      <div style={{ position: "absolute", top: wide ? 400 : 760, width: "100%", textAlign: "center", fontFamily: serif, fontSize: 104, lineHeight: 1.12,
-        color: colors.cream, opacity: line, transform: `translateY(${(1 - line) * 22}px)`, whiteSpace: "nowrap" }}>
-        Perf{["e", "c", "t"].map(letter)} night,
-        <br />
-        <span style={{ display: "inline-block", opacity: almost, transform: `translateY(${(1 - almost) * 18}px)` }}>almost</span>
+      <div style={{ position: "absolute", top: wide ? 330 : 700, width: "100%", textAlign: "center", fontFamily: serif, color: colors.cream }}>
+        <div style={{ fontSize: 104, lineHeight: 1.12, opacity: line, transform: `translateY(${(1 - line) * 22}px)` }}>
+          Merry Christmas
+          <br />
+          from all of us
+        </div>
+        <div style={{ fontSize: 64, marginTop: 44, opacity: next, transform: `translateY(${(1 - next) * 18}px)` }}>Here&rsquo;s to next year</div>
       </div>
       <Img src={staticFile("brand/cb-watermark.png")} style={{ position: "absolute", left: wide ? 1740 : 920, top: wide ? 900 : 1452, width: 100, height: 108 }} />
       <LiftShadow />
@@ -2238,6 +2229,17 @@ export const Breakfast = (f: number, p: number) => {
 
 const beat = 30;
 const FACES = ["red-antlers", "cream", "green-antlers", "sequin", "brown-antlers", "gingerbread", "tubes", "peace", "boppers", "lace", "thumbs", "santa-boppers"].map((n) => `${P}/p-${n}.jpg`);
+// Bianca's own shot (Scott, 23 Nov: "add biancas shot to the grid"), from her video at the table: a double tile in
+// the middle of the wall, the twelve round it, landing last
+const FACES_BIG = `${P}/p-red-top.jpg`;
+// the wall's slots: portrait 4 x 4 (270 x 480), wide 8 x 2 (240 x 540); the big tile takes the middle 2 x 2
+const faceSlots = (wide: boolean) => {
+  const cols = wide ? 8 : 4, rows = wide ? 2 : 4, w = wide ? 240 : 270, h = wide ? 540 : 480;
+  const bc = cols / 2 - 1, br = wide ? 0 : 1; // the big tile's top left slot
+  const small: [number, number, number, number][] = [];
+  for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) if (!(c >= bc && c <= bc + 1 && r >= br && r <= br + 1)) small.push([c * w, r * h, w, h]);
+  return { small, big: [bc * w, br * h, 2 * w, 2 * h] as [number, number, number, number] };
+};
 // the morning after (Scott: "breakfast the next morning ... then goodbyes and hit the road"): plain, no gag
 const Morning = (f: number, p: number) => {
   const sip = f >= 10 && f < 56 ? (1 - Math.cos(((f - 10) / 23) * Math.PI * 2)) / 2 : 0;
@@ -2330,9 +2332,14 @@ const PlainBed = (f: number, p: number, look: Look, xmas = false) => Bed(f, p, l
 const PARTY: { time: string; draw: (f: number, p: number, look: Look, xmas: boolean) => React.ReactNode; from: Pt; stills: Shot[] }[] = [
   { time: "Fri 20 Nov, 2:00pm", draw: Meeting, from: CHART_FROM, stills: [
     { src: `${P}/meeting-wide-a.jpg`, len: 1.5 * beat, split: true, pair: `${P}/meeting-wide-b.jpg` }] },
-  { time: "Fri 20 Nov, 3:00pm", draw: Quiz, from: [540, 1130], stills: [{ src: `${P}/meeting-smiles.jpg`, len: 2 * beat, split: true, halves: true }] },
+  // the quiz page runs straight on into the dice page, which shares its photo (Scott, 23 Nov: the four smiling at the
+  // table out, "combine with the other one")
+  { time: "Fri 20 Nov, 3:00pm", draw: Quiz, from: [540, 1130], stills: [] },
   { time: "Fri 20 Nov, 3:30pm", draw: Dice, from: DICE_FROM, stills: [{ src: `${P}/dice-game-a.jpg`, len: 2 * beat, split: true, pair: `${P}/dice-game-b.jpg` }] },
-  { time: "Fri 20 Nov, 4:00pm", draw: Steal, from: STEAL_FROM, stills: [{ src: `${P}/gifts-table-a.jpg`, len: 2 * beat, split: true, pair: `${P}/gifts-table-b.jpg` }, { src: `${P}/secret-santa-a.jpg`, len: 2 * beat, split: true, pair: `${P}/secret-santa-b.jpg` }, { src: `${P}/group-day.jpg`, len: 4 * beat, pos: "50% 56%", to: `${P}/group-evening.jpg`, toPos: "100% 55%", toZoom: 1.08, zoom: 1.2, toLabel: "Party time!" }] },
+  { time: "Fri 20 Nov, 4:00pm", draw: Steal, from: STEAL_FROM, stills: [
+    // the whole table unwrapping in place of the gift table photo (Scott, 23 Nov: "get rid of these two photos and use
+    // the group photo"), as its two exact halves, held the two beats the quiz photo gave up
+    { src: `${P}/gifts-unwrap.jpg`, len: 4 * beat, split: true, halves: true, wpos: "50% 50%" }, { src: `${P}/secret-santa-a.jpg`, len: 2 * beat, split: true, pair: `${P}/secret-santa-b.jpg` }, { src: `${P}/group-day.jpg`, len: 4 * beat, pos: "50% 56%", to: `${P}/group-evening.jpg`, toPos: "100% 55%", toZoom: 1.08, zoom: 1.2, toLabel: "Party time!" }] },
   // dinner first: the tables and the six courses on one page, so the slap can sit where it happened, right before
   // the actors appear (Scott: "the slap happens right before the actors appear")
   { time: "Fri 20 Nov, 8:00pm", draw: Cake, from: [340, 1075], stills: [
@@ -2351,7 +2358,10 @@ const PARTY: { time: string; draw: (f: number, p: number, look: Look, xmas: bool
 // the film opens on the hotel itself (Scott: "Hogarths Kidderminster shot should come first then the presentation and
 // tree gag"), which lifts away like a page onto the 2:00pm meeting
 // the front door as it was that afternoon (Scott: "it wasn't decorated in festive yet"); the aerials he sent are summer green
-const ENTRANCE: Shot = { src: "hotels/hogarths-stone-manor/entrance-door.jpg", len: 2.5 * beat, pos: "58% 50%", wpos: "50% 82%" };
+// the opener is the hotel's own Christmas card on a Santa hat at the place setting (Scott, 23 Nov: "get rid of the
+// exterior opener"); in portrait the crop keeps the house's middle and the whole MERRY CHRISTMAS FROM HOGARTHS STONE
+// MANOR banner, so the card names the hotel and the place label is off
+const ENTRANCE: Shot = { src: "hotels/hogarths-stone-manor/christmas-card.jpg", len: 2.5 * beat, pos: "43% 50%", wpos: "50% 50%" };
 // the evening opens on photos, before the dinner page (Scott: "waiter, group photos at tables, then cake, then
 // plates"): a run of its own that lifts away like a page onto the 8:00pm page
 const DINNER_IN: Shot[] = [
@@ -2395,7 +2405,7 @@ const PARTY_SCENES: Scene[] = (() => {
 const PARTY_END = PARTY_SCENES[PARTY_SCENES.length - 1].from + 60;
 export const STICK_PARTY_FRAMES = PARTY_END + 140;
 export const StickParty: React.FC<{ wide?: boolean }> = ({ wide }) => (
-  <StickFilm wide={wide} look="gold" xmas scenes={PARTY_SCENES} endAt={PARTY_END} frames={STICK_PARTY_FRAMES} end={["Perfect night,", "almost"]} endEl={<PerfectEnd />} musicAt={0} track={`${P}/christmas-fun-120.mp3`} sfx={`${P}/party-sfx.mp3`}
-    over={<Sequence from={3} durationInFrames={65} layout="none"><PlaceLabel place="KIDDERMINSTER" name="Hogarths Stone Manor" len={65} plain /></Sequence>} />
+  <StickFilm wide={wide} look="gold" xmas scenes={PARTY_SCENES} endAt={PARTY_END} frames={STICK_PARTY_FRAMES} end={["Merry Christmas", "from all of us"]} endEl={<PartyEnd />} musicAt={0} track={`${P}/christmas-fun-120.mp3`} sfx={`${P}/party-sfx.mp3`}
+/>
 );
 export const StickPartyWide: React.FC = () => <StickParty wide />;
