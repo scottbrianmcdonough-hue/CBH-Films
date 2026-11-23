@@ -2242,7 +2242,7 @@ const FACES = ["red-antlers", "cream", "green-antlers", "elf-bottle", "sequin", 
 // a few tiles framed by hand (Bianca, 23 Nov: "zoom Phill and Nin in and move Lou slightly lower to show her hat"):
 // pos is the photo's objectPosition, z an extra zoom about o
 const FACE_FRAME: Record<string, { pos?: string; z?: number; o?: string }> = {
-  [`${P}/p-phill.jpg`]: { z: 1.35, o: "42% 14%" },
+  [`${P}/p-phill.jpg`]: { pos: "50% 10%", z: 0.84 }, // already cropped tight to Scott's framing
   [`${P}/p-brown-antlers.jpg`]: { pos: "50% 18%", z: 1.4, o: "56% 10%" },
   [`${P}/p-lace.jpg`]: { pos: "50% 6%" },
 };
