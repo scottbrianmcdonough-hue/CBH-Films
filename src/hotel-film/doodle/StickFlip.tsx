@@ -839,8 +839,8 @@ const shotAt = (stills: Shot[], frame: number) => {
 // a page of the pad: the time at the top, the ground, a drawing; then the shot opens out of the point `from`
 const Gag: React.FC<{
   time: string; clip?: string; still?: string; pos?: string; from: Pt; stills?: Shot[];
-  draw: (f: number, p: number, look: Look, xmas: boolean) => React.ReactNode; ground?: [number, number];
-}> = ({ time, clip, still, pos, from, draw, ground = [60, 1020], stills }) => {
+  draw: (f: number, p: number, look: Look, xmas: boolean) => React.ReactNode; ground?: [number, number]; note?: string;
+}> = ({ time, clip, still, pos, from, draw, ground = [60, 1020], stills, note }) => {
   // the page sits under the last one for FLIP frames as that one lifts away, its drawing held on its first pose
   const frame = Math.max(0, useCurrentFrame() - FLIP);
   const look = React.useContext(LookCtx);
@@ -864,6 +864,12 @@ const Gag: React.FC<{
         </g>
         <clipPath id="write"><rect x={wide ? 100 : 70} y={wide ? 20 : 220} width={20 + 700 * write} height={110} /></clipPath>
         <g clipPath="url(#write)"><Scribble x={wide ? 120 : 90} y={wide ? 100 : 300} size={wide ? 54 : 64} o={0.95}>{time}</Scribble></g>
+        {note ? (
+          <>
+            <clipPath id="note"><rect x={wide ? 1140 : 70} y={wide ? 20 : 470} width={20 + 900 * progress(frame, 14, 16, (x) => x)} height={150} /></clipPath>
+            <g clipPath="url(#note)"><Scribble x={wide ? 1160 : 90} y={wide ? 104 : 580} size={wide ? 66 : 96} o={1}>{note}</Scribble></g>
+          </>
+        ) : null}
         {xmas ? (wide ? <Garland p={p} f={frame} look={look} x0={110} span={1700} y0={132} n={5} /> : <Garland p={p} f={frame} look={look} />) : null}
       </svg>
       {/* a run of photos comes in on a straight cut on the beat, no opening circle (Scott: "lose the circle in the
@@ -2335,11 +2341,11 @@ const PARTY: { time: string; draw: (f: number, p: number, look: Look, xmas: bool
   // the quiz page runs straight on into the dice page, which shares its photo (Scott, 23 Nov: the four smiling at the
   // table out, "combine with the other one")
   { time: "Fri 20 Nov, 3:00pm", draw: Quiz, from: [540, 1130], stills: [] },
-  { time: "Fri 20 Nov, 3:30pm", draw: Dice, from: DICE_FROM, stills: [{ src: `${P}/dice-game-a.jpg`, len: 2 * beat, split: true, pair: `${P}/dice-game-b.jpg` }] },
+  { time: "Fri 20 Nov, 3:30pm", draw: Dice, from: DICE_FROM, stills: [{ src: `${P}/dice-game-a.jpg`, len: 1.5 * beat, split: true, pair: `${P}/dice-game-b.jpg` }] },
   { time: "Fri 20 Nov, 4:00pm", draw: Steal, from: STEAL_FROM, stills: [
     // the whole table unwrapping in place of the gift table photo (Scott, 23 Nov: "get rid of these two photos and use
     // the group photo"), as its two exact halves, held the two beats the quiz photo gave up
-    { src: `${P}/gifts-unwrap.jpg`, len: 4 * beat, split: true, halves: true, wpos: "50% 50%" }, { src: `${P}/secret-santa-a.jpg`, len: 2 * beat, split: true, pair: `${P}/secret-santa-b.jpg` }, { src: `${P}/group-day.jpg`, len: 4 * beat, pos: "50% 56%", to: `${P}/group-evening.jpg`, toPos: "100% 55%", toZoom: 1.08, zoom: 1.2, toLabel: "Party time!" }] },
+    { src: `${P}/gifts-unwrap.jpg`, len: 3 * beat, split: true, halves: true, wpos: "50% 50%" }, { src: `${P}/secret-santa-a.jpg`, len: 2 * beat, split: true, pair: `${P}/secret-santa-b.jpg` }, { src: `${P}/group-day.jpg`, len: 4 * beat, pos: "50% 56%", to: `${P}/group-evening.jpg`, toPos: "100% 55%", toZoom: 1.08, zoom: 1.2, toLabel: "Party time!" }] },
   // dinner first: the tables and the six courses on one page, so the slap can sit where it happened, right before
   // the actors appear (Scott: "the slap happens right before the actors appear")
   { time: "Fri 20 Nov, 8:00pm", draw: Cake, from: [340, 1075], stills: [
@@ -2378,19 +2384,37 @@ const PhotoRun: React.FC<{ stills: Shot[] }> = ({ stills }) => {
   while (k < list.length - 1 && f >= a + list[k].len) { a += list[k].len; k++; }
   return <AbsoluteFill style={{ backgroundColor: "#000" }}><PartyShot key={k} s={list[k]} f={f - a} /></AbsoluteFill>;
 };
+// then Scott's own clips from the afternoon (23 Nov: "the video clip of the pan of the hotel front and the christmas
+// tree"): the front of the house panning round to the courtyard, and the lounge tree tilting up, each sped up to fit
+// its beats (front-pan.mp4 1.8x, lounge-tree.mp4 2x, cut from 20261120_131434 and _131918)
+const OPEN_CARD = 1.5 * beat, OPEN_PAN = 2 * beat, OPEN_TREE = 1.5 * beat;
 const Opening: React.FC = () => {
   const f = Math.max(0, useCurrentFrame() - FLIP);
-  return <AbsoluteFill style={{ backgroundColor: "#000" }}><PartyShot s={ENTRANCE} f={f} /></AbsoluteFill>;
+  const clip = (src: string, from: number, len: number) => (
+    <Sequence from={FLIP + from} durationInFrames={len} layout="none">
+      <OffthreadVideo src={staticFile(src)} muted style={{ position: "absolute", width: "100%", height: "100%", objectFit: "cover" }} />
+    </Sequence>
+  );
+  return (
+    <AbsoluteFill style={{ backgroundColor: "#000" }}>
+      {f < OPEN_CARD ? <PartyShot s={ENTRANCE} f={f} /> : null}
+      {clip("hotels/hogarths-stone-manor/front-pan.mp4", OPEN_CARD, OPEN_PAN)}
+      {clip("hotels/hogarths-stone-manor/lounge-tree.mp4", OPEN_CARD + OPEN_PAN, OPEN_TREE + 30)}
+    </AbsoluteFill>
+  );
 };
 const PARTY_SCENES: Scene[] = (() => {
   // held half a beat longer (Scott), the half beat taken from the meeting photo so nothing after it moves
-  const out: Scene[] = [{ from: 0, len: 2.5 * beat, el: <Opening /> }];
-  let at0 = 2.5 * beat;
+  const out: Scene[] = [{ from: 0, len: OPEN_CARD + OPEN_PAN + OPEN_TREE, el: <Opening /> }];
+  let at0 = OPEN_CARD + OPEN_PAN + OPEN_TREE;
   for (const s of PARTY) {
     if (/8:00pm/.test(s.time)) { const n = DINNER_IN.reduce((t, x) => t + x.len, 0); out.push({ from: at0, len: n, el: <PhotoRun stills={DINNER_IN} /> }); at0 += n; }
     const len = 60 + s.stills.reduce((a, x) => a + x.len, 0);
     const hats = /8:00pm|8:45pm|9:00pm|9:15pm/.test(s.time);
-    out.push({ from: at0, len, el: <HatCtx.Provider value={hats}><Gag time={s.time} from={s.from} draw={s.draw} stills={s.stills} /></HatCtx.Provider> });
+    // the slap is part of the Fawlty Towers dinner show, so the page says so (Scott, 23 Nov: "put in text Fawlty Towers
+    // so they know it is part of that show theme")
+    const note = /8:45pm/.test(s.time) ? "Fawlty Towers night" : undefined;
+    out.push({ from: at0, len, el: <HatCtx.Provider value={hats}><Gag time={s.time} from={s.from} draw={s.draw} stills={s.stills} note={note} /></HatCtx.Provider> });
     at0 += len;
   }
   // bed and the suite, breakfast at nine, then the goodbyes: a wave and off with his case
@@ -2403,7 +2427,7 @@ const PARTY_SCENES: Scene[] = (() => {
   return out;
 })();
 const PARTY_END = PARTY_SCENES[PARTY_SCENES.length - 1].from + 60;
-export const STICK_PARTY_FRAMES = PARTY_END + 140;
+export const STICK_PARTY_FRAMES = PARTY_END + 110; // the end card held a second less, for the opening's clips
 export const StickParty: React.FC<{ wide?: boolean }> = ({ wide }) => (
   <StickFilm wide={wide} look="gold" xmas scenes={PARTY_SCENES} endAt={PARTY_END} frames={STICK_PARTY_FRAMES} end={["Merry Christmas", "from all of us"]} endEl={<PartyEnd />} musicAt={0} track={`${P}/christmas-fun-120.mp3`} sfx={`${P}/party-sfx.mp3`}
 />
