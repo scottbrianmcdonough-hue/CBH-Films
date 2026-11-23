@@ -1449,6 +1449,8 @@ with no history and no renders:
   from the table 1 upload): seventeen equal tiles, portrait six rows of three (the last two centred, 360 x 320), wide rows of
   6, 6, 5 (320 x 360), Bianca in the middle of the third row. The wall held a beat longer (3.5 beats; Scott: "see all the pretty smiles"),
   the beat from the group by the tree (4 beats, the snap at 2); party-sfx.py SCENES[4..7] 840, 990, 1095, 1200, WAITER 720,
-  pop 660.
+  pop 660. Tiles framed by hand (Bianca: "zoom Phill and Nin in and move Lou slightly lower to show her hat"):
+  `FACE_FRAME` (pos, z, o per photo): Phill (tile 7) and Nin (tile 6, `p-brown-antlers`) zoomed with their antlers kept,
+  Louise (tile 15, `p-lace`) lower so her Santa hat shows.
   To confirm: the times on the pages are guesses.
 - `the-kingfisher`, `whittlebury-park-stay-dine` (+ `-story` cuts): done.

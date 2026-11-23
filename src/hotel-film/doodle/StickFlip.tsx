@@ -686,7 +686,7 @@ const PartyShot: React.FC<{ s: Shot; f: number }> = ({ s, f }) => {
           return (
             <div key={src} style={{ position: "absolute", left: x + 3, top: y + 3, width: w - 6, height: h - 6, overflow: "hidden",
               transform: `scale(${0.82 + 0.18 * (1 - (1 - a) ** 3)})` }}>
-              <Img src={staticFile(src)} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "50% 30%", transform: `scale(${1.25 + 0.04 * t})`, transformOrigin: "50% 35%" }} />
+              <Img src={staticFile(src)} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: FACE_FRAME[src]?.pos ?? "50% 30%", transform: `scale(${(FACE_FRAME[src]?.z ?? 1) * (1.25 + 0.04 * t)})`, transformOrigin: FACE_FRAME[src]?.o ?? "50% 35%" }} />
             </div>
           );
         })}
@@ -748,7 +748,7 @@ const WideShot: React.FC<{ s: Shot; f: number }> = ({ s, f }) => {
           return (
             <div key={src} style={{ position: "absolute", left: x + 3, top: y + 3, width: w - 6, height: h - 6, overflow: "hidden",
               transform: `scale(${0.82 + 0.18 * (1 - (1 - a) ** 3)})` }}>
-              <Img src={staticFile(src)} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "50% 30%", transform: `scale(${1.2 + 0.04 * t})`, transformOrigin: "50% 35%" }} />
+              <Img src={staticFile(src)} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: FACE_FRAME[src]?.pos ?? "50% 30%", transform: `scale(${(FACE_FRAME[src]?.z ?? 1) * (1.2 + 0.04 * t)})`, transformOrigin: FACE_FRAME[src]?.o ?? "50% 35%" }} />
             </div>
           );
         })}
@@ -2239,6 +2239,13 @@ const FACES = ["red-antlers", "cream", "green-antlers", "elf-bottle", "sequin", 
 // wall at the same size as the rest (Scott: "all even ... not like a centrefold"): thirteen equal tiles, portrait in
 // rows of 3, 2, 3, 2, 3 (the twos set between the threes), wide in rows of 7 and 6, each short row centred
 // Bianca in her candy cane headband, to match everyone else (Bianca, 23 Nov; was p-red-top.jpg, her video still)
+// a few tiles framed by hand (Bianca, 23 Nov: "zoom Phill and Nin in and move Lou slightly lower to show her hat"):
+// pos is the photo's objectPosition, z an extra zoom about o
+const FACE_FRAME: Record<string, { pos?: string; z?: number; o?: string }> = {
+  [`${P}/p-phill.jpg`]: { z: 1.35, o: "42% 14%" },
+  [`${P}/p-brown-antlers.jpg`]: { pos: "50% 18%", z: 1.4, o: "56% 10%" },
+  [`${P}/p-lace.jpg`]: { pos: "50% 6%" },
+};
 const FACES_BIG = `${P}/p-candy-canes.jpg`;
 const faceSlots = (wide: boolean) => {
   // seventeen equal tiles: portrait six rows of three, the last two centred; wide rows of 6, 6 and 5
