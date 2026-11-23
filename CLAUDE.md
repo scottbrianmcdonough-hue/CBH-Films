@@ -1444,5 +1444,7 @@ with no history and no renders:
   Party time snap later); party-sfx.py SCENES[2] 315, SCENES[3] 420, no shutter on the quiz page, pop 675.
   Bianca's table (`table-3-group.jpg`, her in red at the back) in place of the table 2 shot in the dinner run (Scott:
   "swap it in for one of the weaker shots"), as two hand-framed crops (`-a`/`-b`); same length.
+  Bianca's wall tile is now her candy cane headband photo (`p-candy-canes.jpg`, Bianca: "to match everyone else");
+  she also noted Phill, Hayley, Catherine and Liz are missing from the wall (17 people): Scott is finding their photos.
   To confirm: the times on the pages are guesses.
 - `the-kingfisher`, `whittlebury-park-stay-dine` (+ `-story` cuts): done.

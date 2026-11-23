@@ -2236,7 +2236,8 @@ const FACES = ["red-antlers", "cream", "green-antlers", "sequin", "brown-antlers
 // Bianca's own shot (Scott, 23 Nov: "add biancas shot to the grid"), from her video at the table, in the middle of the
 // wall at the same size as the rest (Scott: "all even ... not like a centrefold"): thirteen equal tiles, portrait in
 // rows of 3, 2, 3, 2, 3 (the twos set between the threes), wide in rows of 7 and 6, each short row centred
-const FACES_BIG = `${P}/p-red-top.jpg`;
+// Bianca in her candy cane headband, to match everyone else (Bianca, 23 Nov; was p-red-top.jpg, her video still)
+const FACES_BIG = `${P}/p-candy-canes.jpg`;
 const faceSlots = (wide: boolean) => {
   const rows = wide ? [7, 6] : [3, 2, 3, 2, 3];
   const w = wide ? 1920 / 7 : 360, h = wide ? 540 : 384, W = wide ? 1920 : 1080;
