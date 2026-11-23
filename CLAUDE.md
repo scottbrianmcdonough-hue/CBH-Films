@@ -1397,6 +1397,9 @@ with no history and no renders:
   splices, -15.0 LUFS, no black frames, cover remade; end card stays "almost" (Scott asked almost or nearly).
   The faces wall's tiles land at full brightness (a reviewer read a tile caught mid fade as a dim one): scale pop
   only, no opacity ramp, both cuts; spliced (frames 1330-1412).
-  To confirm: the times on the pages are guesses; where it is going (it has the reel end card, no TikTok text);
-  everyone shown is happy to be posted; a festive track would suit it better than the Rowton reel's.
+  Bianca (23 Nov): "love the idea, well done"; she is sending a few photos to swap; the end line must change (the
+  Fawlty Towers pun won't land with people who don't know the show; not "Same again next year?" either, Scott: it
+  won't be); options offered: Nearly went to plan, Perfect night almost (the drop gag on "ect"), What a night,
+  Thank you Stone Manor. Going out on CBH's LinkedIn (16:9) and CBH's Instagram and Facebook (9:16).
+  To confirm: the times on the pages are guesses.
 - `the-kingfisher`, `whittlebury-park-stay-dine` (+ `-story` cuts): done.
