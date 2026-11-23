@@ -2232,20 +2232,23 @@ export const Breakfast = (f: number, p: number) => {
 };
 
 const beat = 30;
-const FACES = ["red-antlers", "cream", "green-antlers", "sequin", "brown-antlers", "gingerbread", "tubes", "peace", "boppers", "lace", "thumbs", "santa-boppers"].map((n) => `${P}/p-${n}.jpg`);
+// Phill, Hayley, Catherine and Liz added (Bianca, 23 Nov: "missing from the grid", "fit all 17 people in"): Phill cropped
+// from the table 1 photo, the other three their own portraits; spread so no two headbands of a kind sit together
+const FACES = ["red-antlers", "cream", "green-antlers", "elf-bottle", "sequin", "brown-antlers", "phill", "gingerbread", "blue-antlers", "tubes", "peace", "elf-hat", "boppers", "lace", "thumbs", "santa-boppers"].map((n) => `${P}/p-${n}.jpg`);
 // Bianca's own shot (Scott, 23 Nov: "add biancas shot to the grid"), from her video at the table, in the middle of the
 // wall at the same size as the rest (Scott: "all even ... not like a centrefold"): thirteen equal tiles, portrait in
 // rows of 3, 2, 3, 2, 3 (the twos set between the threes), wide in rows of 7 and 6, each short row centred
 // Bianca in her candy cane headband, to match everyone else (Bianca, 23 Nov; was p-red-top.jpg, her video still)
 const FACES_BIG = `${P}/p-candy-canes.jpg`;
 const faceSlots = (wide: boolean) => {
-  const rows = wide ? [7, 6] : [3, 2, 3, 2, 3];
-  const w = wide ? 1920 / 7 : 360, h = wide ? 540 : 384, W = wide ? 1920 : 1080;
+  // seventeen equal tiles: portrait six rows of three, the last two centred; wide rows of 6, 6 and 5
+  const rows = wide ? [6, 6, 5] : [3, 3, 3, 3, 3, 2];
+  const w = wide ? 320 : 360, h = wide ? 360 : 320, W = wide ? 1920 : 1080;
   const out: [number, number, number, number][] = [];
   rows.forEach((n, r) => { for (let c = 0; c < n; c++) out.push([(W - n * w) / 2 + c * w, r * h, w, h]); });
   return out;
 };
-const wallFaces = (faces: string[]) => [...faces.slice(0, 6), FACES_BIG, ...faces.slice(6)];
+const wallFaces = (faces: string[]) => [...faces.slice(0, 7), FACES_BIG, ...faces.slice(7)]; // Bianca in the middle of the third row
 // the morning after (Scott: "breakfast the next morning ... then goodbyes and hit the road"): plain, no gag
 const Morning = (f: number, p: number) => {
   const sip = f >= 10 && f < 56 ? (1 - Math.cos(((f - 10) / 23) * Math.PI * 2)) / 2 : 0;

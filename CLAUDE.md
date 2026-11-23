@@ -1445,6 +1445,8 @@ with no history and no renders:
   Bianca's table (`table-3-group.jpg`, her in red at the back) in place of the table 2 shot in the dinner run (Scott:
   "swap it in for one of the weaker shots"), as two hand-framed crops (`-a`/`-b`); same length.
   Bianca's wall tile is now her candy cane headband photo (`p-candy-canes.jpg`, Bianca: "to match everyone else");
-  she also noted Phill, Hayley, Catherine and Liz are missing from the wall (17 people): Scott is finding their photos.
+  she also noted Phill, Hayley, Catherine and Liz are missing from the wall (17 people): now in (`p-elf-bottle`, `p-elf-hat`, `p-blue-antlers`, and `p-phill` cropped
+  from the table 1 upload): seventeen equal tiles, portrait six rows of three (the last two centred, 360 x 320), wide rows of
+  6, 6, 5 (320 x 360), Bianca in the middle of the third row.
   To confirm: the times on the pages are guesses.
 - `the-kingfisher`, `whittlebury-park-stay-dine` (+ `-story` cuts): done.
