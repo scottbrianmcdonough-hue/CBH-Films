@@ -1439,5 +1439,8 @@ with no history and no renders:
   The table photo (`secret-santa-a/-b`) moved under the 3pm quiz page so drawings and photos alternate (Scott: the
   unwrapping and it were "back to back ... animation pic animation pic"); same length; party-sfx.py SCENES[2] 375,
   SCENES[3] 480, a shutter on every page again. Full renders of both cuts.
+  Then that table photo out altogether (Scott: "too many photos in the beginning of the group": four shots of the
+  same black table in 20s): the quiz page has no photo again, the unwrapping 4 beats, the group by the tree 5 (the
+  Party time snap later); party-sfx.py SCENES[2] 315, SCENES[3] 420, no shutter on the quiz page, pop 675.
   To confirm: the times on the pages are guesses.
 - `the-kingfisher`, `whittlebury-park-stay-dine` (+ `-story` cuts): done.
