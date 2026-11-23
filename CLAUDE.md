@@ -1424,8 +1424,7 @@ with no history and no renders:
   (`hogarths-stone-manor/christmas-card.jpg`, no place label: the card names the hotel), in place of the front door; the
   3pm quiz photo (the four smiling) is out, the quiz page running straight into the dice page; the gift table photos
   are out for the whole table unwrapping (`gifts-unwrap.jpg`, exact halves, 4 beats), so the length holds; Bianca's own
-  shot (`p-red-top.jpg`, cropped from her video still) is a double tile in the middle of the faces wall (portrait 4 x 4,
-  wide 8 x 2, `faceSlots`), landing last; end card now "Merry Christmas / from all of us", then "Here's to next year"
+  shot (`p-red-top.jpg`, cropped from her video still) in the faces wall (now an even tile, below); end card now "Merry Christmas / from all of us", then "Here's to next year"
   (`PartyEnd`; Scott: simple and straightforward), no letter drop or its ticks. SCENES in party-sfx.py
   [75, 180, 240, 360, ...]. Then Scott's clips arrived: the opening is the card (1.5 beats), the front pan round to the
   courtyard (`front-pan.mp4`, 20261120_131434 8.4-12s at 1.8x, 2 beats), the lounge tree tilting up (`lounge-tree.mp4`,
@@ -1433,5 +1432,9 @@ with no history and no renders:
   110 frames. "Fawlty Towers night" is written on the 8:45pm slap page (Gag `note`; Scott: "so they know it is part of
   that show theme"). Bianca's tile sharpened (2x, unsharp). party-sfx.py SCENES [150, 255, 315, 420, 870, 1020, 1125,
   1230, 1440, 1530], WAITER 750, LAST 1620, END 1680, pop 690. Full clean renders of both cuts, -15.0 LUFS.
+  Then the front pan out (Scott: "just go from christmas card to the christmas tree"): card 2.5 beats, tree 2.5 (same
+  length); the faces wall even (Scott: "all even ... not like a centrefold"): thirteen equal tiles, portrait rows of
+  3, 2, 3, 2, 3 (360 x 384), wide rows of 7 and 6 (274 x 540), short rows centred, Bianca in the middle of the middle
+  row (`faceSlots`, `wallFaces`). Spliced (frames 0-164 and 1300-1440).
   To confirm: the times on the pages are guesses.
 - `the-kingfisher`, `whittlebury-park-stay-dine` (+ `-story` cuts): done.

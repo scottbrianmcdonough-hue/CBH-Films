@@ -679,11 +679,10 @@ const PartyShot: React.FC<{ s: Shot; f: number }> = ({ s, f }) => {
   if (s.grid) {
     return (
       <AbsoluteFill style={{ backgroundColor: look.bg }}>
-        {[...s.grid, FACES_BIG].map((src, k) => {
+        {wallFaces(s.grid).map((src, k) => {
           const a = pop(f, k * 1.5, 5);
           if (a <= 0) return null;
-          const slots = faceSlots(false);
-          const [x, y, w, h] = k < slots.small.length ? slots.small[k] : slots.big;
+          const [x, y, w, h] = faceSlots(false)[k];
           return (
             <div key={src} style={{ position: "absolute", left: x + 3, top: y + 3, width: w - 6, height: h - 6, overflow: "hidden",
               transform: `scale(${0.82 + 0.18 * (1 - (1 - a) ** 3)})` }}>
@@ -742,11 +741,10 @@ const WideShot: React.FC<{ s: Shot; f: number }> = ({ s, f }) => {
   if (s.grid) {
     return (
       <AbsoluteFill style={{ backgroundColor: look.bg }}>
-        {[...s.grid, FACES_BIG].map((src, k) => {
+        {wallFaces(s.grid).map((src, k) => {
           const a = pop(f, k * 1.5, 5);
           if (a <= 0) return null;
-          const slots = faceSlots(true);
-          const [x, y, w, h] = k < slots.small.length ? slots.small[k] : slots.big;
+          const [x, y, w, h] = faceSlots(true)[k];
           return (
             <div key={src} style={{ position: "absolute", left: x + 3, top: y + 3, width: w - 6, height: h - 6, overflow: "hidden",
               transform: `scale(${0.82 + 0.18 * (1 - (1 - a) ** 3)})` }}>
@@ -2235,17 +2233,18 @@ export const Breakfast = (f: number, p: number) => {
 
 const beat = 30;
 const FACES = ["red-antlers", "cream", "green-antlers", "sequin", "brown-antlers", "gingerbread", "tubes", "peace", "boppers", "lace", "thumbs", "santa-boppers"].map((n) => `${P}/p-${n}.jpg`);
-// Bianca's own shot (Scott, 23 Nov: "add biancas shot to the grid"), from her video at the table: a double tile in
-// the middle of the wall, the twelve round it, landing last
+// Bianca's own shot (Scott, 23 Nov: "add biancas shot to the grid"), from her video at the table, in the middle of the
+// wall at the same size as the rest (Scott: "all even ... not like a centrefold"): thirteen equal tiles, portrait in
+// rows of 3, 2, 3, 2, 3 (the twos set between the threes), wide in rows of 7 and 6, each short row centred
 const FACES_BIG = `${P}/p-red-top.jpg`;
-// the wall's slots: portrait 4 x 4 (270 x 480), wide 8 x 2 (240 x 540); the big tile takes the middle 2 x 2
 const faceSlots = (wide: boolean) => {
-  const cols = wide ? 8 : 4, rows = wide ? 2 : 4, w = wide ? 240 : 270, h = wide ? 540 : 480;
-  const bc = cols / 2 - 1, br = wide ? 0 : 1; // the big tile's top left slot
-  const small: [number, number, number, number][] = [];
-  for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) if (!(c >= bc && c <= bc + 1 && r >= br && r <= br + 1)) small.push([c * w, r * h, w, h]);
-  return { small, big: [bc * w, br * h, 2 * w, 2 * h] as [number, number, number, number] };
+  const rows = wide ? [7, 6] : [3, 2, 3, 2, 3];
+  const w = wide ? 1920 / 7 : 360, h = wide ? 540 : 384, W = wide ? 1920 : 1080;
+  const out: [number, number, number, number][] = [];
+  rows.forEach((n, r) => { for (let c = 0; c < n; c++) out.push([(W - n * w) / 2 + c * w, r * h, w, h]); });
+  return out;
 };
+const wallFaces = (faces: string[]) => [...faces.slice(0, 6), FACES_BIG, ...faces.slice(6)];
 // the morning after (Scott: "breakfast the next morning ... then goodbyes and hit the road"): plain, no gag
 const Morning = (f: number, p: number) => {
   const sip = f >= 10 && f < 56 ? (1 - Math.cos(((f - 10) / 23) * Math.PI * 2)) / 2 : 0;
@@ -2387,7 +2386,9 @@ const PhotoRun: React.FC<{ stills: Shot[] }> = ({ stills }) => {
 // then Scott's own clips from the afternoon (23 Nov: "the video clip of the pan of the hotel front and the christmas
 // tree"): the front of the house panning round to the courtyard, and the lounge tree tilting up, each sped up to fit
 // its beats (front-pan.mp4 1.8x, lounge-tree.mp4 2x, cut from 20261120_131434 and _131918)
-const OPEN_CARD = 1.5 * beat, OPEN_PAN = 2 * beat, OPEN_TREE = 1.5 * beat;
+// the front pan is out (Scott, 23 Nov: "get rid of the pan shot and just go from christmas card to the christmas
+// tree"): its two beats split between the card and the tree, so nothing after the opening moves
+const OPEN_CARD = 2.5 * beat, OPEN_PAN = 0, OPEN_TREE = 2.5 * beat;
 const Opening: React.FC = () => {
   const f = Math.max(0, useCurrentFrame() - FLIP);
   const clip = (src: string, from: number, len: number) => (
@@ -2398,7 +2399,6 @@ const Opening: React.FC = () => {
   return (
     <AbsoluteFill style={{ backgroundColor: "#000" }}>
       {f < OPEN_CARD ? <PartyShot s={ENTRANCE} f={f} /> : null}
-      {clip("hotels/hogarths-stone-manor/front-pan.mp4", OPEN_CARD, OPEN_PAN)}
       {clip("hotels/hogarths-stone-manor/lounge-tree.mp4", OPEN_CARD + OPEN_PAN, OPEN_TREE + 30)}
     </AbsoluteFill>
   );
