@@ -1447,6 +1447,8 @@ with no history and no renders:
   Bianca's wall tile is now her candy cane headband photo (`p-candy-canes.jpg`, Bianca: "to match everyone else");
   she also noted Phill, Hayley, Catherine and Liz are missing from the wall (17 people): now in (`p-elf-bottle`, `p-elf-hat`, `p-blue-antlers`, and `p-phill` cropped
   from the table 1 upload): seventeen equal tiles, portrait six rows of three (the last two centred, 360 x 320), wide rows of
-  6, 6, 5 (320 x 360), Bianca in the middle of the third row.
+  6, 6, 5 (320 x 360), Bianca in the middle of the third row. The wall held a beat longer (3.5 beats; Scott: "see all the pretty smiles"),
+  the beat from the group by the tree (4 beats, the snap at 2); party-sfx.py SCENES[4..7] 840, 990, 1095, 1200, WAITER 720,
+  pop 660.
   To confirm: the times on the pages are guesses.
 - `the-kingfisher`, `whittlebury-park-stay-dine` (+ `-story` cuts): done.

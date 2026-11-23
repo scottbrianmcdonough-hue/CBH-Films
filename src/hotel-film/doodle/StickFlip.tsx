@@ -2353,7 +2353,7 @@ const PARTY: { time: string; draw: (f: number, p: number, look: Look, xmas: bool
   { time: "Fri 20 Nov, 4:00pm", draw: Steal, from: STEAL_FROM, stills: [
     // the whole table unwrapping in place of the gift table photo (Scott, 23 Nov: "get rid of these two photos and use
     // the group photo"), as its two exact halves, held the two beats the quiz photo gave up
-    { src: `${P}/gifts-unwrap.jpg`, len: 4 * beat, split: true, halves: true, wpos: "50% 50%" }, { src: `${P}/group-day.jpg`, len: 5 * beat, pos: "50% 56%", to: `${P}/group-evening.jpg`, toPos: "100% 55%", toZoom: 1.08, zoom: 1.2, toLabel: "Party time!" }] },
+    { src: `${P}/gifts-unwrap.jpg`, len: 4 * beat, split: true, halves: true, wpos: "50% 50%" }, { src: `${P}/group-day.jpg`, len: 4 * beat, pos: "50% 56%", to: `${P}/group-evening.jpg`, toPos: "100% 55%", toZoom: 1.08, zoom: 1.2, toLabel: "Party time!" }] },
   // dinner first: the tables and the six courses on one page, so the slap can sit where it happened, right before
   // the actors appear (Scott: "the slap happens right before the actors appear")
   { time: "Fri 20 Nov, 8:00pm", draw: Cake, from: [340, 1075], stills: [
@@ -2367,7 +2367,7 @@ const PARTY: { time: string; draw: (f: number, p: number, look: Look, xmas: bool
     { src: `${P}/comedian-2.jpg`, len: 1.5 * beat },
     // the cast with the team by the tree: taken after the show, so the last photo before the wall of faces (Scott)
     { src: `${P}/cast-tree-portrait.jpg`, len: beat, pos: "50% 40%" },
-    { src: "grid", len: 2.5 * beat, grid: FACES }] }, // the waving group photo is out (Scott: the same as the posed one)
+    { src: "grid", len: 3.5 * beat, grid: FACES }] }, // held a beat longer (Scott, 23 Nov: "see all the pretty smiles"), the beat from the group by the tree // the waving group photo is out (Scott: the same as the posed one)
 ];
 // the film opens on the hotel itself (Scott: "Hogarths Kidderminster shot should come first then the presentation and
 // tree gag"), which lifts away like a page onto the 2:00pm meeting
