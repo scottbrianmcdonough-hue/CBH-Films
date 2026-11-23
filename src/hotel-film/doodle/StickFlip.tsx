@@ -1150,28 +1150,36 @@ const EndLine: React.FC<{ lines: [string, string] }> = ({ lines }) => {
   );
 };
 
-// the party's end card (Scott: "A faultless night, almost", "make it funny like the u or something falls off the
-// faultless"): the line comes up, the u works loose, swings on one corner and drops off the card; then "almost"
-const FaultlessEnd: React.FC = () => {
+// the party's end card now (Bianca, 23 Nov: the Fawlty Towers pun "won't land" unless you know the show; Scott:
+// "Perfect night, almost and the ect can drop off or tumble off"): the line comes up, the e, c and t work loose
+// one after another, tip and tumble off the card; then "almost"
+const PERFECT_LOOSE = 36; // the e starts to wobble
+const PERFECT_DROP = [62, 68, 74]; // each letter lets go
+const PerfectEnd: React.FC = () => {
   const frame = useCurrentFrame();
   const look = React.useContext(LookCtx);
   const p = page(frame);
   const line = progress(frame, FLIP + 4, 18);
-  const loose = progress(frame, 36, 8, (x) => x);
-  const swing = loose * (22 + 12 * Math.sin((frame - 36) * 0.55) * Math.exp(-(frame - 36) / 40)); // hangs and swings for a second (Scott: "hold it longer")
-  const t = Math.max(0, frame - 68);
-  const dy = 2.6 * t * t;
-  const almost = progress(frame, 98, 12); // only once the u has gone
+  const almost = progress(frame, 96, 12); // only once the letters have gone
   const wide = React.useContext(WideCtx);
+  const letter = (ch: string, i: number) => {
+    const l0 = PERFECT_LOOSE + i * 5;
+    const loose = progress(frame, l0, 8, (x) => x);
+    const wob = loose * (10 + 6 * Math.sin((frame - l0) * 0.7 + i) * Math.exp(-(frame - l0) / 30));
+    const t = Math.max(0, frame - PERFECT_DROP[i]);
+    const dy = 2.6 * t * t;
+    const spin = (i % 2 ? -1 : 1) * (wob + t * (9 + 3 * i));
+    return (
+      <span key={i} style={{ display: "inline-block", transformOrigin: "50% 100%",
+        transform: `translate(${t * (1.2 + i * 0.8)}px, ${dy}px) rotate(${spin}deg)`, opacity: dy > 1100 ? 0 : 1 }}>{ch}</span>
+    );
+  };
   return (
     <AbsoluteFill style={{ backgroundColor: look.bg }}>
       <Paper p={p} />
       <div style={{ position: "absolute", top: wide ? 400 : 760, width: "100%", textAlign: "center", fontFamily: serif, fontSize: 104, lineHeight: 1.12,
         color: colors.cream, opacity: line, transform: `translateY(${(1 - line) * 22}px)`, whiteSpace: "nowrap" }}>
-        A fa
-        <span style={{ display: "inline-block", transformOrigin: "100% 12%",
-          transform: `translate(${t * 1.6}px, ${dy}px) rotate(${frame >= 68 ? swing + t * 7 : swing}deg)`, opacity: dy > 1100 ? 0 : 1 }}>u</span>
-        ltless night,
+        Perf{["e", "c", "t"].map(letter)} night,
         <br />
         <span style={{ display: "inline-block", opacity: almost, transform: `translateY(${(1 - almost) * 18}px)` }}>almost</span>
       </div>
@@ -2387,7 +2395,7 @@ const PARTY_SCENES: Scene[] = (() => {
 const PARTY_END = PARTY_SCENES[PARTY_SCENES.length - 1].from + 60;
 export const STICK_PARTY_FRAMES = PARTY_END + 140;
 export const StickParty: React.FC<{ wide?: boolean }> = ({ wide }) => (
-  <StickFilm wide={wide} look="gold" xmas scenes={PARTY_SCENES} endAt={PARTY_END} frames={STICK_PARTY_FRAMES} end={["A faultless night,", "almost"]} endEl={<FaultlessEnd />} musicAt={0} track={`${P}/christmas-fun-120.mp3`} sfx={`${P}/party-sfx.mp3`}
+  <StickFilm wide={wide} look="gold" xmas scenes={PARTY_SCENES} endAt={PARTY_END} frames={STICK_PARTY_FRAMES} end={["Perfect night,", "almost"]} endEl={<PerfectEnd />} musicAt={0} track={`${P}/christmas-fun-120.mp3`} sfx={`${P}/party-sfx.mp3`}
     over={<Sequence from={3} durationInFrames={65} layout="none"><PlaceLabel place="KIDDERMINSTER" name="Hogarths Stone Manor" len={65} plain /></Sequence>} />
 );
 export const StickPartyWide: React.FC = () => <StickParty wide />;

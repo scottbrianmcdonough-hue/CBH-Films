@@ -62,8 +62,9 @@ for k, (df, f0) in enumerate(((12, 1500), (14, 1750), (20, 1650), (22, 1900))):
 put(slap(), SCENES[5] + GAG + 24, -15)                             # the waiter's slap
 put(pop(), 660, -13)
 put(pat(), LAST + 8 + 30, -18, 0.2)                                 # he lands in the car seat                                                # "Party time!"
-put(pluck(), END + 36, -20)
-put(knock(900), END + 68, -19)                                      # and lets go                                         # the u comes loose
+put(pluck(), END + 36, -20)                                          # the e works loose
+for k, f in enumerate([62, 68, 74]):                                 # e, c, t let go (PERFECT_DROP)
+    put(knock(900 + 60 * k), END + f, -19 - 2 * k)
 
 # a small warm room
 d = np.zeros_like(out)

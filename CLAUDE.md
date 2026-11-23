@@ -1399,7 +1399,8 @@ with no history and no renders:
   only, no opacity ramp, both cuts; spliced (frames 1330-1412).
   Bianca (23 Nov): "love the idea, well done"; she is sending a few photos to swap; the end line must change (the
   Fawlty Towers pun won't land with people who don't know the show; not "Same again next year?" either, Scott: it
-  won't be); options offered: Nearly went to plan, Perfect night almost (the drop gag on "ect"), What a night,
-  Thank you Stone Manor. Going out on CBH's LinkedIn (16:9) and CBH's Instagram and Facebook (9:16).
+  won't be). Now "Perfect night, / almost" (Scott's pick: "the ect can drop off or tumble off"): `PerfectEnd`, the e, c
+  and t wobble loose one after another and tumble off the card, each with a soft tick (party-sfx.py), then "almost";
+  the gap stays after "Perf". `FaultlessEnd` is gone. Tail spliced (frames 1640-1789) with a fresh audio render. Going out on CBH's LinkedIn (16:9) and CBH's Instagram and Facebook (9:16).
   To confirm: the times on the pages are guesses.
 - `the-kingfisher`, `whittlebury-park-stay-dine` (+ `-story` cuts): done.
