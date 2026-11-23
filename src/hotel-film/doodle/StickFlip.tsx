@@ -2377,7 +2377,9 @@ const ENTRANCE: Shot = { src: "hotels/hogarths-stone-manor/christmas-card.jpg", 
 const DINNER_IN: Shot[] = [
   { src: `${SM}/waiter-tray.jpg`, len: beat, pos: "16% 50%", wpos: "50% 72%" },
   { src: `${P}/table-1-group-a.jpg`, len: 1.5 * beat, split: true, pair: `${P}/table-1-group-b.jpg` },
-  { src: `${P}/table-2-group-a.jpg`, len: 1.5 * beat, split: true, pair: `${P}/table-2-group-b.jpg` },
+  // Bianca's table (in red at the back) in place of the table 2 shot, which had the same faces and a half turned back
+  // (Scott, 23 Nov: "swap it in for one of the weaker shots"); crops: the lace, blue and red three, then the rest
+  { src: `${P}/table-3-group-a.jpg`, len: 1.5 * beat, split: true, pair: `${P}/table-3-group-b.jpg` },
 ];
 const PhotoRun: React.FC<{ stills: Shot[] }> = ({ stills }) => {
   const f = Math.max(0, useCurrentFrame() - FLIP);
