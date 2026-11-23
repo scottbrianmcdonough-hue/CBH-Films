@@ -1281,6 +1281,10 @@ with no history and no renders:
   and `save-cosy-winter-tiktok` (Gisborough, Rowton, Ruthin fireside, Low Wood Bay snow and quartet, Kingfisher;
   "who's coming with you?"; not Ruthin's castle clip: summer). Renders come out hot, -8 dB after: -15.1 LUFS. Ticket
   `out/save-for-later-tiktok-ticket.txt`. More lists = more specs (waterfront, country house, dog friendly) as footage allows.
+  Notes app version (Scott: "notepad"; `cuts/NotesList.tsx`, same `SaveSpec`s and track, 15.8s): a dark phone note over the
+  current hotel's footage, blurred; each hotel a checklist line typed in, opening on the next beat to the full frame (4
+  beats, label), shrinking back on its last beat as the box ticks gold; hook from frame one held over the first hotel.
+  `notes-spa-weekends-tiktok`, `notes-cosy-winter-tiktok`, -15.1 LUFS.
 - `cbh-christmas-party` (`StickParty` in `doodle/StickFlip.tsx`; Scott, 21 Nov, with ~60 phone photos of the team's own
   party at Hogarths Stone Manor, Fri 20 Nov: "Fawlty Towers dinner party theme. Business meeting, dice games, secret
   santa, dinner and comedy, then sleep and breakfast", "under a minute", then "a lot more of the photos, rapid cuts,

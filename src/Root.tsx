@@ -116,6 +116,7 @@ import { FIF_FRAMES, FrameInFrame } from "./hotel-film/cuts/FrameInFrame";
 import { ThisOrThat, TOT_FRAMES } from "./hotel-film/cuts/ThisOrThat";
 import { RAMSIDE_TT_FRAMES, RamsideTikTok } from "./hotel-film/cuts/RamsideTikTok";
 import { cosyList, SaveList, saveFrames, spaList } from "./hotel-film/cuts/SaveList";
+import { NotesList, notesFrames } from "./hotel-film/cuts/NotesList";
 import { FPS, HEIGHT, WIDTH } from "./hotel-film/types";
 import { CraftFilm } from "./hotel-film/craft/CraftFilm";
 import { RewindFilm } from "./hotel-film/rewind/RewindFilm";
@@ -416,6 +417,8 @@ export const RemotionRoot: React.FC = () => {
       <Composition id="ramside-treehouses-tiktok" component={RamsideTikTok} durationInFrames={RAMSIDE_TT_FRAMES} fps={FPS} width={WIDTH} height={HEIGHT} />
       <Composition id="save-spa-weekends-tiktok" component={SaveList} defaultProps={{ spec: spaList }} durationInFrames={saveFrames(spaList)} fps={FPS} width={WIDTH} height={HEIGHT} />
       <Composition id="save-cosy-winter-tiktok" component={SaveList} defaultProps={{ spec: cosyList }} durationInFrames={saveFrames(cosyList)} fps={FPS} width={WIDTH} height={HEIGHT} />
+      <Composition id="notes-spa-weekends-tiktok" component={NotesList} defaultProps={{ spec: spaList }} durationInFrames={notesFrames(spaList)} fps={FPS} width={WIDTH} height={HEIGHT} />
+      <Composition id="notes-cosy-winter-tiktok" component={NotesList} defaultProps={{ spec: cosyList }} durationInFrames={notesFrames(cosyList)} fps={FPS} width={WIDTH} height={HEIGHT} />
       <Composition id="cbh-camera-roll-tiktok" component={CameraRoll} durationInFrames={ROLL_FRAMES} fps={FPS} width={WIDTH} height={HEIGHT} />
       <Composition id="cbh-camera-roll-christmas-tiktok" component={CameraRoll} defaultProps={{ spec: christmasRoll }} durationInFrames={ROLL_FRAMES} fps={FPS} width={WIDTH} height={HEIGHT} />
       <Composition id="cbh-camera-roll-north-west-tiktok" component={CameraRoll} defaultProps={{ spec: northWestRoll }} durationInFrames={ROLL_FRAMES} fps={FPS} width={WIDTH} height={HEIGHT} />
