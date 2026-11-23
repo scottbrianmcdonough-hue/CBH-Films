@@ -1273,6 +1273,14 @@ with no history and no renders:
   every Story cut, so `out/autumn-leaves-story.mp4`, the gold one, is from before it), `autumn-leaves-story-plain` (the five hotels only, 14.0s) and `autumn-leaves-story-bare` (the reveal, the
   gold CB with no wordmark or shimmer; LeafPile `bare`). Advice given: too many logo endings this week (leaves Sun, map
   reveal Mon, firework Thu): move the map reveal later in November, a hotel post Monday.
+- Save for later lists (Scott, 23 Nov: "start making reels like save for later"; `cuts/SaveList.tsx`, a `SaveSpec` per list,
+  9:16, 15.8s): hotels from one CBH collection on hard cuts to Event Music (152 BPM, steady, from 6.27s), real footage only,
+  house label per hotel, a gold bookmark popping in the corner on each hotel's last beat with a count (1/5 ...), then the
+  saved collection as a grid of the clips playing (TikTok Favourites style) under the closing question; hook on frame one
+  over footage. `save-spa-weekends-tiktok` (Rowton, Rutland Hall, Low Wood Bay, Fairlawns, Ruthin; "who are you taking?")
+  and `save-cosy-winter-tiktok` (Gisborough, Rowton, Ruthin fireside, Low Wood Bay snow and quartet, Kingfisher;
+  "who's coming with you?"; not Ruthin's castle clip: summer). Renders come out hot, -8 dB after: -15.1 LUFS. Ticket
+  `out/save-for-later-tiktok-ticket.txt`. More lists = more specs (waterfront, country house, dog friendly) as footage allows.
 - `cbh-christmas-party` (`StickParty` in `doodle/StickFlip.tsx`; Scott, 21 Nov, with ~60 phone photos of the team's own
   party at Hogarths Stone Manor, Fri 20 Nov: "Fawlty Towers dinner party theme. Business meeting, dice games, secret
   santa, dinner and comedy, then sleep and breakfast", "under a minute", then "a lot more of the photos, rapid cuts,
