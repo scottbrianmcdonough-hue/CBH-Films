@@ -1154,6 +1154,12 @@ with no history and no renders:
   theme (spa, waterside, country house), seasonal moments from member footage, TikTok only animation and photo
   stories. Festive stays lead UK hotel search now. Posted so far (views, 19 Nov): North West camera roll 376, Starry
   Night Surrey 335, Ramside treehouses 265, The Mount wall 192.
+- TikTok plan updated 23 Nov (Scott sent a generic TikTok strategy deck, "adapt to our plan"): lead, Who we're for
+  (planners 25-34, treat seekers 35-54, dreamers 18-24; check against TikTok Studio), pillars with a share of posts
+  (lists and tips 40%, POV and food 30%, stories and behind the scenes 20%, animation 10%), 4 to 5 posts a week
+  (weekdays 8 PM, weekends 12-3 PM), Lives after 1,000 followers, paid in three steps (Spark Ads, retargeting,
+  conversion later), a January to June roadmap, KPI table (watch through 60%, engagement 1.3% -> 3%, profile views
+  5.4 -> 10 per 1K views).
 - TikTok rulings (Scott, 19 Nov, after the plan): every unposted TikTok ends on a question in the video itself
   (this or that "which four / are you picking?", Christmas roll "where are you / spending yours?", frame within a
   frame "which room would / you stop in?", Starry Night Hythe "which hotel do / we paint next?", Ramside gig night
