@@ -15,3 +15,5 @@ Tanya (Hintlesham, 10 Nov) is happy to go ahead. Competition Tue 1 Dec to Thu 10
 - Tanya (10 Nov): back from leave; the prize is a family offer for next summer, June to September 2027. Dates the hotel
   can't take (Valentine's weekend, Mother's Day, a few weeks in January while it's closed) to follow by email; they
   go in the prize terms. T&Cs not yet sent to her. Bianca is copied on the thread.
+
+24 Nov: the source (`src/hotel-film/globe/SnowGlobe.tsx`, the 4 Nov WIN version from my-video) and its assets brought into this repo and registered here; WIN lost its gold underline (Scott: no gold underlines). Render with `--gl=swangle`.

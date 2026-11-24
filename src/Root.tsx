@@ -208,6 +208,7 @@ import { FRIDAY13_FRAMES, RuthinFriday13 } from "./hotel-film/stings/RuthinFrida
 import { CLEAR_SKIES_ART_FRAMES, ClearSkiesArt } from "./hotel-film/stings/ClearSkiesArt";
 import { GIFT_TEMPERATURE_FRAMES, GiftTemperature } from "./hotel-film/stings/GiftTemperature";
 import { NAMES_CB_FRAMES, NamesCB } from "./hotel-film/stings/NamesCB";
+import { GLOBE_FPS, GLOBE_FRAMES, SnowGlobe } from "./hotel-film/globe/SnowGlobe";
 import { LIT_WINDOWS_FRAMES, LitWindows } from "./hotel-film/stings/LitWindows";
 import { LIFT_FRAMES, LiftCB } from "./hotel-film/stings/LiftCB";
 import { POSTCARDS_FRAMES, Postcards } from "./hotel-film/stings/Postcards";
@@ -254,6 +255,8 @@ export const RemotionRoot: React.FC = () => {
       <Composition id="cbh-lift" component={LiftCB} durationInFrames={LIFT_FRAMES} fps={30} width={1080} height={1920} />
       {/* the starry night (from my-video) and its second scene, the lit windows (15 Nov) */}
       <Composition id="cbh-clear-skies-art" component={ClearSkiesArt} durationInFrames={CLEAR_SKIES_ART_FRAMES} fps={30} width={1080} height={1920} />
+      {/* Hintlesham Hall social comp, the snow globe (from my-video; render with --gl=swangle). Runs 1 to 10 Dec. */}
+      <Composition id="hintlesham-snow-globe" component={SnowGlobe} durationInFrames={GLOBE_FRAMES} fps={GLOBE_FPS} width={1080} height={1920} />
       <Composition id="cbh-names-cb" component={NamesCB} durationInFrames={NAMES_CB_FRAMES} fps={30} width={1080} height={1920} />
       <Composition id="gift-temperature" component={GiftTemperature} durationInFrames={GIFT_TEMPERATURE_FRAMES} fps={30} width={1080} height={1920} />
       <Composition id="cbh-lit-windows" component={LitWindows} durationInFrames={LIT_WINDOWS_FRAMES} fps={30} width={1080} height={1920} />
