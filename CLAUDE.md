@@ -1088,7 +1088,8 @@ with no history and no renders:
 - `hatherley-christmas` (`festive-stay/HatherleyChristmas.tsx`, 24 Nov): Hatherley Manor's Christmas In The Country
   stay day by day, 30s, -15.1 LUFS, on Christmas Swing by AtlasAudio (Pixabay 621552, from beat 108, final chord under
   the end card). Hook: the tree's red bow with "Christmas, / minus the washing up" alone for the first two seconds; the
-  name (Hatherley Manor / Hotel & Spa / Cotswolds) top left over the lounge tree; end card "Spend Christmas / in the
+  house label (COTSWOLDS in gold caps, no underline, over Hatherley Manor / Hotel & Spa) top left over the lounge tree,
+  the bottom line two beats after it (staggered, Scott); end card "Spend Christmas / in the
   Cotswolds" with the white CB, no gold logo (Scott, after Rutland's "Take root"). Copy in the Rutland Hall
   reel's voice (two cream lines, the second italic, no eyebrow; Scott). Reel Bank clips in
   `public/hotels/hatherley-manor/reel-bank/`, cut and graded by `scripts/hatherley-festive-clips.py`. Final sent.

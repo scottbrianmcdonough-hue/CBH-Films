@@ -2,7 +2,7 @@ import { Audio } from "@remotion/media";
 import React from "react";
 import { AbsoluteFill, Img, interpolate, OffthreadVideo, Sequence, staticFile, useCurrentFrame } from "remotion";
 import { FilmFinish } from "../components/FilmFinish";
-import { colors, EASE_IN_OUT, EASE_OUT, progress, serif } from "../theme";
+import { colors, EASE_IN_OUT, EASE_OUT, progress, sans, serif } from "../theme";
 
 // Hatherley Manor Hotel & Spa, "Christmas In The Country" (Scott's brief, 24 Nov): the Christmas stay walked
 // through day by day. There is little festive footage, so the one festive clip (the lounge tree, panning to the
@@ -43,11 +43,12 @@ export const HATHERLEY_XMAS_FRAMES = 900; // 30s: the final chord at b(52) = 851
 // Christmas In The Country two night package (24 to 26 Dec): spa access on arrival before the festivities, mulled
 // wine and a festive sharing platter, a buffet dinner with musical entertainment; Christmas Day breakfast, spa,
 // a traditional three course Christmas lunch; every detail taken care of. The hotel is dog friendly.
-type Block = { at: number; to: number; l1: string; l2: string; hook?: boolean };
+type Block = { at: number; to: number; l1: string; l2: string; hook?: boolean; delay?: number };
 const BLOCKS: Block[] = [
   // the hook (Scott: "strong hook in the first two seconds"): on frame one, bigger, over the bow
   { at: 0, to: b(4), l1: "Christmas,", l2: "minus the washing up", hook: true },
-  { at: b(4), to: b(10), l1: "Arrive on", l2: "Christmas Eve" },
+  // the label arrives first, this line two beats later (Scott: "stagger the text so we don't compete for attention")
+  { at: b(4), to: b(10), l1: "Arrive on", l2: "Christmas Eve", delay: b(6) - b(4) },
   { at: b(10), to: b(16), l1: "Spa first,", l2: "festivities later" },
   { at: b(16), to: b(22), l1: "Mulled wine, then", l2: "dinner with music" },
   { at: b(22), to: b(28), l1: "Christmas morning,", l2: "slow and easy" },
@@ -75,7 +76,7 @@ const ShotLayer: React.FC<{ s: Shot; i: number }> = ({ s, i }) => {
 
 const TextBlock: React.FC<{ b: Block; first: boolean }> = ({ b, first }) => {
   const f = useCurrentFrame() + b.at; // global frame
-  const inP = first ? 1 : progress(f, b.at + H, 16, EASE_OUT);
+  const inP = first ? 1 : progress(f, b.at + H + (b.delay ?? 0), 16, EASE_OUT);
   const outP = progress(f, b.to - H - 10, 10, EASE_IN_OUT);
   const o = inP * (1 - outP);
   const y = (1 - inP) * 26 - outP * 10;
@@ -100,9 +101,10 @@ const NameLabel: React.FC = () => {
   return (
     <div style={{ position: "absolute", left: 80, top: 250, opacity: inP * (1 - outP), transform: `translateY(${(1 - inP) * 14}px)`,
       textShadow: "0 2px 22px rgba(0,0,0,0.6)", color: colors.cream }}>
-      <div style={{ fontFamily: serif, fontWeight: 400, fontSize: 50, lineHeight: 1.08 }}>Hatherley Manor</div>
-      <div style={{ fontFamily: serif, fontWeight: 400, fontSize: 50, lineHeight: 1.08 }}>Hotel &amp; Spa</div>
-      <div style={{ fontFamily: serif, fontStyle: "italic", fontWeight: 400, fontSize: 40, lineHeight: 1.2, opacity: 0.94 }}>Cotswolds</div>
+      {/* the house label (Scott): the place in gold caps on top, no underline (as on the recent films), the name in cream Cormorant */}
+      <div style={{ fontFamily: sans, fontWeight: 600, fontSize: 28, letterSpacing: "0.24em", color: colors.gold, marginBottom: 12 }}>COTSWOLDS</div>
+      <div style={{ fontFamily: serif, fontWeight: 400, fontSize: 64, lineHeight: 1.04 }}>Hatherley Manor</div>
+      <div style={{ fontFamily: serif, fontWeight: 400, fontSize: 64, lineHeight: 1.04 }}>Hotel &amp; Spa</div>
     </div>
   );
 };
