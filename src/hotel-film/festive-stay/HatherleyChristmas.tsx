@@ -22,23 +22,22 @@ const P = "hotels/hatherley-manor/festive";
 const XF = 12; // crossfade frames, centred on each cut
 const H = XF / 2;
 
+// Music: "Christmas Swing" by AtlasAudio (Pixabay 621552, Pixabay Content License), 110 BPM, a beat every 0.5457s
+// (librosa's beat tracker; analyze-beats.py read 112). Its final chord lands on beat 160 (88.4s), a downbeat, and rings
+// out to ~91.5s; the film starts on beat 108 (60.08s), so the end card arrives on the film's beat 48 and the final
+// chord on beat 52 under it, the last frames fading out. Every cut is on a beat: the hook 4 beats (the first two
+// seconds), then six beats a moment (two shots of three in the breakfast and dog moments), the bedroom eight.
+export const MUSIC = { src: "hotels/hatherley-manor/music/atlasaudio-christmas-swing-621552.mp3", from: 60.08, gain: 0.56 };
+const BEAT = 0.54575 * 30; // frames
+const b = (n: number) => Math.round(n * BEAT);
+
 type Shot = { src: string; at: number; len: number };
-// slot starts and lengths (frames); a 3s grid until the track is in, then the cuts move onto its beats
-export const SHOTS: Shot[] = [
-  { src: "tree-bow", at: 0, len: 66 }, // the hook: the tree's big red bow, the line on frame one
-  { src: "tree", at: 66, len: 90 },
-  { src: "spa", at: 156, len: 90 },
-  { src: "thyme", at: 246, len: 90 },
-  { src: "breakfast", at: 336, len: 45 },
-  { src: "egg", at: 381, len: 45 },
-  { src: "lunch", at: 426, len: 90 },
-  { src: "dog-table", at: 516, len: 45 },
-  { src: "dog-walk", at: 561, len: 45 },
-  { src: "fizz", at: 606, len: 90 },
-];
-const END_AT = 696;
-const END_FADE = 24; // the fizz settles into black
-export const HATHERLEY_XMAS_FRAMES = END_AT + 120;
+const CUTS = [0, 4, 10, 16, 22, 25, 28, 34, 37, 40, 48]; // beats; the last is the end card
+const SRCS = ["tree-bow", "tree", "spa", "thyme", "breakfast", "egg", "lunch", "dog-table", "dog-walk", "bedroom"];
+export const SHOTS: Shot[] = SRCS.map((src, i) => ({ src, at: b(CUTS[i]), len: b(CUTS[i + 1]) - b(CUTS[i]) }));
+const END_AT = b(48);
+const END_FADE = 24; // the bedroom settles into black
+export const HATHERLEY_XMAS_FRAMES = 900; // 30s: the final chord at b(52) = 851, faded by the end
 
 // Copy in the Rutland Hall reel's voice (Scott, 24 Nov: "make the copy better like the Rutland Hall reel"): two
 // short lines in cream Cormorant, the second in italic, no eyebrow; the day carried in the words. Facts from the
@@ -48,14 +47,15 @@ export const HATHERLEY_XMAS_FRAMES = END_AT + 120;
 type Block = { at: number; to: number; l1: string; l2: string; hook?: boolean };
 const BLOCKS: Block[] = [
   // the hook (Scott: "strong hook in the first two seconds"): on frame one, bigger, over the bow
-  { at: 0, to: 66, l1: "Christmas,", l2: "minus the washing up", hook: true },
-  { at: 66, to: 156, l1: "Arrive on", l2: "Christmas Eve" },
-  { at: 156, to: 246, l1: "Spa first,", l2: "festivities later" },
-  { at: 246, to: 336, l1: "Mulled wine, then", l2: "dinner with music" },
-  { at: 336, to: 426, l1: "Christmas morning,", l2: "slow and easy" },
-  { at: 426, to: 516, l1: "Three courses", l2: "of Christmas lunch" },
-  { at: 516, to: 606, l1: "The dog", l2: "comes too" },
-  { at: 606, to: 696, l1: "Two nights,", l2: "every detail taken care of" },
+  { at: 0, to: b(4), l1: "Christmas,", l2: "minus the washing up", hook: true },
+  { at: b(4), to: b(10), l1: "Arrive on", l2: "Christmas Eve" },
+  { at: b(10), to: b(16), l1: "Spa first,", l2: "festivities later" },
+  { at: b(16), to: b(22), l1: "Mulled wine, then", l2: "dinner with music" },
+  { at: b(22), to: b(28), l1: "Christmas morning,", l2: "slow and easy" },
+  { at: b(28), to: b(34), l1: "Three courses", l2: "of Christmas lunch" },
+  { at: b(34), to: b(40), l1: "The dog", l2: "comes too" },
+  // Scott: "two or three nights" (the two night and three night packages)
+  { at: b(40), to: b(48), l1: "Two nights,", l2: "or three" },
 ];
 
 const ShotLayer: React.FC<{ s: Shot; i: number }> = ({ s, i }) => {
@@ -92,7 +92,7 @@ const TextBlock: React.FC<{ b: Block; first: boolean }> = ({ b, first }) => {
 
 const EndCard: React.FC = () => {
   const f = useCurrentFrame();
-  // the fizz is still fading to black for the first END_FADE / 2 frames: the words come in once it has gone
+  // the bedroom is still fading to black for the first END_FADE / 2 frames: the words come in once it has gone
   const t = progress(f, 16, 24, EASE_OUT);
   const place = progress(f, 26, 24, EASE_OUT);
   return (
@@ -110,7 +110,7 @@ const EndCard: React.FC = () => {
   );
 };
 
-export const HatherleyChristmas: React.FC<{ music?: { src: string; from: number; gain: number } }> = ({ music }) => {
+export const HatherleyChristmas: React.FC<{ music?: { src: string; from: number; gain: number } | null }> = ({ music = MUSIC }) => {
   const frame = useCurrentFrame();
   const scrim = interpolate(frame, [END_AT - 10, END_AT + 4], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   const mark = interpolate(frame, [END_AT - END_FADE / 2, END_AT], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });

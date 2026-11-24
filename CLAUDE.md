@@ -1085,4 +1085,11 @@ with no history and no renders:
   every Story cut, so `out/autumn-leaves-story.mp4`, the gold one, is from before it), `autumn-leaves-story-plain` (the five hotels only, 14.0s) and `autumn-leaves-story-bare` (the reveal, the
   gold CB with no wordmark or shimmer; LeafPile `bare`). Advice given: too many logo endings this week (leaves Sun, map
   reveal Mon, firework Thu): move the map reveal later in November, a hotel post Monday.
+- `hatherley-christmas` (`festive-stay/HatherleyChristmas.tsx`, 24 Nov): Hatherley Manor's Christmas In The Country
+  stay day by day, 30s, -15.1 LUFS, on Christmas Swing by AtlasAudio (Pixabay 621552, from beat 108, final chord under
+  the end card). Hook: the tree's red bow with "Christmas, / minus the washing up" on frame one. Copy in the Rutland Hall
+  reel's voice (two cream lines, the second italic, no eyebrow; Scott). Reel Bank clips in
+  `public/hotels/hatherley-manor/reel-bank/`, cut and graded by `scripts/hatherley-festive-clips.py`. Final sent.
+- `cbh-year-2027`: Bianca's "Plan your year of micro breaks" reel for 1 Jan (a hotel a month), wall calendar mock-up;
+  waiting on hotels' content (Coombe Abbey, Jockey Club, Atholl Palace) and Scott's go.
 - `the-kingfisher`, `whittlebury-park-stay-dine` (+ `-story` cuts): done.

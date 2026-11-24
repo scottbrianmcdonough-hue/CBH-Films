@@ -23,19 +23,20 @@ PAD = 12  # frames beyond the slot: half a crossfade before and after, all insid
 # name: (clip, start seconds, frames on screen, speed). Speed < 1 slows with motion interpolation.
 CLIPS = {
     "tree-bow": ("festive-tree-lounge.mp4", 10.45, 66, 1.0),  # the hook: up the tree to its big red bow
-    "tree": ("festive-tree-lounge.mp4", 0.10, 90, 1.0),  # the tree, panning to the Christmas sofa
-    "spa": ("spa-day.mp4", 11.20, 90, 1.0),  # the hydro pool under its cascade (from behind)
-    "breakfast": ("stay-day-reel.mp4", 31.08, 45, 0.77),  # breakfast overhead
-    "egg": ("stay-day-reel.mp4", 35.68, 45, 0.77),  # toast into the egg
-    "lunch": ("roast-and-spa-360p.mp4", 12.20, 90, 1.0),  # roast plates (360p source)
-    "dog-table": ("dog-stay-reel.mp4", 31.86, 45, 0.55),  # the spaniel at the table
-    "dog-walk": ("dog-stay-reel.mp4", 10.13, 45, 0.45),  # the spaniel trotting up to camera
+    "tree": ("festive-tree-lounge.mp4", 0.10, 99, 1.0),  # the tree, panning to the Christmas sofa
+    "spa": ("spa-day.mp4", 11.20, 98, 1.0),  # the hydro pool under its cascade (from behind)
+    "breakfast": ("stay-day-reel.mp4", 31.08, 49, 0.73),  # breakfast overhead
+    "egg": ("stay-day-reel.mp4", 35.68, 49, 0.73),  # toast into the egg
+    "lunch": ("roast-and-spa-360p.mp4", 12.20, 99, 1.0),  # roast plates (360p source)
+    "dog-table": ("dog-stay-reel.mp4", 31.86, 49, 0.51),  # the spaniel at the table
+    "dog-walk": ("dog-stay-reel.mp4", 10.13, 49, 0.41),  # the spaniel trotting up to camera
     "fizz": ("spa-day.mp4", 2.75, 90, 1.0),  # fizz poured beside the cake
 }
 # name: (still, crop centre x, frames on screen)
 STILL_SHOTS = {
-    "lounge-bar": ("lounge-bar.jpg", 760, 90),  # the bar and the blue sofa
-    "thyme": ("thyme-restaurant.jpg", 1250, 90),  # the set tables under the wall light
+    "lounge-bar": ("lounge-bar.jpg", 760, 90),  # the bar and the blue sofa (not in the cut)
+    "bedroom": ("superior-spa-double.jpg", 1000, 150),  # Superior Spa Double: the last shot, fading to black
+    "thyme": ("thyme-restaurant.jpg", 1250, 98),  # the set tables under the wall light
 }
 
 # warm candlelit grade + highlight glow
