@@ -12,8 +12,8 @@ import { colors, EASE_IN_OUT, EASE_OUT, progress, sans, serif } from "../theme";
 // (the spa, dinner), Christmas morning (breakfast), Christmas lunch, the dog, Boxing Day (the fizz), end card.
 // Shots cut and graded by scripts/hatherley-festive-clips.py (warm candlelit grade, a glow from the highlights,
 // short Instagram cuts slowed with minterpolate; stills the same 1.00 -> 1.04 push, Pillow frame by frame).
-// One transition throughout: a soft crossfade centred on each cut. Text: one calm block bottom left, a gold Open
-// Sans eyebrow over a cream Cormorant headline on a soft scrim that stays put (no underline, no boxes).
+// One transition throughout: a soft crossfade centred on each cut. Text: one calm block bottom left (the Rutland Hall
+// reel's two lines, the second italic, see BLOCKS) on a soft scrim that stays put (no underline, no boxes).
 // Facts only from the CBH booking engine (Scott's brief): spa access, mulled wine and a festive sharing platter on
 // arrival, buffet dinner with musical entertainment (Christmas Eve); breakfast, spa time, a traditional three course
 // Christmas lunch (Christmas Day); a Gala Dinner and a disco (Boxing Day, the three night package); dog friendly.
@@ -25,31 +25,37 @@ const H = XF / 2;
 type Shot = { src: string; at: number; len: number };
 // slot starts and lengths (frames); a 3s grid until the track is in, then the cuts move onto its beats
 export const SHOTS: Shot[] = [
-  { src: "tree", at: 0, len: 120 },
-  { src: "lounge-bar", at: 120, len: 90 },
-  { src: "spa", at: 210, len: 90 },
-  { src: "thyme", at: 300, len: 90 },
-  { src: "breakfast", at: 390, len: 45 },
-  { src: "egg", at: 435, len: 45 },
-  { src: "lunch", at: 480, len: 90 },
-  { src: "dog-table", at: 570, len: 45 },
-  { src: "dog-walk", at: 615, len: 45 },
-  { src: "fizz", at: 660, len: 90 },
+  { src: "tree-bow", at: 0, len: 66 }, // the hook: the tree's big red bow, the line on frame one
+  { src: "tree", at: 66, len: 90 },
+  { src: "spa", at: 156, len: 90 },
+  { src: "thyme", at: 246, len: 90 },
+  { src: "breakfast", at: 336, len: 45 },
+  { src: "egg", at: 381, len: 45 },
+  { src: "lunch", at: 426, len: 90 },
+  { src: "dog-table", at: 516, len: 45 },
+  { src: "dog-walk", at: 561, len: 45 },
+  { src: "fizz", at: 606, len: 90 },
 ];
-const END_AT = 750;
+const END_AT = 696;
 const END_FADE = 24; // the fizz settles into black
 export const HATHERLEY_XMAS_FRAMES = END_AT + 120;
 
-type Block = { at: number; to: number; eyebrow: string; headline: string };
+// Copy in the Rutland Hall reel's voice (Scott, 24 Nov: "make the copy better like the Rutland Hall reel"): two
+// short lines in cream Cormorant, the second in italic, no eyebrow; the day carried in the words. Facts from the
+// Christmas In The Country two night package (24 to 26 Dec): spa access on arrival before the festivities, mulled
+// wine and a festive sharing platter, a buffet dinner with musical entertainment; Christmas Day breakfast, spa,
+// a traditional three course Christmas lunch; every detail taken care of. The hotel is dog friendly.
+type Block = { at: number; to: number; l1: string; l2: string; hook?: boolean };
 const BLOCKS: Block[] = [
-  { at: 0, to: 120, eyebrow: "CHRISTMAS IN THE COUNTRY", headline: "Christmas, all sorted" },
-  { at: 120, to: 210, eyebrow: "MULLED WINE ON ARRIVAL", headline: "And a festive sharing platter" },
-  { at: 210, to: 300, eyebrow: "CHRISTMAS EVE", headline: "Straight to the spa" },
-  { at: 300, to: 390, eyebrow: "CHRISTMAS EVE", headline: "Dinner, with music to follow" },
-  { at: 390, to: 480, eyebrow: "CHRISTMAS MORNING", headline: "Breakfast, then spa time" },
-  { at: 480, to: 570, eyebrow: "CHRISTMAS LUNCH, SORTED", headline: "Three courses, the traditional way" },
-  { at: 570, to: 660, eyebrow: "DOGS WELCOME", headline: "Nobody gets left at home" },
-  { at: 660, to: 750, eyebrow: "BOXING DAY", headline: "Gala Dinner and a disco" },
+  // the hook (Scott: "strong hook in the first two seconds"): on frame one, bigger, over the bow
+  { at: 0, to: 66, l1: "Christmas,", l2: "minus the washing up", hook: true },
+  { at: 66, to: 156, l1: "Arrive on", l2: "Christmas Eve" },
+  { at: 156, to: 246, l1: "Spa first,", l2: "festivities later" },
+  { at: 246, to: 336, l1: "Mulled wine, then", l2: "dinner with music" },
+  { at: 336, to: 426, l1: "Christmas morning,", l2: "slow and easy" },
+  { at: 426, to: 516, l1: "Three courses", l2: "of Christmas lunch" },
+  { at: 516, to: 606, l1: "The dog", l2: "comes too" },
+  { at: 606, to: 696, l1: "Two nights,", l2: "every detail taken care of" },
 ];
 
 const ShotLayer: React.FC<{ s: Shot; i: number }> = ({ s, i }) => {
@@ -76,10 +82,10 @@ const TextBlock: React.FC<{ b: Block; first: boolean }> = ({ b, first }) => {
   const y = (1 - inP) * 26 - outP * 10;
   return (
     <div style={{ position: "absolute", left: 80, right: 160, bottom: 470, opacity: o, transform: `translateY(${y}px)` }}>
-      <div style={{ fontFamily: sans, fontWeight: 600, fontSize: 30, letterSpacing: 5, color: colors.gold, marginBottom: 14,
-        textShadow: "0 1px 14px rgba(0,0,0,0.5)" }}>{b.eyebrow}</div>
-      <div style={{ fontFamily: serif, fontWeight: 400, fontSize: 80, lineHeight: 1.04, color: colors.cream,
-        textShadow: "0 2px 26px rgba(0,0,0,0.5)" }}>{b.headline}</div>
+      <div style={{ fontFamily: serif, fontWeight: 400, fontSize: b.hook ? 100 : 78, lineHeight: 1.04, color: colors.cream,
+        textShadow: "0 2px 26px rgba(0,0,0,0.55)" }}>{b.l1}</div>
+      <div style={{ fontFamily: serif, fontStyle: "italic", fontWeight: 400, fontSize: b.hook ? 76 : 60, lineHeight: 1.1, color: colors.cream,
+        opacity: 0.94, textShadow: "0 2px 26px rgba(0,0,0,0.55)" }}>{b.l2}</div>
     </div>
   );
 };
