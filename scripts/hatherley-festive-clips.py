@@ -37,8 +37,9 @@ STILL_SHOTS = {
     "lounge-bar": ("lounge-bar.jpg", 760, 90),  # the bar and the blue sofa (not in the cut)
     # the last shot, fading to black: the green panelled bedroom, framed on the red bench and gold cushions (Bianca: the
     # Superior Spa Double bed was untucked and creased; Scott: "it's red and green")
-    # framed further left (Scott: "crop the corner so it's not that sloppy look"): the duvet's flared foot corner out
-    "bedroom": ("green-panelled-bedroom.jpg", 1240, 150),
+    # framed further left (Scott: "crop the corner so it's not that sloppy look", "still has the sloppy loose end"): the
+    # crop stops at x 1408, short of the duvet's loose foot corner (~1450, right of the bench)
+    "bedroom": ("green-panelled-bedroom.jpg", 1120, 150),
     "thyme": ("thyme-restaurant.jpg", 1250, 98),  # the set tables under the wall light
 }
 
