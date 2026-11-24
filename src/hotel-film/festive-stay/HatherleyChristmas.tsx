@@ -1,9 +1,8 @@
 import { Audio } from "@remotion/media";
 import React from "react";
 import { AbsoluteFill, Img, interpolate, OffthreadVideo, Sequence, staticFile, useCurrentFrame } from "remotion";
-import { CBLogo } from "../components/CBLogo";
 import { FilmFinish } from "../components/FilmFinish";
-import { colors, EASE_IN_OUT, EASE_OUT, progress, sans, serif } from "../theme";
+import { colors, EASE_IN_OUT, EASE_OUT, progress, serif } from "../theme";
 
 // Hatherley Manor Hotel & Spa, "Christmas In The Country" (Scott's brief, 24 Nov): the Christmas stay walked
 // through day by day. There is little festive footage, so the one festive clip (the lounge tree, panning to the
@@ -90,21 +89,38 @@ const TextBlock: React.FC<{ b: Block; first: boolean }> = ({ b, first }) => {
   );
 };
 
+// The hotel named early, top left, as the Rutland Hall reel opens (Scott: "put Hatherley Manor Hotel & Spa
+// Cotswolds ... on top earlier in the video"), after the hook so the first two seconds are the hook's alone
+// (Scott): it rises as the lounge tree comes in and clears before the spa.
+const NameLabel: React.FC = () => {
+  const f = useCurrentFrame();
+  const f0 = f - b(4); // local to the lounge tree's slot
+  const inP = progress(f0, H + 2, 18, EASE_OUT);
+  const outP = progress(f0, b(10) - b(4) - H - 12, 12, EASE_IN_OUT);
+  return (
+    <div style={{ position: "absolute", left: 80, top: 250, opacity: inP * (1 - outP), transform: `translateY(${(1 - inP) * 14}px)`,
+      textShadow: "0 2px 22px rgba(0,0,0,0.6)", color: colors.cream }}>
+      <div style={{ fontFamily: serif, fontWeight: 400, fontSize: 50, lineHeight: 1.08 }}>Hatherley Manor</div>
+      <div style={{ fontFamily: serif, fontWeight: 400, fontSize: 50, lineHeight: 1.08 }}>Hotel &amp; Spa</div>
+      <div style={{ fontFamily: serif, fontStyle: "italic", fontWeight: 400, fontSize: 40, lineHeight: 1.2, opacity: 0.94 }}>Cotswolds</div>
+    </div>
+  );
+};
+
+// The end card (Scott: "a different end line like CTA like Rutland Hall was, Take root by Rutland Water", "lose the
+// gold shimmer logo"): one line in cream Cormorant, centred on black, its second half in italic, the white CB staying
+// in its corner.
 const EndCard: React.FC = () => {
   const f = useCurrentFrame();
   // the bedroom is still fading to black for the first END_FADE / 2 frames: the words come in once it has gone
-  const t = progress(f, 16, 24, EASE_OUT);
-  const place = progress(f, 26, 24, EASE_OUT);
+  const t = progress(f, 14, 24, EASE_OUT);
+  const t2 = progress(f, 22, 24, EASE_OUT);
   return (
     <AbsoluteFill>
-      <div style={{ position: "absolute", top: 640, width: "100%", textAlign: "center", opacity: t, transform: `translateY(${(1 - t) * 20}px)` }}>
-        <div style={{ fontFamily: serif, fontWeight: 400, fontSize: 92, lineHeight: 1.05, color: colors.cream }}>Hatherley Manor</div>
-        <div style={{ fontFamily: serif, fontWeight: 400, fontSize: 92, lineHeight: 1.05, color: colors.cream }}>Hotel &amp; Spa</div>
-      </div>
-      <div style={{ position: "absolute", top: 890, width: "100%", textAlign: "center", opacity: place, fontFamily: sans, fontWeight: 600,
-        fontSize: 28, letterSpacing: 7, color: colors.gold }}>COTSWOLDS</div>
-      <div style={{ position: "absolute", top: 1040, left: (1080 - 240) / 2 }}>
-        <CBLogo start={40} width={240} shimmerAt={84} cbOnly />
+      <div style={{ position: "absolute", top: 820, width: "100%", textAlign: "center", color: colors.cream }}>
+        <div style={{ fontFamily: serif, fontWeight: 400, fontSize: 96, lineHeight: 1.05, opacity: t, transform: `translateY(${(1 - t) * 20}px)` }}>Spend Christmas</div>
+        <div style={{ fontFamily: serif, fontStyle: "italic", fontWeight: 400, fontSize: 74, lineHeight: 1.25, opacity: 0.94 * t2,
+          transform: `translateY(${(1 - t2) * 20}px)` }}>in the Cotswolds</div>
       </div>
     </AbsoluteFill>
   );
@@ -113,7 +129,6 @@ const EndCard: React.FC = () => {
 export const HatherleyChristmas: React.FC<{ music?: { src: string; from: number; gain: number } | null }> = ({ music = MUSIC }) => {
   const frame = useCurrentFrame();
   const scrim = interpolate(frame, [END_AT - 10, END_AT + 4], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  const mark = interpolate(frame, [END_AT - END_FADE / 2, END_AT], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   const total = HATHERLEY_XMAS_FRAMES;
   return (
     <AbsoluteFill style={{ background: colors.black }}>
@@ -129,7 +144,8 @@ export const HatherleyChristmas: React.FC<{ music?: { src: string; from: number;
           <TextBlock b={b} first={i === 0} />
         </Sequence>
       ))}
-      <Img src={staticFile("brand/cb-watermark.png")} style={{ position: "absolute", left: 920, top: 1452, width: 100, height: 108, opacity: mark }} />
+      <Img src={staticFile("brand/cb-watermark.png")} style={{ position: "absolute", left: 920, top: 1452, width: 100, height: 108 }} />
+      <Sequence durationInFrames={b(10)}><NameLabel /></Sequence>
       <Sequence from={END_AT}><EndCard /></Sequence>
       {music && (
         <Audio src={staticFile(music.src)} trimBefore={Math.round(music.from * 30)}
