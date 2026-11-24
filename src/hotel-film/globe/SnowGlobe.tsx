@@ -823,8 +823,6 @@ const EndCard: React.FC = () => {
           style={{
             display: "inline-block",
             whiteSpace: "nowrap",
-            paddingBottom: 10,
-            borderBottom: `2px solid ${colors.gold}`,
           }}
         >
           <span style={{ marginRight: "-0.24em" }}>
