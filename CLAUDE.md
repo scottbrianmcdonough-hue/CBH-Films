@@ -1093,6 +1093,8 @@ with no history and no renders:
   Cotswolds" with the white CB, no gold logo (Scott, after Rutland's "Take root"). Copy in the Rutland Hall
   reel's voice (two cream lines, the second italic, no eyebrow; Scott). Reel Bank clips in
   `public/hotels/hatherley-manor/reel-bank/`, cut and graded by `scripts/hatherley-festive-clips.py`. Final sent.
+  The last shot is the green panelled bedroom (`stills/green-panelled-bedroom.jpg`, framed on the red bench and gold
+  cushions): Bianca, 24 Nov, the Superior Spa Double bed was untucked and creased; never use that photo.
 - `cbh-year-2027`: Bianca's "Plan your year of micro breaks" reel for 1 Jan (a hotel a month), wall calendar mock-up;
   waiting on hotels' content (Coombe Abbey, Jockey Club, Atholl Palace) and Scott's go.
 - `the-kingfisher`, `whittlebury-park-stay-dine` (+ `-story` cuts): done.
