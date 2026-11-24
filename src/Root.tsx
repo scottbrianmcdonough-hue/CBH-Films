@@ -83,6 +83,7 @@ import {
 } from "./hotel-film/doodle/StickFlip";
 import { PostItList, POSTIT_FRAMES } from "./hotel-film/postit/PostItList";
 import { YearCalendar, YEAR_FRAMES } from "./hotel-film/calendar/YearCalendar";
+import { HatherleyChristmas, HATHERLEY_XMAS_FRAMES } from "./hotel-film/festive-stay/HatherleyChristmas";
 import {
   ScreenTime,
   SCREEN_TIME_STORY_FRAMES,
@@ -296,6 +297,15 @@ export const RemotionRoot: React.FC = () => {
         height={HEIGHT}
       />
       {/* a weekend calendar filling itself, each plan opening into Holdsworth House */}
+      {/* Hatherley Manor's Christmas In The Country stay, day by day */}
+      <Composition
+        id="hatherley-christmas"
+        component={HatherleyChristmas}
+        durationInFrames={HATHERLEY_XMAS_FRAMES}
+        fps={FPS}
+        width={WIDTH}
+        height={HEIGHT}
+      />
       {/* 2027 as a wall calendar, a hotel a month, each page lifting over the binding (mock-up) */}
       <Composition
         id="cbh-year-2027"
