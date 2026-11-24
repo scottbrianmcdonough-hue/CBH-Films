@@ -1464,4 +1464,5 @@ with no history and no renders:
   shadow lift weighted to the lower half, black stays black) and `scripts/post/bf-sw-caps-pill.py` (a crisp dark pill
   behind SCOTLAND & WALES, frames 56-118, the pink letters kept). Ticket now with "More deals released!" (Bianca) and
   four tags. Avisford Park was already in the South (Save 25%). Alfriston's BF deals go live on the landing page Fri.
+  Signed off by Bianca (24 Nov, "G2G"); going out now. Tag her as @b.thomson (no p).
 - `the-kingfisher`, `whittlebury-park-stay-dine` (+ `-story` cuts): done.
