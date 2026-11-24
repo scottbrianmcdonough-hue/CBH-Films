@@ -1453,4 +1453,15 @@ with no history and no renders:
   `FACE_FRAME` (pos, z, o per photo): Phill (tile 7) and Nin (tile 6, `p-brown-antlers`) zoomed with their antlers kept,
   Louise (tile 15, `p-lace`) lower so her Santa hat shows.
   To confirm: the times on the pages are guesses.
+- `bf-region-scotland-wales` (source on `claude/blissful-turing-qmmw6w`, `notes/films/bf-region-reels.md` there): the
+  Metropole added (Bianca, 24 Nov: "defo in Wales so needs adding"; its five CBH library photos in
+  `public/hotels/metropole/` on that branch), LLANDRINDOD WELLS, MID WALES / The Metropole Hotel & Spa / Save 30%,
+  after Dalmahoy (both 30%), exterior pushed in then the pool gliding left; 23.7s, -15.0 LUFS. Built in a worktree of
+  that branch (`REPO=... python3 scripts/bf-region-reels.py scotland-wales`, then render); the change is
+  `out/bf-region-scotland-wales-metropole.patch` for that branch (builder, spec, ticket, photos, cut.json; clips and
+  picture rebuild from the builder). After the render, two passes on the file (Scott: "lighten the dark grade ... like a
+  dark shadow", then "a small scrim behind the text only, not a smudge"): `scripts/post/shadow-lift.py` (a luminance
+  shadow lift weighted to the lower half, black stays black) and `scripts/post/bf-sw-caps-pill.py` (a crisp dark pill
+  behind SCOTLAND & WALES, frames 56-118, the pink letters kept). Ticket now with "More deals released!" (Bianca) and
+  four tags. Avisford Park was already in the South (Save 25%). Alfriston's BF deals go live on the landing page Fri.
 - `the-kingfisher`, `whittlebury-park-stay-dine` (+ `-story` cuts): done.
