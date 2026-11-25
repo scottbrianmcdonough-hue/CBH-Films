@@ -26,11 +26,12 @@ const PAL = {
 };
 
 type Kind = "star" | "manor" | "stocking" | "teapot";
-export const FELTS: Record<string, { kind: Kind; felt: string; trim?: string; thread?: string }> = {
+export const FELTS: Record<string, { kind: Kind; felt: string; trim?: string; thread?: string; rim?: number }> = {
   star: { kind: "star", felt: "#efe9df" }, // cream felt, the CB embroidered in gold
   manor: { kind: "manor", felt: "#cbbfab" }, // beige felt, gold windows (black felt vanished on the black background)
   stocking: { kind: "stocking", felt: "#7f8f6e", trim: "#f1ece3" }, // the sage green, a cream cuff
-  teapot: { kind: "teapot", felt: "#c2a56f", thread: "#f2f0f0" }, // gold felt, cream thread (beige on the beige was lost)
+  // gold felt with deep gold thread and a stronger warm rim behind (it read flatter than the glass on the dark ground)
+  teapot: { kind: "teapot", felt: "#c2a56f", thread: "#7b5a24", rim: 3 },
 };
 
 const S = 1024; // texture size, covering -1.25..1.25 in shape units
@@ -481,7 +482,8 @@ export const FeltOrnament: React.FC<{ variant?: string; light?: boolean; bare?: 
           <ambientLight intensity={light ? 0.35 : 0.12} />
           <directionalLight position={[2.5, 3, 4]} intensity={light ? 2.2 : 1.5} color="#ffe6c4" />
           <pointLight position={[-3, 1, 2]} intensity={light ? 6 : 3} color="#f4e6cf" />
-          <pointLight position={[0, 1, -3]} intensity={light ? 0 : 6} color="#e8cf9c" />
+          <pointLight position={[0, 1, -3]} intensity={light ? 0 : 6 * (v.rim ?? 1)} color="#e8cf9c" />
+          {v.rim ? <pointLight position={[2.6, 0.4, -1.2]} intensity={8 * v.rim} color="#ffd9a0" /> : null}
           <Ornament kind={v.kind} felt={v.felt} skin={skin} shapes={shapes} swing={swing} />
         </ThreeCanvas>
       ) : null}

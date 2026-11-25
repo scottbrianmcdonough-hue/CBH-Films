@@ -39,7 +39,10 @@ const SHOTS: Shot[] = [
 const RETURN = 8; // the band comes back: the CB face on
 const GLIDE = 24; // frames for each move, centred on its downbeat
 const SPACING = 900; // the ornaments hang a little closer than a frame width, so a move reads as drifting along the tree
-const BG_DRIFT = 45; // the background's own drift per move, slower than the ornaments: depth
+// the background's own drift per move, slower than the ornaments (depth); centred on the reel and kept inside its 1.15x
+// scale, so the background's edge never comes into frame (at 45px a move it did, a vertical seam: Scott, "there's a split")
+const BG_DRIFT = 18;
+const BG_SCALE = 1.15;
 
 const ease = Easing.bezier(0.45, 0, 0.55, 1);
 // how far along the row the camera is at a frame: 0 at the first ornament, 1 at the second ..., gliding on each downbeat
@@ -81,14 +84,11 @@ export const BaublesReel: React.FC = () => {
   const frame = useCurrentFrame();
   const total = BAUBLES_REEL_FRAMES;
   const p = along(frame);
-  // the speed of the move, for a touch of motion blur at its fastest
-  const speed = Math.abs(along(frame + 1) - along(frame - 1)) / 2;
   const fade = interpolate(frame, [cut(9) + 24, total - 2], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  const cbLit = interpolate(frame, [cut(7), cut(RETURN)], [0.25, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: ease });
   return (
     <AbsoluteFill style={{ background: "#000" }}>
       {/* one tree under everything, drifting slower than the ornaments */}
-      <AbsoluteFill style={{ transform: `translateX(${-p * BG_DRIFT}px) scale(1.12)` }}>
+      <AbsoluteFill style={{ transform: `translateX(${-(p - (SHOTS.length - 1) / 2) * BG_DRIFT}px) scale(${BG_SCALE})` }}>
         <DarkBack frame={frame} />
       </AbsoluteFill>
       {SHOTS.map((s, i) => {
@@ -101,7 +101,7 @@ export const BaublesReel: React.FC = () => {
             <AbsoluteFill
               style={{
                 transform: `translateX(${x}px)`,
-                filter: `blur(${(speed * 6).toFixed(2)}px)${cb ? ` brightness(${cbLit.toFixed(3)})` : ""}`,
+
               }}
             >
               {/* each ornament's turn runs from where its bar needs it (it is mounted GLIDE frames early) */}
