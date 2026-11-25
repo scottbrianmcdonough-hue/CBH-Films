@@ -439,6 +439,38 @@ const TreeBackdrop: React.FC<{ frame: number }> = ({ frame }) => {
   );
 };
 
+// The dark background, shared with the felt ornaments (Scott: "a black background like the Christmas glass ones, match
+// that"): the quiet tree behind (DarkBack) and the soft near branch in front of the ornament (DarkFront).
+export const DarkBack: React.FC<{ frame: number }> = ({ frame }) => (
+  <>
+    <TreeBackdrop frame={frame} />
+    {BOKEH.map((b, i) => (
+      <div
+        key={i}
+        style={{
+          position: "absolute",
+          left: b.x - b.d / 2 + (b.drift * frame) / BAUBLE_FRAMES,
+          top: b.y - b.d / 2,
+          width: b.d,
+          height: b.d,
+          borderRadius: "50%",
+          // a lit disc with a brighter rim, like an out of focus fairy light
+          background: b.red
+            ? "radial-gradient(circle, #b3303ccc 0%, #b3303caa 58%, #d4505c 66%, transparent 71%)"
+            : `radial-gradient(circle, ${b.pale ? "#ffe9c2" : PAL.gold}cc 0%, ${b.pale ? "#ffe9c2" : PAL.gold}aa 58%, ${b.pale ? "#fff4dc" : "#e2cc9c"} 66%, transparent 71%)`,
+          opacity: 0.6 * b.o * (b.red ? 0.7 : b.pale ? 0.6 : 0.8),
+          filter: `blur(${2 + b.d / 55}px)`,
+        }}
+      />
+    ))}
+    {/* the light falling away to black round the edges, so the bauble sits in a warm pool */}
+    <AbsoluteFill style={{ background: "radial-gradient(ellipse 80% 65% at 50% 55%, rgba(0,0,0,0) 0%, rgba(0,0,0,0.35) 70%, rgba(0,0,0,0.8) 100%)" }} />
+  </>
+);
+export const DarkFront: React.FC<{ frame: number }> = ({ frame }) => (
+  <BranchLayer branches={BRANCHES_NEAR} blur={20} dark={0.6} drift={((frame / BAUBLE_FRAMES) * 2 - 1) * 22} />
+);
+
 export const GlassBauble: React.FC<{ variant?: string }> = ({ variant = "cb" }) => {
   const v = BAUBLES[variant];
   const frame = useCurrentFrame();
@@ -457,28 +489,7 @@ export const GlassBauble: React.FC<{ variant?: string }> = ({ variant = "cb" }) 
   const push = interpolate(frame, [0, BAUBLE_FRAMES], [7.4, 6.6]);
   return (
     <AbsoluteFill style={{ background: PAL.black }}>
-      <TreeBackdrop frame={frame} />
-      {BOKEH.map((b, i) => (
-        <div
-          key={i}
-          style={{
-            position: "absolute",
-            left: b.x - b.d / 2 + (b.drift * frame) / BAUBLE_FRAMES,
-            top: b.y - b.d / 2,
-            width: b.d,
-            height: b.d,
-            borderRadius: "50%",
-            // a lit disc with a brighter rim, like an out of focus fairy light
-            background: b.red
-              ? "radial-gradient(circle, #b3303ccc 0%, #b3303caa 58%, #d4505c 66%, transparent 71%)"
-              : `radial-gradient(circle, ${b.pale ? "#ffe9c2" : PAL.gold}cc 0%, ${b.pale ? "#ffe9c2" : PAL.gold}aa 58%, ${b.pale ? "#fff4dc" : "#e2cc9c"} 66%, transparent 71%)`,
-            opacity: 0.6 * b.o * (b.red ? 0.7 : b.pale ? 0.6 : 0.8),
-            filter: `blur(${2 + b.d / 55}px)`,
-          }}
-        />
-      ))}
-      {/* the light falling away to black round the edges, so the bauble sits in a warm pool */}
-      <AbsoluteFill style={{ background: "radial-gradient(ellipse 80% 65% at 50% 55%, rgba(0,0,0,0) 0%, rgba(0,0,0,0.35) 70%, rgba(0,0,0,0.8) 100%)" }} />
+      <DarkBack frame={frame} />
       {skin ? (
         <ThreeCanvas
           width={BAUBLE_W}
@@ -494,8 +505,7 @@ export const GlassBauble: React.FC<{ variant?: string }> = ({ variant = "cb" }) 
           <Bauble skin={skin} />
         </ThreeCanvas>
       ) : null}
-      {/* a nearer branch or two, past the bauble, very soft */}
-      <BranchLayer branches={BRANCHES_NEAR} blur={20} dark={0.6} drift={((frame / BAUBLE_FRAMES) * 2 - 1) * 22} />
+      <DarkFront frame={frame} />
     </AbsoluteFill>
   );
 };

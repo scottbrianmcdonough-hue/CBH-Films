@@ -4,6 +4,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { AbsoluteFill, continueRender, delayRender, interpolate, staticFile, useCurrentFrame } from "remotion";
 import * as THREE from "three";
 import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment.js";
+import { DarkBack, DarkFront } from "./GlassBauble";
 
 // CBH felt ornaments (Scott, 25 Nov: "now do the felt ones", "needs to be lighter background with the one secondary
 // colour lift"), the felt companions to the glass baubles (GlassBauble.tsx): puffy stitched shapes in wool felt (a
@@ -25,11 +26,11 @@ const PAL = {
 };
 
 type Kind = "star" | "manor" | "stocking" | "teapot";
-export const FELTS: Record<string, { kind: Kind; felt: string; trim?: string }> = {
+export const FELTS: Record<string, { kind: Kind; felt: string; trim?: string; thread?: string }> = {
   star: { kind: "star", felt: "#efe9df" }, // cream felt, the CB embroidered in gold
-  manor: { kind: "manor", felt: "#1d1c1b" }, // black felt, gold windows
+  manor: { kind: "manor", felt: "#cbbfab" }, // beige felt, gold windows (black felt vanished on the black background)
   stocking: { kind: "stocking", felt: "#7f8f6e", trim: "#f1ece3" }, // the sage green, a cream cuff
-  teapot: { kind: "teapot", felt: "#dcd3c4" }, // beige felt
+  teapot: { kind: "teapot", felt: "#c2a56f", thread: "#f2f0f0" }, // gold felt, cream thread (beige on the beige was lost)
 };
 
 const S = 1024; // texture size, covering -1.25..1.25 in shape units
@@ -145,7 +146,7 @@ const rnd = (i: number) => {
   return s - Math.floor(s);
 };
 
-const paintFelt = (kind: Kind, felt: string, shapes: THREE.Shape[], cb: HTMLCanvasElement, trim?: string) => {
+const paintFelt = (kind: Kind, felt: string, shapes: THREE.Shape[], cb: HTMLCanvasElement, trim?: string, threadColor: string = PAL.gold) => {
   const mk = () => {
     const c = document.createElement("canvas");
     c.width = S;
@@ -274,7 +275,7 @@ const paintFelt = (kind: Kind, felt: string, shapes: THREE.Shape[], cb: HTMLCanv
   const g = gold.getContext("2d")!;
   g.drawImage(thread, 0, 0);
   g.globalCompositeOperation = "source-in";
-  g.fillStyle = PAL.gold;
+  g.fillStyle = threadColor;
   g.fillRect(0, 0, S, S);
   g.globalCompositeOperation = "source-atop";
   g.strokeStyle = "rgba(90,70,30,0.35)";
@@ -445,7 +446,7 @@ const LightBackdrop: React.FC<{ frame: number }> = ({ frame }) => {
   );
 };
 
-export const FeltOrnament: React.FC<{ variant?: string }> = ({ variant = "star" }) => {
+export const FeltOrnament: React.FC<{ variant?: string; light?: boolean }> = ({ variant = "star", light = false }) => {
   const v = FELTS[variant];
   const frame = useCurrentFrame();
   const shapes = useMemo(() => SHAPES[v.kind](), [v.kind]);
@@ -453,14 +454,15 @@ export const FeltOrnament: React.FC<{ variant?: string }> = ({ variant = "star" 
   const [handle] = useState(() => delayRender("felt skin"));
   useEffect(() => {
     cbMask().then((cb) => {
-      setSkin(paintFelt(v.kind, v.felt, shapes, cb, v.trim));
+      setSkin(paintFelt(v.kind, v.felt, shapes, cb, v.trim, v.thread));
       continueRender(handle);
     });
   }, [handle, v, shapes]);
   const push = interpolate(frame, [0, FELT_FRAMES], [7.3, 6.7]);
   return (
-    <AbsoluteFill style={{ background: PAL.beige }}>
-      <LightBackdrop frame={frame} />
+    // the dark background by default, matching the glass baubles (Scott); the light one kept behind `light`
+    <AbsoluteFill style={{ background: light ? PAL.beige : PAL.black }}>
+      {light ? <LightBackdrop frame={frame} /> : <DarkBack frame={frame} />}
       {skin ? (
         <ThreeCanvas
           width={FELT_W}
@@ -476,6 +478,7 @@ export const FeltOrnament: React.FC<{ variant?: string }> = ({ variant = "star" 
           <Ornament kind={v.kind} felt={v.felt} skin={skin} shapes={shapes} />
         </ThreeCanvas>
       ) : null}
+      {light ? null : <DarkFront frame={frame} />}
     </AbsoluteFill>
   );
 };
