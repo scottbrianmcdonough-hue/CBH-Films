@@ -86,6 +86,7 @@ import { YearCalendar, YEAR_FRAMES } from "./hotel-film/calendar/YearCalendar";
 import { GlassBauble, BAUBLES, BAUBLE_FRAMES, BAUBLE_W, BAUBLE_H } from "./hotel-film/stings/GlassBauble";
 import { FeltOrnament, FELTS, FELT_FRAMES, FELT_W, FELT_H } from "./hotel-film/stings/FeltOrnament";
 import { BaublesReel, BAUBLES_REEL_FRAMES, BAUBLES_REEL_W, BAUBLES_REEL_H } from "./hotel-film/stings/BaublesReel";
+import { BaubleTree, TREE_FRAMES, TREE_W, TREE_H } from "./hotel-film/stings/BaubleTree";
 import { HatherleyChristmas, HATHERLEY_XMAS_FRAMES } from "./hotel-film/festive-stay/HatherleyChristmas";
 import {
   ScreenTime,
@@ -321,6 +322,8 @@ export const RemotionRoot: React.FC = () => {
           defaultProps={{ variant: k }}
         />
       ))}
+      {/* the bauble tree: ornaments hung one a bar, the CB the star on top (for 1 Dec) */}
+      <Composition id="cbh-bauble-tree" component={BaubleTree} durationInFrames={TREE_FRAMES} fps={FPS} width={TREE_W} height={TREE_H} />
       {/* the glass and felt ornaments in one reel, cut on the downbeat, the CB bauble last */}
       <Composition
         id="cbh-baubles-reel"
