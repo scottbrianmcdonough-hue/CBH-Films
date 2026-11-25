@@ -174,12 +174,13 @@ const HANGS: Hang[] = [
 // each house named as the camera lands on it (Scott, 26 Nov: "put the name of each hotel"): the place in gold caps,
 // the name in cream Cormorant, no underline (as on the Hatherley and Coombe reels)
 const LABELS: [string, string][] = [
-  ["Halifax, West Yorkshire", "Holdsworth House"],
+  // full names (Scott, 26 Nov), on two lines where they run long, as on the Hatherley reel's label
+  ["Halifax, West Yorkshire", "Holdsworth House Hotel"],
   ["Ipswich, Suffolk", "Hintlesham Hall Hotel"],
-  ["Cotswolds", "Hatherley Manor"],
+  ["Cotswolds", "Hatherley Manor\nHotel & Spa"],
   ["Coventry, Warwickshire", "Coombe Abbey Hotel"],
-  ["North Wales", "Ruthin Castle"],
-  ["Edinburgh", "Dalmahoy"],
+  ["North Wales", "Ruthin Castle\nHotel & Spa"],
+  ["Edinburgh", "Dalmahoy Hotel\n& Country Club"],
 ];
 const AT = HANGS.map((_, i) => bar(i)); // the camera arrives on each on a downbeat: the first from frame one
 const GLIDE = 30; // frames for each move, landing on its downbeat
@@ -481,9 +482,13 @@ const HouseLabel: React.FC<{ i: number }> = ({ i }) => {
   if (o <= 0) return null;
   const [place, name] = LABELS[i];
   return (
-    <div style={{ position: "absolute", left: 80, bottom: 430, opacity: o, transform: `translateY(${(1 - inP) * 14}px)`, textShadow: "0 2px 22px rgba(0,0,0,0.75)" }}>
+    <div style={{ position: "absolute", left: 80, bottom: 385, opacity: o, transform: `translateY(${(1 - inP) * 14}px)`, textShadow: "0 2px 22px rgba(0,0,0,0.75)" }}>
       <div style={{ fontFamily: sans, fontWeight: 600, fontSize: 28, letterSpacing: "0.24em", color: PAL.gold, textTransform: "uppercase", marginBottom: 10 }}>{place}</div>
-      <div style={{ fontFamily: serif, fontWeight: 400, fontSize: 72, lineHeight: 1.04, color: PAL.pale }}>{name}</div>
+      {name.split("\n").map((l) => (
+        <div key={l} style={{ fontFamily: serif, fontWeight: 400, fontSize: 68, lineHeight: 1.04, color: PAL.pale }}>
+          {l}
+        </div>
+      ))}
     </div>
   );
 };
