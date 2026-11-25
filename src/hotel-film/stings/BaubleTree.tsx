@@ -162,14 +162,14 @@ type Hang = { kind: "glass" | "felt"; variant: string; y: number; a: number; s?:
 // bottom to top, the order the camera climbs, glass and felt alternating, left and right of centre
 const HANGS: Hang[] = [
   // our hotels (Scott, 26 Nov: "a few more shapes like our hotels"): Holdsworth House in felt, Hintlesham Hall on glass
-  { kind: "felt", variant: "holdsworth", y: -2.0, a: -0.34 },
-  { kind: "glass", variant: "hintlesham", y: -1.15, a: 0.36 },
+  { kind: "felt", variant: "holdsworth", y: -2.05, a: -0.42 },
+  { kind: "glass", variant: "hintlesham", y: -1.2, a: 0.44 },
   // all houses (Scott, 26 Nov: "go all houses"): Hatherley Manor in felt, Coombe Abbey on glass
-  { kind: "felt", variant: "hatherley", y: -0.3, a: -0.3 },
-  { kind: "glass", variant: "coombe", y: 0.55, a: 0.32 },
+  { kind: "felt", variant: "hatherley", y: -0.42, a: -0.44 },
+  { kind: "glass", variant: "coombe", y: 0.62, a: 0.44 },
   // the real houses (Scott, 26 Nov): Ruthin Castle in felt, Dalmahoy's front in gold on glass
-  { kind: "felt", variant: "ruthin", y: 1.35, a: -0.26 },
-  { kind: "glass", variant: "dalmahoy", y: 2.05, a: 0.24 },
+  { kind: "felt", variant: "ruthin", y: 1.42, a: -0.36 },
+  { kind: "glass", variant: "dalmahoy", y: 2.1, a: 0.3 },
 ];
 // each house named as the camera lands on it (Scott, 26 Nov: "put the name of each hotel"): the place in gold caps,
 // the name in cream Cormorant, no underline (as on the Hatherley and Coombe reels)
@@ -237,7 +237,14 @@ const ALL = [...HANGS, ...EXTRAS];
 // the room each ornament needs to swing in, clear of needles and twigs
 type Pocket = THREE.Vector3 & { r: number };
 let pockets: Pocket[] | null = null;
-const POCKETS = () => (pockets ??= ALL.map((h) => Object.assign(bodyOf(h), { r: (h.kind === "glass" ? 0.42 : 0.44) * (h.s ?? 1) })));
+const POCKETS = () =>
+  (pockets ??= ALL.flatMap((h) => {
+    const r = (h.kind === "glass" ? 0.42 : 0.44) * (h.s ?? 1);
+    const b = bodyOf(h);
+    const out = new THREE.Vector3(Math.sin(h.a), 0, Math.cos(h.a)).multiplyScalar(0.32 * (h.s ?? 1));
+    // round the ornament, and in front of it (Scott: needles were "poking out the bauble")
+    return [Object.assign(b.clone(), { r }), Object.assign(b.clone().add(out), { r: r * 0.95 })];
+  }));
 
 type Skins = {
   glass: Record<string, { map: THREE.Texture; rough: THREE.Texture }>;
