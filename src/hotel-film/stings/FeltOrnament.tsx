@@ -372,8 +372,9 @@ const Ornament: React.FC<{ kind: Kind; felt: string; skin: Skin; shapes: THREE.S
   const top = kind === "star" ? 1.03 : kind === "manor" ? 0.92 : kind === "stocking" ? 1.06 : 0.7;
   return (
     <group position={[0, 1.45, 0]} rotation={[0, 0, sway]}>
-      <mesh position={[0, 2.3, 0]} material={gold}>
-        <cylinderGeometry args={[0.011, 0.011, 4.3, 10]} />
+      {/* the cord, from above the frame down to the top of the loop (world y 1.21, -0.24 in this group) */}
+      <mesh position={[0, 2.13, 0]} material={gold}>
+        <cylinderGeometry args={[0.011, 0.011, 4.74, 10]} />
       </mesh>
       <group position={[0, -1.45 - (top - 1.0), 0]} rotation={[0, turn, 0]}>
         {geos.map((g, i) => (

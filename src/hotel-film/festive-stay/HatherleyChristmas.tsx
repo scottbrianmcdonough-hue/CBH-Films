@@ -21,12 +21,13 @@ const P = "hotels/hatherley-manor/festive";
 const XF = 12; // crossfade frames, centred on each cut
 const H = XF / 2;
 
-// Music: "Christmas Swing" by AtlasAudio (Pixabay 621552, Pixabay Content License), 110 BPM, a beat every 0.5457s
-// (librosa's beat tracker; analyze-beats.py read 112). Its final chord lands on beat 160 (88.4s), a downbeat, and rings
-// out to ~91.5s; the film starts on beat 108 (60.08s), so the end card arrives on the film's beat 48 and the final
-// chord on beat 52 under it, the last frames fading out. Every cut is on a beat: the hook 4 beats (the first two
-// seconds), then six beats a moment (two shots of three in the breakfast and dog moments), the bedroom eight.
-export const MUSIC = { src: "hotels/hatherley-manor/music/atlasaudio-christmas-swing-621552.mp3", from: 60.08, gain: 0.56 };
+// Music: "Christmas Piano Jingle Bells Swing Version" by pianocafe_Kumi (Pixabay 631612, Pixabay Content License, not
+// Content ID registered: Scott, 25 Nov, from his five festive picks; it replaced AtlasAudio's Christmas Swing). 109.96
+// BPM, a beat every 0.5457s, the same tempo the edit was cut to, so every cut stays on its beat. The film starts on
+// the downbeat at 19.91s (the bars run from the 2.45s downbeat) in its steady middle, before the breakdown at ~69s,
+// and fades out over the last bar and a half. The hook 4 beats (the first two seconds), then six beats a moment (two
+// shots of three in the breakfast and dog moments), the bedroom eight.
+export const MUSIC = { src: "music/festive/pianocafe_kumi-christmas-piano-jingle-bells-swing-631612.mp3", from: 19.91, gain: 0.68 };
 const BEAT = 0.54575 * 30; // frames
 const b = (n: number) => Math.round(n * BEAT);
 
@@ -36,7 +37,7 @@ const SRCS = ["tree-bow", "tree", "spa", "thyme", "breakfast", "egg", "lunch", "
 export const SHOTS: Shot[] = SRCS.map((src, i) => ({ src, at: b(CUTS[i]), len: b(CUTS[i + 1]) - b(CUTS[i]) }));
 const END_AT = b(48);
 const END_FADE = 24; // the bedroom settles into black
-export const HATHERLEY_XMAS_FRAMES = 900; // 30s: the final chord at b(52) = 851, faded by the end
+export const HATHERLEY_XMAS_FRAMES = 900; // 30s, the music faded over the last bar and a half
 
 // Copy in the Rutland Hall reel's voice (Scott, 24 Nov: "make the copy better like the Rutland Hall reel"): two
 // short lines in cream Cormorant, the second in italic, no eyebrow; the day carried in the words. Facts from the

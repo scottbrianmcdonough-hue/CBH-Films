@@ -268,11 +268,13 @@ const Environment: React.FC = () => {
 const goldMat = () =>
   new THREE.MeshPhysicalMaterial({ color: new THREE.Color(PAL.gold), metalness: 1, roughness: 0.22, clearcoat: 0.6 });
 
-const Bauble: React.FC<{ skin: { map: THREE.Texture; rough: THREE.Texture } }> = ({ skin }) => {
+export type Turn = { from: number; to: number; span: number };
+const DEFAULT_TURN: Turn = { from: -0.95, to: 0.35, span: BAUBLE_FRAMES };
+const Bauble: React.FC<{ skin: { map: THREE.Texture; rough: THREE.Texture }; spin: Turn }> = ({ skin, spin }) => {
   const frame = useCurrentFrame();
   const t = frame / 30;
   // turning slowly on its cord: from three-quarters round to face on and a little past, with a gentle sway
-  const turn = interpolate(frame, [0, BAUBLE_FRAMES], [-0.95, 0.35], { extrapolateRight: "clamp" });
+  const turn = interpolate(frame, [0, spin.span], [spin.from, spin.to], { extrapolateRight: "clamp" });
   const sway = 0.035 * Math.sin(t * 1.1);
   const glass = useMemo(
     () =>
@@ -417,7 +419,7 @@ export const DarkBack: React.FC<{ frame: number }> = ({ frame }) => (
 // (the soft near branch is gone: Scott, "get rid of the Christmas tree brush strokes"; kept as a no-op so callers stay)
 export const DarkFront: React.FC<{ frame: number }> = () => null;
 
-export const GlassBauble: React.FC<{ variant?: string }> = ({ variant = "cb" }) => {
+export const GlassBauble: React.FC<{ variant?: string; spin?: Turn }> = ({ variant = "cb", spin = DEFAULT_TURN }) => {
   const v = BAUBLES[variant];
   const frame = useCurrentFrame();
   const [skin, setSkin] = useState<{ map: THREE.Texture; rough: THREE.Texture } | null>(null);
@@ -432,7 +434,7 @@ export const GlassBauble: React.FC<{ variant?: string }> = ({ variant = "cb" }) 
         throw e;
       });
   }, [handle, v]);
-  const push = interpolate(frame, [0, BAUBLE_FRAMES], [7.4, 6.6]);
+  const push = interpolate(frame, [0, spin.span], [7.4, 6.6], { extrapolateRight: "clamp" });
   return (
     <AbsoluteFill style={{ background: PAL.black }}>
       <DarkBack frame={frame} />
@@ -448,7 +450,7 @@ export const GlassBauble: React.FC<{ variant?: string }> = ({ variant = "cb" }) 
           <pointLight position={[2.5, 3, 4]} intensity={34} color="#ffe2b8" />
           <pointLight position={[0, 0.5, -3]} intensity={10} color="#e8cf9c" />
           <pointLight position={[-3, -1, 2]} intensity={8} color={PAL.gold} />
-          <Bauble skin={skin} />
+          <Bauble skin={skin} spin={spin} />
         </ThreeCanvas>
       ) : null}
       <DarkFront frame={frame} />
