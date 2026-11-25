@@ -386,7 +386,7 @@ export const BaubleTree: React.FC = () => {
       <Audio
         src={staticFile("music/festive/openmindaudio-vintage-christmas-swing-big-band-620485.mp3")}
         trimBefore={Math.round(FROM * FPS)}
-        volume={(v) => 0.8 * interpolate(v, [0, 3, total - 28, total - 2], [0, 1, 1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" })}
+        volume={(v) => 0.65 * interpolate(v, [0, 3, total - 28, total - 2], [0, 1, 1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" })}
       />
     </AbsoluteFill>
   );
