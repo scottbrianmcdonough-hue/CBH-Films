@@ -52,10 +52,10 @@ const buildNeedles = () => {
   const twigs: THREE.Matrix4[] = [];
   const dummy = new THREE.Object3D();
   const tw = new THREE.Object3D();
-  const tiers = 34;
+  const tiers = 46;
   for (let t = 0; t < tiers; t++) {
     const ty = BASE_Y + (t / tiers) * (TOP_Y - BASE_Y - 0.25);
-    const branches = Math.max(6, Math.round(9 + 26 * (radiusAt(ty) / BASE_R)));
+    const branches = Math.max(7, Math.round(10 + 32 * (radiusAt(ty) / BASE_R)));
     for (let b = 0; b < branches; b++) {
       const y0 = ty + (r() - 0.5) * 0.22; // branches staggered, not in rings
       const R = radiusAt(y0);
@@ -87,21 +87,27 @@ const buildNeedles = () => {
         for (const sd of shoot) {
         const off = sd * 0.16 * (1 - u * 0.4);
         const px = Math.sin(ang) * d + Math.cos(ang) * off, pz = Math.cos(ang) * d - Math.sin(ang) * off, py = y0 + sag - Math.abs(sd) * 0.03;
-        const per = sd === 0 ? 10 : 7;
+        const per = sd === 0 ? 14 : 10;
         for (let n = 0; n < per; n++) {
-          const spin = (n / per) * Math.PI * 2 + r();
-          const l = (0.15 + r() * 0.07) * (1 - 0.3 * u);
-          dummy.position.set(px, py, pz);
-          // a needle angled forward along the branch and out round it
+          // fir sprays (Scott: "less plastic, more like real pine"): short flat needles fanning out to either side of the
+          // twig and a little upward, so each branch is a flat layered spray, not a bottle brush
+          const leftSide = n % 2 ? 1 : -1;
+          const spin = (leftSide > 0 ? 0 : Math.PI) + leftSide * (0.22 + r() * 0.5);
+          const l = (0.1 + r() * 0.05) * (1 - 0.25 * u);
+          // spread along the segment so the needles don't bunch at one point
+          const along = (r() - 0.5) * (len / segs);
+          dummy.position.set(px + Math.sin(ang) * along, py, pz + Math.cos(ang) * along);
           const dir = new THREE.Vector3(Math.sin(ang), 0.15, Math.cos(ang)).normalize();
           const side = new THREE.Vector3(Math.cos(ang), 0, -Math.sin(ang));
           const up = new THREE.Vector3().crossVectors(side, dir);
           const out = side.clone().multiplyScalar(Math.cos(spin)).add(up.clone().multiplyScalar(Math.sin(spin)));
-          const nd = dir.clone().multiplyScalar(0.65).add(out.multiplyScalar(0.75)).normalize();
-          const base = new THREE.Vector3(px, py, pz), tip = base.clone().addScaledVector(nd, l), mid = base.clone().addScaledVector(nd, l / 2);
+          const nd = dir.clone().multiplyScalar(0.42).add(out.multiplyScalar(0.9)).normalize();
+          const base = dummy.position.clone(), tip = base.clone().addScaledVector(nd, l), mid = base.clone().addScaledVector(nd, l / 2);
           if (POCKETS().some((c) => c.distanceTo(base) < c.r || c.distanceTo(tip) < c.r || c.distanceTo(mid) < c.r)) continue;
+          // lay the flat blade in the spray's plane, its face turned up to the light
           dummy.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), nd);
-          dummy.scale.set(1, l, 0.55);
+          dummy.quaternion.multiply(new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 1, 0), (r() - 0.5) * 0.6));
+          dummy.scale.set(1, l, 1);
           dummy.updateMatrix();
           mats.push(dummy.matrix.clone());
           const g = (0.75 + r() * 0.5) * (0.28 + 0.72 * u); // darker towards the trunk
@@ -342,9 +348,20 @@ const Tree: React.FC<{ skins: Skins }> = ({ skins }) => {
   const [needles, twigs] = useMemo(() => {
     const { mats, cols, twigs: tm } = buildNeedles();
     // a needle: a slim flattened strand, tapering to its tip; matte, barely catching the room (it read as plastic)
-    const geo = new THREE.CylinderGeometry(0.0045, 0.0105, 1, 5);
+    // a needle: a flat blade, broad at the base, tapering to a point, darker where it joins the twig, paler at the tip
+    const geo = new THREE.CylinderGeometry(0.0022, 0.0075, 1, 4);
+    geo.scale(1, 1, 0.38);
     geo.translate(0, 0.5, 0);
-    const mat = new THREE.MeshStandardMaterial({ roughness: 0.96, metalness: 0, envMapIntensity: 0.12 });
+    const pos = geo.attributes.position;
+    const vc = new Float32Array(pos.count * 3);
+    for (let v = 0; v < pos.count; v++) {
+      const k = 0.55 + 0.75 * pos.getY(v);
+      vc[v * 3] = k * 1.05;
+      vc[v * 3 + 1] = k;
+      vc[v * 3 + 2] = k * 0.92;
+    }
+    geo.setAttribute("color", new THREE.BufferAttribute(vc, 3));
+    const mat = new THREE.MeshStandardMaterial({ roughness: 0.85, metalness: 0, envMapIntensity: 0.1, vertexColors: true });
     const m = new THREE.InstancedMesh(geo, mat, mats.length);
     mats.forEach((mx, i) => {
       m.setMatrixAt(i, mx);
@@ -402,7 +419,8 @@ const Tree: React.FC<{ skins: Skins }> = ({ skins }) => {
 
   return (
     <>
-      <ambientLight intensity={0.08} />
+      <ambientLight intensity={0.05} />
+      <hemisphereLight args={["#9fb3c8", "#4a3420", 0.35]} />
       <directionalLight position={[3, 4, 6]} intensity={0.7} color="#ffdcb0" />
       <pointLight position={[-4, 1, 3]} intensity={6} color="#f4e2c4" />
       <pointLight position={[0, 1, -4]} intensity={8} color="#e8cf9c" />
@@ -414,7 +432,7 @@ const Tree: React.FC<{ skins: Skins }> = ({ skins }) => {
       </mesh>
       <mesh position={[0, (BASE_Y + TOP_Y) / 2 - 0.1, 0]}>
         <coneGeometry args={[BASE_R * 0.62, TOP_Y - BASE_Y - 0.4, 40]} />
-        <meshStandardMaterial color="#0a1a10" roughness={1} />
+        <meshStandardMaterial color="#10261a" roughness={1} />
       </mesh>
       <primitive object={twigs} />
       <primitive object={needles} />
