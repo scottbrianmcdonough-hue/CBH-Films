@@ -1478,5 +1478,5 @@ with no history and no renders:
 - `pov-ruthin-castle-tiktok` (`ruthinCastle` in `cuts/PovShort.tsx`, 14.1s, -15.1 LUFS): the unusual angle first (Scott, 25 Nov:
   ours stall at ~220 views, Coombe Abbey's banquet got 516k): "you can actually / sleep in this castle" over the clock tower,
   the peacock, sumac and ruins, the fireside plate, the hot tub (`hot-tub-lift.mp4`, the depth reel's lift baked in), the
-  carved white bed with "would you sleep / in a castle?". No "POV:" (Scott: "try hard and played out"); TikTok content
+  carved white bed with "best bit: the peacock / or the hot tub?" ("would you sleep in a castle?" repeated the hook: Scott). No "POV:" (Scott: "try hard and played out"); TikTok content
   needn't always be about the hotels (Scott).

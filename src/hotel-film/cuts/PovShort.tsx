@@ -65,7 +65,7 @@ export const ruthinCastle: PovSpec = {
     { clip: `${RC}/hot-tub-lift`, beats: 5, from: 14 },
     { clip: `${RC}/clips/white-bed`, beats: 10 },
   ],
-  question: ["would you sleep", "in a castle?"],
+  question: ["best bit: the peacock", "or the hot tub?"],
 };
 
 // TikTok's own Follow button, popped in, tapped and turned to Following (not used: see the close)
