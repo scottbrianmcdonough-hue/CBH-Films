@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import { Composition } from "remotion";
+import { TikTokPlan, TIKTOK_PLAN_FRAMES } from "./hotel-film/explainer/TikTokPlan";
 import { MyComposition } from "./Composition";
 import { EditorialFilm } from "./hotel-film/editorial/EditorialFilm";
 import { Film } from "./hotel-film/Film";
@@ -418,6 +419,8 @@ export const RemotionRoot: React.FC = () => {
       <Composition id="save-spa-weekends-tiktok" component={SaveList} defaultProps={{ spec: spaList }} durationInFrames={saveFrames(spaList)} fps={FPS} width={WIDTH} height={HEIGHT} />
       <Composition id="save-cosy-winter-tiktok" component={SaveList} defaultProps={{ spec: cosyList }} durationInFrames={saveFrames(cosyList)} fps={FPS} width={WIDTH} height={HEIGHT} />
       <Composition id="notes-spa-weekends-tiktok" component={NotesList} defaultProps={{ spec: spaList }} durationInFrames={notesFrames(spaList)} fps={FPS} width={WIDTH} height={HEIGHT} />
+      {/* the TikTok plan as a 16:9 explainer with a voiceover, for the call with Bianca (25 Nov) */}
+      <Composition id="tiktok-plan-explainer" component={TikTokPlan} durationInFrames={TIKTOK_PLAN_FRAMES} fps={30} width={1920} height={1080} />
       <Composition id="notes-cosy-winter-tiktok" component={NotesList} defaultProps={{ spec: cosyList }} durationInFrames={notesFrames(cosyList)} fps={FPS} width={WIDTH} height={HEIGHT} />
       <Composition id="cbh-camera-roll-tiktok" component={CameraRoll} durationInFrames={ROLL_FRAMES} fps={FPS} width={WIDTH} height={HEIGHT} />
       <Composition id="cbh-camera-roll-christmas-tiktok" component={CameraRoll} defaultProps={{ spec: christmasRoll }} durationInFrames={ROLL_FRAMES} fps={FPS} width={WIDTH} height={HEIGHT} />
