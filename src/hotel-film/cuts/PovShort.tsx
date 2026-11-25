@@ -10,14 +10,20 @@ import { colors, progress, sans, serif } from "../theme";
 // sound can go over it in the app. No logo: the label is the brand.
 
 export type PovShot = { clip: string; beats: number; from?: number };
-export type PovSpec = { hook: [string, string]; place: string; name: string; shots: PovShot[]; question: [string, string] };
+// `label: false` leaves the house label off (Scott, 25 Nov: the hotel is tagged in the post instead); `music` swaps the
+// track (Scott: "I don't like the track", "Bianca won't like it": Event Music is only the default for the first two)
+export type PovMusic = { src: string; from: number; bpm: number };
+export type PovSpec = {
+  hook: [string, string]; place: string; name: string; shots: PovShot[]; question: [string, string];
+  label?: boolean; music?: PovMusic;
+};
 
-const MUSIC = "music/prettyjohn1-event-music-595091.mp3";
-const MUSIC_FROM = 6.27;
-const BEAT = (60 / 152.2) * 30;
-const b = (n: number) => Math.round(n * BEAT);
+const EVENT_MUSIC: PovMusic = { src: "music/prettyjohn1-event-music-595091.mp3", from: 6.27, bpm: 152.2 };
+// Rich Enough (Instrumental), pietix, Pixabay 510327: Scott's pick for Bianca on cbh-screens; from its full drop
+export const RICH_ENOUGH: PovMusic = { src: "stings/screens/rich-enough.mp3", from: 142.496, bpm: 112.5 };
+const beatOf = (spec: PovSpec) => (60 / (spec.music ?? EVENT_MUSIC).bpm) * 30;
 const sum = (s: PovShot[]) => s.reduce((t, x) => t + x.beats, 0);
-export const povFrames = (s: PovSpec) => b(sum(s.shots)) + 10;
+export const povFrames = (s: PovSpec) => Math.round(sum(s.shots) * beatOf(s)) + 10;
 
 const R = "hotels/rowton-hall/screen-time";
 const LW = "hotels/low-wood-bay/screen-time";
@@ -58,14 +64,17 @@ export const ruthinCastle: PovSpec = {
   place: "NORTH WALES",
   name: "Ruthin Castle\nHotel & Spa",
   shots: [
-    { clip: `${RC}/clips/castle`, beats: 6 },
-    { clip: `${RC}/clips/peacock`, beats: 5 },
-    { clip: `${RC}/sumac-and-ruins`, beats: 5 },
+    // Rich Enough is slower (112.5 BPM, 16 frames a beat): a shot every four beats, the hook held five
+    { clip: `${RC}/clips/castle`, beats: 5 },
+    { clip: `${RC}/clips/peacock`, beats: 4 },
+    { clip: `${RC}/sumac-and-ruins`, beats: 4 },
     { clip: `${RC}/clips/fireside-plate`, beats: 4 },
-    { clip: `${RC}/hot-tub-lift`, beats: 5, from: 14 },
-    { clip: `${RC}/clips/white-bed`, beats: 10 },
+    { clip: `${RC}/hot-tub-lift`, beats: 4, from: 14 },
+    { clip: `${RC}/clips/white-bed`, beats: 8 },
   ],
   question: ["best bit: the peacock", "or the hot tub?"],
+  label: false,
+  music: RICH_ENOUGH,
 };
 
 // TikTok's own Follow button, popped in, tapped and turned to Following (not used: see the close)
@@ -104,6 +113,9 @@ const Label: React.FC<{ place: string; name: string; o: number }> = ({ place, na
 
 export const PovShort: React.FC<{ spec?: PovSpec }> = ({ spec = rowtonSpa }) => {
   const frame = useCurrentFrame();
+  const music = spec.music ?? EVENT_MUSIC;
+  const BEAT = beatOf(spec);
+  const b = (n: number) => Math.round(n * BEAT);
   const total = povFrames(spec);
   const n = spec.shots.length;
   const starts = spec.shots.map((_, i) => sum(spec.shots.slice(0, i)));
@@ -122,7 +134,7 @@ export const PovShort: React.FC<{ spec?: PovSpec }> = ({ spec = rowtonSpa }) => 
           </Sequence>
         );
       })}
-      {lab > 0 ? <Label place={spec.place} name={spec.name} o={lab} /> : null}
+      {lab > 0 && spec.label !== false ? <Label place={spec.place} name={spec.name} o={lab} /> : null}
       {frame >= qAt ? <AbsoluteFill style={{ background: "rgba(9,9,10,0.18)" }} /> : null}
       <Sequence durationInFrames={hookEnd} layout="none">
         <TikTokText lines={spec.hook} top={TT_TOP} left={140} still />
@@ -135,7 +147,7 @@ export const PovShort: React.FC<{ spec?: PovSpec }> = ({ spec = rowtonSpa }) => 
       <Sequence from={followAt} layout="none">
         <TikTokText lines={["follow for more stays"]} top={1240} left={140} />
       </Sequence>
-      <Audio src={staticFile(MUSIC)} trimBefore={Math.round(MUSIC_FROM * 30)}
+      <Audio src={staticFile(music.src)} trimBefore={Math.round(music.from * 30)}
         volume={(v) => interpolate(v, [0, 3, total - 14, total], [0, 1, 1, 0], { extrapolateRight: "clamp" })} />
     </AbsoluteFill>
   );
