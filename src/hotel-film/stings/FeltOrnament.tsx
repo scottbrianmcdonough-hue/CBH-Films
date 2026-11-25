@@ -449,7 +449,7 @@ const LightBackdrop: React.FC<{ frame: number }> = ({ frame }) => {
   );
 };
 
-export const FeltOrnament: React.FC<{ variant?: string; light?: boolean }> = ({ variant = "star", light = false }) => {
+export const FeltOrnament: React.FC<{ variant?: string; light?: boolean; bare?: boolean }> = ({ variant = "star", light = false, bare = false }) => {
   const v = FELTS[variant];
   const frame = useCurrentFrame();
   const shapes = useMemo(() => SHAPES[v.kind](), [v.kind]);
@@ -464,8 +464,8 @@ export const FeltOrnament: React.FC<{ variant?: string; light?: boolean }> = ({ 
   const push = interpolate(frame, [0, FELT_FRAMES], [7.3, 6.7]);
   return (
     // the dark background by default, matching the glass baubles (Scott); the light one kept behind `light`
-    <AbsoluteFill style={{ background: light ? PAL.beige : PAL.black }}>
-      {light ? <LightBackdrop frame={frame} /> : <DarkBack frame={frame} />}
+    <AbsoluteFill style={{ background: bare ? "transparent" : light ? PAL.beige : PAL.black }}>
+      {bare ? null : light ? <LightBackdrop frame={frame} /> : <DarkBack frame={frame} />}
       {skin ? (
         <ThreeCanvas
           width={FELT_W}
@@ -483,7 +483,7 @@ export const FeltOrnament: React.FC<{ variant?: string; light?: boolean }> = ({ 
           <Ornament kind={v.kind} felt={v.felt} skin={skin} shapes={shapes} />
         </ThreeCanvas>
       ) : null}
-      {light ? null : <DarkFront frame={frame} />}
+      {light || bare ? null : <DarkFront frame={frame} />}
     </AbsoluteFill>
   );
 };

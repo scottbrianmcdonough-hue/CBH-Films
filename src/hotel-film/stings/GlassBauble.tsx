@@ -419,7 +419,8 @@ export const DarkBack: React.FC<{ frame: number }> = ({ frame }) => (
 // (the soft near branch is gone: Scott, "get rid of the Christmas tree brush strokes"; kept as a no-op so callers stay)
 export const DarkFront: React.FC<{ frame: number }> = () => null;
 
-export const GlassBauble: React.FC<{ variant?: string; spin?: Turn }> = ({ variant = "cb", spin = DEFAULT_TURN }) => {
+// `bare`: the ornament alone on a transparent ground (the baubles reel lays one background under every ornament)
+export const GlassBauble: React.FC<{ variant?: string; spin?: Turn; bare?: boolean }> = ({ variant = "cb", spin = DEFAULT_TURN, bare = false }) => {
   const v = BAUBLES[variant];
   const frame = useCurrentFrame();
   const [skin, setSkin] = useState<{ map: THREE.Texture; rough: THREE.Texture } | null>(null);
@@ -436,8 +437,8 @@ export const GlassBauble: React.FC<{ variant?: string; spin?: Turn }> = ({ varia
   }, [handle, v]);
   const push = interpolate(frame, [0, spin.span], [7.4, 6.6], { extrapolateRight: "clamp" });
   return (
-    <AbsoluteFill style={{ background: PAL.black }}>
-      <DarkBack frame={frame} />
+    <AbsoluteFill style={{ background: bare ? "transparent" : PAL.black }}>
+      {bare ? null : <DarkBack frame={frame} />}
       {skin ? (
         <ThreeCanvas
           width={BAUBLE_W}
@@ -453,7 +454,7 @@ export const GlassBauble: React.FC<{ variant?: string; spin?: Turn }> = ({ varia
           <Bauble skin={skin} spin={spin} />
         </ThreeCanvas>
       ) : null}
-      <DarkFront frame={frame} />
+      {bare ? null : <DarkFront frame={frame} />}
     </AbsoluteFill>
   );
 };
