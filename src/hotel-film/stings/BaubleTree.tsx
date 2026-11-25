@@ -11,10 +11,12 @@ import { BAUBLES, cbMask, DarkBack, drawMotif, paintSkin } from "./GlassBauble";
 
 // The bauble tree (Bianca, 25 Nov: "really like the bauble stuff, can we have it baubles being hung on the Christmas
 // tree, with the CB as the star on top of the tree? For 1st Dec"): a dark Christmas tree built in three.js (needles as
-// thousands of instanced strands, warm fairy lights glowing in it), the glass and felt ornaments lowered onto its
-// branches one a bar, each settling with a swing, the camera starting close and drawing back as the tree fills; then
-// the CB (the logo's own outline, extruded in gold) rises to the top as the star and the lights come up the tree; "Merry
-// Christmas, from our houses to yours". An AI assisted 3D render, 9:16.
+// thousands of instanced strands on brown twigs, warm fairy lights glowing in it), the glass and felt ornaments already
+// hanging and swinging gently (Scott: lowering them "looks weird"), the camera travelling up the tree from one to the
+// next on each downbeat, then drawing back as the felt CB star (Scott: "the star on top instead of the bauble") rises to
+// the top and the lights come up; the tree fades out, then "Merry Christmas, from our houses to yours" in cream
+// Cormorant (Scott). Polish (Scott: "the tree looks plastic"): matte needles in natural fir greens, lighter new growth at
+// the tips, darker into the tree, twigs under them, depth falling away into shadow (fog). An AI assisted 3D render, 9:16.
 //
 // Music: "Vintage Christmas Swing Big Band" by OpenMindAudio (Pixabay 620485, Pixabay Content License, not Content ID
 // registered: Scott, 25 Nov). 103.4 BPM (a beat every 0.5805s); bars counted back from its final hit at 206.97s:
@@ -47,7 +49,9 @@ const buildNeedles = () => {
   const r = rng(7);
   const mats: THREE.Matrix4[] = [];
   const cols: THREE.Color[] = [];
+  const twigs: THREE.Matrix4[] = [];
   const dummy = new THREE.Object3D();
+  const tw = new THREE.Object3D();
   const tiers = 34;
   for (let t = 0; t < tiers; t++) {
     const ty = BASE_Y + (t / tiers) * (TOP_Y - BASE_Y - 0.25);
@@ -58,6 +62,10 @@ const buildNeedles = () => {
       const ang = (b / branches) * Math.PI * 2 + r() * 0.9 + t * 2.4;
       const len = R * (0.8 + r() * 0.3);
       const segs = 13;
+      // each branch its own green: most a deep fir, some bluer, some warmer
+      const hue = r();
+      const bc = hue < 0.2 ? [0.022, 0.06, 0.055] : hue > 0.8 ? [0.04, 0.07, 0.028] : [0.03, 0.068, 0.036];
+      let prev = new THREE.Vector3(0, y0, 0);
       for (let k = 1; k <= segs; k++) {
         const u = k / segs;
         // along the branch: out from the trunk, sagging a little, the tip turning up
@@ -65,6 +73,15 @@ const buildNeedles = () => {
         const sag = -0.18 * Math.sin(u * Math.PI) * (len / BASE_R) + 0.08 * u * u;
         // the main stem, then from halfway two side shoots fanning out from it
         const shoot = u > 0.35 && k % 2 === 0 ? [0, 1, -1] : [0];
+        // the twig under the needles, segment by segment
+        const stem = new THREE.Vector3(Math.sin(ang) * d, y0 + sag, Math.cos(ang) * d);
+        const sl = stem.distanceTo(prev);
+        tw.position.copy(prev);
+        tw.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), stem.clone().sub(prev).normalize());
+        tw.scale.set(1.4 - u, sl, 1.4 - u);
+        tw.updateMatrix();
+        twigs.push(tw.matrix.clone());
+        prev = stem;
         for (const sd of shoot) {
         const off = sd * 0.16 * (1 - u * 0.4);
         const px = Math.sin(ang) * d + Math.cos(ang) * off, pz = Math.cos(ang) * d - Math.sin(ang) * off, py = y0 + sag - Math.abs(sd) * 0.03;
@@ -82,24 +99,29 @@ const buildNeedles = () => {
           const base = new THREE.Vector3(px, py, pz), tip = base.clone().addScaledVector(nd, l), mid = base.clone().addScaledVector(nd, l / 2);
           if (POCKETS().some((c) => c.distanceTo(base) < c.r || c.distanceTo(tip) < c.r || c.distanceTo(mid) < c.r)) continue;
           dummy.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), nd);
-          dummy.scale.set(1, l, 1);
+          dummy.scale.set(1, l, 0.55);
           dummy.updateMatrix();
           mats.push(dummy.matrix.clone());
-          const g = (0.7 + r() * 0.6) * (0.3 + 0.7 * u); // darker towards the trunk
-          const blue = r() * 0.02;
-          cols.push(new THREE.Color(0.025 * g, 0.085 * g, 0.05 * g + blue));
+          const g = (0.75 + r() * 0.5) * (0.28 + 0.72 * u); // darker towards the trunk
+          // the new growth at the tips a lighter, yellower green
+          const tipN = u > 0.82 && r() < 0.55 ? 1 : 0;
+          cols.push(
+            tipN
+              ? new THREE.Color(0.075 * g, 0.12 * g, 0.045 * g)
+              : new THREE.Color(bc[0] * g * 1.15, bc[1] * g * 1.15, bc[2] * g * 1.15),
+          );
         }
         }
       }
     }
   }
-  return { mats, cols };
+  return { mats, cols, twigs };
 };
 
 // fairy lights scattered over the outside of the tree
 const LIGHTS = (() => {
   const r = rng(91);
-  return Array.from({ length: 170 }, () => {
+  return Array.from({ length: 240 }, () => {
     const y = BASE_Y + 0.1 + r() * (TOP_Y - BASE_Y - 0.5);
     const a = r() * Math.PI * 2;
     const R = radiusAt(y) * (0.82 + r() * 0.18);
@@ -129,16 +151,18 @@ const glowTexture = (() => {
 
 // --- the ornaments and where they hang ---
 type Hang = { kind: "glass" | "felt"; variant: string; y: number; a: number };
+// bottom to top, the order the camera climbs, glass and felt alternating, left and right of centre
 const HANGS: Hang[] = [
-  { kind: "glass", variant: "tea", y: 0.2, a: -0.3 },
-  { kind: "felt", variant: "manor", y: 1.3, a: 0.32 },
-  { kind: "glass", variant: "key", y: -1.0, a: 0.45 },
-  { kind: "felt", variant: "stocking", y: -2.1, a: -0.4 },
-  { kind: "glass", variant: "manor", y: -0.6, a: -0.95 },
-  { kind: "felt", variant: "teapot", y: 1.9, a: -0.2 },
+  { kind: "felt", variant: "stocking", y: -2.0, a: -0.34 },
+  { kind: "glass", variant: "key", y: -1.15, a: 0.36 },
+  { kind: "felt", variant: "teapot", y: -0.3, a: -0.3 },
+  { kind: "glass", variant: "tea", y: 0.55, a: 0.32 },
+  { kind: "felt", variant: "manor", y: 1.35, a: -0.26 },
+  { kind: "glass", variant: "manor", y: 2.05, a: 0.24 },
 ];
-const LAND = HANGS.map((_, i) => bar(i + 1)); // each lands on the downbeat of bars 1..6
-const STAR_FROM = bar(6);
+const AT = HANGS.map((_, i) => bar(i)); // the camera arrives on each on a downbeat: the first from frame one
+const GLIDE = 30; // frames for each move, landing on its downbeat
+const STAR_FROM = bar(6) - 6;
 const STAR_LAND = bar(7); // the felt CB star seats on the top as the bar turns
 // then the lit tree holds a bar, fades to black (Scott: "fade the Christmas tree out, then the cream Cormorant")
 const TREE_OUT = bar(8);
@@ -147,7 +171,6 @@ const hangPoint = (h: Hang) => {
   const R = radiusAt(h.y) * 1.05 + 0.3;
   return new THREE.Vector3(Math.sin(h.a) * R, h.y, Math.cos(h.a) * R);
 };
-const DROP = 22;
 // where each ornament's body hangs (its centre, below the cord), and the room it needs to swing in clear of needles
 type Pocket = THREE.Vector3 & { r: number };
 let pockets: Pocket[] | null = null;
@@ -157,7 +180,6 @@ const POCKETS = () =>
     const drop = h.kind === "glass" ? CORD + 1.37 * 0.34 : CORD + 1.15 * 0.32;
     return Object.assign(new THREE.Vector3(p.x, p.y - drop, p.z), { r: h.kind === "glass" ? 0.41 : 0.38 });
   }));
-const dropFor = (i: number) => (i === 0 ? LAND[0] : DROP);
 const CORD = 0.32;
 
 type Skins = {
@@ -193,11 +215,11 @@ const FeltBody: React.FC<{ felt: NonNullable<ReturnType<typeof useFelt>> }> = ({
 
 const Ornament: React.FC<{ h: Hang; i: number; skins: Skins; gold: THREE.Material }> = ({ h, i, skins, gold }) => {
   const frame = useCurrentFrame();
-  const land = LAND[i];
-  const t = (frame - land) / FPS;
-  const drop = interpolate(frame, [land - dropFor(i), land], [i === 0 ? 2.2 : 1.4, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.out(Easing.back(1.2)) });
-  const swing = t > 0 ? 0.2 * Math.exp(-t / 1.4) * Math.sin((2 * Math.PI * t) / 1.15) : 0;
-  const turn = h.kind === "glass" ? -0.5 + 0.18 * (frame - land) / FPS : -0.6 * Math.exp(-Math.max(0, t) / 1.6) * Math.cos((2 * Math.PI * Math.max(0, t)) / 2.3) + 0.1 * Math.sin(frame / 45);
+  const t = frame / FPS;
+  // already hanging, swinging gently on its cord, each at its own pace (a pendulum of its length ~1.3s)
+  const ph = i * 1.9;
+  const swing = 0.075 * Math.sin((2 * Math.PI * t) / (1.25 + i * 0.07) + ph) + 0.02 * Math.sin((2 * Math.PI * t) / 3.1 + ph);
+  const turn = h.kind === "glass" ? -0.35 + 0.16 * Math.sin((2 * Math.PI * t) / 6 + ph) : 0.22 * Math.sin((2 * Math.PI * t) / 4.4 + ph);
   const hp = hangPoint(h);
   const glassMat = useMemo(() => {
     if (h.kind !== "glass") return null;
@@ -205,12 +227,12 @@ const Ornament: React.FC<{ h: Hang; i: number; skins: Skins; gold: THREE.Materia
     return new THREE.MeshPhysicalMaterial({ map: g.map, roughnessMap: g.rough, metalnessMap: g.rough, roughness: 1, metalness: 1, clearcoat: 1, clearcoatRoughness: 0.02 });
   }, [h, skins]);
   const felt = useFelt(h.kind === "felt" ? h.variant : null, skins);
-  if (frame < land - dropFor(i)) return null;
   const S = h.kind === "glass" ? 0.34 : 0.32;
   const topY = h.kind === "glass" ? 1.37 : 1.15; // the loop's top, in the ornament's own units
   return (
-    // pivot at the hang point on the branch; the ornament hangs CORD below it, lowered in from above
-    <group position={[hp.x, hp.y + drop, hp.z]} rotation={[0, 0, swing]}>
+    // pivot at the hang point on the branch, facing out from the tree; the ornament hangs CORD below it
+    <group position={[hp.x, hp.y, hp.z]} rotation={[0, h.a, 0]}>
+    <group rotation={[0, 0, swing]}>
       <mesh position={[0, -CORD / 2, 0]} material={gold}>
         <cylinderGeometry args={[0.004, 0.004, CORD, 6]} />
       </mesh>
@@ -237,6 +259,7 @@ const Ornament: React.FC<{ h: Hang; i: number; skins: Skins; gold: THREE.Materia
         )}
       </group>
     </group>
+    </group>
   );
 };
 
@@ -246,11 +269,12 @@ const Tree: React.FC<{ skins: Skins }> = ({ skins }) => {
   const env = useMemo(() => new THREE.PMREMGenerator(gl).fromScene(new RoomEnvironment(), 0.03).texture, [gl]);
   scene.environment = env;
   scene.environmentIntensity = 0.35;
-  const needles = useMemo(() => {
-    const { mats, cols } = buildNeedles();
-    const geo = new THREE.CylinderGeometry(0.007, 0.0105, 1, 4);
+  const [needles, twigs] = useMemo(() => {
+    const { mats, cols, twigs: tm } = buildNeedles();
+    // a needle: a slim flattened strand, tapering to its tip; matte, barely catching the room (it read as plastic)
+    const geo = new THREE.CylinderGeometry(0.0045, 0.0105, 1, 5);
     geo.translate(0, 0.5, 0);
-    const mat = new THREE.MeshStandardMaterial({ roughness: 0.75, metalness: 0 });
+    const mat = new THREE.MeshStandardMaterial({ roughness: 0.96, metalness: 0, envMapIntensity: 0.12 });
     const m = new THREE.InstancedMesh(geo, mat, mats.length);
     mats.forEach((mx, i) => {
       m.setMatrixAt(i, mx);
@@ -258,28 +282,45 @@ const Tree: React.FC<{ skins: Skins }> = ({ skins }) => {
     });
     m.instanceMatrix.needsUpdate = true;
     if (m.instanceColor) m.instanceColor.needsUpdate = true;
-    return m;
+    const tg = new THREE.CylinderGeometry(0.009, 0.012, 1, 5);
+    tg.translate(0, 0.5, 0);
+    const tw = new THREE.InstancedMesh(tg, new THREE.MeshStandardMaterial({ color: "#2b1d12", roughness: 1, envMapIntensity: 0.1 }), tm.length);
+    tm.forEach((mx, i) => tw.setMatrixAt(i, mx));
+    tw.instanceMatrix.needsUpdate = true;
+    return [m, tw];
   }, []);
   const gold = useMemo(goldMat, []);
   const star = useFelt("star", skins);
   const glow = glowTexture();
 
-  // the camera: close on each ornament as it lands, drawing back as the tree fills, then up to the star
-  const keys = [
-    { f: 0, d: 3.6, y: 0.55, x: 0 },
-    ...HANGS.map((h, i) => {
-      const p = hangPoint(h);
-      return { f: LAND[i], d: 3.4 + i * 1.05, y: p.y * (1 - i / 9) - 0.25, x: p.x * (1 - i / 7) };
-    }),
-    { f: STAR_LAND, d: 15.8, y: 0.25, x: 0 },
-    { f: TREE_FRAMES, d: 16.6, y: 0.25, x: 0 },
-  ];
-  const k = keys.findIndex((q, i) => i < keys.length - 1 && frame >= q.f && frame < keys[i + 1].f);
-  const a = keys[Math.max(0, k)], b = keys[Math.max(0, k) + 1] ?? a;
-  const u = b.f > a.f ? Easing.inOut(Easing.cubic)(Math.min(1, Math.max(0, (frame - a.f) / (b.f - a.f)))) : 0;
-  const d = a.d + (b.d - a.d) * u, cy = a.y + (b.y - a.y) * u, cx = a.x + (b.x - a.x) * u;
-  camera.position.set(cx, cy + 0.15, d + 1.2);
-  camera.lookAt(cx, cy, 0);
+  // the camera: close on each ornament in turn, gliding up the tree to arrive at the next on each downbeat, then
+  // drawing back to the whole tree as the star goes on. Cylindrical: an angle round the tree, a height, a distance.
+  const near = (i: number) => {
+    const h = HANGS[i];
+    const body = h.y - CORD - (h.kind === "glass" ? 1.37 : 1.15) * 0.33;
+    return { a: h.a * 0.9, y: body + 0.12, look: body + 0.02, r: radiusAt(h.y) * 1.05 + 0.3 + 2.95, lr: radiusAt(h.y) * 0.9 };
+  };
+  let p = 0;
+  for (let i = 1; i < HANGS.length; i++) p += interpolate(frame, [AT[i] - GLIDE, AT[i]], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.bezier(0.45, 0, 0.55, 1) });
+  const i0 = Math.min(HANGS.length - 1, Math.floor(p)), fr = p - i0;
+  const n0 = near(i0), n1 = near(Math.min(HANGS.length - 1, i0 + 1));
+  const mix = (k: keyof typeof n0) => n0[k] + (n1[k] - n0[k]) * fr;
+  const close = { a: mix("a"), y: mix("y"), look: mix("look"), r: mix("r"), lr: mix("lr") };
+  const wide = { a: 0, y: 0.3, look: 0.25, r: 16.4, lr: 0 };
+  const w = interpolate(frame, [bar(6) - 14, STAR_LAND + 12], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.inOut(Easing.cubic) });
+  const drift = interpolate(frame, [STAR_LAND + 12, TREE_FRAMES], [0, 0.7], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const cam = {
+    a: close.a + (wide.a - close.a) * w,
+    y: close.y + (wide.y - close.y) * w,
+    look: close.look + (wide.look - close.look) * w,
+    r: close.r + (wide.r - close.r) * w + drift,
+    lr: close.lr + (wide.lr - close.lr) * w,
+  };
+  camera.position.set(Math.sin(cam.a) * cam.r, cam.y, Math.cos(cam.a) * cam.r);
+  camera.lookAt(Math.sin(cam.a) * cam.lr, cam.look, Math.cos(cam.a) * cam.lr);
+  // depth into shadow: the far side of the tree and its inside fall away to black (fog), a few units past the subject
+  const subject = cam.r - cam.lr;
+  scene.fog = new THREE.Fog(0x000000, subject - 0.4, subject + 2.8 + 3 * w);
 
   // the lights: a soft twinkle, coming right up as the star lands
   const lift = interpolate(frame, [STAR_LAND - 6, STAR_LAND + 30], [0.55, 1.25], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
@@ -291,11 +332,11 @@ const Tree: React.FC<{ skins: Skins }> = ({ skins }) => {
   return (
     <>
       <ambientLight intensity={0.08} />
-      <directionalLight position={[3, 4, 6]} intensity={0.9} color="#ffdcb0" />
+      <directionalLight position={[3, 4, 6]} intensity={0.7} color="#ffdcb0" />
       <pointLight position={[-4, 1, 3]} intensity={6} color="#f4e2c4" />
       <pointLight position={[0, 1, -4]} intensity={8} color="#e8cf9c" />
       {/* the tree's own warm light from inside, for the needles near the bulbs */}
-      <pointLight position={[0, 0, 0.8]} intensity={3.5 * lift} distance={4.5} color="#ffbf73" />
+      <pointLight position={[0, 0, 0.8]} intensity={4.5 * lift} distance={4.5} color="#ffb766" />
       <mesh position={[0, BASE_Y - 0.3, 0]}>
         <cylinderGeometry args={[0.12, 0.16, 1.0, 12]} />
         <meshStandardMaterial color="#2a1c12" roughness={0.9} />
@@ -304,12 +345,13 @@ const Tree: React.FC<{ skins: Skins }> = ({ skins }) => {
         <coneGeometry args={[BASE_R * 0.62, TOP_Y - BASE_Y - 0.4, 40]} />
         <meshStandardMaterial color="#0a1a10" roughness={1} />
       </mesh>
+      <primitive object={twigs} />
       <primitive object={needles} />
       {LIGHTS.map((l, i) => {
         const tw = 0.75 + 0.25 * Math.sin(frame / 9 + l.phase);
         const o = Math.min(0.9, 0.85 * tw * lift);
         return (
-          <sprite key={i} position={l.p} scale={[0.09 + 0.04 * lift, 0.09 + 0.04 * lift, 1]}>
+          <sprite key={i} position={l.p} scale={[0.075 + 0.035 * lift, 0.075 + 0.035 * lift, 1]}>
             <spriteMaterial map={glow} transparent opacity={o} depthWrite={false} blending={THREE.AdditiveBlending} />
           </sprite>
         );
