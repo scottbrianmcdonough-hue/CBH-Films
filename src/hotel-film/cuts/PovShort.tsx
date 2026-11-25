@@ -51,6 +51,23 @@ export const lowWoodWinter: PovSpec = {
   question: ["who's coming", "with you?"],
 };
 
+// the unusual angle first (Scott, 25 Nov: ours stall at ~220 views while Coombe Abbey's banquet got 516k): a castle
+const RC = "hotels/ruthin-castle";
+export const ruthinCastle: PovSpec = {
+  hook: ["you can actually", "sleep in this castle"],
+  place: "NORTH WALES",
+  name: "Ruthin Castle\nHotel & Spa",
+  shots: [
+    { clip: `${RC}/clips/castle`, beats: 6 },
+    { clip: `${RC}/clips/peacock`, beats: 5 },
+    { clip: `${RC}/sumac-and-ruins`, beats: 5 },
+    { clip: `${RC}/clips/fireside-plate`, beats: 4 },
+    { clip: `${RC}/hot-tub-lift`, beats: 5, from: 14 },
+    { clip: `${RC}/clips/white-bed`, beats: 10 },
+  ],
+  question: ["would you sleep", "in a castle?"],
+};
+
 // TikTok's own Follow button, popped in, tapped and turned to Following (not used: see the close)
 export const Follow: React.FC<{ at: number; tap: number }> = ({ at, tap }) => {
   const f = useCurrentFrame();
