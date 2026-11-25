@@ -1471,7 +1471,7 @@ with no history and no renders:
   Lined up with the plan doc (472 followers 25 Nov, 211 gained, the £14.40 follower boost test added to the doc's Paid).
 - POV shorts (`cuts/PovShort.tsx`, `PovSpec`; Scott, 25 Nov: "start building some like this", the explainer's phones): one
   hotel's footage full frame on Event Music beats, hook on frame one, house label on shots 2 to 3, the close over the
-  longest clip: question, then TikTok's Follow button popping in and tapped to Following. `pov-rowton-spa-tiktok`
+  longest clip: question, then "follow for more stays" in the same caption style (Scott, 25 Nov: a mock Follow button was dropped: it can fail ad review if boosted, and looks tappable). `pov-rowton-spa-tiktok`
   ("save this for your / next spa weekend", "who are you / taking?"), `pov-low-wood-winter-tiktok` ("POV: winter on /
   Windermere", "who's coming / with you?"); renders come out hot, -8 dB after: -15.1 LUFS, ~15s.
 - `the-kingfisher`, `whittlebury-park-stay-dine` (+ `-story` cuts): done.

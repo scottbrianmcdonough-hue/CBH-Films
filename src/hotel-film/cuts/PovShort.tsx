@@ -6,7 +6,7 @@ import { colors, progress, sans, serif } from "../theme";
 
 // TikTok shorts on the plan's two rules (Scott, 25 Nov: "start building some like this", the explainer's phones): one
 // hotel's real footage full frame on hard beat cuts, a hook on frame one, the house label once, and the close: a
-// question, then TikTok's Follow button popping in and tapped to Following. Event Music (steady, 152 BPM) so a trending
+// question, then "follow for more stays" in the same caption style (a Follow button mock was dropped). Event Music (steady, 152 BPM) so a trending
 // sound can go over it in the app. No logo: the label is the brand.
 
 export type PovShot = { clip: string; beats: number; from?: number };
@@ -51,8 +51,8 @@ export const lowWoodWinter: PovSpec = {
   question: ["who's coming", "with you?"],
 };
 
-// TikTok's own Follow button, popped in, tapped and turned to Following
-const Follow: React.FC<{ at: number; tap: number }> = ({ at, tap }) => {
+// TikTok's own Follow button, popped in, tapped and turned to Following (not used: see the close)
+export const Follow: React.FC<{ at: number; tap: number }> = ({ at, tap }) => {
   const f = useCurrentFrame();
   const inT = progress(f, at, 9);
   const pop = 1 + 0.12 * Math.sin(Math.PI * Math.min(1, Math.max(0, (f - at) / 9)));
@@ -91,7 +91,7 @@ export const PovShort: React.FC<{ spec?: PovSpec }> = ({ spec = rowtonSpa }) => 
   const n = spec.shots.length;
   const starts = spec.shots.map((_, i) => sum(spec.shots.slice(0, i)));
   const last = starts[n - 1], hookEnd = b(spec.shots[0].beats) - 4;
-  const qAt = b(last), followAt = b(last + 2), tapAt = b(last + 3.5);
+  const qAt = b(last), followAt = b(last + 3);
   // the label comes up on the second shot and holds two shots
   const lab = progress(frame, b(starts[1]) + 4, 8) * (1 - progress(frame, b(starts[Math.min(3, n - 1)]) - 6, 6));
   return (
@@ -113,7 +113,11 @@ export const PovShort: React.FC<{ spec?: PovSpec }> = ({ spec = rowtonSpa }) => 
       <Sequence from={qAt} layout="none">
         <TikTokText lines={spec.question} top={TT_TOP} left={140} />
       </Sequence>
-      <Follow at={followAt} tap={tapAt} />
+      {/* the follow ask in the caption style, not a fake button (Scott, 25 Nov: a fake Follow button can fail TikTok's ad review
+          when the reel is boosted, and looks tappable when it isn't) */}
+      <Sequence from={followAt} layout="none">
+        <TikTokText lines={["follow for more stays"]} top={1240} left={140} />
+      </Sequence>
       <Audio src={staticFile(MUSIC)} trimBefore={Math.round(MUSIC_FROM * 30)}
         volume={(v) => interpolate(v, [0, 3, total - 14, total], [0, 1, 1, 0], { extrapolateRight: "clamp" })} />
     </AbsoluteFill>
