@@ -183,7 +183,8 @@ const STAR_LAND = bar(7); // the felt CB star seats on the top as the bar turns
 const TREE_OUT = bar(8);
 const LINE_AT = TREE_OUT + 30;
 const hangPoint = (h: Hang) => {
-  const R = radiusAt(h.y) * 1.05 + 0.3;
+  // the six the camera visits hang a little proud of the needles; the smaller ones closer in, so none float off the edge
+  const R = h.s ? radiusAt(h.y) * 1.0 + 0.16 : radiusAt(h.y) * 1.05 + 0.3;
   return new THREE.Vector3(Math.sin(h.a) * R, h.y, Math.cos(h.a) * R);
 };
 const CORD = 0.32;
@@ -199,14 +200,22 @@ const EXTRAS: Hang[] = (() => {
   const r = rng(321);
   const designs: [Hang["kind"], string][] = [["felt", "holdsworth"], ["glass", "hintlesham"], ["felt", "hatherley"], ["glass", "coombe"], ["felt", "ruthin"], ["glass", "dalmahoy"]];
   const out: Hang[] = [];
-  const bodies = HANGS.map((h) => ({ b: bodyOf(h), clear: 1.05 }));
-  for (let n = 0; out.length < 34 && n < 3000; n++) {
-    const [kind, variant] = designs[out.length % designs.length];
-    const h: Hang = { kind, variant, y: -2.6 + r() * 4.75, a: (r() - 0.5) * 2 * Math.PI, s: 0.72 };
-    const b = bodyOf(h);
-    if (bodies.some((o) => o.b.distanceTo(b) < o.clear)) continue;
-    bodies.push({ b, clear: 0.62 });
-    out.push(h);
+  const featured = HANGS.map(bodyOf);
+  // even rows down the tree, as many across each row as its width allows, spread over the front the camera sees (not
+  // out at the silhouette, where they read as floating), each row offset half a step from the one above
+  let row = 0;
+  for (let y = -2.22; y < 2.4; y += 0.36, row++) {
+    const n = Math.max(1, Math.round(radiusAt(y) * 2.9));
+    const span = 0.88;
+    for (let k = 0; k < n; k++) {
+      const u = n === 1 ? 0.5 : (k + (row % 2 ? 0.75 : 0.25)) / n;
+      const a = -span + u * 2 * span + (r() - 0.5) * 0.12;
+      const h: Hang = { kind: "felt", variant: "", y: y + (r() - 0.5) * 0.1, a, s: 0.72 };
+      const b = bodyOf(h);
+      if (featured.some((f) => f.distanceTo(b) < 0.78)) continue;
+      const [kind, variant] = designs[out.length % designs.length];
+      out.push({ ...h, kind, variant });
+    }
   }
   return out;
 })();
