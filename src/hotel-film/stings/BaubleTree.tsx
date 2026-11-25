@@ -472,9 +472,9 @@ const Tree: React.FC<{ skins: Skins }> = ({ skins }) => {
 // the house's label, bottom left, rising in once the camera has landed and clearing before it moves on
 const HouseLabel: React.FC<{ i: number }> = ({ i }) => {
   const frame = useCurrentFrame();
-  const from = AT[i] + (i === 0 ? 8 : 4);
-  // held through the glide, clearing just before the next house lands (about two seconds each)
-  const to = i < HANGS.length - 1 ? AT[i + 1] - 6 : bar(6) - 10;
+  // in step with the camera: rising as the house comes into place, clearing as the camera sets off for the next
+  const from = i === 0 ? 8 : AT[i] - 10;
+  const to = i < HANGS.length - 1 ? AT[i + 1] - GLIDE + 10 : bar(6) - 10;
   const inP = interpolate(frame, [from, from + 14], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE_OUT });
   const outP = interpolate(frame, [to - 8, to], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   const o = inP * (1 - outP);
