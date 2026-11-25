@@ -323,7 +323,7 @@ const Environment: React.FC = () => {
   const { gl, scene } = useThree();
   const env = useMemo(() => new THREE.PMREMGenerator(gl).fromScene(new RoomEnvironment(), 0.03).texture, [gl]);
   scene.environment = env;
-  scene.environmentIntensity = 0.55;
+  scene.environmentIntensity = 0.35;
   return null;
 };
 
@@ -469,12 +469,14 @@ export const FeltOrnament: React.FC<{ variant?: string; light?: boolean }> = ({ 
           height={FELT_H}
           shadows
           camera={{ fov: 30, position: [0, 0.1, push], near: 0.1, far: 50 }}
-          gl={{ antialias: true, alpha: true, toneMapping: THREE.ACESFilmicToneMapping, toneMappingExposure: 1.0 }}
+          gl={{ antialias: true, alpha: true, toneMapping: THREE.ACESFilmicToneMapping, toneMappingExposure: light ? 1.0 : 0.92 }}
         >
           <Environment />
-          <ambientLight intensity={0.35} />
-          <directionalLight position={[2.5, 3, 4]} intensity={2.2} color="#fff1dc" />
-          <pointLight position={[-3, 1, 2]} intensity={6} color="#f4e6cf" />
+          {/* lit like the glass baubles on the dark background: a warm key from the upper right, a soft fill, a little rim */}
+          <ambientLight intensity={light ? 0.35 : 0.12} />
+          <directionalLight position={[2.5, 3, 4]} intensity={light ? 2.2 : 1.5} color="#ffe6c4" />
+          <pointLight position={[-3, 1, 2]} intensity={light ? 6 : 3} color="#f4e6cf" />
+          <pointLight position={[0, 1, -3]} intensity={light ? 0 : 6} color="#e8cf9c" />
           <Ornament kind={v.kind} felt={v.felt} skin={skin} shapes={shapes} />
         </ThreeCanvas>
       ) : null}
