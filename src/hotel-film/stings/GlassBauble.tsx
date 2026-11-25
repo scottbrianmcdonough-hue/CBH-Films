@@ -128,6 +128,98 @@ export const drawMotif = (kind: string) => {
     ell(400, 604, 11, 11, 6);
     line([[330, 668], [470, 668]], 12);
     line([[140, 668], [660, 668]], 8);
+  } else if (kind === "dalmahoy") {
+    // Dalmahoy, traced from its south front (Scott, 26 Nov: "the actual shape of our hotels instead of generic"): a
+    // Georgian house of three storeys, a balustraded parapet with urns, paired chimney stacks behind, rusticated quoins,
+    // and its double curved stair climbing to the carved doorcase on the first floor
+    // chimney stacks with their pots, behind the parapet
+    for (const x0 of [262, 486]) {
+      k.lineWidth = 9;
+      k.strokeRect(x0, 214, 54, 78);
+      for (const dx of [8, 22, 36]) k.strokeRect(x0 + dx, 196, 10, 18);
+    }
+    // the parapet: a top rail, balusters, the cornice, urns on the posts
+    line([[164, 296], [636, 296]], 9);
+    for (let x = 180; x <= 622; x += 13) line([[x, 300], [x, 322]], 4);
+    line([[150, 328], [650, 328]], 16);
+    for (const x of [172, 322, 478, 628]) {
+      k.lineWidth = 8;
+      k.strokeRect(x - 9, 296, 18, 30);
+      ell(x, 282, 9, 12, 7);
+      line([[x, 268], [x, 262]], 6);
+    }
+    // the walls, and the band between the ground and first floors
+    line([[172, 328], [172, 640]], 10);
+    line([[628, 328], [628, 640]], 10);
+    line([[172, 520], [628, 520]], 6);
+    // rusticated quoins up the corners and the centre bay
+    for (const x of [172, 628, 362, 438]) {
+      for (let y = 340; y < 630; y += 26) {
+        const w = (Math.round((y - 340) / 26) % 2 ? 12 : 20) * (x < 400 ? 1 : -1);
+        line([[x, y], [x + w, y]], 4);
+      }
+    }
+    // windows: three bays each side, two floors above, the ground floor below the band
+    const win = (x: number, y: number, h: number) => {
+      k.lineWidth = 7;
+      k.strokeRect(x - 18, y, 36, h);
+      line([[x, y + 3], [x, y + h - 3]], 3);
+      line([[x - 15, y + h / 2], [x + 15, y + h / 2]], 3);
+      line([[x - 22, y + h + 6], [x + 22, y + h + 6]], 5);
+    };
+    for (const x of [214, 270, 326, 474, 530, 586]) {
+      win(x, 352, 56);
+      win(x, 436, 62);
+      // the stair stands in front of the inner ground floor windows
+      if (x < 300 || x > 500) win(x, 548, 48);
+    }
+    win(400, 352, 56);
+    // the doorcase: an arched door with a carved pediment and scrolls
+    k.lineWidth = 9;
+    k.beginPath();
+    k.moveTo(378, 512);
+    k.lineTo(378, 452);
+    k.arc(400, 452, 22, Math.PI, 0);
+    k.lineTo(422, 512);
+    k.stroke();
+    line([[400, 430], [400, 512]], 3);
+    k.lineWidth = 7;
+    k.beginPath();
+    k.moveTo(362, 428);
+    k.quadraticCurveTo(372, 404, 386, 414);
+    k.moveTo(438, 428);
+    k.quadraticCurveTo(428, 404, 414, 414);
+    k.stroke();
+    ell(400, 404, 10, 12, 6);
+    // the double stair: a landing at the door, two flights curving down to the lawn, their balustrades
+    line([[350, 516], [450, 516]], 9);
+    k.lineWidth = 9;
+    k.beginPath();
+    // each flight's underside, and its handrail above, sweeping down and out from the landing to the lawn
+    k.moveTo(352, 518);
+    k.bezierCurveTo(330, 530, 316, 600, 300, 646);
+    k.moveTo(448, 518);
+    k.bezierCurveTo(470, 530, 484, 600, 500, 646);
+    k.stroke();
+    k.lineWidth = 6;
+    k.beginPath();
+    k.moveTo(354, 498);
+    k.bezierCurveTo(328, 510, 306, 580, 286, 626);
+    k.moveTo(446, 498);
+    k.bezierCurveTo(472, 510, 494, 580, 514, 626);
+    k.stroke();
+    // the steps: short treads between the two lines
+    for (let i = 1; i < 7; i++) {
+      const u = i / 7, v = 1 - u;
+      const bx = v * v * v * 352 + 3 * v * v * u * 330 + 3 * v * u * u * 316 + u * u * u * 300;
+      const by = v * v * v * 518 + 3 * v * v * u * 530 + 3 * v * u * u * 600 + u * u * u * 646;
+      line([[bx, by], [bx - 12, by - 18]], 3);
+      line([[800 - bx, by], [800 - bx + 12, by - 18]], 3);
+    }
+    // a garden door under the landing, and the lawn
+    k.lineWidth = 7;
+    k.strokeRect(386, 572, 28, 68);
+    line([[130, 648], [670, 648]], 10);
   } else if (kind === "key") {
     // a vintage hotel room key: an open bow with an inner ring, a collar, the shaft and the bit
     ell(210, 400, 112, 112, 22);
@@ -168,12 +260,13 @@ export const drawMotif = (kind: string) => {
   return trim(c);
 };
 
-type Variant = { motif: "cb" | "manor" | "key" | "tea"; glass: string; height: number };
+type Variant = { motif: "cb" | "manor" | "dalmahoy" | "key" | "tea"; glass: string; height: number };
 // The carousel (Scott: "do a few others for like a carousel"): black, pale, green and red glass, each one gold design.
 // The palette's green and red are secondaries, so each only as one bauble's glass, never together on one.
 export const BAUBLES: Record<string, Variant> = {
   cb: { motif: "cb", glass: "#010101", height: 0.3 },
   manor: { motif: "manor", glass: "#e6e1d8", height: 0.27 },
+  dalmahoy: { motif: "dalmahoy", glass: "#e6e1d8", height: 0.3 }, // the real house: Dalmahoy's south front
   key: { motif: "key", glass: "#2f3a29", height: 0.2 },
   tea: { motif: "tea", glass: "#4e2233", height: 0.31 },
 };

@@ -25,10 +25,12 @@ const PAL = {
   green: "#869674",
 };
 
-export type Kind = "star" | "manor" | "stocking" | "teapot";
+export type Kind = "star" | "manor" | "ruthin" | "stocking" | "teapot";
 export const FELTS: Record<string, { kind: Kind; felt: string; trim?: string; thread?: string; rim?: number }> = {
   star: { kind: "star", felt: "#efe9df" }, // cream felt, the CB embroidered in gold
   manor: { kind: "manor", felt: "#cbbfab" }, // beige felt, gold windows (black felt vanished on the black background)
+  // the real house (Scott, 26 Nov: "the actual shape of our hotels"): Ruthin Castle's battlements and clock tower
+  ruthin: { kind: "ruthin", felt: "#cbbfab" },
   stocking: { kind: "stocking", felt: "#7f8f6e", trim: "#f1ece3" }, // the sage green, a cream cuff
   // gold felt with deep gold thread and a stronger warm rim behind (it read flatter than the glass on the dark ground)
   teapot: { kind: "teapot", felt: "#c2a56f", thread: "#7b5a24", rim: 3 },
@@ -99,6 +101,45 @@ const manorShape = () => {
   s.closePath();
   return [s];
 };
+// Ruthin Castle, from its garden front: the clock tower in the middle (the loop hangs from it), crenellated walls
+// either side, a turret on the left, the red sandstone oriel and the end tower on the right
+const ruthinShape = () => {
+  const s = new THREE.Shape();
+  // battlements along a top edge from x0 to x1 (right to left), merlons rising h above y
+  const crenel = (x0: number, x1: number, y: number, h: number, n: number) => {
+    const w = (x0 - x1) / (2 * n - 1);
+    for (let i = 0; i < 2 * n - 1; i++) {
+      const xa = x0 - i * w, xb = x0 - (i + 1) * w;
+      const top = i % 2 === 0 ? y + h : y;
+      s.lineTo(xa, top);
+      s.lineTo(xb, top);
+    }
+  };
+  s.moveTo(-0.95, -0.8);
+  s.lineTo(0.95, -0.8);
+  // the right end tower
+  s.lineTo(0.95, 0.56);
+  crenel(0.95, 0.66, 0.56, 0.1, 3);
+  s.lineTo(0.66, 0.3);
+  // the oriel turret
+  s.lineTo(0.6, 0.3);
+  s.lineTo(0.6, 0.44);
+  crenel(0.6, 0.34, 0.44, 0.09, 3);
+  s.lineTo(0.34, 0.26);
+  // the wall to the clock tower
+  crenel(0.34, 0.17, 0.26, 0.08, 2);
+  // the clock tower
+  s.lineTo(0.17, 0.86);
+  crenel(0.17, -0.17, 0.86, 0.12, 3);
+  s.lineTo(-0.17, 0.26);
+  // the wall to the left turret
+  crenel(-0.17, -0.6, 0.26, 0.08, 3);
+  // the left turret
+  s.lineTo(-0.6, 0.5);
+  crenel(-0.6, -0.95, 0.5, 0.1, 3);
+  s.closePath();
+  return [s];
+};
 const stockingShape = () => {
   const s = new THREE.Shape();
   s.moveTo(-0.55, 1.0);
@@ -139,7 +180,7 @@ const teapotShape = () => {
   handle.holes.push(hole);
   return [handle, spout, body, lid, knob];
 };
-export const SHAPES: Record<Kind, () => THREE.Shape[]> = { star: starShape, manor: manorShape, stocking: stockingShape, teapot: teapotShape };
+export const SHAPES: Record<Kind, () => THREE.Shape[]> = { star: starShape, manor: manorShape, ruthin: ruthinShape, stocking: stockingShape, teapot: teapotShape };
 
 // --- the felt's skin: colour, fibre bump, and the gold thread ---
 const rnd = (i: number) => {
@@ -240,6 +281,47 @@ export const paintFelt = (kind: Kind, felt: string, shapes: THREE.Shape[], cb: H
     t.beginPath();
     t.arc(px(0), py(-0.5), 9, 0, Math.PI * 2);
     t.fill();
+  } else if (kind === "ruthin") {
+    running(shapes[0].getPoints(), 0.9);
+    t.lineWidth = 5;
+    // the clock face on the tower
+    t.beginPath();
+    t.arc(px(0), py(0.6), px(0.1) - px(0), 0, Math.PI * 2);
+    t.stroke();
+    t.beginPath();
+    t.moveTo(px(0), py(0.6));
+    t.lineTo(px(0), py(0.67));
+    t.moveTo(px(0), py(0.6));
+    t.lineTo(px(0.05), py(0.6));
+    t.stroke();
+    // pointed Gothic windows, a band of stone between the floors
+    const lancet = (x: number, y: number, w: number, h: number) => {
+      t.beginPath();
+      t.moveTo(px(x - w / 2), py(y - h));
+      t.lineTo(px(x - w / 2), py(y - w / 2));
+      t.quadraticCurveTo(px(x - w / 2), py(y), px(x), py(y + w * 0.35));
+      t.quadraticCurveTo(px(x + w / 2), py(y), px(x + w / 2), py(y - w / 2));
+      t.lineTo(px(x + w / 2), py(y - h));
+      t.closePath();
+      t.stroke();
+    };
+    lancet(0, 0.34, 0.11, 0.2);
+    for (const x of [-0.78, -0.46, -0.3, 0.47, 0.8]) lancet(x, 0.12, 0.11, 0.22);
+    for (const x of [-0.78, -0.46, 0.3, 0.47, 0.8]) lancet(x, -0.28, 0.11, 0.22);
+    t.setLineDash([10, 7]);
+    t.beginPath();
+    t.moveTo(px(-0.88), py(-0.06));
+    t.lineTo(px(0.88), py(-0.06));
+    t.stroke();
+    t.setLineDash([]);
+    // the arched door under the tower
+    t.beginPath();
+    t.moveTo(px(-0.12), py(-0.72));
+    t.lineTo(px(-0.12), py(-0.42));
+    t.quadraticCurveTo(px(-0.12), py(-0.26), px(0), py(-0.22));
+    t.quadraticCurveTo(px(0.12), py(-0.26), px(0.12), py(-0.42));
+    t.lineTo(px(0.12), py(-0.72));
+    t.stroke();
   } else if (kind === "stocking") {
     running(shapes[0].getPoints(), 0.87);
     // the cuff sits over the leg's stitching: clear it there, then stitch the cuff's own edge
@@ -370,7 +452,7 @@ const Ornament: React.FC<{ kind: Kind; felt: string; skin: Skin; shapes: THREE.S
       }),
     [shapes],
   );
-  const top = kind === "star" ? 1.03 : kind === "manor" ? 0.92 : kind === "stocking" ? 1.06 : 0.7;
+  const top = kind === "star" ? 1.03 : kind === "manor" ? 0.92 : kind === "ruthin" ? 0.98 : kind === "stocking" ? 1.06 : 0.7;
   return (
     <group position={[0, PIVOT, 0]} rotation={[0, 0, swing ? swingAngle(t) : 0]}>
     <group position={[0, 1.45 - PIVOT, 0]} rotation={[0, 0, sway]}>

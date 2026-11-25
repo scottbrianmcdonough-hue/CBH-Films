@@ -76,11 +76,13 @@ const buildNeedles = () => {
         // the twig under the needles, segment by segment
         const stem = new THREE.Vector3(Math.sin(ang) * d, y0 + sag, Math.cos(ang) * d);
         const sl = stem.distanceTo(prev);
+        const mid = prev.clone().add(stem).multiplyScalar(0.5);
+        const inPocket = POCKETS().some((c) => c.distanceTo(prev) < c.r + 0.03 || c.distanceTo(stem) < c.r + 0.03 || c.distanceTo(mid) < c.r + 0.03);
         tw.position.copy(prev);
         tw.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), stem.clone().sub(prev).normalize());
         tw.scale.set(1.4 - u, sl, 1.4 - u);
         tw.updateMatrix();
-        twigs.push(tw.matrix.clone());
+        if (!inPocket) twigs.push(tw.matrix.clone());
         prev = stem;
         for (const sd of shoot) {
         const off = sd * 0.16 * (1 - u * 0.4);
@@ -157,8 +159,9 @@ const HANGS: Hang[] = [
   { kind: "glass", variant: "key", y: -1.15, a: 0.36 },
   { kind: "felt", variant: "teapot", y: -0.3, a: -0.3 },
   { kind: "glass", variant: "tea", y: 0.55, a: 0.32 },
-  { kind: "felt", variant: "manor", y: 1.35, a: -0.26 },
-  { kind: "glass", variant: "manor", y: 2.05, a: 0.24 },
+  // the real houses (Scott, 26 Nov): Ruthin Castle in felt, Dalmahoy's front in gold on glass
+  { kind: "felt", variant: "ruthin", y: 1.35, a: -0.26 },
+  { kind: "glass", variant: "dalmahoy", y: 2.05, a: 0.24 },
 ];
 const AT = HANGS.map((_, i) => bar(i)); // the camera arrives on each on a downbeat: the first from frame one
 const GLIDE = 30; // frames for each move, landing on its downbeat
@@ -178,7 +181,7 @@ const POCKETS = () =>
   (pockets ??= HANGS.map((h) => {
     const p = hangPoint(h);
     const drop = h.kind === "glass" ? CORD + 1.37 * 0.34 : CORD + 1.15 * 0.32;
-    return Object.assign(new THREE.Vector3(p.x, p.y - drop, p.z), { r: h.kind === "glass" ? 0.41 : 0.38 });
+    return Object.assign(new THREE.Vector3(p.x, p.y - drop, p.z), { r: h.kind === "glass" ? 0.42 : 0.44 });
   }));
 const CORD = 0.32;
 
@@ -219,7 +222,7 @@ const Ornament: React.FC<{ h: Hang; i: number; skins: Skins; gold: THREE.Materia
   // already hanging, swinging gently on its cord, each at its own pace (a pendulum of its length ~1.3s)
   const ph = i * 1.9;
   const swing = 0.075 * Math.sin((2 * Math.PI * t) / (1.25 + i * 0.07) + ph) + 0.02 * Math.sin((2 * Math.PI * t) / 3.1 + ph);
-  const turn = h.kind === "glass" ? -0.35 + 0.16 * Math.sin((2 * Math.PI * t) / 6 + ph) : 0.22 * Math.sin((2 * Math.PI * t) / 4.4 + ph);
+  const turn = h.kind === "glass" ? 0.05 + 0.14 * Math.sin((2 * Math.PI * t) / 6 + ph) : 0.22 * Math.sin((2 * Math.PI * t) / 4.4 + ph);
   const hp = hangPoint(h);
   const glassMat = useMemo(() => {
     if (h.kind !== "glass") return null;
