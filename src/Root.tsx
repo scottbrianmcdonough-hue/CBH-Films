@@ -84,6 +84,7 @@ import {
 import { PostItList, POSTIT_FRAMES } from "./hotel-film/postit/PostItList";
 import { YearCalendar, YEAR_FRAMES } from "./hotel-film/calendar/YearCalendar";
 import { GlassBauble, BAUBLES, BAUBLE_FRAMES, BAUBLE_W, BAUBLE_H } from "./hotel-film/stings/GlassBauble";
+import { FeltOrnament, FELTS, FELT_FRAMES, FELT_W, FELT_H } from "./hotel-film/stings/FeltOrnament";
 import { HatherleyChristmas, HATHERLEY_XMAS_FRAMES } from "./hotel-film/festive-stay/HatherleyChristmas";
 import {
   ScreenTime,
@@ -316,6 +317,19 @@ export const RemotionRoot: React.FC = () => {
           fps={FPS}
           width={BAUBLE_W}
           height={BAUBLE_H}
+          defaultProps={{ variant: k }}
+        />
+      ))}
+      {/* the felt companions: stitched wool felt ornaments on a light background */}
+      {Object.keys(FELTS).map((k) => (
+        <Composition
+          key={k}
+          id={`cbh-felt-${k}`}
+          component={FeltOrnament}
+          durationInFrames={FELT_FRAMES}
+          fps={FPS}
+          width={FELT_W}
+          height={FELT_H}
           defaultProps={{ variant: k }}
         />
       ))}
