@@ -109,9 +109,15 @@ const drawMotif = (kind: string) => {
     line([[300, 330], [400, 252], [500, 330]], 14);
     k.strokeRect(200, 250, 44, 80);
     k.strokeRect(556, 250, 44, 80);
-    for (const y of [370, 470])
-      for (const x of [196, 276, 376, 476, 556]) k.fillRect(x, y, 48, 66);
-    for (const x of [196, 276, 476, 556]) k.fillRect(x, 568, 48, 66);
+    // windows as gilded outlines with a glazing bar, so the house reads as line work, not a grid of blocks
+    const win = (x: number, y: number) => {
+      k.lineWidth = 9;
+      k.strokeRect(x, y, 48, 66);
+      line([[x + 24, y + 4], [x + 24, y + 62]], 5);
+      line([[x + 4, y + 33], [x + 44, y + 33]], 5);
+    };
+    for (const y of [370, 470]) for (const x of [196, 276, 376, 476, 556]) win(x, y);
+    for (const x of [196, 276, 476, 556]) win(x, 568);
     k.lineWidth = 12;
     k.beginPath();
     k.moveTo(372, 650);
@@ -142,21 +148,22 @@ const drawMotif = (kind: string) => {
     k.fill();
   } else if (kind === "tea") {
     // a three tier afternoon tea stand: the ring handle, the rod, three plates of little cakes, the foot
-    ell(400, 118, 30, 30, 12);
-    line([[400, 148], [400, 650]], 14);
-    const tiers: [number, number][] = [[272, 118], [422, 162], [582, 208]];
+    ell(400, 112, 34, 34, 16);
+    line([[400, 146], [400, 650]], 20);
+    const tiers: [number, number][] = [[272, 130], [422, 175], [582, 220]];
     tiers.forEach(([y, rx], ti) => {
-      ell(400, y, rx, rx * 0.17, 14);
+      ell(400, y, rx, rx * 0.17, 20);
+      // little cakes and scones on each plate, either side of the rod
       const n = 2 + ti;
       for (let i = 0; i < n; i++) {
-        const x = 400 - rx * 0.62 + (i * rx * 1.24) / (n - 1);
-        if (Math.abs(x - 400) < 18) continue;
+        const x = 400 - rx * 0.6 + (i * rx * 1.2) / (n - 1);
+        if (Math.abs(x - 400) < 30) continue;
         k.beginPath();
-        k.arc(x, y - 8, 20 + ti * 2, Math.PI, 0);
+        k.arc(x, y - 12, 30 + ti * 3, Math.PI, 0);
         k.fill();
       }
     });
-    ell(400, 660, 72, 14, 10, true);
+    ell(400, 662, 80, 16, 10, true);
   }
   return trim(c);
 };
