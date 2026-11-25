@@ -437,14 +437,17 @@ const Tree: React.FC<{ skins: Skins }> = ({ skins }) => {
       <pointLight position={[-4, 1, 3]} intensity={6} color="#f4e2c4" />
       <pointLight position={[0, 1, -4]} intensity={8} color="#e8cf9c" />
       {/* the tree's own warm light from inside, for the needles near the bulbs */}
-      <pointLight position={[0, 0, 0.8]} intensity={4.5 * lift} distance={4.5} color="#ffb766" />
+      {/* from the trunk, spread up the tree (one light against the core burnt a hot patch in the middle: Scott) */}
+      {[-1.6, -0.2, 1.3].map((y) => (
+        <pointLight key={y} position={[0, y, 0]} intensity={1.8 * lift} distance={3.6} color="#ffb766" />
+      ))}
       <mesh position={[0, BASE_Y - 0.3, 0]}>
         <cylinderGeometry args={[0.12, 0.16, 1.0, 12]} />
         <meshStandardMaterial color="#2a1c12" roughness={0.9} />
       </mesh>
       <mesh position={[0, (BASE_Y + TOP_Y) / 2 - 0.1, 0]}>
         <coneGeometry args={[BASE_R * 0.62, TOP_Y - BASE_Y - 0.4, 40]} />
-        <meshStandardMaterial color="#10261a" roughness={1} />
+        <meshBasicMaterial color="#0b1c12" />
       </mesh>
       <primitive object={twigs} />
       <primitive object={needles} />
