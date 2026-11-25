@@ -175,9 +175,9 @@ const HANGS: Hang[] = [
 // the name in cream Cormorant, no underline (as on the Hatherley and Coombe reels)
 const LABELS: [string, string][] = [
   ["Halifax, West Yorkshire", "Holdsworth House"],
-  ["Ipswich, Suffolk", "Hintlesham Hall"],
+  ["Ipswich, Suffolk", "Hintlesham Hall Hotel"],
   ["Cotswolds", "Hatherley Manor"],
-  ["Coventry, Warwickshire", "Coombe Abbey"],
+  ["Coventry, Warwickshire", "Coombe Abbey Hotel"],
   ["North Wales", "Ruthin Castle"],
   ["Edinburgh", "Dalmahoy"],
 ];
