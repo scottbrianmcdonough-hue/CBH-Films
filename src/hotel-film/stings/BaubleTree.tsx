@@ -158,8 +158,9 @@ const HANGS: Hang[] = [
   // our hotels (Scott, 26 Nov: "a few more shapes like our hotels"): Holdsworth House in felt, Hintlesham Hall on glass
   { kind: "felt", variant: "holdsworth", y: -2.0, a: -0.34 },
   { kind: "glass", variant: "hintlesham", y: -1.15, a: 0.36 },
-  { kind: "felt", variant: "teapot", y: -0.3, a: -0.3 },
-  { kind: "glass", variant: "tea", y: 0.55, a: 0.32 },
+  // all houses (Scott, 26 Nov: "go all houses"): Hatherley Manor in felt, Coombe Abbey on glass
+  { kind: "felt", variant: "hatherley", y: -0.3, a: -0.3 },
+  { kind: "glass", variant: "coombe", y: 0.55, a: 0.32 },
   // the real houses (Scott, 26 Nov): Ruthin Castle in felt, Dalmahoy's front in gold on glass
   { kind: "felt", variant: "ruthin", y: 1.35, a: -0.26 },
   { kind: "glass", variant: "dalmahoy", y: 2.05, a: 0.24 },

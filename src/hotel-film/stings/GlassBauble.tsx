@@ -282,6 +282,60 @@ export const drawMotif = (kind: string) => {
     line([[438, 544], [438, 640]], 6);
     // the lawn
     line([[120, 648], [680, 648]], 10);
+  } else if (kind === "coombe") {
+    // Coombe Abbey, Coventry, from its gardens: the classical front on the left (a balustraded parapet, the carved
+    // pediment over the middle bays, tall chimneys) joined to the Tudor wing on the right (three gables with finials,
+    // tall paired chimneys, mullioned windows)
+    // the classical front
+    line([[140, 342], [168, 318], [432, 318], [460, 342]], 7);
+    for (const [x, top] of [[150, 236], [238, 290], [362, 290]] as [number, number][]) {
+      k.lineWidth = 7;
+      k.strokeRect(x, top, 24, 318 - top);
+    }
+    line([[128, 346], [472, 346]], 9);
+    line([[124, 362], [476, 362]], 12);
+    line([[226, 362], [300, 316], [374, 362]], 10);
+    ell(300, 342, 20, 10, 5);
+    line([[130, 362], [130, 640]], 8);
+    line([[470, 362], [470, 640]], 8);
+    line([[130, 480], [470, 480]], 5);
+    const win = (x: number, y: number, w: number, h: number, bars: number) => {
+      k.lineWidth = 6;
+      k.strokeRect(x - w / 2, y, w, h);
+      for (let i = 1; i < bars; i++) line([[x - w / 2 + (w * i) / bars, y + 3], [x - w / 2 + (w * i) / bars, y + h - 3]], 3);
+      line([[x - w / 2 + 3, y + h * 0.45], [x + w / 2 - 3, y + h * 0.45]], 3);
+    };
+    for (const x of [164, 208, 252, 300, 348, 392, 436]) {
+      win(x, 380, 28, 76, 2);
+      if (x !== 300) win(x, 500, 28, 80, 2);
+    }
+    // the door, under a small pediment
+    k.lineWidth = 8;
+    k.strokeRect(286, 530, 28, 110);
+    line([[276, 524], [300, 506], [324, 524]], 6);
+    // the Tudor wing: three gables with finials, tall paired chimneys
+    for (const [x0, top] of [[530, 220], [544, 220], [604, 226], [618, 226]] as [number, number][]) {
+      k.lineWidth = 6;
+      k.strokeRect(x0, top, 12, 300 - top);
+    }
+    k.lineWidth = 8;
+    k.beginPath();
+    k.moveTo(470, 362);
+    for (const [a, p, b] of [[470, 505, 540], [540, 575, 610], [610, 645, 680]]) {
+      k.lineTo(a, 362);
+      k.lineTo(p, 300);
+      k.lineTo(b, 362);
+    }
+    k.lineTo(680, 640);
+    k.stroke();
+    for (const p of [505, 575, 645]) line([[p, 300], [p, 284]], 5);
+    for (const p of [505, 575, 645]) {
+      win(p, 330, 22, 24, 2);
+      win(p, 386, 50, 64, 3);
+      win(p, 500, 50, 70, 3);
+    }
+    // the lawn
+    line([[110, 648], [690, 648]], 10);
   } else if (kind === "key") {
     // a vintage hotel room key: an open bow with an inner ring, a collar, the shaft and the bit
     ell(210, 400, 112, 112, 22);
@@ -322,14 +376,15 @@ export const drawMotif = (kind: string) => {
   return trim(c);
 };
 
-type Variant = { motif: "cb" | "manor" | "dalmahoy" | "hintlesham" | "key" | "tea"; glass: string; height: number };
+type Variant = { motif: "cb" | "manor" | "dalmahoy" | "hintlesham" | "coombe" | "key" | "tea"; glass: string; height: number };
 // The carousel (Scott: "do a few others for like a carousel"): black, pale, green and red glass, each one gold design.
 // The palette's green and red are secondaries, so each only as one bauble's glass, never together on one.
 export const BAUBLES: Record<string, Variant> = {
   cb: { motif: "cb", glass: "#010101", height: 0.3 },
   manor: { motif: "manor", glass: "#e6e1d8", height: 0.27 },
   dalmahoy: { motif: "dalmahoy", glass: "#e6e1d8", height: 0.3 },
-  hintlesham: { motif: "hintlesham", glass: "#2f3a29", height: 0.3 }, // Hintlesham Hall in gold on the green glass // the real house: Dalmahoy's south front
+  hintlesham: { motif: "hintlesham", glass: "#2f3a29", height: 0.3 },
+  coombe: { motif: "coombe", glass: "#4e2233", height: 0.35 }, // Coombe Abbey in gold on the deep red glass // Hintlesham Hall in gold on the green glass // the real house: Dalmahoy's south front
   key: { motif: "key", glass: "#2f3a29", height: 0.2 },
   tea: { motif: "tea", glass: "#4e2233", height: 0.31 },
 };
