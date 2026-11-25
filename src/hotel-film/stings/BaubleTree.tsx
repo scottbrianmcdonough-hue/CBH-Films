@@ -5,7 +5,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { AbsoluteFill, continueRender, delayRender, Easing, Img, interpolate, staticFile, useCurrentFrame } from "remotion";
 import * as THREE from "three";
 import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment.js";
-import { EASE_OUT, serif } from "../theme";
+import { EASE_OUT, sans, serif } from "../theme";
 import { FELTS, Kind, paintFelt, SHAPES } from "./FeltOrnament";
 import { BAUBLES, cbMask, DarkBack, drawMotif, paintSkin } from "./GlassBauble";
 
@@ -152,7 +152,7 @@ const glowTexture = (() => {
 })();
 
 // --- the ornaments and where they hang ---
-type Hang = { kind: "glass" | "felt"; variant: string; y: number; a: number };
+type Hang = { kind: "glass" | "felt"; variant: string; y: number; a: number; s?: number };
 // bottom to top, the order the camera climbs, glass and felt alternating, left and right of centre
 const HANGS: Hang[] = [
   // our hotels (Scott, 26 Nov: "a few more shapes like our hotels"): Holdsworth House in felt, Hintlesham Hall on glass
@@ -165,6 +165,16 @@ const HANGS: Hang[] = [
   { kind: "felt", variant: "ruthin", y: 1.35, a: -0.26 },
   { kind: "glass", variant: "dalmahoy", y: 2.05, a: 0.24 },
 ];
+// each house named as the camera lands on it (Scott, 26 Nov: "put the name of each hotel"): the place in gold caps,
+// the name in cream Cormorant, no underline (as on the Hatherley and Coombe reels)
+const LABELS: [string, string][] = [
+  ["Halifax, West Yorkshire", "Holdsworth House"],
+  ["Ipswich, Suffolk", "Hintlesham Hall"],
+  ["Cotswolds", "Hatherley Manor"],
+  ["Coventry, Warwickshire", "Coombe Abbey"],
+  ["North Wales", "Ruthin Castle"],
+  ["Edinburgh", "Dalmahoy"],
+];
 const AT = HANGS.map((_, i) => bar(i)); // the camera arrives on each on a downbeat: the first from frame one
 const GLIDE = 30; // frames for each move, landing on its downbeat
 const STAR_FROM = bar(6) - 6;
@@ -176,16 +186,35 @@ const hangPoint = (h: Hang) => {
   const R = radiusAt(h.y) * 1.05 + 0.3;
   return new THREE.Vector3(Math.sin(h.a) * R, h.y, Math.cos(h.a) * R);
 };
-// where each ornament's body hangs (its centre, below the cord), and the room it needs to swing in clear of needles
+const CORD = 0.32;
+// an ornament's size and where its body hangs (its centre, below the cord)
+const sizeOf = (h: Hang) => (h.kind === "glass" ? 0.34 : 0.32) * (h.s ?? 1);
+const bodyOf = (h: Hang) => {
+  const p = hangPoint(h);
+  return new THREE.Vector3(p.x, p.y - CORD - (h.kind === "glass" ? 1.37 : 1.15) * sizeOf(h), p.z);
+};
+// many more houses all round the tree (Scott: "make it seem like we have many more"): the six again, smaller, in felt
+// and glass, spread over the whole tree and kept clear of each other and of the six the camera visits
+const EXTRAS: Hang[] = (() => {
+  const r = rng(321);
+  const designs: [Hang["kind"], string][] = [["felt", "holdsworth"], ["glass", "hintlesham"], ["felt", "hatherley"], ["glass", "coombe"], ["felt", "ruthin"], ["glass", "dalmahoy"]];
+  const out: Hang[] = [];
+  const bodies = HANGS.map((h) => ({ b: bodyOf(h), clear: 1.05 }));
+  for (let n = 0; out.length < 34 && n < 3000; n++) {
+    const [kind, variant] = designs[out.length % designs.length];
+    const h: Hang = { kind, variant, y: -2.6 + r() * 4.75, a: (r() - 0.5) * 2 * Math.PI, s: 0.72 };
+    const b = bodyOf(h);
+    if (bodies.some((o) => o.b.distanceTo(b) < o.clear)) continue;
+    bodies.push({ b, clear: 0.62 });
+    out.push(h);
+  }
+  return out;
+})();
+const ALL = [...HANGS, ...EXTRAS];
+// the room each ornament needs to swing in, clear of needles and twigs
 type Pocket = THREE.Vector3 & { r: number };
 let pockets: Pocket[] | null = null;
-const POCKETS = () =>
-  (pockets ??= HANGS.map((h) => {
-    const p = hangPoint(h);
-    const drop = h.kind === "glass" ? CORD + 1.37 * 0.34 : CORD + 1.15 * 0.32;
-    return Object.assign(new THREE.Vector3(p.x, p.y - drop, p.z), { r: h.kind === "glass" ? 0.42 : 0.44 });
-  }));
-const CORD = 0.32;
+const POCKETS = () => (pockets ??= ALL.map((h) => Object.assign(bodyOf(h), { r: (h.kind === "glass" ? 0.42 : 0.44) * (h.s ?? 1) })));
 
 type Skins = {
   glass: Record<string, { map: THREE.Texture; rough: THREE.Texture }>;
@@ -232,11 +261,11 @@ const Ornament: React.FC<{ h: Hang; i: number; skins: Skins; gold: THREE.Materia
     return new THREE.MeshPhysicalMaterial({ map: g.map, roughnessMap: g.rough, metalnessMap: g.rough, roughness: 1, metalness: 1, clearcoat: 1, clearcoatRoughness: 0.02 });
   }, [h, skins]);
   const felt = useFelt(h.kind === "felt" ? h.variant : null, skins);
-  const S = h.kind === "glass" ? 0.34 : 0.32;
+  const S = sizeOf(h);
   const topY = h.kind === "glass" ? 1.37 : 1.15; // the loop's top, in the ornament's own units
   return (
     // pivot at the hang point on the branch, facing out from the tree; the ornament hangs CORD below it
-    <group position={[hp.x, hp.y, hp.z]} rotation={[0, h.a, 0]}>
+    <group position={[hp.x, hp.y, hp.z]} rotation={[0, h.a * 0.55, 0]}>
     <group rotation={[0, 0, swing]}>
       <mesh position={[0, -CORD / 2, 0]} material={gold}>
         <cylinderGeometry args={[0.004, 0.004, CORD, 6]} />
@@ -361,7 +390,7 @@ const Tree: React.FC<{ skins: Skins }> = ({ skins }) => {
           </sprite>
         );
       })}
-      {HANGS.map((h, i) => (
+      {ALL.map((h, i) => (
         <Ornament key={i} h={h} i={i} skins={skins} gold={gold} />
       ))}
       {frame >= STAR_FROM - 2 ? (
@@ -375,6 +404,25 @@ const Tree: React.FC<{ skins: Skins }> = ({ skins }) => {
         </group>
       ) : null}
     </>
+  );
+};
+
+// the house's label, bottom left, rising in once the camera has landed and clearing before it moves on
+const HouseLabel: React.FC<{ i: number }> = ({ i }) => {
+  const frame = useCurrentFrame();
+  const from = AT[i] + (i === 0 ? 8 : 4);
+  // held through the glide, clearing just before the next house lands (about two seconds each)
+  const to = i < HANGS.length - 1 ? AT[i + 1] - 6 : bar(6) - 10;
+  const inP = interpolate(frame, [from, from + 14], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE_OUT });
+  const outP = interpolate(frame, [to - 8, to], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const o = inP * (1 - outP);
+  if (o <= 0) return null;
+  const [place, name] = LABELS[i];
+  return (
+    <div style={{ position: "absolute", left: 80, bottom: 430, opacity: o, transform: `translateY(${(1 - inP) * 14}px)`, textShadow: "0 2px 22px rgba(0,0,0,0.75)" }}>
+      <div style={{ fontFamily: sans, fontWeight: 600, fontSize: 28, letterSpacing: "0.24em", color: PAL.gold, textTransform: "uppercase", marginBottom: 10 }}>{place}</div>
+      <div style={{ fontFamily: serif, fontWeight: 400, fontSize: 72, lineHeight: 1.04, color: PAL.pale }}>{name}</div>
+    </div>
   );
 };
 
@@ -421,6 +469,11 @@ export const BaubleTree: React.FC = () => {
           <Tree skins={skins} />
         </ThreeCanvas>
       ) : null}
+      {/* a soft shade at the foot of the frame so the labels read over the bright needles */}
+      <div style={{ position: "absolute", left: 0, right: 0, bottom: 0, height: 900, opacity: interpolate(frame, [bar(6) - 30, bar(6) - 10], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }), background: "linear-gradient(to top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.55) 40%, rgba(0,0,0,0) 100%)" }} />
+      {HANGS.map((_, i) => (
+        <HouseLabel key={i} i={i} />
+      ))}
       </AbsoluteFill>
       <div style={{ position: "absolute", left: 0, right: 0, top: 830, textAlign: "center", color: PAL.pale }}>
         <div style={{ fontFamily: serif, fontWeight: 400, fontSize: 96, lineHeight: 1.05, opacity: a, transform: `translateY(${(1 - a) * 16}px)` }}>Merry Christmas,</div>
