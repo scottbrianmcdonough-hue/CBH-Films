@@ -129,11 +129,15 @@ const buildNeedles = () => {
 // fairy lights scattered over the outside of the tree
 const LIGHTS = (() => {
   const r = rng(91);
-  return Array.from({ length: 240 }, () => {
+  // the first 240 glow all along; the rest (Scott: "make the lights pop bright at the end to show we have lots more in
+  // the collection") switch on as the star lands, popping on down the tree from the top
+  return Array.from({ length: 640 }, (_, i) => {
     const y = BASE_Y + 0.1 + r() * (TOP_Y - BASE_Y - 0.5);
     const a = r() * Math.PI * 2;
-    const R = radiusAt(y) * (0.82 + r() * 0.18);
-    return { p: new THREE.Vector3(Math.sin(a) * R, y + 0.05, Math.cos(a) * R), phase: r() * 6.28, warm: r() };
+    const R = radiusAt(y) * (0.82 + r() * 0.2);
+    const late = i >= 240;
+    const pop = late ? (TOP_Y - y) / (TOP_Y - BASE_Y) : -1;
+    return { p: new THREE.Vector3(Math.sin(a) * R, y + 0.05, Math.cos(a) * R), phase: r() * 6.28, warm: r(), pop, jitter: r() };
   });
 })();
 
@@ -419,7 +423,7 @@ const Tree: React.FC<{ skins: Skins }> = ({ skins }) => {
   scene.fog = new THREE.Fog(0x000000, subject - 0.4, subject + 2.8 + 3 * w);
 
   // the lights: a soft twinkle, coming right up as the star lands
-  const lift = interpolate(frame, [STAR_LAND - 6, STAR_LAND + 30], [0.55, 1.25], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const lift = interpolate(frame, [STAR_LAND - 6, STAR_LAND + 30], [0.55, 1.4], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   // the star: rising from below the frame's top to its place, turning to face us
   const rise = interpolate(frame, [STAR_FROM, STAR_LAND], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.out(Easing.cubic) });
   const starY = TOP_Y + 0.12 + (1 - rise) * 1.6;
@@ -446,9 +450,14 @@ const Tree: React.FC<{ skins: Skins }> = ({ skins }) => {
       <primitive object={needles} />
       {LIGHTS.map((l, i) => {
         const tw = 0.75 + 0.25 * Math.sin(frame / 9 + l.phase);
-        const o = Math.min(0.9, 0.85 * tw * lift);
+        // the late lights pop on in a cascade from the top over ~24 frames as the star lands: a bright flash, settling
+        const at = STAR_LAND - 4 + l.pop * 24 + l.jitter * 6;
+        if (l.pop >= 0 && frame < at) return null;
+        const flash = l.pop >= 0 ? interpolate(frame, [at, at + 3, at + 18], [0, 2.6, 1.15], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }) : 1;
+        const o = Math.min(1, 0.85 * tw * lift * flash);
+        const size = (0.075 + 0.04 * lift) * (1 + 0.7 * Math.max(0, flash - 1));
         return (
-          <sprite key={i} position={l.p} scale={[0.075 + 0.035 * lift, 0.075 + 0.035 * lift, 1]}>
+          <sprite key={i} position={l.p} scale={[size, size, 1]}>
             <spriteMaterial map={glow} transparent opacity={o} depthWrite={false} blending={THREE.AdditiveBlending} />
           </sprite>
         );
