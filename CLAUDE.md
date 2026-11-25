@@ -1086,8 +1086,8 @@ with no history and no renders:
   gold CB with no wordmark or shimmer; LeafPile `bare`). Advice given: too many logo endings this week (leaves Sun, map
   reveal Mon, firework Thu): move the map reveal later in November, a hotel post Monday.
 - `hatherley-christmas` (`festive-stay/HatherleyChristmas.tsx`, 24 Nov): Hatherley Manor's Christmas In The Country
-  stay day by day, 30s, -15.1 LUFS, on Christmas Swing by AtlasAudio (Pixabay 621552, from beat 108, final chord under
-  the end card). Hook: the tree's red bow with "Christmas, / minus the washing up" alone for the first two seconds; the
+  stay day by day, 30s, -15.4 LUFS, now on Christmas Piano Jingle Bells Swing by pianocafe_Kumi (Pixabay 631612, same
+  109.96 BPM as the cut, from its 19.91s downbeat, faded over the last bar; it replaced AtlasAudio's Christmas Swing). Hook: the tree's red bow with "Christmas, / minus the washing up" alone for the first two seconds; the
   house label (COTSWOLDS in gold caps, no underline, over Hatherley Manor / Hotel & Spa) top left over the lounge tree,
   the bottom line two beats after it (staggered, Scott); end card "Spend Christmas / in the
   Cotswolds" with the white CB, no gold logo (Scott, after Rutland's "Take root"). Copy in the Rutland Hall
@@ -1095,6 +1095,18 @@ with no history and no renders:
   `public/hotels/hatherley-manor/reel-bank/`, cut and graded by `scripts/hatherley-festive-clips.py`. Final sent.
   The last shot is the green panelled bedroom (`stills/green-panelled-bedroom.jpg`, framed on the red bench and gold
   cushions): Bianca, 24 Nov, the Superior Spa Double bed was untucked and creased; never use that photo.
+- 2026 brand palette (Scott, 25 Nov): core black #000000 and gold #c7ab77 lead with a neutral (pale #f2f0f0, light
+  beige #ebe8e4); secondaries red #a05272, green #869674, blue #779096, heather #755c78 only as a lift, one or two, never
+  leading or all together. Use it for new work (theme.ts still holds the older gold for the finished films).
+- Christmas ornaments, "AI assisted 3D render" (built in code, not AI generated; Scott, 25 Nov, after Bianca liked The
+  Relais Cooden Beach's AI baubles): `stings/GlassBauble.tsx` (black glass with the real CB, pale glass manor, green
+  glass key, red glass tea stand; `cbh-glass-bauble[-manor|-key|-tea]`) and `stings/FeltOrnament.tsx` (felt star with
+  the CB embroidered, beige manor, sage stocking, gold teapot; `cbh-felt-*`), all on one dark backdrop (`DarkBack`: no
+  branches, a few far baubles and lights; the light backdrop is kept behind `light`). `cbh-baubles-reel`: seven
+  ornaments a bar each, the CB out of the dark in the band's break, on The Last Table by the Window (OpenMindAudio,
+  Pixabay 628307, 197.85-229.89s), 32s, -15.4 LUFS. JPGs, contact sheets and MP4s in `out/`. Scott: better in motion.
+  Unused festive tracks from Scott (all Pixabay, no Content ID) in `public/music/festive/`: Vintage Christmas Swing Big
+  Band, Happy Christmas Jazz (Jingle Bells), Christmas Event Upbeat.
 - `cbh-year-2027`: Bianca's "Plan your year of micro breaks" reel for 1 Jan (a hotel a month), wall calendar mock-up;
   waiting on hotels' content (Coombe Abbey, Jockey Club, Atholl Palace) and Scott's go.
 - `the-kingfisher`, `whittlebury-park-stay-dine` (+ `-story` cuts): done.
