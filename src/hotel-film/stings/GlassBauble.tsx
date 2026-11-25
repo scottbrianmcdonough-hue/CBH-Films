@@ -220,6 +220,68 @@ export const drawMotif = (kind: string) => {
     k.lineWidth = 7;
     k.strokeRect(386, 572, 28, 68);
     line([[130, 648], [670, 648]], 10);
+  } else if (kind === "hintlesham") {
+    // Hintlesham Hall, Suffolk, from its Georgian south front: a long two storey house under a low hipped roof, the
+    // centre bay brought forward under a pediment and framed by giant pilasters, tall windows above, arched windows on
+    // the ground floor, the door between columns
+    line([[150, 352], [196, 316], [604, 316], [650, 352]], 8);
+    for (const x0 of [232, 540]) {
+      k.lineWidth = 8;
+      k.strokeRect(x0, 270, 30, 46);
+    }
+    line([[138, 356], [662, 356]], 14);
+    line([[150, 356], [150, 640]], 9);
+    line([[650, 356], [650, 640]], 9);
+    // the centre bay: forward, its own cornice and pediment, four giant pilasters
+    k.lineWidth = 9;
+    k.beginPath();
+    k.moveTo(316, 640);
+    k.lineTo(316, 344);
+    k.lineTo(484, 344);
+    k.lineTo(484, 640);
+    k.stroke();
+    line([[306, 344], [400, 268], [494, 344]], 11);
+    ell(400, 318, 14, 14, 5);
+    for (const x of [328, 372, 428, 472]) {
+      line([[x, 352], [x, 632]], 6);
+      line([[x - 8, 356], [x + 8, 356]], 5);
+      line([[x - 8, 630], [x + 8, 630]], 5);
+    }
+    line([[150, 500], [316, 500]], 5);
+    line([[484, 500], [650, 500]], 5);
+    // the first floor's tall windows, the ground floor's arched ones
+    const sash = (x: number, y: number, h: number, arched: boolean) => {
+      k.lineWidth = 7;
+      k.beginPath();
+      if (arched) {
+        k.moveTo(x - 17, y + h);
+        k.lineTo(x - 17, y + 17);
+        k.arc(x, y + 17, 17, Math.PI, 0);
+        k.lineTo(x + 17, y + h);
+        k.closePath();
+      } else k.rect(x - 17, y, 34, h);
+      k.stroke();
+      line([[x, y + 4], [x, y + h - 3]], 3);
+      line([[x - 14, y + h * 0.5], [x + 14, y + h * 0.5]], 3);
+    };
+    for (const x of [190, 236, 282, 518, 564, 610]) {
+      sash(x, 384, 82, false);
+      sash(x, 528, 86, true);
+    }
+    sash(400, 384, 82, false);
+    // the door between its columns, a small pediment over it
+    k.lineWidth = 9;
+    k.beginPath();
+    k.moveTo(384, 640);
+    k.lineTo(384, 560);
+    k.arc(400, 560, 16, Math.PI, 0);
+    k.lineTo(416, 640);
+    k.stroke();
+    line([[356, 538], [400, 516], [444, 538]], 6);
+    line([[362, 544], [362, 640]], 6);
+    line([[438, 544], [438, 640]], 6);
+    // the lawn
+    line([[120, 648], [680, 648]], 10);
   } else if (kind === "key") {
     // a vintage hotel room key: an open bow with an inner ring, a collar, the shaft and the bit
     ell(210, 400, 112, 112, 22);
@@ -260,13 +322,14 @@ export const drawMotif = (kind: string) => {
   return trim(c);
 };
 
-type Variant = { motif: "cb" | "manor" | "dalmahoy" | "key" | "tea"; glass: string; height: number };
+type Variant = { motif: "cb" | "manor" | "dalmahoy" | "hintlesham" | "key" | "tea"; glass: string; height: number };
 // The carousel (Scott: "do a few others for like a carousel"): black, pale, green and red glass, each one gold design.
 // The palette's green and red are secondaries, so each only as one bauble's glass, never together on one.
 export const BAUBLES: Record<string, Variant> = {
   cb: { motif: "cb", glass: "#010101", height: 0.3 },
   manor: { motif: "manor", glass: "#e6e1d8", height: 0.27 },
-  dalmahoy: { motif: "dalmahoy", glass: "#e6e1d8", height: 0.3 }, // the real house: Dalmahoy's south front
+  dalmahoy: { motif: "dalmahoy", glass: "#e6e1d8", height: 0.3 },
+  hintlesham: { motif: "hintlesham", glass: "#2f3a29", height: 0.3 }, // Hintlesham Hall in gold on the green glass // the real house: Dalmahoy's south front
   key: { motif: "key", glass: "#2f3a29", height: 0.2 },
   tea: { motif: "tea", glass: "#4e2233", height: 0.31 },
 };

@@ -25,12 +25,14 @@ const PAL = {
   green: "#869674",
 };
 
-export type Kind = "star" | "manor" | "ruthin" | "stocking" | "teapot";
+export type Kind = "star" | "manor" | "ruthin" | "holdsworth" | "stocking" | "teapot";
 export const FELTS: Record<string, { kind: Kind; felt: string; trim?: string; thread?: string; rim?: number }> = {
   star: { kind: "star", felt: "#efe9df" }, // cream felt, the CB embroidered in gold
   manor: { kind: "manor", felt: "#cbbfab" }, // beige felt, gold windows (black felt vanished on the black background)
   // the real house (Scott, 26 Nov: "the actual shape of our hotels"): Ruthin Castle's battlements and clock tower
   ruthin: { kind: "ruthin", felt: "#cbbfab" },
+  // Holdsworth House's three stone gables, in the sage green
+  holdsworth: { kind: "holdsworth", felt: "#7f8f6e" },
   stocking: { kind: "stocking", felt: "#7f8f6e", trim: "#f1ece3" }, // the sage green, a cream cuff
   // gold felt with deep gold thread and a stronger warm rim behind (it read flatter than the glass on the dark ground)
   teapot: { kind: "teapot", felt: "#c2a56f", thread: "#7b5a24", rim: 3 },
@@ -140,6 +142,26 @@ const ruthinShape = () => {
   s.closePath();
   return [s];
 };
+// Holdsworth House, Halifax, from the garden: three steep stone gables (the middle one tallest, the loop hangs from
+// its peak), a tall chimney stack on the right
+const holdsworthShape = () => {
+  const s = new THREE.Shape();
+  s.moveTo(-0.95, -0.8);
+  s.lineTo(0.95, -0.8);
+  s.lineTo(0.95, 0.25);
+  s.lineTo(0.86, 0.355);
+  s.lineTo(0.86, 0.74); // the chimney
+  s.lineTo(0.76, 0.74);
+  s.lineTo(0.76, 0.472);
+  s.lineTo(0.65, 0.6); // the right gable
+  s.lineTo(0.35, 0.25);
+  s.lineTo(0.0, 0.94); // the middle gable
+  s.lineTo(-0.35, 0.25);
+  s.lineTo(-0.65, 0.6); // the left gable
+  s.lineTo(-0.95, 0.25);
+  s.closePath();
+  return [s];
+};
 const stockingShape = () => {
   const s = new THREE.Shape();
   s.moveTo(-0.55, 1.0);
@@ -180,7 +202,7 @@ const teapotShape = () => {
   handle.holes.push(hole);
   return [handle, spout, body, lid, knob];
 };
-export const SHAPES: Record<Kind, () => THREE.Shape[]> = { star: starShape, manor: manorShape, ruthin: ruthinShape, stocking: stockingShape, teapot: teapotShape };
+export const SHAPES: Record<Kind, () => THREE.Shape[]> = { star: starShape, manor: manorShape, ruthin: ruthinShape, holdsworth: holdsworthShape, stocking: stockingShape, teapot: teapotShape };
 
 // --- the felt's skin: colour, fibre bump, and the gold thread ---
 const rnd = (i: number) => {
@@ -322,6 +344,46 @@ export const paintFelt = (kind: Kind, felt: string, shapes: THREE.Shape[], cb: H
     t.quadraticCurveTo(px(0.12), py(-0.26), px(0.12), py(-0.42));
     t.lineTo(px(0.12), py(-0.72));
     t.stroke();
+  } else if (kind === "holdsworth") {
+    running(shapes[0].getPoints(), 0.9);
+    t.lineWidth = 5;
+    // stone mullioned windows: a frame divided into lights, two floors in each gable
+    const mullion = (x: number, y: number, w: number, h: number, lights: number) => {
+      t.strokeRect(px(x - w / 2), py(y), px(w) - px(0), py(-h) - py(0));
+      t.beginPath();
+      for (let i = 1; i < lights; i++) {
+        const xx = px(x - w / 2 + (w * i) / lights);
+        t.moveTo(xx, py(y));
+        t.lineTo(xx, py(y - h));
+      }
+      t.moveTo(px(x - w / 2), py(y - h * 0.45));
+      t.lineTo(px(x + w / 2), py(y - h * 0.45));
+      t.stroke();
+    };
+    for (const x of [-0.65, 0.65]) {
+      mullion(x, 0.22, 0.36, 0.22, 4);
+      mullion(x, -0.2, 0.42, 0.24, 5);
+    }
+    mullion(0, 0.5, 0.2, 0.18, 2);
+    mullion(0, 0.16, 0.3, 0.2, 3);
+    // a string course and the porch: a round arched door under its own little gable
+    t.setLineDash([10, 7]);
+    t.beginPath();
+    t.moveTo(px(-0.88), py(-0.04));
+    t.lineTo(px(0.88), py(-0.04));
+    t.stroke();
+    t.setLineDash([]);
+    t.beginPath();
+    t.moveTo(px(-0.2), py(-0.72));
+    t.lineTo(px(-0.2), py(-0.3));
+    t.lineTo(px(0), py(-0.14));
+    t.lineTo(px(0.2), py(-0.3));
+    t.lineTo(px(0.2), py(-0.72));
+    t.moveTo(px(-0.09), py(-0.72));
+    t.lineTo(px(-0.09), py(-0.46));
+    t.quadraticCurveTo(px(0), py(-0.34), px(0.09), py(-0.46));
+    t.lineTo(px(0.09), py(-0.72));
+    t.stroke();
   } else if (kind === "stocking") {
     running(shapes[0].getPoints(), 0.87);
     // the cuff sits over the leg's stitching: clear it there, then stitch the cuff's own edge
@@ -452,7 +514,7 @@ const Ornament: React.FC<{ kind: Kind; felt: string; skin: Skin; shapes: THREE.S
       }),
     [shapes],
   );
-  const top = kind === "star" ? 1.03 : kind === "manor" ? 0.92 : kind === "ruthin" ? 0.98 : kind === "stocking" ? 1.06 : 0.7;
+  const top = kind === "star" ? 1.03 : kind === "manor" ? 0.92 : kind === "ruthin" ? 0.98 : kind === "holdsworth" ? 0.94 : kind === "stocking" ? 1.06 : 0.7;
   return (
     <group position={[0, PIVOT, 0]} rotation={[0, 0, swing ? swingAngle(t) : 0]}>
     <group position={[0, 1.45 - PIVOT, 0]} rotation={[0, 0, sway]}>

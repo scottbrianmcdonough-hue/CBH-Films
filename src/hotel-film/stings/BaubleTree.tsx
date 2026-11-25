@@ -155,8 +155,9 @@ const glowTexture = (() => {
 type Hang = { kind: "glass" | "felt"; variant: string; y: number; a: number };
 // bottom to top, the order the camera climbs, glass and felt alternating, left and right of centre
 const HANGS: Hang[] = [
-  { kind: "felt", variant: "stocking", y: -2.0, a: -0.34 },
-  { kind: "glass", variant: "key", y: -1.15, a: 0.36 },
+  // our hotels (Scott, 26 Nov: "a few more shapes like our hotels"): Holdsworth House in felt, Hintlesham Hall on glass
+  { kind: "felt", variant: "holdsworth", y: -2.0, a: -0.34 },
+  { kind: "glass", variant: "hintlesham", y: -1.15, a: 0.36 },
   { kind: "felt", variant: "teapot", y: -0.3, a: -0.3 },
   { kind: "glass", variant: "tea", y: 0.55, a: 0.32 },
   // the real houses (Scott, 26 Nov): Ruthin Castle in felt, Dalmahoy's front in gold on glass
