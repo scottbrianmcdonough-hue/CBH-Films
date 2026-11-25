@@ -1465,4 +1465,13 @@ with no history and no renders:
   behind SCOTLAND & WALES, frames 56-118, the pink letters kept). Ticket now with "More deals released!" (Bianca) and
   four tags. Avisford Park was already in the South (Save 25%). Alfriston's BF deals go live on the landing page Fri.
   Signed off by Bianca (24 Nov, "G2G"); going out now. Tag her as @b.thomson (no p).
+- `tiktok-plan-explainer` (`explainer/TikTokPlan.tsx`, 16:9, 1m 48s; Scott, 25 Nov, for the 2:30 call with Bianca): the TikTok
+  plan a point a scene in CBH black and gold, a British voiceover (Kokoro bf_emma, an open model run locally from its GitHub
+  release, `scripts/tiktok-plan-vo.py` -> `public/explainer/vo/*.wav`, line lengths copied into `VO`), `-silent` copy too.
+  Lined up with the plan doc (472 followers 25 Nov, 211 gained, the £14.40 follower boost test added to the doc's Paid).
+- POV shorts (`cuts/PovShort.tsx`, `PovSpec`; Scott, 25 Nov: "start building some like this", the explainer's phones): one
+  hotel's footage full frame on Event Music beats, hook on frame one, house label on shots 2 to 3, the close over the
+  longest clip: question, then TikTok's Follow button popping in and tapped to Following. `pov-rowton-spa-tiktok`
+  ("save this for your / next spa weekend", "who are you / taking?"), `pov-low-wood-winter-tiktok` ("POV: winter on /
+  Windermere", "who's coming / with you?"); renders come out hot, -8 dB after: -15.1 LUFS, ~15s.
 - `the-kingfisher`, `whittlebury-park-stay-dine` (+ `-story` cuts): done.

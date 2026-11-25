@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import { Composition } from "remotion";
+import { PovShort, povFrames, rowtonSpa, lowWoodWinter } from "./hotel-film/cuts/PovShort";
 import { TikTokPlan, TIKTOK_PLAN_FRAMES } from "./hotel-film/explainer/TikTokPlan";
 import { MyComposition } from "./Composition";
 import { EditorialFilm } from "./hotel-film/editorial/EditorialFilm";
@@ -421,6 +422,9 @@ export const RemotionRoot: React.FC = () => {
       <Composition id="notes-spa-weekends-tiktok" component={NotesList} defaultProps={{ spec: spaList }} durationInFrames={notesFrames(spaList)} fps={FPS} width={WIDTH} height={HEIGHT} />
       {/* the TikTok plan as a 16:9 explainer with a voiceover, for the call with Bianca (25 Nov) */}
       <Composition id="tiktok-plan-explainer" component={TikTokPlan} durationInFrames={TIKTOK_PLAN_FRAMES} fps={30} width={1920} height={1080} />
+      {/* POV shorts: one hotel, hook on frame one, closing question and the Follow tap (25 Nov) */}
+      <Composition id="pov-rowton-spa-tiktok" component={PovShort} defaultProps={{ spec: rowtonSpa }} durationInFrames={povFrames(rowtonSpa)} fps={FPS} width={WIDTH} height={HEIGHT} />
+      <Composition id="pov-low-wood-winter-tiktok" component={PovShort} defaultProps={{ spec: lowWoodWinter }} durationInFrames={povFrames(lowWoodWinter)} fps={FPS} width={WIDTH} height={HEIGHT} />
       <Composition id="notes-cosy-winter-tiktok" component={NotesList} defaultProps={{ spec: cosyList }} durationInFrames={notesFrames(cosyList)} fps={FPS} width={WIDTH} height={HEIGHT} />
       <Composition id="cbh-camera-roll-tiktok" component={CameraRoll} durationInFrames={ROLL_FRAMES} fps={FPS} width={WIDTH} height={HEIGHT} />
       <Composition id="cbh-camera-roll-christmas-tiktok" component={CameraRoll} defaultProps={{ spec: christmasRoll }} durationInFrames={ROLL_FRAMES} fps={FPS} width={WIDTH} height={HEIGHT} />
