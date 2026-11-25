@@ -83,6 +83,7 @@ import {
 } from "./hotel-film/doodle/StickFlip";
 import { PostItList, POSTIT_FRAMES } from "./hotel-film/postit/PostItList";
 import { YearCalendar, YEAR_FRAMES } from "./hotel-film/calendar/YearCalendar";
+import { GlassBauble, BAUBLE_FRAMES, BAUBLE_W, BAUBLE_H } from "./hotel-film/stings/GlassBauble";
 import { HatherleyChristmas, HATHERLEY_XMAS_FRAMES } from "./hotel-film/festive-stay/HatherleyChristmas";
 import {
   ScreenTime,
@@ -297,6 +298,15 @@ export const RemotionRoot: React.FC = () => {
         height={HEIGHT}
       />
       {/* a weekend calendar filling itself, each plan opening into Holdsworth House */}
+      {/* a CBH glass bauble in three.js: black glass, the gold CB, turning on its cord in gold bokeh */}
+      <Composition
+        id="cbh-glass-bauble"
+        component={GlassBauble}
+        durationInFrames={BAUBLE_FRAMES}
+        fps={FPS}
+        width={BAUBLE_W}
+        height={BAUBLE_H}
+      />
       {/* Hatherley Manor's Christmas In The Country stay, day by day */}
       <Composition
         id="hatherley-christmas"
