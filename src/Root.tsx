@@ -83,7 +83,7 @@ import {
 } from "./hotel-film/doodle/StickFlip";
 import { PostItList, POSTIT_FRAMES } from "./hotel-film/postit/PostItList";
 import { YearCalendar, YEAR_FRAMES } from "./hotel-film/calendar/YearCalendar";
-import { GlassBauble, BAUBLE_FRAMES, BAUBLE_W, BAUBLE_H } from "./hotel-film/stings/GlassBauble";
+import { GlassBauble, BAUBLES, BAUBLE_FRAMES, BAUBLE_W, BAUBLE_H } from "./hotel-film/stings/GlassBauble";
 import { HatherleyChristmas, HATHERLEY_XMAS_FRAMES } from "./hotel-film/festive-stay/HatherleyChristmas";
 import {
   ScreenTime,
@@ -307,6 +307,18 @@ export const RemotionRoot: React.FC = () => {
         width={BAUBLE_W}
         height={BAUBLE_H}
       />
+      {Object.keys(BAUBLES).filter((k) => k !== "cb").map((k) => (
+        <Composition
+          key={k}
+          id={`cbh-glass-bauble-${k}`}
+          component={GlassBauble}
+          durationInFrames={BAUBLE_FRAMES}
+          fps={FPS}
+          width={BAUBLE_W}
+          height={BAUBLE_H}
+          defaultProps={{ variant: k }}
+        />
+      ))}
       {/* Hatherley Manor's Christmas In The Country stay, day by day */}
       <Composition
         id="hatherley-christmas"

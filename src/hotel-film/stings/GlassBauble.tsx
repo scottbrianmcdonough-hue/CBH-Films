@@ -60,9 +60,120 @@ const cbMask = async () => {
   return out;
 };
 
+// trim a canvas to its painted pixels
+const trim = (c: HTMLCanvasElement) => {
+  const x = c.getContext("2d")!;
+  const d = x.getImageData(0, 0, c.width, c.height).data;
+  let x0 = c.width, y0 = c.height, x1 = 0, y1 = 0;
+  for (let y = 0; y < c.height; y++)
+    for (let i = 0; i < c.width; i++)
+      if (d[(y * c.width + i) * 4 + 3] > 8) {
+        x0 = Math.min(x0, i); x1 = Math.max(x1, i); y0 = Math.min(y0, y); y1 = Math.max(y1, y);
+      }
+  const out = document.createElement("canvas");
+  out.width = x1 - x0 + 1;
+  out.height = y1 - y0 + 1;
+  out.getContext("2d")!.drawImage(c, x0, y0, out.width, out.height, 0, 0, out.width, out.height);
+  return out;
+};
+
+// The gold designs for the other baubles, drawn as line work like gilding on glass (white here; the skin turns it
+// gold), on an 800 x 800 board.
+const drawMotif = (kind: string) => {
+  const c = document.createElement("canvas");
+  c.width = 800;
+  c.height = 800;
+  const k = c.getContext("2d")!;
+  k.strokeStyle = "#fff";
+  k.fillStyle = "#fff";
+  k.lineCap = "round";
+  k.lineJoin = "round";
+  const line = (pts: number[][], w: number) => {
+    k.lineWidth = w;
+    k.beginPath();
+    pts.forEach(([x, y], i) => (i ? k.lineTo(x, y) : k.moveTo(x, y)));
+    k.stroke();
+  };
+  const ell = (x: number, y: number, rx: number, ry: number, w: number, fill = false) => {
+    k.lineWidth = w;
+    k.beginPath();
+    k.ellipse(x, y, rx, ry, 0, 0, Math.PI * 2);
+    if (fill) k.fill();
+    else k.stroke();
+  };
+  if (kind === "manor") {
+    // a Georgian country house: cornice and pediment, two chimneys, lit windows, a wreath on the arched door
+    k.lineWidth = 14;
+    k.strokeRect(160, 330, 480, 320);
+    line([[130, 330], [670, 330]], 20);
+    line([[300, 330], [400, 252], [500, 330]], 14);
+    k.strokeRect(200, 250, 44, 80);
+    k.strokeRect(556, 250, 44, 80);
+    for (const y of [370, 470])
+      for (const x of [196, 276, 376, 476, 556]) k.fillRect(x, y, 48, 66);
+    for (const x of [196, 276, 476, 556]) k.fillRect(x, 568, 48, 66);
+    k.lineWidth = 12;
+    k.beginPath();
+    k.moveTo(372, 650);
+    k.lineTo(372, 600);
+    k.arc(400, 600, 28, Math.PI, 0);
+    k.lineTo(428, 650);
+    k.stroke();
+    ell(400, 604, 11, 11, 6);
+    line([[330, 668], [470, 668]], 12);
+    line([[140, 668], [660, 668]], 8);
+  } else if (kind === "key") {
+    // a vintage hotel room key: an open bow with an inner ring, a collar, the shaft and the bit
+    ell(210, 400, 112, 112, 22);
+    ell(210, 400, 58, 58, 12);
+    line([[322, 400], [650, 400]], 24);
+    line([[350, 372], [350, 428]], 12);
+    line([[378, 372], [378, 428]], 12);
+    k.beginPath();
+    k.moveTo(560, 400);
+    k.lineTo(560, 500);
+    k.lineTo(590, 500);
+    k.lineTo(590, 462);
+    k.lineTo(615, 462);
+    k.lineTo(615, 510);
+    k.lineTo(650, 510);
+    k.lineTo(650, 400);
+    k.closePath();
+    k.fill();
+  } else if (kind === "tea") {
+    // a three tier afternoon tea stand: the ring handle, the rod, three plates of little cakes, the foot
+    ell(400, 118, 30, 30, 12);
+    line([[400, 148], [400, 650]], 14);
+    const tiers: [number, number][] = [[272, 118], [422, 162], [582, 208]];
+    tiers.forEach(([y, rx], ti) => {
+      ell(400, y, rx, rx * 0.17, 14);
+      const n = 2 + ti;
+      for (let i = 0; i < n; i++) {
+        const x = 400 - rx * 0.62 + (i * rx * 1.24) / (n - 1);
+        if (Math.abs(x - 400) < 18) continue;
+        k.beginPath();
+        k.arc(x, y - 8, 20 + ti * 2, Math.PI, 0);
+        k.fill();
+      }
+    });
+    ell(400, 660, 72, 14, 10, true);
+  }
+  return trim(c);
+};
+
+type Variant = { motif: "cb" | "manor" | "key" | "tea"; glass: string; height: number };
+// The carousel (Scott: "do a few others for like a carousel"): black, pale, green and red glass, each one gold design.
+// The palette's green and red are secondaries, so each only as one bauble's glass, never together on one.
+export const BAUBLES: Record<string, Variant> = {
+  cb: { motif: "cb", glass: "#010101", height: 0.3 },
+  manor: { motif: "manor", glass: "#e6e1d8", height: 0.27 },
+  key: { motif: "key", glass: "#2f3a29", height: 0.2 },
+  tea: { motif: "tea", glass: "#4e2233", height: 0.31 },
+};
+
 // Paint one layer of the sphere's skin. `ink` draws the gold work; the colour map gets it in gold over black glass,
 // the roughness/metal map gets it as polished metal (G = roughness, B = metalness) over smooth glass.
-const paintSkin = (cb: HTMLCanvasElement) => {
+const paintSkin = (cb: HTMLCanvasElement, glassColor = "#010101", height = 0.3) => {
   const make = () => {
     const c = document.createElement("canvas");
     c.width = TW;
@@ -88,8 +199,12 @@ const paintSkin = (cb: HTMLCanvasElement) => {
   }
   // the CB at the front, pre-squeezed row by row so it reads true on the sphere (rows away from the equator stretch
   // by 1 / cos(latitude) once wrapped)
-  const cbH = TH * 0.3; // ~54 degrees of latitude tall
-  const cbW = (cbH * cb.width) / cb.height;
+  let cbH = TH * height; // 0.3 is ~54 degrees of latitude tall
+  let cbW = (cbH * cb.width) / cb.height;
+  if (cbW > TW * 0.2) { // a wide design (the key): keep it within the front of the bauble
+    cbH *= (TW * 0.2) / cbW;
+    cbW = TW * 0.2;
+  }
   const top = TH * 0.5 - cbH / 2;
   for (let r = 0; r < Math.ceil(cbH); r++) {
     const v = (top + r) / TH;
@@ -101,7 +216,7 @@ const paintSkin = (cb: HTMLCanvasElement) => {
   }
   const color = make();
   const c = color.getContext("2d")!;
-  c.fillStyle = "#010101";
+  c.fillStyle = glassColor;
   c.fillRect(0, 0, TW, TH);
   c.globalCompositeOperation = "source-over";
   const gold = make();
@@ -214,7 +329,7 @@ const Bauble: React.FC<{ skin: { map: THREE.Texture; rough: THREE.Texture } }> =
 };
 
 // gold bokeh, out of focus behind the bauble, drifting a little
-const BOKEH = Array.from({ length: 26 }, (_, i) => {
+const BOKEH = Array.from({ length: 18 }, (_, i) => {
   const r = (n: number) => {
     const s = Math.sin(i * 127.1 + n * 311.7) * 43758.5453;
     return s - Math.floor(s);
@@ -307,30 +422,31 @@ const TreeBackdrop: React.FC<{ frame: number }> = ({ frame }) => {
             height: b.r * 2,
             borderRadius: "50%",
             background: `radial-gradient(circle at 38% 34%, rgba(255,240,215,0.75) 0%, ${b.c} 22%, ${b.c} 60%, rgba(0,0,0,0.9) 100%)`,
-            filter: `blur(${b.blur}px)`,
-            opacity: 0.85,
+            filter: `blur(${b.blur + 4}px)`,
+            opacity: 0.5,
           }}
         />
       ))}
-      <BranchLayer branches={BRANCHES_BACK} blur={6} dark={0.95} drift={d * 8} />
+      <BranchLayer branches={BRANCHES_BACK} blur={9} dark={0.55} drift={d * 8} />
     </>
   );
 };
 
-export const GlassBauble: React.FC = () => {
+export const GlassBauble: React.FC<{ variant?: string }> = ({ variant = "cb" }) => {
+  const v = BAUBLES[variant];
   const frame = useCurrentFrame();
   const [skin, setSkin] = useState<{ map: THREE.Texture; rough: THREE.Texture } | null>(null);
   const [handle] = useState(() => delayRender("bauble skin"));
   useEffect(() => {
-    cbMask()
-      .then((cb) => {
-        setSkin(paintSkin(cb));
+    (v.motif === "cb" ? cbMask() : Promise.resolve(drawMotif(v.motif)))
+      .then((m) => {
+        setSkin(paintSkin(m, v.glass, v.height));
         continueRender(handle);
       })
       .catch((e) => {
         throw e;
       });
-  }, [handle]);
+  }, [handle, v]);
   const push = interpolate(frame, [0, BAUBLE_FRAMES], [7.4, 6.6]);
   return (
     <AbsoluteFill style={{ background: PAL.black }}>
@@ -349,7 +465,7 @@ export const GlassBauble: React.FC = () => {
             background: b.red
               ? "radial-gradient(circle, #b3303ccc 0%, #b3303caa 58%, #d4505c 66%, transparent 71%)"
               : `radial-gradient(circle, ${b.pale ? "#ffe9c2" : PAL.gold}cc 0%, ${b.pale ? "#ffe9c2" : PAL.gold}aa 58%, ${b.pale ? "#fff4dc" : "#e2cc9c"} 66%, transparent 71%)`,
-            opacity: b.o * (b.red ? 0.7 : b.pale ? 0.6 : 0.8),
+            opacity: 0.6 * b.o * (b.red ? 0.7 : b.pale ? 0.6 : 0.8),
             filter: `blur(${2 + b.d / 55}px)`,
           }}
         />
@@ -372,7 +488,7 @@ export const GlassBauble: React.FC = () => {
         </ThreeCanvas>
       ) : null}
       {/* a nearer branch or two, past the bauble, very soft */}
-      <BranchLayer branches={BRANCHES_NEAR} blur={16} dark={1} drift={((frame / BAUBLE_FRAMES) * 2 - 1) * 22} />
+      <BranchLayer branches={BRANCHES_NEAR} blur={20} dark={0.6} drift={((frame / BAUBLE_FRAMES) * 2 - 1) * 22} />
     </AbsoluteFill>
   );
 };
