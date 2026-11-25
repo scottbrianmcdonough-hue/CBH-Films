@@ -336,7 +336,7 @@ const Bauble: React.FC<{ skin: { map: THREE.Texture; rough: THREE.Texture } }> =
 };
 
 // gold bokeh, out of focus behind the bauble, drifting a little
-const BOKEH = Array.from({ length: 18 }, (_, i) => {
+const BOKEH = Array.from({ length: 9 }, (_, i) => {
   const r = (n: number) => {
     const s = Math.sin(i * 127.1 + n * 311.7) * 43758.5453;
     return s - Math.floor(s);
@@ -355,64 +355,12 @@ const BOKEH = Array.from({ length: 18 }, (_, i) => {
 // The tree round it, all out of focus (Scott: "add the christmas tree artifacts like how you have gold flecks in the
 // back out of focus, do more festive colours"): pine branches reaching in from the edges, a few red, gold and pale
 // baubles hanging further back, and warm fairy lights among the gold bokeh. Drawn as SVG and blurred by depth.
-const rnd = (i: number, n: number) => {
-  const s = Math.sin(i * 91.37 + n * 47.11) * 24634.6345;
-  return s - Math.floor(s);
-};
-type Branch = { x: number; y: number; a: number; len: number; seed: number };
-const branchPath = (b: Branch) => {
-  const needles: string[] = [];
-  const steps = Math.floor(b.len / 4.5);
-  let x = b.x, y = b.y, a = b.a;
-  let stem = `M${x.toFixed(1)},${y.toFixed(1)}`;
-  for (let k = 0; k < steps; k++) {
-    a += (rnd(b.seed + k, 1) - 0.5) * 0.04;
-    x += Math.cos(a) * 4.5;
-    y += Math.sin(a) * 4.5;
-    stem += ` L${x.toFixed(1)},${y.toFixed(1)}`;
-    const taper = 1 - (k / steps) * 0.45;
-    for (const side of [-1, -1, 1, 1]) {
-      const na = a + side * (0.55 + rnd(b.seed + k, side + needles.length) * 0.6);
-      const nl = (52 + rnd(b.seed + k, side + 5 + needles.length) * 26) * taper;
-      needles.push(`M${x.toFixed(1)},${y.toFixed(1)} L${(x + Math.cos(na) * nl).toFixed(1)},${(y + Math.sin(na) * nl).toFixed(1)}`);
-    }
-  }
-  return { stem, needles: needles.join(" ") };
-};
-const BRANCHES_BACK: Branch[] = [
-  { x: -40, y: 120, a: 0.32, len: 520, seed: 11 },
-  { x: 1120, y: 60, a: Math.PI - 0.42, len: 560, seed: 23 },
-  { x: -30, y: 760, a: -0.18, len: 380, seed: 37 },
-  { x: 1110, y: 980, a: Math.PI + 0.25, len: 460, seed: 41 },
-  { x: 260, y: 1420, a: -1.2, len: 420, seed: 53 },
-];
-const BRANCHES_NEAR: Branch[] = [
-  { x: -60, y: 1260, a: -0.55, len: 420, seed: 67 },
-  { x: 1150, y: 300, a: Math.PI - 0.12, len: 300, seed: 71 },
-];
+// a few far baubles only (Scott: "fewer out of focus bokeh")
 const FAR_BAUBLES = [
   { x: 150, y: 380, r: 62, c: "#8e1f2b", blur: 12 },
   { x: 930, y: 640, r: 78, c: "#8e1f2b", blur: 14 },
-  { x: 880, y: 230, r: 46, c: PAL.gold, blur: 10 },
   { x: 190, y: 1010, r: 54, c: PAL.gold, blur: 12 },
-  { x: 760, y: 1180, r: 40, c: "#8e1f2b", blur: 9 },
-  { x: 330, y: 160, r: 30, c: PAL.pale, blur: 8 },
 ];
-
-const BranchLayer: React.FC<{ branches: Branch[]; blur: number; dark: number; drift: number }> = ({ branches, blur, dark, drift }) => (
-  <svg width={BAUBLE_W} height={BAUBLE_H} style={{ position: "absolute", inset: 0, filter: `blur(${blur}px)`, transform: `translateX(${drift}px)` }}>
-    {branches.map((b, i) => {
-      const p = branchPath(b);
-      return (
-        <g key={i} strokeLinecap="round">
-          <path d={p.needles} stroke={`rgba(30,66,40,${dark})`} strokeWidth={7} fill="none" />
-          <path d={p.needles} stroke={`rgba(84,120,78,${dark * 0.55})`} strokeWidth={3} fill="none" />
-          <path d={p.stem} stroke={`rgba(60,42,26,${dark})`} strokeWidth={5} fill="none" />
-        </g>
-      );
-    })}
-  </svg>
-);
 
 const TreeBackdrop: React.FC<{ frame: number }> = ({ frame }) => {
   const d = (frame / BAUBLE_FRAMES) * 2 - 1; // -1 .. 1 over the shot
@@ -434,7 +382,6 @@ const TreeBackdrop: React.FC<{ frame: number }> = ({ frame }) => {
           }}
         />
       ))}
-      <BranchLayer branches={BRANCHES_BACK} blur={9} dark={0.55} drift={d * 8} />
     </>
   );
 };
@@ -467,9 +414,8 @@ export const DarkBack: React.FC<{ frame: number }> = ({ frame }) => (
     <AbsoluteFill style={{ background: "radial-gradient(ellipse 80% 65% at 50% 55%, rgba(0,0,0,0) 0%, rgba(0,0,0,0.35) 70%, rgba(0,0,0,0.8) 100%)" }} />
   </>
 );
-export const DarkFront: React.FC<{ frame: number }> = ({ frame }) => (
-  <BranchLayer branches={BRANCHES_NEAR} blur={20} dark={0.6} drift={((frame / BAUBLE_FRAMES) * 2 - 1) * 22} />
-);
+// (the soft near branch is gone: Scott, "get rid of the Christmas tree brush strokes"; kept as a no-op so callers stay)
+export const DarkFront: React.FC<{ frame: number }> = () => null;
 
 export const GlassBauble: React.FC<{ variant?: string }> = ({ variant = "cb" }) => {
   const v = BAUBLES[variant];
