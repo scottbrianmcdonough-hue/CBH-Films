@@ -241,6 +241,8 @@ const paintFelt = (kind: Kind, felt: string, shapes: THREE.Shape[], cb: HTMLCanv
     t.fill();
   } else if (kind === "stocking") {
     running(shapes[0].getPoints(), 0.87);
+    // the cuff sits over the leg's stitching: clear it there, then stitch the cuff's own edge
+    t.clearRect(px(-0.7), py(1.1), px(0.45) - px(-0.7), py(0.62) - py(1.1));
     running(shapes[1].getPoints(), 0.82, 10, 8, 4);
     // a stitched star on the leg
     t.lineWidth = 5;
