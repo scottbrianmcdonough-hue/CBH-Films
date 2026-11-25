@@ -197,24 +197,32 @@ const bodyOf = (h: Hang) => {
 // many more houses all round the tree (Scott: "make it seem like we have many more"): the six again, smaller, in felt
 // and glass, spread over the whole tree and kept clear of each other and of the six the camera visits
 const EXTRAS: Hang[] = (() => {
-  const r = rng(321);
-  const designs: [Hang["kind"], string][] = [["felt", "holdsworth"], ["glass", "hintlesham"], ["felt", "hatherley"], ["glass", "coombe"], ["felt", "ruthin"], ["glass", "dalmahoy"]];
+  const designs: Record<Hang["kind"], string[]> = { felt: ["holdsworth", "hatherley", "ruthin"], glass: ["hintlesham", "coombe", "dalmahoy"] };
   const out: Hang[] = [];
-  const featured = HANGS.map(bodyOf);
-  // even rows down the tree, as many across each row as its width allows, spread over the front the camera sees (not
-  // out at the silhouette, where they read as floating), each row offset half a step from the one above
+  // where an ornament sits as seen from the front (x across, y up): spacing is checked here so none overlap on screen
+  const face = (h: Hang) => {
+    const b = bodyOf(h);
+    return new THREE.Vector2(b.x, b.y);
+  };
+  const featured = HANGS.map(face);
+  const placed: THREE.Vector2[] = [];
+  // clean, even rows (Scott: "make it clean, not sloppy"): no jitter, each row offset half a step from the one above,
+  // felt and glass alternating like a chequerboard, every ornament clear of its neighbours and of the six featured
   let row = 0;
-  for (let y = -2.22; y < 2.4; y += 0.36, row++) {
-    const n = Math.max(1, Math.round(radiusAt(y) * 2.9));
-    const span = 0.88;
+  for (let y = -2.22; y < 2.4; y += 0.4, row++) {
+    const R = radiusAt(y);
+    const n = Math.max(1, Math.round(R * 3.2));
+    const span = 0.85;
     for (let k = 0; k < n; k++) {
-      const u = n === 1 ? 0.5 : (k + (row % 2 ? 0.75 : 0.25)) / n;
-      const a = -span + u * 2 * span + (r() - 0.5) * 0.12;
-      const h: Hang = { kind: "felt", variant: "", y: y + (r() - 0.5) * 0.1, a, s: 0.72 };
-      const b = bodyOf(h);
-      if (featured.some((f) => f.distanceTo(b) < 0.78)) continue;
-      const [kind, variant] = designs[out.length % designs.length];
-      out.push({ ...h, kind, variant });
+      const u = (k + (row % 2 ? 0.75 : 0.25)) / n;
+      const h: Hang = { kind: (row + k) % 2 ? "glass" : "felt", variant: "", y, a: -span + u * 2 * span, s: 0.72 };
+      const f = face(h);
+      // each ornament's box on screen, clear of the others (felt ~0.61 wide, both ~0.4 tall at this size)
+      const hits = (q: THREE.Vector2, w: number, hh: number) => Math.abs(q.x - f.x) < w && Math.abs(q.y - f.y) < hh;
+      if (featured.some((q) => hits(q, 0.7, 0.62)) || placed.some((q) => hits(q, 0.62, 0.44))) continue;
+      const list = designs[h.kind];
+      placed.push(f);
+      out.push({ ...h, variant: list[(row + k * 2) % list.length] });
     }
   }
   return out;
@@ -256,12 +264,33 @@ const FeltBody: React.FC<{ felt: NonNullable<ReturnType<typeof useFelt>> }> = ({
   </>
 );
 
-const Ornament: React.FC<{ h: Hang; i: number; skins: Skins; gold: THREE.Material }> = ({ h, i, skins, gold }) => {
+// the thread each ornament hangs by (Scott: "should be strings, not rods"): a fine matte gold thread from the loop,
+// straight up under the ornament's weight, then curving back over a branch and into the needles
+const threads = new Map<Hang, THREE.TubeGeometry>();
+const threadGeo = (h: Hang) => {
+  let g = threads.get(h);
+  if (!g) {
+    const back = h.s ? 0.24 : 0.42; // how far in the branch is
+    const curve = new THREE.CatmullRomCurve3([
+      new THREE.Vector3(0, -CORD, 0),
+      new THREE.Vector3(0, -CORD * 0.35, -0.005),
+      new THREE.Vector3(0, 0.02, -0.06),
+      new THREE.Vector3(0, 0.07, -back * 0.55),
+      new THREE.Vector3(0, 0.04, -back),
+    ]);
+    g = new THREE.TubeGeometry(curve, 40, 0.0028, 6, false);
+    threads.set(h, g);
+  }
+  return g;
+};
+const threadMat = () => new THREE.MeshStandardMaterial({ color: "#a8884e", roughness: 0.6, metalness: 0.25 });
+
+const Ornament: React.FC<{ h: Hang; i: number; skins: Skins; gold: THREE.Material; thread: THREE.Material }> = ({ h, i, skins, gold, thread }) => {
   const frame = useCurrentFrame();
   const t = frame / FPS;
   // already hanging, swinging gently on its cord, each at its own pace (a pendulum of its length ~1.3s)
   const ph = i * 1.9;
-  const swing = 0.075 * Math.sin((2 * Math.PI * t) / (1.25 + i * 0.07) + ph) + 0.02 * Math.sin((2 * Math.PI * t) / 3.1 + ph);
+  const swing = (h.s ? 0.5 : 1) * 0.075 * Math.sin((2 * Math.PI * t) / (1.25 + i * 0.07) + ph) + (h.s ? 0.5 : 1) * 0.02 * Math.sin((2 * Math.PI * t) / 3.1 + ph);
   const turn = h.kind === "glass" ? 0.05 + 0.14 * Math.sin((2 * Math.PI * t) / 6 + ph) : 0.22 * Math.sin((2 * Math.PI * t) / 4.4 + ph);
   const hp = hangPoint(h);
   const glassMat = useMemo(() => {
@@ -276,9 +305,7 @@ const Ornament: React.FC<{ h: Hang; i: number; skins: Skins; gold: THREE.Materia
     // pivot at the hang point on the branch, facing out from the tree; the ornament hangs CORD below it
     <group position={[hp.x, hp.y, hp.z]} rotation={[0, h.a * 0.55, 0]}>
     <group rotation={[0, 0, swing]}>
-      <mesh position={[0, -CORD / 2, 0]} material={gold}>
-        <cylinderGeometry args={[0.004, 0.004, CORD, 6]} />
-      </mesh>
+      <mesh geometry={threadGeo(h)} material={thread} />
       <group position={[0, -CORD - topY * S, 0]} scale={S} rotation={[0, turn, 0]}>
         {h.kind === "glass" ? (
           <>
@@ -333,6 +360,7 @@ const Tree: React.FC<{ skins: Skins }> = ({ skins }) => {
     return [m, tw];
   }, []);
   const gold = useMemo(goldMat, []);
+  const thread = useMemo(threadMat, []);
   const star = useFelt("star", skins);
   const glow = glowTexture();
 
@@ -400,7 +428,7 @@ const Tree: React.FC<{ skins: Skins }> = ({ skins }) => {
         );
       })}
       {ALL.map((h, i) => (
-        <Ornament key={i} h={h} i={i} skins={skins} gold={gold} />
+        <Ornament key={i} h={h} i={i} skins={skins} gold={gold} thread={thread} />
       ))}
       {frame >= STAR_FROM - 2 ? (
         <group position={[0, starY, 0]} rotation={[0, starTurn, 0]}>
