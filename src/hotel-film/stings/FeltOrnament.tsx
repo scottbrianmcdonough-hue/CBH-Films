@@ -25,7 +25,7 @@ const PAL = {
   green: "#869674",
 };
 
-type Kind = "star" | "manor" | "stocking" | "teapot";
+export type Kind = "star" | "manor" | "stocking" | "teapot";
 export const FELTS: Record<string, { kind: Kind; felt: string; trim?: string; thread?: string; rim?: number }> = {
   star: { kind: "star", felt: "#efe9df" }, // cream felt, the CB embroidered in gold
   manor: { kind: "manor", felt: "#cbbfab" }, // beige felt, gold windows (black felt vanished on the black background)
@@ -139,7 +139,7 @@ const teapotShape = () => {
   handle.holes.push(hole);
   return [handle, spout, body, lid, knob];
 };
-const SHAPES: Record<Kind, () => THREE.Shape[]> = { star: starShape, manor: manorShape, stocking: stockingShape, teapot: teapotShape };
+export const SHAPES: Record<Kind, () => THREE.Shape[]> = { star: starShape, manor: manorShape, stocking: stockingShape, teapot: teapotShape };
 
 // --- the felt's skin: colour, fibre bump, and the gold thread ---
 const rnd = (i: number) => {
@@ -147,7 +147,7 @@ const rnd = (i: number) => {
   return s - Math.floor(s);
 };
 
-const paintFelt = (kind: Kind, felt: string, shapes: THREE.Shape[], cb: HTMLCanvasElement, trim?: string, threadColor: string = PAL.gold) => {
+export const paintFelt = (kind: Kind, felt: string, shapes: THREE.Shape[], cb: HTMLCanvasElement, trim?: string, threadColor: string = PAL.gold) => {
   const mk = () => {
     const c = document.createElement("canvas");
     c.width = S;

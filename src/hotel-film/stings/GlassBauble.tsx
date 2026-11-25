@@ -38,7 +38,7 @@ const loadImage = (src: string) =>
   });
 
 // the CB, cut tight from the logo's frame and filled flat gold
-const cbMask = async () => {
+export const cbMask = async () => {
   const im = await loadImage(staticFile("brand/cbh-logo-cb-only.svg"));
   const s = 4;
   const c = document.createElement("canvas");
@@ -79,7 +79,7 @@ const trim = (c: HTMLCanvasElement) => {
 
 // The gold designs for the other baubles, drawn as line work like gilding on glass (white here; the skin turns it
 // gold), on an 800 x 800 board.
-const drawMotif = (kind: string) => {
+export const drawMotif = (kind: string) => {
   const c = document.createElement("canvas");
   c.width = 800;
   c.height = 800;
@@ -180,7 +180,7 @@ export const BAUBLES: Record<string, Variant> = {
 
 // Paint one layer of the sphere's skin. `ink` draws the gold work; the colour map gets it in gold over black glass,
 // the roughness/metal map gets it as polished metal (G = roughness, B = metalness) over smooth glass.
-const paintSkin = (cb: HTMLCanvasElement, glassColor = "#010101", height = 0.3) => {
+export const paintSkin = (cb: HTMLCanvasElement, glassColor = "#010101", height = 0.3) => {
   const make = () => {
     const c = document.createElement("canvas");
     c.width = TW;
