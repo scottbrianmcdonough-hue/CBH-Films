@@ -1,0 +1,97 @@
+diff --git a/src/hotel-film/me/MEReel.tsx b/src/hotel-film/me/MEReel.tsx
+index 0f56a9d..0464213 100644
+--- a/src/hotel-film/me/MEReel.tsx
++++ b/src/hotel-film/me/MEReel.tsx
+@@ -69,6 +69,8 @@ export type MESpec = {
+   // more movement (Coombe Abbey, Scott: "a bit more movement and energy"): with `even`, the drift at `rate` scale a frame
+   // from 1.04 and a sideways glide of `glide` px a frame, centred on the scene, alternating direction scene to scene
+   move?: { rate: number; glide: number };
++  // the gold caps without their underline, on the captions and the end card (Coombe Abbey, Scott, 25 Nov)
++  noUnderline?: boolean;
+   scenes: MEScene[];
+   // offer: the Black Friday Stories' card in place of the name card: BLACK FRIDAY SALE in the
+   // campaign's mauve caps with its underline, the offer in cream Cormorant, small lines beneath
+@@ -128,7 +130,8 @@ const Caption: React.FC<{
+   subT: number;
+   wide: boolean;
+   mauve?: boolean;
+-}> = ({ eyebrow, title, sub, t, subT, wide, mauve }) => {
++  noUnderline?: boolean;
++}> = ({ eyebrow, title, sub, t, subT, wide, mauve, noUnderline }) => {
+   const a = progress(t, 6, 18, EASE_OUT);
+   const b = progress(t, 12, 18, EASE_OUT);
+   const c = progress(subT, 0, 14, EASE_OUT);
+@@ -162,7 +165,7 @@ const Caption: React.FC<{
+         >
+           {eyebrow}
+         </div>
+-        {mauve ? null : (
++        {mauve || noUnderline ? null : (
+           <div style={{ height: 2, background: colors.gold, marginTop: 8 }} />
+         )}
+       </div>
+@@ -224,7 +227,8 @@ const Scene: React.FC<{
+   even?: boolean;
+   move?: { rate: number; glide: number };
+   dir?: number;
+-}> = ({ scene, len, wide, even, move, dir = 1 }) => {
++  noUnderline?: boolean;
++}> = ({ scene, len, wide, even, move, dir = 1, noUnderline }) => {
+   const frame = useCurrentFrame();
+   const { width, height } = useVideoConfig();
+   const push = scene.push;
+@@ -382,6 +386,7 @@ const Scene: React.FC<{
+             subT={subT}
+             wide={wide}
+             mauve={scene.text.mauve}
++            noUnderline={noUnderline}
+           />
+         </>
+       ) : null}
+@@ -490,7 +495,8 @@ const EndCard: React.FC<{
+   wide: boolean;
+   offer?: { title: string; lines: string[] };
+   question?: string;
+-}> = ({ name, place, wide, offer, question }) => {
++  noUnderline?: boolean;
++}> = ({ name, place, wide, offer, question, noUnderline }) => {
+   const frame = useCurrentFrame();
+   const a = progress(frame, 10, 22, EASE_OUT);
+   const b = progress(frame, 18, 24, EASE_OUT);
+@@ -556,7 +562,7 @@ const EndCard: React.FC<{
+         >
+           {place}
+         </div>
+-        <div style={{ height: 2, background: colors.gold, marginTop: 10 }} />
++        {noUnderline ? null : <div style={{ height: 2, background: colors.gold, marginTop: 10 }} />}
+       </div>
+       {name.split("\n").map((l, i) => (
+         <div
+@@ -638,6 +644,7 @@ export const MEReel: React.FC<{ film: MESpec }> = ({ film }) => {
+                 wide={wide}
+                 even={film.even}
+                 move={film.move}
++                noUnderline={film.noUnderline}
+                 dir={i % 2 ? -1 : 1}
+               />
+             </AbsoluteFill>
+@@ -658,6 +665,7 @@ export const MEReel: React.FC<{ film: MESpec }> = ({ film }) => {
+             wide={wide}
+             offer={film.end.offer}
+             question={film.end.question}
++            noUnderline={film.noUnderline}
+           />
+         </AbsoluteFill>
+       </Sequence>
+diff --git a/src/hotels/coombe-abbey-me.ts b/src/hotels/coombe-abbey-me.ts
+index 4b78397..24198fb 100644
+--- a/src/hotels/coombe-abbey-me.ts
++++ b/src/hotels/coombe-abbey-me.ts
+@@ -27,6 +27,7 @@ export const coombeAbbeyME: MESpec = {
+   id: "coombe-abbey-meetings",
+   frames: 1196, // 39.9s: to the track's own end
+   even: true,
++  noUnderline: true, // Scott, 25 Nov: the gold caps without their underline
+   // more movement and energy (Scott, 18 Nov): a quicker push, a gentle sideways glide, and in the longer scenes a second
+   // picture on the bar (beats 48, 72, 96, 104) while the caption holds
+   move: { rate: 0.0009, glide: 0.25 },
