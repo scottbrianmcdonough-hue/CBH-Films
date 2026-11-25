@@ -330,6 +330,13 @@ export const RemotionRoot: React.FC = () => {
         width={BAUBLES_REEL_W}
         height={BAUBLES_REEL_H}
       />
+      {/* the video carousel (Scott: "start swinging if we want a video carousel"): one clip an ornament, swinging */}
+      {["cb", "manor", "key", "tea"].map((k) => (
+        <Composition key={`g-${k}`} id={`cbh-carousel-glass-${k}`} component={GlassBauble} durationInFrames={BAUBLE_FRAMES} fps={FPS} width={BAUBLE_W} height={BAUBLE_H} defaultProps={{ variant: k, swing: true }} />
+      ))}
+      {Object.keys(FELTS).map((k) => (
+        <Composition key={`f-${k}`} id={`cbh-carousel-felt-${k}`} component={FeltOrnament} durationInFrames={FELT_FRAMES} fps={FPS} width={FELT_W} height={FELT_H} defaultProps={{ variant: k, swing: true }} />
+      ))}
       {/* the felt companions: stitched wool felt ornaments on a light background */}
       {Object.keys(FELTS).map((k) => (
         <Composition

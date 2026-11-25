@@ -4,7 +4,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { AbsoluteFill, continueRender, delayRender, interpolate, staticFile, useCurrentFrame } from "remotion";
 import * as THREE from "three";
 import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment.js";
-import { DarkBack, DarkFront } from "./GlassBauble";
+import { DarkBack, DarkFront, PIVOT, swingAngle } from "./GlassBauble";
 
 // CBH felt ornaments (Scott, 25 Nov: "now do the felt ones", "needs to be lighter background with the one secondary
 // colour lift"), the felt companions to the glass baubles (GlassBauble.tsx): puffy stitched shapes in wool felt (a
@@ -331,7 +331,7 @@ const Environment: React.FC = () => {
 
 type Skin = ReturnType<typeof paintFelt>;
 
-const Ornament: React.FC<{ kind: Kind; felt: string; skin: Skin; shapes: THREE.Shape[] }> = ({ kind, felt, skin, shapes }) => {
+const Ornament: React.FC<{ kind: Kind; felt: string; skin: Skin; shapes: THREE.Shape[]; swing?: boolean }> = ({ kind, felt, skin, shapes, swing = false }) => {
   const frame = useCurrentFrame();
   const t = frame / 30;
   const turn = interpolate(frame, [0, FELT_FRAMES], [-0.55, 0.3]);
@@ -371,7 +371,8 @@ const Ornament: React.FC<{ kind: Kind; felt: string; skin: Skin; shapes: THREE.S
   );
   const top = kind === "star" ? 1.03 : kind === "manor" ? 0.92 : kind === "stocking" ? 1.06 : 0.7;
   return (
-    <group position={[0, 1.45, 0]} rotation={[0, 0, sway]}>
+    <group position={[0, PIVOT, 0]} rotation={[0, 0, swing ? swingAngle(t) : 0]}>
+    <group position={[0, 1.45 - PIVOT, 0]} rotation={[0, 0, sway]}>
       {/* the cord, from above the frame down to the top of the loop (world y 1.21, -0.24 in this group) */}
       <mesh position={[0, 2.13, 0]} material={gold}>
         <cylinderGeometry args={[0.011, 0.011, 4.74, 10]} />
@@ -384,6 +385,7 @@ const Ornament: React.FC<{ kind: Kind; felt: string; skin: Skin; shapes: THREE.S
           <torusGeometry args={[0.09, 0.016, 12, 40]} />
         </mesh>
       </group>
+    </group>
     </group>
   );
 };
@@ -449,7 +451,7 @@ const LightBackdrop: React.FC<{ frame: number }> = ({ frame }) => {
   );
 };
 
-export const FeltOrnament: React.FC<{ variant?: string; light?: boolean; bare?: boolean }> = ({ variant = "star", light = false, bare = false }) => {
+export const FeltOrnament: React.FC<{ variant?: string; light?: boolean; bare?: boolean; swing?: boolean }> = ({ variant = "star", light = false, bare = false, swing = false }) => {
   const v = FELTS[variant];
   const frame = useCurrentFrame();
   const shapes = useMemo(() => SHAPES[v.kind](), [v.kind]);
@@ -480,7 +482,7 @@ export const FeltOrnament: React.FC<{ variant?: string; light?: boolean; bare?: 
           <directionalLight position={[2.5, 3, 4]} intensity={light ? 2.2 : 1.5} color="#ffe6c4" />
           <pointLight position={[-3, 1, 2]} intensity={light ? 6 : 3} color="#f4e6cf" />
           <pointLight position={[0, 1, -3]} intensity={light ? 0 : 6} color="#e8cf9c" />
-          <Ornament kind={v.kind} felt={v.felt} skin={skin} shapes={shapes} />
+          <Ornament kind={v.kind} felt={v.felt} skin={skin} shapes={shapes} swing={swing} />
         </ThreeCanvas>
       ) : null}
       {light || bare ? null : <DarkFront frame={frame} />}

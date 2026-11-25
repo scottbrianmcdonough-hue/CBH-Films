@@ -270,7 +270,11 @@ const goldMat = () =>
 
 export type Turn = { from: number; to: number; span: number };
 const DEFAULT_TURN: Turn = { from: -0.95, to: 0.35, span: BAUBLE_FRAMES };
-const Bauble: React.FC<{ skin: { map: THREE.Texture; rough: THREE.Texture }; spin: Turn }> = ({ skin, spin }) => {
+// A swing on its cord (Scott: "start swinging", for a video carousel): set going as if just tapped, a pendulum from a
+// pivot high above the frame so the cord and ornament move together, dying away over a few seconds.
+export const PIVOT = 4.2;
+export const swingAngle = (t: number) => 0.13 * Math.exp(-t / 2.6) * Math.sin((2 * Math.PI * t) / 2.4);
+const Bauble: React.FC<{ skin: { map: THREE.Texture; rough: THREE.Texture }; spin: Turn; swing?: boolean }> = ({ skin, spin, swing = false }) => {
   const frame = useCurrentFrame();
   const t = frame / 30;
   // turning slowly on its cord: from three-quarters round to face on and a little past, with a gentle sway
@@ -319,7 +323,8 @@ const Bauble: React.FC<{ skin: { map: THREE.Texture; rough: THREE.Texture }; spi
     return geo;
   }, []);
   return (
-    <group position={[0, 1.35, 0]} rotation={[0, 0, sway]}>
+    <group position={[0, PIVOT, 0]} rotation={[0, 0, swing ? swingAngle(t) : 0]}>
+    <group position={[0, 1.35 - PIVOT, 0]} rotation={[0, 0, sway]}>
       {/* the cord, from above the frame down to the loop */}
       <mesh position={[0, 2.2, 0]} material={gold}>
         <cylinderGeometry args={[0.012, 0.012, 4.2, 12]} />
@@ -333,6 +338,7 @@ const Bauble: React.FC<{ skin: { map: THREE.Texture; rough: THREE.Texture }; spi
           <torusGeometry args={[0.085, 0.018, 16, 48]} />
         </mesh>
       </group>
+    </group>
     </group>
   );
 };
@@ -420,7 +426,7 @@ export const DarkBack: React.FC<{ frame: number }> = ({ frame }) => (
 export const DarkFront: React.FC<{ frame: number }> = () => null;
 
 // `bare`: the ornament alone on a transparent ground (the baubles reel lays one background under every ornament)
-export const GlassBauble: React.FC<{ variant?: string; spin?: Turn; bare?: boolean }> = ({ variant = "cb", spin = DEFAULT_TURN, bare = false }) => {
+export const GlassBauble: React.FC<{ variant?: string; spin?: Turn; bare?: boolean; swing?: boolean }> = ({ variant = "cb", spin = DEFAULT_TURN, bare = false, swing = false }) => {
   const v = BAUBLES[variant];
   const frame = useCurrentFrame();
   const [skin, setSkin] = useState<{ map: THREE.Texture; rough: THREE.Texture } | null>(null);
@@ -451,7 +457,7 @@ export const GlassBauble: React.FC<{ variant?: string; spin?: Turn; bare?: boole
           <pointLight position={[2.5, 3, 4]} intensity={34} color="#ffe2b8" />
           <pointLight position={[0, 0.5, -3]} intensity={10} color="#e8cf9c" />
           <pointLight position={[-3, -1, 2]} intensity={8} color={PAL.gold} />
-          <Bauble skin={skin} spin={spin} />
+          <Bauble skin={skin} spin={spin} swing={swing} />
         </ThreeCanvas>
       ) : null}
       {bare ? null : <DarkFront frame={frame} />}
