@@ -241,7 +241,7 @@ const KPI = [
   { m: "Average watch time", now: "3 to 7s", aim: "6s or more" },
   { m: "Engagement rate", now: "1.3%", aim: "3%" },
   { m: "Profile visits per 1,000 views", now: "5.4", aim: "10" },
-  { m: "New followers", now: "about 212 this year", aim: "set with the 2027 target" },
+  { m: "New followers", now: "about 211 this year", aim: "set with the 2027 target" },
 ];
 const S10: React.FC<{ f: number }> = ({ f }) => (
   <AbsoluteFill>
