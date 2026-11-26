@@ -1,3 +1,16 @@
+diff --git a/src/hotel-film/carousel/BlackFridayCarousel.tsx b/src/hotel-film/carousel/BlackFridayCarousel.tsx
+index 5e94c1b..92ac2ca 100644
+--- a/src/hotel-film/carousel/BlackFridayCarousel.tsx
++++ b/src/hotel-film/carousel/BlackFridayCarousel.tsx
+@@ -220,7 +220,7 @@ const REGIONS: Region[] = [
+         src: H + "burleigh-court/garden-house.jpg",
+         pos: "72% 50%",
+         tile: { src: H + "burleigh-court/bedroom.jpg", pos: "45% 50%" },
+-        place: "Minchinhampton, Gloucestershire",
++        place: "Cotswolds (Stroud)",
+         name: "Burleigh Court",
+         offer: "25% off, breakfast included",
+         terms: "",
 diff --git a/src/hotel-film/ripple/RippleFilm.tsx b/src/hotel-film/ripple/RippleFilm.tsx
 index e686f1c..8996087 100644
 --- a/src/hotel-film/ripple/RippleFilm.tsx
@@ -51,3 +64,29 @@ index e686f1c..8996087 100644
            }}
          >
            {caps}
+diff --git a/src/hotels/bf-region-south.ts b/src/hotels/bf-region-south.ts
+index 2812f7b..2c39ef2 100644
+--- a/src/hotels/bf-region-south.ts
++++ b/src/hotels/bf-region-south.ts
+@@ -17,7 +17,7 @@ export const bfRegionSouth: RippleSpec = {
+     { from: 238, to: 355, place: "Arundel, West Sussex", name: "Avisford Park Hotel", offer: "Save 25%" },
+     { from: 357, to: 473, place: "Farnham, Surrey", name: "Frensham Pond\nHotel & Spa", offer: "Save 20%" },
+     { from: 475, to: 591, place: "Sevenoaks, Kent", name: "Donnington Manor\nHotel", offer: "Save 20%" },
+-    { from: 593, to: 709, place: "Minchinhampton, Gloucestershire", name: "Burleigh Court", offer: "Save 20%" },
++    { from: 593, to: 709, place: "Cotswolds (Stroud)", name: "Burleigh Court", offer: "Save 20%" },
+   ],
+   lines: [],
+   deepScrim: true,
+diff --git a/src/hotels/black-friday-stories.ts b/src/hotels/black-friday-stories.ts
+index ac5c74d..ab620f3 100644
+--- a/src/hotels/black-friday-stories.ts
++++ b/src/hotels/black-friday-stories.ts
+@@ -104,7 +104,7 @@ const STORIES: Story[] = [
+   },
+   {
+     slug: "burleigh-court",
+-    place: "Minchinhampton, Gloucestershire",
++    place: "Cotswolds (Stroud)",
+     name: "Burleigh Court",
+     shots: [
+       { src: H + "burleigh-court/fireside-table.jpg", pos: "55% 50%" },
