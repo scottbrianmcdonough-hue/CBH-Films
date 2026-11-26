@@ -149,7 +149,7 @@ export const pours: PovSpec = {
     { clip: "hotels/haycock-manor/clips/cocktail-smoke", beats: 8 },
   ],
   hookBeats: 4,
-  question: ["which pour are", "you here for?"],
+  question: ["tag who owes", "you this one"],
   label: false, music: RICH_ENOUGH,
 };
 
