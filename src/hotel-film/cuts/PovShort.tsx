@@ -137,7 +137,7 @@ export const coombeAbbey: PovSpec = {
 // a craft cut (Scott, 26 Nov: "something just craft cut", "need something now"): every shot mid-pour, the stream
 // falling from the top of frame in each, a cut every two beats, the smoked cocktail held for the close
 export const pours: PovSpec = {
-  hook: ["wait for", "the last pour"],
+  hook: ["making some", "pour decisions"],
   place: "", name: "",
   shots: [
     { clip: "hotels/the-kingfisher/tea-pour", beats: 2 },

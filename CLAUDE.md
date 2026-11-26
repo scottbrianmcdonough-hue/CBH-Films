@@ -1491,5 +1491,5 @@ with no history and no renders:
   needn't always be about the hotels (Scott).
 - `pours-tiktok` (`pours` in `cuts/PovShort.tsx`, 11.0s, -15.0 LUFS; Scott, 26 Nov: "something just craft cut", "need something
   now"): every shot mid-pour on a two beat cut (Kingfisher tea, Wild Boar gravy, Fairlawns sauce, Dalmahoy syrup, Haycock cocktail,
-  Fairlawns cheers), Haycock's smoked cocktail held for the close; "wait for / the last pour", "tag who owes / you this one" (Scott: "which pour are you here for?" "won't land").
+  Fairlawns cheers), Haycock's smoked cocktail held for the close; "making some / pour decisions" (was "wait for / the last pour": Scott, no best pour, so no member feels ranked), "tag who owes / you this one" (Scott: "which pour are you here for?" "won't land").
   "follow for more stays" is out of every PovShort (Scott: "are you sure about follow for more stays": the question is the one ask).
