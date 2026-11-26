@@ -69,8 +69,9 @@ export const ruthinCastle: PovSpec = {
   // attention drops off at two seconds (Scott, 26 Nov): a cut at ~1s, movement from frame one, a short hook held
   // across the first two shots, three beats a shot after that
   shots: [
-    { clip: `${RC}/clips/castle`, beats: 2 },
-    { clip: `${RC}/clips/peacock`, beats: 3 },
+    // the peacock first (the first frame rule: the most unusual shot opens), the tower second
+    { clip: `${RC}/clips/peacock`, beats: 2 },
+    { clip: `${RC}/clips/castle`, beats: 3 },
     { clip: `${RC}/sumac-and-ruins`, beats: 3 },
     { clip: `${RC}/clips/fireside-plate`, beats: 3 },
     { clip: `${RC}/hot-tub-lift`, beats: 3, from: 14 },
