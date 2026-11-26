@@ -210,7 +210,7 @@ export const PovShort: React.FC<{ spec?: PovSpec }> = ({ spec = rowtonSpa }) => 
         const from = b(starts[i]);
         const len = (i === n - 1 ? total : b(starts[i] + s.beats)) - from;
         return (
-          <Sequence key={s.clip} from={from} durationInFrames={len}>
+          <Sequence key={`${s.clip}-${i}`} from={from} durationInFrames={len}>
             {s.still ? (
               <Push len={len}><Img src={staticFile(`${s.clip}.jpg`)} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: s.pos ?? "50% 50%" }} /></Push>
             ) : (
