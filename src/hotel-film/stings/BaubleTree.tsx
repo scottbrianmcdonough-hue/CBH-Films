@@ -2,7 +2,7 @@ import { Audio } from "@remotion/media";
 import { ThreeCanvas } from "@remotion/three";
 import { useThree } from "@react-three/fiber";
 import React, { useEffect, useMemo, useState } from "react";
-import { AbsoluteFill, continueRender, delayRender, Easing, Img, interpolate, staticFile, useCurrentFrame } from "remotion";
+import { AbsoluteFill, continueRender, delayRender, Easing, Freeze, Img, interpolate, staticFile, useCurrentFrame } from "remotion";
 import * as THREE from "three";
 import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment.js";
 import { EASE_OUT, sans, serif } from "../theme";
@@ -28,6 +28,17 @@ const FPS = 30;
 const FROM = 183.75;
 const BAR = 4 * 0.5805;
 const bar = (n: number) => Math.round(n * BAR * FPS); // frame of the nth downbeat from the start
+// the needle check: every 4th frame of the tree's lit stretch (0 to 560), as a short sequence
+export const TREE_CHECK_STEP = 4;
+export const TREE_CHECK_FRAMES = 141;
+export const BaubleTreeCheck: React.FC<{ debug: "o" | "c" }> = ({ debug }) => {
+  const f = useCurrentFrame();
+  return (
+    <Freeze frame={f * TREE_CHECK_STEP}>
+      <BaubleTree debug={debug} />
+    </Freeze>
+  );
+};
 export const TREE_FRAMES = Math.round((208.8 - FROM) * FPS);
 
 const PAL = { gold: "#c7ab77", pale: "#f2f0f0" };
@@ -330,6 +341,13 @@ type Skins = {
   felt: Record<string, { skin: ReturnType<typeof paintFelt>; shapes: THREE.Shape[] }>;
 };
 
+// A check for needles poking through ornaments (Scott: "make sure there are no needles poking through"): two flat-colour
+// renders, "o" the ornaments alone in green, "c" the whole tree with its needles and twigs red and the ornaments green;
+// red inside an ornament's green outline is a needle in front of it. Off in the real film.
+let DBG: "o" | "c" | null = null;
+const flat = (c: number) => new THREE.MeshBasicMaterial({ color: c, fog: false });
+const DM = { green: flat(0x00ff00), red: flat(0xff0000), black: flat(0x000000) };
+const dbg = <T,>(m: T) => (DBG ? (DM.green as unknown as T) : m);
 const goldMat = () => new THREE.MeshPhysicalMaterial({ color: new THREE.Color(PAL.gold), metalness: 1, roughness: 0.25, clearcoat: 0.5 });
 
 // a felt piece (its face and edge materials, its layered shapes), shared by the hung ornaments and the topper
@@ -351,7 +369,7 @@ const useFelt = (variant: string | null, skins: Skins) =>
 const FeltBody: React.FC<{ felt: NonNullable<ReturnType<typeof useFelt>> }> = ({ felt }) => (
   <>
     {felt.geos.map((g, k) => (
-      <mesh key={k} geometry={g} material={felt.mats} />
+      <mesh key={k} geometry={g} material={DBG ? DM.green : felt.mats} />
     ))}
   </>
 );
@@ -398,24 +416,24 @@ const Ornament: React.FC<{ h: Hang; i: number; skins: Skins; gold: THREE.Materia
     // pivot at the hang point on the branch, facing out from the tree; the ornament hangs CORD below it
     <group position={[hp.x, hp.y, hp.z]} rotation={[0, h.a * 0.55, 0]} scale={pop}>
     <group rotation={[0, 0, swing]}>
-      <mesh geometry={threadGeo(h)} material={thread} />
+      <mesh geometry={threadGeo(h)} material={DBG ? DM.black : thread} />
       <group position={[0, -CORD - topY * S, 0]} scale={S} rotation={[0, turn, 0]}>
         {h.kind === "glass" ? (
           <>
-            <mesh material={glassMat!}>
+            <mesh material={dbg(glassMat!)}>
               <sphereGeometry args={[1, 96, 72]} />
             </mesh>
-            <mesh material={gold} position={[0, 1.08, 0]}>
+            <mesh material={dbg(gold)} position={[0, 1.08, 0]}>
               <cylinderGeometry args={[0.26, 0.29, 0.3, 32]} />
             </mesh>
-            <mesh material={gold} position={[0, 1.33, 0]}>
+            <mesh material={dbg(gold)} position={[0, 1.33, 0]}>
               <torusGeometry args={[0.085, 0.02, 12, 32]} />
             </mesh>
           </>
         ) : (
           <>
             <FeltBody felt={felt!} />
-            <mesh material={gold} position={[0, 1.08, 0.03]}>
+            <mesh material={dbg(gold)} position={[0, 1.08, 0.03]}>
               <torusGeometry args={[0.09, 0.018, 12, 32]} />
             </mesh>
           </>
@@ -497,7 +515,7 @@ const Tree: React.FC<{ skins: Skins }> = ({ skins }) => {
   camera.lookAt(Math.sin(cam.a) * cam.lr, cam.look, Math.cos(cam.a) * cam.lr);
   // depth into shadow: the far side of the tree and its inside fall away to black (fog), a few units past the subject
   const subject = cam.r - cam.lr;
-  scene.fog = new THREE.Fog(0x000000, subject - 0.4, subject + 2.8 + 3 * w);
+  scene.fog = DBG ? null : new THREE.Fog(0x000000, subject - 0.4, subject + 2.8 + 3 * w);
 
   // the lights: a soft twinkle, coming right up as the star lands
   const lift = interpolate(frame, [STAR_LAND - 6, STAR_LAND + 30], [0.55, 1.4], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
@@ -526,9 +544,9 @@ const Tree: React.FC<{ skins: Skins }> = ({ skins }) => {
         <coneGeometry args={[BASE_R * 0.62, TOP_Y - BASE_Y - 0.4, 40]} />
         <meshBasicMaterial color="#0b1c12" />
       </mesh>
-      <primitive object={twigs} />
-      <primitive object={needles} />
-      {lights.map((l, i) => {
+      {DBG !== "o" ? <primitive object={twigs} material={DBG ? DM.red : twigs.material} /> : null}
+      {DBG !== "o" ? <primitive object={needles} material={DBG ? DM.red : needles.material} /> : null}
+      {(DBG ? [] : lights).map((l, i) => {
         const tw = 0.75 + 0.25 * Math.sin(frame / 9 + l.phase);
         // the late lights pop on in a cascade from the top over ~24 frames as the star lands: a bright flash, settling
         const at = STAR_LAND - 4 + l.pop * 24 + l.jitter * 6;
@@ -547,7 +565,7 @@ const Tree: React.FC<{ skins: Skins }> = ({ skins }) => {
       ))}
       {frame >= STAR_FROM - 2 ? (
         <group position={[0, starY, 0]} rotation={[0, starTurn, 0]}>
-          <sprite scale={[1.9 * rise, 1.9 * rise, 1]} position={[0, 0, -0.05]}>
+          <sprite visible={!DBG} scale={[1.9 * rise, 1.9 * rise, 1]} position={[0, 0, -0.05]}>
             <spriteMaterial map={glow} transparent opacity={0.85 * rise} depthWrite={false} blending={THREE.AdditiveBlending} />
           </sprite>
           <group scale={0.46} position={[0, -0.05, 0]}>
@@ -582,7 +600,8 @@ const HouseLabel: React.FC<{ i: number }> = ({ i }) => {
   );
 };
 
-export const BaubleTree: React.FC = () => {
+export const BaubleTree: React.FC<{ debug?: "o" | "c" }> = ({ debug }) => {
+  DBG = debug ?? null;
   const frame = useCurrentFrame();
   const [skins, setSkins] = useState<Skins | null>(null);
   const [handle] = useState(() => delayRender("tree skins"));
@@ -609,6 +628,17 @@ export const BaubleTree: React.FC = () => {
   const b = interpolate(frame, [LINE_AT + 8, LINE_AT + 30], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: EASE_OUT });
   const treeOut = interpolate(frame, [TREE_OUT, TREE_OUT + 24], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.inOut(Easing.quad) });
   const fade = interpolate(frame, [total - 28, total - 2], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  if (DBG) {
+    return (
+      <AbsoluteFill style={{ background: "#000" }}>
+        {skins ? (
+          <ThreeCanvas width={TREE_W} height={TREE_H} camera={{ fov: 30, position: [0, 0.5, 5], near: 0.05, far: 60 }} gl={{ antialias: false, alpha: false, toneMapping: THREE.NoToneMapping }}>
+            <Tree skins={skins} />
+          </ThreeCanvas>
+        ) : null}
+      </AbsoluteFill>
+    );
+  }
   return (
     <AbsoluteFill style={{ background: "#000" }}>
       <AbsoluteFill style={{ opacity: treeOut }}>
