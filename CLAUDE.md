@@ -1493,3 +1493,6 @@ with no history and no renders:
   now"): every shot mid-pour on a two beat cut (Kingfisher tea, Wild Boar gravy, Fairlawns sauce, Dalmahoy syrup, Haycock cocktail,
   Fairlawns cheers), Haycock's smoked cocktail held for the close; "making some / pour decisions" (was "wait for / the last pour": Scott, no best pour, so no member feels ranked), "tag who owes / you this one" (Scott: "which pour are you here for?" "won't land").
   "follow for more stays" is out of every PovShort (Scott: "are you sure about follow for more stays": the question is the one ask).
+- TikTok first frame rule (Scott, 26 Nov, after `pours-tiktok` lost most viewers at 0:02 on its dark tea pour: "then don't
+  give me the videos"): the strongest, brightest shot opens every TikTok, never saved for the end; check frame one before
+  sending, and don't send a video whose opening is weaker than its best shot.
