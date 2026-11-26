@@ -40,5 +40,6 @@ Creative: cbh-bauble-tree.mp4 (9:16, 25.1s)
 Music: Vintage Christmas Swing Big Band by OpenMindAudio (Pixabay) is baked in.
 
 Notes
+- The tree carries 57 house ornaments, one for every hotel in the collection.
 - An AI assisted 3D render: the tree, ornaments and star are built and lit in code, not AI generated. Each ornament is drawn from the hotel's own photo, in order up the tree.
 - The Imperial, Oakley Hall and Hythe Imperial were swapped in for the CB Unite members (Bianca, 26 Nov).

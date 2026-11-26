@@ -243,33 +243,39 @@ const EXTRAS: Hang[] = (() => {
 // and more again at the end (Bianca, 26 Nov: "replicate the hotel baubles, make them smaller and add to the end before
 // the lights come on, just to represent more hotels"): small ones popping onto the tree from the bottom up as the camera
 // draws back, filling the gaps, before the star lands and the lights come on
+// and more again at the end (Bianca, 26 Nov: "replicate the hotel baubles, make them smaller and add to the end before
+// the lights come on, just to represent more hotels"), so the tree carries one house for every hotel in the collection
+// (Scott: "to show our 57 hotels"): small ones popping on from the bottom up as the camera draws back
+const COLLECTION = 57;
 const LATE: Hang[] = (() => {
   const designs: Record<Hang["kind"], string[]> = { felt: ["hythe", "imperial", "hatherley"], glass: ["dalmahoy", "coombe", "oakley"] };
   const face = (h: Hang) => {
     const b = bodyOf(h);
     return new THREE.Vector2(b.x, b.y);
   };
-  const big = [...HANGS.map((h) => ({ f: face(h), w: 0.6, h: 0.55 })), ...EXTRAS.map((h) => ({ f: face(h), w: 0.52, h: 0.36 }))];
+  const big = [...HANGS.map((h) => ({ f: face(h), w: 0.47, h: 0.47 })), ...EXTRAS.map((h) => ({ f: face(h), w: 0.35, h: 0.3 }))];
   const placed: THREE.Vector2[] = [];
-  const out: Hang[] = [];
-  const from = bar(6) + 2, to = STAR_LAND - 10;
+  const all: Hang[] = [];
   let row = 0;
-  for (let y = -2.3; y < 2.55; y += 0.28, row++) {
-    const n = Math.max(1, Math.round(radiusAt(y) * 4.6));
-    const span = 0.86;
+  // a dense, even grid of places clear of the bigger ornaments and of each other
+  for (let y = -2.35; y < 2.7; y += 0.2, row++) {
+    const n = Math.max(1, Math.round(radiusAt(y) * 7));
+    const span = 0.9;
     for (let k = 0; k < n; k++) {
       const u = (k + (row % 2 ? 0.75 : 0.25)) / n;
-      const h: Hang = { kind: (row + k) % 2 ? "felt" : "glass", variant: "", y, a: -span + u * 2 * span, s: 0.48 };
+      const h: Hang = { kind: (row + k) % 2 ? "felt" : "glass", variant: "", y, a: -span + u * 2 * span, s: 0.36 };
       const f = face(h);
       const hits = (q: THREE.Vector2, w: number, hh: number) => Math.abs(q.x - f.x) < w && Math.abs(q.y - f.y) < hh;
-      if (big.some((q) => hits(q.f, q.w, q.h)) || placed.some((q) => hits(q, 0.42, 0.3))) continue;
+      if (big.some((q) => hits(q.f, q.w, q.h)) || placed.some((q) => hits(q, 0.26, 0.22))) continue;
       placed.push(f);
-      const list = designs[h.kind];
-      const at = Math.round(from + ((y + 2.3) / 4.85) * (to - from) + (u - 0.5) * 6);
-      out.push({ ...h, variant: list[(row * 2 + k) % list.length], at });
+      all.push({ ...h, variant: designs[h.kind][(row * 2 + k) % 3] });
     }
   }
-  return out;
+  // exactly enough to make the collection's number, picked evenly over the tree
+  const need = Math.max(0, COLLECTION - HANGS.length - EXTRAS.length);
+  const pick = need >= all.length ? all : Array.from({ length: need }, (_, i) => all[Math.floor(((i + 0.5) * all.length) / need)]);
+  const from = bar(6) + 2, to = STAR_LAND - 8;
+  return pick.map((h) => ({ ...h, at: Math.round(from + ((h.y + 2.3) / 4.9) * (to - from) + (h.a / 0.86) * 3) }));
 })();
 const ALL = [...HANGS, ...EXTRAS, ...LATE];
 // the room each ornament needs to swing in, clear of needles and twigs
@@ -424,6 +430,8 @@ const Tree: React.FC<{ skins: Skins }> = ({ skins }) => {
   }, []);
   const gold = useMemo(goldMat, []);
   const thread = useMemo(threadMat, []);
+  // no fairy light where an ornament hangs, or just in front of it, so none glows through one
+  const lights = useMemo(() => LIGHTS.filter((l) => !POCKETS().some((c) => c.distanceTo(l.p) < c.r + 0.16)), []);
   const star = useFelt("star", skins);
   const glow = glowTexture();
 
@@ -485,7 +493,7 @@ const Tree: React.FC<{ skins: Skins }> = ({ skins }) => {
       </mesh>
       <primitive object={twigs} />
       <primitive object={needles} />
-      {LIGHTS.map((l, i) => {
+      {lights.map((l, i) => {
         const tw = 0.75 + 0.25 * Math.sin(frame / 9 + l.phase);
         // the late lights pop on in a cascade from the top over ~24 frames as the star lands: a bright flash, settling
         const at = STAR_LAND - 4 + l.pop * 24 + l.jitter * 6;
