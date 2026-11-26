@@ -1479,6 +1479,9 @@ with no history and no renders:
   the island?", 15.3s), `scone-debate-tiktok` (not about a hotel: Ilsington's scone, the Kingfisher pour, Langshott's stand, Waterton's
   stand; "there's only one / right way to do a scone", "so: jam first / or cream first?", 11.0s), `pov-coombe-abbey-tiktok`
   (photos on a slow push, `still`; "you can sleep in a / 12th century abbey", "who's getting / the four poster?", 14.2s).
+  Then (Scott: "attention drops off after two seconds"): all four recut with a cut at ~1s, a short hook held over the first
+  two shots (`hookBeats`), three beats a shot: Ruthin 12.1s, Waterton 10.5s, scone ("you're doing / scones wrong") 9.4s, Coombe
+  (the banquet first) 10.5s. Scott then: "need to get creative": these are tweaks; new formats pitched.
 - `the-kingfisher`, `whittlebury-park-stay-dine` (+ `-story` cuts): done.
 - `pov-ruthin-castle-tiktok` (`ruthinCastle` in `cuts/PovShort.tsx`, 15.8s, -15.0 LUFS; no house label: the hotel is tagged in
   the post (Scott); on Rich Enough from its drop (`RICH_ENOUGH`, Scott: Event Music "Bianca won't like it"), a shot every 4 beats): the unusual angle first (Scott, 25 Nov:

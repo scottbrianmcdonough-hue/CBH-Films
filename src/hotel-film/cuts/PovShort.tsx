@@ -17,6 +17,8 @@ export type PovMusic = { src: string; from: number; bpm: number };
 export type PovSpec = {
   hook: [string, string]; place: string; name: string; shots: PovShot[]; question: [string, string];
   label?: boolean; music?: PovMusic;
+  // how many beats the hook holds (default: the first shot); with a quick first cut the hook runs on over the second
+  hookBeats?: number;
 };
 
 const EVENT_MUSIC: PovMusic = { src: "music/prettyjohn1-event-music-595091.mp3", from: 6.27, bpm: 152.2 };
@@ -61,18 +63,20 @@ export const lowWoodWinter: PovSpec = {
 // the unusual angle first (Scott, 25 Nov: ours stall at ~220 views while Coombe Abbey's banquet got 516k): a castle
 const RC = "hotels/ruthin-castle";
 export const ruthinCastle: PovSpec = {
-  hook: ["you can actually", "sleep in this castle"],
+  hook: ["you can sleep", "in this castle"],
   place: "NORTH WALES",
   name: "Ruthin Castle\nHotel & Spa",
+  // attention drops off at two seconds (Scott, 26 Nov): a cut at ~1s, movement from frame one, a short hook held
+  // across the first two shots, three beats a shot after that
   shots: [
-    // Rich Enough is slower (112.5 BPM, 16 frames a beat): a shot every four beats, the hook held five
-    { clip: `${RC}/clips/castle`, beats: 5 },
-    { clip: `${RC}/clips/peacock`, beats: 4 },
-    { clip: `${RC}/sumac-and-ruins`, beats: 4 },
-    { clip: `${RC}/clips/fireside-plate`, beats: 4 },
-    { clip: `${RC}/hot-tub-lift`, beats: 4, from: 14 },
+    { clip: `${RC}/clips/castle`, beats: 2 },
+    { clip: `${RC}/clips/peacock`, beats: 3 },
+    { clip: `${RC}/sumac-and-ruins`, beats: 3 },
+    { clip: `${RC}/clips/fireside-plate`, beats: 3 },
+    { clip: `${RC}/hot-tub-lift`, beats: 3, from: 14 },
     { clip: `${RC}/clips/white-bed`, beats: 8 },
   ],
+  hookBeats: 5,
   question: ["best bit: the peacock", "or the hot tub?"],
   label: false,
   music: RICH_ENOUGH,
@@ -81,29 +85,34 @@ export const ruthinCastle: PovSpec = {
 // more for the grid (Scott, 26 Nov: "need some more TikTok reels"): the unusual angle, no label, Rich Enough
 const WP = "hotels/waterton-park/clips";
 export const watertonIsland: PovSpec = {
-  hook: ["this hotel sits on", "its own island"],
+  hook: ["this hotel is on", "its own island"],
   place: "WAKEFIELD", name: "Waterton Park\nHotel & Spa",
+  // attention drops off at two seconds (Scott, 26 Nov): a cut at ~1s, movement from frame one, a short hook held
+  // across the first two shots, three beats a shot after that
   shots: [
-    { clip: `${WP}/aerial-story`, beats: 8 },
-    { clip: `${WP}/walton-hall-story`, beats: 4 },
-    { clip: `${WP}/afternoon-tea`, beats: 4 },
-    { clip: `${WP}/indoor-pool-story`, beats: 4 },
+    { clip: `${WP}/aerial-story`, beats: 2 },
+    { clip: `${WP}/walton-hall-story`, beats: 3 },
+    { clip: `${WP}/afternoon-tea`, beats: 3 },
+    { clip: `${WP}/indoor-pool-story`, beats: 3 },
     { clip: `${WP}/bedroom`, beats: 8 },
   ],
+  hookBeats: 5,
   question: ["would you ever", "leave the island?"],
   label: false, music: RICH_ENOUGH,
 };
 // not about a hotel at all (Scott: "it doesn't even have to be about hotels all the time"): the scone debate
 export const sconeDebate: PovSpec = {
-  hook: ["there's only one", "right way to do a scone"],
+  hook: ["you're doing", "scones wrong"],
   place: "", name: "",
+  // attention drops off at two seconds (Scott, 26 Nov): a cut at ~1s, movement from frame one, a short hook held
+  // across the first two shots, three beats a shot after that
   shots: [
-    // open on the one real scone close up (Ilsington's), so the hook sits over a scone; shorter, so it loops
-    { clip: "campaigns/november/hotels/ilsington-scone-slow", beats: 4 },
-    { clip: "campaigns/november/hotels/kingfisher-tea-pour-slow", beats: 4 },
-    { clip: "campaigns/showcase/langshott-fireside-tea", beats: 4, still: true, pos: "50% 50%" },
+    { clip: "campaigns/november/hotels/ilsington-scone-slow", beats: 3 },
+    { clip: "campaigns/november/hotels/kingfisher-tea-pour-slow", beats: 3 },
+    { clip: "campaigns/showcase/langshott-fireside-tea", beats: 3, still: true, pos: "50% 50%" },
     { clip: "hotels/waterton-park/clips/afternoon-tea", beats: 8 },
   ],
+  hookBeats: 6,
   question: ["so: jam first", "or cream first?"],
   label: false, music: RICH_ENOUGH,
 };
@@ -111,13 +120,16 @@ const CA = "hotels/coombe-abbey";
 export const coombeAbbey: PovSpec = {
   hook: ["you can sleep in a", "12th century abbey"],
   place: "WARWICKSHIRE", name: "Coombe Abbey",
+  // attention drops off at two seconds (Scott, 26 Nov): a cut at ~1s, the banquet first (people, colour), a short hook held
+  // across the first two shots, three beats a shot after that
   shots: [
-    { clip: `${CA}/aerial`, beats: 6, still: true },
-    { clip: `${CA}/banquet-show`, beats: 4, still: true, pos: "55% 50%" },
-    { clip: `${CA}/plate`, beats: 4, still: true },
-    { clip: `${CA}/garden-front`, beats: 4, still: true },
+    { clip: `${CA}/banquet-show`, beats: 2, still: true, pos: "55% 50%" },
+    { clip: `${CA}/aerial`, beats: 3, still: true },
+    { clip: `${CA}/plate`, beats: 3, still: true },
+    { clip: `${CA}/garden-front`, beats: 3, still: true },
     { clip: `${CA}/four-poster-room`, beats: 8, still: true },
   ],
+  hookBeats: 5,
   question: ["who's getting", "the four poster?"],
   label: false, music: RICH_ENOUGH,
 };
@@ -169,7 +181,7 @@ export const PovShort: React.FC<{ spec?: PovSpec }> = ({ spec = rowtonSpa }) => 
   const total = povFrames(spec);
   const n = spec.shots.length;
   const starts = spec.shots.map((_, i) => sum(spec.shots.slice(0, i)));
-  const last = starts[n - 1], hookEnd = b(spec.shots[0].beats) - 4;
+  const last = starts[n - 1], hookEnd = b(spec.hookBeats ?? spec.shots[0].beats) - 4;
   const qAt = b(last), followAt = b(last + 3);
   // the label comes up on the second shot and holds two shots
   const lab = progress(frame, b(starts[1]) + 4, 8) * (1 - progress(frame, b(starts[Math.min(3, n - 1)]) - 6, 6));
