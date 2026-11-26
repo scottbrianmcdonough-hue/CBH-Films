@@ -76,9 +76,9 @@ faqs = [
 faq_html = "".join(f"<details{' open' if i == 0 else ''}><summary>{q}</summary><p>{a}</p></details>" for i, (q, a) in enumerate(faqs))
 
 hotels = [
-    ("low-wood-bay-from-the-water", "Low Wood Bay Resort &amp; Spa", "Lake District National Park (Lake Windermere)", "Lakeside spa stay", "On the shore of Windermere, with a 5 Bubble spa and lake view infinity pools. Dinner is at The W or Blue Smoke on the Bay."),
+    ("low-wood-bay-from-the-water", "Low Wood Bay Resort &amp; Spa", "Lake District National Park (Lake Windermere)", "Lakeside spa stay", "On the shore of Windermere, with a 5 Bubble spa and lake view infinity pools. Dinner is at The W or Blue Smoke on the Bay. Your base for the south Lakes."),
     ("wild-boar-exterior", "Wild Boar Estate", "Lake District National Park (Windermere)", "Fireside inn in the woods", "A traditional inn under 10 minutes from Bowness, with ancient woodland and a tarn behind it. Dinner is by candlelight in the Grill &amp; Smokehouse, with ales from its own microbrewery."),
-    ("castle-inn-lawn", "Lake District Castle Inn Hotel &amp; Spa", "Bassenthwaite/Keswick, Lake District", "The north Lakes and the fells", "Set in gardens by Bassenthwaite Lake, under 15 minutes from Keswick. After a day on the fells there's the indoor pool and spa, then a Cumbrian ale in the Castle Inn Tavern."),
+    ("castle-inn-lawn", "Lake District Castle Inn Hotel &amp; Spa", "Bassenthwaite/Keswick, Lake District", "The north Lakes and the fells", "Set in gardens by Bassenthwaite Lake, under 15 minutes from Keswick. After a day on the fells there's the indoor pool and spa, then a Cumbrian ale in the Castle Inn Tavern. Your base for the north Lakes."),
 ]
 cards = "".join(
     f'<article class="card"><img src="{img(n)}" alt="{h}"><div class="cb"><div class="meta">{loc}</div><h4>{h}</h4><p>{d}</p>'
