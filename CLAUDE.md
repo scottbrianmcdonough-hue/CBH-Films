@@ -1102,6 +1102,9 @@ with no history and no renders:
 - 2026 brand palette (Scott, 25 Nov): core black #000000 and gold #c7ab77 lead with a neutral (pale #f2f0f0, light
   beige #ebe8e4); secondaries red #a05272, green #869674, blue #779096, heather #755c78 only as a lift, one or two, never
   leading or all together. Use it for new work (theme.ts still holds the older gold for the finished films).
+  That limit is for graphics and assets (Scott, 26 Nov); web pages like the itineraries can use the secondaries
+  as wayfinding (the Lake District page: morning blue, lunch green, afternoon heather, gold kept for the brand
+  touches and hotel pins), so the golds don't blend.
 - Christmas ornaments, "AI assisted 3D render" (built in code, not AI generated; Scott, 25 Nov, after Bianca liked The
   Relais Cooden Beach's AI baubles): `stings/GlassBauble.tsx` (black glass with the real CB, pale glass manor, green
   glass key, red glass tea stand; `cbh-glass-bauble[-manor|-key|-tea]`) and `stings/FeltOrnament.tsx` (felt star with
