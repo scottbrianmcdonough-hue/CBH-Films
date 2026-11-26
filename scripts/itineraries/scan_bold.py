@@ -7,7 +7,7 @@ HOT = [r"Low Wood Bay Resort &amp; Spa", r"Wild Boar Estate", r"Lake District Ca
 SIGHTS = ["Windermere Lake Cruises", "Windermere Lake Cruise", "Windermere Jetty Museum", "Derwent Pencil Museum", "Castlerigg Stone Circle",
           "Stock Ghyll Force", "Grasmere Gingerbread", "Wordsworth Museum", "Whinlatter Forest", "Ashness Bridge", "Keswick Launch",
           "Orrest Head", "Dove Cottage", "Bridge House", "Hill Top", "Catbells"]
-SKIP = {"h1", "h2", "h3", "h4", "figcaption", "summary", "a", "title", "dt", "nav", "header", "style", "script", "svg", "text", "strong", "b", "button", "meta"}
+SKIP = {"h1", "h2", "h3", "h4", "figcaption", "summary", "a", "title", "dt", "nav", "header", "style", "script", "svg", "text", "strong", "b", "button", "meta", "ol"}  # ol: the map legend reads evenly, no bold
 parts = re.split(r"(<[^>]+>)", h)
 stack = []
 out = []

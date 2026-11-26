@@ -74,15 +74,13 @@ def svg():
 
 def legend():
     rows = "".join(f'<li><b style="background:{c};color:{TXT[c]}">{n}</b>{name}</li>' for n, name, _, _, c in STOPS)
-    return (f'<div class="maplegend"><div class="maptabs"><span class="on">Full route</span><span>1 night</span><span>2 nights</span></div>'
+    return (f'<div class="maplegend">'
             f'<ol>{rows}</ol><div class="hotels"><i></i><span>Our hotels: Low Wood Bay Resort &amp; Spa, Wild Boar Estate, Lake District Castle Inn Hotel &amp; Spa</span></div>'
             f'<a class="pill outline" href="#">Open in Google Maps</a></div>')
 
 
 CSS = """.mapwrap{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:40px;align-items:start;margin-top:26px;text-align:left}
 .mapwrap svg{width:100%;height:auto;border-radius:12px;display:block;border:1px solid #e4e2de}
-.maptabs{display:inline-flex;border:1px solid rgb(9,9,10);border-radius:800px;overflow:hidden;margin-bottom:22px}
-.maptabs span{padding:8px 18px;font-size:13px;letter-spacing:0;text-transform:uppercase}.maptabs .on{background:rgb(9,9,10);color:#fff}
 .maplegend ol{list-style:none;padding:0;margin:0 0 20px;columns:1}.maplegend li{display:flex;align-items:center;gap:14px;padding:8px 0;border-bottom:1px solid #e4e2de;font-size:16px}
 .maplegend li b{flex:none;width:26px;height:26px;border-radius:50%;color:#fff;font-size:12px;display:flex;align-items:center;justify-content:center}
 .maplegend .hotels{display:flex;gap:12px;align-items:flex-start;font-size:15px;color:#585858;margin-bottom:22px}.maplegend .hotels i{flex:none;width:16px;height:16px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:#1d1d1b;margin-top:4px;box-shadow:inset 0 0 0 4.5px #1d1d1b,inset 0 0 0 9px #C39E55}

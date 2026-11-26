@@ -44,20 +44,20 @@ M, L, A, E = "#779096", "#869674", "#755c78", "#1d1d1b"  # 2026 palette secondar
 one_night = f"""
 <h3>Day 1 · Windermere and Ambleside</h3>
 {group("Morning", M, stop("9:30am", "Orrest Head", "Start in Windermere village with the short climb up Orrest Head, about 20 minutes from the station on foot. From the top you see the whole lake, with the Langdale Pikes beyond."), f'<div class="strip one">{fig(*OH)}</div>')}
-{group("Lunch", L, stop("12:30pm", "Bowness on Windermere", "Walk down to Bowness for lunch by the water."))}
-{group("Afternoon", A, stop("2:00pm", "Windermere Lake Cruises", "Step on board at Bowness. The boats run between Bowness, Ambleside and Lakeside, so you see the lake from the middle of it.") + stop("3:00pm", "Ambleside", "Get off at Waterhead and walk into Ambleside to see the tiny Bridge House over Stock Beck. Stock Ghyll Force waterfall is a short walk from the town."), f'<div class="strip">{fig("low-wood-bay-jetty", "Windermere, calm and clear")}{fig("windermere-lake-cruises-mv-teal-bowness", "MV Teal at Bowness", "Photo: Nthep, CC BY-SA 4.0")}{fig("bridge-house-ambleside", "Bridge House, Ambleside", "Photo: Jennifer Petrie, CC BY-SA 2.0")}</div>')}
+{group("Lunch", L, stop("12:30pm", "Bowness", "Walk down to Bowness for lunch by the water."))}
+{group("Afternoon", A, stop("2:00pm", "Windermere Lake Cruises", "Step on board at Bowness. The boats run between Bowness, Ambleside and Lakeside, so you see the lake from the middle of it.") + stop("3:00pm", "Ambleside", "Get off at Waterhead and walk into Ambleside to see the tiny Bridge House over Stock Beck. Stock Ghyll Force waterfall is a short walk from the town. Then take the boat back to Bowness, or the 555 bus to Windermere."), f'<div class="strip">{fig("low-wood-bay-jetty", "Windermere, calm and clear")}{fig("windermere-lake-cruises-mv-teal-bowness", "MV Teal at Bowness", "Photo: Nthep, CC BY-SA 4.0")}{fig("bridge-house-ambleside", "Bridge House, Ambleside", "Photo: Jennifer Petrie, CC BY-SA 2.0")}</div>')}
 {group("Evening · choose your base", E, stop("6:00pm", "Low Wood Bay Resort &amp; Spa", "Right on the shore of Windermere. Spend the evening in the spa, rated 5 Bubbles by the Good Spa Guide, with its lake view infinity pools and fellside sauna. Then dinner at The W, or at Blue Smoke on the Bay, where dishes are cooked on a wood fired grill.") + stop("6:00pm", "Or Wild Boar Estate", "A traditional inn under 10 minutes from Bowness. Have a candlelit dinner in the Grill &amp; Smokehouse, with a pint from its own microbrewery."), f'<div class="strip two">{fig("low-wood-bay-infinity-pool", "The infinity pool at Low Wood Bay")}{fig("wild-boar-smokehouse", "The Smoke House at Wild Boar Estate")}</div>')}
 <h3>Day 2 · Before you head home</h3>
-{group("Morning", M, stop("10:00am", "Grasmere", "After breakfast, drive north to Grasmere. Visit Dove Cottage, the home of William Wordsworth (the poet behind “I Wandered Lonely as a Cloud”), and pick up some Grasmere Gingerbread before you leave."), f'<div class="strip two">{fig("grasmere-lake-and-village", "Grasmere, its lake and village from above", "Photo: Peter S, CC BY-SA 2.0")}{fig("dove-cottage-grasmere", "Dove Cottage, Wordsworth&#39;s home in Grasmere", "Photo: Strobilomyces, CC BY-SA 3.0")}</div>')}
+{group("Morning", M, stop("10:00am", "Grasmere", "After breakfast, drive north to Grasmere. Visit Dove Cottage, where William Wordsworth wrote many of his best known poems, and pick up some Grasmere Gingerbread before you leave."), f'<div class="strip two">{fig("grasmere-lake-and-village", "Grasmere, its lake and village from above", "Photo: Peter S, CC BY-SA 2.0")}{fig("dove-cottage-grasmere", "Dove Cottage, Wordsworth&#39;s home in Grasmere", "Photo: Strobilomyces, CC BY-SA 3.0")}</div>')}
 """
 
 two_nights = f"""
 <h3>Day 1 · Windermere</h3>
-{group("Morning", M, stop("9:30am", "Orrest Head", "Begin with the short walk up Orrest Head from Windermere village for a view down the length of the lake."), f'<div class="strip one">{fig(*OH)}</div>')}
+{group("Morning", M, stop("9:30am", "Orrest Head", "Begin with the short walk up Orrest Head from Windermere village for a view down the length of the lake."))}
 {group("Lunch and afternoon", A, stop("12:30pm", "Bowness, then the lake", "Lunch by the water in Bowness, then a Windermere Lake Cruise to Ambleside to look round the town."))}
 {group("Evening · choose your base", E, stop("6:00pm", "Low Wood Bay Resort &amp; Spa or Wild Boar Estate", "Stay at Low Wood Bay for the spa and its lake view infinity pools, or at Wild Boar Estate for a fireside dinner in the Grill &amp; Smokehouse."), f'<div class="strip two">{fig("low-wood-bay-restaurant", "Dinner at Low Wood Bay Resort &amp; Spa")}{fig("wild-boar-exterior", "Wild Boar Estate, near Windermere")}</div>')}
 <h3>Day 2 · Grasmere and the north</h3>
-{group("Morning", M, stop("8:00am", "Staying at Wild Boar Estate?", "Before breakfast, follow the trails up through the woodland behind the inn to its tarn.") + stop("10:00am", "Grasmere", "Head to Grasmere for Dove Cottage (William Wordsworth’s home, where he wrote many of his best known poems) and the Wordsworth Museum, and a stop for Grasmere Gingerbread."), f'<div class="strip two">{fig("wild-boar-woodland-tarn", "A morning walk to the tarn at Wild Boar Estate")}{fig("grasmere-lake-and-village", "Grasmere, its lake and village from above", "Photo: Peter S, CC BY-SA 2.0")}</div>')}
+{group("Morning", M, stop("8:00am", "Staying at Low Wood Bay Resort &amp; Spa?", "Start the day in the lake view infinity pool.") + stop("8:00am", "Staying at Wild Boar Estate?", "Before breakfast, follow the trails up through the woodland behind the inn to its tarn.") + stop("10:00am", "Grasmere", "Head to Grasmere for Dove Cottage (William Wordsworth’s home from 1799 to 1808) and the Wordsworth Museum, and a stop for Grasmere Gingerbread."), f'<div class="strip one">{fig("wild-boar-woodland-tarn", "A morning walk to the tarn at Wild Boar Estate")}</div>')}
 {group("Lunch and afternoon", A, stop("12:30pm", "Keswick", "Drive north over Dunmail Raise to Keswick, a market town ringed by fells, for lunch.") + stop("2:30pm", "Castlerigg Stone Circle", "A short drive up to a ring of standing stones with fells on every side.") + stop("4:00pm", "Keswick Launch", "A boat trip round Derwentwater, with Catbells rising from the far shore."), f'<div class="strip two">{fig("keswick-and-derwentwater-aerial", "Keswick and Derwentwater from the air", "Photo: Lieven Smits, CC BY-SA 4.0")}{fig("castlerigg-stone-circle", "Castlerigg Stone Circle", "Photo: HeritageDaily, CC BY-SA 4.0")}</div>')}
 {group("Evening", E, stop("6:30pm", "Lake District Castle Inn Hotel &amp; Spa", "Spend your second night by Bassenthwaite Lake, under 15 minutes from Keswick. Have a swim in the indoor pool, then a Cumbrian ale in the Castle Inn Tavern, where the garden looks across the lake to Skiddaw."), f'<div class="strip one">{fig("castle-inn-terrace-fells", "The garden terrace at Lake District Castle Inn Hotel &amp; Spa")}</div>')}
 <h3>Day 3 · A walk before home</h3>
@@ -81,14 +81,14 @@ hotels = [
     ("castle-inn-lawn", "Lake District Castle Inn Hotel &amp; Spa", "Bassenthwaite, near Keswick", "The north Lakes and the fells", "Set in gardens by Bassenthwaite Lake, under 15 minutes from Keswick. After a day on the fells there's the indoor pool and spa, then a Cumbrian ale in the Castle Inn Tavern."),
 ]
 cards = "".join(
-    f'<article class="card"><img src="{img(n)}" alt="{h}"><div class="cb"><div class="meta">{h}<br>{loc}</div><h4>{t}</h4><p>{d}</p>'
+    f'<article class="card"><img src="{img(n)}" alt="{h}"><div class="cb"><div class="meta">{loc}</div><h4>{h}</h4><p>{d}</p>'
     f'<div class="btns"><a class="pill" href="#">Book now</a><a class="pill outline" href="#">Details</a></div></div></article>'
     for n, h, loc, t, d in hotels
 )
 
 tiles = (
     f'<a class="tile" href="#" style="background-image:url({img("low-wood-bay-aerial")})"><span>Lake District hotels</span></a>'
-    f'<a class="tile" href="#" style="background-image:url({img("low-wood-bay-spa-view")})"><span>Spa &amp; Wellness</span></a>'
+    f'<a class="tile" href="#" style="background-image:url({img("castle-inn-indoor-pool")})"><span>Spa &amp; Wellness</span></a>'
     f'<a class="tile" href="#" style="background-image:url({img("hebden-bridge-canal")})"><span>Yorkshire itineraries<small>Coming soon</small></span></a>'
 )
 
@@ -147,8 +147,8 @@ figure{{margin:0}}figure img{{width:100%;aspect-ratio:3/2;object-fit:cover;displ
 .center{{text-align:center}}
 .cards{{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:30px}}
 .card{{border:1px solid var(--line);display:flex;flex-direction:column;background:#fff}}.card img{{width:100%;aspect-ratio:5/3;object-fit:cover;display:block}}
-.card .cb{{padding:22px 20px 22px;display:flex;flex-direction:column;flex:1}}.card .meta{{color:var(--grey);font-size:15.5px;line-height:1.45;margin-bottom:12px}}
-.card h4{{font-size:28px;margin-bottom:10px}}.card p{{font-size:15.5px;color:#585858;flex:1;margin:0 0 18px}}.btns{{display:flex;gap:10px}}
+.card .cb{{padding:22px 20px 22px;display:flex;flex-direction:column;flex:1}}.card .meta{{color:var(--gold);font-size:13px;font-weight:600;text-transform:uppercase;line-height:1.45;margin-bottom:8px}}.cta{{text-align:center;margin-top:44px}}
+.card h4{{font-size:24px;margin-bottom:10px;text-wrap:balance}}.card p{{font-size:15.5px;color:#585858;flex:1;margin:0 0 18px}}.btns{{display:flex;gap:10px}}
 .tips ul{{columns:2;column-gap:60px;padding-left:20px;margin:16px 0 0;color:#585858}}.tips li{{margin:0 0 12px;break-inside:avoid}}
 .gallery{{display:grid;grid-template-columns:2fr 1fr 1fr;grid-auto-rows:210px;gap:12px;margin-top:26px}}.gallery img{{width:100%;height:100%;object-fit:cover;border-radius:12px}}.gallery .big{{grid-row:span 2}}
 details{{border-bottom:1px solid var(--line);padding:18px 0}}summary{{cursor:pointer;font-family:{SERIF};font-size:24px;font-weight:300;list-style:none;display:flex;justify-content:space-between;align-items:center}}
@@ -180,11 +180,11 @@ footer{{margin-top:90px;background:var(--ink);color:#bdbdbd;text-align:center;pa
 <div class="wrap">
 <div class="split"><img src="{img("low-wood-bay-spa-view")}" alt="The spa at Low Wood Bay, looking out over Windermere">
 <div><div class="caps">About the Lake District</div>
-<p>The Lake District is a UNESCO World Heritage Site, with Windermere, England's largest lake, at its heart. One night gives you time for a lake cruise and a walk with a view. With two, you can see both the south and the north of the Lakes.</p>
+<p>The Lake District is a UNESCO World Heritage Site, with Windermere, England's largest lake, at its heart.</p>
 <p>In spring there are the daffodils that William Wordsworth (the poet behind “I Wandered Lonely as a Cloud”) wrote about, and in autumn the fells turn copper. Winter is quieter, with log fires to come back to. Windermere has its own station, linked to the West Coast Main Line at Oxenholme, and the M6 brings you to the edge of the park at Kendal and Penrith.</p>
 <dl class="quick"><dt>Best for</dt><dd>Walkers, couples, spa lovers, foodies</dd><dt>Ideal stay</dt><dd>1 to 2 nights</dd><dt>Highlights</dt><dd>Orrest Head, Windermere Lake Cruises, Dove Cottage, Castlerigg Stone Circle, Catbells</dd></dl></div></div>
-<section class="itin" id="one"><div class="head"><div class="eyebrow">Itinerary</div><h2>One night in the Lake District</h2><p>A night by Windermere: a walk and a lake cruise, then the evening at a lakeside spa or a fireside inn.</p></div>{one_night}</section>
-<section class="itin" id="two"><div class="head"><div class="eyebrow">Itinerary</div><h2>Two nights in the Lake District</h2><p>Both sides of the Lakes: Windermere and Grasmere in the south, then Keswick and Derwentwater in the north.</p></div>{two_nights}</section>
+<section class="itin" id="one"><div class="head"><div class="eyebrow">Itinerary</div><h2>One night in the Lake District</h2><p>A night by Windermere: a walk and a lake cruise, then the evening at a lakeside spa or a fireside inn.</p></div>{one_night}<div class="cta"><a class="pill" href="#stay">Choose your hotel</a></div></section>
+<section class="itin" id="two"><div class="head"><div class="eyebrow">Itinerary</div><h2>Two nights in the Lake District</h2><p>Both sides of the Lakes: Windermere and Grasmere in the south, then Keswick and Derwentwater in the north.</p></div>{two_nights}<div class="cta"><a class="pill" href="#stay">Choose your hotel</a></div></section>
 <div class="split" id="rain"><div class="strip two" style="margin:0">{fig("castle-inn-indoor-pool", "The indoor pool at Castle Inn")}{fig("castle-inn-spa-relaxation", "The spa relaxation room at Castle Inn")}</div>
 <div><div class="caps">If it rains</div><h2>Rainy day alternative</h2><p>If it rains, there's plenty to do indoors. Spend the afternoon in the thermal spa at Low Wood Bay, or the indoor pool and steam room at Lake District Castle Inn Hotel &amp; Spa. Explore the boats at Windermere Jetty Museum in Bowness, or visit Beatrix Potter's Hill Top near Hawkshead, about 30 minutes from Wild Boar Estate. In Keswick, there's the Derwent Pencil Museum.</p></div></div>
 <section class="block center" id="map"><div class="eyebrow">The route</div><h2>Map</h2><div class="mapwrap">{lake_map.svg()}{lake_map.legend()}</div>
@@ -192,7 +192,7 @@ footer{{margin-top:90px;background:var(--ink);color:#bdbdbd;text-align:center;pa
 <section class="block" id="stay"><div class="center"><div class="eyebrow">Where to stay</div><h2>Our hotels in the Lake District</h2></div><div class="cards">{cards}</div></section>
 <section class="block tips" id="tips"><div class="caps">Top tips</div><ul>
 <li>Book lake cruises and Dove Cottage ahead in summer and the school holidays.</li><li>Parking in Bowness, Ambleside and Keswick fills early; the 555 bus links Windermere, Ambleside, Grasmere and Keswick.</li>
-<li>Pack waterproofs and proper boots, even for short walks: the weather on the fells turns quickly.</li><li>Book dinner when you book your room, especially at weekends.</li>
+<li>Pack waterproofs and proper boots, even for short walks: the weather on the fells turns quickly.</li><li>Book dinner when you book your room, especially at weekends.</li><li>In winter some attractions, Hill Top among them, close or open shorter hours, so check before you go.</li>
 <li>Fancy a wild swim in Bassenthwaite Lake? Licences are available at Castle Inn reception.</li></ul></section>
 <section class="block"><div class="center"><div class="eyebrow">Gallery</div><h2>The Lakes, our way</h2></div><div class="gallery"><img class="big" src="{img("low-wood-bay-from-the-water")}" alt="Low Wood Bay from the water"><img src="{img("low-wood-bay-spa-view")}" alt="The spa at Low Wood Bay"><img src="{img("wild-boar-exterior")}" alt="Wild Boar Estate"><img src="{img("castle-inn-terrace-fells")}" alt="Castle Inn terrace"><img src="{img("low-wood-bay-infinity-pool")}" alt="Infinity pool"></div></section>
 <section class="block" id="faqs"><div class="center"><div class="eyebrow">Good to know</div><h2>Lake District FAQs</h2></div>{faq_html}</section>
