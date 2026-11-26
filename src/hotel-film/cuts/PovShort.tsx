@@ -134,6 +134,25 @@ export const coombeAbbey: PovSpec = {
   label: false, music: RICH_ENOUGH,
 };
 
+// a craft cut (Scott, 26 Nov: "something just craft cut", "need something now"): every shot mid-pour, the stream
+// falling from the top of frame in each, a cut every two beats, the smoked cocktail held for the close
+export const pours: PovSpec = {
+  hook: ["wait for", "the last pour"],
+  place: "", name: "",
+  shots: [
+    { clip: "hotels/the-kingfisher/tea-pour", beats: 2 },
+    { clip: "hotels/wild-boar/gravy-pour", beats: 2, from: 15 },
+    { clip: "hotels/fairlawns/sauce-pour", beats: 2 },
+    { clip: "hotels/dalmahoy/syrup-pour", beats: 2 },
+    { clip: "hotels/haycock-manor/clips/cocktail-close", beats: 2 },
+    { clip: "hotels/fairlawns/cocktail-cheers", beats: 2, from: 18 },
+    { clip: "hotels/haycock-manor/clips/cocktail-smoke", beats: 8 },
+  ],
+  hookBeats: 4,
+  question: ["which pour are", "you here for?"],
+  label: false, music: RICH_ENOUGH,
+};
+
 // TikTok's own Follow button, popped in, tapped and turned to Following (not used: see the close)
 export const Follow: React.FC<{ at: number; tap: number }> = ({ at, tap }) => {
   const f = useCurrentFrame();
@@ -182,7 +201,7 @@ export const PovShort: React.FC<{ spec?: PovSpec }> = ({ spec = rowtonSpa }) => 
   const n = spec.shots.length;
   const starts = spec.shots.map((_, i) => sum(spec.shots.slice(0, i)));
   const last = starts[n - 1], hookEnd = b(spec.hookBeats ?? spec.shots[0].beats) - 4;
-  const qAt = b(last), followAt = b(last + 3);
+  const qAt = b(last);
   // the label comes up on the second shot and holds two shots
   const lab = progress(frame, b(starts[1]) + 4, 8) * (1 - progress(frame, b(starts[Math.min(3, n - 1)]) - 6, 6));
   return (
@@ -210,9 +229,6 @@ export const PovShort: React.FC<{ spec?: PovSpec }> = ({ spec = rowtonSpa }) => 
       </Sequence>
       {/* the follow ask in the caption style, not a fake button (Scott, 25 Nov: a fake Follow button can fail TikTok's ad review
           when the reel is boosted, and looks tappable when it isn't) */}
-      <Sequence from={followAt} layout="none">
-        <TikTokText lines={["follow for more stays"]} top={1240} left={140} />
-      </Sequence>
       <Audio src={staticFile(music.src)} trimBefore={Math.round(music.from * 30)}
         volume={(v) => interpolate(v, [0, 3, total - 14, total], [0, 1, 1, 0], { extrapolateRight: "clamp" })} />
     </AbsoluteFill>

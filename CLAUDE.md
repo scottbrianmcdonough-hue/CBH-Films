@@ -1489,3 +1489,7 @@ with no history and no renders:
   the peacock, sumac and ruins, the fireside plate, the hot tub (`hot-tub-lift.mp4`, the depth reel's lift baked in), the
   carved white bed with "best bit: the peacock / or the hot tub?" ("would you sleep in a castle?" repeated the hook: Scott). No "POV:" (Scott: "try hard and played out"); TikTok content
   needn't always be about the hotels (Scott).
+- `pours-tiktok` (`pours` in `cuts/PovShort.tsx`, 11.0s, -15.0 LUFS; Scott, 26 Nov: "something just craft cut", "need something
+  now"): every shot mid-pour on a two beat cut (Kingfisher tea, Wild Boar gravy, Fairlawns sauce, Dalmahoy syrup, Haycock cocktail,
+  Fairlawns cheers), Haycock's smoked cocktail held for the close; "wait for / the last pour", "which pour are / you here for?".
+  "follow for more stays" is out of every PovShort (Scott: "are you sure about follow for more stays": the question is the one ask).
