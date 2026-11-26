@@ -1,0 +1,53 @@
+diff --git a/src/hotel-film/ripple/RippleFilm.tsx b/src/hotel-film/ripple/RippleFilm.tsx
+index e686f1c..8996087 100644
+--- a/src/hotel-film/ripple/RippleFilm.tsx
++++ b/src/hotel-film/ripple/RippleFilm.tsx
+@@ -38,6 +38,8 @@ const COUNTER_SCRIM_WIDE =
+ const FEED_SCRIM =
+   "radial-gradient(ellipse 1150px 640px at 0px 1290px, rgba(9,9,10,0.84) 0%, rgba(9,9,10,0.58) 45%, rgba(9,9,10,0) 100%)";
+ const MAUVE = "#A15272"; // Lee's Black Friday caps
++// the same mauve a shade lighter, for the caps on their dark pill (it read low against the dark)
++const MAUVE_ON_DARK = "#C2739A";
+ // the region reels' shade, as the carousel slides: a dark gradient up from the bottom, so the small mauve caps read
+ const CARD_SCRIM =
+   // deepest only behind the card's text (24% to 40% up), lighter below it and gone by 58% (17 Nov: it read dark)
+@@ -613,11 +615,16 @@ const SnapCard: React.FC<{ place: string; name: string; offer: string; out: numb
+             fontWeight: 700,
+             fontSize: 30,
+             letterSpacing: "0.04em",
+-            color: MAUVE,
+             textTransform: "uppercase",
+-            textShadow: CAPS_HALO,
+-            marginBottom: 10,
++            textShadow: "none",
++            marginBottom: 12,
+             clipPath: wipe(frame, 0),
++            color: MAUVE_ON_DARK,
++            // a soft dark pill behind the mauve caps (Scott, 26 Nov: "make the pink label more legible")
++            display: "inline-block",
++            background: "rgba(9,9,10,0.66)",
++            padding: "7px 16px 6px",
++            borderRadius: 24,
+           }}
+         >
+           {place}
+@@ -799,7 +806,7 @@ const Collage: React.FC<{
+       style={{
+         // hero: the picture's opening shot shows through, shaded so the words read
+         background: hero
+-          ? "linear-gradient(to bottom, rgba(9,9,10,0.35) 0%, rgba(9,9,10,0.62) 30%, rgba(9,9,10,0.62) 55%, rgba(9,9,10,0.25) 100%)"
++          ? "linear-gradient(to bottom, rgba(9,9,10,0.06) 0%, rgba(9,9,10,0.4) 28%, rgba(9,9,10,0.44) 42%, rgba(9,9,10,0.12) 60%, rgba(9,9,10,0) 100%)"
+           : colors.black,
+         transform: hero ? undefined : `scale(${push})`,
+       }}
+@@ -848,6 +855,10 @@ const Collage: React.FC<{
+             color: MAUVE,
+             textTransform: "uppercase",
+             clipPath: wipe(frame, words, 12),
++            background: hero ? "rgba(9,9,10,0.66)" : undefined,
++            ...(hero ? { color: MAUVE_ON_DARK } : {}),
++            padding: hero ? "7px 18px 6px" : undefined,
++            borderRadius: 24,
+           }}
+         >
+           {caps}
