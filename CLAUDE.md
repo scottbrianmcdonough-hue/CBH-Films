@@ -33,6 +33,10 @@ with no history and no renders:
   An end card that names a hotel and its place takes the same order (Scott, 20 Oct, Low
   Wood Bay): gold caps place, underline, then the name in cream Cormorant.
 
+- Hotel names and places (Bianca, 26 Nov: "make sure hotel name and location always match our own website"): take every
+  hotel's name and location line exactly as its classicbritishhotels.com hotel page shows them (e.g. Burleigh Court is
+  "Cotswolds (Stroud)", not Minchinhampton); never a place from a search or a map. If the page can't be checked, flag it.
+
 - CBH charcoal `#282825` (Scott, 22 Oct: "remember that charcoal colour"): the ink of CBH's 25 Years
   lockup, a house colour beside the gold `#C39E55` and black; the AMC reel's end card turns to it
   so the lockup sits in the card.
