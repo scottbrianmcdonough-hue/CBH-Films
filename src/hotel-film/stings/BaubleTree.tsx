@@ -162,7 +162,7 @@ const glowTexture = (() => {
 })();
 
 // --- the ornaments and where they hang ---
-type Hang = { kind: "glass" | "felt"; variant: string; y: number; a: number; s?: number };
+type Hang = { kind: "glass" | "felt"; variant: string; y: number; a: number; s?: number; at?: number };
 // bottom to top, the order the camera climbs, glass and felt alternating, left and right of centre
 const HANGS: Hang[] = [
   // our hotels (Scott, 26 Nov: "a few more shapes like our hotels"): Holdsworth House in felt, Hintlesham Hall on glass
@@ -238,7 +238,38 @@ const EXTRAS: Hang[] = (() => {
   }
   return out;
 })();
-const ALL = [...HANGS, ...EXTRAS];
+// and more again at the end (Bianca, 26 Nov: "replicate the hotel baubles, make them smaller and add to the end before
+// the lights come on, just to represent more hotels"): small ones popping onto the tree from the bottom up as the camera
+// draws back, filling the gaps, before the star lands and the lights come on
+const LATE: Hang[] = (() => {
+  const designs: Record<Hang["kind"], string[]> = { felt: ["ruthin", "holdsworth", "hatherley"], glass: ["dalmahoy", "coombe", "hintlesham"] };
+  const face = (h: Hang) => {
+    const b = bodyOf(h);
+    return new THREE.Vector2(b.x, b.y);
+  };
+  const big = [...HANGS.map((h) => ({ f: face(h), w: 0.6, h: 0.55 })), ...EXTRAS.map((h) => ({ f: face(h), w: 0.52, h: 0.36 }))];
+  const placed: THREE.Vector2[] = [];
+  const out: Hang[] = [];
+  const from = bar(6) + 2, to = STAR_LAND - 10;
+  let row = 0;
+  for (let y = -2.3; y < 2.55; y += 0.28, row++) {
+    const n = Math.max(1, Math.round(radiusAt(y) * 4.6));
+    const span = 0.86;
+    for (let k = 0; k < n; k++) {
+      const u = (k + (row % 2 ? 0.75 : 0.25)) / n;
+      const h: Hang = { kind: (row + k) % 2 ? "felt" : "glass", variant: "", y, a: -span + u * 2 * span, s: 0.48 };
+      const f = face(h);
+      const hits = (q: THREE.Vector2, w: number, hh: number) => Math.abs(q.x - f.x) < w && Math.abs(q.y - f.y) < hh;
+      if (big.some((q) => hits(q.f, q.w, q.h)) || placed.some((q) => hits(q, 0.42, 0.3))) continue;
+      placed.push(f);
+      const list = designs[h.kind];
+      const at = Math.round(from + ((y + 2.3) / 4.85) * (to - from) + (u - 0.5) * 6);
+      out.push({ ...h, variant: list[(row * 2 + k) % list.length], at });
+    }
+  }
+  return out;
+})();
+const ALL = [...HANGS, ...EXTRAS, ...LATE];
 // the room each ornament needs to swing in, clear of needles and twigs
 type Pocket = THREE.Vector3 & { r: number };
 let pockets: Pocket[] | null = null;
@@ -305,6 +336,7 @@ const threadMat = () => new THREE.MeshStandardMaterial({ color: "#a8884e", rough
 
 const Ornament: React.FC<{ h: Hang; i: number; skins: Skins; gold: THREE.Material; thread: THREE.Material }> = ({ h, i, skins, gold, thread }) => {
   const frame = useCurrentFrame();
+  const pop = h.at === undefined ? 1 : interpolate(frame, [h.at, h.at + 5, h.at + 10], [0.001, 1.15, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.out(Easing.quad) });
   const t = frame / FPS;
   // already hanging, swinging gently on its cord, each at its own pace (a pendulum of its length ~1.3s)
   const ph = i * 1.9;
@@ -321,7 +353,7 @@ const Ornament: React.FC<{ h: Hang; i: number; skins: Skins; gold: THREE.Materia
   const topY = h.kind === "glass" ? 1.37 : 1.15; // the loop's top, in the ornament's own units
   return (
     // pivot at the hang point on the branch, facing out from the tree; the ornament hangs CORD below it
-    <group position={[hp.x, hp.y, hp.z]} rotation={[0, h.a * 0.55, 0]}>
+    <group position={[hp.x, hp.y, hp.z]} rotation={[0, h.a * 0.55, 0]} scale={pop}>
     <group rotation={[0, 0, swing]}>
       <mesh geometry={threadGeo(h)} material={thread} />
       <group position={[0, -CORD - topY * S, 0]} scale={S} rotation={[0, turn, 0]}>
