@@ -77,7 +77,7 @@ const buildNeedles = () => {
         const stem = new THREE.Vector3(Math.sin(ang) * d, y0 + sag, Math.cos(ang) * d);
         const sl = stem.distanceTo(prev);
         const mid = prev.clone().add(stem).multiplyScalar(0.5);
-        const inPocket = POCKETS().some((c) => c.distanceTo(prev) < c.r + 0.03 || c.distanceTo(stem) < c.r + 0.03 || c.distanceTo(mid) < c.r + 0.03);
+        const inPocket = [prev, stem, mid].some((v) => near(v).some((c) => c.distanceTo(v) < c.r + 0.03));
         tw.position.copy(prev);
         tw.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), stem.clone().sub(prev).normalize());
         tw.scale.set(1.4 - u, sl, 1.4 - u);
@@ -104,7 +104,7 @@ const buildNeedles = () => {
           const nd = dir.clone().multiplyScalar(0.42).add(out.multiplyScalar(0.9)).normalize();
           const base = dummy.position.clone(), tip = base.clone().addScaledVector(nd, l), mid = base.clone().addScaledVector(nd, l / 2);
           const q1 = base.clone().addScaledVector(nd, l / 4), q3 = base.clone().addScaledVector(nd, (3 * l) / 4);
-          if (POCKETS().some((c) => [base, q1, mid, q3, tip].some((v) => c.distanceTo(v) < c.r))) continue;
+          if ([base, q1, mid, q3, tip].some((v) => near(v).some((c) => c.distanceTo(v) < c.r))) continue;
           // lay the flat blade in the spray's plane, its face turned up to the light
           dummy.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), nd);
           dummy.quaternion.multiply(new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 1, 0), (r() - 0.5) * 0.6));
@@ -282,6 +282,22 @@ const ALL = [...HANGS, ...EXTRAS, ...LATE];
 // the room each ornament needs to swing in, clear of needles and twigs
 type Pocket = THREE.Vector3 & { r: number };
 let pockets: Pocket[] | null = null;
+// where the camera stands for each close-up, and along the glides between (as in Tree's camera)
+const CAMS = (() => {
+  const near = (h: Hang) => {
+    const body = h.y - CORD - (h.kind === "glass" ? 1.37 : 1.15) * 0.33;
+    return { a: h.a * 0.9, y: body + 0.12, r: radiusAt(h.y) * 1.05 + 0.3 + 2.95 };
+  };
+  const out: THREE.Vector3[] = [];
+  HANGS.forEach((h, i) => {
+    const a = near(h), b = near(HANGS[Math.min(HANGS.length - 1, i + 1)]);
+    for (const f of [0, 0.25, 0.5, 0.75]) {
+      const ang = a.a + (b.a - a.a) * f, r = a.r + (b.r - a.r) * f, y = a.y + (b.y - a.y) * f;
+      out.push(new THREE.Vector3(Math.sin(ang) * r, y, Math.cos(ang) * r));
+    }
+  });
+  return out;
+})();
 const POCKETS = () =>
   (pockets ??= ALL.flatMap((h) => {
     // the ornament's own reach (a glass sphere's radius, a felt piece's half width) with room for its swing and turn
@@ -289,8 +305,25 @@ const POCKETS = () =>
     const b = bodyOf(h);
     const out = new THREE.Vector3(Math.sin(h.a), 0, Math.cos(h.a)).multiplyScalar(0.4 * (h.s ?? 1));
     // round the ornament, and in front of it (Scott: needles were "poking out the bauble")
-    return [Object.assign(b.clone(), { r }), Object.assign(b.clone().add(out), { r }), Object.assign(b.clone().add(out.clone().multiplyScalar(2)), { r: r * 0.9 })];
+    const ps = [Object.assign(b.clone(), { r }), Object.assign(b.clone().add(out), { r }), Object.assign(b.clone().add(out.clone().multiplyScalar(2)), { r: r * 0.9 })];
+    // and along each nearby camera's line of sight to it, so nothing crosses it seen from the side (Scott: "that one bit
+    // sticking out" over a small Imperial seen at an angle)
+    for (const c of CAMS) {
+      if (c.distanceTo(b) > 4.6) continue;
+      const dir = c.clone().sub(b).normalize();
+      for (const k of [0.55, 0.9, 1.25]) ps.push(Object.assign(b.clone().addScaledVector(dir, k * r), { r: r * 0.95 }));
+    }
+    return ps;
   }));
+// pockets by height, so each needle tests only the few nearby
+let bands: Map<number, Pocket[]> | null = null;
+const near = (v: THREE.Vector3) => {
+  if (!bands) {
+    bands = new Map();
+    for (const c of POCKETS()) for (let k = Math.floor((c.y - c.r) / 0.5); k <= Math.floor((c.y + c.r) / 0.5); k++) (bands.get(k) ?? bands.set(k, []).get(k)!).push(c);
+  }
+  return bands.get(Math.floor(v.y / 0.5)) ?? [];
+};
 
 type Skins = {
   glass: Record<string, { map: THREE.Texture; rough: THREE.Texture }>;
