@@ -103,7 +103,8 @@ const buildNeedles = () => {
           const out = side.clone().multiplyScalar(Math.cos(spin)).add(up.clone().multiplyScalar(Math.sin(spin)));
           const nd = dir.clone().multiplyScalar(0.42).add(out.multiplyScalar(0.9)).normalize();
           const base = dummy.position.clone(), tip = base.clone().addScaledVector(nd, l), mid = base.clone().addScaledVector(nd, l / 2);
-          if (POCKETS().some((c) => c.distanceTo(base) < c.r || c.distanceTo(tip) < c.r || c.distanceTo(mid) < c.r)) continue;
+          const q1 = base.clone().addScaledVector(nd, l / 4), q3 = base.clone().addScaledVector(nd, (3 * l) / 4);
+          if (POCKETS().some((c) => [base, q1, mid, q3, tip].some((v) => c.distanceTo(v) < c.r))) continue;
           // lay the flat blade in the spray's plane, its face turned up to the light
           dummy.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), nd);
           dummy.quaternion.multiply(new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 1, 0), (r() - 0.5) * 0.6));
@@ -283,11 +284,12 @@ type Pocket = THREE.Vector3 & { r: number };
 let pockets: Pocket[] | null = null;
 const POCKETS = () =>
   (pockets ??= ALL.flatMap((h) => {
-    const r = (h.kind === "glass" ? 0.42 : 0.44) * (h.s ?? 1);
+    // the ornament's own reach (a glass sphere's radius, a felt piece's half width) with room for its swing and turn
+    const r = 1.28 * sizeOf(h) + 0.07;
     const b = bodyOf(h);
-    const out = new THREE.Vector3(Math.sin(h.a), 0, Math.cos(h.a)).multiplyScalar(0.32 * (h.s ?? 1));
+    const out = new THREE.Vector3(Math.sin(h.a), 0, Math.cos(h.a)).multiplyScalar(0.4 * (h.s ?? 1));
     // round the ornament, and in front of it (Scott: needles were "poking out the bauble")
-    return [Object.assign(b.clone(), { r }), Object.assign(b.clone().add(out), { r: r * 0.95 })];
+    return [Object.assign(b.clone(), { r }), Object.assign(b.clone().add(out), { r }), Object.assign(b.clone().add(out.clone().multiplyScalar(2)), { r: r * 0.9 })];
   }));
 
 type Skins = {
