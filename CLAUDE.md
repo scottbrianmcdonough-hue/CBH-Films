@@ -968,6 +968,12 @@ with no history and no renders:
   Gisborough Lie-in (bedroom). Re-sent 29 Oct. Region names are only in the hotel labels (Scott asked
   about adding the region; suggested leaving it to the post copy). Next: a December festive Screen time
   from the Christmas footage; a Christmas party edit (Phill, 29 Oct) once there is party footage.
+- Always tidy code (Scott, 26 Nov): any HTML, CSS or script handed over (web mock-ups for Lee, pages) is indented,
+  commented by section, CSS in its own file grouped under headings, colours named, images as named files, no inline
+  styles but content images; check the tidy version renders identical (full-page screenshots, desktop and phone).
+  Itinerary pages: `scripts/itineraries/make_lake_page.sh` (photos in `public/itineraries/lake-district/`) builds the
+  single-file mock-up, the tidy site folder and zip, and the PDF; `compare.js` checks them; `package_docx.py` turns a
+  Docs export into Lee's Word working doc.
 - Tickets and post copy: no hyphens in the wording (Scott, 30 Oct: "avoid too many hyphens ... in general"):
   "screen time report", "sleeping in", "canopied bed", not "screen-time", "lie-in", "four-poster".
 - Screen time Stories `cbh-screen-time-<region>-story` (30 Oct): the top three apps (Yorkshire drops the second
