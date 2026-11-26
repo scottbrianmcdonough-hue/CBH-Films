@@ -40,7 +40,6 @@ Source is the original file on classicbritishhotels.com (files were renamed for 
 | castle-inn-indoor-pool.jpg | Rainy day; More inspiration, Spa & Wellness tile | https://classicbritishhotels.com/wp-content/uploads/2026/08/lake-district-castle-inn-hotel-keswick-indoor-pool-002_web.jpg |
 | castle-inn-spa-relaxation.jpg | Rainy day | https://classicbritishhotels.com/wp-content/uploads/2026/08/lake-district-castle-inn-hotel-keswick-spa-relaxation-room-001_web.jpg |
 | castle-inn-four-poster-room.jpg | Gallery | https://classicbritishhotels.com/wp-content/uploads/2026/08/lake-district-castle-inn-hotel-keswick-four-poster-room-001_web.jpg |
-| castle-inn-restaurant.jpg | Spare, not used | https://classicbritishhotels.com/wp-content/uploads/2026/08/lake-district-castle-inn-hotel-keswick-restaurant-001_web.jpg |
-| hebden-bridge-canal.jpg | More inspiration, Yorkshire itineraries tile | not given yet (from the media library, Scott, 26 Nov) |
+| hebden-bridge-canal.jpg | More inspiration, Yorkshire itineraries tile | https://classicbritishhotels.com/wp-content/uploads/2026/04/destination-hebden-bridge-yorkshire-001_web.jpg |
 
-In the media library list but not on the page: the-wild-boar-windermere-luxury-room-001_web.jpg, destination-lake-district-001_web.jpg, destination-lake-district-002_web.jpg, walking-lake-district-001_web.jpg, destinations_keswick-lake-district_001-1024x576.jpg.
+Only photos that are on the page are listed.
