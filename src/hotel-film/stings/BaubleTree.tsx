@@ -166,24 +166,26 @@ type Hang = { kind: "glass" | "felt"; variant: string; y: number; a: number; s?:
 // bottom to top, the order the camera climbs, glass and felt alternating, left and right of centre
 const HANGS: Hang[] = [
   // our hotels (Scott, 26 Nov: "a few more shapes like our hotels"): Holdsworth House in felt, Hintlesham Hall on glass
-  { kind: "felt", variant: "holdsworth", y: -2.05, a: -0.42 },
-  { kind: "glass", variant: "hintlesham", y: -1.2, a: 0.44 },
+  { kind: "felt", variant: "imperial", y: -2.05, a: -0.42 },
+  { kind: "glass", variant: "oakley", y: -1.2, a: 0.44 },
   // all houses (Scott, 26 Nov: "go all houses"): Hatherley Manor in felt, Coombe Abbey on glass
   { kind: "felt", variant: "hatherley", y: -0.42, a: -0.44 },
   { kind: "glass", variant: "coombe", y: 0.62, a: 0.44 },
   // the real houses (Scott, 26 Nov): Ruthin Castle in felt, Dalmahoy's front in gold on glass
-  { kind: "felt", variant: "ruthin", y: 1.42, a: -0.36 },
+  { kind: "felt", variant: "hythe", y: 1.42, a: -0.36 },
   { kind: "glass", variant: "dalmahoy", y: 2.1, a: 0.3 },
 ];
 // each house named as the camera lands on it (Scott, 26 Nov: "put the name of each hotel"): the place in gold caps,
 // the name in cream Cormorant, no underline (as on the Hatherley and Coombe reels)
 const LABELS: [string, string][] = [
   // full names (Scott, 26 Nov), on two lines where they run long, as on the Hatherley reel's label
-  ["Halifax, West Yorkshire", "Holdsworth House Hotel"],
-  ["Ipswich, Suffolk", "Hintlesham Hall Hotel"],
+  // the CB Unite members (Bianca, 26 Nov): The Imperial, Oakley Hall and Hythe Imperial in place of Holdsworth,
+  // Hintlesham and Ruthin
+  ["Llandudno, North Wales", "The Imperial Hotel"],
+  ["Oakley, Hampshire", "Oakley Hall Hotel"],
   ["Cotswolds", "Hatherley Manor\nHotel & Spa"],
   ["Coventry, Warwickshire", "Coombe Abbey Hotel"],
-  ["North Wales", "Ruthin Castle\nHotel & Spa"],
+  ["Hythe, Kent", "Hythe Imperial Hotel,\nGolf & Spa"],
   ["Edinburgh", "Dalmahoy Hotel\n& Country Club"],
 ];
 const AT = HANGS.map((_, i) => bar(i)); // the camera arrives on each on a downbeat: the first from frame one
@@ -208,7 +210,7 @@ const bodyOf = (h: Hang) => {
 // many more houses all round the tree (Scott: "make it seem like we have many more"): the six again, smaller, in felt
 // and glass, spread over the whole tree and kept clear of each other and of the six the camera visits
 const EXTRAS: Hang[] = (() => {
-  const designs: Record<Hang["kind"], string[]> = { felt: ["holdsworth", "hatherley", "ruthin"], glass: ["hintlesham", "coombe", "dalmahoy"] };
+  const designs: Record<Hang["kind"], string[]> = { felt: ["imperial", "hatherley", "hythe"], glass: ["oakley", "coombe", "dalmahoy"] };
   const out: Hang[] = [];
   // where an ornament sits as seen from the front (x across, y up): spacing is checked here so none overlap on screen
   const face = (h: Hang) => {
@@ -242,7 +244,7 @@ const EXTRAS: Hang[] = (() => {
 // the lights come on, just to represent more hotels"): small ones popping onto the tree from the bottom up as the camera
 // draws back, filling the gaps, before the star lands and the lights come on
 const LATE: Hang[] = (() => {
-  const designs: Record<Hang["kind"], string[]> = { felt: ["ruthin", "holdsworth", "hatherley"], glass: ["dalmahoy", "coombe", "hintlesham"] };
+  const designs: Record<Hang["kind"], string[]> = { felt: ["hythe", "imperial", "hatherley"], glass: ["dalmahoy", "coombe", "oakley"] };
   const face = (h: Hang) => {
     const b = bodyOf(h);
     return new THREE.Vector2(b.x, b.y);

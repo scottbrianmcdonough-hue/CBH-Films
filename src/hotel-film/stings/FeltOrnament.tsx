@@ -25,7 +25,7 @@ const PAL = {
   green: "#869674",
 };
 
-export type Kind = "star" | "manor" | "ruthin" | "holdsworth" | "hatherley" | "stocking" | "teapot";
+export type Kind = "star" | "manor" | "ruthin" | "holdsworth" | "hatherley" | "imperial" | "hythe" | "stocking" | "teapot";
 export const FELTS: Record<string, { kind: Kind; felt: string; trim?: string; thread?: string; rim?: number }> = {
   star: { kind: "star", felt: "#efe9df" }, // cream felt, the CB embroidered in gold
   manor: { kind: "manor", felt: "#cbbfab" }, // beige felt, gold windows (black felt vanished on the black background)
@@ -35,6 +35,9 @@ export const FELTS: Record<string, { kind: Kind; felt: string; trim?: string; th
   holdsworth: { kind: "holdsworth", felt: "#7f8f6e" },
   // Hatherley Manor's brick gables and stone porch, in the gold felt with the deep gold thread
   hatherley: { kind: "hatherley", felt: "#c2a56f", thread: "#7b5a24", rim: 3 },
+  // for the CB Unite members (Bianca, 26 Nov): The Imperial's tall white gables in pale felt, Hythe Imperial in sage
+  imperial: { kind: "imperial", felt: "#e7e1d6" },
+  hythe: { kind: "hythe", felt: "#7f8f6e" },
   stocking: { kind: "stocking", felt: "#7f8f6e", trim: "#f1ece3" }, // the sage green, a cream cuff
   // gold felt with deep gold thread and a stronger warm rim behind (it read flatter than the glass on the dark ground)
   teapot: { kind: "teapot", felt: "#c2a56f", thread: "#7b5a24", rim: 3 },
@@ -190,6 +193,56 @@ const hatherleyShape = () => {
   s.closePath();
   return [s];
 };
+// The Imperial, Llandudno, from the promenade: a tall white Victorian block crowned by steep pointed gables, the
+// middle one tallest (the loop hangs from its peak), a flat parapet between them
+const imperialShape = () => {
+  const s = new THREE.Shape();
+  s.moveTo(-0.95, -0.8);
+  s.lineTo(0.95, -0.8);
+  s.lineTo(0.95, 0.42);
+  s.lineTo(0.84, 0.42);
+  s.lineTo(0.62, 0.74); // the right gable
+  s.lineTo(0.4, 0.42);
+  s.lineTo(0.22, 0.42);
+  s.lineTo(0.0, 0.94); // the middle gable
+  s.lineTo(-0.22, 0.42);
+  s.lineTo(-0.4, 0.42);
+  s.lineTo(-0.62, 0.74); // the left gable
+  s.lineTo(-0.84, 0.42);
+  s.lineTo(-0.95, 0.42);
+  s.closePath();
+  return [s];
+};
+// Hythe Imperial, Kent, from the sea front: a long front under a mansard roof, the centre bay raised under a pediment
+// and a little roof turret above it (the loop hangs from the turret), chimney stacks either side
+const hytheShape = () => {
+  const s = new THREE.Shape();
+  s.moveTo(-0.95, -0.8);
+  s.lineTo(0.95, -0.8);
+  s.lineTo(0.95, 0.3);
+  s.lineTo(0.84, 0.44); // the mansard
+  s.lineTo(0.7, 0.44);
+  s.lineTo(0.7, 0.6); // a chimney
+  s.lineTo(0.6, 0.6);
+  s.lineTo(0.6, 0.44);
+  s.lineTo(0.26, 0.44);
+  s.lineTo(0.0, 0.62); // the pediment
+  s.lineTo(0.1, 0.62);
+  s.lineTo(0.1, 0.84); // the roof turret
+  s.lineTo(0.0, 0.94);
+  s.lineTo(-0.1, 0.84);
+  s.lineTo(-0.1, 0.62);
+  s.lineTo(0.0, 0.62);
+  s.lineTo(-0.26, 0.44);
+  s.lineTo(-0.6, 0.44);
+  s.lineTo(-0.6, 0.6); // a chimney
+  s.lineTo(-0.7, 0.6);
+  s.lineTo(-0.7, 0.44);
+  s.lineTo(-0.84, 0.44);
+  s.lineTo(-0.95, 0.3);
+  s.closePath();
+  return [s];
+};
 const stockingShape = () => {
   const s = new THREE.Shape();
   s.moveTo(-0.55, 1.0);
@@ -230,7 +283,7 @@ const teapotShape = () => {
   handle.holes.push(hole);
   return [handle, spout, body, lid, knob];
 };
-export const SHAPES: Record<Kind, () => THREE.Shape[]> = { star: starShape, manor: manorShape, ruthin: ruthinShape, holdsworth: holdsworthShape, hatherley: hatherleyShape, stocking: stockingShape, teapot: teapotShape };
+export const SHAPES: Record<Kind, () => THREE.Shape[]> = { star: starShape, manor: manorShape, ruthin: ruthinShape, holdsworth: holdsworthShape, hatherley: hatherleyShape, imperial: imperialShape, hythe: hytheShape, stocking: stockingShape, teapot: teapotShape };
 
 // --- the felt's skin: colour, fibre bump, and the gold thread ---
 const rnd = (i: number) => {
@@ -451,6 +504,79 @@ export const paintFelt = (kind: Kind, felt: string, shapes: THREE.Shape[], cb: H
     t.quadraticCurveTo(px(0.58), py(-0.32), px(0.58), py(-0.44));
     t.lineTo(px(0.58), py(-0.72));
     t.stroke();
+  } else if (kind === "imperial") {
+    running(shapes[0].getPoints(), 0.9);
+    t.lineWidth = 5;
+    const win = (x: number, y: number, w: number, h: number) => {
+      t.strokeRect(px(x - w / 2), py(y), px(w) - px(0), py(-h) - py(0));
+      t.beginPath();
+      t.moveTo(px(x), py(y));
+      t.lineTo(px(x), py(y - h));
+      t.stroke();
+    };
+    // a round window in each gable
+    for (const [x, y, r] of [[0, 0.62, 0.07], [-0.62, 0.55, 0.05], [0.62, 0.55, 0.05]] as [number, number, number][]) {
+      t.beginPath();
+      t.arc(px(x), py(y), px(r) - px(0), 0, Math.PI * 2);
+      t.stroke();
+    }
+    // four floors of tall windows
+    for (const y of [0.34, 0.12, -0.1]) for (const x of [-0.78, -0.5, -0.22, 0.06, 0.34, 0.62, 0.84]) win(x, y, 0.1, 0.16);
+    // the bay windows of the lower floors, and the glazed veranda along the ground floor with its railings
+    for (const x of [-0.5, 0.06, 0.62]) {
+      t.beginPath();
+      t.moveTo(px(x - 0.12), py(-0.32));
+      t.lineTo(px(x - 0.08), py(-0.28));
+      t.lineTo(px(x + 0.08), py(-0.28));
+      t.lineTo(px(x + 0.12), py(-0.32));
+      t.stroke();
+    }
+    t.strokeRect(px(-0.88), py(-0.36), px(1.76) - px(0), py(-0.2) - py(0));
+    t.beginPath();
+    for (let x = -0.84; x <= 0.84; x += 0.12) {
+      t.moveTo(px(x), py(-0.36));
+      t.lineTo(px(x), py(-0.56));
+    }
+    t.stroke();
+    t.setLineDash([8, 6]);
+    t.beginPath();
+    t.moveTo(px(-0.88), py(-0.66));
+    t.lineTo(px(0.88), py(-0.66));
+    t.stroke();
+    t.setLineDash([]);
+  } else if (kind === "hythe") {
+    running(shapes[0].getPoints(), 0.9);
+    t.lineWidth = 5;
+    const win = (x: number, y: number, w: number, h: number) => {
+      t.strokeRect(px(x - w / 2), py(y), px(w) - px(0), py(-h) - py(0));
+      t.beginPath();
+      t.moveTo(px(x - w / 2), py(y - h / 2));
+      t.lineTo(px(x + w / 2), py(y - h / 2));
+      t.stroke();
+    };
+    // dormers in the mansard
+    for (const x of [-0.76, -0.52, -0.38, 0.38, 0.52, 0.76]) win(x, 0.38, 0.08, 0.08);
+    // four floors of sash windows, the centre bay framed and its balcony
+    for (const y of [0.2, 0.0, -0.2]) for (const x of [-0.8, -0.62, -0.44, -0.26, 0.26, 0.44, 0.62, 0.8]) win(x, y, 0.1, 0.13);
+    for (const y of [0.2, 0.0]) win(0, y, 0.16, 0.13);
+    t.strokeRect(px(-0.15), py(0.42), px(0.3) - px(0), py(-1.06) - py(0));
+    t.beginPath();
+    t.moveTo(px(-0.2), py(-0.2));
+    t.lineTo(px(0.2), py(-0.2));
+    for (let x = -0.18; x <= 0.18; x += 0.06) {
+      t.moveTo(px(x), py(-0.2));
+      t.lineTo(px(x), py(-0.27));
+    }
+    t.stroke();
+    // the ground floor: the doors under the balcony, a string course
+    t.strokeRect(px(-0.08), py(-0.38), px(0.16) - px(0), py(-0.32) - py(0));
+    for (const x of [-0.8, -0.62, -0.44, -0.26, 0.26, 0.44, 0.62, 0.8]) win(x, -0.42, 0.1, 0.13);
+    t.setLineDash([8, 6]);
+    t.beginPath();
+    t.moveTo(px(-0.88), py(-0.32));
+    t.lineTo(px(0.88), py(-0.32));
+    t.stroke();
+    t.setLineDash([]);
   } else if (kind === "stocking") {
     running(shapes[0].getPoints(), 0.87);
     // the cuff sits over the leg's stitching: clear it there, then stitch the cuff's own edge
@@ -581,7 +707,7 @@ const Ornament: React.FC<{ kind: Kind; felt: string; skin: Skin; shapes: THREE.S
       }),
     [shapes],
   );
-  const top = kind === "star" ? 1.03 : kind === "manor" ? 0.92 : kind === "ruthin" ? 0.98 : kind === "holdsworth" ? 0.94 : kind === "hatherley" ? 0.92 : kind === "stocking" ? 1.06 : 0.7;
+  const top = kind === "star" ? 1.03 : kind === "manor" ? 0.92 : kind === "ruthin" ? 0.98 : kind === "holdsworth" ? 0.94 : kind === "hatherley" ? 0.92 : kind === "imperial" || kind === "hythe" ? 0.94 : kind === "stocking" ? 1.06 : 0.7;
   return (
     <group position={[0, PIVOT, 0]} rotation={[0, 0, swing ? swingAngle(t) : 0]}>
     <group position={[0, 1.45 - PIVOT, 0]} rotation={[0, 0, sway]}>
