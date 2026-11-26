@@ -973,7 +973,9 @@ with no history and no renders:
   styles but content images; check the tidy version renders identical (full-page screenshots, desktop and phone).
   Itinerary pages: `scripts/itineraries/make_lake_page.sh` (photos in `public/itineraries/lake-district/`) builds the
   single-file mock-up, the tidy site folder and zip, and the PDF; `compare.js` checks them; `package_docx.py` turns a
-  Docs export into Lee's Word working doc.
+  Docs export into Lee's Word working doc. Each itinerary keeps a photo list (Scott, 26 Nov: "keep a list of all
+  the photo urls"), `public/itineraries/<region>/PHOTOS.md`: every photo, where it sits, its source URL or media
+  library name, credit and licence; add a row whenever a photo is added or swapped.
 - Tickets and post copy: no hyphens in the wording (Scott, 30 Oct: "avoid too many hyphens ... in general"):
   "screen time report", "sleeping in", "canopied bed", not "screen-time", "lie-in", "four-poster".
 - Screen time Stories `cbh-screen-time-<region>-story` (30 Oct): the top three apps (Yorkshire drops the second
