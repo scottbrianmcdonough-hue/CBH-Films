@@ -109,7 +109,8 @@ export const sconeDebate: PovSpec = {
   // across the first two shots, three beats a shot after that
   shots: [
     { clip: "campaigns/november/hotels/ilsington-scone-slow", beats: 3 },
-    { clip: "campaigns/november/hotels/kingfisher-tea-pour-slow", beats: 3 },
+    // the Kingfisher tea pour is out (Scott: it is already in the pours reel); Holdsworth's tea by the window in its place
+    { clip: "hotels/holdsworth-house/afternoon-tea", beats: 3, still: true, pos: "27% 50%" },
     { clip: "campaigns/showcase/langshott-fireside-tea", beats: 3, still: true, pos: "50% 50%" },
     { clip: "hotels/waterton-park/clips/afternoon-tea", beats: 8 },
   ],

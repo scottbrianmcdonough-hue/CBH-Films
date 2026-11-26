@@ -1476,7 +1476,7 @@ with no history and no renders:
   Windermere", "who's coming / with you?"); renders come out hot, -8 dB after: -15.1 LUFS, ~15s.
 - TikTok set 3 (Scott, 26 Nov: "need some more TikTok reels"; `PovShort` specs, Rich Enough, no label, ticket
   `out/tiktok-set-3-ticket.txt`): `pov-waterton-island-tiktok` ("this hotel sits on / its own island", "would you ever / leave
-  the island?", 15.3s), `scone-debate-tiktok` (not about a hotel: Ilsington's scone, the Kingfisher pour, Langshott's stand, Waterton's
+  the island?", 15.3s), `scone-debate-tiktok` (not about a hotel: Ilsington's scone, Holdsworth's tea by the window (the Kingfisher pour out: Scott, it is in the pours reel), Langshott's stand, Waterton's
   stand; "there's only one / right way to do a scone", "so: jam first / or cream first?", 11.0s), `pov-coombe-abbey-tiktok`
   (photos on a slow push, `still`; "you can sleep in a / 12th century abbey", "who's getting / the four poster?", 14.2s).
   Then (Scott: "attention drops off after two seconds"): all four recut with a cut at ~1s, a short hook held over the first
