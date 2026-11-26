@@ -1474,6 +1474,11 @@ with no history and no renders:
   longest clip: question, then "follow for more stays" in the same caption style (Scott, 25 Nov: a mock Follow button was dropped: it can fail ad review if boosted, and looks tappable). `pov-rowton-spa-tiktok`
   ("save this for your / next spa weekend", "who are you / taking?"), `pov-low-wood-winter-tiktok` ("POV: winter on /
   Windermere", "who's coming / with you?"); renders come out hot, -8 dB after: -15.1 LUFS, ~15s.
+- TikTok set 3 (Scott, 26 Nov: "need some more TikTok reels"; `PovShort` specs, Rich Enough, no label, ticket
+  `out/tiktok-set-3-ticket.txt`): `pov-waterton-island-tiktok` ("this hotel sits on / its own island", "would you ever / leave
+  the island?", 15.3s), `scone-debate-tiktok` (not about a hotel: Ilsington's scone, the Kingfisher pour, Langshott's stand, Waterton's
+  stand; "there's only one / right way to do a scone", "so: jam first / or cream first?", 11.0s), `pov-coombe-abbey-tiktok`
+  (photos on a slow push, `still`; "you can sleep in a / 12th century abbey", "who's getting / the four poster?", 14.2s).
 - `the-kingfisher`, `whittlebury-park-stay-dine` (+ `-story` cuts): done.
 - `pov-ruthin-castle-tiktok` (`ruthinCastle` in `cuts/PovShort.tsx`, 15.8s, -15.0 LUFS; no house label: the hotel is tagged in
   the post (Scott); on Rich Enough from its drop (`RICH_ENOUGH`, Scott: Event Music "Bianca won't like it"), a shot every 4 beats): the unusual angle first (Scott, 25 Nov:

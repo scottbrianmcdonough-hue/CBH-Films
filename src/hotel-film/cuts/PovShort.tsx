@@ -1,6 +1,6 @@
 import { Audio } from "@remotion/media";
 import React from "react";
-import { AbsoluteFill, interpolate, OffthreadVideo, Sequence, staticFile, useCurrentFrame } from "remotion";
+import { AbsoluteFill, Img, interpolate, OffthreadVideo, Sequence, staticFile, useCurrentFrame } from "remotion";
 import { TikTokText, TT_TOP } from "../doodle/StickFlip";
 import { colors, progress, sans, serif } from "../theme";
 
@@ -9,7 +9,8 @@ import { colors, progress, sans, serif } from "../theme";
 // question, then "follow for more stays" in the same caption style (a Follow button mock was dropped). Event Music (steady, 152 BPM) so a trending
 // sound can go over it in the app. No logo: the label is the brand.
 
-export type PovShot = { clip: string; beats: number; from?: number };
+// `still`: a photo (`${clip}.jpg`) on a slow push, framed by `pos` (landscape photos cropped to the portrait frame)
+export type PovShot = { clip: string; beats: number; from?: number; still?: boolean; pos?: string };
 // `label: false` leaves the house label off (Scott, 25 Nov: the hotel is tagged in the post instead); `music` swaps the
 // track (Scott: "I don't like the track", "Bianca won't like it": Event Music is only the default for the first two)
 export type PovMusic = { src: string; from: number; bpm: number };
@@ -77,6 +78,50 @@ export const ruthinCastle: PovSpec = {
   music: RICH_ENOUGH,
 };
 
+// more for the grid (Scott, 26 Nov: "need some more TikTok reels"): the unusual angle, no label, Rich Enough
+const WP = "hotels/waterton-park/clips";
+export const watertonIsland: PovSpec = {
+  hook: ["this hotel sits on", "its own island"],
+  place: "WAKEFIELD", name: "Waterton Park\nHotel & Spa",
+  shots: [
+    { clip: `${WP}/aerial-story`, beats: 8 },
+    { clip: `${WP}/walton-hall-story`, beats: 4 },
+    { clip: `${WP}/afternoon-tea`, beats: 4 },
+    { clip: `${WP}/indoor-pool-story`, beats: 4 },
+    { clip: `${WP}/bedroom`, beats: 8 },
+  ],
+  question: ["would you ever", "leave the island?"],
+  label: false, music: RICH_ENOUGH,
+};
+// not about a hotel at all (Scott: "it doesn't even have to be about hotels all the time"): the scone debate
+export const sconeDebate: PovSpec = {
+  hook: ["there's only one", "right way to do a scone"],
+  place: "", name: "",
+  shots: [
+    // open on the one real scone close up (Ilsington's), so the hook sits over a scone; shorter, so it loops
+    { clip: "campaigns/november/hotels/ilsington-scone-slow", beats: 4 },
+    { clip: "campaigns/november/hotels/kingfisher-tea-pour-slow", beats: 4 },
+    { clip: "campaigns/showcase/langshott-fireside-tea", beats: 4, still: true, pos: "50% 50%" },
+    { clip: "hotels/waterton-park/clips/afternoon-tea", beats: 8 },
+  ],
+  question: ["so: jam first", "or cream first?"],
+  label: false, music: RICH_ENOUGH,
+};
+const CA = "hotels/coombe-abbey";
+export const coombeAbbey: PovSpec = {
+  hook: ["you can sleep in a", "12th century abbey"],
+  place: "WARWICKSHIRE", name: "Coombe Abbey",
+  shots: [
+    { clip: `${CA}/aerial`, beats: 6, still: true },
+    { clip: `${CA}/banquet-show`, beats: 4, still: true, pos: "55% 50%" },
+    { clip: `${CA}/plate`, beats: 4, still: true },
+    { clip: `${CA}/garden-front`, beats: 4, still: true },
+    { clip: `${CA}/four-poster-room`, beats: 8, still: true },
+  ],
+  question: ["who's getting", "the four poster?"],
+  label: false, music: RICH_ENOUGH,
+};
+
 // TikTok's own Follow button, popped in, tapped and turned to Following (not used: see the close)
 export const Follow: React.FC<{ at: number; tap: number }> = ({ at, tap }) => {
   const f = useCurrentFrame();
@@ -99,6 +144,11 @@ export const Follow: React.FC<{ at: number; tap: number }> = ({ at, tap }) => {
       </div>
     </div>
   );
+};
+
+const Push: React.FC<{ len: number; children: React.ReactNode }> = ({ len, children }) => {
+  const t = useCurrentFrame() / len;
+  return <AbsoluteFill style={{ transform: `scale(${1.03 + 0.07 * t})` }}>{children}</AbsoluteFill>;
 };
 
 const Label: React.FC<{ place: string; name: string; o: number }> = ({ place, name, o }) => (
@@ -130,7 +180,11 @@ export const PovShort: React.FC<{ spec?: PovSpec }> = ({ spec = rowtonSpa }) => 
         const len = (i === n - 1 ? total : b(starts[i] + s.beats)) - from;
         return (
           <Sequence key={s.clip} from={from} durationInFrames={len}>
-            <OffthreadVideo src={staticFile(`${s.clip}.mp4`)} muted startFrom={s.from ?? 0} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+            {s.still ? (
+              <Push len={len}><Img src={staticFile(`${s.clip}.jpg`)} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: s.pos ?? "50% 50%" }} /></Push>
+            ) : (
+              <OffthreadVideo src={staticFile(`${s.clip}.mp4`)} muted startFrom={s.from ?? 0} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+            )}
           </Sequence>
         );
       })}

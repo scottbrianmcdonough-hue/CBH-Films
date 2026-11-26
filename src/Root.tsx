@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import { Composition } from "remotion";
-import { PovShort, povFrames, rowtonSpa, lowWoodWinter, ruthinCastle } from "./hotel-film/cuts/PovShort";
+import { PovShort, povFrames, rowtonSpa, lowWoodWinter, ruthinCastle, watertonIsland, sconeDebate, coombeAbbey } from "./hotel-film/cuts/PovShort";
 import { TikTokPlan, TIKTOK_PLAN_FRAMES } from "./hotel-film/explainer/TikTokPlan";
 import { MyComposition } from "./Composition";
 import { EditorialFilm } from "./hotel-film/editorial/EditorialFilm";
@@ -425,6 +425,9 @@ export const RemotionRoot: React.FC = () => {
       {/* POV shorts: one hotel, hook on frame one, closing question and the Follow tap (25 Nov) */}
       <Composition id="pov-rowton-spa-tiktok" component={PovShort} defaultProps={{ spec: rowtonSpa }} durationInFrames={povFrames(rowtonSpa)} fps={FPS} width={WIDTH} height={HEIGHT} />
       <Composition id="pov-ruthin-castle-tiktok" component={PovShort} defaultProps={{ spec: ruthinCastle }} durationInFrames={povFrames(ruthinCastle)} fps={FPS} width={WIDTH} height={HEIGHT} />
+      <Composition id="pov-waterton-island-tiktok" component={PovShort} defaultProps={{ spec: watertonIsland }} durationInFrames={povFrames(watertonIsland)} fps={FPS} width={WIDTH} height={HEIGHT} />
+      <Composition id="scone-debate-tiktok" component={PovShort} defaultProps={{ spec: sconeDebate }} durationInFrames={povFrames(sconeDebate)} fps={FPS} width={WIDTH} height={HEIGHT} />
+      <Composition id="pov-coombe-abbey-tiktok" component={PovShort} defaultProps={{ spec: coombeAbbey }} durationInFrames={povFrames(coombeAbbey)} fps={FPS} width={WIDTH} height={HEIGHT} />
       <Composition id="pov-low-wood-winter-tiktok" component={PovShort} defaultProps={{ spec: lowWoodWinter }} durationInFrames={povFrames(lowWoodWinter)} fps={FPS} width={WIDTH} height={HEIGHT} />
       <Composition id="notes-cosy-winter-tiktok" component={NotesList} defaultProps={{ spec: cosyList }} durationInFrames={notesFrames(cosyList)} fps={FPS} width={WIDTH} height={HEIGHT} />
       <Composition id="cbh-camera-roll-tiktok" component={CameraRoll} durationInFrames={ROLL_FRAMES} fps={FPS} width={WIDTH} height={HEIGHT} />
