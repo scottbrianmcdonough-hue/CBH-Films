@@ -5,8 +5,6 @@ import {
   Easing,
   Img,
   interpolate,
-  OffthreadVideo,
-  Sequence,
   staticFile,
   useCurrentFrame,
 } from "remotion";
@@ -19,8 +17,9 @@ import { sans, serif } from "../hotel-film/theme";
 //   - Revanista as GN shows it, full bleed (Scott: not a "box thrown on top"): GN's own Revanista carousel cover cleared
 //     of its text, logo and red decorations (scripts/revanista-devices-clean.py), the real rate screens on a laptop, a
 //     monitor and a phone along the bottom of a white studio; "Powered by Revanista", the wording on GN's page.
-//   - What the service gives a hotel, from GN's Revenue Management page, one point every 1.5 seconds, the list
-//     building so each can be read: account manager, budgets, weekly calls, rate loading, price shopping.
+//   - What the service gives a hotel, from GN's Revenue Management page, three points, 2.5 seconds apart, the list
+//     building so each can be read: account manager, rate loading, price shopping
+//     (Scott: "too fast", "maybe too much text").
 //   - GN's white: "You look after Christmas. / We'll get January ready.", and the end card: the roundel travelling to
 //     the middle, Great National Revenue Management, "Powered by" and Revanista's logo.
 // No figures, no hyphens, em dashes or triads in the text. 4:5 and 16:9 (`wide`). Sound: scripts/gn-revenue-sfx.py
@@ -59,14 +58,14 @@ const rand = (seed: number) => {
 /* Timing (frames at 30fps), on the track's beat (120 BPM, 15 frames), counted back from END: the end card lands on the
    track's last hit */
 export const BEAT = 15;
-export const END = 474;
+export const END = 540;
 const beat = (n: number) => END - n * BEAT;
 export const T = {
-  HOOK1: beat(33), // "While your team is busy with Christmas," (in from the first frame: LinkedIn previews it)
-  HOOK2: beat(30), // "someone can be getting January ready."
-  HOOK_OUT: beat(26),
-  DEVICES: beat(25), // Revanista as GN shows it
-  FEATURES: [beat(22), beat(19), beat(16), beat(13), beat(10)], // a point every 1.5 seconds, the list building (Scott: "a little snappier")
+  HOOK1: beat(36), // "While your team is busy with Christmas," (in from the first frame: LinkedIn previews it)
+  HOOK2: beat(33), // "someone can be getting January ready."
+  HOOK_OUT: beat(27),
+  DEVICES: beat(26), // Revanista as GN shows it
+  FEATURES: [beat(22), beat(17), beat(12)], // three points, 2.5 seconds apart (Scott: "too fast", "maybe too much text")
   CLEAR: beat(7), // the studio clears to white
   A1: beat(6), // "You look after Christmas."
   A2: beat(5), // "We'll get January ready."
@@ -78,8 +77,6 @@ export const GN_REVENUE_FRAMES = T.END + 100;
 /* What the service gives a hotel, from GN's Revenue Management page */
 const FEATURES = [
   "A dedicated Revenue Account Manager",
-  "Yearly room budgets, reviewed with you",
-  "Weekly performance calls and reports",
   "Rates loaded up to 24 months ahead",
   "Competitor price shopping",
 ];
@@ -102,7 +99,7 @@ const LAYOUTS: Record<"tall" | "wide", Layout> = {
     badge: { top: 80, size: 120 },
     hook: { size: 88, tops: [330, 540], width: 920 },
     title: { left: 80, top: 250, size: 60, width: 920 },
-    list: { left: 80, top: 362, step: 64, size: 34, width: 920 },
+    list: { left: 80, top: 370, step: 80, size: 40, width: 920 },
     answer: { size: 84, tops: [510, 616] },
     end: { cx: 540, badge: [370, 190], title: [600, 84], line: [846, 26, 960], logo: [892, 230] },
     tint: "linear-gradient(180deg, rgba(24,43,60,0.80) 0%, rgba(24,43,60,0.70) 50%, rgba(24,43,60,0.84) 100%)",
@@ -112,7 +109,7 @@ const LAYOUTS: Record<"tall" | "wide", Layout> = {
     badge: { top: 70, size: 110 },
     hook: { size: 88, tops: [360, 470], width: 1500 },
     title: { left: 120, top: 220, size: 60, width: 760 },
-    list: { left: 120, top: 330, step: 68, size: 32, width: 760 },
+    list: { left: 120, top: 340, step: 82, size: 38, width: 760 },
     answer: { size: 92, tops: [380, 490] },
     end: { cx: 960, badge: [190, 170], title: [400, 84], line: [626, 26, 900], logo: [670, 210] },
     tint: "linear-gradient(90deg, rgba(24,43,60,0.88) 0%, rgba(24,43,60,0.76) 45%, rgba(24,43,60,0.62) 100%)",
@@ -255,17 +252,22 @@ export const GNRevenue: React.FC<{ wide?: boolean; sound?: boolean }> = ({ wide 
       ) : null}
 
       {/* the studio, full bleed (Scott: no "box thrown on top"): GN's own carousel cover cleared of its text and logo,
-          the real devices along the bottom, moving in depth (Scott: "do anything with the elements at the bottom") */}
+          the real devices along the bottom */}
       <AbsoluteFill style={{ opacity: dev * (1 - cleared), overflow: "hidden" }}>
-        {/* the first frame of the move holds until the studio fades in, then the move plays: a hand drawn depth map
-            (public/campaigns/gn-revenue/make-depth.py) so the phone and laptop slide against the monitor */}
+        {/* a slow, cinematic push (Scott: the depth move went "off the page", "slower, cinematic Ken Burns style"):
+            eased over the whole stretch, anchored low so the devices stay in frame */}
         <Img
           src={staticFile(`campaigns/gn-revenue/revanista-plate-${wide ? "wide" : "tall"}.jpg`)}
-          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: f < T.DEVICES ? 1 : 0 }}
+          style={{
+            position: "absolute",
+            inset: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            transform: `scale(${1 + 0.07 * ramp(f, T.DEVICES, T.CLEAR + 20 - T.DEVICES, Easing.inOut(Easing.sin))})`,
+            transformOrigin: wide ? "70% 88%" : "50% 90%",
+          }}
         />
-        <Sequence from={T.DEVICES} layout="none">
-          <OffthreadVideo src={staticFile(`campaigns/gn-revenue/clips/plate-${wide ? "wide" : "tall"}.mp4`)} muted style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }} />
-        </Sequence>
       </AbsoluteFill>
 
       {/* GN roundel, travelling to the middle for the end card */}
