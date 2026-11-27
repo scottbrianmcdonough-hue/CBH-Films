@@ -155,6 +155,20 @@ export const pours: PovSpec = {
   label: false, music: RICH_ENOUGH,
 };
 
+// a TikTok Story for the day Ruthin's video goes out (Scott, 27 Nov): three shots, pointing to the full video
+export const ruthinStory: PovSpec = {
+  hook: ["you can sleep", "in this castle"],
+  place: "", name: "",
+  shots: [
+    { clip: `${RC}/clips/peacock`, beats: 4 },
+    { clip: `${RC}/clips/castle`, beats: 4 },
+    { clip: `${RC}/clips/white-bed`, beats: 7 },
+  ],
+  hookBeats: 8,
+  question: ["full video", "on our page"],
+  label: false, music: RICH_ENOUGH,
+};
+
 // TikTok's own Follow button, popped in, tapped and turned to Following (not used: see the close)
 export const Follow: React.FC<{ at: number; tap: number }> = ({ at, tap }) => {
   const f = useCurrentFrame();

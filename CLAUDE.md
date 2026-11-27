@@ -1496,3 +1496,5 @@ with no history and no renders:
 - TikTok first frame rule (Scott, 26 Nov, after `pours-tiktok` lost most viewers at 0:02 on its dark tea pour: "then don't
   give me the videos"): the strongest, brightest shot opens every TikTok, never saved for the end; check frame one before
   sending, and don't send a video whose opening is weaker than its best shot.
+- `ruthin-castle-tiktok-story` (`ruthinStory` in `cuts/PovShort.tsx`, 8.3s; Scott, 27 Nov: "need a story for today TikTok"):
+  peacock, tower, the carved bed; "you can sleep / in this castle", "full video / on our page"; Rich Enough.
