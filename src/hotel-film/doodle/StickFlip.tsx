@@ -1256,9 +1256,34 @@ export const TT_TOP = 470;
 export const TT_TOP_CARD = 196;
 const TIKTOK = "Figtree";
 loadFont({ family: TIKTOK, url: staticFile("fonts/Figtree-Bold.woff2"), weight: "700" });
-export const TikTokText: React.FC<{ lines: string[]; top: number; left?: number; out?: number; still?: boolean }> = ({ lines, top, left = 90, out, still }) => {
+// The TikTok caption look (Scott, 27 Nov: "without the black pill, a fresh look, still on brand and consistent"): the
+// house's cream Cormorant over the picture, no box, a soft shadow close round the letters so it reads on anything;
+// each line rises a little into place. The old black pill (white Figtree Bold) stays as `look="pill"`.
+export const TT_LOOK: "brand" | "pill" = "brand";
+// the brand look always sits in the lower third, centred (Scott: "hard to read ... put it in a lower third instead of
+// upper"), above TikTok's and Instagram's caption and buttons at the foot of the frame; `top` and `left` are the pill's
+export const TT_BRAND_TOP = 1150;
+export const TikTokText: React.FC<{ lines: string[]; top: number; left?: number; out?: number; still?: boolean; look?: "brand" | "pill" }> = ({ lines, top, left = 90, out, still, look = TT_LOOK }) => {
   const frame = useCurrentFrame();
   const gone = out === undefined ? 0 : progress(frame, out, 5);
+  if (look === "brand") {
+    return (
+      <div style={{ position: "absolute", top: TT_BRAND_TOP, left: 0, width: 1080, padding: "50px 0 56px", display: "flex", flexDirection: "column", alignItems: "center", opacity: 1 - gone,
+        // a slight scrim just behind the words, fading to nothing at its edges (legible on a busy grid, no box)
+        background: "radial-gradient(ellipse 62% 60% at 50% 50%, rgba(9,9,10,0.72) 0%, rgba(9,9,10,0.55) 45%, rgba(9,9,10,0) 100%)" }}>
+        {lines.map((l, k) => {
+          const t = still ? 1 : progress(frame, k * 4, 9);
+          return (
+            <div key={k} style={{ fontFamily: serif, fontWeight: 700, fontSize: 100, lineHeight: 1.0, color: colors.cream, letterSpacing: "0.005em",
+              whiteSpace: "nowrap", textAlign: "center", opacity: Math.min(1, t * 1.6), transform: `translateY(${(1 - t) * 18}px)`,
+              textShadow: "0 0 2px rgba(0,0,0,0.7), 0 2px 8px rgba(0,0,0,0.6), 0 4px 30px rgba(0,0,0,0.5)" }}>
+              {l}
+            </div>
+          );
+        })}
+      </div>
+    );
+  }
   return (
     <div style={{ position: "absolute", top, left, width: 800, display: "flex", flexDirection: "column", alignItems: "center", gap: 0, opacity: 1 - gone }}>
       {lines.map((l, k) => {

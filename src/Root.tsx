@@ -435,6 +435,7 @@ export const RemotionRoot: React.FC = () => {
       <Composition id="notes-cosy-winter-tiktok" component={NotesList} defaultProps={{ spec: cosyList }} durationInFrames={notesFrames(cosyList)} fps={FPS} width={WIDTH} height={HEIGHT} />
       <Composition id="cbh-camera-roll-tiktok" component={CameraRoll} durationInFrames={ROLL_FRAMES} fps={FPS} width={WIDTH} height={HEIGHT} />
       <Composition id="cbh-camera-roll-christmas-tiktok" component={CameraRoll} defaultProps={{ spec: christmasRoll }} durationInFrames={ROLL_FRAMES} fps={FPS} width={WIDTH} height={HEIGHT} />
+      <Composition id="cbh-camera-roll-christmas-instagram" component={CameraRoll} defaultProps={{ spec: christmasRoll, ig: true }} durationInFrames={ROLL_FRAMES} fps={FPS} width={WIDTH} height={HEIGHT} />
       <Composition id="cbh-camera-roll-north-west-tiktok" component={CameraRoll} defaultProps={{ spec: northWestRoll }} durationInFrames={ROLL_FRAMES} fps={FPS} width={WIDTH} height={HEIGHT} />
       {/* the event ticket that flips into the hotel's room key: TikTok event tie-ins */}
       <Composition

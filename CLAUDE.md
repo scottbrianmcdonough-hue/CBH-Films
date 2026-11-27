@@ -1504,3 +1504,11 @@ with no history and no renders:
 - Grid check (27 Nov, Scott: "starting to look samey", his profile): views now pours 635, scones 598, Ruthin 190 (new), team
   party 731, Dad chat 683, November 690: the last three are different looks (photo, a chat UI, a moody stock wash); the newest
   three all share the black pill over a single shot. Alternate formats on the grid; don't post two pill-hook cuts in a row.
+- TikTok caption look changed (Scott, 27 Nov: "without the black pill, a fresh look, still on brand and consistent", then
+  "hard to read ... put it in a lower third"): `TikTokText` now draws the brand look by default (`TT_LOOK` "brand"): cream
+  Cormorant 700, 100px, centred in the lower third (`TT_BRAND_TOP` 1150, above the apps' captions and buttons), a soft shadow
+  and a slight radial scrim just behind the words (no box); the black pill is `look="pill"`. Scott: "consistent but not
+  always the same": vary the shot, the line and the moment, keep this one look.
+  `cbh-camera-roll-christmas-instagram` (CameraRoll `ig`): the same film with the white CB top right.
+- Render one at a time with `--concurrency=2` on the bigger comps and clear `/dev/shm/gig/*-raw.mp4` after: tmpfs is memory,
+  and two renders plus old raws got the second render killed (27 Nov).

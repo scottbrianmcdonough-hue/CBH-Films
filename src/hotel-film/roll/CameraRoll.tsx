@@ -1,6 +1,6 @@
 import { Audio } from "@remotion/media";
 import React from "react";
-import { AbsoluteFill, interpolate, Loop, OffthreadVideo, Sequence, staticFile, useCurrentFrame } from "remotion";
+import { AbsoluteFill, Img, interpolate, Loop, OffthreadVideo, Sequence, staticFile, useCurrentFrame } from "remotion";
 import { FilmFinish } from "../components/FilmFinish";
 import { TikTokText, TT_TOP } from "../doodle/StickFlip";
 import { colors, EASE_IN_OUT, progress, sans, serif } from "../theme";
@@ -117,7 +117,8 @@ const Label: React.FC<{ place: string; hotel: string; o: number }> = ({ place, h
   </AbsoluteFill>
 );
 
-export const CameraRoll: React.FC<{ spec?: RollSpec }> = ({ spec = winterRoll }) => {
+// `ig`: the Instagram cut (Scott, 27 Nov: "do an Instagram version"): the same film with the white CB in the corner
+export const CameraRoll: React.FC<{ spec?: RollSpec; ig?: boolean }> = ({ spec = winterRoll, ig }) => {
   const { roll: ROLL, opened: OPENED } = spec;
   const frame = useCurrentFrame();
   const openAt = b(OPEN);
@@ -207,6 +208,7 @@ export const CameraRoll: React.FC<{ spec?: RollSpec }> = ({ spec = winterRoll })
       <Sequence from={shutAt + 14} layout="none">
         <TikTokText lines={spec.end} top={TT_TOP} left={140} />
       </Sequence>
+      {ig ? <Img src={staticFile("brand/cb-watermark.png")} style={{ position: "absolute", right: 56, top: 48, width: 84, height: 91 }} /> : null}
     </AbsoluteFill>
   );
 };
