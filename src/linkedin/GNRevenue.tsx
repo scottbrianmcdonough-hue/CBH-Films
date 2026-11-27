@@ -100,7 +100,7 @@ const LAYOUTS: Record<"tall" | "wide", Layout> = {
     card: { left: 80, top: 440, w: 920, h: 740, pad: 40, head: 50 },
     date: { w: 112, h: 94, gap: 8, num: 20, rate: 27 },
     answer: { size: 84, tops: [510, 616] },
-    end: { cx: 540, badge: [380, 190], title: [610, 84], line: [850, 30, 760] },
+    end: { cx: 540, badge: [380, 190], title: [610, 84], line: [850, 30, 960] },
   },
   wide: {
     x: 120,
@@ -322,7 +322,7 @@ const Screen: React.FC<{ f: number; L: Layout }> = ({ f, L }) => {
                 color: navy,
                 lineHeight: 1.1,
                 whiteSpace: "nowrap",
-                transform: `translateX(${(i - swipe) * 420}px)`,
+                transform: `translateX(${(i - swipe) * (inner + 60)}px)`,
                 opacity: i === 0 ? 1 - swipe : swipe,
               }}
             >
