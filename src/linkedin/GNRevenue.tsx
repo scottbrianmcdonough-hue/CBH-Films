@@ -109,7 +109,7 @@ const LAYOUTS: Record<"tall" | "wide", Layout> = {
     badge: { top: 70, size: 110 },
     hook: { size: 88, tops: [360, 470], width: 1500 },
     title: { left: 120, top: 220, size: 60, width: 760 },
-    list: { left: 120, top: 340, step: 82, size: 38, width: 760 },
+    list: { left: 120, top: 340, step: 82, size: 38, width: 900 },
     answer: { size: 92, tops: [380, 490] },
     end: { cx: 960, badge: [190, 170], title: [400, 84], line: [626, 26, 900], logo: [670, 210] },
     tint: "linear-gradient(90deg, rgba(24,43,60,0.88) 0%, rgba(24,43,60,0.76) 45%, rgba(24,43,60,0.62) 100%)",
