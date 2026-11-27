@@ -375,9 +375,10 @@ export const GNRevenue: React.FC<{ wide?: boolean; sound?: boolean }> = ({ wide 
             width: "100%",
             height: "100%",
             objectFit: "cover",
-            // a push you can see (Scott: "Ken Burns can't notice"): 1.0 to 1.16 with a gentle drift across
-            transform: `scale(${1 + 0.16 * ramp(f, T.DEVICES, T.CLEAR + 20 - T.DEVICES, Easing.inOut(Easing.sin))}) translateX(${-30 * ramp(f, T.DEVICES, T.CLEAR + 20 - T.DEVICES, Easing.inOut(Easing.sin))}px)`,
-            transformOrigin: wide ? "70% 88%" : "50% 90%",
+            // a push you can see (Scott: "Ken Burns can't notice"), pivoting on the laptop's left corner so nothing
+            // leaves the frame (Scott: at 1.16 with a drift the laptop went "off the screen")
+            transform: `scale(${1 + 0.1 * ramp(f, T.DEVICES, T.CLEAR + 20 - T.DEVICES, Easing.inOut(Easing.sin))})`,
+            transformOrigin: wide ? "46% 90%" : "4% 92%",
           }}
         />
       </AbsoluteFill>
