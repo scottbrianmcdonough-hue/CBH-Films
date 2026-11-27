@@ -19,8 +19,8 @@ import { GNContactTrack, gnContactTiming, ringing } from "./gn-contact-timing";
 // name.", and the end card: Great National Customer Contact Centre, the hours (no rule under the name: Scott, a
 // Claude tell). No letter spacing, hyphens or em dashes in the text.
 //
-// The opening is over GN's own receptions and lobbies (Scott: "more visual than the simple card", "no stock"; five
-// photos from GN's SharePoint), cutting on the rings and tinted GN navy so the white type reads: a busy navy lobby that
+// The opening is over GN's own receptions and lobbies (Scott: "more visual than the simple card", "no stock"; photos
+// from GN's SharePoint, only hotels on GN's Our Hotels page), cutting on the rings and tinted GN navy so the white type reads: a busy navy lobby that
 // clears to calm white for the answer and the end card (GN's white ground, navy type). The roundel sits top left from
 // frame one (LinkedIn's preview). 4:5 for the feed and 16:9 (`wide`), one layout each in LAYOUTS.
 //
@@ -97,18 +97,23 @@ const LAYOUTS: Record<"tall" | "wide", Layout> = {
   },
 };
 
-/* The GN receptions and lobbies behind the opening, one per beat, cutting on the rings */
-type Shot = { src: string; tall: string; wide: string; from: (T: ReturnType<typeof gnContactTiming>) => number };
+/* The GN receptions and lobbies behind the opening, cutting on the rings. Only hotels on GN's own Our Hotels page
+   (Scott checked greatnationalhotels.com/our-hotels: Oranmore Lodge and Castle Inn are not listed, so they are out) */
+type Shot = {
+  src: string;
+  tall: string; // framing in 4:5
+  wide: string; // framing in 16:9
+  zoom?: number; // a closer start
+  from: (T: ReturnType<typeof gnContactTiming>) => number;
+};
 
 const SHOTS: Shot[] = [
   // staff at the desk, the room behind: "The lobby's full."
   { src: "shannon-springs-reception", tall: "24% 50%", wide: "50% 50%", from: () => 0 },
-  // the garland on the mantel, with the first call
-  { src: "oranmore-lodge-fireplace", tall: "55% 55%", wide: "50% 60%", from: (T) => T.CARDS[0] },
-  { src: "hotel-ballina-lobby", tall: "45% 50%", wide: "50% 50%", from: (T) => T.CARDS[1] },
-  { src: "speech-house-reception", tall: "50% 50%", wide: "50% 50%", from: (T) => T.CARDS[2] },
-  // the empty desk with the phone on it: "Who picks up?"
-  { src: "castle-inn-reception", tall: "42% 50%", wide: "50% 50%", from: (T) => T.L3 },
+  { src: "hotel-ballina-lobby", tall: "45% 50%", wide: "50% 50%", from: (T) => T.CARDS[0] },
+  { src: "speech-house-reception", tall: "50% 50%", wide: "50% 50%", from: (T) => T.CARDS[1] },
+  // back to the desk, closer on him: "Who picks up?" (the cover frame: Scott, Shannon Springs as the cover)
+  { src: "shannon-springs-reception", tall: "27% 45%", wide: "30% 45%", zoom: 1.22, from: (T) => T.L3 },
 ];
 
 const Backdrop: React.FC<{ f: number; T: ReturnType<typeof gnContactTiming>; L: Layout }> = ({ f, T, L }) => {
@@ -116,7 +121,7 @@ const Backdrop: React.FC<{ f: number; T: ReturnType<typeof gnContactTiming>; L: 
   const shot = SHOTS[i];
   const start = shot.from(T);
   const end = i + 1 < SHOTS.length ? SHOTS[i + 1].from(T) : T.PICKUP + 20;
-  const push = 1.04 + 0.05 * Math.min(1, (f - start) / Math.max(1, end - start)); // a slow push in on each shot
+  const push = (shot.zoom ?? 1.04) + 0.05 * Math.min(1, (f - start) / Math.max(1, end - start)); // a slow push in on each shot
   const gone = ramp(f, T.PICKUP, 20, io); // clears to white as the handset lifts
   if (gone >= 1) return null;
   return (
@@ -130,6 +135,7 @@ const Backdrop: React.FC<{ f: number; T: ReturnType<typeof gnContactTiming>; L: 
           objectPosition: shot[L.pos],
           filter: "blur(1.5px) saturate(0.9)",
           transform: `scale(${push})`,
+          transformOrigin: shot[L.pos],
         }}
       />
       <AbsoluteFill style={{ background: L.tint }} />
