@@ -549,3 +549,134 @@ export const GNRevenue: React.FC<{ wide?: boolean; sound?: boolean }> = ({ wide 
     </AbsoluteFill>
   );
 };
+
+/* ------------------------------------------------------------------ the carousel
+   (Scott: the video was "too fast to know what's going on, use the carousel"): the same screens as stills, one step a
+   slide, each with a line saying what it shows, so people swipe at their own pace. 4:5, five slides, rendered as stills
+   and put together as a PDF for LinkedIn. */
+export const GN_REVENUE_SLIDES = 5;
+
+const Caption: React.FC<{ text: string }> = ({ text }) => (
+  <div
+    style={{
+      position: "absolute",
+      left: 60,
+      right: 60,
+      top: 1196,
+      fontFamily: sans,
+      fontSize: 30,
+      lineHeight: 1.4,
+      color: "rgba(255,255,255,0.9)",
+    }}
+  >
+    {text}
+  </div>
+);
+
+const SlideLine: React.FC<{ text: string }> = ({ text }) => (
+  <div style={{ position: "absolute", left: 80, top: 290, right: 60, fontFamily: serif, fontWeight: 500, fontSize: 84, lineHeight: 1.1, color: white }}>
+    {text}
+  </div>
+);
+
+export const GNRevenueSlide: React.FC<{ slide?: number }> = ({ slide = 1 }) => {
+  const L = LAYOUTS.tall;
+  // each screen slide is the video's own frame at that step, held still
+  const at = { 2: T.DEC[1] + 16, 3: T.L2 + 10, 4: T.RATES[1] + 14 }[slide] ?? 0;
+  const backdrop = (f: number) => (
+    <>
+      <AbsoluteFill style={{ background: navyDeep }} />
+      <Hotels f={f} wide={false} />
+      <Snow f={f} w={1080} h={1350} />
+    </>
+  );
+  const badge = <Img src={staticFile("brand/gn/gnh-badge.svg")} style={{ position: "absolute", left: 80, top: 80, width: 120, height: 120 }} />;
+  const count = (
+    <div style={{ position: "absolute", right: 70, top: 118, fontFamily: sans, fontSize: 24, color: "rgba(255,255,255,0.75)" }}>
+      {slide} / {GN_REVENUE_SLIDES}
+    </div>
+  );
+
+  if (slide === 1) {
+    return (
+      <AbsoluteFill>
+        {backdrop(0)}
+        {badge}
+        <div style={{ position: "absolute", right: 70, top: 118, fontFamily: sans, fontSize: 24, color: "rgba(255,255,255,0.75)" }}>Swipe →</div>
+        <div style={{ position: "absolute", left: 80, right: 80, top: 470, fontFamily: serif, fontWeight: 500, fontSize: 92, lineHeight: 1.1, color: white }}>
+          While your team is busy with Christmas, someone can be getting January ready.
+        </div>
+        <div style={{ position: "absolute", left: 80, bottom: 110, fontFamily: sans, fontSize: 28, color: lime, fontWeight: 600 }}>
+          Great National Revenue Management
+        </div>
+      </AbsoluteFill>
+    );
+  }
+
+  if (slide === GN_REVENUE_SLIDES) {
+    return (
+      <AbsoluteFill style={{ background: navy }}>
+        <Img src={staticFile("brand/gn/gnh-badge.svg")} style={{ position: "absolute", left: 540 - 95, top: 300, width: 190, height: 190 }} />
+        <div style={{ position: "absolute", left: 0, width: 1080, top: 540, textAlign: "center", fontFamily: serif, fontWeight: 500, fontSize: 84, lineHeight: 1.08, color: white }}>
+          Great National
+          <br />
+          Revenue Management
+        </div>
+        <div style={{ position: "absolute", left: 60, right: 60, top: 780, textAlign: "center", fontFamily: sans, fontSize: 30, color: "rgba(255,255,255,0.9)" }}>
+          Run on Revanista, our own revenue management system
+        </div>
+        <Img src={staticFile("brand/revanista-logo-navy.png")} style={{ position: "absolute", left: 540 - 115, top: 850, width: 230, filter: "brightness(0) invert(1)" }} />
+        {/* the ask, then the website on GN's lime pill (Scott: "and website"), as the Revanista carousel ends */}
+        <div style={{ position: "absolute", left: 0, width: 1080, top: 1000, textAlign: "center", fontFamily: serif, fontWeight: 500, fontSize: 44, color: white }}>
+          Planning ahead for 2027? Let’s talk.
+        </div>
+        <div
+          style={{
+            position: "absolute",
+            left: 540 - 330,
+            width: 660,
+            top: 1090,
+            textAlign: "center",
+            fontFamily: sans,
+            fontWeight: 700,
+            fontSize: 28,
+            color: navy,
+            background: lime,
+            borderRadius: 999,
+            padding: "18px 0",
+          }}
+        >
+          corporate.greatnationalhotels.com
+        </div>
+      </AbsoluteFill>
+    );
+  }
+
+  const lines: Record<number, [string, string]> = {
+    2: ["December’s full.", "Christmas week, every room booked and nothing left to sell."],
+    3: ["Then comes January.", "The first week of January, still on one flat rate for every day."],
+    4: ["The right rate for every date.", "We read the demand and what hotels nearby charge, then set each rate to match."],
+  };
+  return (
+    <AbsoluteFill>
+      {backdrop(at)}
+      {badge}
+      {count}
+      <SlideLine text={lines[slide][0]} />
+      <div
+        style={{
+          position: "absolute",
+          left: L.card.left,
+          top: L.card.top,
+          width: L.card.w,
+          height: L.card.h,
+          borderRadius: 26,
+          boxShadow: "0 24px 60px rgba(0,0,0,0.45)",
+        }}
+      >
+        <Screen f={at} L={L} />
+      </div>
+      <Caption text={lines[slide][1]} />
+    </AbsoluteFill>
+  );
+};
