@@ -13,7 +13,9 @@ import { sans, serif } from "../hotel-film/theme";
 // Great National Revenue Management (Scott, 27 Nov: next week's GN LinkedIn post, "While your team is busy with
 // Christmas, someone can be getting January ready"). This take after Scott's notes on the rate table versions ("too
 // fast to know what's going on", "don't make up the UI", "use the info"): nothing invented.
-//   - The hook over GN's own hotels at dusk in a navy tint with a light snowfall, the Contact Centre video's look.
+//   - The hook over GN's own hotels at dusk in a navy tint with a light snowfall, the Contact Centre video's look:
+//     "December's busy." over a wall calendar filling up, the page turns, "January's in good hands." as January's
+//     dates tick off (dates only, no rates).
 //   - Revanista as GN shows it, full bleed (Scott: not a "box thrown on top"): GN's own Revanista carousel cover cleared
 //     of its text, logo and red decorations (scripts/revanista-devices-clean.py), the real rate screens on a laptop, a
 //     monitor and a phone along the bottom of a white studio; "Powered by Revanista", the wording on GN's page.
@@ -58,11 +60,14 @@ const rand = (seed: number) => {
 /* Timing (frames at 30fps), on the track's beat (120 BPM, 15 frames), counted back from END: the end card lands on the
    track's last hit */
 export const BEAT = 15;
-export const END = 540;
+export const END = 630;
 const beat = (n: number) => END - n * BEAT;
 export const T = {
-  HOOK1: beat(36), // "While your team is busy with Christmas," (in from the first frame: LinkedIn previews it)
-  HOOK2: beat(33), // "someone can be getting January ready."
+  HOOK1: beat(42), // "December's busy." over December filling up (in from the first frame: LinkedIn previews it)
+  DEC: [beat(41) + 6, beat(37)] as [number, number], // December's dates fill in
+  FLIP: beat(35), // the page turns to January
+  HOOK2: beat(34), // "January's in good hands." (Scott: "January's next" sounded like there's no time)
+  JAN: [beat(33), beat(29) + 6] as [number, number], // January's dates tick off, in order
   HOOK_OUT: beat(27),
   DEVICES: beat(26), // Revanista as GN shows it
   FEATURES: [beat(22), beat(17), beat(12)], // three points, 2.5 seconds apart (Scott: "too fast", "maybe too much text")
@@ -85,7 +90,8 @@ const FEATURES = [
 type Layout = {
   x: number;
   badge: { top: number; size: number };
-  hook: { size: number; tops: [number, number]; width: number };
+  hook: { size: number; top: number; width: number };
+  cal: { left: number; top: number; w: number; cell: number; gap: number; head: number; num: number };
   title: { left: number; top: number; size: number; width: number };
   list: { left: number; top: number; step: number; size: number; width: number };
   answer: { size: number; tops: [number, number] };
@@ -97,7 +103,8 @@ const LAYOUTS: Record<"tall" | "wide", Layout> = {
   tall: {
     x: 80,
     badge: { top: 80, size: 120 },
-    hook: { size: 88, tops: [330, 540], width: 920 },
+    hook: { size: 88, top: 250, width: 920 },
+    cal: { left: 80, top: 400, w: 920, cell: 88, gap: 10, head: 50, num: 26 },
     title: { left: 80, top: 250, size: 60, width: 920 },
     list: { left: 80, top: 370, step: 80, size: 40, width: 920 },
     answer: { size: 84, tops: [510, 616] },
@@ -107,7 +114,8 @@ const LAYOUTS: Record<"tall" | "wide", Layout> = {
   wide: {
     x: 120,
     badge: { top: 70, size: 110 },
-    hook: { size: 88, tops: [360, 470], width: 1500 },
+    hook: { size: 88, top: 440, width: 860 },
+    cal: { left: 1000, top: 170, w: 800, cell: 76, gap: 9, head: 46, num: 24 },
     title: { left: 120, top: 220, size: 60, width: 760 },
     list: { left: 120, top: 340, step: 82, size: 38, width: 900 },
     answer: { size: 92, tops: [380, 490] },
@@ -169,6 +177,109 @@ const Hotels: React.FC<{ f: number; L: Layout; wide: boolean }> = ({ f, L, wide 
       />
       <AbsoluteFill style={{ background: L.tint }} />
     </AbsoluteFill>
+  );
+};
+
+/* A simple wall calendar, dates only (Scott: "add the calendar bit in the first part"; no rates, nothing invented):
+   December fills up busy, the page turns, and January's dates tick off one after another */
+const MONTHS = { dec: { name: "December 2026", offset: 1 }, jan: { name: "January 2027", offset: 4 } };
+const SCATTER = (() => {
+  const o = Array.from({ length: 31 }, (_, i) => i);
+  for (let i = o.length - 1; i > 0; i--) {
+    const j = Math.floor(rand(i + 40) * (i + 1));
+    [o[i], o[j]] = [o[j], o[i]];
+  }
+  const at: number[] = [];
+  o.forEach((d, k) => (at[d] = k));
+  return at;
+})();
+
+const Month: React.FC<{ f: number; m: "dec" | "jan"; c: Layout["cal"] }> = ({ f, m, c }) => {
+  const { name, offset } = MONTHS[m];
+  const pad = 40;
+  return (
+    <div style={{ position: "absolute", inset: 0, boxSizing: "border-box", padding: pad, background: white, borderRadius: 26 }}>
+      <div style={{ fontFamily: serif, fontWeight: 500, fontSize: c.head, color: navy, lineHeight: 1.1, marginBottom: 20 }}>{name}</div>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(7, 1fr)", gap: c.gap, marginBottom: 10 }}>
+        {["M", "T", "W", "T", "F", "S", "S"].map((d, i) => (
+          <div key={i} style={{ fontFamily: sans, fontSize: c.num * 0.8, color: "#6b7b8a", textAlign: "center" }}>
+            {d}
+          </div>
+        ))}
+      </div>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(7, 1fr)", gridAutoRows: c.cell, gap: c.gap }}>
+        {Array.from({ length: offset }, (_, i) => (
+          <div key={`e${i}`} />
+        ))}
+        {Array.from({ length: 31 }, (_, d) => {
+          const at = m === "dec" ? T.DEC[0] + (SCATTER[d] / 30) * (T.DEC[1] - T.DEC[0]) : T.JAN[0] + (d / 30) * (T.JAN[1] - T.JAN[0]);
+          const p = ramp(f, at, 8);
+          const filled = p > 0.5;
+          return (
+            <div
+              key={d}
+              style={{
+                position: "relative",
+                borderRadius: 12,
+                background: m === "dec" && filled ? navy : "#eef1f4",
+                transform: `scale(${1 - 0.08 * Math.sin(Math.PI * p)})`,
+                boxSizing: "border-box",
+                padding: "8px 10px",
+              }}
+            >
+              <span style={{ fontFamily: sans, fontSize: c.num, fontWeight: 600, color: m === "dec" && filled ? white : navy }}>{d + 1}</span>
+              {m === "jan" ? (
+                <svg width={c.cell * 0.42} height={c.cell * 0.42} viewBox="0 0 24 24" style={{ position: "absolute", right: 6, bottom: 4 }}>
+                  <path
+                    d="M5 12.5l4.5 4.5L19 7.5"
+                    fill="none"
+                    stroke={lime}
+                    strokeWidth={3}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeDasharray={24}
+                    strokeDashoffset={24 * (1 - p)}
+                  />
+                </svg>
+              ) : null}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+};
+
+const Calendar: React.FC<{ f: number; c: Layout["cal"] }> = ({ f, c }) => {
+  const turn = ramp(f, T.FLIP, 22, Easing.inOut(Easing.cubic));
+  const angle = turn * 180;
+  const away = ramp(f, T.HOOK_OUT, 16, io);
+  const h = 40 * 2 + c.head * 1.1 + 20 + c.num + 10 + 5 * c.cell + 4 * c.gap;
+  return (
+    <div
+      style={{
+        position: "absolute",
+        left: c.left,
+        top: c.top,
+        width: c.w,
+        height: h,
+        perspective: 2400,
+        opacity: 1 - away,
+        transform: `translateY(${-away * 24}px)`,
+      }}
+    >
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          borderRadius: 26,
+          boxShadow: "0 24px 60px rgba(0,0,0,0.45)",
+          transform: `rotateY(${angle < 90 ? angle : angle - 180}deg)`,
+        }}
+      >
+        <Month f={f} m={angle < 90 ? "dec" : "jan"} c={c} />
+      </div>
+    </div>
   );
 };
 
@@ -264,7 +375,8 @@ export const GNRevenue: React.FC<{ wide?: boolean; sound?: boolean }> = ({ wide 
             width: "100%",
             height: "100%",
             objectFit: "cover",
-            transform: `scale(${1 + 0.07 * ramp(f, T.DEVICES, T.CLEAR + 20 - T.DEVICES, Easing.inOut(Easing.sin))})`,
+            // a push you can see (Scott: "Ken Burns can't notice"): 1.0 to 1.16 with a gentle drift across
+            transform: `scale(${1 + 0.16 * ramp(f, T.DEVICES, T.CLEAR + 20 - T.DEVICES, Easing.inOut(Easing.sin))}) translateX(${-30 * ramp(f, T.DEVICES, T.CLEAR + 20 - T.DEVICES, Easing.inOut(Easing.sin))}px)`,
             transformOrigin: wide ? "70% 88%" : "50% 90%",
           }}
         />
@@ -276,29 +388,30 @@ export const GNRevenue: React.FC<{ wide?: boolean; sound?: boolean }> = ({ wide 
         style={{ position: "absolute", left: badgeLeft, top: badgeTop, width: badgeSize, height: badgeSize }}
       />
 
-      {/* the hook */}
+      {/* the hook: a line at a time in the same place, the calendar under it */}
       {[
-        { text: "While your team is busy with Christmas,", start: T.HOOK1, top: L.hook.tops[0] },
-        { text: "someone can be getting January ready.", start: T.HOOK2, top: L.hook.tops[1] },
+        { text: "December’s busy.", start: T.HOOK1 - RISE, away: T.FLIP - 4 }, // already in on frame one (LinkedIn's preview)
+        { text: "January’s in good hands.", start: T.HOOK2, away: T.HOOK_OUT },
       ].map((l) => (
         <div
           key={l.text}
           style={{
             position: "absolute",
             left: L.x,
-            top: l.top,
+            top: L.hook.top,
             width: L.hook.width,
             fontFamily: serif,
             fontWeight: 500,
             fontSize: L.hook.size,
             lineHeight: 1.1,
             color: white,
-            ...enter(f, l.start, T.HOOK_OUT),
+            ...enter(f, l.start, l.away),
           }}
         >
           {l.text}
         </div>
       ))}
+      <Calendar f={f} c={L.cal} />
 
       {/* Revanista, in the words of GN's own page */}
       <div
