@@ -89,7 +89,7 @@ type Layout = {
   card: { left: number; top: number; w: number; h: number; pad: number; head: number };
   date: { w: number; h: number; gap: number; num: number; rate: number };
   answer: { size: number; tops: [number, number] };
-  end: { cx: number; badge: [number, number]; title: [number, number]; line: [number, number, number] };
+  end: { cx: number; badge: [number, number]; title: [number, number]; line: [number, number, number]; logo: [number, number] };
 };
 
 const LAYOUTS: Record<"tall" | "wide", Layout> = {
@@ -100,7 +100,7 @@ const LAYOUTS: Record<"tall" | "wide", Layout> = {
     card: { left: 80, top: 440, w: 920, h: 740, pad: 40, head: 50 },
     date: { w: 112, h: 94, gap: 8, num: 20, rate: 27 },
     answer: { size: 84, tops: [510, 616] },
-    end: { cx: 540, badge: [380, 190], title: [610, 84], line: [850, 30, 960] },
+    end: { cx: 540, badge: [360, 190], title: [590, 84], line: [830, 30, 960], logo: [915, 230] },
   },
   wide: {
     x: 120,
@@ -109,7 +109,7 @@ const LAYOUTS: Record<"tall" | "wide", Layout> = {
     card: { left: 1000, top: 200, w: 800, h: 680, pad: 36, head: 46 },
     date: { w: 96, h: 84, gap: 8, num: 18, rate: 24 },
     answer: { size: 92, tops: [380, 490] },
-    end: { cx: 960, badge: [200, 170], title: [410, 84], line: [640, 30, 900] },
+    end: { cx: 960, badge: [180, 170], title: [390, 84], line: [620, 30, 900], logo: [700, 210] },
   },
 };
 
@@ -393,6 +393,7 @@ export const GNRevenue: React.FC<{ wide?: boolean; sound?: boolean }> = ({ wide 
   const title = ramp(f, T.END + 12, 24);
   const title2 = ramp(f, T.END + 20, 24);
   const line = ramp(f, T.END + 38, 24);
+  const logo = ramp(f, T.END + 50, 24);
   const badgeSize = interpolate(travel, [0, 1], [L.badge.size, E.badge[1]]);
   const badgeLeft = interpolate(travel, [0, 1], [L.x, E.cx - E.badge[1] / 2]);
   const badgeTop = interpolate(travel, [0, 1], [L.badge.top, E.badge[0]]);
@@ -510,6 +511,18 @@ export const GNRevenue: React.FC<{ wide?: boolean; sound?: boolean }> = ({ wide 
       >
         Run on Revanista, our own revenue management system
       </div>
+      {/* Revanista's own logo (cut from the Revanista carousel, recoloured GN navy; Scott: "put the Revanista logo") */}
+      <Img
+        src={staticFile("brand/revanista-logo-navy.png")}
+        style={{
+          position: "absolute",
+          left: E.cx - E.logo[1] / 2,
+          top: E.logo[0],
+          width: E.logo[1],
+          opacity: logo,
+          transform: `translateY(${(1 - logo) * 20}px)`,
+        }}
+      />
     </AbsoluteFill>
   );
 };
