@@ -74,9 +74,9 @@ const LAYOUTS: Record<"tall" | "wide", Layout> = {
   tall: {
     x: 80,
     badge: { top: 80, size: 120 },
-    line: { size: 96, top: 262 },
-    card: { left: 80, top: 420, cell: 112, row: 84, gap: 8, pad: 44, head: 52, days: 22, num: 24 },
-    answer: { size: 96, tops: [500, 620] },
+    line: { size: 96, top: 300 },
+    card: { left: 80, top: 470, cell: 112, row: 84, gap: 8, pad: 44, head: 52, days: 22, num: 24 },
+    answer: { size: 84, tops: [510, 616] },
     end: { top: 470, size: 88, sub: 30 },
     pos: "50% 50%",
     tint: "linear-gradient(180deg, rgba(24,43,60,0.78) 0%, rgba(24,43,60,0.66) 50%, rgba(24,43,60,0.78) 100%)",
