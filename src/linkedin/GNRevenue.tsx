@@ -64,13 +64,13 @@ export const END = 630;
 const beat = (n: number) => END - n * BEAT;
 export const T = {
   HOOK1: beat(42), // "December's busy." over December filling up (in from the first frame: LinkedIn previews it)
-  DEC: [beat(41) + 6, beat(37)] as [number, number], // December's dates fill in
+  DEC: [-36, beat(37)] as [number, number], // December's dates fill in, a few already booked on frame one (LinkedIn's preview)
   FLIP: beat(35), // the page turns to January
   HOOK2: beat(34), // "January's in good hands." (Scott: "January's next" sounded like there's no time)
   JAN: [beat(33), beat(29) + 6] as [number, number], // January's dates tick off, in order
   HOOK_OUT: beat(27),
   DEVICES: beat(26), // Revanista as GN shows it
-  FEATURES: [beat(22), beat(17), beat(12)], // three points, 2.5 seconds apart (Scott: "too fast", "maybe too much text")
+  FEATURES: [beat(23), beat(18), beat(13)], // three points, 2.5 seconds apart (Scott: "too fast", "maybe too much text")
   CLEAR: beat(7), // the studio clears to white
   A1: beat(6), // "You look after Christmas."
   A2: beat(5), // "We'll get January ready."

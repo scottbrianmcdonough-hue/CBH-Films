@@ -4,7 +4,8 @@
   - the track: Inspiring Uplifting Indie Rock (Music_for_Creators, Pixabay 328509, 120 BPM), the same song as the
     Contact Centre post so GN's posts share a sound, but its ending: the last hit (130.09s) lands on END, where the
     roundel comes to the middle of the end card, and the song rings out under it.
-  - the taps: a soft click as each point of the service lands (FEATURES), kept low under the music. No whooshes or chimes.
+  - December filling: a soft patter of muted taps; the page turn: a papery swish; January: light pencil ticks;
+    each point of the service: a soft tap. All kept low under the music. No whooshes or chimes.
 Timings are read from src/linkedin/GNRevenue.tsx (BEAT, END and T). Writes public/campaigns/gn-revenue/soundtrack.wav.
 Usage: python3 scripts/gn-revenue-sfx.py
 """
@@ -35,8 +36,32 @@ def val(name):
     return beat(int(m.group(1))) + (int(m.group(2).replace(" ", "")) if m.group(2) else 0)
 
 
-feats = re.search(r"FEATURES: \[([^\]]*)\]", src).group(1)
-FEATURES = [beat(int(n)) for n in re.findall(r"beat\((\d+)\)", feats)]
+import math
+
+
+def arr(name):
+    # an array in T, e.g. DEC: [-36, beat(37)], evaluated with the picture's own beat()
+    return eval(re.search(rf"  {name}: (\[[^\]]*\])", src).group(1), {"beat": beat})
+
+
+FEATURES = arr("FEATURES")
+DEC = arr("DEC")
+JAN = arr("JAN")
+FLIP = eval(re.search(r"  FLIP: ([^,]*),", src).group(1), {"beat": beat})
+
+
+def jsrand(seed):  # the picture's rand(), so December's dates fill in the same order here
+    x = math.sin(seed * 12.9898 + 78.233) * 43758.5453
+    return x - math.floor(x)
+
+
+order = list(range(31))
+for i in range(30, 0, -1):
+    j = math.floor(jsrand(i + 40) * (i + 1))
+    order[i], order[j] = order[j], order[i]
+SCATTER = [0] * 31
+for k, d in enumerate(order):
+    SCATTER[d] = k
 
 N = int(FRAMES / FPS * SR)
 tt = np.arange(N) / SR
@@ -63,19 +88,46 @@ def room(x, decay=0.25, wet=0.2):
 fx = np.zeros(N)
 
 # a tick: a short click with a little woody body
-def tick(pitch, gain):
+def tick(pitch, gain, decay=0.0025):
     n = int(0.03 * SR)
     t = np.arange(n) / SR
-    click = sosfilt(butter(2, [pitch, pitch * 3], "band", fs=SR, output="sos"), rng.standard_normal(n)) * np.exp(-t / 0.0025)
+    click = sosfilt(butter(2, [pitch, pitch * 3], "band", fs=SR, output="sos"), rng.standard_normal(n)) * np.exp(-t / decay)
     body = np.sin(2 * np.pi * pitch * 0.5 * t) * np.exp(-t / 0.008)
     x = click + body * 0.4
     return gain * x / np.max(np.abs(x))
 
 
-for k, at in enumerate(FEATURES):  # a soft tap as each point of the service lands, its tick drawing
-    c = tick(1300 + k * 90, 0.1)
-    i = int((at + 5) / FPS * SR)
-    fx[i:i + len(c)] += c
+def place(x, frame):
+    i = int(frame / FPS * SR)
+    if i < 0 or i >= N:
+        return
+    fx[i:i + len(x)] += x[: N - i]
+
+
+# December filling: a soft patter of muted taps, one a date as it books (Scott: "subtle sound effects")
+for d in range(31):
+    at = DEC[0] + SCATTER[d] / 30 * (DEC[1] - DEC[0]) + 3
+    place(tick(700 + 60 * jsrand(d + 7), 0.035, 0.0018), at)
+
+# the page turning: a short papery swish, its band rising as the page lifts
+n = int(0.42 * SR)
+t = np.arange(n) / SR
+env = np.sin(np.pi * np.clip(t / 0.42, 0, 1)) ** 1.6
+noise = rng.standard_normal(n)
+lo = sosfilt(butter(2, [800, 2600], "band", fs=SR, output="sos"), noise)
+hi = sosfilt(butter(2, [2600, 7000], "band", fs=SR, output="sos"), noise)
+k = np.clip(t / 0.42, 0, 1)
+swish = (lo * (1 - k) + hi * k * 0.6) * env
+place(swish / np.max(np.abs(swish)) * 0.12, FLIP)
+
+# January ticking off: light pencil ticks, rising a touch through the month
+for d in range(31):
+    at = JAN[0] + d / 30 * (JAN[1] - JAN[0]) + 4
+    place(tick(2200 + d * 12, 0.03, 0.0012), at)
+
+# each point of the service: a soft tap as its tick draws
+for k2, at in enumerate(FEATURES):
+    place(tick(1300 + k2 * 90, 0.1), at + 5)
 
 fx = room(fx)
 mix = music.copy()
