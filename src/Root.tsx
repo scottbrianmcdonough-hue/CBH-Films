@@ -117,7 +117,7 @@ import { UnwrapFilm } from "./hotel-film/unwrap/UnwrapFilm";
 import { GN_FPS, GN_HEIGHT, GN_STATS, GN_WIDTH } from "./linkedin/GNStats";
 import { GNSearchDemo, GN_SEARCH_FRAMES } from "./linkedin/GNSearchDemo";
 import { GNContactCentre, gnContactFrames } from "./linkedin/GNContactCentre";
-import { GNRevenue, GNRevenueSlide, GN_REVENUE_FRAMES } from "./linkedin/GNRevenue";
+import { GNRevenue, GN_REVENUE_FRAMES } from "./linkedin/GNRevenue";
 import {
   AmcReel,
   AmcStory,
@@ -905,15 +905,6 @@ export const RemotionRoot: React.FC = () => {
         width={GN_WIDTH}
         height={GN_HEIGHT}
         defaultProps={{ wide: false }}
-      />
-      <Composition
-        id="gn-revenue-carousel"
-        component={GNRevenueSlide}
-        durationInFrames={1}
-        fps={GN_FPS}
-        width={GN_WIDTH}
-        height={GN_HEIGHT}
-        defaultProps={{ slide: 1 }}
       />
       <Composition
         id="gn-revenue-wide"

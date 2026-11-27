@@ -4,10 +4,7 @@
   - the track: Inspiring Uplifting Indie Rock (Music_for_Creators, Pixabay 328509, 120 BPM), the same song as the
     Contact Centre post so GN's posts share a sound, but its ending: the last hit (130.09s) lands on END, where the
     roundel comes to the middle of the end card, and the song rings out under it.
-  - the slide: a soft airy swish as the screen slides from December to January (SWIPE).
-  - the steps: a light tap as each of Demand, Competitors and Rates set lights up.
-  - the ticks: a soft click as each of the week's January rates moves (rising a touch through the week), kept low
-    under the music. No whooshes or chimes.
+  - the taps: a soft click as each point of the service lands (FEATURES), kept low under the music. No whooshes or chimes.
 Timings are read from src/linkedin/GNRevenue.tsx (BEAT, END and T). Writes public/campaigns/gn-revenue/soundtrack.wav.
 Usage: python3 scripts/gn-revenue-sfx.py
 """
@@ -38,11 +35,8 @@ def val(name):
     return beat(int(m.group(1))) + (int(m.group(2).replace(" ", "")) if m.group(2) else 0)
 
 
-SWIPE = val("SWIPE")
-DEMAND = val("DEMAND")
-COMP = val("COMP")
-rates = re.search(r"RATES: \[beat\((\d+)\), beat\((\d+)\)\]", src)
-RATES = (beat(int(rates.group(1))), beat(int(rates.group(2))))
+feats = re.search(r"FEATURES: \[([^\]]*)\]", src).group(1)
+FEATURES = [beat(int(n)) for n in re.findall(r"beat\((\d+)\)", feats)]
 
 N = int(FRAMES / FPS * SR)
 tt = np.arange(N) / SR
@@ -68,19 +62,6 @@ def room(x, decay=0.25, wet=0.2):
 
 fx = np.zeros(N)
 
-# the slide: band passed noise swelling and falling over ~0.45s, its band rising, soft
-n = int(0.45 * SR)
-t = np.arange(n) / SR
-env = np.sin(np.pi * np.clip(t / 0.45, 0, 1)) ** 2
-noise = rng.standard_normal(n)
-lo = sosfilt(butter(2, [500, 2000], "band", fs=SR, output="sos"), noise)
-hi = sosfilt(butter(2, [2000, 6000], "band", fs=SR, output="sos"), noise)
-k = np.clip(t / 0.45, 0, 1)
-slide = (lo * (1 - k) + hi * k * 0.6) * env
-i = int(SWIPE / FPS * SR)
-fx[i:i + n] += slide / np.max(np.abs(slide)) * 0.14
-
-
 # a tick: a short click with a little woody body
 def tick(pitch, gain):
     n = int(0.03 * SR)
@@ -91,14 +72,9 @@ def tick(pitch, gain):
     return gain * x / np.max(np.abs(x))
 
 
-for at, pitch in [(DEMAND, 1200), (COMP, 1350), (RATES[0], 1500)]:
-    c = tick(pitch, 0.12)
-    i = int(at / FPS * SR)
-    fx[i:i + len(c)] += c
-for day in range(7):  # the week's seven base rates moving, a column at a time
-    at = RATES[0] + day / 6 * (RATES[1] - RATES[0]) + 6  # as the picture's rate starts to move
-    c = tick(1500 + day * 60, 0.06)
-    i = int(at / FPS * SR)
+for k, at in enumerate(FEATURES):  # a soft tap as each point of the service lands, its tick drawing
+    c = tick(1300 + k * 90, 0.1)
+    i = int((at + 5) / FPS * SR)
     fx[i:i + len(c)] += c
 
 fx = room(fx)
@@ -130,5 +106,5 @@ peak = np.max(np.abs(mix)) * gain
 if peak > 10 ** (-1.5 / 20):
     gain *= 10 ** (-1.5 / 20) / peak
 write(OUT, mix * gain)
-print(f"swipe {SWIPE}, steps {DEMAND}/{COMP}/{RATES[0]}, rates {RATES}, end {END}, frames {FRAMES}, track from {start:.2f}s; "
+print(f"features {FEATURES}, end {END}, frames {FRAMES}, track from {start:.2f}s; "
       f"{lufs(OUT):.1f} LUFS, peak {20 * np.log10(np.max(np.abs(mix * gain))):.1f} dBFS")

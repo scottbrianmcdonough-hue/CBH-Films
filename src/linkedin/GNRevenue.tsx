@@ -11,28 +11,23 @@ import {
 import { sans, serif } from "../hotel-film/theme";
 
 // Great National Revenue Management (Scott, 27 Nov: next week's GN LinkedIn post, "While your team is busy with
-// Christmas, someone can be getting January ready"). Third take, after Scott's notes ("end card is too busy", "doesn't
-// explain Revanista", "doesn't feel like Christmas", "what does the calendar have to do with revenue", then "more
-// corporate for GN, not advent calendar stuff"): the whole piece is a revenue screen.
-//   - December's rate grid, every date busy, deep shading and high rates: "December's full." Behind it GN's own hotels
-//     at dusk cut on the beat in a navy tint (Scott: "creative corporate like that last one"); Christmas comes from the
-//     month itself and a light snowfall, nothing more.
-//   - The grid slides across to January, like a revenue system moving to the next month: one flat rate on every date,
-//     "Then comes January."
-//   - Three steps light in turn, Demand, Competitors, Rates set: demand shading washes in, a competitor check sweeps
-//     the dates, and the rates move to match, weekends up and quiet midweek dates sharper: "The right rate for every
-//     date." Revanista's logo sits in the screen's header (the screen is the system). Rates are illustrative only.
-//   - GN's white: "You look after Christmas. / We'll get January ready." End card: the roundel, Great National Revenue
-//     Management, one line saying what Revanista is.
-// The Contact Centre video's type and colours, so the two posts read as a pair. No hyphens, em dashes or triads in the
-// text. 4:5 and 16:9 (`wide`). Sound: scripts/gn-revenue-sfx.py (reads BEAT, END and T from here).
+// Christmas, someone can be getting January ready"). This take after Scott's notes on the rate table versions ("too
+// fast to know what's going on", "don't make up the UI", "use the info"): nothing invented.
+//   - The hook over GN's own hotels at dusk in a navy tint with a light snowfall, the Contact Centre video's look.
+//   - Revanista as GN shows it: the devices image from GN's own Revanista carousel (the real rate screens on a laptop,
+//     a monitor and a phone; the carousel's red decorations taken out by scripts/revanista-devices-clean.py),
+//     "Revanista, our own revenue management system".
+//   - What the service gives a hotel, from GN's Revenue Management page, one point every two seconds, the list
+//     building so each can be read: account manager, budgets, weekly calls, rate loading, price shopping.
+//   - GN's white: "You look after Christmas. / We'll get January ready.", and the end card: the roundel travelling to
+//     the middle, Great National Revenue Management, what Revanista is, Revanista's logo.
+// No figures, no hyphens, em dashes or triads in the text. 4:5 and 16:9 (`wide`). Sound: scripts/gn-revenue-sfx.py
+// (reads BEAT, END and T from here).
 
 /* Colours */
 const navy = "#182b3c";
 const navyDeep = "#0f1e2b";
 const lime = "#aabb17";
-const grey = "#6b7b8a";
-const pale = "#eef1f4";
 const white = "#ffffff";
 
 /* Motion */
@@ -62,86 +57,68 @@ const rand = (seed: number) => {
 /* Timing (frames at 30fps), on the track's beat (120 BPM, 15 frames), counted back from END: the end card lands on the
    track's last hit */
 export const BEAT = 15;
-export const END = 384;
+export const END = 624;
 const beat = (n: number) => END - n * BEAT;
 export const T = {
-  L1: beat(24), // "December's full."
-  DEC: [6, beat(21)] as [number, number], // December fills in from the first second, a column at a time
-  SWIPE: beat(18), // the grid slides across to January
-  L2: beat(17), // "Then comes January."
-  DEMAND: beat(16), // demand shading washes in
-  COMP: beat(14), // the competitor check sweeps the dates
-  RATES: [beat(12), beat(10)] as [number, number], // the rates move, date by date
-  L3: beat(12), // "The right rate for every date."
+  HOOK1: beat(43), // "While your team is busy with Christmas," (in from the first frame: LinkedIn previews it)
+  HOOK2: beat(39), // "someone can be getting January ready."
+  HOOK_OUT: beat(35),
+  DEVICES: beat(34), // Revanista as GN shows it
+  FEATURES: [beat(30), beat(26), beat(22), beat(18), beat(14)], // a point every two seconds, the list building
   CLEAR: beat(9), // the navy clears to white
   A1: beat(8), // "You look after Christmas."
   A2: beat(6), // "We'll get January ready."
   A_OUT: beat(1) - 4,
   END,
 };
-export const GN_REVENUE_FRAMES = T.END + 120;
+export const GN_REVENUE_FRAMES = T.END + 105;
+
+/* What the service gives a hotel, from GN's Revenue Management page */
+const FEATURES = [
+  "A dedicated Revenue Account Manager",
+  "Yearly room budgets, reviewed with you",
+  "Weekly performance calls and reports",
+  "Rates loaded up to 24 months ahead",
+  "Competitor price shopping",
+];
 
 /* Layouts */
 type Layout = {
   x: number;
   badge: { top: number; size: number };
-  line: { size: number; top: number; width?: number };
-  card: { left: number; top: number; w: number; h: number; pad: number; head: number };
-  table: { label: number; labelSize: number; row: number; value: number; day: number; date: number };
+  hook: { size: number; tops: [number, number]; width: number };
+  title: { left: number; top: number; size: number; width: number };
+  devices: { left: number; top: number; w: number };
+  list: { left: number; top: number; step: number; size: number; width: number };
   answer: { size: number; tops: [number, number] };
   end: { cx: number; badge: [number, number]; title: [number, number]; line: [number, number, number]; logo: [number, number] };
+  tint: string;
 };
 
 const LAYOUTS: Record<"tall" | "wide", Layout> = {
   tall: {
     x: 80,
     badge: { top: 80, size: 120 },
-    line: { size: 84, top: 290 },
-    card: { left: 60, top: 440, w: 960, h: 726, pad: 34, head: 50 },
-    table: { label: 190, labelSize: 22, row: 88, value: 27, day: 17, date: 20 },
+    hook: { size: 88, tops: [330, 540], width: 920 },
+    title: { left: 80, top: 236, size: 48, width: 920 },
+    devices: { left: 60, top: 372, w: 960 },
+    list: { left: 80, top: 932, step: 58, size: 30, width: 920 },
     answer: { size: 84, tops: [510, 616] },
     end: { cx: 540, badge: [360, 190], title: [590, 84], line: [830, 30, 960], logo: [915, 230] },
+    tint: "linear-gradient(180deg, rgba(24,43,60,0.80) 0%, rgba(24,43,60,0.70) 50%, rgba(24,43,60,0.84) 100%)",
   },
   wide: {
     x: 120,
     badge: { top: 70, size: 110 },
-    line: { size: 80, top: 420, width: 760 },
-    card: { left: 960, top: 196, w: 860, h: 690, pad: 32, head: 46 },
-    table: { label: 170, labelSize: 20, row: 84, value: 24, day: 15, date: 18 },
+    hook: { size: 88, tops: [360, 470], width: 1500 },
+    title: { left: 120, top: 260, size: 50, width: 720 },
+    devices: { left: 930, top: 300, w: 880 },
+    list: { left: 120, top: 470, step: 70, size: 30, width: 720 },
     answer: { size: 92, tops: [380, 490] },
     end: { cx: 960, badge: [180, 170], title: [390, 84], line: [620, 30, 900], logo: [700, 210] },
+    tint: "linear-gradient(90deg, rgba(24,43,60,0.88) 0%, rgba(24,43,60,0.76) 45%, rgba(24,43,60,0.62) 100%)",
   },
 };
-
-/* The two weeks on screen, Revanista's rate table for each (Scott: "use the carousel, it was like a UI in there": the
-   Revanista carousel's own screen, dates across the top, rows for suggested rate, base rate, left to sell and
-   occupancy). Every figure is illustrative only. */
-type Week = { name: string; days: string[]; dates: string[]; base: number[]; suggested: number[]; comp: number[]; left: number[]; occ: number[] };
-const DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-const DECEMBER: Week = {
-  name: "December 2026",
-  days: DAYS,
-  dates: ["21 Dec", "22 Dec", "23 Dec", "24 Dec", "25 Dec", "26 Dec", "27 Dec"],
-  base: [219, 229, 249, 249, 249, 229, 209],
-  suggested: [219, 229, 249, 249, 249, 229, 209],
-  comp: [205, 215, 239, 245, 239, 219, 199],
-  left: [2, 1, 0, 0, 0, 1, 3],
-  occ: [98, 99, 100, 100, 100, 99, 97],
-};
-const FLAT = 139;
-const JANUARY: Week = {
-  name: "January 2027",
-  days: DAYS,
-  dates: ["4 Jan", "5 Jan", "6 Jan", "7 Jan", "8 Jan", "9 Jan", "10 Jan"],
-  base: [FLAT, FLAT, FLAT, FLAT, FLAT, FLAT, FLAT],
-  suggested: [109, 105, 109, 119, 159, 179, 125],
-  comp: [115, 112, 115, 125, 152, 169, 129],
-  left: [46, 48, 45, 41, 24, 15, 37],
-  occ: [31, 28, 32, 38, 64, 76, 41],
-};
-
-/* Revanista's own colours, as on its screen in the carousel */
-const RV = { head: "#5d6a87", base: "#2c3557", amber: "#f2b632", occ: "#cdd6e4", orange: "#e0802a", row: "#f4f6f9" };
 
 /* Light snow over the navy: the only festive touch */
 const Snow: React.FC<{ f: number; w: number; h: number }> = ({ f, w, h }) => (
@@ -170,16 +147,15 @@ const Snow: React.FC<{ f: number; w: number; h: number }> = ({ f, w, h }) => (
   </AbsoluteFill>
 );
 
-/* GN's own hotels behind, tinted GN navy, cutting on the beat like the Contact Centre video (Scott: "creative corporate
-   like that last one"): December's two at dusk (South Court's bright blue sign was out, the polish pass), then Riverside Park, the client the post names, for
-   January. None of them were in the Contact Centre video. Photos from GN's Our Hotels page (gn-key/hotels) */
+/* GN's own hotels behind, tinted GN navy, cutting on the beat like the Contact Centre video: two at dusk for the hook,
+   then Riverside Park, the client the post names. Photos from GN's Our Hotels page (gn-key/hotels) */
 const SHOTS: { src: string; tall: string; from: number }[] = [
   { src: "newtown-park", tall: "40% 50%", from: 0 },
-  { src: "abbeyleix-manor", tall: "45% 50%", from: beat(20) },
-  { src: "riverside-park", tall: "35% 50%", from: beat(18) },
+  { src: "abbeyleix-manor", tall: "45% 50%", from: beat(38) },
+  { src: "riverside-park", tall: "35% 50%", from: T.DEVICES },
 ];
 
-const Hotels: React.FC<{ f: number; wide: boolean }> = ({ f, wide }) => {
+const Hotels: React.FC<{ f: number; L: Layout; wide: boolean }> = ({ f, L, wide }) => {
   const i = SHOTS.reduce((acc, s, k) => (f >= s.from ? k : acc), 0);
   const shot = SHOTS[i];
   const end = i + 1 < SHOTS.length ? SHOTS[i + 1].from : T.CLEAR + 20;
@@ -197,206 +173,52 @@ const Hotels: React.FC<{ f: number; wide: boolean }> = ({ f, wide }) => {
           transform: `scale(${push})`,
         }}
       />
-      <AbsoluteFill
-        style={{
-          background: wide
-            ? "linear-gradient(90deg, rgba(24,43,60,0.86) 0%, rgba(24,43,60,0.74) 45%, rgba(24,43,60,0.6) 100%)"
-            : "linear-gradient(180deg, rgba(24,43,60,0.78) 0%, rgba(24,43,60,0.66) 50%, rgba(24,43,60,0.8) 100%)",
-        }}
-      />
+      <AbsoluteFill style={{ background: L.tint }} />
     </AbsoluteFill>
   );
 };
 
-/* One week of Revanista's rate table. Each cell shows its value from its own frame on (`at`), so the rows fill in
-   date by date; a lime outline runs down the column being checked. */
-type Cell = { v: string; at?: number; tone?: number; arrow?: number }; // arrow: -1 to 1, a rate on the move
-const ROW_LABELS = ["Suggested rate", "Base rate", "Competitors", "Left to sell", "Occupancy"];
-
-const Table: React.FC<{
-  f: number;
-  w: Week;
-  L: Layout;
-  rows: Cell[][]; // per row, per day
-  scan?: number; // the column being checked (fractional), or -1
-}> = ({ f, w, L, rows, scan = -1 }) => {
-  const t = L.table;
-  const cols = `${t.label}px repeat(7, 1fr)`;
-  const band = (i: number) => [undefined, RV.base, RV.row, RV.amber, RV.occ][i];
-  const ink = (i: number) => [RV.orange, white, grey, navy, navy][i];
+/* A point of the service: a lime tick in a ring, the words beside it */
+const Feature: React.FC<{ f: number; at: number; text: string; top: number; L: Layout["list"]; away: number }> = ({
+  f,
+  at,
+  text,
+  top,
+  L,
+  away,
+}) => {
+  const p = ramp(f, at, 16);
+  const tick = ramp(f, at + 4, 12);
+  const g = ramp(f, away, 16, io);
+  const ring = Math.round(L.size * 1.35);
   return (
-    <div style={{ position: "relative" }}>
-      {/* the date header */}
-      <div style={{ display: "grid", gridTemplateColumns: cols, background: RV.head, borderRadius: "10px 10px 0 0" }}>
-        <div style={{ fontFamily: sans, fontSize: t.label * 0.11, color: "rgba(255,255,255,0.8)", padding: "10px 12px", fontWeight: 600 }}>Date</div>
-        {w.days.map((d, i) => (
-          <div key={i} style={{ textAlign: "center", padding: "8px 2px", fontFamily: sans, color: white }}>
-            <div style={{ fontSize: t.day, opacity: 0.8 }}>{d}</div>
-            <div style={{ fontSize: t.date, fontWeight: 700 }}>{w.dates[i]}</div>
-          </div>
-        ))}
-      </div>
-      {/* the rows */}
-      {rows.map((row, r) => (
-        <div key={r} style={{ display: "grid", gridTemplateColumns: cols, background: band(r) ?? white, borderBottom: "1px solid #e3e7ee", height: t.row, alignItems: "center" }}>
-          <div style={{ fontFamily: sans, fontSize: t.labelSize, fontWeight: 600, color: r === 1 ? white : navy, padding: "0 12px" }}>{ROW_LABELS[r]}</div>
-          {row.map((c, i) => {
-            const p = c.at === undefined ? 1 : ramp(f, c.at, 8);
-            return (
-              <div key={i} style={{ position: "relative", height: "100%", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                {c.arrow !== undefined && Math.abs(c.arrow) > 0.02 ? (
-                  <svg
-                    width={t.value * 0.55}
-                    height={t.value * 0.55}
-                    viewBox="0 0 24 24"
-                    style={{ position: "absolute", top: 6, right: 4, opacity: Math.abs(c.arrow) }}
-                  >
-                    <path d={c.arrow > 0 ? "M12 4l8 11H4z" : "M12 20l8-11H4z"} fill={lime} />
-                  </svg>
-                ) : null}
-                {c.tone !== undefined ? (
-                  <div style={{ position: "absolute", inset: 3, borderRadius: 6, background: `rgba(44,53,87,${0.75 * c.tone * p})` }} />
-                ) : null}
-                <span
-                  style={{
-                    position: "relative",
-                    fontFamily: sans,
-                    fontSize: t.value,
-                    fontWeight: 700,
-                    color: c.tone !== undefined && c.tone * p > 0.5 ? white : ink(r),
-                    opacity: c.at === undefined ? 1 : p,
-                    transform: `translateY(${(1 - p) * 8}px)`,
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 3,
-                  }}
-                >
-                  {c.v}
-                </span>
-              </div>
-            );
-          })}
-        </div>
-      ))}
-      {/* the column being checked */}
-      {scan >= 0 && scan < 7 ? (
-        <div
-          style={{
-            position: "absolute",
-            top: 0,
-            bottom: 0,
-            left: `calc(${t.label}px + (100% - ${t.label}px) * ${Math.floor(scan)} / 7)`,
-            width: `calc((100% - ${t.label}px) / 7)`,
-            border: `3px solid ${lime}`,
-            borderRadius: 8,
-            pointerEvents: "none",
-          }}
+    <div
+      style={{
+        position: "absolute",
+        left: L.left,
+        top,
+        width: L.width,
+        display: "flex",
+        alignItems: "center",
+        gap: 20,
+        opacity: p * (1 - g),
+        transform: `translateX(${(1 - p) * -30}px)`,
+      }}
+    >
+      <svg width={ring} height={ring} viewBox="0 0 24 24" style={{ flex: "none" }}>
+        <circle cx="12" cy="12" r="11" fill="none" stroke={lime} strokeWidth="1.4" />
+        <path
+          d="M7 12.5l3.2 3.2L17 9"
+          fill="none"
+          stroke={lime}
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeDasharray={16}
+          strokeDashoffset={16 * (1 - tick)}
         />
-      ) : null}
-    </div>
-  );
-};
-
-/* The revenue screen: the month, Revanista's logo, the three steps, and the week's table sliding December to January */
-const STEPS = ["Demand", "Competitors", "Rates set"];
-
-const Screen: React.FC<{ f: number; L: Layout }> = ({ f, L }) => {
-  const swipe = ramp(f, T.SWIPE, 18, io);
-  const inner = L.card.w - L.card.pad * 2;
-  const stepAt = [T.DEMAND, T.COMP, T.RATES[0]];
-  const each = (start: number, end: number) => (i: number) => start + (i / 6) * (end - start);
-
-  // December: every row fills in, a column at a time, busy from the first frame of the card
-  const dec = each(T.DEC[0], T.DEC[1]);
-  const decRows: Cell[][] = [
-    DECEMBER.suggested.map((v, i) => ({ v: `€${v}`, at: dec(i) })),
-    DECEMBER.base.map((v, i) => ({ v: `€${v}`, at: dec(i) })),
-    DECEMBER.comp.map((v, i) => ({ v: `€${v}`, at: dec(i) + 3 })),
-    DECEMBER.left.map((v, i) => ({ v: `${v}`, at: dec(i) + 5 })),
-    DECEMBER.occ.map((v, i) => ({ v: `${v}%`, at: dec(i) + 7, tone: v / 100 })),
-  ];
-
-  // January: one flat rate and the rooms left; then demand, the competitor check, and the rates set to match
-  const occAt = each(T.DEMAND, T.DEMAND + 24);
-  const compAt = each(T.COMP, T.RATES[0] - 6);
-  const rateAt = each(T.RATES[0], T.RATES[1]);
-  const janRows: Cell[][] = [
-    JANUARY.suggested.map((v, i) => ({ v: `€${v}`, at: rateAt(i) })),
-    JANUARY.base.map((_, i) => {
-      const p = ramp(f, rateAt(i) + 6, 12, io);
-      const v = Math.round(interpolate(p, [0, 1], [FLAT, JANUARY.suggested[i]]));
-      const dir = Math.sign(JANUARY.suggested[i] - FLAT);
-      return { v: `€${v}`, arrow: dir * Math.sin(Math.PI * Math.min(1, p * 1.15)) };
-    }),
-    JANUARY.comp.map((v, i) => ({ v: `€${v}`, at: compAt(i) })),
-    JANUARY.left.map((v) => ({ v: `${v}` })),
-    JANUARY.occ.map((v, i) => ({ v: `${v}%`, at: occAt(i), tone: v / 100 })),
-  ];
-  const scan = f >= T.COMP && f < T.RATES[0] ? interpolate(f, [T.COMP, T.RATES[0] - 2], [0, 7]) : -1;
-
-  return (
-    <div style={{ width: "100%", height: "100%", boxSizing: "border-box", padding: L.card.pad, background: white, borderRadius: 26, overflow: "hidden" }}>
-      {/* header: the month, sliding with the table, and Revanista */}
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 18 }}>
-        <div style={{ position: "relative", height: L.card.head * 1.15, flex: 1, overflow: "hidden" }}>
-          {[DECEMBER, JANUARY].map((m, i) => (
-            <div
-              key={m.name}
-              style={{
-                position: "absolute",
-                left: 0,
-                top: 0,
-                fontFamily: serif,
-                fontWeight: 500,
-                fontSize: L.card.head,
-                color: navy,
-                lineHeight: 1.1,
-                whiteSpace: "nowrap",
-                transform: `translateX(${(i - swipe) * (inner + 60)}px)`,
-                opacity: i === 0 ? 1 - swipe : swipe,
-              }}
-            >
-              {m.name}
-            </div>
-          ))}
-        </div>
-        <Img src={staticFile("brand/revanista-logo-navy.png")} style={{ height: Math.round(L.card.head * 1.15) }} />
-      </div>
-      {/* the three steps, each lighting as it happens */}
-      <div style={{ display: "flex", gap: 10, marginBottom: 20 }}>
-        {STEPS.map((st, i) => {
-          const on = ramp(f, stepAt[i], 10) > 0.5;
-          return (
-            <div
-              key={st}
-              style={{
-                fontFamily: sans,
-                fontSize: L.table.labelSize,
-                fontWeight: 600,
-                padding: "7px 16px",
-                borderRadius: 999,
-                color: on ? navy : grey,
-                background: on ? "rgba(170,187,23,0.22)" : pale,
-                display: "flex",
-                alignItems: "center",
-                gap: 8,
-              }}
-            >
-              <span style={{ width: 11, height: 11, borderRadius: 6, background: on ? lime : "#c9d1d9" }} />
-              {st}
-            </div>
-          );
-        })}
-      </div>
-      {/* the week's table, December sliding out to the left as January comes in */}
-      <div style={{ position: "relative", height: L.table.row * 5 + L.table.date * 3.4 }}>
-        <div style={{ position: "absolute", left: 0, top: 0, width: inner, transform: `translateX(${-swipe * (inner + 60)}px)` }}>
-          <Table f={f} w={DECEMBER} L={L} rows={decRows} />
-        </div>
-        <div style={{ position: "absolute", left: 0, top: 0, width: inner, transform: `translateX(${(1 - swipe) * (inner + 60)}px)` }}>
-          <Table f={f} w={JANUARY} L={L} rows={janRows} scan={scan} />
-        </div>
-      </div>
+      </svg>
+      <span style={{ fontFamily: sans, fontSize: L.size, color: white, lineHeight: 1.25 }}>{text}</span>
     </div>
   );
 };
@@ -409,7 +231,9 @@ export const GNRevenue: React.FC<{ wide?: boolean; sound?: boolean }> = ({ wide 
   const H = wide ? 1080 : 1350;
 
   const cleared = ramp(f, T.CLEAR, 20, io);
-  const cardIn = 1; // on screen from the first frame: LinkedIn previews it
+  const dev = ramp(f, T.DEVICES, 24);
+  const devPush = 1 + 0.06 * ramp(f, T.DEVICES, T.CLEAR - T.DEVICES, Easing.inOut(Easing.quad));
+  const devH = Math.round((L.devices.w * 480) / 875); // the image's own proportions
 
   const E = L.end;
   const travel = ramp(f, T.A_OUT, 34, io); // the roundel heads for the middle as the answer leaves
@@ -423,14 +247,14 @@ export const GNRevenue: React.FC<{ wide?: boolean; sound?: boolean }> = ({ wide 
 
   return (
     <AbsoluteFill style={{ background: "linear-gradient(135deg, #ffffff 0%, #ffffff 36%, #eef1f4 100%)" }}>
-      {/* the track, the slide and the ticks (scripts/gn-revenue-sfx.py) */}
+      {/* the track and a soft tap as each point lands (scripts/gn-revenue-sfx.py) */}
       {sound ? <Audio src={staticFile("campaigns/gn-revenue/soundtrack.wav")} /> : null}
 
       {/* GN's hotels in GN navy with a light snowfall, clearing to white */}
       {cleared < 1 ? (
         <AbsoluteFill style={{ opacity: 1 - cleared }}>
           <AbsoluteFill style={{ background: navyDeep }} />
-          <Hotels f={f} wide={wide} />
+          <Hotels f={f} L={L} wide={wide} />
           <Snow f={f} w={W} h={H} />
         </AbsoluteFill>
       ) : null}
@@ -441,48 +265,71 @@ export const GNRevenue: React.FC<{ wide?: boolean; sound?: boolean }> = ({ wide 
         style={{ position: "absolute", left: badgeLeft, top: badgeTop, width: badgeSize, height: badgeSize }}
       />
 
-      {/* the lines over the navy */}
+      {/* the hook */}
       {[
-        { text: "December’s full.", start: T.L1, away: T.SWIPE - 4 },
-        { text: "Then comes January.", start: T.L2, away: T.L3 - 6 },
-        { text: "The right rate for every date.", start: T.L3, away: T.CLEAR },
+        { text: "While your team is busy with Christmas,", start: T.HOOK1, top: L.hook.tops[0] },
+        { text: "someone can be getting January ready.", start: T.HOOK2, top: L.hook.tops[1] },
       ].map((l) => (
         <div
           key={l.text}
           style={{
             position: "absolute",
             left: L.x,
-            top: L.line.top,
-            width: L.line.width,
+            top: l.top,
+            width: L.hook.width,
             fontFamily: serif,
             fontWeight: 500,
-            fontSize: L.line.size,
+            fontSize: L.hook.size,
             lineHeight: 1.1,
             color: white,
-            whiteSpace: L.line.width ? "normal" : "nowrap",
-            ...enter(f, l.start, l.away),
+            ...enter(f, l.start, T.HOOK_OUT),
           }}
         >
           {l.text}
         </div>
       ))}
 
-      {/* the revenue screen */}
+      {/* Revanista, as GN shows it */}
       <div
         style={{
           position: "absolute",
-          left: L.card.left,
-          top: L.card.top,
-          width: L.card.w,
-          height: L.card.h,
-          borderRadius: 26,
-          boxShadow: "0 24px 60px rgba(0,0,0,0.45)",
-          opacity: cardIn * (1 - cleared),
-          transform: `translateY(${(1 - cardIn) * 40 - cleared * 30}px)`,
+          left: L.title.left,
+          top: L.title.top,
+          width: L.title.width,
+          fontFamily: serif,
+          fontWeight: 500,
+          fontSize: L.title.size,
+          lineHeight: 1.15,
+          color: white,
+          ...enter(f, T.DEVICES, T.CLEAR),
         }}
       >
-        <Screen f={f} L={L} />
+        Revanista, our own revenue management system
       </div>
+      <div
+        style={{
+          position: "absolute",
+          left: L.devices.left,
+          top: L.devices.top,
+          width: L.devices.w,
+          height: devH,
+          borderRadius: 22,
+          overflow: "hidden",
+          boxShadow: "0 24px 60px rgba(0,0,0,0.45)",
+          opacity: dev * (1 - cleared),
+          transform: `translateY(${(1 - dev) * 40 - cleared * 30}px)`,
+        }}
+      >
+        <Img
+          src={staticFile("campaigns/gn-revenue/revanista-devices.jpg")}
+          style={{ width: "100%", height: "100%", objectFit: "cover", transform: `scale(${devPush})`, transformOrigin: "62% 40%" }}
+        />
+      </div>
+
+      {/* what the service gives a hotel, the list building a point at a time */}
+      {FEATURES.map((text, i) => (
+        <Feature key={text} f={f} at={T.FEATURES[i]} text={text} top={L.list.top + i * L.list.step} L={L.list} away={T.CLEAR} />
+      ))}
 
       {/* the answer, navy on white */}
       {[
@@ -508,7 +355,7 @@ export const GNRevenue: React.FC<{ wide?: boolean; sound?: boolean }> = ({ wide 
         </div>
       ))}
 
-      {/* end card: the roundel, the service, what Revanista is */}
+      {/* end card: the roundel, the service, what Revanista is, its logo */}
       <div style={{ position: "absolute", left: 0, width: W, top: E.title[0], textAlign: "center", color: navy }}>
         <div style={{ fontFamily: serif, fontWeight: 500, fontSize: E.title[1], lineHeight: 1.08, opacity: title, transform: `translateY(${(1 - title) * 30}px)` }}>
           Great National
@@ -534,7 +381,6 @@ export const GNRevenue: React.FC<{ wide?: boolean; sound?: boolean }> = ({ wide 
       >
         Run on Revanista, our own revenue management system
       </div>
-      {/* Revanista's own logo (cut from the Revanista carousel, recoloured GN navy; Scott: "put the Revanista logo") */}
       <Img
         src={staticFile("brand/revanista-logo-navy.png")}
         style={{
@@ -546,137 +392,6 @@ export const GNRevenue: React.FC<{ wide?: boolean; sound?: boolean }> = ({ wide 
           transform: `translateY(${(1 - logo) * 20}px)`,
         }}
       />
-    </AbsoluteFill>
-  );
-};
-
-/* ------------------------------------------------------------------ the carousel
-   (Scott: the video was "too fast to know what's going on, use the carousel"): the same screens as stills, one step a
-   slide, each with a line saying what it shows, so people swipe at their own pace. 4:5, five slides, rendered as stills
-   and put together as a PDF for LinkedIn. */
-export const GN_REVENUE_SLIDES = 5;
-
-const Caption: React.FC<{ text: string }> = ({ text }) => (
-  <div
-    style={{
-      position: "absolute",
-      left: 60,
-      right: 60,
-      top: 1196,
-      fontFamily: sans,
-      fontSize: 30,
-      lineHeight: 1.4,
-      color: "rgba(255,255,255,0.9)",
-    }}
-  >
-    {text}
-  </div>
-);
-
-const SlideLine: React.FC<{ text: string }> = ({ text }) => (
-  <div style={{ position: "absolute", left: 80, top: 290, right: 60, fontFamily: serif, fontWeight: 500, fontSize: 84, lineHeight: 1.1, color: white }}>
-    {text}
-  </div>
-);
-
-export const GNRevenueSlide: React.FC<{ slide?: number }> = ({ slide = 1 }) => {
-  const L = LAYOUTS.tall;
-  // each screen slide is the video's own frame at that step, held still
-  const at = { 2: T.DEC[1] + 16, 3: T.L2 + 10, 4: T.RATES[1] + 14 }[slide] ?? 0;
-  const backdrop = (f: number) => (
-    <>
-      <AbsoluteFill style={{ background: navyDeep }} />
-      <Hotels f={f} wide={false} />
-      <Snow f={f} w={1080} h={1350} />
-    </>
-  );
-  const badge = <Img src={staticFile("brand/gn/gnh-badge.svg")} style={{ position: "absolute", left: 80, top: 80, width: 120, height: 120 }} />;
-  const count = (
-    <div style={{ position: "absolute", right: 70, top: 118, fontFamily: sans, fontSize: 24, color: "rgba(255,255,255,0.75)" }}>
-      {slide} / {GN_REVENUE_SLIDES}
-    </div>
-  );
-
-  if (slide === 1) {
-    return (
-      <AbsoluteFill>
-        {backdrop(0)}
-        {badge}
-        <div style={{ position: "absolute", right: 70, top: 118, fontFamily: sans, fontSize: 24, color: "rgba(255,255,255,0.75)" }}>Swipe →</div>
-        <div style={{ position: "absolute", left: 80, right: 80, top: 470, fontFamily: serif, fontWeight: 500, fontSize: 92, lineHeight: 1.1, color: white }}>
-          While your team is busy with Christmas, someone can be getting January ready.
-        </div>
-        <div style={{ position: "absolute", left: 80, bottom: 110, fontFamily: sans, fontSize: 28, color: lime, fontWeight: 600 }}>
-          Great National Revenue Management
-        </div>
-      </AbsoluteFill>
-    );
-  }
-
-  if (slide === GN_REVENUE_SLIDES) {
-    return (
-      <AbsoluteFill style={{ background: navy }}>
-        <Img src={staticFile("brand/gn/gnh-badge.svg")} style={{ position: "absolute", left: 540 - 95, top: 300, width: 190, height: 190 }} />
-        <div style={{ position: "absolute", left: 0, width: 1080, top: 540, textAlign: "center", fontFamily: serif, fontWeight: 500, fontSize: 84, lineHeight: 1.08, color: white }}>
-          Great National
-          <br />
-          Revenue Management
-        </div>
-        <div style={{ position: "absolute", left: 60, right: 60, top: 780, textAlign: "center", fontFamily: sans, fontSize: 30, color: "rgba(255,255,255,0.9)" }}>
-          Run on Revanista, our own revenue management system
-        </div>
-        <Img src={staticFile("brand/revanista-logo-navy.png")} style={{ position: "absolute", left: 540 - 115, top: 850, width: 230, filter: "brightness(0) invert(1)" }} />
-        {/* the ask, then the website on GN's lime pill (Scott: "and website"), as the Revanista carousel ends */}
-        <div style={{ position: "absolute", left: 0, width: 1080, top: 1000, textAlign: "center", fontFamily: serif, fontWeight: 500, fontSize: 44, color: white }}>
-          Planning ahead for 2027? Let’s talk.
-        </div>
-        <div
-          style={{
-            position: "absolute",
-            left: 540 - 330,
-            width: 660,
-            top: 1090,
-            textAlign: "center",
-            fontFamily: sans,
-            fontWeight: 700,
-            fontSize: 28,
-            color: navy,
-            background: lime,
-            borderRadius: 999,
-            padding: "18px 0",
-          }}
-        >
-          corporate.greatnationalhotels.com
-        </div>
-      </AbsoluteFill>
-    );
-  }
-
-  const lines: Record<number, [string, string]> = {
-    2: ["December’s full.", "Christmas week, every room booked and nothing left to sell."],
-    3: ["Then comes January.", "The first week of January, still on one flat rate for every day."],
-    4: ["The right rate for every date.", "We read the demand and what hotels nearby charge, then set each rate to match."],
-  };
-  return (
-    <AbsoluteFill>
-      {backdrop(at)}
-      {badge}
-      {count}
-      <SlideLine text={lines[slide][0]} />
-      <div
-        style={{
-          position: "absolute",
-          left: L.card.left,
-          top: L.card.top,
-          width: L.card.w,
-          height: L.card.h,
-          borderRadius: 26,
-          boxShadow: "0 24px 60px rgba(0,0,0,0.45)",
-        }}
-      >
-        <Screen f={at} L={L} />
-      </div>
-      <Caption text={lines[slide][1]} />
     </AbsoluteFill>
   );
 };
