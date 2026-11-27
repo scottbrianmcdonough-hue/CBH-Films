@@ -79,7 +79,7 @@ export const T = {
   A_OUT: beat(1) - 4,
   END,
 };
-export const GN_REVENUE_FRAMES = T.END + 100;
+export const GN_REVENUE_FRAMES = T.END + 150; // the end card held ~4s (Scott: "hold the end card a tad longer")
 
 /* What the service gives a hotel, from GN's Revenue Management page */
 const FEATURES = [
