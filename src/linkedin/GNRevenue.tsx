@@ -359,7 +359,7 @@ export const GNRevenue: React.FC<{ wide?: boolean; sound?: boolean }> = ({ wide 
 
       {/* GN's hotels in GN navy with a light snowfall, clearing to white */}
       {cleared < 1 ? (
-        <AbsoluteFill style={{ opacity: 1 - cleared }}>
+        <AbsoluteFill style={{ opacity: (1 - dev) * (1 - cleared) }}> {/* gone once the studio is in, so it never shows through as the studio clears (Scott: "leftover image") */}
           <AbsoluteFill style={{ background: navyDeep }} />
           <Hotels f={f} L={L} wide={wide} />
           <Snow f={f} w={W} h={H} />
