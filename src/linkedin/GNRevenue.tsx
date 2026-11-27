@@ -17,7 +17,7 @@ import { sans, serif } from "../hotel-film/theme";
 //   - Revanista as GN shows it, full bleed (Scott: not a "box thrown on top"): GN's own Revanista carousel cover cleared
 //     of its text, logo and red decorations (scripts/revanista-devices-clean.py), the real rate screens on a laptop, a
 //     monitor and a phone along the bottom of a white studio; "Powered by Revanista", the wording on GN's page.
-//   - What the service gives a hotel, from GN's Revenue Management page, one point every two seconds, the list
+//   - What the service gives a hotel, from GN's Revenue Management page, one point every 1.5 seconds, the list
 //     building so each can be read: account manager, budgets, weekly calls, rate loading, price shopping.
 //   - GN's white: "You look after Christmas. / We'll get January ready.", and the end card: the roundel travelling to
 //     the middle, Great National Revenue Management, "Powered by" and Revanista's logo.
@@ -57,21 +57,21 @@ const rand = (seed: number) => {
 /* Timing (frames at 30fps), on the track's beat (120 BPM, 15 frames), counted back from END: the end card lands on the
    track's last hit */
 export const BEAT = 15;
-export const END = 624;
+export const END = 474;
 const beat = (n: number) => END - n * BEAT;
 export const T = {
-  HOOK1: beat(43), // "While your team is busy with Christmas," (in from the first frame: LinkedIn previews it)
-  HOOK2: beat(39), // "someone can be getting January ready."
-  HOOK_OUT: beat(35),
-  DEVICES: beat(34), // Revanista as GN shows it
-  FEATURES: [beat(30), beat(26), beat(22), beat(18), beat(14)], // a point every two seconds, the list building
-  CLEAR: beat(9), // the navy clears to white
-  A1: beat(8), // "You look after Christmas."
-  A2: beat(6), // "We'll get January ready."
+  HOOK1: beat(33), // "While your team is busy with Christmas," (in from the first frame: LinkedIn previews it)
+  HOOK2: beat(30), // "someone can be getting January ready."
+  HOOK_OUT: beat(26),
+  DEVICES: beat(25), // Revanista as GN shows it
+  FEATURES: [beat(22), beat(19), beat(16), beat(13), beat(10)], // a point every 1.5 seconds, the list building (Scott: "a little snappier")
+  CLEAR: beat(7), // the studio clears to white
+  A1: beat(6), // "You look after Christmas."
+  A2: beat(5), // "We'll get January ready."
   A_OUT: beat(1) - 4,
   END,
 };
-export const GN_REVENUE_FRAMES = T.END + 105;
+export const GN_REVENUE_FRAMES = T.END + 100;
 
 /* What the service gives a hotel, from GN's Revenue Management page */
 const FEATURES = [
@@ -100,7 +100,7 @@ const LAYOUTS: Record<"tall" | "wide", Layout> = {
     badge: { top: 80, size: 120 },
     hook: { size: 88, tops: [330, 540], width: 920 },
     title: { left: 80, top: 250, size: 60, width: 920 },
-    list: { left: 80, top: 360, step: 62, size: 32, width: 920 },
+    list: { left: 80, top: 362, step: 64, size: 34, width: 920 },
     answer: { size: 84, tops: [510, 616] },
     end: { cx: 540, badge: [370, 190], title: [600, 84], line: [846, 26, 960], logo: [892, 230] },
     tint: "linear-gradient(180deg, rgba(24,43,60,0.80) 0%, rgba(24,43,60,0.70) 50%, rgba(24,43,60,0.84) 100%)",
@@ -110,7 +110,7 @@ const LAYOUTS: Record<"tall" | "wide", Layout> = {
     badge: { top: 70, size: 110 },
     hook: { size: 88, tops: [360, 470], width: 1500 },
     title: { left: 120, top: 220, size: 60, width: 760 },
-    list: { left: 120, top: 330, step: 66, size: 30, width: 760 },
+    list: { left: 120, top: 330, step: 68, size: 32, width: 760 },
     answer: { size: 92, tops: [380, 490] },
     end: { cx: 960, badge: [190, 170], title: [400, 84], line: [626, 26, 900], logo: [670, 210] },
     tint: "linear-gradient(90deg, rgba(24,43,60,0.88) 0%, rgba(24,43,60,0.76) 45%, rgba(24,43,60,0.62) 100%)",
@@ -144,12 +144,10 @@ const Snow: React.FC<{ f: number; w: number; h: number }> = ({ f, w, h }) => (
   </AbsoluteFill>
 );
 
-/* GN's own hotels behind, tinted GN navy, cutting on the beat like the Contact Centre video: two at dusk for the hook,
-   then Riverside Park, the client the post names. Photos from GN's Our Hotels page (gn-key/hotels) */
+/* GN's own hotels behind, tinted GN navy, cutting on the beat like the Contact Centre video: two at dusk for the hook. Photos from GN's Our Hotels page (gn-key/hotels) */
 const SHOTS: { src: string; tall: string; from: number }[] = [
   { src: "newtown-park", tall: "40% 50%", from: 0 },
-  { src: "abbeyleix-manor", tall: "45% 50%", from: beat(38) },
-  { src: "riverside-park", tall: "35% 50%", from: T.DEVICES },
+  { src: "abbeyleix-manor", tall: "45% 50%", from: beat(29) },
 ];
 
 const Hotels: React.FC<{ f: number; L: Layout; wide: boolean }> = ({ f, L, wide }) => {
