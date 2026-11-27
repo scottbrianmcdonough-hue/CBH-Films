@@ -1121,4 +1121,11 @@ with no history and no renders:
   Band, Happy Christmas Jazz (Jingle Bells), Christmas Event Upbeat.
 - `cbh-year-2027`: Bianca's "Plan your year of micro breaks" reel for 1 Jan (a hotel a month), wall calendar mock-up;
   waiting on hotels' content (Coombe Abbey, Jockey Club, Atholl Palace) and Scott's go.
+- `gn-contact-centre-{indie,ambition}[-wide]` / `-silent`: GN Customer Contact Centre LinkedIn video (27 Nov,
+  `src/linkedin/GNContactCentre.tsx`, timings in `gn-contact-timing.ts`, sound `scripts/gn-contact-sfx.py`): "The
+  lobby's full. / The phone's ringing." over GN receptions in a navy tint (Shannon Springs, Hotel Ballina, Speech House;
+  only hotels on GN's Our Hotels page, no stock), three incoming call cards on the rings, "Who picks up?", the handset
+  lifting on the track's hit, "We do. / In your hotel's name." (GN's dedicated dial in number), end card with the hours,
+  no rule under it (Scott: a Claude tell). 4:5 and 16:9, indie rock or Driving Ambition, ring kept low. Posted 27 Nov
+  with Shannon Springs as the cover; post copy without hashtags or triads.
 - `the-kingfisher`, `whittlebury-park-stay-dine` (+ `-story` cuts): done.
