@@ -874,16 +874,26 @@ export const RemotionRoot: React.FC = () => {
       />
       {/* Great National Group: the Customer Contact Centre (the December front desk, who picks up?) */}
       {(["indie", "ambition"] as const).map((track) => (
-        <Composition
-          key={track}
-          id={`gn-contact-centre-${track}`}
-          component={GNContactCentre}
-          durationInFrames={gnContactFrames(track)}
-          fps={GN_FPS}
-          width={GN_WIDTH}
-          height={GN_HEIGHT}
-          defaultProps={{ track, sound: true }}
-        />
+        <Fragment key={track}>
+          <Composition
+            id={`gn-contact-centre-${track}`}
+            component={GNContactCentre}
+            durationInFrames={gnContactFrames(track)}
+            fps={GN_FPS}
+            width={GN_WIDTH}
+            height={GN_HEIGHT}
+            defaultProps={{ track, sound: true, wide: false }}
+          />
+          <Composition
+            id={`gn-contact-centre-${track}-wide`}
+            component={GNContactCentre}
+            durationInFrames={gnContactFrames(track)}
+            fps={GN_FPS}
+            width={1920}
+            height={1080}
+            defaultProps={{ track, sound: true, wide: true }}
+          />
+        </Fragment>
       ))}
       <Composition
         id="gn-contact-centre-silent"
@@ -892,7 +902,7 @@ export const RemotionRoot: React.FC = () => {
         fps={GN_FPS}
         width={GN_WIDTH}
         height={GN_HEIGHT}
-        defaultProps={{ track: "indie" as const, sound: false }}
+        defaultProps={{ track: "indie" as const, sound: false, wide: false }}
       />
       {/* AMC 2026: the post-AMC reel, the wall come to life; one edit on each candidate track
           (`amc-2026-reel` is Light it Up Boy) */}
