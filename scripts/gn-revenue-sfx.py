@@ -4,9 +4,10 @@
   - the track: Inspiring Uplifting Indie Rock (Music_for_Creators, Pixabay 328509, 120 BPM), the same song as the
     Contact Centre post so GN's posts share a sound, but its ending: the last hit (130.09s) lands on END, where the
     roundel comes to the middle of the end card, and the song rings out under it.
-  - the page turn: a calendar page lifting over its top edge at FLIP, a soft papery swish with a little crackle.
-  - the ticks: a soft click as each January date is set (rising a touch through the month) and as each date of the
-    end card's week ticks over; kept low under the music. No whooshes or chimes.
+  - the slide: a soft airy swish as the screen slides from December to January (SWIPE).
+  - the steps: a light tap as each of Demand, Competitors and Rates set lights up.
+  - the ticks: a soft click as each January rate settles (rising a touch through the month), kept low under the
+    music. No whooshes or chimes.
 Timings are read from src/linkedin/GNRevenue.tsx (BEAT, END and T). Writes public/campaigns/gn-revenue/soundtrack.wav.
 Usage: python3 scripts/gn-revenue-sfx.py
 """
@@ -37,10 +38,11 @@ def val(name):
     return beat(int(m.group(1))) + (int(m.group(2).replace(" ", "")) if m.group(2) else 0)
 
 
-FLIP = val("FLIP")
-jan = re.search(r"JAN: \[beat\((\d+)\), beat\((\d+)\)\]", src)
-JAN = (beat(int(jan.group(1))), beat(int(jan.group(2))))
-WEEK = END + int(re.search(r"WEEK: END \+ (\d+)", src).group(1))
+SWIPE = val("SWIPE")
+DEMAND = val("DEMAND")
+COMP = val("COMP")
+rates = re.search(r"RATES: \[beat\((\d+)\), beat\((\d+)\)\]", src)
+RATES = (beat(int(rates.group(1))), beat(int(rates.group(2))))
 
 N = int(FRAMES / FPS * SR)
 tt = np.arange(N) / SR
@@ -66,20 +68,17 @@ def room(x, decay=0.25, wet=0.2):
 
 fx = np.zeros(N)
 
-# the page turn: band passed noise swelling and falling over ~0.4s, its band rising as the page lifts, with crackle
-n = int(0.42 * SR)
+# the slide: band passed noise swelling and falling over ~0.45s, its band rising, soft
+n = int(0.45 * SR)
 t = np.arange(n) / SR
-env = np.sin(np.pi * np.clip(t / 0.42, 0, 1)) ** 1.5
+env = np.sin(np.pi * np.clip(t / 0.45, 0, 1)) ** 2
 noise = rng.standard_normal(n)
-lo = sosfilt(butter(2, [700, 2600], "band", fs=SR, output="sos"), noise)
-hi = sosfilt(butter(2, [2600, 7000], "band", fs=SR, output="sos"), noise)
-mixk = np.clip(t / 0.42, 0, 1)
-swish = (lo * (1 - mixk) + hi * mixk * 0.7) * env
-crackle = (rng.random(n) < 0.004) * rng.standard_normal(n) * 3
-crackle = sosfilt(butter(2, 3000, "high", fs=SR, output="sos"), crackle) * env
-page = swish + crackle * 0.5
-i = int(FLIP / FPS * SR)
-fx[i:i + n] += page / np.max(np.abs(page)) * 0.22
+lo = sosfilt(butter(2, [500, 2000], "band", fs=SR, output="sos"), noise)
+hi = sosfilt(butter(2, [2000, 6000], "band", fs=SR, output="sos"), noise)
+k = np.clip(t / 0.45, 0, 1)
+slide = (lo * (1 - k) + hi * k * 0.6) * env
+i = int(SWIPE / FPS * SR)
+fx[i:i + n] += slide / np.max(np.abs(slide)) * 0.14
 
 
 # a tick: a short click with a little woody body
@@ -92,14 +91,14 @@ def tick(pitch, gain):
     return gain * x / np.max(np.abs(x))
 
 
-for day in range(31):
-    at = JAN[0] + day / 30 * (JAN[1] - JAN[0]) + 4  # with the picture's tick
-    c = tick(1500 + day * 18, 0.06)
+for at, pitch in [(DEMAND, 1200), (COMP, 1350), (RATES[0], 1500)]:
+    c = tick(pitch, 0.12)
     i = int(at / FPS * SR)
     fx[i:i + len(c)] += c
-for k in range(7):
-    c = tick(1700 + k * 40, 0.07)
-    i = int((WEEK + k * 5 + 3) / FPS * SR)
+for day in range(31):
+    at = RATES[0] + day / 30 * (RATES[1] - RATES[0]) + 5  # as the picture's rate settles
+    c = tick(1500 + day * 18, 0.05)
+    i = int(at / FPS * SR)
     fx[i:i + len(c)] += c
 
 fx = room(fx)
@@ -131,5 +130,5 @@ peak = np.max(np.abs(mix)) * gain
 if peak > 10 ** (-1.5 / 20):
     gain *= 10 ** (-1.5 / 20) / peak
 write(OUT, mix * gain)
-print(f"flip {FLIP}, January {JAN}, week {WEEK}, end {END}, frames {FRAMES}, track from {start:.2f}s; "
+print(f"swipe {SWIPE}, steps {DEMAND}/{COMP}/{RATES[0]}, rates {RATES}, end {END}, frames {FRAMES}, track from {start:.2f}s; "
       f"{lufs(OUT):.1f} LUFS, peak {20 * np.log10(np.max(np.abs(mix * gain))):.1f} dBFS")
