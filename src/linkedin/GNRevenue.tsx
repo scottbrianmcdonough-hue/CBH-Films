@@ -61,16 +61,16 @@ const rand = (seed: number) => {
 /* Timing (frames at 30fps), on the track's beat (120 BPM, 15 frames), counted back from END: the end card lands on the
    track's last hit */
 export const BEAT = 15;
-export const END = 720;
+export const END = 765;
 const beat = (n: number) => END - n * BEAT;
 export const T = {
-  HOOK1: beat(48), // "December's busy." over December filling up (in from the first frame: LinkedIn previews it)
-  DEC: [-36, beat(43)] as [number, number], // December's dates fill in, a few already booked on frame one
-  FLIP: beat(41), // the page turns to January
-  HOOK2: beat(40), // "January's quieter.", held 3s on the empty month (Scott: "I didn't get to January's quieter, I was
+  HOOK1: beat(51), // "December's busy." over December filling up (in from the first frame: LinkedIn previews it)
+  DEC: [-36, beat(46)] as [number, number], // December's dates fill in, a few already booked on frame one
+  FLIP: beat(44), // the page turns to January
+  HOOK2: beat(43), // "January's quieter.", held 3s on the empty month (Scott: "I didn't get to January's quieter, I was
   // busy looking at the calendar")
-  HOOK3: beat(34), // "We set the right price for every night." (what revenue management is, in one line)
-  JAN: [beat(33), beat(29) + 6] as [number, number], // January's dates tick off as the line lands
+  HOOK3: beat(37), // "We set the right price for every night." (what revenue management is, in one line)
+  JAN: [beat(36), beat(29)] as [number, number], // January's dates tick off as the line lands, over 3.5s (Scott: "too fast")
   HOOK_OUT: beat(27),
   DEVICES: beat(26), // Revanista as GN shows it
   FEATURES: [beat(23), beat(18), beat(13)], // three points, in plain words, 2.5 seconds apart
@@ -98,7 +98,7 @@ type Layout = {
   title: { left: number; top: number; size: number; width: number };
   list: { left: number; top: number; step: number; size: number; width: number };
   answer: { size: number; tops: [number, number] };
-  end: { cx: number; badge: [number, number]; title: [number, number]; tag: [number, number]; line: [number, number, number]; logo: [number, number] };
+  end: { cx: number; badge: [number, number]; title: [number, number]; line: [number, number, number]; logo: [number, number] };
   tint: string;
 };
 
@@ -111,7 +111,7 @@ const LAYOUTS: Record<"tall" | "wide", Layout> = {
     title: { left: 80, top: 250, size: 60, width: 920 },
     list: { left: 80, top: 370, step: 80, size: 40, width: 920 },
     answer: { size: 84, tops: [510, 616] },
-    end: { cx: 540, badge: [350, 190], title: [580, 84], tag: [790, 34], line: [880, 24, 960], logo: [920, 220] },
+    end: { cx: 540, badge: [370, 190], title: [600, 84], line: [840, 24, 960], logo: [880, 220] },
     tint: "linear-gradient(180deg, rgba(24,43,60,0.80) 0%, rgba(24,43,60,0.70) 50%, rgba(24,43,60,0.84) 100%)",
   },
   wide: {
@@ -122,7 +122,7 @@ const LAYOUTS: Record<"tall" | "wide", Layout> = {
     title: { left: 120, top: 220, size: 60, width: 760 },
     list: { left: 120, top: 340, step: 82, size: 38, width: 900 },
     answer: { size: 92, tops: [380, 490] },
-    end: { cx: 960, badge: [150, 170], title: [360, 84], tag: [570, 34], line: [650, 24, 900], logo: [690, 200] },
+    end: { cx: 960, badge: [170, 170], title: [380, 84], line: [610, 24, 900], logo: [650, 200] },
     tint: "linear-gradient(90deg, rgba(24,43,60,0.88) 0%, rgba(24,43,60,0.76) 45%, rgba(24,43,60,0.62) 100%)",
   },
 };
@@ -345,7 +345,6 @@ export const GNRevenue: React.FC<{ wide?: boolean; sound?: boolean }> = ({ wide 
   const travel = ramp(f, T.A_OUT, 34, io); // the roundel heads for the middle as the answer leaves
   const title = ramp(f, T.END + 12, 24);
   const title2 = ramp(f, T.END + 20, 24);
-  const tag = ramp(f, T.END + 30, 24);
   const line = ramp(f, T.END + 46, 24);
   const logo = ramp(f, T.END + 56, 24);
   const badgeSize = interpolate(travel, [0, 1], [L.badge.size, E.badge[1]]);
@@ -473,24 +472,6 @@ export const GNRevenue: React.FC<{ wide?: boolean; sound?: boolean }> = ({ wide 
         <div style={{ fontFamily: serif, fontWeight: 500, fontSize: E.title[1], lineHeight: 1.08, opacity: title2, transform: `translateY(${(1 - title2) * 30}px)` }}>
           Revenue Management
         </div>
-      </div>
-      {/* what it is, in plain words (Scott: "make it make sense to a newcomer or outsider") */}
-      <div
-        style={{
-          position: "absolute",
-          left: 0,
-          width: W,
-          top: E.tag[0],
-          textAlign: "center",
-          fontFamily: serif,
-          fontStyle: "italic",
-          fontSize: E.tag[1],
-          color: navy,
-          opacity: tag,
-          transform: `translateY(${(1 - tag) * 20}px)`,
-        }}
-      >
-        The right price for every room, every night
       </div>
       <div
         style={{
