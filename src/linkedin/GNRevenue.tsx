@@ -224,7 +224,9 @@ const Month: React.FC<{ f: number; m: "dec" | "jan"; c: Layout["cal"] }> = ({ f,
               style={{
                 position: "relative",
                 borderRadius: 12,
-                background: m === "dec" && filled ? navy : "#eef1f4",
+                // December books in navy; January's days turn a soft lime as each is set (the polish pass: the ticks alone
+                // were too faint on a phone)
+                background: m === "dec" ? (filled ? navy : "#eef1f4") : interpolate(p, [0, 1], [0, 1]) > 0.5 ? "#e6ecc2" : "#eef1f4",
                 transform: `scale(${1 - 0.08 * Math.sin(Math.PI * p)})`,
                 boxSizing: "border-box",
                 padding: "8px 10px",
@@ -236,7 +238,7 @@ const Month: React.FC<{ f: number; m: "dec" | "jan"; c: Layout["cal"] }> = ({ f,
                   <path
                     d="M5 12.5l4.5 4.5L19 7.5"
                     fill="none"
-                    stroke={lime}
+                    stroke="#6f7d10"
                     strokeWidth={3}
                     strokeLinecap="round"
                     strokeLinejoin="round"
