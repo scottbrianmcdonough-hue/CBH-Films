@@ -117,6 +117,7 @@ import { UnwrapFilm } from "./hotel-film/unwrap/UnwrapFilm";
 import { GN_FPS, GN_HEIGHT, GN_STATS, GN_WIDTH } from "./linkedin/GNStats";
 import { GNSearchDemo, GN_SEARCH_FRAMES } from "./linkedin/GNSearchDemo";
 import { GNContactCentre, gnContactFrames } from "./linkedin/GNContactCentre";
+import { GNRevenue, GN_REVENUE_FRAMES } from "./linkedin/GNRevenue";
 import {
   AmcReel,
   AmcStory,
@@ -895,6 +896,25 @@ export const RemotionRoot: React.FC = () => {
           />
         </Fragment>
       ))}
+      {/* Great National Group: Revenue Management (a calendar: December full, January set ready) */}
+      <Composition
+        id="gn-revenue"
+        component={GNRevenue}
+        durationInFrames={GN_REVENUE_FRAMES}
+        fps={GN_FPS}
+        width={GN_WIDTH}
+        height={GN_HEIGHT}
+        defaultProps={{ wide: false }}
+      />
+      <Composition
+        id="gn-revenue-wide"
+        component={GNRevenue}
+        durationInFrames={GN_REVENUE_FRAMES}
+        fps={GN_FPS}
+        width={1920}
+        height={1080}
+        defaultProps={{ wide: true }}
+      />
       <Composition
         id="gn-contact-centre-silent"
         component={GNContactCentre}
