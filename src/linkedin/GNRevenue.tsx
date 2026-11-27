@@ -66,7 +66,7 @@ export const END = 384;
 const beat = (n: number) => END - n * BEAT;
 export const T = {
   L1: beat(24), // "December's full."
-  DEC: [beat(23), beat(20)] as [number, number], // December's dates fill up
+  DEC: [6, beat(21)] as [number, number], // December fills in from the first second, a column at a time
   SWIPE: beat(18), // the grid slides across to January
   L2: beat(17), // "Then comes January."
   DEMAND: beat(16), // demand shading washes in
@@ -87,7 +87,7 @@ type Layout = {
   badge: { top: number; size: number };
   line: { size: number; top: number; width?: number };
   card: { left: number; top: number; w: number; h: number; pad: number; head: number };
-  date: { w: number; h: number; gap: number; num: number; rate: number };
+  table: { label: number; labelSize: number; row: number; value: number; day: number; date: number };
   answer: { size: number; tops: [number, number] };
   end: { cx: number; badge: [number, number]; title: [number, number]; line: [number, number, number]; logo: [number, number] };
 };
@@ -97,8 +97,8 @@ const LAYOUTS: Record<"tall" | "wide", Layout> = {
     x: 80,
     badge: { top: 80, size: 120 },
     line: { size: 84, top: 290 },
-    card: { left: 80, top: 440, w: 920, h: 740, pad: 40, head: 50 },
-    date: { w: 112, h: 94, gap: 8, num: 20, rate: 27 },
+    card: { left: 60, top: 440, w: 960, h: 726, pad: 34, head: 50 },
+    table: { label: 190, labelSize: 22, row: 88, value: 27, day: 17, date: 20 },
     answer: { size: 84, tops: [510, 616] },
     end: { cx: 540, badge: [360, 190], title: [590, 84], line: [830, 30, 960], logo: [915, 230] },
   },
@@ -106,39 +106,42 @@ const LAYOUTS: Record<"tall" | "wide", Layout> = {
     x: 120,
     badge: { top: 70, size: 110 },
     line: { size: 80, top: 420, width: 760 },
-    card: { left: 1000, top: 200, w: 800, h: 680, pad: 36, head: 46 },
-    date: { w: 96, h: 84, gap: 8, num: 18, rate: 24 },
+    card: { left: 960, top: 196, w: 860, h: 690, pad: 32, head: 46 },
+    table: { label: 170, labelSize: 20, row: 84, value: 24, day: 15, date: 18 },
     answer: { size: 92, tops: [380, 490] },
     end: { cx: 960, badge: [180, 170], title: [390, 84], line: [620, 30, 900], logo: [700, 210] },
   },
 };
 
-/* The months (Mon first) and their illustrative rates */
-type Month = { name: string; offset: number; days: number; rate: (d: number) => number };
-const DECEMBER: Month = {
+/* The two weeks on screen, Revanista's rate table for each (Scott: "use the carousel, it was like a UI in there": the
+   Revanista carousel's own screen, dates across the top, rows for suggested rate, base rate, left to sell and
+   occupancy). Every figure is illustrative only. */
+type Week = { name: string; days: string[]; dates: string[]; base: number[]; suggested: number[]; comp: number[]; left: number[]; occ: number[] };
+const DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+const DECEMBER: Week = {
   name: "December 2026",
-  offset: 1, // starts on a Tuesday
-  days: 31,
-  rate: (d) => {
-    if (d >= 23 && d <= 25) return 249; // Christmas
-    if (d === 30) return 239; // New Year's Eve
-    const wd = (1 + d) % 7;
-    return [169, 165, 169, 179, 209, 229, 185][wd] + Math.round((rand(d + 60) - 0.5) * 10);
-  },
+  days: DAYS,
+  dates: ["21 Dec", "22 Dec", "23 Dec", "24 Dec", "25 Dec", "26 Dec", "27 Dec"],
+  base: [219, 229, 249, 249, 249, 229, 209],
+  suggested: [219, 229, 249, 249, 249, 229, 209],
+  comp: [205, 215, 239, 245, 239, 219, 199],
+  left: [2, 1, 0, 0, 0, 1, 3],
+  occ: [98, 99, 100, 100, 100, 99, 97],
 };
 const FLAT = 139;
-const JANUARY: Month = {
+const JANUARY: Week = {
   name: "January 2027",
-  offset: 4, // starts on a Friday
-  days: 31,
-  rate: (d) => {
-    if (d === 0) return 189; // New Year's Day
-    if (d === 1) return 169;
-    const wd = (4 + d) % 7;
-    return [109, 105, 109, 119, 159, 179, 125][wd] + Math.round((rand(d + 3) - 0.5) * 8);
-  },
+  days: DAYS,
+  dates: ["4 Jan", "5 Jan", "6 Jan", "7 Jan", "8 Jan", "9 Jan", "10 Jan"],
+  base: [FLAT, FLAT, FLAT, FLAT, FLAT, FLAT, FLAT],
+  suggested: [109, 105, 109, 119, 159, 179, 125],
+  comp: [115, 112, 115, 125, 152, 169, 129],
+  left: [46, 48, 45, 41, 24, 15, 37],
+  occ: [31, 28, 32, 38, 64, 76, 41],
 };
-const heatOf = (rate: number) => Math.min(1, Math.max(0, (rate - 100) / 100)); // 0 quiet, 1 busy
+
+/* Revanista's own colours, as on its screen in the carousel */
+const RV = { head: "#5d6a87", base: "#2c3557", amber: "#f2b632", occ: "#cdd6e4", orange: "#e0802a", row: "#f4f6f9" };
 
 /* Light snow over the navy: the only festive touch */
 const Snow: React.FC<{ f: number; w: number; h: number }> = ({ f, w, h }) => (
@@ -168,11 +171,10 @@ const Snow: React.FC<{ f: number; w: number; h: number }> = ({ f, w, h }) => (
 );
 
 /* GN's own hotels behind, tinted GN navy, cutting on the beat like the Contact Centre video (Scott: "creative corporate
-   like that last one"): December's three at dusk and after dark, then Riverside Park, the client the post names, for
+   like that last one"): December's two at dusk (South Court's bright blue sign was out, the polish pass), then Riverside Park, the client the post names, for
    January. None of them were in the Contact Centre video. Photos from GN's Our Hotels page (gn-key/hotels) */
 const SHOTS: { src: string; tall: string; from: number }[] = [
   { src: "newtown-park", tall: "40% 50%", from: 0 },
-  { src: "south-court", tall: "45% 50%", from: beat(22) },
   { src: "abbeyleix-manor", tall: "45% 50%", from: beat(20) },
   { src: "riverside-park", tall: "35% 50%", from: beat(18) },
 ];
@@ -206,107 +208,135 @@ const Hotels: React.FC<{ f: number; wide: boolean }> = ({ f, wide }) => {
   );
 };
 
-/* One month of dates: shading by demand, a rate on each */
-const Grid: React.FC<{
-  m: Month;
-  g: Layout["date"];
-  heat: (d: number) => number; // 0 to 1, how deep each date's shading is now
-  rate: (d: number) => number; // the rate each date shows now
-  arrow?: (d: number) => number; // -1 to 1, an arrow as a rate moves
-  scanned?: (d: number) => boolean; // the competitor check passing over
-}> = ({ m, g, heat, rate, arrow, scanned }) => (
-  <div>
-    <div style={{ display: "grid", gridTemplateColumns: `repeat(7, ${g.w}px)`, gap: g.gap, marginBottom: 8 }}>
-      {["M", "T", "W", "T", "F", "S", "S"].map((d, i) => (
-        <div key={i} style={{ fontFamily: sans, fontSize: g.num, color: grey, textAlign: "center" }}>
-          {d}
+/* One week of Revanista's rate table. Each cell shows its value from its own frame on (`at`), so the rows fill in
+   date by date; a lime outline runs down the column being checked. */
+type Cell = { v: string; at?: number; tone?: number; arrow?: number }; // arrow: -1 to 1, a rate on the move
+const ROW_LABELS = ["Suggested rate", "Base rate", "Competitors", "Left to sell", "Occupancy"];
+
+const Table: React.FC<{
+  f: number;
+  w: Week;
+  L: Layout;
+  rows: Cell[][]; // per row, per day
+  scan?: number; // the column being checked (fractional), or -1
+}> = ({ f, w, L, rows, scan = -1 }) => {
+  const t = L.table;
+  const cols = `${t.label}px repeat(7, 1fr)`;
+  const band = (i: number) => [undefined, RV.base, RV.row, RV.amber, RV.occ][i];
+  const ink = (i: number) => [RV.orange, white, grey, navy, navy][i];
+  return (
+    <div style={{ position: "relative" }}>
+      {/* the date header */}
+      <div style={{ display: "grid", gridTemplateColumns: cols, background: RV.head, borderRadius: "10px 10px 0 0" }}>
+        <div style={{ fontFamily: sans, fontSize: t.label * 0.11, color: "rgba(255,255,255,0.8)", padding: "10px 12px", fontWeight: 600 }}>Date</div>
+        {w.days.map((d, i) => (
+          <div key={i} style={{ textAlign: "center", padding: "8px 2px", fontFamily: sans, color: white }}>
+            <div style={{ fontSize: t.day, opacity: 0.8 }}>{d}</div>
+            <div style={{ fontSize: t.date, fontWeight: 700 }}>{w.dates[i]}</div>
+          </div>
+        ))}
+      </div>
+      {/* the rows */}
+      {rows.map((row, r) => (
+        <div key={r} style={{ display: "grid", gridTemplateColumns: cols, background: band(r) ?? white, borderBottom: "1px solid #e3e7ee", height: t.row, alignItems: "center" }}>
+          <div style={{ fontFamily: sans, fontSize: t.labelSize, fontWeight: 600, color: r === 1 ? white : navy, padding: "0 12px" }}>{ROW_LABELS[r]}</div>
+          {row.map((c, i) => {
+            const p = c.at === undefined ? 1 : ramp(f, c.at, 8);
+            return (
+              <div key={i} style={{ position: "relative", height: "100%", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                {c.arrow !== undefined && Math.abs(c.arrow) > 0.02 ? (
+                  <svg
+                    width={t.value * 0.55}
+                    height={t.value * 0.55}
+                    viewBox="0 0 24 24"
+                    style={{ position: "absolute", top: 6, right: 4, opacity: Math.abs(c.arrow) }}
+                  >
+                    <path d={c.arrow > 0 ? "M12 4l8 11H4z" : "M12 20l8-11H4z"} fill={lime} />
+                  </svg>
+                ) : null}
+                {c.tone !== undefined ? (
+                  <div style={{ position: "absolute", inset: 3, borderRadius: 6, background: `rgba(44,53,87,${0.75 * c.tone * p})` }} />
+                ) : null}
+                <span
+                  style={{
+                    position: "relative",
+                    fontFamily: sans,
+                    fontSize: t.value,
+                    fontWeight: 700,
+                    color: c.tone !== undefined && c.tone * p > 0.5 ? white : ink(r),
+                    opacity: c.at === undefined ? 1 : p,
+                    transform: `translateY(${(1 - p) * 8}px)`,
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 3,
+                  }}
+                >
+                  {c.v}
+                </span>
+              </div>
+            );
+          })}
         </div>
       ))}
+      {/* the column being checked */}
+      {scan >= 0 && scan < 7 ? (
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            bottom: 0,
+            left: `calc(${t.label}px + (100% - ${t.label}px) * ${Math.floor(scan)} / 7)`,
+            width: `calc((100% - ${t.label}px) / 7)`,
+            border: `3px solid ${lime}`,
+            borderRadius: 8,
+            pointerEvents: "none",
+          }}
+        />
+      ) : null}
     </div>
-    <div style={{ display: "grid", gridTemplateColumns: `repeat(7, ${g.w}px)`, gridAutoRows: g.h, gap: g.gap }}>
-      {Array.from({ length: m.offset }, (_, i) => (
-        <div key={`e${i}`} />
-      ))}
-      {Array.from({ length: m.days }, (_, d) => {
-        const h = heat(d);
-        const dark = h > 0.45;
-        const a = arrow ? arrow(d) : 0;
-        return (
-          <div
-            key={d}
-            style={{
-              position: "relative",
-              borderRadius: 12,
-              background: `rgba(24,43,60,${0.07 + h * 0.85})`,
-              outline: scanned && scanned(d) ? `3px solid ${lime}` : "none",
-              outlineOffset: -3,
-              boxSizing: "border-box",
-              padding: "6px 9px",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
-            }}
-          >
-            <span style={{ fontFamily: sans, fontSize: g.num, color: dark ? "rgba(255,255,255,0.75)" : grey }}>{d + 1}</span>
-            <span
-              style={{
-                fontFamily: sans,
-                fontSize: g.rate,
-                fontWeight: 700,
-                color: dark ? white : navy,
-                display: "flex",
-                alignItems: "center",
-                gap: 3,
-              }}
-            >
-              €{rate(d)}
-              {Math.abs(a) > 0.02 ? (
-                <svg width={g.rate * 0.6} height={g.rate * 0.6} viewBox="0 0 24 24" style={{ opacity: Math.abs(a) }}>
-                  <path d={a > 0 ? "M12 5l7 9H5z" : "M12 19l7-9H5z"} fill={lime} />
-                </svg>
-              ) : null}
-            </span>
-          </div>
-        );
-      })}
-    </div>
-  </div>
-);
+  );
+};
 
-/* The revenue screen: the month in the header, Revanista's logo, the three steps, the grid sliding month to month */
+/* The revenue screen: the month, Revanista's logo, the three steps, and the week's table sliding December to January */
 const STEPS = ["Demand", "Competitors", "Rates set"];
-const SCATTER = (() => {
-  const o = Array.from({ length: 31 }, (_, i) => i);
-  for (let i = o.length - 1; i > 0; i--) {
-    const j = Math.floor(rand(i + 40) * (i + 1));
-    [o[i], o[j]] = [o[j], o[i]];
-  }
-  const at: number[] = [];
-  o.forEach((d, k) => (at[d] = k));
-  return at;
-})();
 
 const Screen: React.FC<{ f: number; L: Layout }> = ({ f, L }) => {
-  const g = L.date;
   const swipe = ramp(f, T.SWIPE, 18, io);
   const inner = L.card.w - L.card.pad * 2;
-  const demand = ramp(f, T.DEMAND, 30, io);
   const stepAt = [T.DEMAND, T.COMP, T.RATES[0]];
-  const sweep = interpolate(f, [T.COMP, T.RATES[0] - 4], [0, 31], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const each = (start: number, end: number) => (i: number) => start + (i / 6) * (end - start);
 
-  const decHeat = (d: number) => heatOf(DECEMBER.rate(d)) * ramp(f, T.DEC[0] + (SCATTER[d] / 30) * (T.DEC[1] - T.DEC[0]), 8);
-  const janSet = (d: number) => ramp(f, T.RATES[0] + (d / 30) * (T.RATES[1] - T.RATES[0]), 10, io);
-  const janRate = (d: number) => Math.round(interpolate(janSet(d), [0, 1], [FLAT, JANUARY.rate(d)]));
-  const janHeat = (d: number) => heatOf(JANUARY.rate(d)) * demand;
-  const janArrow = (d: number) => {
-    const p = janSet(d);
-    const dir = Math.sign(JANUARY.rate(d) - FLAT);
-    return dir * Math.sin(Math.PI * Math.min(1, p * 1.2));
-  };
+  // December: every row fills in, a column at a time, busy from the first frame of the card
+  const dec = each(T.DEC[0], T.DEC[1]);
+  const decRows: Cell[][] = [
+    DECEMBER.suggested.map((v, i) => ({ v: `€${v}`, at: dec(i) })),
+    DECEMBER.base.map((v, i) => ({ v: `€${v}`, at: dec(i) })),
+    DECEMBER.comp.map((v, i) => ({ v: `€${v}`, at: dec(i) + 3 })),
+    DECEMBER.left.map((v, i) => ({ v: `${v}`, at: dec(i) + 5 })),
+    DECEMBER.occ.map((v, i) => ({ v: `${v}%`, at: dec(i) + 7, tone: v / 100 })),
+  ];
+
+  // January: one flat rate and the rooms left; then demand, the competitor check, and the rates set to match
+  const occAt = each(T.DEMAND, T.DEMAND + 24);
+  const compAt = each(T.COMP, T.RATES[0] - 6);
+  const rateAt = each(T.RATES[0], T.RATES[1]);
+  const janRows: Cell[][] = [
+    JANUARY.suggested.map((v, i) => ({ v: `€${v}`, at: rateAt(i) })),
+    JANUARY.base.map((_, i) => {
+      const p = ramp(f, rateAt(i) + 6, 12, io);
+      const v = Math.round(interpolate(p, [0, 1], [FLAT, JANUARY.suggested[i]]));
+      const dir = Math.sign(JANUARY.suggested[i] - FLAT);
+      return { v: `€${v}`, arrow: dir * Math.sin(Math.PI * Math.min(1, p * 1.15)) };
+    }),
+    JANUARY.comp.map((v, i) => ({ v: `€${v}`, at: compAt(i) })),
+    JANUARY.left.map((v) => ({ v: `${v}` })),
+    JANUARY.occ.map((v, i) => ({ v: `${v}%`, at: occAt(i), tone: v / 100 })),
+  ];
+  const scan = f >= T.COMP && f < T.RATES[0] ? interpolate(f, [T.COMP, T.RATES[0] - 2], [0, 7]) : -1;
 
   return (
     <div style={{ width: "100%", height: "100%", boxSizing: "border-box", padding: L.card.pad, background: white, borderRadius: 26, overflow: "hidden" }}>
-      {/* header: the month, sliding with the grid, and Revanista */}
+      {/* header: the month, sliding with the table, and Revanista */}
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 18 }}>
         <div style={{ position: "relative", height: L.card.head * 1.15, flex: 1, overflow: "hidden" }}>
           {[DECEMBER, JANUARY].map((m, i) => (
@@ -334,16 +364,16 @@ const Screen: React.FC<{ f: number; L: Layout }> = ({ f, L }) => {
       </div>
       {/* the three steps, each lighting as it happens */}
       <div style={{ display: "flex", gap: 10, marginBottom: 20 }}>
-        {STEPS.map((s, i) => {
+        {STEPS.map((st, i) => {
           const on = ramp(f, stepAt[i], 10) > 0.5;
           return (
             <div
-              key={s}
+              key={st}
               style={{
                 fontFamily: sans,
-                fontSize: Math.round(g.num * 1.05),
+                fontSize: L.table.labelSize,
                 fontWeight: 600,
-                padding: "6px 14px",
+                padding: "7px 16px",
                 borderRadius: 999,
                 color: on ? navy : grey,
                 background: on ? "rgba(170,187,23,0.22)" : pale,
@@ -352,26 +382,19 @@ const Screen: React.FC<{ f: number; L: Layout }> = ({ f, L }) => {
                 gap: 8,
               }}
             >
-              <span style={{ width: 10, height: 10, borderRadius: 5, background: on ? lime : "#c9d1d9" }} />
-              {s}
+              <span style={{ width: 11, height: 11, borderRadius: 6, background: on ? lime : "#c9d1d9" }} />
+              {st}
             </div>
           );
         })}
       </div>
-      {/* the grids, December sliding out to the left as January comes in */}
-      <div style={{ position: "relative", height: 6 * (g.h + g.gap) + 30 }}>
+      {/* the week's table, December sliding out to the left as January comes in */}
+      <div style={{ position: "relative", height: L.table.row * 5 + L.table.date * 3.4 }}>
         <div style={{ position: "absolute", left: 0, top: 0, width: inner, transform: `translateX(${-swipe * (inner + 60)}px)` }}>
-          <Grid m={DECEMBER} g={g} heat={decHeat} rate={DECEMBER.rate} />
+          <Table f={f} w={DECEMBER} L={L} rows={decRows} />
         </div>
         <div style={{ position: "absolute", left: 0, top: 0, width: inner, transform: `translateX(${(1 - swipe) * (inner + 60)}px)` }}>
-          <Grid
-            m={JANUARY}
-            g={g}
-            heat={janHeat}
-            rate={janRate}
-            arrow={janArrow}
-            scanned={(d) => sweep > d && sweep < d + 2.5}
-          />
+          <Table f={f} w={JANUARY} L={L} rows={janRows} scan={scan} />
         </div>
       </div>
     </div>
@@ -386,10 +409,10 @@ export const GNRevenue: React.FC<{ wide?: boolean; sound?: boolean }> = ({ wide 
   const H = wide ? 1080 : 1350;
 
   const cleared = ramp(f, T.CLEAR, 20, io);
-  const cardIn = ramp(f, 4, 20);
+  const cardIn = 1; // on screen from the first frame: LinkedIn previews it
 
   const E = L.end;
-  const travel = ramp(f, T.END - 10, 30, io);
+  const travel = ramp(f, T.A_OUT, 34, io); // the roundel heads for the middle as the answer leaves
   const title = ramp(f, T.END + 12, 24);
   const title2 = ramp(f, T.END + 20, 24);
   const line = ramp(f, T.END + 38, 24);

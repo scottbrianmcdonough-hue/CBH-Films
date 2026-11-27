@@ -6,8 +6,8 @@
     roundel comes to the middle of the end card, and the song rings out under it.
   - the slide: a soft airy swish as the screen slides from December to January (SWIPE).
   - the steps: a light tap as each of Demand, Competitors and Rates set lights up.
-  - the ticks: a soft click as each January rate settles (rising a touch through the month), kept low under the
-    music. No whooshes or chimes.
+  - the ticks: a soft click as each of the week's January rates moves (rising a touch through the week), kept low
+    under the music. No whooshes or chimes.
 Timings are read from src/linkedin/GNRevenue.tsx (BEAT, END and T). Writes public/campaigns/gn-revenue/soundtrack.wav.
 Usage: python3 scripts/gn-revenue-sfx.py
 """
@@ -95,9 +95,9 @@ for at, pitch in [(DEMAND, 1200), (COMP, 1350), (RATES[0], 1500)]:
     c = tick(pitch, 0.12)
     i = int(at / FPS * SR)
     fx[i:i + len(c)] += c
-for day in range(31):
-    at = RATES[0] + day / 30 * (RATES[1] - RATES[0]) + 5  # as the picture's rate settles
-    c = tick(1500 + day * 18, 0.05)
+for day in range(7):  # the week's seven base rates moving, a column at a time
+    at = RATES[0] + day / 6 * (RATES[1] - RATES[0]) + 6  # as the picture's rate starts to move
+    c = tick(1500 + day * 60, 0.06)
     i = int(at / FPS * SR)
     fx[i:i + len(c)] += c
 
