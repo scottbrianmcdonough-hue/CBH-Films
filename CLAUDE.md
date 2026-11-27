@@ -1498,3 +1498,9 @@ with no history and no renders:
   sending, and don't send a video whose opening is weaker than its best shot.
 - `ruthin-castle-tiktok-story` (`ruthinStory` in `cuts/PovShort.tsx`, 8.3s; Scott, 27 Nov: "need a story for today TikTok"):
   peacock, tower, the carved bed; "you can sleep / in this castle", "full video / on our page"; Rich Enough.
+- `friday-morning-tiktok-story` (`fridayStory` in `cuts/PovShort.tsx`, 10.5s; Scott, 27 Nov: "a separate story", "but it's
+  Friday morning"): Ilsington breakfast in bed, Gisborough misty sunrise, Ramside breakfasts, Rowton's robe held as a still
+  (`robe-still.jpg`); "friday, / finally", "what's the weekend / looking like?".
+- Grid check (27 Nov, Scott: "starting to look samey", his profile): views now pours 635, scones 598, Ruthin 190 (new), team
+  party 731, Dad chat 683, November 690: the last three are different looks (photo, a chat UI, a moody stock wash); the newest
+  three all share the black pill over a single shot. Alternate formats on the grid; don't post two pill-hook cuts in a row.

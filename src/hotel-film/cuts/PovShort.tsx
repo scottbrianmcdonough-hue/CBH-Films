@@ -169,6 +169,25 @@ export const ruthinStory: PovSpec = {
   label: false, music: RICH_ENOUGH,
 };
 
+// a standalone TikTok Story (Scott, 27 Nov: "a separate story")
+const ST = (h: string, c: string) => `hotels/${h}/screen-time/${c}`;
+export const fridayStory: PovSpec = {
+  // Friday morning (Scott: "but it's Friday morning"): breakfast in bed first (the brightest), the robe held for the close
+  hook: ["friday,", "finally"],
+  place: "", name: "",
+  shots: [
+    { clip: "campaigns/departures/hotels/ilsington-breakfast", beats: 3 },
+    { clip: ST("gisborough-hall", "misty-sunrise"), beats: 3 },
+    { clip: "hotels/ramside-hall/tiktok/breakfast-1", beats: 2 },
+    { clip: "hotels/ramside-hall/tiktok/breakfast-2", beats: 3 },
+    { clip: ST("rowton-hall", "robe"), beats: 3 },
+    { clip: ST("rowton-hall", "robe-still"), beats: 5, still: true },
+  ],
+  hookBeats: 6,
+  question: ["what's the weekend", "looking like?"],
+  label: false, music: RICH_ENOUGH,
+};
+
 // TikTok's own Follow button, popped in, tapped and turned to Following (not used: see the close)
 export const Follow: React.FC<{ at: number; tap: number }> = ({ at, tap }) => {
   const f = useCurrentFrame();
