@@ -116,6 +116,7 @@ import { SketchFilm } from "./hotel-film/sketch/SketchFilm";
 import { UnwrapFilm } from "./hotel-film/unwrap/UnwrapFilm";
 import { GN_FPS, GN_HEIGHT, GN_STATS, GN_WIDTH } from "./linkedin/GNStats";
 import { GNSearchDemo, GN_SEARCH_FRAMES } from "./linkedin/GNSearchDemo";
+import { GNContactCentre, GN_CONTACT_FRAMES } from "./linkedin/GNContactCentre";
 import {
   AmcReel,
   AmcStory,
@@ -867,6 +868,15 @@ export const RemotionRoot: React.FC = () => {
         id="gn-ai-recommends"
         component={GNSearchDemo}
         durationInFrames={GN_SEARCH_FRAMES}
+        fps={GN_FPS}
+        width={GN_WIDTH}
+        height={GN_HEIGHT}
+      />
+      {/* Great National Group: the Customer Contact Centre (the December front desk, who picks up?) */}
+      <Composition
+        id="gn-contact-centre"
+        component={GNContactCentre}
+        durationInFrames={GN_CONTACT_FRAMES}
         fps={GN_FPS}
         width={GN_WIDTH}
         height={GN_HEIGHT}
