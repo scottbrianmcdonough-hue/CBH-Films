@@ -5,6 +5,8 @@ import {
   Easing,
   Img,
   interpolate,
+  OffthreadVideo,
+  Sequence,
   staticFile,
   useCurrentFrame,
 } from "remotion";
@@ -144,10 +146,10 @@ const Snow: React.FC<{ f: number; w: number; h: number }> = ({ f, w, h }) => (
   </AbsoluteFill>
 );
 
-/* GN's own hotels behind, tinted GN navy, cutting on the beat like the Contact Centre video: two at dusk for the hook. Photos from GN's Our Hotels page (gn-key/hotels) */
+/* GN's own hotels behind, tinted GN navy, one at dusk held under the hook
+   (Scott: "a weird flicker before each transition": the cuts between dark tinted photos read as flickers). Photos from GN's Our Hotels page (gn-key/hotels) */
 const SHOTS: { src: string; tall: string; from: number }[] = [
   { src: "newtown-park", tall: "40% 50%", from: 0 },
-  { src: "abbeyleix-manor", tall: "45% 50%", from: beat(29) },
 ];
 
 const Hotels: React.FC<{ f: number; L: Layout; wide: boolean }> = ({ f, L, wide }) => {
@@ -227,7 +229,6 @@ export const GNRevenue: React.FC<{ wide?: boolean; sound?: boolean }> = ({ wide 
 
   const cleared = ramp(f, T.CLEAR, 20, io);
   const dev = ramp(f, T.DEVICES, 16, io);
-  const devPush = 1 + 0.04 * ramp(f, T.DEVICES, T.CLEAR - T.DEVICES, Easing.inOut(Easing.quad));
 
   const E = L.end;
   const travel = ramp(f, T.A_OUT, 34, io); // the roundel heads for the middle as the answer leaves
@@ -254,12 +255,17 @@ export const GNRevenue: React.FC<{ wide?: boolean; sound?: boolean }> = ({ wide 
       ) : null}
 
       {/* the studio, full bleed (Scott: no "box thrown on top"): GN's own carousel cover cleared of its text and logo,
-          the real devices along the bottom; a slow push towards them */}
+          the real devices along the bottom, moving in depth (Scott: "do anything with the elements at the bottom") */}
       <AbsoluteFill style={{ opacity: dev * (1 - cleared), overflow: "hidden" }}>
+        {/* the first frame of the move holds until the studio fades in, then the move plays: a hand drawn depth map
+            (public/campaigns/gn-revenue/make-depth.py) so the phone and laptop slide against the monitor */}
         <Img
           src={staticFile(`campaigns/gn-revenue/revanista-plate-${wide ? "wide" : "tall"}.jpg`)}
-          style={{ width: "100%", height: "100%", objectFit: "cover", transform: `scale(${devPush})`, transformOrigin: wide ? "75% 85%" : "55% 88%" }}
+          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: f < T.DEVICES ? 1 : 0 }}
         />
+        <Sequence from={T.DEVICES} layout="none">
+          <OffthreadVideo src={staticFile(`campaigns/gn-revenue/clips/plate-${wide ? "wide" : "tall"}.mp4`)} muted style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }} />
+        </Sequence>
       </AbsoluteFill>
 
       {/* GN roundel, travelling to the middle for the end card */}
