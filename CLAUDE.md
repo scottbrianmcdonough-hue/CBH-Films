@@ -976,6 +976,22 @@ with no history and no renders:
   Docs export into Lee's Word working doc. Each itinerary keeps a photo list (Scott, 26 Nov: "keep a list of all
   the photo urls"), `public/itineraries/<region>/PHOTOS.md`: every photo, where it sits, its source URL or media
   library name, credit and licence; add a row whenever a photo is added or swapped.
+- Lake District itinerary, round 2 (Lee's notes, 27 Nov; Scott: "draft up the mock up and assets for next round", for
+  w/c 30 Nov; Lee told it'll come next week). Changes to make in `scripts/itineraries/build_lake_page_site.py` (and
+  `lake_map.py`), then rebuild with `make_lake_page.sh`, `compare.js`, the Docs working doc, `package_docx.py`,
+  `make_email_copies.py`, PHOTOS.md:
+  - Intro (Lee found the headings competing): H1 "Your stay in the Lake District", the line "Itineraries for a one or
+    two night break, based at one of our hotels.", lose the next line, then the jump buttons, then "About the Lake
+    District" as the section heading with the intro copy full width. Hotel thumbnails in this section, each linking to
+    its CBH page.
+  - Itineraries: make "Day 1" / "Day 2" bigger, anchor like; fewer images (it felt broken up); Day 1 list on the left
+    and images on the right, reversed for Day 2, so each day's list stays together; times out, "Allow 2 hours" style
+    durations in their place. Rainy day stays (Lee liked it).
+  - Map: the key for attractions only, town names on the map itself (same site mapping is Lee's call later).
+  - Top tips: an icon on each tip (a reference point across regions).
+  - More inspiration: split into "More itineraries" and "More inspiration" (spa hotels, golf hotels etc.).
+  - Attractions: a top attractions list on the page (pages of their own later). Regional food and yearly events later.
+  - For Lee to build, note only: a CMS field for each hotel's region focused snippet; site wide mapping.
 - Tickets and post copy: no hyphens in the wording (Scott, 30 Oct: "avoid too many hyphens ... in general"):
   "screen time report", "sleeping in", "canopied bed", not "screen-time", "lie-in", "four-poster".
 - Screen time Stories `cbh-screen-time-<region>-story` (30 Oct): the top three apps (Yorkshire drops the second
