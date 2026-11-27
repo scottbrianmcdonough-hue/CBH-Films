@@ -116,7 +116,7 @@ import { SketchFilm } from "./hotel-film/sketch/SketchFilm";
 import { UnwrapFilm } from "./hotel-film/unwrap/UnwrapFilm";
 import { GN_FPS, GN_HEIGHT, GN_STATS, GN_WIDTH } from "./linkedin/GNStats";
 import { GNSearchDemo, GN_SEARCH_FRAMES } from "./linkedin/GNSearchDemo";
-import { GNContactCentre, GN_CONTACT_FRAMES } from "./linkedin/GNContactCentre";
+import { GNContactCentre, gnContactFrames } from "./linkedin/GNContactCentre";
 import {
   AmcReel,
   AmcStory,
@@ -873,22 +873,26 @@ export const RemotionRoot: React.FC = () => {
         height={GN_HEIGHT}
       />
       {/* Great National Group: the Customer Contact Centre (the December front desk, who picks up?) */}
-      <Composition
-        id="gn-contact-centre"
-        component={GNContactCentre}
-        durationInFrames={GN_CONTACT_FRAMES}
-        fps={GN_FPS}
-        width={GN_WIDTH}
-        height={GN_HEIGHT}
-      />
+      {(["indie", "ambition"] as const).map((track) => (
+        <Composition
+          key={track}
+          id={`gn-contact-centre-${track}`}
+          component={GNContactCentre}
+          durationInFrames={gnContactFrames(track)}
+          fps={GN_FPS}
+          width={GN_WIDTH}
+          height={GN_HEIGHT}
+          defaultProps={{ track, sound: true }}
+        />
+      ))}
       <Composition
         id="gn-contact-centre-silent"
         component={GNContactCentre}
-        durationInFrames={GN_CONTACT_FRAMES}
+        durationInFrames={gnContactFrames("indie")}
         fps={GN_FPS}
         width={GN_WIDTH}
         height={GN_HEIGHT}
-        defaultProps={{ sound: false }}
+        defaultProps={{ track: "indie" as const, sound: false }}
       />
       {/* AMC 2026: the post-AMC reel, the wall come to life; one edit on each candidate track
           (`amc-2026-reel` is Light it Up Boy) */}
