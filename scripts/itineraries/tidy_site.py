@@ -51,10 +51,12 @@ SECTIONS = [  # first selector of each group -> its heading
     (":root", "Colours"), ("*", "Base"), (".note", "Draft banner"), ("header", "Site header"),
     (".pill", "Buttons"), (".wrap", "Layout"), (".crumb", "Breadcrumb"), (".hero", "Hero"),
     (".titleblock", "Title and intro"), ("h2", "Type"), (".toc", "Contents"), (".quick", "Quick view"),
-    (".about", "About the Lake District"), (".day", "Itineraries"), (".group", "Itineraries: time of day"),
+    (".about", "About the Lake District"), (".thumbs", "About the Lake District"), (".thumb", "About the Lake District"),
+    (".day", "Itineraries"), (".dayhead", "Itineraries"), (".group", "Itineraries: time of day"), (".allow", "Itineraries: stops"),
+    (".attractions", "Top attractions"), (".attr", "Top attractions"), (".tip", "Top tips"),
     (".stop", "Itineraries: stops"), (".strip", "Photo strips"), ("figure", "Photo strips"),
     (".map", "Map"), (".mapwrap", "Map"), (".maptabs", "Map"), (".maplegend", "Map"), (".key", "Map"),
-    (".time-morning", "Time of day colours"), (".tag", "Itineraries: time of day"), ("#rain", "Rainy day"), (".cards", "Where to stay"), (".card", "Where to stay"),
+    (".tag", "Itineraries: time of day"), ("#rain", "Rainy day"), (".cards", "Where to stay"), (".card", "Where to stay"),
     (".tips", "Top tips"), (".gallery", "Gallery"), ("details", "FAQs"), (".faq", "FAQs"),
     (".tiles", "More inspiration"), (".tile", "More inspiration"), ("footer", "Footer"), ("@media", "Phones and tablets"),
 ]
@@ -93,28 +95,11 @@ def fmt_css(css):
     return "".join(out).lstrip("\n")
 
 
-# time of day: the inline colours become named classes, the colours themselves custom properties
-TIMES = {"#779096": ("morning", "#1d1d1b"), "#869674": ("lunch", "#1d1d1b"), "#755c78": ("afternoon", "#fff"), "#1d1d1b": ("evening", "#fff")}
-
-
-def time_class(m):
-    tag, before, colour, after = m.group(1), m.group(2), m.group(3).lower(), m.group(4)
-    name = TIMES[colour][0]
-    cls = re.search(r'class="([^"]*)"', before + after)
-    rest = re.sub(r'\s*class="[^"]*"', "", before + after)
-    return f'<{tag} class="{(cls.group(1) + " ") if cls else ""}time-{name}"{rest}>'
-
-
-colours = "|".join(TIMES)
-html = re.sub(r'<(i|b|span)([^>]*?)\s*style="(?:background|--c):(' + colours + r')(?:;color:#(?:fff|1d1d1b))?"([^>]*)>', time_class, html, flags=re.I)
+# (round 2: the time of day colours are gone, so there are no inline colours left to turn into classes)
 html = html.replace('<div class="strip two" style="margin:0">', '<div class="strip two">')
-TIME_ROOT = ":root{" + ";".join(f"--{n}:{c}" for c, (n, _) in TIMES.items()) + "}"
-TIME_CSS = ("".join(f".time-{n}{{--c:var(--{n});--on:{on}}}" for _, (n, on) in TIMES.items())
-            + ".tag i,.maplegend li b{background:var(--c);color:var(--on)}"
-            + "#rain .strip{margin:0}")
 
 styles = re.findall(r"<style>(.*?)</style>", html, re.S)
-css = fmt_css(styles[0].replace("}", "}" + TIME_ROOT, 1) + "".join(styles[1:]) + TIME_CSS)  # the time colours sit with the others at the top
+css = fmt_css("".join(styles))
 
 # ---------------------------------------------------------------- HTML
 VOID = {"meta", "link", "img", "br", "hr", "input", "source", "path", "circle", "rect", "ellipse", "line", "polyline", "polygon", "use", "stop"}

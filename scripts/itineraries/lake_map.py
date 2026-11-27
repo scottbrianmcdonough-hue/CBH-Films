@@ -1,8 +1,7 @@
-"""A mock-up of the embedded route map: the Lakes drawn from approximate coordinates, stops numbered in route order and
-coloured by time of day, our hotels as gold pins. Not to survey accuracy: a mock-up of what the embed would show."""
-# time of day in the brand gold, deepening through the day (core palette only): pale, core, deep; hotels black
-M, L, A, E, GOLD, INK = "#779096", "#869674", "#755c78", "#1d1d1b", "#C39E55", "#1d1d1b"
-TXT = {M: "#1d1d1b", L: "#1d1d1b", A: "#fff"}  # ink on the blue and green (5.0, 5.3 to 1), white on the heather (5.9)
+"""A mock-up of the embedded route map: the Lakes drawn from approximate coordinates, the attractions numbered in route
+order (the key lists attractions only), towns named on the map, our hotels as pins. Not to survey accuracy: a mock-up of what the embed would show."""
+# colours: the attractions in the brand gold with ink numbers, the hotels and towns in ink
+GOLD, INK = "#C39E55", "#1d1d1b"
 
 
 def X(lon):
@@ -25,18 +24,23 @@ LAKES = {
     "Derwentwater": [(54.596, -3.146), (54.585, -3.132), (54.567, -3.137), (54.553, -3.152), (54.558, -3.167), (54.575, -3.166), (54.59, -3.16)],
     "Bassenthwaite Lake": [(54.693, -3.226), (54.675, -3.205), (54.655, -3.193), (54.64, -3.19), (54.638, -3.197), (54.655, -3.208), (54.675, -3.222), (54.69, -3.236)],
 }
-LAKE_LABELS = {"Windermere": (54.35, -2.985, -78), "Derwentwater": (54.544, -3.165, 0), "Bassenthwaite Lake": (54.662, -3.245, -60), "Thirlmere": (54.543, -3.035, -70), "Grasmere": (54.462, -3.055, 0)}
+LAKE_LABELS = {"Windermere": (54.35, -2.985, -78), "Derwentwater": (54.544, -3.165, 0), "Bassenthwaite Lake": (54.662, -3.245, -60), "Thirlmere": (54.543, -3.035, -70)}  # Grasmere the lake is left unlabelled: the town carries the name
 FELLS = {"Skiddaw": (54.651, -3.147), "Helvellyn": (54.527, -3.016), "Blencathra": (54.639, -3.05)}
 
-STOPS = [  # (n, name, lat, lon, colour)
-    (1, "Orrest Head", 54.381, -2.904, M), (2, "Bowness", 54.363, -2.918, L), (3, "Lake cruise", 54.392, -2.942, A),
-    (4, "Ambleside", 54.432, -2.963, A), (5, "Grasmere", 54.458, -3.024, M), (6, "Keswick", 54.600, -3.134, L),
-    (7, "Castlerigg", 54.603, -3.098, A), (8, "Keswick Launch", 54.588, -3.148, A), (9, "Catbells", 54.569, -3.170, M),
-    (10, "Ashness Bridge", 54.567, -3.120, L),
+# the attractions, numbered for the key (Lee, 27 Nov: "use that key for attractions only and put the towns on the map
+# itself"); places nudged a little apart where markers would overlap (the map is a mock-up, not to scale)
+STOPS = [  # (n, name, lat, lon)
+    (1, "Orrest Head", 54.392, -2.893), (2, "Windermere Lake Cruises", 54.392, -2.942), (3, "Dove Cottage", 54.452, -3.008),
+    (4, "Castlerigg Stone Circle", 54.603, -3.098), (5, "Keswick Launch", 54.583, -3.146), (6, "Catbells", 54.569, -3.170),
+    (7, "Ashness Bridge", 54.567, -3.120),
+]
+TOWNS = [  # (name, lat, lon, label dx, dy, anchor)
+    ("Windermere", 54.378, -2.907, -9, -6, "end"), ("Bowness", 54.363, -2.918, -9, 4, "end"), ("Ambleside", 54.432, -2.963, -9, -6, "end"),
+    ("Grasmere", 54.458, -3.024, -9, 0, "end"), ("Keswick", 54.600, -3.134, -9, -8, "end"),
 ]
 HOTELS = [("Low Wood Bay|Resort &amp; Spa", 54.408, -2.953, (16, -14, "start")), ("Wild Boar Estate", 54.356, -2.866, (36, 26, "end")), ("Lake District Castle Inn|Hotel &amp; Spa", 54.683, -3.205, (16, -14, "start"))]
-ROUTE = [(54.381, -2.904), (54.363, -2.918), (54.392, -2.942), (54.432, -2.963), (54.408, -2.953), (54.432, -2.963), (54.458, -3.024),
-         (54.50, -3.03), (54.56, -3.07), (54.600, -3.134), (54.603, -3.098), (54.588, -3.148), (54.64, -3.17), (54.683, -3.205),
+ROUTE = [(54.392, -2.893), (54.363, -2.918), (54.392, -2.942), (54.432, -2.963), (54.408, -2.953), (54.432, -2.963), (54.452, -3.008),
+         (54.50, -3.03), (54.56, -3.07), (54.600, -3.134), (54.603, -3.098), (54.583, -3.146), (54.64, -3.17), (54.683, -3.205),
          (54.62, -3.18), (54.569, -3.170), (54.567, -3.120)]
 
 
@@ -60,9 +64,12 @@ def svg():
         x, y = X(lo), Y(la)
         o.append(f'<g><path d="M{x:.0f} {y:.0f} l-9 -14 a11 11 0 1 1 18 0 z" fill="{INK}" stroke="#fff" stroke-width="2"/><circle cx="{x:.0f}" cy="{y-19:.0f}" r="4.5" fill="{GOLD}"/>')
         o.append(f'<text x="{x+dx:.0f}" y="{y+dy:.0f}" text-anchor="{anchor}" font-size="12.5" font-weight="700" fill="#1d1d1b" font-family="Lato,sans-serif" paint-order="stroke" stroke="#e9eee4" stroke-width="3">{"".join(f'<tspan x="{x+dx:.0f}" dy="{0 if i == 0 else 15}">{part}</tspan>' for i, part in enumerate(name.split("|")))}</text></g>')
-    for n, name, la, lo, c in STOPS:
+    for name, la, lo, dx, dy, anchor in TOWNS:
         x, y = X(lo), Y(la)
-        o.append(f'<circle cx="{x:.0f}" cy="{y:.0f}" r="11" fill="{c}" stroke="#fff" stroke-width="2"/><text x="{x:.0f}" y="{y+4:.0f}" text-anchor="middle" font-size="11" font-weight="700" fill="{TXT[c]}" font-family="Lato,sans-serif">{n}</text>')
+        o.append(f'<circle cx="{x:.0f}" cy="{y:.0f}" r="3.5" fill="{INK}"/><text x="{x+dx:.0f}" y="{y+dy+4:.0f}" text-anchor="{anchor}" font-size="12.5" fill="{INK}" font-family="Lato,sans-serif" paint-order="stroke" stroke="#e9eee4" stroke-width="3">{name}</text>')
+    for n, name, la, lo in STOPS:
+        x, y = X(lo), Y(la)
+        o.append(f'<circle cx="{x:.0f}" cy="{y:.0f}" r="11" fill="{GOLD}" stroke="#fff" stroke-width="2"/><text x="{x:.0f}" y="{y+4:.0f}" text-anchor="middle" font-size="11" font-weight="700" fill="{INK}" font-family="Lato,sans-serif">{n}</text>')
     # map furniture: zoom buttons, north arrow, attribution
     o.append('<g font-family="Lato,sans-serif"><rect x="452" y="16" width="32" height="64" rx="6" fill="#fff" stroke="#d6d6d0"/><line x1="452" y1="48" x2="484" y2="48" stroke="#d6d6d0"/>'
              '<text x="468" y="38" text-anchor="middle" font-size="18" fill="#444">+</text><text x="468" y="70" text-anchor="middle" font-size="18" fill="#444">&#8722;</text>'
@@ -73,15 +80,16 @@ def svg():
 
 
 def legend():
-    rows = "".join(f'<li><b style="background:{c};color:{TXT[c]}">{n}</b>{name}</li>' for n, name, _, _, c in STOPS)
+    rows = "".join(f'<li><b>{n}</b>{name}</li>' for n, name, _, _ in STOPS)
     return (f'<div class="maplegend">'
-            f'<ol>{rows}</ol><div class="hotels"><i></i><span>Our hotels: Low Wood Bay Resort &amp; Spa, Wild Boar Estate, Lake District Castle Inn Hotel &amp; Spa</span></div>'
+            f'<ol>{rows}</ol><div class="hotels"><i></i><span>Our hotels: Low Wood Bay Resort &amp; Spa, Wild Boar Estate, Lake District Castle Inn Hotel &amp; Spa</span></div><div class="hotels town"><i></i><span>Towns are named on the map</span></div>'
             f'<a class="pill outline" href="#">Open in Google Maps</a></div>')
 
 
 CSS = """.mapwrap{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:40px;align-items:start;margin-top:26px;text-align:left}
 .mapwrap svg{width:100%;height:auto;border-radius:12px;display:block;border:1px solid #e4e2de}
 .maplegend ol{list-style:none;padding:0;margin:0 0 20px;columns:1}.maplegend li{display:flex;align-items:center;gap:14px;padding:8px 0;border-bottom:1px solid #e4e2de;font-size:16px}
-.maplegend li b{flex:none;width:26px;height:26px;border-radius:50%;color:#fff;font-size:12px;display:flex;align-items:center;justify-content:center}
+.maplegend li b{flex:none;width:26px;height:26px;border-radius:50%;background:#C39E55;color:#1d1d1b;font-size:12px;display:flex;align-items:center;justify-content:center}
 .maplegend .hotels{display:flex;gap:12px;align-items:flex-start;font-size:15px;color:#585858;margin-bottom:22px}.maplegend .hotels i{flex:none;width:16px;height:16px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:#1d1d1b;margin-top:4px;box-shadow:inset 0 0 0 4.5px #1d1d1b,inset 0 0 0 9px #C39E55}
+.maplegend .town i{width:8px;height:8px;border-radius:50%;transform:none;background:#1d1d1b;box-shadow:none;margin:8px 4px 0}
 @media(max-width:900px){.mapwrap{grid-template-columns:1fr}}"""
