@@ -14,8 +14,9 @@ import { sans, serif } from "../hotel-film/theme";
 // Christmas, someone can be getting January ready"). This take after Scott's notes on the rate table versions ("too
 // fast to know what's going on", "don't make up the UI", "use the info"): nothing invented.
 //   - The hook over GN's own hotels at dusk in a navy tint with a light snowfall, the Contact Centre video's look:
-//     "December's busy." over a wall calendar filling up, the page turns, "January's in good hands." as January's
-//     dates tick off (dates only, no rates).
+//     "December's busy." over a wall calendar filling up, the page turns, "January's quieter.", then "We set the
+//     right price for every night." as January's dates tick off (dates only, no rates): the idea in plain words, for
+//     someone outside hotels (Scott: "make it make sense to a newcomer or outsider, universal").
 //   - Revanista as GN shows it, full bleed (Scott: not a "box thrown on top"): GN's own Revanista carousel cover cleared
 //     of its text, logo and red decorations (scripts/revanista-devices-clean.py), the real rate screens on a laptop, a
 //     monitor and a phone along the bottom of a white studio; "Powered by Revanista", the wording on GN's page.
@@ -60,17 +61,18 @@ const rand = (seed: number) => {
 /* Timing (frames at 30fps), on the track's beat (120 BPM, 15 frames), counted back from END: the end card lands on the
    track's last hit */
 export const BEAT = 15;
-export const END = 630;
+export const END = 675;
 const beat = (n: number) => END - n * BEAT;
 export const T = {
-  HOOK1: beat(42), // "December's busy." over December filling up (in from the first frame: LinkedIn previews it)
-  DEC: [-36, beat(37)] as [number, number], // December's dates fill in, a few already booked on frame one (LinkedIn's preview)
-  FLIP: beat(35), // the page turns to January
-  HOOK2: beat(34), // "January's in good hands." (Scott: "January's next" sounded like there's no time)
-  JAN: [beat(33), beat(29) + 6] as [number, number], // January's dates tick off, in order
+  HOOK1: beat(45), // "December's busy." over December filling up (in from the first frame: LinkedIn previews it)
+  DEC: [-36, beat(40)] as [number, number], // December's dates fill in, a few already booked on frame one
+  FLIP: beat(38), // the page turns to January
+  HOOK2: beat(37), // "January's quieter." (Scott: "make it make sense to a newcomer or outsider")
+  HOOK3: beat(34), // "We set the right price for every night." (what revenue management is, in one line)
+  JAN: [beat(33), beat(29) + 6] as [number, number], // January's dates tick off as the line lands
   HOOK_OUT: beat(27),
   DEVICES: beat(26), // Revanista as GN shows it
-  FEATURES: [beat(23), beat(18), beat(13)], // three points, 2.5 seconds apart (Scott: "too fast", "maybe too much text")
+  FEATURES: [beat(23), beat(18), beat(13)], // three points, in plain words, 2.5 seconds apart
   CLEAR: beat(7), // the studio clears to white
   A1: beat(6), // "You look after Christmas."
   A2: beat(5), // "We'll get January ready."
@@ -81,9 +83,9 @@ export const GN_REVENUE_FRAMES = T.END + 100;
 
 /* What the service gives a hotel, from GN's Revenue Management page */
 const FEATURES = [
-  "A dedicated Revenue Account Manager",
-  "Rates loaded up to 24 months ahead",
-  "Competitor price shopping",
+  "Your own revenue manager",
+  "Prices set up to two years ahead",
+  "We check what nearby hotels charge",
 ];
 
 /* Layouts */
@@ -95,7 +97,7 @@ type Layout = {
   title: { left: number; top: number; size: number; width: number };
   list: { left: number; top: number; step: number; size: number; width: number };
   answer: { size: number; tops: [number, number] };
-  end: { cx: number; badge: [number, number]; title: [number, number]; line: [number, number, number]; logo: [number, number] };
+  end: { cx: number; badge: [number, number]; title: [number, number]; tag: [number, number]; line: [number, number, number]; logo: [number, number] };
   tint: string;
 };
 
@@ -103,12 +105,12 @@ const LAYOUTS: Record<"tall" | "wide", Layout> = {
   tall: {
     x: 80,
     badge: { top: 80, size: 120 },
-    hook: { size: 88, top: 250, width: 920 },
-    cal: { left: 80, top: 400, w: 920, cell: 88, gap: 10, head: 50, num: 26 },
+    hook: { size: 80, top: 222, width: 920 },
+    cal: { left: 80, top: 432, w: 920, cell: 88, gap: 10, head: 50, num: 26 },
     title: { left: 80, top: 250, size: 60, width: 920 },
     list: { left: 80, top: 370, step: 80, size: 40, width: 920 },
     answer: { size: 84, tops: [510, 616] },
-    end: { cx: 540, badge: [370, 190], title: [600, 84], line: [846, 26, 960], logo: [892, 230] },
+    end: { cx: 540, badge: [350, 190], title: [580, 84], tag: [790, 34], line: [880, 24, 960], logo: [920, 220] },
     tint: "linear-gradient(180deg, rgba(24,43,60,0.80) 0%, rgba(24,43,60,0.70) 50%, rgba(24,43,60,0.84) 100%)",
   },
   wide: {
@@ -119,7 +121,7 @@ const LAYOUTS: Record<"tall" | "wide", Layout> = {
     title: { left: 120, top: 220, size: 60, width: 760 },
     list: { left: 120, top: 340, step: 82, size: 38, width: 900 },
     answer: { size: 92, tops: [380, 490] },
-    end: { cx: 960, badge: [190, 170], title: [400, 84], line: [626, 26, 900], logo: [670, 210] },
+    end: { cx: 960, badge: [150, 170], title: [360, 84], tag: [570, 34], line: [650, 24, 900], logo: [690, 200] },
     tint: "linear-gradient(90deg, rgba(24,43,60,0.88) 0%, rgba(24,43,60,0.76) 45%, rgba(24,43,60,0.62) 100%)",
   },
 };
@@ -342,8 +344,9 @@ export const GNRevenue: React.FC<{ wide?: boolean; sound?: boolean }> = ({ wide 
   const travel = ramp(f, T.A_OUT, 34, io); // the roundel heads for the middle as the answer leaves
   const title = ramp(f, T.END + 12, 24);
   const title2 = ramp(f, T.END + 20, 24);
-  const line = ramp(f, T.END + 38, 24);
-  const logo = ramp(f, T.END + 50, 24);
+  const tag = ramp(f, T.END + 30, 24);
+  const line = ramp(f, T.END + 46, 24);
+  const logo = ramp(f, T.END + 56, 24);
   const badgeSize = interpolate(travel, [0, 1], [L.badge.size, E.badge[1]]);
   const badgeLeft = interpolate(travel, [0, 1], [L.x, E.cx - E.badge[1] / 2]);
   const badgeTop = interpolate(travel, [0, 1], [L.badge.top, E.badge[0]]);
@@ -392,7 +395,8 @@ export const GNRevenue: React.FC<{ wide?: boolean; sound?: boolean }> = ({ wide 
       {/* the hook: a line at a time in the same place, the calendar under it */}
       {[
         { text: "December’s busy.", start: T.HOOK1 - RISE, away: T.FLIP - 4 }, // already in on frame one (LinkedIn's preview)
-        { text: "January’s in good hands.", start: T.HOOK2, away: T.HOOK_OUT },
+        { text: "January’s quieter.", start: T.HOOK2, away: T.HOOK3 - 4 },
+        { text: "We set the right price for every night.", start: T.HOOK3, away: T.HOOK_OUT },
       ].map((l) => (
         <div
           key={l.text}
@@ -468,6 +472,24 @@ export const GNRevenue: React.FC<{ wide?: boolean; sound?: boolean }> = ({ wide 
         <div style={{ fontFamily: serif, fontWeight: 500, fontSize: E.title[1], lineHeight: 1.08, opacity: title2, transform: `translateY(${(1 - title2) * 30}px)` }}>
           Revenue Management
         </div>
+      </div>
+      {/* what it is, in plain words (Scott: "make it make sense to a newcomer or outsider") */}
+      <div
+        style={{
+          position: "absolute",
+          left: 0,
+          width: W,
+          top: E.tag[0],
+          textAlign: "center",
+          fontFamily: serif,
+          fontStyle: "italic",
+          fontSize: E.tag[1],
+          color: navy,
+          opacity: tag,
+          transform: `translateY(${(1 - tag) * 20}px)`,
+        }}
+      >
+        The right price for every room, every night
       </div>
       <div
         style={{
