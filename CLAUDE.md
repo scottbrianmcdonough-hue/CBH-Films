@@ -1512,3 +1512,7 @@ with no history and no renders:
   `cbh-camera-roll-christmas-instagram` (CameraRoll `ig`): the same film with the white CB top right.
 - Render one at a time with `--concurrency=2` on the bigger comps and clear `/dev/shm/gig/*-raw.mp4` after: tmpfs is memory,
   and two renders plus old raws got the second render killed (27 Nov).
+- `waterton-island-loop-tiktok` (`watertonLoop` in `cuts/PovShort.tsx`, 8.5s; Scott, 27 Nov: average watch time under five
+  seconds): `loop` (no tail, no music fades): four bars of Rich Enough from its drop, aerial 3 beats, footbridge 3, tea 2,
+  pool 2, bedroom 6 under the question, the cut back to the aerial on the downbeat. Waterton and Coombe re-rendered in the
+  brand caption look (Ruthin and the scones had gone out).

@@ -19,6 +19,9 @@ export type PovSpec = {
   label?: boolean; music?: PovMusic;
   // how many beats the hook holds (default: the first shot); with a quick first cut the hook runs on over the second
   hookBeats?: number;
+  // a loop (Scott, 27 Nov: average watch time under five seconds): no tail and no music fades, so the last frame cuts
+  // straight back to the first on the bar and the track picks up its own downbeat again
+  loop?: boolean;
 };
 
 const EVENT_MUSIC: PovMusic = { src: "music/prettyjohn1-event-music-595091.mp3", from: 6.27, bpm: 152.2 };
@@ -26,7 +29,7 @@ const EVENT_MUSIC: PovMusic = { src: "music/prettyjohn1-event-music-595091.mp3",
 export const RICH_ENOUGH: PovMusic = { src: "stings/screens/rich-enough.mp3", from: 142.496, bpm: 112.5 };
 const beatOf = (spec: PovSpec) => (60 / (spec.music ?? EVENT_MUSIC).bpm) * 30;
 const sum = (s: PovShot[]) => s.reduce((t, x) => t + x.beats, 0);
-export const povFrames = (s: PovSpec) => Math.round(sum(s.shots) * beatOf(s)) + 10;
+export const povFrames = (s: PovSpec) => Math.round(sum(s.shots) * beatOf(s)) + (s.loop ? 0 : 10);
 
 const R = "hotels/rowton-hall/screen-time";
 const LW = "hotels/low-wood-bay/screen-time";
@@ -188,6 +191,21 @@ export const fridayStory: PovSpec = {
   label: false, music: RICH_ENOUGH,
 };
 
+// Waterton as a loop: four bars of Rich Enough from its drop (64 beats of 16 frames = 8.5s), the bedroom cutting back to
+// the aerial on the downbeat
+export const watertonLoop: PovSpec = {
+  ...watertonIsland,
+  shots: [
+    { clip: `${WP}/aerial-story`, beats: 3 },
+    { clip: `${WP}/walton-hall-story`, beats: 3 },
+    { clip: `${WP}/afternoon-tea`, beats: 2 },
+    { clip: `${WP}/indoor-pool-story`, beats: 2 },
+    { clip: `${WP}/bedroom`, beats: 6 },
+  ],
+  hookBeats: 6,
+  loop: true,
+};
+
 // TikTok's own Follow button, popped in, tapped and turned to Following (not used: see the close)
 export const Follow: React.FC<{ at: number; tap: number }> = ({ at, tap }) => {
   const f = useCurrentFrame();
@@ -265,7 +283,7 @@ export const PovShort: React.FC<{ spec?: PovSpec }> = ({ spec = rowtonSpa }) => 
       {/* the follow ask in the caption style, not a fake button (Scott, 25 Nov: a fake Follow button can fail TikTok's ad review
           when the reel is boosted, and looks tappable when it isn't) */}
       <Audio src={staticFile(music.src)} trimBefore={Math.round(music.from * 30)}
-        volume={(v) => interpolate(v, [0, 3, total - 14, total], [0, 1, 1, 0], { extrapolateRight: "clamp" })} />
+        volume={(v) => (spec.loop ? 1 : interpolate(v, [0, 3, total - 14, total], [0, 1, 1, 0], { extrapolateRight: "clamp" }))} />
     </AbsoluteFill>
   );
 };
