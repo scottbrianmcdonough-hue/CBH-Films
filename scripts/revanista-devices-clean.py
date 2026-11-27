@@ -70,3 +70,33 @@ out[ys, xs] = out[ys - 40, xs]
 crop = np.clip(out, 0, 255).astype(np.uint8)[735:1215, 30:905]
 cv2.imwrite("public/campaigns/gn-revenue/revanista-devices.jpg", crop, [cv2.IMWRITE_JPEG_QUALITY, 94])
 print("written", crop.shape)
+
+# ------------------------------------------------------------------ full bleed plates (Scott: "I don't like the box thrown
+# on top look, make it full bleed?"): the whole cover as a clean studio scene, its carousel text and the corner logo
+# taken out, the devices at the bottom, at the cover's own resolution
+plate = np.clip(out, 0, 255).astype(np.uint8).astype(np.float32)
+# above the devices (y < 742) the cover is only its carousel text on a plain white to grey fade: that area is rebuilt as
+# the fade itself (each row the colour of the cover's own clear right hand margin), crossfading into the photo just
+# above the monitor so no seam shows (filling the letters one by one left their ghosts)
+rowcol = np.median(plate[:760, 1012:1078], axis=1)
+k = np.clip((np.arange(760) - 716) / 26, 0, 1)[:, None, None]  # 0 = the rebuilt fade, 1 = the photo
+plate[:760] = rowcol[:, None, :] * (1 - k) + plate[:760] * k
+# the Revanista logo in the bottom right corner, on the studio floor
+logo = np.zeros((h, w), np.uint8)
+logo[1238:1285, 862:1052] = 255
+plate8 = cv2.inpaint(np.clip(plate, 0, 255).astype(np.uint8), logo, 7, cv2.INPAINT_TELEA)
+pf = plate8.astype(np.float32)
+pb = cv2.GaussianBlur(pf, (0, 0), 6)
+lm = cv2.GaussianBlur(logo.astype(np.float32) / 255, (0, 0), 3)[..., None]
+plate8 = np.clip(pf * (1 - lm) + pb * lm, 0, 255).astype(np.uint8)
+cv2.imwrite("public/campaigns/gn-revenue/revanista-plate-tall.jpg", plate8, [cv2.IMWRITE_JPEG_QUALITY, 94])
+
+# 16:9: the cover's lower 1080 rows on the right, the studio carried on to the left from its own left edge column
+rows = plate8[270:1350]
+edge = np.median(rows[:, 4:14].astype(np.float32), axis=1)  # the plain studio at the cover's left edge, row by row
+wide = np.repeat(edge[:, None, :], 1920, axis=1)
+wide[:, 840:] = rows
+feather = np.clip((np.arange(1920) - 840) / 60, 0, 1)[None, :, None]
+wide[:, 840:900] = (edge[:, None, :] * (1 - feather[:, 840:900]) + rows[:, :60].astype(np.float32) * feather[:, 840:900])
+cv2.imwrite("public/campaigns/gn-revenue/revanista-plate-wide.jpg", np.clip(wide, 0, 255).astype(np.uint8), [cv2.IMWRITE_JPEG_QUALITY, 94])
+print("plates written")

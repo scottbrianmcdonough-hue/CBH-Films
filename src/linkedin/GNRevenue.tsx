@@ -14,13 +14,13 @@ import { sans, serif } from "../hotel-film/theme";
 // Christmas, someone can be getting January ready"). This take after Scott's notes on the rate table versions ("too
 // fast to know what's going on", "don't make up the UI", "use the info"): nothing invented.
 //   - The hook over GN's own hotels at dusk in a navy tint with a light snowfall, the Contact Centre video's look.
-//   - Revanista as GN shows it: the devices image from GN's own Revanista carousel (the real rate screens on a laptop,
-//     a monitor and a phone; the carousel's red decorations taken out by scripts/revanista-devices-clean.py),
-//     "Revanista, our own revenue management system".
+//   - Revanista as GN shows it, full bleed (Scott: not a "box thrown on top"): GN's own Revanista carousel cover cleared
+//     of its text, logo and red decorations (scripts/revanista-devices-clean.py), the real rate screens on a laptop, a
+//     monitor and a phone along the bottom of a white studio; "Powered by Revanista", the wording on GN's page.
 //   - What the service gives a hotel, from GN's Revenue Management page, one point every two seconds, the list
 //     building so each can be read: account manager, budgets, weekly calls, rate loading, price shopping.
 //   - GN's white: "You look after Christmas. / We'll get January ready.", and the end card: the roundel travelling to
-//     the middle, Great National Revenue Management, what Revanista is, Revanista's logo.
+//     the middle, Great National Revenue Management, "Powered by" and Revanista's logo.
 // No figures, no hyphens, em dashes or triads in the text. 4:5 and 16:9 (`wide`). Sound: scripts/gn-revenue-sfx.py
 // (reads BEAT, END and T from here).
 
@@ -88,7 +88,6 @@ type Layout = {
   badge: { top: number; size: number };
   hook: { size: number; tops: [number, number]; width: number };
   title: { left: number; top: number; size: number; width: number };
-  devices: { left: number; top: number; w: number };
   list: { left: number; top: number; step: number; size: number; width: number };
   answer: { size: number; tops: [number, number] };
   end: { cx: number; badge: [number, number]; title: [number, number]; line: [number, number, number]; logo: [number, number] };
@@ -100,22 +99,20 @@ const LAYOUTS: Record<"tall" | "wide", Layout> = {
     x: 80,
     badge: { top: 80, size: 120 },
     hook: { size: 88, tops: [330, 540], width: 920 },
-    title: { left: 80, top: 236, size: 48, width: 920 },
-    devices: { left: 60, top: 372, w: 960 },
-    list: { left: 80, top: 932, step: 58, size: 30, width: 920 },
+    title: { left: 80, top: 250, size: 60, width: 920 },
+    list: { left: 80, top: 360, step: 62, size: 32, width: 920 },
     answer: { size: 84, tops: [510, 616] },
-    end: { cx: 540, badge: [360, 190], title: [590, 84], line: [830, 30, 960], logo: [915, 230] },
+    end: { cx: 540, badge: [370, 190], title: [600, 84], line: [846, 26, 960], logo: [892, 230] },
     tint: "linear-gradient(180deg, rgba(24,43,60,0.80) 0%, rgba(24,43,60,0.70) 50%, rgba(24,43,60,0.84) 100%)",
   },
   wide: {
     x: 120,
     badge: { top: 70, size: 110 },
     hook: { size: 88, tops: [360, 470], width: 1500 },
-    title: { left: 120, top: 260, size: 50, width: 720 },
-    devices: { left: 930, top: 300, w: 880 },
-    list: { left: 120, top: 470, step: 70, size: 30, width: 720 },
+    title: { left: 120, top: 220, size: 60, width: 760 },
+    list: { left: 120, top: 330, step: 66, size: 30, width: 760 },
     answer: { size: 92, tops: [380, 490] },
-    end: { cx: 960, badge: [180, 170], title: [390, 84], line: [620, 30, 900], logo: [700, 210] },
+    end: { cx: 960, badge: [190, 170], title: [400, 84], line: [626, 26, 900], logo: [670, 210] },
     tint: "linear-gradient(90deg, rgba(24,43,60,0.88) 0%, rgba(24,43,60,0.76) 45%, rgba(24,43,60,0.62) 100%)",
   },
 };
@@ -206,7 +203,7 @@ const Feature: React.FC<{ f: number; at: number; text: string; top: number; L: L
       }}
     >
       <svg width={ring} height={ring} viewBox="0 0 24 24" style={{ flex: "none" }}>
-        <circle cx="12" cy="12" r="11" fill="none" stroke={lime} strokeWidth="1.4" />
+        <circle cx="12" cy="12" r="11" fill={navy} />
         <path
           d="M7 12.5l3.2 3.2L17 9"
           fill="none"
@@ -218,7 +215,7 @@ const Feature: React.FC<{ f: number; at: number; text: string; top: number; L: L
           strokeDashoffset={16 * (1 - tick)}
         />
       </svg>
-      <span style={{ fontFamily: sans, fontSize: L.size, color: white, lineHeight: 1.25 }}>{text}</span>
+      <span style={{ fontFamily: sans, fontSize: L.size, color: navy, lineHeight: 1.25 }}>{text}</span>
     </div>
   );
 };
@@ -231,9 +228,8 @@ export const GNRevenue: React.FC<{ wide?: boolean; sound?: boolean }> = ({ wide 
   const H = wide ? 1080 : 1350;
 
   const cleared = ramp(f, T.CLEAR, 20, io);
-  const dev = ramp(f, T.DEVICES, 24);
-  const devPush = 1 + 0.06 * ramp(f, T.DEVICES, T.CLEAR - T.DEVICES, Easing.inOut(Easing.quad));
-  const devH = Math.round((L.devices.w * 480) / 875); // the image's own proportions
+  const dev = ramp(f, T.DEVICES, 16, io);
+  const devPush = 1 + 0.04 * ramp(f, T.DEVICES, T.CLEAR - T.DEVICES, Easing.inOut(Easing.quad));
 
   const E = L.end;
   const travel = ramp(f, T.A_OUT, 34, io); // the roundel heads for the middle as the answer leaves
@@ -258,6 +254,15 @@ export const GNRevenue: React.FC<{ wide?: boolean; sound?: boolean }> = ({ wide 
           <Snow f={f} w={W} h={H} />
         </AbsoluteFill>
       ) : null}
+
+      {/* the studio, full bleed (Scott: no "box thrown on top"): GN's own carousel cover cleared of its text and logo,
+          the real devices along the bottom; a slow push towards them */}
+      <AbsoluteFill style={{ opacity: dev * (1 - cleared), overflow: "hidden" }}>
+        <Img
+          src={staticFile(`campaigns/gn-revenue/revanista-plate-${wide ? "wide" : "tall"}.jpg`)}
+          style={{ width: "100%", height: "100%", objectFit: "cover", transform: `scale(${devPush})`, transformOrigin: wide ? "75% 85%" : "55% 88%" }}
+        />
+      </AbsoluteFill>
 
       {/* GN roundel, travelling to the middle for the end card */}
       <Img
@@ -289,7 +294,7 @@ export const GNRevenue: React.FC<{ wide?: boolean; sound?: boolean }> = ({ wide 
         </div>
       ))}
 
-      {/* Revanista, as GN shows it */}
+      {/* Revanista, in the words of GN's own page */}
       <div
         style={{
           position: "absolute",
@@ -300,32 +305,12 @@ export const GNRevenue: React.FC<{ wide?: boolean; sound?: boolean }> = ({ wide 
           fontWeight: 500,
           fontSize: L.title.size,
           lineHeight: 1.15,
-          color: white,
-          ...enter(f, T.DEVICES, T.CLEAR),
+          color: navy,
+          ...enter(f, T.DEVICES + 6, T.CLEAR),
         }}
       >
-        Revanista, our own revenue management system
+        Powered by Revanista
       </div>
-      <div
-        style={{
-          position: "absolute",
-          left: L.devices.left,
-          top: L.devices.top,
-          width: L.devices.w,
-          height: devH,
-          borderRadius: 22,
-          overflow: "hidden",
-          boxShadow: "0 24px 60px rgba(0,0,0,0.45)",
-          opacity: dev * (1 - cleared),
-          transform: `translateY(${(1 - dev) * 40 - cleared * 30}px)`,
-        }}
-      >
-        <Img
-          src={staticFile("campaigns/gn-revenue/revanista-devices.jpg")}
-          style={{ width: "100%", height: "100%", objectFit: "cover", transform: `scale(${devPush})`, transformOrigin: "62% 40%" }}
-        />
-      </div>
-
       {/* what the service gives a hotel, the list building a point at a time */}
       {FEATURES.map((text, i) => (
         <Feature key={text} f={f} at={T.FEATURES[i]} text={text} top={L.list.top + i * L.list.step} L={L.list} away={T.CLEAR} />
@@ -355,7 +340,7 @@ export const GNRevenue: React.FC<{ wide?: boolean; sound?: boolean }> = ({ wide 
         </div>
       ))}
 
-      {/* end card: the roundel, the service, what Revanista is, its logo */}
+      {/* end card: the roundel, the service, "Powered by" and Revanista's logo */}
       <div style={{ position: "absolute", left: 0, width: W, top: E.title[0], textAlign: "center", color: navy }}>
         <div style={{ fontFamily: serif, fontWeight: 500, fontSize: E.title[1], lineHeight: 1.08, opacity: title, transform: `translateY(${(1 - title) * 30}px)` }}>
           Great National
@@ -379,7 +364,7 @@ export const GNRevenue: React.FC<{ wide?: boolean; sound?: boolean }> = ({ wide 
           transform: `translateY(${(1 - line) * 20}px)`,
         }}
       >
-        Run on Revanista, our own revenue management system
+        Powered by
       </div>
       <Img
         src={staticFile("brand/revanista-logo-navy.png")}
