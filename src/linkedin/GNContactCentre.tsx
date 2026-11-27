@@ -14,8 +14,8 @@ import { sans, serif } from "../hotel-film/theme";
 // in December"). "The lobby's full." / "The phone's ringing." with a navy line drawn phone ringing beside it, then
 // the calls stacking up under it, one card a ring, saying why people call (the post's own three: New Year, a gift
 // voucher, the Christmas party; Scott: "why would people call"), "Who picks up?", a pickup click, and the end card:
-// Great National Customer Contact Centre, the lime rule, the hours. 4:5. GN's look: white ground with a soft diagonal
-// wash, navy type, lime only as the rule and the card icons, the roundel top left from frame one (LinkedIn's preview).
+// Great National Customer Contact Centre, the hours (no rule under the name: Scott, a Claude tell). 4:5. GN's look:
+// white ground with a soft diagonal wash, navy type, lime only on the card icons, the roundel top left from frame one (LinkedIn's preview).
 // No photo: Chris didn't like the empty lobby. No letter spacing, hyphens or em dashes in the text.
 //
 // Sound (Scott: "add sound effects and maybe a track"): `scripts/gn-contact-sfx.py` reads RINGS and PICKUP from here
@@ -194,8 +194,7 @@ export const GNContactCentre: React.FC<{ sound?: boolean }> = ({ sound = true })
   const f = useCurrentFrame();
   const title = ramp(f, END, 26);
   const title2 = ramp(f, END + 8, 26);
-  const rule = ramp(f, END + 22, 22, io);
-  const hours = ramp(f, END + 32, 26);
+  const hours = ramp(f, END + 24, 26);
   const phoneOn = ramp(f, L2 + 6, RISE);
   return (
     <AbsoluteFill
@@ -251,12 +250,12 @@ export const GNContactCentre: React.FC<{ sound?: boolean }> = ({ sound = true })
         >
           Customer Contact Centre
         </div>
-        <div style={{ width: 140 * rule, height: 4, background: lime, margin: "54px 0 46px" }} />
         <div
           style={{
             fontFamily: sans,
             fontSize: 30,
             lineHeight: 1.6,
+            marginTop: 48,
             opacity: hours,
             transform: `translateY(${(1 - hours) * 20}px)`,
           }}
