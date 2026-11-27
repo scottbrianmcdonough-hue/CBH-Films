@@ -61,13 +61,14 @@ const rand = (seed: number) => {
 /* Timing (frames at 30fps), on the track's beat (120 BPM, 15 frames), counted back from END: the end card lands on the
    track's last hit */
 export const BEAT = 15;
-export const END = 675;
+export const END = 720;
 const beat = (n: number) => END - n * BEAT;
 export const T = {
-  HOOK1: beat(45), // "December's busy." over December filling up (in from the first frame: LinkedIn previews it)
-  DEC: [-36, beat(40)] as [number, number], // December's dates fill in, a few already booked on frame one
-  FLIP: beat(38), // the page turns to January
-  HOOK2: beat(37), // "January's quieter." (Scott: "make it make sense to a newcomer or outsider")
+  HOOK1: beat(48), // "December's busy." over December filling up (in from the first frame: LinkedIn previews it)
+  DEC: [-36, beat(43)] as [number, number], // December's dates fill in, a few already booked on frame one
+  FLIP: beat(41), // the page turns to January
+  HOOK2: beat(40), // "January's quieter.", held 3s on the empty month (Scott: "I didn't get to January's quieter, I was
+  // busy looking at the calendar")
   HOOK3: beat(34), // "We set the right price for every night." (what revenue management is, in one line)
   JAN: [beat(33), beat(29) + 6] as [number, number], // January's dates tick off as the line lands
   HOOK_OUT: beat(27),
