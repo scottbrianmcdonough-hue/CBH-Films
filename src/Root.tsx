@@ -881,6 +881,15 @@ export const RemotionRoot: React.FC = () => {
         width={GN_WIDTH}
         height={GN_HEIGHT}
       />
+      <Composition
+        id="gn-contact-centre-silent"
+        component={GNContactCentre}
+        durationInFrames={GN_CONTACT_FRAMES}
+        fps={GN_FPS}
+        width={GN_WIDTH}
+        height={GN_HEIGHT}
+        defaultProps={{ sound: false }}
+      />
       {/* AMC 2026: the post-AMC reel, the wall come to life; one edit on each candidate track
           (`amc-2026-reel` is Light it Up Boy) */}
       {(["light", "dirty", "soul", "attraction"] as AmcTrackId[]).map(
