@@ -170,7 +170,8 @@ export const GNWebsiteTips: React.FC<{ slide?: number; set?: "google" | "january
         >
           {n}
         </div>
-        <div style={{ position: "absolute", left: 80, right: 110, top: 840, bottom: 90, display: "flex", flexDirection: "column", justifyContent: "center" }}>
+        {/* the tip set at the same height on every slide, so titles line up as you swipe (Scott: "make sure all align") */}
+        <div style={{ position: "absolute", left: 80, right: 110, top: 880 }}>
           <div style={{ fontFamily: serif, fontWeight: 500, fontSize: 80, lineHeight: 1.08, color: navy }}>{head}</div>
           <div style={{ fontFamily: sans, fontSize: 36, lineHeight: 1.5, color: grey, marginTop: 26 }}>{body}</div>
         </div>
