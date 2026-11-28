@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import { Composition } from "remotion";
-import { PovShort, povFrames, rowtonSpa, lowWoodWinter, ruthinCastle, watertonIsland, sconeDebate, coombeAbbey, pours, ruthinStory, fridayStory, watertonLoop } from "./hotel-film/cuts/PovShort";
+import { PovShort, povFrames, rowtonSpa, lowWoodWinter, ruthinCastle, watertonIsland, sconeDebate, coombeAbbey, pours, ruthinStory, fridayStory, watertonLoop, saturdayStory } from "./hotel-film/cuts/PovShort";
 import { TikTokPlan, TIKTOK_PLAN_FRAMES } from "./hotel-film/explainer/TikTokPlan";
 import { MyComposition } from "./Composition";
 import { EditorialFilm } from "./hotel-film/editorial/EditorialFilm";
@@ -432,6 +432,7 @@ export const RemotionRoot: React.FC = () => {
       <Composition id="ruthin-castle-tiktok-story" component={PovShort} defaultProps={{ spec: ruthinStory }} durationInFrames={povFrames(ruthinStory)} fps={FPS} width={WIDTH} height={HEIGHT} />
       <Composition id="friday-morning-tiktok-story" component={PovShort} defaultProps={{ spec: fridayStory }} durationInFrames={povFrames(fridayStory)} fps={FPS} width={WIDTH} height={HEIGHT} />
       <Composition id="waterton-island-loop-tiktok" component={PovShort} defaultProps={{ spec: watertonLoop }} durationInFrames={povFrames(watertonLoop)} fps={FPS} width={WIDTH} height={HEIGHT} />
+      <Composition id="saturday-tiktok-story" component={PovShort} defaultProps={{ spec: saturdayStory }} durationInFrames={povFrames(saturdayStory)} fps={FPS} width={WIDTH} height={HEIGHT} />
       <Composition id="pov-low-wood-winter-tiktok" component={PovShort} defaultProps={{ spec: lowWoodWinter }} durationInFrames={povFrames(lowWoodWinter)} fps={FPS} width={WIDTH} height={HEIGHT} />
       <Composition id="notes-cosy-winter-tiktok" component={NotesList} defaultProps={{ spec: cosyList }} durationInFrames={notesFrames(cosyList)} fps={FPS} width={WIDTH} height={HEIGHT} />
       <Composition id="cbh-camera-roll-tiktok" component={CameraRoll} durationInFrames={ROLL_FRAMES} fps={FPS} width={WIDTH} height={HEIGHT} />

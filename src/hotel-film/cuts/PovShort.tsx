@@ -191,6 +191,22 @@ export const fridayStory: PovSpec = {
   label: false, music: RICH_ENOUGH,
 };
 
+// a Saturday TikTok Story (Scott, 28 Nov): cake by the fire first (the brightest), a winter walk, the bath to close
+export const saturdayStory: PovSpec = {
+  hook: ["saturday,", "sorted"],
+  place: "", name: "",
+  shots: [
+    { clip: ST("rowton-hall", "cake-by-the-fire"), beats: 3 },
+    { clip: ST("gisborough-hall", "snowy-garden"), beats: 3 },
+    { clip: "hotels/low-wood-bay/screen-time/misty-lake", beats: 3 },
+    { clip: "hotels/low-wood-bay/screen-time/candles", beats: 3 },
+    { clip: ST("rutland-hall", "candlelit-bath"), beats: 7 },
+  ],
+  hookBeats: 6,
+  question: ["what are you", "up to today?"],
+  label: false, music: RICH_ENOUGH,
+};
+
 // Waterton as a loop: four bars of Rich Enough from its drop (64 beats of 16 frames = 8.5s), the bedroom cutting back to
 // the aerial on the downbeat
 export const watertonLoop: PovSpec = {

@@ -1516,3 +1516,5 @@ with no history and no renders:
   seconds): `loop` (no tail, no music fades): four bars of Rich Enough from its drop, aerial 3 beats, footbridge 3, tea 2,
   pool 2, bedroom 6 under the question, the cut back to the aerial on the downbeat. Waterton and Coombe re-rendered in the
   brand caption look (Ruthin and the scones had gone out).
+- `saturday-tiktok-story` (`saturdayStory` in `cuts/PovShort.tsx`, 10.5s; Scott, 28 Nov): Rowton cake by the fire, Gisborough
+  snowy garden, Low Wood Bay misty lake and candles, Rutland candlelit bath; "saturday, / sorted", "what are you / up to today?".
