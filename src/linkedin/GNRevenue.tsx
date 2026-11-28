@@ -73,10 +73,10 @@ export const T = {
   JAN: [beat(36), beat(29)] as [number, number], // January's dates tick off as the line lands, over 3.5s (Scott: "too fast")
   HOOK_OUT: beat(27),
   DEVICES: beat(26), // Revanista as GN shows it
-  FEATURES: [beat(23), beat(18), beat(13)], // three points, in plain words, 2.5 seconds apart
-  CLEAR: beat(7), // the studio clears to white
-  A1: beat(6), // "You look after Christmas."
-  A2: beat(5), // "We'll get January ready."
+  FEATURES: [beat(22), beat(18), beat(14)], // three points, in plain words, 2 seconds apart, each its own beat
+  CLEAR: beat(9), // the studio clears to white
+  A1: beat(8), // "You look after Christmas."
+  A2: beat(6), // "We'll get January ready."
   A_OUT: beat(1) - 4,
   END,
 };
@@ -289,14 +289,16 @@ const Calendar: React.FC<{ f: number; c: Layout["cal"] }> = ({ f, c }) => {
 };
 
 /* A point of the service: a lime tick in a ring, the words beside it */
-const Feature: React.FC<{ f: number; at: number; text: string; top: number; L: Layout["list"]; away: number }> = ({
+const Feature: React.FC<{ f: number; at: number; next?: number; text: string; top: number; L: Layout["list"]; away: number }> = ({
   f,
   at,
+  next,
   text,
   top,
   L,
   away,
 }) => {
+  const dim = next === undefined ? 0 : ramp(f, next, 14) * 0.5; // dims once the next point arrives
   const p = ramp(f, at, 16);
   const tick = ramp(f, at + 4, 12);
   const g = ramp(f, away, 16, io);
@@ -311,7 +313,7 @@ const Feature: React.FC<{ f: number; at: number; text: string; top: number; L: L
         display: "flex",
         alignItems: "center",
         gap: 20,
-        opacity: p * (1 - g),
+        opacity: p * (1 - g) * (1 - dim),
         transform: `translateX(${(1 - p) * -30}px)`,
       }}
     >
@@ -382,7 +384,8 @@ export const GNRevenue: React.FC<{ wide?: boolean; sound?: boolean }> = ({ wide 
             objectFit: "cover",
             // a push you can see (Scott: "Ken Burns can't notice"), pivoting on the laptop's left corner so nothing
             // leaves the frame (Scott: at 1.16 with a drift the laptop went "off the screen")
-            transform: `scale(${1 + 0.1 * ramp(f, T.DEVICES, T.CLEAR + 20 - T.DEVICES, Easing.inOut(Easing.sin))})`,
+            // a step in as each point lands (a visual beat for each; the review: "so viewers don't tune out")
+            transform: `scale(${1 + 0.02 * ramp(f, T.DEVICES, 30, io) + T.FEATURES.reduce((acc, at) => acc + 0.027 * ramp(f, at, 18, io), 0)})`,
             transformOrigin: wide ? "46% 90%" : "4% 92%",
           }}
         />
@@ -439,7 +442,7 @@ export const GNRevenue: React.FC<{ wide?: boolean; sound?: boolean }> = ({ wide 
       </div>
       {/* what the service gives a hotel, the list building a point at a time */}
       {FEATURES.map((text, i) => (
-        <Feature key={text} f={f} at={T.FEATURES[i]} text={text} top={L.list.top + i * L.list.step} L={L.list} away={T.CLEAR} />
+        <Feature key={text} f={f} at={T.FEATURES[i]} next={T.FEATURES[i + 1]} text={text} top={L.list.top + i * L.list.step} L={L.list} away={T.CLEAR} />
       ))}
 
       {/* the answer, navy on white */}
