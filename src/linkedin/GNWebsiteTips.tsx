@@ -2,8 +2,9 @@ import React from "react";
 import { AbsoluteFill, Img, staticFile } from "remotion";
 import { sans, serif } from "../hotel-film/theme";
 
-// Great National: "5 things to check on your hotel's website before January", a LinkedIn carousel for GN's Digital
-// Growth Solutions (Scott, 28 Nov: not another animation, "it looks samey"; "draft the five tips, do the carousel").
+// Great National: "5 things to check on your hotel's Google listing before January", a LinkedIn carousel for GN's Digital
+// Growth Solutions (a website checklist was dropped: GN's own site is dated, so it invited the comparison; Scott chose
+// the Google listing version) (Scott, 28 Nov: not another animation, "it looks samey"; "draft the five tips, do the carousel").
 // Seven 4:5 slides, rendered as stills and put together as a PDF: a cover over a GN hotel at dusk in the navy tint (the
 // videos' look), five tips on GN's white (a lime numeral, the tip in navy Cormorant, one plain line), and a navy close.
 // Tips are practical and plain, no figures; no hyphens, em dashes or triads; no rules under titles (Scott: a Claude tell). Slide by prop: `slide` 1 to 7.
@@ -17,11 +18,11 @@ const white = "#ffffff";
 export const GN_TIPS_SLIDES = 7;
 
 const TIPS: [string, string][] = [
-  ["Your January offers are live", "Guests plan their January breaks over Christmas. If the offer isn’t on your site yet, they can’t book it."],
-  ["Booking works on a phone", "Try booking a room on your own phone, start to finish. If it feels fiddly to you, it feels fiddly to a guest."],
-  ["Your photos match the season", "Swap the summer gardens for winter scenes and cosy rooms, so the site looks like the stay they’re booking."],
-  ["Christmas details are easy to find", "Opening times and menus should be on the page, so guests get answers without having to ring."],
-  ["Old offers are gone", "Take down last year’s events and expired deals, and make sure next year’s dates are loaded and bookable."],
+  ["Your Christmas hours are set", "Add special opening hours for the restaurant and spa over Christmas and New Year, so nobody arrives to a closed door."],
+  ["Your photos show winter", "Add a few fresh winter photos. Your listing is often the first look a guest gets at your hotel."],
+  ["Reviews have replies", "A short, warm reply to recent reviews shows guests that someone is looking after the place."],
+  ["The booking link works", "Check it takes guests straight to booking on your own site, not to a page that no longer exists."],
+  ["Your festive offers are posted", "Add a Google post for your Christmas and New Year offers, so they show right on your listing."],
 ];
 
 const Badge: React.FC<{ size?: number }> = ({ size = 96 }) => (
@@ -59,7 +60,7 @@ export const GNWebsiteTips: React.FC<{ slide?: number }> = ({ slide = 1 }) => {
           DIGITAL GROWTH
         </div>
         <div style={{ position: "absolute", left: 80, right: 80, top: 480, fontFamily: serif, fontWeight: 500, fontSize: 96, lineHeight: 1.08, color: white }}>
-          5 things to check on your hotel’s website before January
+          5 things to check on your hotel’s Google listing before January
         </div>
       </AbsoluteFill>
     );
@@ -74,7 +75,7 @@ export const GNWebsiteTips: React.FC<{ slide?: number }> = ({ slide = 1 }) => {
           Want a second pair of eyes?
         </div>
         <div style={{ position: "absolute", left: 120, right: 120, top: 790, textAlign: "center", fontFamily: sans, fontSize: 34, lineHeight: 1.5, color: "rgba(255,255,255,0.9)" }}>
-          Our Digital Growth team can take a look at your website with you.
+          Our Digital Growth team can take a look at your listing with you.
         </div>
         <div
           style={{
