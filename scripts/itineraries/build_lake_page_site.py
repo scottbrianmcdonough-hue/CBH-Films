@@ -157,16 +157,18 @@ tips = [
 tip_html = "".join(f'<li class="tip">{icon(i)}<span>{t}</span></li>' for i, t in tips)
 
 # ------------------------------------------------------------------ more itineraries / more inspiration
+# every tile has a photo; Cotswolds, Scotland and Golf breaks reuse photos already on this page (Scott, 28 Nov) until
+# their own come in
 
 itin_tiles = (
     f'<a class="tile" href="#" style="background-image:url({img("hebden-bridge-canal")})"><span>Yorkshire itineraries<small>Coming soon</small></span></a>'
-    '<a class="tile soon" href="#"><span>Cotswolds itineraries<small>Coming soon</small></span></a>'
-    '<a class="tile soon" href="#"><span>Scotland itineraries<small>Coming soon</small></span></a>'
+    f'<a class="tile" href="#" style="background-image:url({img("wild-boar-exterior")})"><span>Cotswolds itineraries<small>Coming soon</small></span></a>'
+    f'<a class="tile" href="#" style="background-image:url({img("destination-edinburgh-scotland")})"><span>Scotland itineraries<small>Coming soon</small></span></a>'
 )
 insp_tiles = (
     f'<a class="tile" href="#" style="background-image:url({img("low-wood-bay-aerial")})"><span>Lake District hotels</span></a>'
     f'<a class="tile" href="#" style="background-image:url({img("castle-inn-indoor-pool")})"><span>Spa &amp; Wellness</span></a>'
-    '<a class="tile soon" href="#"><span>Golf breaks</span></a>'
+    f'<a class="tile" href="#" style="background-image:url({img("castle-inn-lawn")})"><span>Golf breaks</span></a>'
 )
 
 SERIF = "'ivypresto-display','Cormorant Garamond',Georgia,serif"
@@ -239,7 +241,6 @@ summary::-webkit-details-marker{{display:none}}summary::after{{content:"+";font-
 .tile{{position:relative;height:220px;border-radius:12px;overflow:hidden;background:center/cover no-repeat #2b2b28;display:flex;align-items:flex-end;justify-content:center;text-decoration:none}}
 .tile::after{{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.55),rgba(0,0,0,0) 60%)}}
 .tile span{{position:relative;z-index:1;color:#fff;font-family:{SERIF};font-size:28px;font-weight:400;text-align:center;padding:0 16px 22px;line-height:1.15}}.tile small{{display:block;font-family:{SANS};font-size:12px;letter-spacing:0;text-transform:uppercase;margin-top:6px;color:var(--gold)}}
-.tile.soon{{background:linear-gradient(135deg,#3a3a35,#1d1d1b)}}
 section.block{{padding:70px 0 10px}}
 footer{{margin-top:90px;background:var(--ink);color:#bdbdbd;text-align:center;padding:40px;font-size:14px}}
 @media(max-width:900px){{header{{padding:10px 16px}}.search,nav.main{{display:none}}header .pill{{margin-left:auto}}.wrap{{padding:0 16px}}.hero{{height:380px}}h1{{font-size:42px}}
