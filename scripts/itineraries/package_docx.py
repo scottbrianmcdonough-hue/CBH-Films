@@ -22,7 +22,7 @@ if m:
     x = x[:s] + x[x.rfind('<w:sectPr'):]
 x = re.sub(r'<w:r><w:t xml:space="preserve"> · </w:t></w:r><w:r><w:t xml:space="preserve">To check</w:t></w:r>', '', x)
 
-heads = ['Hero', 'Intro', 'Quick view', '1 night itinerary', '2 night itinerary', 'Rainy day alternative', 'Map',
+heads = ['Hero', 'About the Lake District', 'Quick view', '1 night itinerary', '2 night itinerary', 'Rainy day alternative', 'Top attractions', 'Map',
          'Where to stay', 'Top tips', 'Gallery', 'FAQs', 'Links out', 'Images']
 slug = lambda t: 's_' + re.sub(r'[^a-z0-9]+', '_', t.lower()).strip('_')
 n = [900]
@@ -38,7 +38,7 @@ def bm(mm):
 
 
 x = re.sub(r'<w:p\b(?:(?!</w:p>).)*?<w:pStyle w:val="Heading2"/>.*?</w:p>', bm, x, flags=re.S)
-labels = {'Hero': 'Hero', 'Intro': 'Intro', 'Quick view': 'Quick view', '1 night': '1 night itinerary',
+labels = {'Hero': 'Hero', 'About': 'About the Lake District', 'Top attractions': 'Top attractions', 'Attractions': 'Top attractions', 'Quick view': 'Quick view', '1 night': '1 night itinerary',
           '2 nights': '2 night itinerary', 'Rainy day': 'Rainy day alternative', 'Map': 'Map', 'Where to stay': 'Where to stay',
           'Top tips': 'Top tips', 'Gallery': 'Gallery', 'FAQs': 'FAQs', 'Links out': 'Links out', 'Images': 'Images'}
 
