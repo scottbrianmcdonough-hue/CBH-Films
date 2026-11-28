@@ -49,7 +49,7 @@ export const GN_TIP_SETS: Record<"google" | "january", Set> = {
       ["Remind voucher holders", "Gift vouchers given at Christmas are stays waiting to happen. A friendly January reminder gets them booked.", "campaigns/gn-key/hotels/grand-swansea.jpg", "50% 55%"],
       ["Email last January’s guests", "They’ve stayed with you at this time of year before. Let them know what’s on this January.", "campaigns/gn-key/hero-hot-tub.jpg", "50% 50%"],
       ["Look after your locals", "A dinner or spa offer for people who live nearby can fill the quieter nights.", "campaigns/gn-key/hotels/crown-quarter.jpg", "50% 50%"],
-      ["Bring in January meetings", "Plenty of companies plan away days at the start of the year. Let local businesses know you have space.", "campaigns/gn-key/hero-golf.jpg", "40% 60%"],
+      ["Give them something to do", "Pair a room with a round of golf or a spa day. A simple package gives guests a reason to book in January.", "campaigns/gn-key/hero-golf.jpg", "40% 60%"],
     ],
     ask: "Want a hand with January?",
     help: "Our team can help with the pricing and the marketing for your quieter months.",
