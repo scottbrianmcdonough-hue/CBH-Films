@@ -1,0 +1,83 @@
+diff --git a/out/bf-region-north-ticket.txt b/out/bf-region-north-ticket.txt
+index 3c22151..5eacb04 100644
+--- a/out/bf-region-north-ticket.txt
++++ b/out/bf-region-north-ticket.txt
+@@ -1,7 +1,7 @@
+ [BLACK FRIDAY] Black Friday Sale reel: The North
+ 
+ Hook
+-Opens on a collage of the five hotels with a tap on Book now, then takes you to each one in turn with its own offer, cheapest first, and ends on Lock in your dates before they're gone.
++Opens on a collage of the five hotels with a tap on Book now, then takes you to each one in turn with its own offer, biggest saving first, and ends on Lock in your dates before they're gone.
+ 
+ Post
+ 𝗔 𝗡𝗼𝗿𝘁𝗵𝗲𝗿𝗻 𝘄𝗲𝗲𝗸𝗲𝗻𝗱, 𝗳𝗼𝗿 𝗹𝗲𝘀𝘀 🍂
+@@ -21,6 +21,6 @@ Creative: bf-region-north.mp4 (4:5, 21.5s, music baked in)
+ 
+ Notes
+ - Tag all five: Oaklands Hall Hotel, Skipton Hotel, Gomersal Park Hotel & Spa, Waterton Park Hotel & Spa, Holdsworth House Hotel.
+-- Offers on screen: Oaklands Hall save 18%, Skipton save 20%, Gomersal Park save 20%, Waterton Park save 20%, Holdsworth House save 10%.
++- Offers on screen, biggest saving first: Skipton save 20%, Gomersal Park save 20%, Waterton Park save 20%, Oaklands Hall save 18%, Holdsworth House save 10%.
+ - Music is Leva Eternity, the same track as the Gomersal Park spotlight: keep a few days between the two.
+ - Links: Jira shows URLs as smart chips that copy as the page title. Switch them to URL display before copying.
+diff --git a/public/campaigns/bf-region-north/cut.json b/public/campaigns/bf-region-north/cut.json
+index bcc2dbc..8248326 100644
+--- a/public/campaigns/bf-region-north/cut.json
++++ b/public/campaigns/bf-region-north/cut.json
+@@ -9,25 +9,25 @@
+    "vf": "eq=saturation=1.0:contrast=1.03"
+   },
+   {
+-   "src": "public/campaigns/bf-region-north/clips/h0a.mp4",
++   "src": "public/campaigns/bf-region-north/clips/h1a.mp4",
+    "from": 0,
+    "frames": 78,
+    "vf": "eq=saturation=1.0:contrast=1.03"
+   },
+   {
+-   "src": "public/campaigns/bf-region-north/clips/h1a.mp4",
++   "src": "public/campaigns/bf-region-north/clips/h2a.mp4",
+    "from": 0,
+    "frames": 78,
+    "vf": "eq=saturation=1.0:contrast=1.03"
+   },
+   {
+-   "src": "public/campaigns/bf-region-north/clips/h2a.mp4",
++   "src": "public/campaigns/bf-region-north/clips/h3a.mp4",
+    "from": 0,
+    "frames": 78,
+    "vf": "eq=saturation=1.0:contrast=1.03"
+   },
+   {
+-   "src": "public/campaigns/bf-region-north/clips/h3a.mp4",
++   "src": "public/campaigns/bf-region-north/clips/h0a.mp4",
+    "from": 0,
+    "frames": 78,
+    "vf": "eq=saturation=1.0:contrast=1.03"
+diff --git a/src/hotels/bf-region-north.ts b/src/hotels/bf-region-north.ts
+index 65c32b8..ba92618 100644
+--- a/src/hotels/bf-region-north.ts
++++ b/src/hotels/bf-region-north.ts
+@@ -1,7 +1,7 @@
+ import type { RippleSpec } from "../hotel-film/ripple/types";
+ 
+ // Black Friday region reel: The North (Bianca, 10 Nov: "a reel per region to include all cluster hotels, not just one"),
+-// 4:5 for the feeds. Every hotel in the region's carousel, cheapest first, each on its exterior then a hero shot, a
++// 4:5 for the feeds. Every hotel in the region's carousel, biggest saving first (Scott, 28 Nov; was cheapest first), each on its exterior then a hero shot, a
+ // bar each; the carousel's card (mauve caps place, cream Cormorant name, the offer in a mauve pill) held across the
+ // hotel's two shots. Opens on BLACK FRIDAY SALE / The North, ends on Save up to the region's best offer. Built by
+ // scratchpad build.py (clips by still-push.py, cut by cut-picture.py); the region's spotlight track.
+@@ -13,10 +13,10 @@ export const bfRegionNorth: RippleSpec = {
+   label: { eyebrow: "", name: "", from: 0, to: 1 },
+   collage: { to: 156, caps: "The North", best: "20%", pill: "Book now", tap: 136, tiles: [{ src: "hotels/oaklands-hall/plate.jpg", pos: "50% 50%" }, { src: "hotels/skipton/afternoon-tea.jpg", pos: "52% 50%" }, { src: "hotels/gomersal-park/afternoon-tea.jpg", pos: "40% 50%" }, { src: "hotels/waterton-park/outdoor-hot-tub.jpg", pos: "57% 50%" }, { src: "hotels/holdsworth-house/breakfast-in-bed.jpg", pos: "50% 50%" }] },
+   cards: [
+-    { from: 158, to: 234, place: "Laceby, Lincolnshire", name: "Oaklands Hall Hotel", offer: "Save 18%" },
+-    { from: 236, to: 312, place: "Skipton, North Yorkshire", name: "Skipton Hotel", offer: "Save 20%" },
+-    { from: 314, to: 390, place: "Gomersal, West Yorkshire", name: "Gomersal Park\nHotel & Spa", offer: "Save 20%" },
+-    { from: 392, to: 468, place: "Wakefield, West Yorkshire", name: "Waterton Park\nHotel & Spa", offer: "Save 20%" },
++    { from: 158, to: 234, place: "Skipton, North Yorkshire", name: "Skipton Hotel", offer: "Save 20%" },
++    { from: 236, to: 312, place: "Gomersal, West Yorkshire", name: "Gomersal Park\nHotel & Spa", offer: "Save 20%" },
++    { from: 314, to: 390, place: "Wakefield, West Yorkshire", name: "Waterton Park\nHotel & Spa", offer: "Save 20%" },
++    { from: 392, to: 468, place: "Laceby, Lincolnshire", name: "Oaklands Hall Hotel", offer: "Save 18%" },
+     { from: 470, to: 546, place: "Halifax, West Yorkshire", name: "Holdsworth House Hotel", offer: "Save 10%" },
+   ],
+   lines: [],
