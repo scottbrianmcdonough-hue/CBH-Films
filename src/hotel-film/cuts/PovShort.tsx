@@ -197,7 +197,7 @@ export const saturdayStory: PovSpec = {
   place: "", name: "",
   shots: [
     { clip: ST("rowton-hall", "cake-by-the-fire"), beats: 3 },
-    { clip: ST("gisborough-hall", "snowy-garden"), beats: 3 },
+    { clip: ST("rowton-hall", "dusk-4s"), beats: 3 }, // no snow (Scott, 28 Nov)
     { clip: "hotels/low-wood-bay/screen-time/misty-lake", beats: 3 },
     { clip: "hotels/low-wood-bay/screen-time/candles", beats: 3 },
     { clip: ST("rutland-hall", "candlelit-bath"), beats: 7 },

@@ -1269,14 +1269,13 @@ export const TikTokText: React.FC<{ lines: string[]; top: number; left?: number;
   if (look === "brand") {
     return (
       <div style={{ position: "absolute", top: TT_BRAND_TOP, left: 0, width: 1080, padding: "50px 0 56px", display: "flex", flexDirection: "column", alignItems: "center", opacity: 1 - gone,
-        // a slight scrim just behind the words, fading to nothing at its edges (legible on a busy grid, no box)
-        background: "radial-gradient(ellipse 62% 60% at 50% 50%, rgba(9,9,10,0.72) 0%, rgba(9,9,10,0.55) 45%, rgba(9,9,10,0) 100%)" }}>
+ }}>
         {lines.map((l, k) => {
           const t = still ? 1 : progress(frame, k * 4, 9);
           return (
             <div key={k} style={{ fontFamily: serif, fontWeight: 700, fontSize: 100, lineHeight: 1.0, color: colors.cream, letterSpacing: "0.005em",
               whiteSpace: "nowrap", textAlign: "center", opacity: Math.min(1, t * 1.6), transform: `translateY(${(1 - t) * 18}px)`,
-              textShadow: "0 0 2px rgba(0,0,0,0.7), 0 2px 8px rgba(0,0,0,0.6), 0 4px 30px rgba(0,0,0,0.5)" }}>
+              textShadow: "0 0 1px rgba(0,0,0,0.9), 0 0 3px rgba(0,0,0,0.75), 0 2px 6px rgba(0,0,0,0.6)" }}>
               {l}
             </div>
           );
