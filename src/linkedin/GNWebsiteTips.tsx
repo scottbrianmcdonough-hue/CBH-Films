@@ -19,7 +19,9 @@ const white = "#ffffff";
 export const GN_TIPS_SLIDES = 7;
 
 /* Each carousel's words: the cover's label, title and photo, the five tips, and the close */
-type Set = { label: string; title: string; photo: string; pos: string; tips: [string, string][]; ask: string; help: string };
+// a tip: its title, its line, and (optionally) a GN photo for it, its path under public/ and its framing
+type Tip = [string, string] | [string, string, string, string];
+type Set = { label: string; title: string; photo: string; pos: string; tips: Tip[]; ask: string; help: string };
 export const GN_TIP_SETS: Record<"google" | "january", Set> = {
   google: {
     label: "DIGITAL GROWTH",
@@ -43,11 +45,11 @@ export const GN_TIP_SETS: Record<"google" | "january", Set> = {
     photo: "abbeyleix-manor",
     pos: "45% 50%",
     tips: [
-      ["A midweek January break", "Give guests a reason to come Sunday to Thursday, with a simple midweek offer they can book now."],
-      ["Remind voucher holders", "Gift vouchers given at Christmas are stays waiting to happen. A friendly January reminder gets them booked."],
-      ["Email last January’s guests", "They’ve stayed with you at this time of year before. Let them know what’s on this January."],
-      ["Look after your locals", "A dinner or spa offer for people who live nearby can fill the quieter nights."],
-      ["Bring in January meetings", "Plenty of companies plan away days at the start of the year. Let local businesses know you have space."],
+      ["A midweek January break", "Give guests a reason to come Sunday to Thursday, with a simple midweek offer they can book now.", "campaigns/gn-key/hotels/grand-swansea.jpg", "50% 55%"],
+      ["Remind voucher holders", "Gift vouchers given at Christmas are stays waiting to happen. A friendly January reminder gets them booked.", "campaigns/gn-key/hero-hot-tub.jpg", "50% 50%"],
+      ["Email last January’s guests", "They’ve stayed with you at this time of year before. Let them know what’s on this January.", "campaigns/gn-key/hotels/gold-coast.jpg", "50% 60%"],
+      ["Look after your locals", "A dinner or spa offer for people who live nearby can fill the quieter nights.", "campaigns/gn-key/hotels/crown-quarter.jpg", "50% 50%"],
+      ["Bring in January meetings", "Plenty of companies plan away days at the start of the year. Let local businesses know you have space.", "campaigns/gn-contact/hotels/hotel-ballina-lobby.jpg", "50% 50%"],
     ],
     ask: "Want a hand with January?",
     help: "Our team can help with the pricing and the marketing for your quieter months.",
@@ -66,7 +68,8 @@ const Count: React.FC<{ n: number; light?: boolean }> = ({ n, light }) => (
       top: 112,
       fontFamily: sans,
       fontSize: 26,
-      color: light ? "rgba(255,255,255,0.8)" : grey,
+      color: light ? "#ffffff" : grey,
+      textShadow: light ? "0 1px 3px rgba(0,0,0,0.6), 0 0 14px rgba(0,0,0,0.45)" : undefined,
     }}
   >
     {n} / {GN_TIPS_SLIDES}
@@ -129,9 +132,51 @@ export const GNWebsiteTips: React.FC<{ slide?: number; set?: "google" | "january
     );
   }
 
-  /* a tip: the lime numeral, the tip, one plain line */
+  /* a tip: the lime numeral, the tip, one plain line; with a photo, the photo in a rounded frame on top and the number
+     on a lime badge at its corner (Scott: "more visual ... clean but not sterile") */
   const n = slide - 1;
-  const [head, body] = S.tips[n - 1];
+  const [head, body, photo, pos] = S.tips[n - 1];
+  if (photo) {
+    // full bleed (Scott: "full bleed if you have to"): the photo edge to edge across the top, the tip on white below
+    return (
+      <AbsoluteFill style={{ background: "linear-gradient(135deg, #ffffff 0%, #ffffff 36%, #eef1f4 100%)" }}>
+        <div style={{ position: "absolute", left: 0, right: 0, top: 0, height: 760, overflow: "hidden" }}>
+          <Img src={staticFile(photo)} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: pos }} />
+          {/* a soft shade at the top so the roundel and the count read over any photo */}
+          <AbsoluteFill style={{ background: "linear-gradient(180deg, rgba(24,43,60,0.45) 0%, rgba(24,43,60,0) 28%)" }} />
+        </div>
+        <Badge />
+        <Count n={slide} light />
+        <div
+          style={{
+            position: "absolute",
+            left: 80,
+            top: 760 - 56,
+            width: 112,
+            height: 112,
+            borderRadius: 56,
+            background: lime,
+            border: "6px solid #ffffff",
+            boxSizing: "border-box",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            fontFamily: serif,
+            fontWeight: 600,
+            fontSize: 64,
+            color: navy,
+            fontVariantNumeric: "lining-nums",
+          }}
+        >
+          {n}
+        </div>
+        <div style={{ position: "absolute", left: 80, right: 110, top: 840, bottom: 90, display: "flex", flexDirection: "column", justifyContent: "center" }}>
+          <div style={{ fontFamily: serif, fontWeight: 500, fontSize: 80, lineHeight: 1.08, color: navy }}>{head}</div>
+          <div style={{ fontFamily: sans, fontSize: 36, lineHeight: 1.5, color: grey, marginTop: 26 }}>{body}</div>
+        </div>
+      </AbsoluteFill>
+    );
+  }
   return (
     <AbsoluteFill style={{ background: "linear-gradient(135deg, #ffffff 0%, #ffffff 36%, #eef1f4 100%)" }}>
       <Badge />
