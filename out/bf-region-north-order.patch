@@ -1,8 +1,8 @@
 diff --git a/out/bf-region-north-ticket.txt b/out/bf-region-north-ticket.txt
-index 3c22151..5eacb04 100644
+index 3c22151..f59a471 100644
 --- a/out/bf-region-north-ticket.txt
 +++ b/out/bf-region-north-ticket.txt
-@@ -1,7 +1,7 @@
+@@ -1,14 +1,14 @@
  [BLACK FRIDAY] Black Friday Sale reel: The North
  
  Hook
@@ -11,11 +11,22 @@ index 3c22151..5eacb04 100644
  
  Post
  𝗔 𝗡𝗼𝗿𝘁𝗵𝗲𝗿𝗻 𝘄𝗲𝗲𝗸𝗲𝗻𝗱, 𝗳𝗼𝗿 𝗹𝗲𝘀𝘀 🍂
-@@ -21,6 +21,6 @@ Creative: bf-region-north.mp4 (4:5, 21.5s, music baked in)
+ 
+-Our Black Friday Sale runs right across the North, at five of our hotels.
++Our Black Friday Sale runs at five of our hotels across the North, with up to 20% off your stay.
+ 
+-From Oaklands Hall in Lincolnshire to Holdsworth House in Halifax, with Waterton Park's own island somewhere in between.
++The biggest savings come first, from Skipton Hotel by the canal to Waterton Park on its own island.
+ 
+ 🔒 𝗟𝗼𝗰𝗸 𝗶𝗻 𝘆𝗼𝘂𝗿 𝗱𝗮𝘁𝗲𝘀 before they're gone.
+ 
+@@ -20,7 +20,7 @@ Platforms: Instagram (Reel), Facebook
+ Creative: bf-region-north.mp4 (4:5, 21.5s, music baked in)
  
  Notes
- - Tag all five: Oaklands Hall Hotel, Skipton Hotel, Gomersal Park Hotel & Spa, Waterton Park Hotel & Spa, Holdsworth House Hotel.
+-- Tag all five: Oaklands Hall Hotel, Skipton Hotel, Gomersal Park Hotel & Spa, Waterton Park Hotel & Spa, Holdsworth House Hotel.
 -- Offers on screen: Oaklands Hall save 18%, Skipton save 20%, Gomersal Park save 20%, Waterton Park save 20%, Holdsworth House save 10%.
++- Tag all five, in the reel's order: Skipton Hotel, Gomersal Park Hotel & Spa, Waterton Park Hotel & Spa, Oaklands Hall Hotel, Holdsworth House Hotel.
 +- Offers on screen, biggest saving first: Skipton save 20%, Gomersal Park save 20%, Waterton Park save 20%, Oaklands Hall save 18%, Holdsworth House save 10%.
  - Music is Leva Eternity, the same track as the Gomersal Park spotlight: keep a few days between the two.
  - Links: Jira shows URLs as smart chips that copy as the page title. Switch them to URL display before copying.
