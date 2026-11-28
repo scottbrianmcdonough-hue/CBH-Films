@@ -918,6 +918,15 @@ export const RemotionRoot: React.FC = () => {
         defaultProps={{ slide: 1 }}
       />
       <Composition
+        id="gn-fill-january"
+        component={GNWebsiteTips}
+        durationInFrames={1}
+        fps={GN_FPS}
+        width={GN_WIDTH}
+        height={GN_HEIGHT}
+        defaultProps={{ slide: 1, set: "january" as const }}
+      />
+      <Composition
         id="gn-revenue-wide"
         component={GNRevenue}
         durationInFrames={GN_REVENUE_FRAMES}
