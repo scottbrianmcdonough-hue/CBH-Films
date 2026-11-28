@@ -384,8 +384,8 @@ export const GNRevenue: React.FC<{ wide?: boolean; sound?: boolean }> = ({ wide 
             objectFit: "cover",
             // a push you can see (Scott: "Ken Burns can't notice"), pivoting on the laptop's left corner so nothing
             // leaves the frame (Scott: at 1.16 with a drift the laptop went "off the screen")
-            // a step in as each point lands (a visual beat for each; the review: "so viewers don't tune out")
-            transform: `scale(${1 + 0.02 * ramp(f, T.DEVICES, 30, io) + T.FEATURES.reduce((acc, at) => acc + 0.027 * ramp(f, at, 18, io), 0)})`,
+            // one smooth push (Scott: no step "nudge" on each point, "keep it smooth")
+            transform: `scale(${1 + 0.1 * ramp(f, T.DEVICES, T.CLEAR + 20 - T.DEVICES, Easing.inOut(Easing.sin))})`,
             transformOrigin: wide ? "46% 90%" : "4% 92%",
           }}
         />
