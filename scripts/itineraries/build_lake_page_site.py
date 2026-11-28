@@ -157,8 +157,7 @@ tips = [
 tip_html = "".join(f'<li class="tip">{icon(i)}<span>{t}</span></li>' for i, t in tips)
 
 # ------------------------------------------------------------------ more itineraries / more inspiration
-# every tile has a photo; Cotswolds, Scotland and Golf breaks reuse photos already on this page (Scott, 28 Nov) until
-# their own come in
+# every tile has a photo (Scott, 28 Nov); Cotswolds reuses one already on this page until its destination photo comes in
 
 itin_tiles = (
     f'<a class="tile" href="#" style="background-image:url({img("hebden-bridge-canal")})"><span>Yorkshire itineraries<small>Coming soon</small></span></a>'
@@ -168,7 +167,7 @@ itin_tiles = (
 insp_tiles = (
     f'<a class="tile" href="#" style="background-image:url({img("low-wood-bay-aerial")})"><span>Lake District hotels</span></a>'
     f'<a class="tile" href="#" style="background-image:url({img("castle-inn-indoor-pool")})"><span>Spa &amp; Wellness</span></a>'
-    f'<a class="tile" href="#" style="background-image:url({img("castle-inn-lawn")})"><span>Golf breaks</span></a>'
+    f'<a class="tile" href="#" style="background-image:url({img("dalmahoy-golf-course")})"><span>Golf breaks</span></a>'
 )
 
 SERIF = "'ivypresto-display','Cormorant Garamond',Georgia,serif"
